@@ -3,7 +3,7 @@
 
 fix_advanced_start_empire_features = {
 
-	log = "tbm_advananced_start_init_effect - fix_advanced_start_empire_features"
+	log = "TBM - Advanced Starts"
 
 	optimize_memory
 
@@ -70,4 +70,200 @@ fix_advanced_start_empire_features = {
 	# Vanilla Machine: +1 nexus, +2 energy
 	# Vanilla Hive: +1 hive, +1 farming
 	# Vanilal Anglers: +1 farming
+}
+
+scripted_planet_reroll = {
+	
+	optimize_memory
+
+	log = "TBM - Scripted Planets"
+	
+	### ancient_relics_initializers
+
+		# Armistice relic
+		# Grunur
+		# Mechanocalibrator
+		# Rubricator
+
+	### distant_stars_initializers
+
+		# primitive_robot_system
+		# clear_blockers is commented out in vanilla; this is its standard spread
+		every_system_planet = {
+			limit = { has_planet_flag = primitive_robot_planet }
+			reroll_deposits = yes
+			add_deposit = d_failing_infrastructure
+			add_deposit = d_failing_infrastructure
+			add_deposit = d_city_ruins
+			add_deposit = d_city_ruins
+			add_deposit = d_metal_boneyard
+		}
+
+		# superflare_system
+		# Standard spread for now, should get basic tomb features as well
+		every_system_planet = {
+			limit = { has_planet_flag = frozen_in_time_flag }
+			reroll_deposits = yes
+			add_deposit = d_radioactive_wasteland
+			add_deposit = d_radioactive_wasteland
+			add_deposit = d_irradiated_valley
+		}
+
+		# living_planet_system
+		# Standard spread, will eventually do special set
+		every_system_planet = {
+			limit = { has_planet_flag = living_planet }
+			reroll_deposits = yes
+			add_deposit = d_betharian_deposit
+		}
+
+	### federations_initializers / On the Shoulders of Giants
+	#	These are initialized separately so will be dealt with elsewhere.
+
+		
+	### unique_system_initializer
+		
+		# unique_system_initializer_02 - Relic world, not needed yet
+}
+
+fix_fallen_empire_worlds = {
+	#	Somewhat of a hacky fix for now, due to difficulty of independently accessing the specific planets.
+	#	For the core worlds where they have large numbers of pops & districts, we're creating them as vapourware.
+
+	log = "TBM - Fallen Empire Worlds"
+
+	optimize_memory
+		
+	# For Modded FEs, all features are re-rolled--this may lead to some unintended effects if they have unique district spreads, but use add_district_and_planet_size_if_needed.
+	every_country = {
+		limit = {
+			is_fallen_empire = yes
+		}
+
+		# Reroll on colonies, clean-up
+		every_owned_planet = {
+			reroll_deposits = yes
+		}
+	}
+
+	# Spiritualist (should cover Scion spiritualists, too)
+	every_country = {
+		limit = {
+			is_fallen_empire = yes
+			is_spiritualist = yes
+		}
+
+		# Reroll on colonies, clean-up
+		every_owned_planet = {
+			limit = {
+				NOR = {
+					has_planet_flag = holy_world_1
+					has_planet_flag = holy_world_2
+					has_planet_flag = holy_world_3
+					has_planet_flag = holy_world_4
+				}
+			}
+			reroll_deposits = yes
+		}
+		
+		# Celestial Throne = 8 mining, 8 farming
+		capital_scope = {
+			set_planet_flag = celestial_throne
+			clear_deposits = yes
+			while = {
+				limit = {
+					num_districts = {
+						type = district_mining
+						value <= 8
+					}
+				}
+				add_district = district_mining
+			}
+			while = {
+				limit = {
+					num_districts = {
+						type = district_farming
+						value <= 8
+					}
+				}
+				add_district = district_farming
+			}
+			add_deposit = d_buzzing_plains
+			add_deposit = d_betharian_deposit
+			add_deposit = d_buzzing_plains
+			add_deposit = d_frozen_gas_lake
+			add_deposit = d_geothermal_vent
+		}
+
+		# Sky Temple = 5 mining, 5 food
+		capital_scope.solar_system = {
+			every_system_planet = {
+				limit = {
+					NOT = { has_planet_flag = celestial_throne }
+				}
+				set_planet_flag = sky_temple
+				while = {
+					limit = {
+						num_districts = {
+							type = district_mining
+							value <= 5
+						}
+					}
+					add_district = district_mining
+				}
+				while = {
+					limit = {
+						num_districts = {
+							type = district_farming
+							value <= 5
+						}
+					}
+					add_district = district_farming
+				}
+				add_deposit = d_buzzing_plains
+				add_deposit = d_frozen_gas_lake
+				add_deposit = d_geothermal_vent
+			}
+		}
+	}
+
+	# (no changes for now below; handled by the mod compat reroll)
+	# Materialist
+	# every_country = {
+	# 	limit = {
+	# 		is_fallen_empire = yes
+	# 		is_materialist = yes
+	# 	}
+
+	# 	# Reroll on colonies, clean-up
+	# 	every_owned_planet = {
+	# 		reroll_deposits = yes
+	# 	}
+	# }
+
+	# # Xenophile
+	# every_country = {
+	# 	limit = {
+	# 		is_fallen_empire = yes
+	# 		is_xenophile = yes
+	# 	}
+
+	# 	# Reroll on colonies, clean-up
+	# 	every_owned_planet = {
+	# 		reroll_deposits = yes
+	# 	}
+	# }
+
+	# # Xenophobe
+	# every_country = {
+	# 	limit = {
+	# 		is_fallen_empire = yes
+	# 		is_xenophile = yes
+	# 	}
+
+	# 	# Reroll on colonies, clean-up
+	# 	every_owned_planet = {
+	# 		reroll_deposits = yes
+	# 	}
+	# }
 }

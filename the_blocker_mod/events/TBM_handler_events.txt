@@ -21,74 +21,15 @@ event = {
 		
 		log = "tbm_handler.1 - Scipted Planets"
 		
-		### ancient_relics_initializers
+		### Reroll scripted planets
+		scripted_planet_reroll = yes
+		
+		### IMPERIAL FIEFDOM FIX (overlord_system_x_init)
 
-		# Armistice relic
-		# Grunur
-		# Mechanocalibrator
-		# Rubricator
 
-		### distant_stars_initializers
-
-		# primitive_robot_system
-		# clear_blockers is commented out in vanilla; this is its standard spread
-		every_system_planet = {
-			limit = { has_planet_flag = primitive_robot_planet }
-			reroll_deposits = yes
-			add_deposit = d_failing_infrastructure
-			add_deposit = d_failing_infrastructure
-			add_deposit = d_city_ruins
-			add_deposit = d_city_ruins
-			add_deposit = d_metal_boneyard
-		}
-
-		# superflare_system
-		# Standard spread for now, should get basic tomb features as well
-		every_system_planet = {
-			limit = { has_planet_flag = frozen_in_time_flag }
-			reroll_deposits = yes
-			add_deposit = d_radioactive_wasteland
-			add_deposit = d_radioactive_wasteland
-			add_deposit = d_irradiated_valley
-		}
-
-		# living_planet_system
-		# Standard spread, will eventually do special set
-		every_system_planet = {
-			limit = { has_planet_flag = living_planet }
-			reroll_deposits = yes
-			add_deposit = d_betharian_deposit
-		}
 
 		### FALLEN EMPIRE WORLDS
-		#	Somewhat of a hacky fix for now, due to difficulty of independently accessing the specific planets. 
-		
-		# Spiritualist
-		every_country = {
-			limit = {
-				is_fallen_empire = yes
-				is_spiritualist = yes
-			}
-			
-			# Celestial Throne = 8 mining, 8 farming
-			every_owned_planet.capital_scope = {
-				reroll_deposits = yes
-			}
-				
-			}
-
-			# Reroll on colonies
-			every_owned_planet = {
-				limit = {
-					NOR = {
-						has_planet_flag = holy_world_1
-						has_planet_flag = holy_world_2
-						has_planet_flag = holy_world_3
-						has_planet_flag = holy_world_4
-					}
-				}
-			}
-		}
+		fix_fallen_empire_worlds = yes
 	}
 }
 
