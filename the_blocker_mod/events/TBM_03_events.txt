@@ -11,6 +11,8 @@ planet_event = {
 
 	title = tbm.300_title
 	desc = tbm.300_desc
+	picture = GFX_evt_mining_operations
+	show_sound = event_machinery
 
 	is_triggered_only = yes
 
@@ -36,7 +38,7 @@ planet_event = {
 				}
 			}
 			20 = {
-				add_deposit = d_tbm_stip_mine
+				add_deposit = d_tbm_strip_mine
 				last_added_deposit = {
 					save_event_target_as = mine
 				}
@@ -78,26 +80,29 @@ planet_event = {
 		}
 	}
 
-	option = {
-		name = tbm.300.preserve_spiritualist
-		custom_tooltip = tbm.300.preserve_spiritualist_tooltip
-		trigger = {
-			owner = {
-				is_spiritualist = yes
-			}
-		}
+	# option = {
+	# 	name = tbm.300.preserve_spiritualist
+	# 	custom_tooltip = tbm.300.preserve_spiritualist_tooltip
+	# 	trigger = {
+	# 		owner = {
+	# 			is_spiritualist = yes
+	# 		}
+	# 	}
 
-		last_added_deposit = {
-			remove_deposit = yes
-		}
-	}
+	# 	last_added_deposit = {
+	# 		remove_deposit = yes
+	# 	}
+	# }
 
 	option = {
 		name = tbm.300.preserve_landscape
 		custom_tooltip = tbm.300.preserve_landscape_tooltip
 		trigger = {
 			owner = {
-				has_valid_civic = civic_environmentalist
+				OR = {
+					has_valid_civic = civic_environmentalist
+					is_spiritualist = yes
+				}
 			}
 		}
 
@@ -230,7 +235,7 @@ planet_event = {
 				which = @carbon_economy
 				value = 1
 			}
-			owner = { is_gestlat = no }
+			owner = { is_gestalt = no }
 		}
 	}
 	desc = {
@@ -283,6 +288,8 @@ planet_event = {
 			owner = { is_gestalt = yes }
 		}
 	}
+	picture = GFX_evt_mining_operations
+	show_sound = event_machinery
 
 	option = {
 		name = tbm.302_exploit
@@ -357,9 +364,6 @@ planet_event = {
 
 	option = {
 		name = tbm.302_forbidden
-		trigger = {
-			owner = { is_gestalt = no }
-		}r
 		exclusive_trigger = {
 			owner = { has_valid_civic = civic_environmentalist }
 		}
@@ -402,7 +406,6 @@ planet_event = {
 			save_event_target_as = reactor
 		}
 
-
 		random_list = {
 			# No problems this year
 			75 = {
@@ -436,7 +439,11 @@ planet_event = {
 			
 			# Warning signs event
 			15 = {
-			
+				planet_event = {
+					id = tbm.315
+					days = 360
+					random = 180
+				}
 			}
 
 			# Uh-oh
@@ -457,9 +464,11 @@ planet_event = {
 						event_target:reactor = {
 							is_deposit_type = d_fusion_reactor
 						}
-						planet_event = {
-							id = tbm.311
-						}
+					}
+					planet_event = {
+						id = tbm.311
+						days = 360
+						random = 180
 					}
 				}
 				else_if = {
@@ -468,12 +477,22 @@ planet_event = {
 							is_deposit_type = d_cold_fusion_pits
 						}
 					}
+					planet_event = {
+						id = tbm.312
+						days = 360
+						random = 180
+					}
 				}
 				else_if = {
 					limit = {
 						event_target:reactor = {
 							is_deposit_type = d_antimatter_core
 						}
+					}
+					planet_event = {
+						id = tbm.313
+						days = 360
+						random = 180
 					}
 				}
 			}

@@ -55,12 +55,12 @@ remove_city_if_poss_and_other_if_not_regular = {
 				type = district_city
 				value < 0
 			}
-			remove_district = district_city
 		}
+		remove_district = district_city
 	}
 	else_if = {
 		limit = {
-			is_ecu = yes
+			is_artificial = yes
 		}
 		remove_last_built_building = yes
 		if = {
@@ -70,8 +70,8 @@ remove_city_if_poss_and_other_if_not_regular = {
 					value = 0
 				}
 			}
-			add_planet_devastation = 25
 		}
+		add_planet_devastation = 25
 	}
 	else_if = {
 		limit = {

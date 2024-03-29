@@ -202,12 +202,12 @@ situation_event = {
 		}
 		text = tbm_hw.13_desc
 	}
-	desc = {
-		trigger = {
-			owner = { is_gestalt = yes }
-		}
-		text = tbm_hw.13_gestalt_desc
-	}
+	# desc = {
+	# 	trigger = {
+	# 		owner = { is_gestalt = yes }
+	# 	}
+	# 	text = tbm_hw.13_gestalt_desc
+	# }
 	picture = GFX_evt_surrender
 	show_sound = event_public_unrest
 

@@ -807,20 +807,20 @@ planet_event = {
 				}
 			}	
 		}
-		random_list = {
-			10 = {
-				modifier = {
-					factor = 0	# Fun stuff in the future.	
-					always = yes
-				}
-			}
-			90 = {
-				planet_event = {
-					id = tbm.80
-					days = 20
-				}
-			}
-		}
+		# random_list = {
+		# 	10 = {
+		# 		modifier = {
+		# 			factor = 0	# Fun stuff in the future.	
+		# 			always = yes
+		# 		}
+		# 	}
+		# 	90 = {
+		# 		planet_event = {
+		# 			id = tbm.80
+		# 			days = 20
+		# 		}
+		# 	}
+		# }
 	}
 }
 
@@ -926,9 +926,9 @@ planet_event = {
 		}
 	}
 
-	# option = {
-	# 	name = OK
-	# }
+	option = {
+		name = OK
+	}
 
 	# after = {
 	# 	hidden_effect = {
@@ -1016,7 +1016,9 @@ planet_event = {
 	option = {
 		name = tbm.83.safe
 		remove_planet_flag = sinkhole_causes
-		set_country_flag = safe_from_sinkholes
+		owner = {
+			set_country_flag = safe_from_sinkholes
+		}
 	}
 
 	option = {
@@ -1210,7 +1212,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	option = {
-		name = WONDERFUL
+		name = TBM_WONDERFUL
 		this = {
 			owner = { set_country_flag = struck_the_motherlode }
 			random_list = {
@@ -1381,10 +1383,12 @@ planet_event = {
 					has_policy_flag = ai_servitude
 					is_gestalt = yes
 				}
-			}
-			count_owned_pops = {
-				has_job = miner
-				is_robotic_species = yes
+			}	
+			count_owned_pop = {
+				limit = {
+					has_job = miner
+					is_robotic_species = yes
+				}
 				count >= 2
 			}
 		}
@@ -1407,6 +1411,8 @@ planet_event = {
 			}
 		}
 	}
+	picture = GFX_evt_collapsing_roof
+	show_sound = event_structural_collapse
 	
 	immediate = {
 
@@ -1431,9 +1437,11 @@ planet_event = {
 							is_gestalt = yes
 						}
 					}
-					count_owned_pops = {
-						has_job = miner
-						is_robotic_species = yes
+					count_owned_pop = {
+						limit = {
+							has_job = miner
+							is_robotic_species = yes
+						}
 						count >= 2
 					}
 				}
@@ -1469,5 +1477,9 @@ planet_event = {
 		}
 		else = {
 		}
+	}
+
+	option = {
+		name = UNFORTUNATE
 	}
 }

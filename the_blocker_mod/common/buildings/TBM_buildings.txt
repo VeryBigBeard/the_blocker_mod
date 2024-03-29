@@ -3,6 +3,8 @@
 
 building_xeno_synaptic_node = {
 	
+	icon = "gfx/interface/icons/buildings/unused/building_biolab_4.dds"
+
 	can_build = yes
 	can_demolish = yes
 	can_be_ruined = yes
@@ -15,9 +17,9 @@ building_xeno_synaptic_node = {
 	empire_limit = 1
 
 	potential = {
-		is_capital = yes
+		#is_capital = yes
 		exists = owner
-		owner = { is_gestalt = no }
+		owner = { is_gestalt = yes }
 	}
 
 	abort_trigger = {
@@ -25,7 +27,7 @@ building_xeno_synaptic_node = {
 		owner = { is_gestalt = no }
 	}
 
-	ruined_trigger = {
+	destroy_trigger = {
 		exists = owner
 		owner = { is_gestalt = no }
 	}
@@ -36,12 +38,19 @@ building_xeno_synaptic_node = {
 			energy = 10		# Who said thinking hard was easy?
 		}
 		cost = {
-			minerals = 400
+			minerals = 600
+		}
+		produces = {		
+			physics_research = 1
+			multiplier = value:feature_research_gestalt_phys
 		}
 		produces = {
-			physics_research = value:feature_research_gestalt_phys
-			society_research = value:feature_research_gestalt_soc
-			engineering_research = value:feature_research_gestalt_eng
+			society_research = 1
+			multiplier = value:feature_research_gestalt_soc
+		}
+		produces = {
+			engineering_research = 1
+			multiplier = value:feature_research_gestalt_eng
 		}
 	}
 
@@ -49,16 +58,14 @@ building_xeno_synaptic_node = {
 	# 	owner = {
 	# 		set_country_flag = xeno_synaptic_node  	# Is this thing on?
 	# 	}
-		
-	# 	# Call production updater event
-	# 	# This will also fire on_monthly_pulse and sets variables for output.
-	# }
 }
 
 
 
 building_science_outposts = {
 	
+	icon = "gfx/interface/icons/buildings/unused/building_hydroponics_farm_3.dds"
+
 	can_build = yes
 	can_demolish = yes
 	can_be_ruined = yes

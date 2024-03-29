@@ -178,7 +178,7 @@ d_homeworld_deep_trench = {
 
 		modifier = {
 			add = 1000	# Keep as no negative effects but don't block ecu.
-			free_district_slots = 0
+			root = { free_district_slots = 0 }
 			owner = { has_ascension_perk = ap_arcology_project }
 		}
 	}
@@ -458,9 +458,11 @@ d_recycling_processes = {
 
 		modifier = {
 			add = 1	# Get rid of this when upgrading the assembly facility or capital to asave alloy upkeep
-			num_assigned_jobs = {
-				job = replicator
-				value >= 3
+			root = {
+				num_assigned_jobs = {
+					job = replicator
+					value >= 3
+				}
 			}
 		}
 	}
@@ -534,7 +536,9 @@ d_gestalt_major_impact_site = {
 
 		modifier = {
 			add = 1
-			planet_crime > 25
+			root = {
+				planet_crime > 25
+			}
 		}
 	}
 }
@@ -905,7 +909,6 @@ d_experimental_geothermal_tap = {
 		category = deposit_blockers_natural
 		cost = {
 			energy = 800
-			engineering_research = 100
 		}
 	}
 
@@ -952,7 +955,6 @@ d_gestlat_experimental_geothermal_tap = {
 		category = deposit_blockers_natural
 		cost = {
 			energy = 800
-			engineering_research = 100
 		}
 	}
 
@@ -1629,7 +1631,9 @@ d_reclaimed_land = {
 
 		modifier = {
 			add = -1
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
@@ -1665,7 +1669,8 @@ d_megaliths = {
 				exists = owner
 				owner = { is_lithoid = yes }
 			}
-			unity = value:megalith_unity_output
+			unity = 1
+			multiplier = value:megalith_unity_output
 			
 		}
 	}
@@ -2080,7 +2085,6 @@ d_fallout_zone = {		# To be replaced with Misty Plains, rework into Fallout Zone
 		cost = {
 			energy = 400
 			minerals = 200
-			engineering_research = 100
 		}
 	}
 
@@ -2111,7 +2115,7 @@ d_fallout_zone = {		# To be replaced with Misty Plains, rework into Fallout Zone
 
 d_unclaimed_cave_complex = {	# Mine Shafts (at least there wasn't a gap)
 	icon = d_ore_rich_caverns
-	category = deposit_cat_artificial
+	category = deposit_cat_blockers
 
 	use_for_min_max_adjustments = yes
 
@@ -2341,7 +2345,6 @@ d_seed_banks = {
 		category = deposit_blockers
 		cost = {
 			energy = 400
-			society_research = 250
 		}
 		produces = {
 			energy = -10
@@ -2548,7 +2551,6 @@ d_unexploded_munitions = {
 		category = deposit_blockers
 		cost = {
 			energy = 300
-			physics_research = 100
 		}
 		produces = {
 			alloys = 2
@@ -2847,7 +2849,6 @@ d_homeworld_dormant_supervolcano = {
 		category = deposit_blockers_natural
 		cost = {
 			energy = 2000
-			engineering_research = 1000
 		}
 	}
 
@@ -3144,8 +3145,7 @@ d_remnant_dilapidated_reactor = {
 	resources = {
 		category = deposit_blockers
 		cost = {
-			physics_research = 200
-			alloys = 100
+			alloys = 400
 		}
 	}
 
@@ -3270,7 +3270,6 @@ d_homeworld_scrap_mountain = {
 		category = deposit_blockers
 		cost = {
 			energy = 800
-			engineering_research = 200
 		}
 	}
 
@@ -3309,9 +3308,11 @@ d_homeworld_scrap_mountain = {
 
 		modifier = {
 			add = -1
-			num_assigned_jobs = {
-				job = scrap_miner
-				value < 2
+			root = {
+				num_assigned_jobs = {
+					job = scrap_miner
+					value < 2
+				}
 			}
 			owner = {
 				resource_income_compare = {
@@ -3456,7 +3457,7 @@ d_derelict_smelting_facility = {
 		category = deposit_blockers
 		cost = {
 			energy = 800
-			engineering_research = 200
+			alloys = 200
 		}
 	}
 
@@ -3503,8 +3504,7 @@ d_homeworld_food_replicators = {	# Breaks down after a while
 	resources = {
 		category = deposit_blockers
 		cost = {
-			energy = 200
-			physics_research = 100
+			energy = 400
 		}
 	}
 
@@ -3534,8 +3534,7 @@ d_industrial_agromachinery = {
 	resources = {
 		category = deposit_blockers
 		cost = {
-			energy = 400
-			engineering_research = 100
+			energy = 600
 		}
 	}
 
@@ -4093,7 +4092,6 @@ d_exoagricultural_experimentation = {
 		category = deposit_blockers
 		cost = {
 			energy = 400
-			society_research = 100
 		}
 	}
 
@@ -4211,7 +4209,6 @@ d_surface_spaceport = {
 		category = deposit_blockers
 		cost = {
 			energy = 5000
-			engineering_research = 1500
 		}
 	}
 

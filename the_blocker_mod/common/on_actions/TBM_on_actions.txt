@@ -5,12 +5,25 @@
 #	Most TBM events have handlers that handle randomness and/or add more more limited triggers.
 
 ### Init Events
+on_game_start = {
+	
+}
+
 on_press_begin = {
 	events = {
+		tbm_handler.1	# Scripted Planets Handler
+		tbm_handler.2	# Advanced Start Feature Fixer
 		tbm_handler.102 # Add Wild World to planets that need it
 	}
 }
 
+### Pulse Events
+#	These are usually used for more general stuff; on_colony_x_pulse is used to add more randomness ot dynamic planet events
+on_yearly_pulse = {
+	events = {
+		tbm_handler.103		# Wild World Remover (removes Wild World when planets develop)
+	}
+}
 
 
 ### Main Feature Events
@@ -29,13 +42,12 @@ on_colony_yearly_oulse = {
 
 
 		### Handler Events
-		tbm_handler.103 # Removes Wild World when colony developed
 	}
 }
 
 on_colony_five_yearly_pulse = {
 	events = {
-		tbm.46	# A City of the Desert
+		tbm_desert.46	# A City of the Desert
 		tbm.301 # Fossil Fuel Discovery
 	}
 }

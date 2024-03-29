@@ -1,5 +1,9 @@
 ﻿l_english:
 
+
+ ### Generic option tags
+ TBM_WONDERFUL:0 "Wonderful."
+
  # Pioneering Colonists
 
  tbm_handler.101.name:0 "Pioneering Colonists"
@@ -51,6 +55,9 @@
 
  tbm.13.name:0 "Volcanic Ash Chokes Atmosphere"
  tbm.13.desc:0 "A massive amount of ash from the eruption of the £blocker§YActive Volcano§! on [planet.GetName] has spewed into the atmosphere and is expected to linger for several years. It is already causing significant climate alteration and ecological collapse across the [planet.GetMoon].\n\n[EruptionTerraforming]"
+
+ tbm.14.name:0 "Volcanic Eruption - Mitigated"
+ tbm.14.desc:0 "The volcano being monitored on [planet.GetName] has erupted. All personnel have been evacuated to a safe distance, and while the atmosphere on [planet.GetPlanetMoon] will take some time to normalize, normal life there should resume within a few months."
 
  # Xenofauna Attacks Settlement
  tbm.17.name:0 "Xenofauna Attacks Settlement"
@@ -108,8 +115,14 @@
  tbm.28.desc:0 "REPLACE_ME"
  tbm.29.name:0 "REPLACE_ME"
  tbm.29.desc:0 "REPLACE_ME"
+
+ # Climate Control Malfunctions
  tbm.30.name:0 "REPLACE_ME"
  tbm.30.desc:0 "REPLACE_ME"
+
+ 
+
+
  tbm.50.name:0 "REPLACE_ME"
  tbm.50.desc:0 "REPLACE_ME"
 
@@ -208,7 +221,7 @@
  # 88. False Prospects
  tbm.88.name:0 "False Prospects"
  tbm.88.desc:0 "During development of mining operations on [planet.GetName], prospectors made a startling and disappointing discovery: a mineral seam previously thought to be rich in heavy metals and other elements essential to construction and alloy production was revealed to be riddled with impurities and instabilities, making any attempt to mine the region both dangerous and cost-ineffective.\n\nNot all is lost, however! The prospecting boom brought many new faces to [planet.GetName], some of whom have chosen to stay and contribute to colonial development in other ways. And trade through the [planet.GetPlanetMoon]'s spaceport has been brisk for the past several months."
- text = tbm.88.desc_gestalt:0 "During development of mining operations on [planet.GetName], drones analyzing survey data made a disappointing discovery: a mineral seam previously though tto be rich in heavy metals and other elements essential to construction and alloy production was revealed to be riddled with impurities and instabilitiers, making any attempt to mine the region both dangerous and cost-ineffective.\n\nNow all is lost, however, as the preparatory development on the planet can be efficiently repurposed into colonial infrastructure and drone housing, allowing for a larger-than-normal cycle of drone production."
+ tbm.88.desc_gestalt:0 "During development of mining operations on [planet.GetName], drones analyzing survey data made a disappointing discovery: a mineral seam previously though tto be rich in heavy metals and other elements essential to construction and alloy production was revealed to be riddled with impurities and instabilitiers, making any attempt to mine the region both dangerous and cost-ineffective.\n\nNow all is lost, however, as the preparatory development on the planet can be efficiently repurposed into colonial infrastructure and drone housing, allowing for a larger-than-normal cycle of drone production."
 
  # 90. Mine Shaft Collapse
  tbm.90_name:0 "Mine Shaft Collapse"
@@ -252,7 +265,7 @@
  tbm.302_desc_oil_gestalt:0 "When we colonized [planet.GetName], the [planet.GetPlanetMoon] was pristine, untouched since the galaxy's formation. As a result, it had developed, as all planets do, large deposits of carbon buried deep beneath its crust.\n\nThe processing of these fuels is outdated and inefficient, leading to their often being missed on orbital surveys. A particularly astute group of drones has identified a massive new [tbm_carbon_oil] and a means to access it.\n\nAlthough harvesting it will require a lot of space, it will allow for the construction of new £district£$district_generator_plural$ that can provide much-needed energy for growth and security."
  tbm.302_desc_gas:0 "When we colonized [planet.GetName], the [planet.GetPlanetMoon] was pristine, untouched since the galaxy's formation. As a result, it had developed, as all planets do, large deposits of carbon buried deep beneath its crust.\n\nThe processing of these fuels is outdated and inefficient, leading to their often being missed on orbital surveys. A particularly savvy group of geologists, sponsored by energy conglomerates on [owner.capital_scope.GetName], has announced their discovery of a massive new [tbm_carbon_gas].\n\nThough accessing it will be costly, the output could power a new £district£$district_generator$ and several cities.\n\nEnvironmental groups are steadfastly opposed to any reliance on such old-fashioned and carbon-intensive fuels, but something has to keep the lights on and the ships flying."
  tbm.302_desc_gas_gestalt:0 "When we colonized [planet.GetName], the [planet.GetPlanetMoon] was pristine, untouched since the galaxy's formation. As a result, it had developed, as all planets do, large deposits of carbon buried deep beneath its crust.\n\nThe processing of these fuels is outdated and inefficient, leading to their often being missed on orbital surveys. A particularly astute group of drones has identified a massive new [tbm_carbon_gas] and a means to access it.\n\nAlthough maintaining access will be costly, it will allow for the construction of new £district£$district_generator_plural$ that can provide much-needed energy for growth and security."
- tbm.302_explot:0 "A valuable find."
+ tbm.302_exploit:0 "A valuable find."
  tbm.302_sell:0 "Sell the energy rights and avoid any risk."
  tbm.302_forbidden:0 "Oppose any new carbon-based development."
 

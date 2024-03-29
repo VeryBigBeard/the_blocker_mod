@@ -36,8 +36,10 @@
  tbm_hw.11_land:0 "Announce new land grants for off-world farms."
  tbm_hw.11_land_tooltip:0 "We will settle a far-flung world and send its bounty home."
 
- tbm_hw.13_option:0 "Food Riots"
- tbm_hw.13_tooltip:0 "The situation on §Y[target.GetName]§! has worsened, and after months of strict food rations, a routine night-time disturbance sparked larger riots that quickly spread through the camps and overwhelmed local security forces. Criminals have exploited the disorder to wrest control and extort what little food remains for themselves."
+ tbm_hw.13_name:0 "Food Riots"
+ tbm_hw.13_desc:0 "The situation on §Y[target.GetName]§! has worsened, and after months of strict food rations, a routine night-time disturbance sparked larger riots that quickly spread through the camps and overwhelmed local security forces. Criminals have exploited the disorder to wrest control and extort what little food remains for themselves."
+ tbm_hw.13_option:0 "Something must be done."
+ tbm_hw.13_tooltip:0 "§CStability§! on §Y[planet.GetName]§! will be reduced by §C20§! and §C+1§! §YCriminal§ job will be created."
 
  tbm_hw.14:0 "Malnutrition"
  tbm_hw.14_desc_corp:0 "The rapidly declining food supplies on §Y[target.GetName]§! has led to several outbreaks of disease and a sharp drop in health and performance metrics across most shelters and settlements. Without access to food, no one wants to work. Several subsidiary offices have attempted to increase wages and one restaurant chain even declare independence from its parent company, but even these off-shoots can't solve the core obstacle. Middle managers are withering and those front-line employees still alive can barely function, let alone take advantage of the corporate family benefits program. Unless something is done, corporate retention rates are likely to plummet."

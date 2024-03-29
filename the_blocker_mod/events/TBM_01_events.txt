@@ -34,14 +34,12 @@ namespace = tbm
 @volcanic_devastation = 20
 
 ### 1. Debug Event
-planet_event = {
+country_event = {
 	id = tbm.1
 
 	title = tbm_debug_title
 	desc = tbm_debug_desc
-	
 	is_triggered_only = yes
-	hide_window = yes
 
 	# Debugged Code
 
@@ -1522,7 +1520,7 @@ planet_event = {
 			}
 		}
 		name = tbm.23.governor
-		custom_tooltip = tbm.22.preserve.tooltip # Important: Teeming Reefs can no longer be cleared
+		custom_tooltip = tbm.21.preserve.tooltip # Important: Teeming Reefs can no longer be cleared
 
 		owner = {
 			add_modifier = {
@@ -1539,7 +1537,7 @@ planet_event = {
 	# Address Concerns
 	option = {
 		name = tbm.23.address
-		custom_tooltip = tbm.22.preserve.tooltip
+		custom_tooltip = tbm.21.preserve.tooltip
 		allow = {
 			owner = {
 				OR = {

@@ -1,14 +1,14 @@
 ### The Blocker Mod - Desert City Event Chain
 
-namespace = tbm
+namespace = tbm_desert
 
 ### 31. A City of the Desert (Empire Unique)
-#	Now called from tbm.46 to help control spawning and clean up logic.
+#	Now called from tbm_desert.46 to help control spawning and clean up logic.
 planet_event = {
-	id = tbm.31
+	id = tbm_desert.31
 
-	title = tbm.31.name
-	desc = tbm.31.desc
+	title = tbm_desert.31.name
+	desc = tbm_desert.31.desc
 	picture = GFX_evt_desert
 	show_sound = event_finding_loot
 
@@ -18,8 +18,8 @@ planet_event = {
 
 	# Waters of Life
 	option = {
-		name = tbm.31.waters
-		custom_tooltip = tbm.31.waters.desc	# This can only be chosen once. Our people will learn how to farm the dust and desert, but building large cities in them will never be possible.
+		name = tbm_desert.31.waters
+		custom_tooltip = tbm_desert.31.waters.desc	# This can only be chosen once. Our people will learn how to farm the dust and desert, but building large cities in them will never be possible.
 		enable_special_project = {	
 			name = "WATERS_OF_LIFE"
 		}
@@ -30,8 +30,8 @@ planet_event = {
 
 	# City of Dreams
 	option = {
-		name = tbm.31.city
-		custom_tooltip = tbm.31.city.desc	# This can only be chosen once. Building cities in deserts will become easier, but dry worlds will not gain any agriculture.
+		name = tbm_desert.31.city
+		custom_tooltip = tbm_desert.31.city.desc	# This can only be chosen once. Building cities in deserts will become easier, but dry worlds will not gain any agriculture.
 		enable_special_project = {
 			name = "CITY_OF_THE_DESERT"
 		}
@@ -42,8 +42,8 @@ planet_event = {
 
 	# Neither (boring)
 	option = {
-		name = tbm.31.neither
-		custom_tooltip = tbm.31.neither.desc	# The Searing Desert will not be cleared, but we will learn how to live as one with it.
+		name = tbm_desert.31.neither
+		custom_tooltip = tbm_desert.31.neither.desc	# The Searing Desert will not be cleared, but we will learn how to live as one with it.
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
@@ -65,7 +65,7 @@ planet_event = {
 ### 32. A City of the Desert - Downside Handler
 #	on_yearly_pulse
 planet_event = {
-	id = tbm.32
+	id = tbm_desert.32
 	
 	hide_window = yes
 
@@ -94,7 +94,7 @@ planet_event = {
 					num_pops > 10
 						free_housing > 3					
 				}
-				planet_event = { id = tbm.33 days = 60 random = 30 }
+				planet_event = { id = tbm_desert.33 days = 60 random = 30 }
 			}
 
 			# Materials Stolen
@@ -103,7 +103,7 @@ planet_event = {
 					factor = 2
 					planet_crime > 10
 				}
-				planet_event = { id = tbm.34 days = 60 random = 30 }
+				planet_event = { id = tbm_desert.34 days = 60 random = 30 }
 			}
 
 			# Workers Die
@@ -118,7 +118,7 @@ planet_event = {
 					factor = 0
 					has_modifier = worker_deaths
 				}
-				planet_event = { id = tbm.35 days = 60 random = 30 }
+				planet_event = { id = tbm_desert.35 days = 60 random = 30 }
 			}
 
 			# Supply Ship Crashes
@@ -127,7 +127,7 @@ planet_event = {
 					factor = 2
 					NOT = { has_building = building_capital }
 				}
-				planet_event = { id = tbm.36 days = 60 random = 30 }
+				planet_event = { id = tbm_desert.36 days = 60 random = 30 }
 			}
 
 			# Vicious Sandstorms
@@ -145,7 +145,7 @@ planet_event = {
 						}
 					}
 				}
-				planet_event = { id = tbm.37 days = 60 random = 30 }
+				planet_event = { id = tbm_desert.37 days = 60 random = 30 }
 			}
 			100 = {}
 		}
@@ -154,9 +154,9 @@ planet_event = {
 
 ### 33. A City of the Desert - Overpopulation
 planet_event = {
-	id = tbm.33
-	title = tbm.33.overpopulation
-	desc = tbm.33.desc
+	id = tbm_desert.33
+	title = tbm_desert.33.overpopulation
+	desc = tbm_desert.33.desc
 	picture = GFX_evt_civil_action
 	show_sound = event_finding_loot
 
@@ -189,10 +189,10 @@ planet_event = {
 
 ### 34. A City of the Desert - Critical Materials Stolen
 planet_event = {
-	id = tbm.34
+	id = tbm_desert.34
 
-	title = tbm.34.stolen
-	desc = tbm.34.desc
+	title = tbm_desert.34.stolen
+	desc = tbm_desert.34.desc
 	picture = GFX_evt_black_market
 	show_sound = event_finding_loot
 
@@ -223,10 +223,10 @@ planet_event = {
 
 ### 35. A City of the Desert - Workers Die From Heat
 planet_event = {
-	id = tbm.35
+	id = tbm_desert.35
 
-	title = tbm.35.workers
-	desc = tbm.35.desc
+	title = tbm_desert.35.workers
+	desc = tbm_desert.35.desc
 	picture = GFX_evt_zro_5
 	show_sound = event_finding_loot
 
@@ -253,8 +253,8 @@ planet_event = {
 	}
 
 	option = {
-		name = tbm.35.apologize
-		custom_tooltip = tbm.35.apologize.tooltip	# The Progressive Faction isn't pleased.
+		name = tbm_desert.35.apologize
+		custom_tooltip = tbm_desert.35.apologize.tooltip	# The Progressive Faction isn't pleased.
 		random_owned_pop = {
 			limit = {
 				has_job_category = worker
@@ -299,7 +299,7 @@ planet_event = {
 	}
 
 	option = {
-		name = tbm.35.sacrifice
+		name = tbm_desert.35.sacrifice
 		if = {
 			limit = {
 				any_owned_pop = {
@@ -350,10 +350,10 @@ planet_event = {
 
 ### 36. A City of the Desert - Supply Ship Crashes
 planet_event = {
-	id = tbm.36
+	id = tbm_desert.36
 
-	title = tbm.36.crash
-	desc = tbm.36
+	title = tbm_desert.36.crash
+	desc = tbm_desert.36
 	picture = GFX_evt_archaeological_dig
 	show_sound = ship_explosion
 
@@ -375,10 +375,10 @@ planet_event = {
 
 ### 37. A City of the Desert - Vicious Sandstorms
 planet_event = {
-	id = tbm.37
+	id = tbm_desert.37
 
-	title = tbm.37.sandstorms
-	desc = tbm.37.desc
+	title = tbm_desert.37.sandstorms
+	desc = tbm_desert.37.desc
 	picture = GFX_evt_atmospheric_flight
 	show_sound = sfx_amb_psi_storm_1
 
@@ -403,10 +403,10 @@ planet_event = {
 
 ### 38. A City of the Desert - The Waters of Life
 planet_event = {
-	id = tbm.38
+	id = tbm_desert.38
 
-	title = tbm.38.name
-	desc = tbm.38.desc
+	title = tbm_desert.38.name
+	desc = tbm_desert.38.desc
 	picture = GFX_evt_overgrown_city
 	show_sound = event_finding_loot
 
@@ -424,24 +424,24 @@ planet_event = {
 
 	# Land Grants
 	option = {
-		name = tbm.38.grants
-		planet_event = { id = tbm.39 days = 90 }
+		name = tbm_desert.38.grants
+		planet_event = { id = tbm_desert.39 days = 90 }
 	}
 
 	# Bio-Solar Energy
 	option = {
-		name = tbm.38.biogas
-		planet_event = { id = tbm.40 days = 90 }
+		name = tbm_desert.38.biogas
+		planet_event = { id = tbm_desert.40 days = 90 }
 	}
 
 	# Desert Garden
 	option = {
-		name = tbm.38.jewel
-		planet_event = { id = tbm.41 days = 90 }
+		name = tbm_desert.38.jewel
+		planet_event = { id = tbm_desert.41 days = 90 }
 	}
 
 	option = {
-		name = tbm.38.nothing
+		name = tbm_desert.38.nothing
 	}
 
 	after = {
@@ -483,79 +483,79 @@ planet_event = {
 
 ### 39. A City of the Desert - Desert Farming
 planet_event = {
-	id = tbm.39
+	id = tbm_desert.39
 
-	title = tbm.39.farming
-	desc = tbm.39.desc
+	title = tbm_desert.39.farming
+	desc = tbm_desert.39.desc
 	picture = GFX_evt_failed_observation
 	show_sound = fungoid_colossus_closing
 
 	is_triggered_only = yes
 
 	option = {
-		name = tbm.39.yes
+		name = tbm_desert.39.yes
 		add_modifier = {
 			modifier = great_desert_farms
 		}
 	}
 
 	option = {
-		name = tbm.39.no
+		name = tbm_desert.39.no
 	}
 }
 
 ### 40. A City of the Desert - Bio-Solar Power
 planet_event = {
-	id = tbm.40
+	id = tbm_desert.40
 
-	title = tbm.40.biosolar
-	desc = tbm.40.desc
+	title = tbm_desert.40.biosolar
+	desc = tbm_desert.40.desc
 	picture = GFX_evt_generator_powerup
 	show_sound = event_energy_field
 
 	is_triggered_only = yes
 
 	option = {
-		name = tbm.40.yes
+		name = tbm_desert.40.yes
 		add_modifier = {
 			modifier = bio_solar_network
 		}
 	}
 
 	option = {
-		name = tbm.40.no
+		name = tbm_desert.40.no
 	}	
 }
 
 ### 41. A City of the Desert - A Jewel of the Desert
 planet_event = {
-	id = tbm.41
+	id = tbm_desert.41
 
-	title = tbm.41.jewel
-	desc = tbm.41.desc
+	title = tbm_desert.41.jewel
+	desc = tbm_desert.41.desc
 	picture = GFX_evt_overgrown_city
 	show_sound = event_first_contact_plantoid
 
 	is_triggered_only = yes
 
 	option = {
-		name = tbm.41.yes
+		name = tbm_desert.41.yes
 		add_modifier = {
 			modifier = desert_jewel
 		}
 	}
 
 	option = {
-		name = tbm.41.no
+		name = tbm_desert.41.no
 	}
 }
 
 ### 42. A City of the Desert - A City of the Desert
 planet_event = {
-	id = tbm.42
+	id = tbm_desert.42
 
-	title = tbm.42.city
-	desc = tbm.42.desc
+	title = tbm_desert.42.city
+	desc = tbm_desert.42.desc
 	picture = GFX_evt_metropolis
 	show_sound = event_galactic_market
 
@@ -572,24 +572,24 @@ planet_event = {
 
 	# Trade Capital
 	option = {
-		name = tbm.42.trade
-		planet_event = { id = tbm.43 days = 00 }
+		name = tbm_desert.42.trade
+		planet_event = { id = tbm_desert.43 days = 00 }
 	}
 
 	# Scientific Mecca
 	option = {
-		name = tbm.42.science
-		planet_event = { id = tbm.44 days = 90 }
+		name = tbm_desert.42.science
+		planet_event = { id = tbm_desert.44 days = 90 }
 	}
 
 	# Garden
 	option = {
-		name = tbm.42.garden
-		planet_event = { id = tbm.45 days = 90 }
+		name = tbm_desert.42.garden
+		planet_event = { id = tbm_desert.45 days = 90 }
 	}
 
 	option = {
-		name = tbm.38.nothing
+		name = tbm_desert.38.nothing
 	}
 
 	after = {
@@ -631,77 +631,77 @@ planet_event = {
 
 ### 43. A City of the Desert - Trade Capital
 planet_event = {
-	id = tbm.43
+	id = tbm_desert.43
 
-	title = tbm.43.traders
-	desc = tbm.43.desc
+	title = tbm_desert.43.traders
+	desc = tbm_desert.43.desc
 	picture = GFX_evt_enclave_overlord
 	show_sound = event_slot_machine
 
 	is_triggered_only = yes
 
 	option = {
-		name = tbm.43.yes
+		name = tbm_desert.43.yes
 		add_modifier = {
 			modifier = trade_city
 		}
 	}
 
 	option = {
-		name = tbm.43.no
+		name = tbm_desert.43.no
 	}
 }
 
 ### 44. A City of the Desert - Scientific Mecca
 planet_event = {
-	id = tbm.44
+	id = tbm_desert.44
 
-	title = tbm.44.science
-	desc = tbm.44.desc
+	title = tbm_desert.44.science
+	desc = tbm_desert.44.desc
 	picture = GFX_evt_resource_cache
 	show_sound = event_engineered_evolution
 
 	is_triggered_only = yes
 
 	option = {
-		name = tbm.44.yes
+		name = tbm_desert.44.yes
 		add_modifier = {
 			modifier = scientific_mecca
 		}
 	}
 
 	option = {
-		name = tbm.44.no
+		name = tbm_desert.44.no
 	}
 }
 
 ### 45. A City of the Desert - Garden City
 planet_event = {
-	id = tbm.45
+	id = tbm_desert.45
 	
-	title = tbm.45.fountains
-	desc = tbm.45.desc
+	title = tbm_desert.45.fountains
+	desc = tbm_desert.45.desc
 	picture = GFX_evt_grand_speech
 	show_sound = event_first_contact_aquatic
 
 	is_triggered_only = yes
 
 	option = {
-		name = tbm.45.yes
+		name = tbm_desert.45.yes
 		add_modifier = {
 			modifier = city_of_gardens
 		}
 	}
 
 	option = {
-		name = tbm.45.no
+		name = tbm_desert.45.no
 	}
 }
 
 ### 46. Initial Handler
 #	Added to fine-tune spawning a bit, but this will still be a very common event chain
 planet_event = {
-	id = tbm.46
+	id = tbm_desert.46
 
 	is_triggered_only = yes
 	hide_window = yes
@@ -758,7 +758,7 @@ planet_event = {
 				
 				# Event Chain begins
 				planet_event = {
-					id = tbm.31
+					id = tbm_desert.31
 					days = 180
 					random = 90
 				}

@@ -3,6 +3,8 @@
 
 fix_advanced_start_empire_features = {
 
+	log = "tbm_advananced_start_init_effect - fix_advanced_start_empire_features"
+
 	optimize_memory
 
 	### Regular Advanced Empire Homewords (is_capital = yes)
@@ -68,6 +70,4 @@ fix_advanced_start_empire_features = {
 	# Vanilla Machine: +1 nexus, +2 energy
 	# Vanilla Hive: +1 hive, +1 farming
 	# Vanilal Anglers: +1 farming
-
-
 }

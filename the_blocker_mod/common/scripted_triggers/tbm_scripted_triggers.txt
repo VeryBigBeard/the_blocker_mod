@@ -22,7 +22,7 @@ is_rare_feature = {
 		has_deposit_category = deposit_cat_food_rare
 		has_deposit_category = deposit_cat_minerals
 		has_deposit_category = deposit_cat_energy_rare
-		has_deposit_category = deposit_cat_legendary
+		has_deposit_category = deposit_cat_tbm_legendary
 	}
 }
 

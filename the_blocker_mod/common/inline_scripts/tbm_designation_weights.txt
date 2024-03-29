@@ -1,5 +1,9 @@
 # TBM - AI Planet Designation Archetypes
 
+### this = deposit ###
+### from = planet ###
+### owner = country ###
+
 # Basic planet designation weighting applied to (almost) every feature.
 # General idea is we want rural, research, and unity planets to keep more bonuses; industrial and urban worlds, less so.
 # Specialized resource districts (i.e., farming) are handled in each feature to avoid over-generalization.
@@ -9,16 +13,18 @@
 # Habilitability - do we like planet-appropriate features? (This will help with terraforming down the line)
 modifier = {
 	add = -0.33
-	is_ideal_planet_class = {
-		who = owner_main_species
-		status = yes
+	from = {
+		is_ideal_planet_class = {
+			who = owner_main_species
+			status = yes
+		}
 	}
 }
 
 # Unity, research designations - this: planet
 modifier = {
 	add = -0.55	# Should still clear if we need a district, but not before other stuff!
-	this = {
+	from = {
 		OR = {
 			colony_type = col_bureau
 			colony_type = col_bureau_hive
@@ -33,17 +39,19 @@ modifier = {
 # Special types
 modifier = {
 	add = -1
-	OR = {
-		colony_type = col_penal
-		colony_type = col_resort
-		colony_type = col_slave
-		colony_type = col_fe_colony
+	from = {
+		OR = {
+			colony_type = col_penal
+			colony_type = col_resort
+			colony_type = col_slave
+			colony_type = col_fe_colony
+		}
 	}
 }
 
 modifier = {
 	add = 0.55
-	this = {
+	from = {
 		OR = {
 			colony_type = col_industrial
 			colony_type = col_foundry

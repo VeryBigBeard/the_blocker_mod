@@ -1,16 +1,16 @@
 spriteTypes = {
 	spriteType = {
 		name = "GFX_text_colonist"
-		texturefile = "gfx/interface/icons/text_icons/mod_colonist.dds"
+		texturefile = "gfx/interface/icons/text_icons/mod_colonist"
 	}
 
 	spriteType = {
 		name = "GFX_text_starbase"
-		textureFile = "gfx/interface/icons/text_icons/mod_starbase.dds"
+		textureFile = "gfx/interface/icons/text_icons/mod_starbase"
 	}
 
 	spriteType = {
 		name = "GFX_text_amoeba"
-		textureFile = "gfx/interface/icons/text_icons/mod_amoeba.dds"
+		textureFile = "gfx/interface/icons/text_icons/mod_amoeba"
 	}
 }
