@@ -49,23 +49,23 @@ d_homeworld_bandit_camp = {
 		}
 	}
 
-	on_cleared = {
-		if = {
-			limit = {
-				planet = { is_planet_class = pc_gaia }
-			}
-			add_deposit = d_gaia_homeworld_fossil_fuels
-		}
-		else_if = {
-			limit = {
-				owner = { is_gestalt = yes }
-			}
-			add_deposit = d_gestalt_fossil_fuel_reserves
-		}
-		else = {
-			add_deposit = d_fossil_fuel_reserves
-		}
-	}
+	# on_cleared = {
+	# 	if = {
+	# 		limit = {
+	# 			planet = { is_planet_class = pc_gaia }
+	# 		}
+	# 		add_deposit = d_gaia_homeworld_fossil_fuels
+	# 	}
+	# 	else_if = {
+	# 		limit = {
+	# 			owner = { is_gestalt = yes }
+	# 		}
+	# 		add_deposit = d_gestalt_fossil_fuel_reserves
+	# 	}
+	# 	else = {
+	# 		add_deposit = d_fossil_fuel_reserves
+	# 	}
+	# }
 
 	planet_modifier = {
 		planet_crime_add = 15
@@ -815,8 +815,7 @@ d_battery_farms = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		planet_pops_robotics_energy_upkeep_mult = 1 # Does this actuallya ffect ME pops?
-		pop_cat_bio_trophy_happiness = -0.1
+		planet_pops_robotics_energy_upkeep_mult = 1
 	}
 
 	triggered_planet_modifier = {
@@ -832,6 +831,14 @@ d_battery_farms = {
 		modifier = {
 			pop_purge_mult = 1
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_machine_servitor }
+		}
+		pop_cat_bio_trophy_happiness = -0.1
 	}
 
 	potential = {
@@ -1014,6 +1021,13 @@ d_fossil_fuel_reserves = {
 
 	planet_modifier = {
 		district_generator_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
 		pop_happiness = -0.05
 	}
 
@@ -1056,6 +1070,14 @@ d_gestalt_fossil_fuel_reserves = {
 
 	planet_modifier = {
 		district_generator_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		planet_pops_energy_upkeep_mult = 0.05
 	}
 
 	potential = {
@@ -4688,7 +4710,22 @@ d_experimental_fusion_reactor = {
 		planet_technician_energy_produces_add = 1
 		planet_researchers_alloys_upkeep_add = 2	# Partly as a downside for the player, partly to rubber-band Advanced Starts
 		job_technician_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
 		job_researcher_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_calculator_add = 2
 	}
 
 	potential = {
@@ -4702,7 +4739,7 @@ d_experimental_fusion_reactor = {
 
 d_space_academy = {
 	is_for_colonizable = yes
-	icon = d_boswash_metropolitan_axis
+	#icon = d_city
 	category = deposit_cat_advanced
 
 	use_for_min_max_adjustments = yes
@@ -4766,6 +4803,17 @@ d_space_academy = {
 			owner = { is_materialist = yes }
 		}
 		trade_value_mult = 0.15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_soldier_add = -2
+		planet_jobs_physics_research_produces_mult = 0.05
+		planet_jobs_society_research_produces_mult = 0.05
+		planet_jobs_engineering_research_produces_mult = 0.05
 	}
 
 

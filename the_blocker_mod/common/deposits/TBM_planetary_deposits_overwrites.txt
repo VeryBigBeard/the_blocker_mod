@@ -1,31 +1,14 @@
 ### The Blocker Mod - Vanilla Overwrites
 #
 #	Overwrites most keys in 01_blocker_deposits.tx and all keys in 01_planetary_deposits.txt
-#	Re-installing those vanilla files will break this mod.
 #
-#	All terraforming weights are set to should_swap_deposit_on_terraforming - no
+#	All terraforming weights are set to should_swap_deposit_on_terraforming = no
 #	Otherwise, you will get some very odd planets and district spreads post-terraform.
 #	Terraforming in this mod is handled mostly by events.
 #
 #	AI Weights are set on each feature to allow for greater flexibility.
 #	Vanilla inline_script references have been removed so as not to interfere with this.
-
-#	VOID AFTER 0.5
-#	Note: For initial release, vanilla features use is_homeworld to re-add lost districts to homeworlds. Otherwise, they start at size 25 with 0 free districts.
-#	This will remain the case until a better solution is found (probably involved game_start events) and a compatibility headache.
-#	Format below is: 
-	# triggered_planet_modifier = {
-	# 	potential = {
-	# 		is_homeworld = yes
-	#		has_planet_flag = lost_colony_homeworld (avoids same on lost colonies)
-	# 	}
-	# 	modifier = {
-	# 		planet_max_district_add = however_many_it_took_away
-	# 	}
-	# }
-#	This only applies to features space effects. You'll still get some nice bonuses, and you can still clear them.
-#	Vanilla "blockers" will not spawn on homeworlds, in keeping with vanilla. Who needs mountains?
-#	Blockers added at game_start by events will still appear.
+###
 
 
 ### VARIABLES
@@ -51,7 +34,7 @@
 
 @base = 1	# Base ai_weight. AI will clear any feature at weight = 1 *if it needs district space*
 @clear = 2	# AI will clear this feature immediately.
-@keep = 0	# AI will clear this feature only after all other features of higher weight)
+@keep = 0	# AI will clear this feature only after all other features of higher weight
 @always_clear = 100	# AI will always clear this feature; used mainly for negative features (e.g., rubble)
 @always_keep = -100 # AI will always keep this feature; used mainly for bonus features and some flavor features
 
@@ -1848,6 +1831,10 @@ d_rushing_waterfalls = {
 
 	should_swap_deposit_on_terraforming = no
 
+	blocker_swap_types = {
+		d_hydro_plant
+	}
+
 	time = 480
 
 	resources = {
@@ -1861,7 +1848,7 @@ d_rushing_waterfalls = {
 	}
 
 	on_cleared = {	
-		add_deposit = d_hydro_plant
+		#add_deposit = d_hydro_plant
 		hidden_effect = {
 			add_deposit = d_floodplains
 			random_list = {

@@ -1316,7 +1316,7 @@ d_volcanic_soil = {
 }
 
 d_volcanic_ash = {
-	icon = "gfx/interface/icons/deposits/unused/d_molten_planet"
+	icon = gfx/interface/icons/deposits/unused/d_molten_planet
 	category = deposit_cat_blockers
 
 	is_for_colonizable = yes
@@ -3960,7 +3960,7 @@ d_hydro_plant = {
 
 d_dyke = {
 	icon = d_natural_farmland
-	category = deposit_category_final
+	category = deposit_cat_final
 
 	use_for_min_max_adjustments = yes
 
@@ -3977,6 +3977,7 @@ d_dyke = {
 
 	planet_modifier = {
 		pop_housing_usage_mult = 0.02
+		planet_farmers_food_produces_mult = 0.05
 	}
 
 	potential = {

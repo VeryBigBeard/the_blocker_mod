@@ -316,11 +316,11 @@ planet_event = {
 						factor = 0		# Until I finish writing it
 						always = yes
 					}
-					planet_event = { 
-						id = tbm.57 
-						days = 3600 
-						random = 720 
-					}
+					# planet_event = { 
+					# 	id = tbm.57 
+					# 	days = 3600 
+					# 	random = 720 
+					# }
 				}
 			}
 		}

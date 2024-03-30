@@ -921,6 +921,10 @@ planet_event = {
 
 	is_triggered_only = yes
 
+	pre_triggers = {
+		is_capital = yes	# Failsafe for starting planets; Lost Colonies were getting this sometimes.
+	}
+
 	immediate = {
 		add_modifier = {
 			modifier = pioneering_colonists

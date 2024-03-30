@@ -619,17 +619,21 @@ planet_event = {
 					limit = {
 						owner = { has_technology = tech_volcano }
 					}
-					planet_event = {
-						id = tbm.12
-						days = 1800
-						random = 180
+					this = {
+						planet_event = {
+							id = tbm.12
+							days = 1800
+							random = 180
+						}
 					}
 				}
 				else = {
-					planet_event = {
-						id = tbm.11
-						days = 1800
-						random = 180
+					this = {
+						planet_event = {
+							id = tbm.11
+							days = 1800
+							random = 180
+						}
 					}
 				}
 			}
@@ -790,14 +794,14 @@ planet_event = {
 ### 12. Volcanic Instability - Warning Signs
 planet_event = {
 	id = tbm.12
+
 	title = tbm.12.name
 	desc = tbm.12.desc
 	picture = GFX_evt_molten
-
 	show_sound = event_finding_loot
 
 	is_triggered_only = yes
-	fire_only_once = yes
+
 	pre_triggers = {
 		has_owner = yes
 		#is_homeworld = no
@@ -1005,10 +1009,12 @@ planet_event = {
 		
 		random_list = {
 			20 = {
-				planet_event = {
-					id = tbm.17
-					days = 120
-					random = 60
+				this = {
+					planet_event = {
+						id = tbm.17
+						days = 120
+						random = 60
+					}
 				}
 			}
 			80 = {}
@@ -1034,7 +1040,12 @@ planet_event = {
 
 	immediate = {
 		random_owned_pop = {
-			limit = { has_job = dangerous_wildlife_hunter }
+			limit = {
+				OR = {
+					has_job = dangerous_wildlife_hunter
+					has_job = colonist
+				}
+			}
 			kill_pop = yes
 		}
 	}
@@ -1117,11 +1128,13 @@ planet_event = {
 ### 19. Landslide
 planet_event = {
 	id = tbm.19
-	title = tbm.19.name
-	desc = tbm.19.desc
-	picture = GFX_evt_relic_world_street
-	show_sound = event_finding_loot
 
+	# title = tbm.19.name
+	# desc = tbm.19.desc
+	# picture = GFX_evt_relic_world_street
+	# show_sound = event_finding_loot
+
+	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
@@ -1625,6 +1638,11 @@ planet_event = {
 	}
 
 	immediate = {
+		random_deposit = {
+			limit = { can_flood = yes }
+			save_event_target_as = flooded_region
+		}
+		
 		random_list = {
 			20 = {
 				# modifier = {

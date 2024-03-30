@@ -3,7 +3,7 @@
 ### General
 
 wild_world = {
-	icon = gfx/interface/icons/planet_modifiers/pm_tropical_planet.dds
+	icon = gfx/interface/icons/planet_modifiers/pm_overgrowth.dds
 	icon_frame = 2
 	planet_max_districts_add = 2
 	job_colonist_add = 2
@@ -12,7 +12,6 @@ wild_world = {
 	planet_researchers_society_research_produces_mult = 0.2
 	planet_researchers_engineering_research_produces_mult = 0.2
 	planet_jobs_upkeep_mult = 0.05
-
 }
 
 pioneering_colonists = {
