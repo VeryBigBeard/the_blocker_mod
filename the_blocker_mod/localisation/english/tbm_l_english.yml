@@ -62,6 +62,9 @@
  building_science_outposts:0 "Science Outposts"
  building_science_outposts_desc:0 "As soon as the colonization effort was announced, researchers were eager to set up laboratories on-site to study the alien world first-hand."
 
+ mod_job_xeno_naturalist_add:0 "$job_xeno_naturalist$ Jobs"
+ mod_job_xeno_analysis_drone_add:0 "$job_xeno_analysis_drone$ Jobs"
+
  # TBM Custom Jobs
 
  planet_colonist:0 "Colonist Jobs"  # Economic Category
@@ -110,19 +113,36 @@
  mod_planet_miners_physics_research_produces_add:0 "$r_physics_research$ from $job_miner_plural$"
  mod_planet_miners_society_research_produces_add:0 "$r_society_research$ from $job_miner_plural$"
  mod_planet_miners_engineering_research_produces_add:0 "$r_engineering_research$ from $job_miner_plural$"
+ mod_planet_miners_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_miner_plural$"
 
  mod_planet_technician_food_produces_add:0 "£food£ from $job_technician_plural$:"
  mod_planet_technician_minerals_produces_add:0 "$r_minerals$ from $job_technician_plural$"
  mod_planet_technician_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $job_technician_plural$"
  mod_planet_technician_alloys_produces_add:0 "$r_alloys$ from $job_technician_plural$"
  mod_planet_technician_alloys_upkeep_add:0 "$r_energy$ Upkeep for $job_technician_plural$"
+ mod_planet_technician_consumer_goods_produces_add:0 "$r_consumer_goods$ from $job_technician_plural$"
+
+ mod_planet_researchers_food_upkeep_add:0 "$r_food$ Upkeep for $job_researcher_plural$"
+ 
 
  mod_planet_priests_unity_produces_mult:0 "$r_unity$ from $job_priest_plural$"
 
+ mod_planet_pop_assemblers_food_upkeep_mult:0 "$r_food$ Upkeep for $job_pop_assembler_plural$"
+ mod_planet_pop_assemblers_alloys_upkeep_mult:0 "$r_alloys$ Upkeep for $job_pop_assembler_plural$"
+
+ mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
+ 
+
  ### The Blocker Mod - Feature Modifiers
 
- mod_planet_pops_food_upkeep_mult:0 "Pop Food Upkeep"
+ mod_planet_pops_food_upkeep_mult:0 "£pops£Pops $r_food$ Upkeep"
+ mod_planet_pops_energy_upkeep_mult:0 "£pops£Pops $r_energy$ Upkeep"
+ mod_planet_pops_robotics_energy_upkeep_mult:0 "£pops£Robotic $r_energy$ Upkeep"
+
  mod_planet_colonist_produces_mult:0 "Resources from $icon_job_colonists$"
+ mod_pop_category_workers_food_upkeep_add:0 "$r_food$ Upkeep for Workers"
+ mod_pop_category_specialists_energy_upkeep_add:0 "$r_energy$ Upkeep for Specialists"
+
  mod_job_dangerous_wildlife_hunter_add:0 "$job_dangerous_wildlife_hunter$ Jobs"
  mod_job_dangerous_wildlife_poacher_add:0 "$job_dangerous_wildlife_poacher$ Jobs"
 
@@ -332,7 +352,7 @@
  d_experimental_fusion_reactor_desc:0 "Said to be way ahead of its time, this facility has managed to maintain a stable fusion reaction for several hours at a time, massively increasing power generation potential for the inhabitants of this world."
 
  d_space_academy:0 "Space Academy"
- d_space_academy:0 "With space travel now widespread in this society, young cadets eagerly sign up to serve on ships far and wide across the stars."
+ d_space_academy_desc:0 "With space travel now widespread in this society, young cadets eagerly sign up to serve on ships far and wide across the stars."
 
  d_homeworld_cleared_land:0 "Cleared Land"
  d_homeworld_cleared_land_desc:0 "This land has been carefully prepared for new development projects. Groundwater testing, weather analysis, and tectonic safety protocols all suggest this is a good location for a new district."
@@ -459,6 +479,9 @@
  miners_strike:0 "Miners' Strike\E"
 
  false_prospects:0 "False Prospects"
+
+ subsurface_spaceport_opened:0 "Subsurface Spaceport Opened"
+ subsurface_spaceport_opened_desc:0 "A new sub-aquatic spaceport has greatly facilitated trade and travel on this planet."
 
  ### The Blocker Mod - Event Projects
 

@@ -46,7 +46,7 @@ special_project = {
 	on_success = {
 		event_target:desert_planet = {
 			planet_event = {
-				id = tbm.38
+				id = tbm_desert.38
 			}
 		}
 	}
@@ -64,7 +64,7 @@ special_project = {
 	on_success = {
 		event_target:desert_planet = {
 			planet_event = {
-				id = tbm.42
+				id = tbm_desert.42
 			}
 		}
 	}

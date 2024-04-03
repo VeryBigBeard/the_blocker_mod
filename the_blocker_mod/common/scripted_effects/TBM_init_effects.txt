@@ -91,6 +91,7 @@ scripted_planet_reroll = {
 		# clear_blockers is commented out in vanilla; this is its standard spread
 		every_system_planet = {
 			limit = { has_planet_flag = primitive_robot_planet }
+			clear_deposits = yes
 			reroll_deposits = yes
 			add_deposit = d_failing_infrastructure
 			add_deposit = d_failing_infrastructure
@@ -103,6 +104,7 @@ scripted_planet_reroll = {
 		# Standard spread for now, should get basic tomb features as well
 		every_system_planet = {
 			limit = { has_planet_flag = frozen_in_time_flag }
+			clear_deposits = yes
 			reroll_deposits = yes
 			add_deposit = d_radioactive_wasteland
 			add_deposit = d_radioactive_wasteland
@@ -113,6 +115,7 @@ scripted_planet_reroll = {
 		# Standard spread, will eventually do special set
 		every_system_planet = {
 			limit = { has_planet_flag = living_planet }
+			clear_deposits = yes
 			reroll_deposits = yes
 			add_deposit = d_betharian_deposit
 		}
@@ -134,7 +137,7 @@ fix_fallen_empire_worlds = {
 
 	optimize_memory
 		
-	# For Modded FEs, all features are re-rolled--this may lead to some unintended effects if they have unique district spreads, but use add_district_and_planet_size_if_needed.
+	# For Modded FEs, all features are re-rolled.
 	every_country = {
 		limit = {
 			is_fallen_empire = yes
@@ -142,7 +145,25 @@ fix_fallen_empire_worlds = {
 
 		# Reroll on colonies, clean-up
 		every_owned_planet = {
-			reroll_deposits = yes
+			reroll_planet = yes
+		}
+	}
+
+	# Reroll Holy Worlds (similar to scripted planets)
+	every_system_planet = {
+		limit = {
+			OR = {
+				has_planet_flag = holy_world_1
+				has_planet_flag = holy_world_2
+				has_planet_flag = holy_world_3
+				has_planet_flag = holy_world_4
+			}
+		}
+		clear_deposits = yes
+		reroll_deposits = yes
+		if = {
+			limit = { has_modifier = wild_world }
+			remove_modifier = wild_world
 		}
 	}
 

@@ -1,4 +1,15 @@
 
+is_ecu = {
+	OR = {
+		is_planet_class = pc_city
+		is_planet_class = pc_machine
+		is_planet_class = pc_hive
+		
+		# PD Compat
+	}
+}
+
+
 # Checks Lost Colony starting world.
 # Really hacky and will probably remove, but currently no other way to check LC starting planet?
 is_lost_colony_starting_planet = {

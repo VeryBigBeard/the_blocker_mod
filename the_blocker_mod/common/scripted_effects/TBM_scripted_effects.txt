@@ -1,12 +1,15 @@
 # ### THe Blocker Mod - Scripted Effects
 
-is_ecu = {
-	OR = {
-		is_planet_class = pc_city
-		is_planet_class = pc_machine
-		is_planet_class = pc_hive
-		
-		# PD Compat
+# Failsafe effect to avoid clearance effects being set; calls remove_deposit (which ignores on_cleared) until all the deposits are gone
+# Call it in planet scope, and be mindful of the performance hit
+clear_deposits_without_effects = {
+	while = {
+		limit = {
+			num_deposits > 0
+		}
+		random_deposit = {
+			remove_deposit = yes
+		}
 	}
 }
 

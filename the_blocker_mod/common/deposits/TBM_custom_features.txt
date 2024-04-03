@@ -789,7 +789,7 @@ d_great_lake = {
 
 		modifier = {
 			add = -1
-			eoot = { colony_type = col_farming }
+			root = { colony_type = col_farming }
 		}
 
 		modifier = {
@@ -3791,7 +3791,7 @@ d_collapsed_cliffs = {
 
 d_great_river_obstructed = {
 	icon = d_great_river
-	category = deposit_category_final
+	category = deposit_cat_final
 
 	use_for_min_max_adjustments = yes
 

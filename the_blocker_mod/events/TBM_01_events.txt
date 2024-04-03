@@ -37,9 +37,8 @@ namespace = tbm
 country_event = {
 	id = tbm.1
 
-	title = tbm_debug_title
-	desc = tbm_debug_desc
 	is_triggered_only = yes
+	hide_window = yes
 
 	# Debugged Code
 

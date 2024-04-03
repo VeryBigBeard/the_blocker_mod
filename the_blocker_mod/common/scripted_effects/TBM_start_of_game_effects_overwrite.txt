@@ -6,31 +6,24 @@
 ###	Planetary Diversity edits this effect, but only to do much the same as TBM. Load TBM after Planetary Diversity or you will have bugs.
 
 
-# This is called after game start
 generate_start_deposits_and_blockers = {
 	
 	### Vanilla
 
 	optimize_memory
-	clear_deposits = yes
 
-
-	### The Blocker Mod - Flags & System Initializer Patches
+	# Clean-up and flag Lost Colony worlds (doing it here avoids compatibility problems)
+	clear_deposits_without_effects = yes
 	
-	
-	#	Vanilla adds a bunch of unique planets via solar_system_initializers. Anyt hat are inhabited are set to clear all blockers, thus removing all features when TBM is enabled. This script adds them back.
-
-
-
-	# Check and flag Lost Colony worlds (doing it here avoids compatibility problems)
 	if = {
 		limit = {
 			owner = { has_origin = origin_lost_colony }
 		}
 		# Make it easier to denote lost colony starting planets for feature purposes.
 		set_planet_flag = lost_colony_world
+		remove_modifier = pioneering_colonists
+		log = "Removed Pioneering Colonists from LC"
 	}
-
 
 	### The Blocker Mod - Overwrite
 

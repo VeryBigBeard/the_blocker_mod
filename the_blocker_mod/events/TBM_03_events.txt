@@ -299,8 +299,8 @@ planet_event = {
 					which = @carbon_economy
 					value = 1
 				}
-				add_deposit = d_coal_bed
 			}
+			add_deposit = d_coal_bed
 		}
 		else_if = {
 			limit = {
@@ -330,8 +330,8 @@ planet_event = {
 					which = @carbon_economy
 					value = 1
 				}
-				add_deposit = d_coal_bed
 			}
+			add_deposit = d_coal_bed
 		}
 		else_if = {
 			limit = {

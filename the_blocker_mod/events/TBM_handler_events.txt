@@ -30,6 +30,8 @@ event = {
 
 		### FALLEN EMPIRE WORLDS
 		fix_fallen_empire_worlds = yes
+
+		
 	}
 }
 
@@ -747,9 +749,11 @@ planet_event = {
 							is_gestalt = yes
 						}
 					}
-					count_owned_pops = {
-						has_job = miner
-						is_robotic_species = yes
+					count_owned_pop = {
+						limit = {
+							has_job = miner
+							is_robotic_species = yes
+						}
 						count >= 2
 					}
 				}
@@ -875,7 +879,6 @@ planet_event = {
 
 ### 100. Colonization Handler
 #	on_colonized
-#	This exists mainly to get Pioneering Colonists out of the way of the First X Colony event, as well as tutorial events.
 planet_event = {
 	id = tbm_handler.100
 
@@ -883,12 +886,27 @@ planet_event = {
 	is_triggered_only = yes
 
 	pre_triggers = {
-		has_owner = yes
 		is_homeworld = no
+		is_capital = no
 	}
 
 	trigger = {
-		NOT = { has_planet_flag = lost_colony_world }	
+		NOT = { has_planet_flag = lost_colony_world }
+		owner = {
+			NOR = {
+				has_origin = origin_lost_colony
+				has_origin = origin_broken_shackles
+				has_origin = origin_imperial_vassal
+				has_origin = origin_payback
+			}
+			#num_owned_planets > 2
+		}
+		# NOT = {
+		# 	is_same_value = owner.capital_scope
+		# }
+		#days_passed > 2
+		
+		
 		num_free_districts = {
 			type = district_city
 			value < 0
@@ -896,7 +914,7 @@ planet_event = {
 	}
 
 	immediate = {
-		
+		log = "Added Pioneering Colonists"
 		this = {
 			planet_event = {
 				id = tbm_handler.101
@@ -922,7 +940,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	pre_triggers = {
-		is_capital = yes	# Failsafe for starting planets; Lost Colonies were getting this sometimes.
+		is_capital = no	# Failsafe for starting planets; Lost Colonies were getting this sometimes.
 	}
 
 	immediate = {
@@ -974,6 +992,7 @@ event = {
 		
 		every_galaxy_planet = {
 			limit = {
+				NOT = { exists = owner }
 				habitable_planet = yes
 				num_free_districts = {
 					type = district_city
