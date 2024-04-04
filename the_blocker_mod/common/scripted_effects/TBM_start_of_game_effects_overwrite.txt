@@ -21,8 +21,6 @@ generate_start_deposits_and_blockers = {
 		}
 		# Make it easier to denote lost colony starting planets for feature purposes.
 		set_planet_flag = lost_colony_world
-		remove_modifier = pioneering_colonists
-		log = "Removed Pioneering Colonists from LC"
 	}
 
 	### The Blocker Mod - Overwrite

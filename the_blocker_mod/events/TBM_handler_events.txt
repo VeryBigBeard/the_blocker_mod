@@ -24,14 +24,55 @@ event = {
 		### Reroll scripted planets
 		scripted_planet_reroll = yes
 		
-		### IMPERIAL FIEFDOM FIX (overlord_system_x_init)
-
-
-
 		### FALLEN EMPIRE WORLDS
 		fix_fallen_empire_worlds = yes
 
-		
+		### IMPERIAL FIEFDOM FIX (overlord_system_x_init)
+		if = {
+			limit = {
+				any_country = { has_origin = origin_imperial_vassal }
+			}
+			
+			# IF Overlord
+			event_target:origin_imperial_homeland_country = {
+				event_target:origin_imperial_homeland = {
+					clear_deposits = yes
+					clear_blocker = yes
+
+					generate_start_deposits_and_blockers = yes
+					fix_advanced_start_empire_features = yes
+					# IF Overlord features
+				}
+
+				every_owned_planet = {
+					limit = {
+						NOT = { is_same_value = event_target:origin_imperial_homeland }
+					}
+					clear_deposits = yes
+					clear_blockers = yes
+					reroll_deposits = yes
+					# IF Overlord colonies
+				}
+			}
+
+			event_target:origin_imperial_homeland_country_2 = {
+				every_owned_planet = {
+					clear_deposits = yes
+					clear_blockers = yes
+					generate_start_deposits_and_blockers = yes
+					# IF Vassal
+				}
+			}
+
+			event_target:origin_imperial_homeland_country_3 = {
+				every_owned_planet = {
+					clear_deposits = yes
+					clear_blockers = yes
+					generate_start_deposits_and_blockers = yes
+					# IF Vassal
+				}
+			}
+		}		
 	}
 }
 
@@ -891,25 +932,14 @@ planet_event = {
 	}
 
 	trigger = {
-		NOT = { has_planet_flag = lost_colony_world }
-		owner = {
-			NOR = {
-				has_origin = origin_lost_colony
-				has_origin = origin_broken_shackles
-				has_origin = origin_imperial_vassal
-				has_origin = origin_payback
-			}
-			#num_owned_planets > 2
-		}
-		# NOT = {
-		# 	is_same_value = owner.capital_scope
+		NOT = { has_planet_flag = lost_colony_planet }	# Do not spawn this on LC parents or their colonies generated at game start.
+		# owner = {
+		# 	num_owned_planets < 6	# Only applied for first few colonies
 		# }
-		#days_passed > 2
-		
 		
 		num_free_districts = {
 			type = district_city
-			value < 0
+			value <= 0
 		}
 	}
 
@@ -938,10 +968,6 @@ planet_event = {
 	show_sound = event_default
 
 	is_triggered_only = yes
-
-	pre_triggers = {
-		is_capital = no	# Failsafe for starting planets; Lost Colonies were getting this sometimes.
-	}
 
 	immediate = {
 		add_modifier = {
@@ -1038,5 +1064,22 @@ planet_event = {
 
 	immediate = {
 		remove_modifier = wild_world
+	}
+}
+
+### TEST - Imperial Fiefdom
+event = {
+	id = tbm_handler.104
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:origin_imperial_homeland_country = {
+			every_owned_planet = {
+				add_deposit = d_space_academy
+			}
+			log = "Added on_game_start to IF Overlord"
+		}
 	}
 }

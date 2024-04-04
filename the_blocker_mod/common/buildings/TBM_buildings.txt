@@ -67,6 +67,7 @@ building_science_outposts = {
 	icon = "gfx/interface/icons/buildings/unused/building_hydroponics_farm_3.dds"
 
 	base_buildtime = @b1_time
+	base_cap_amount = 1
 	can_build = yes
 	can_demolish = yes
 	can_be_ruined = yes
