@@ -1,7 +1,9 @@
-### The Blocker Mod - Known Issues - Version 0.5 - Pre-Beta
+### The Blocker Mod - Known Issues - Version 0.6 - Pre-Beta
 
 1. The Post-Apocalyptic Origin should be (close to) functional but very, very difficult as it hasn't yet been balanced. Play with caution!
 
 2. Support for vanilla changes to Masters of Nature and the Environmentalist civic only extends to the re-specced vanilla features, pending a more thorough modding of both Masters of Nature and the way civics interact with certain features.
 
 3. Implementation to fix features for Advanced Start empires is very preliminary. They should survive, barely, but will get a more unique, interesting set-up in future versions of the mod.
+
+4. Imperial Fiefdom overlord colonies are re-rolled on game start to ensure they have features and their intended districts. This results in planets with a lot of "negative" districts because they skip the critical nascent phase of a planet's life. This will be addressed ASAP with a custom feature set for Imperial Fiefdoms, but for now they're vaguely appropriate for an empire that has badly overextended itself. Claim them with caution, though!
