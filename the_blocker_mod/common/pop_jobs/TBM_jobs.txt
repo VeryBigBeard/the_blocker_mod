@@ -151,7 +151,7 @@ xeno_naturalist = {
 	category = specialist
 	building_icon = building_science_outposts
 	clothes_texture_index = 3
-	icon = gfx/interface/icons/jobs/job_colonist.dds
+	#icon = "gfx/interface/icons/jobs/job_xeno_naturalist.dds"
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -213,7 +213,7 @@ xeno_analysis_drone = {
 	category = specialist
 	building_icon = building_science_outposts
 	clothes_texture_index = 3
-	icon = gfx/interface/icons/jobs/job_colonist.dds
+	#icon = "gfx/interface/icons/jobs/job_xeno_xeno_analysis_drone.dds"
 
 	possible_pre_triggers = {
 		has_owner = yes

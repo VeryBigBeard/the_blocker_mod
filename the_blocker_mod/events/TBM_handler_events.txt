@@ -4,6 +4,10 @@
 
 namespace = tbm_handler
 
+### Variables
+@miners = 0
+@mines = 0
+
 #1. Scripted Planets Handler
 ### Many scripted planets in vanilla call clear_blockers on init, or add vanilla deposits that will either be broken or unbalanced by the mod. This event is fired on_press_begin and checks for specific scripted planets. It may cause a slight lag when the game is first started.
 
@@ -15,92 +19,261 @@ event = {
 
 	immediate = {
 		
+		log = "tbm_handler.1 - Scipted Planets"
 		
-		### DISTANT STARS INITIALIZERS
-		# primitive_robot_system
-		# Standard spread
-		every_system_planet = {
-			limit = { has_planet_flag = primitive_robot_planet }
-			reroll_deposits = yes
-			add_deposit = d_failing_infrastructure
-			add_deposit = d_failing_infrastructure
-			add_deposit = d_city_ruins
-			add_deposit = d_city_ruins
-			add_deposit = d_metal_boneyard
-		}
-
-		# superflare_system
-		# Standard spread for now, should get basic tomb features as well
-		every_system_planet = {
-			limit = { has_planet_flag = frozen_in_time_flag }
-			reroll_deposits = yes
-			add_deposit = d_radioactive_wasteland
-			add_deposit = d_radioactive_wasteland
-			add_deposit = d_irradiated_valley
-		}
-
-		# living_planet_system
-		# Standard spread, will eventually do special set
-		every_system_planet = {
-			limit = { has_planet_flag = living_planet }
-			reroll_deposits = yes
-			add_deposit = d_betharian_deposit
-		}
-
-		### FALLEN EMPIRE WORLD### distant_stars_initializers
-		# primitive_robot_system
-		# Standard spread
-		every_system_planet = {
-			limit = { has_planet_flag = primitive_robot_planet }
-			generate_start_deposits_and_blockers = yes
-			add_deposit = d_failing_infrastructure
-			add_deposit = d_failing_infrastructure
-			add_deposit = d_city_ruins
-			add_deposit = d_city_ruins
-			add_deposit = d_metal_boneyard
-		}
-
-		# superflare_system
-		# Standard spread for now, should get basic tomb features as well
-		every_system_planet = {
-			limit = { has_planet_flag = frozen_in_time_flag }
-			generate_start_deposits_and_blockers = yes
-			add_deposit = d_radioactive_wasteland
-			add_deposit = d_radioactive_wasteland
-			add_deposit = d_irradiated_valley
-		}
-
-		# living_planet_system
-		# Standard spread, will eventually do special set
-		every_system_planet = {
-			limit = { has_planet_flag = living_planet }
-			generate_start_deposits_and_blockers = yes
-			add_deposit = d_betharian_deposit
-		}
-
+		### Reroll scripted planets
+		scripted_planet_reroll = yes
 		
+		### FALLEN EMPIRE WORLDS
+		fix_fallen_empire_worlds = yes
 
-### Variables
-@miners = 0
-@mines = 0
+		### IMPERIAL FIEFDOM FIX (overlord_system_x_init)
+		if = {
+			limit = {
+				any_country = { has_origin = origin_imperial_vassal }
+			}
+			
+			# IF Overlord
+			event_target:origin_imperial_homeland_country = {
+				
+				# Empire Capital
+				event_target:origin_imperial_homeland = {
+					clear_deposits = yes
+					clear_blocker = yes
 
+					generate_start_deposits_and_blockers = yes
+					fix_advanced_start_empire_features = yes
+					while = {
+						count = 6
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
+					
+					# IF Overlord features
+				}
+				
+				# Overlord Colonies
+				set_variable = {
+					which = x
+					value = trigger:num_owned_planets
+				}
+
+				ordered_owned_planet = {
+					position = 1
+					order_by = x
+					limit = {
+						NOT = { is_same_value = event_target:origin_imperial_homeland }
+					}
+					clear_deposits_without_effects = yes
+					while = {
+						count = 3
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
+					reroll_deposits = yes
+				}
+				ordered_owned_planet = {
+					position = 2
+					order_by = x
+					limit = {
+						NOT = { is_same_value = event_target:origin_imperial_homeland }
+					}
+					clear_deposits_without_effects = yes
+					while = {
+						count = 2
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
+					reroll_deposits = yes
+				}
+
+
+
+
+				# while = {
+				# 	count < trigger:num_owned_planets	# Less than because we want to excluse the capital
+				# 	ordered_owned_planet = {
+				# 		position = 1
+				# 		order_by = x
+				# 		limit = {
+				# 			NOT = { is_same_value = event_target:origin_imperial_homeland }
+				# 		}
+				# 		clear_deposits_without_effects = yes
+				# 		reroll_deposits = yes
+				# 		while = {
+				# 			count = 3
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_city
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_mining
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_farming
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_generator
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_industrial
+				# 			}
+				# 		}
+				# 	}
+				# 	ordered_owned_planet = {
+				# 		position = 2
+				# 		order_by = x
+				# 		limit = {
+				# 			NOT = { is_same_value = event_target:origin_imperial_homeland }
+				# 		}
+				# 		clear_deposits_without_effects = yes
+				# 		reroll_deposits = yes
+				# 		while = {
+				# 			count = 2
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_city
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_mining
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_farming
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_generator
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_industrial
+				# 			}
+				# 		}
+				# 	}
+				# }
+			}
+
+			# Vassal 1
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_2
+				}
+				event_target:origin_imperial_homeland_country_2 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+
+			# Vassal 2
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_3
+				}
+				event_target:origin_imperial_homeland_country_3 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+
+			# Vassal 3
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_4
+				}
+				event_target:origin_imperial_homeland_country_4 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+
+			# Vassal 4
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_5
+				}
+				event_target:origin_imperial_homeland_country_5 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+		}		
 	}
 }
 
 ### 2. Advanced Start Feature Fixer
-#	Advanced Start empires need to reroll features after vanilla init or else they'll have no features and will be crippled by unemployment. Called on_initialize_advanced_colony
-planet_event = {
+#	Advanced Start empires need to reroll features after vanilla init or else they'll have no features and will be crippled by unemployment.
+#	Now called on_press_begin to avoid sequentiality problems and also to align with tbm_handler.1
+event = {
 	id = tbm_handler.2
 
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		clear_blockers = yes
-		clear_deposits = yes
+		
+		log = "tbm_handler.2 - Advanced Starts"
+		
+		every_country = {
+			limit = {
+				has_country_flag = is_advanced_start_AI
+			}
 
-		generate_start_deposits_and_blockers = yes	# Re-runs basic TBM feature init.
-		fix_advanced_start_empire_features = yes
+			every_owned_planet = {
+				### Get rid of unwanted fish. For real this time.
+				clear_blockers = yes
+				clear_deposits = yes
+
+				generate_start_deposits_and_blockers = yes	# Re-runs basic TBM feature init.
+				fix_advanced_start_empire_features = yes		
+			}
+		}
 	}
 }
 
@@ -788,9 +961,11 @@ planet_event = {
 							is_gestalt = yes
 						}
 					}
-					count_owned_pops = {
-						has_job = miner
-						is_robotic_species = yes
+					count_owned_pop = {
+						limit = {
+							has_job = miner
+							is_robotic_species = yes
+						}
 						count >= 2
 					}
 				}
@@ -916,7 +1091,6 @@ planet_event = {
 
 ### 100. Colonization Handler
 #	on_colonized
-#	This exists mainly to get Pioneering Colonists out of the way of the First X Colony event, as well as tutorial events.
 planet_event = {
 	id = tbm_handler.100
 
@@ -924,17 +1098,24 @@ planet_event = {
 	is_triggered_only = yes
 
 	pre_triggers = {
-		has_owner = yes
+		is_homeworld = no
+		is_capital = no
 	}
 
 	trigger = {
+		NOT = { has_planet_flag = lost_colony_planet }	# Do not spawn this on LC parents or their colonies generated at game start.
+		# owner = {
+		# 	num_owned_planets < 6	# Only applied for first few colonies
+		# }
+		
 		num_free_districts = {
 			type = district_city
-			value < 0
+			value <= 0
 		}
 	}
 
 	immediate = {
+		log = "Added Pioneering Colonists"
 		this = {
 			planet_event = {
 				id = tbm_handler.101
@@ -997,15 +1178,18 @@ planet_event = {
 
 ### 102. Wild World Generator (on_press_begin)
 #	The long-term plan is that these shouldn't need to exist. Until then, they're added on_press_begin to provid flavor to and help ameliorate particularly nasty feature spawns, with the idea being to avoid planets with large numbers of negative district space because it confuses the UI.
-planet_event = {
+event = {
 	id = tbm_handler.102
 
 	is_triggered_only = yes
 	hide_window = yes
 
 	immediate = {
+		log = "tbm_handler.102 - Wild World Generator"
+		
 		every_galaxy_planet = {
 			limit = {
+				NOT = { exists = owner }
 				habitable_planet = yes
 				num_free_districts = {
 					type = district_city
@@ -1014,6 +1198,15 @@ planet_event = {
 			}
 			add_modifier = {
 				modifier = wild_world
+			}
+		}
+
+		# Debug
+		set_global_flag = debug_wild_worlds_running
+		
+		every_playable_country = {
+			country_event = {
+				id = tbm.1
 			}
 		}
 	}
@@ -1042,5 +1235,22 @@ planet_event = {
 
 	immediate = {
 		remove_modifier = wild_world
+	}
+}
+
+### TEST - Imperial Fiefdom
+event = {
+	id = tbm_handler.104
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:origin_imperial_homeland_country = {
+			every_owned_planet = {
+				add_deposit = d_space_academy
+			}
+			log = "Added on_game_start to IF Overlord"
+		}
 	}
 }

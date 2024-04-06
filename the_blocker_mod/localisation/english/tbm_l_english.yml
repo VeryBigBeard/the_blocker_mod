@@ -32,6 +32,13 @@
  
  # Debug
 
+ tbm_debug_name:0 "Debug Event"
+ tbm_debug_desc:0 "[DEBUG_TEXT]"
+ tbm_debug_is_on:0 "Debug Script is running.\n\n"
+ tbm_debug_scripted_planets:0 "Debug: Scripted Planets event is running.\n\n"
+ tbm_debug_advanced_planets:0 "Debug: Advanced Planets event is running.\n\n"
+ tbm_debug_wild_worlds:0 "Debug: Wild Worlds event is running.\n\n"
+
  MESSAGE_TEST_TITLE:0 "Message Test"
  TBMM_MESSAGE_TEST:0 "This message tested."
 
@@ -55,18 +62,24 @@
  building_science_outposts:0 "Science Outposts"
  building_science_outposts_desc:0 "As soon as the colonization effort was announced, researchers were eager to set up laboratories on-site to study the alien world first-hand."
 
+ mod_job_xeno_naturalist_add:0 "$job_xeno_naturalist$ Jobs"
+ mod_job_xeno_analysis_drone_add:0 "$job_xeno_analysis_drone$ Jobs"
+
  # TBM Custom Jobs
 
  planet_colonist:0 "Colonist Jobs"  # Economic Category
- planet_colonist__produces_mult:0 "Resources from Colonists"
+ planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$"
 
- xeno_naturalist:0 "Xeno-Naturalist"
- xeno_naturalist_plural:0 "Xeno-Naturalists"
- xeno_naturalist:0 "Expert in all things alien with teeth, these intrepid researchers combine the roles of scientist and colonist, naming new flora and fauna as fast as they can be injured by the same."
+ planet_poachers:0" Poacher Jobs"
+ planet_poachers_produces_mult:0 "Resources from"
 
- xeno_analysis_drone:0 "Xeno-Analysis Drone"
- xeno_analysis_drone_plural:0 "Xeno-Analysis Drones"
- xeno_analysis_drone_desc:0 "Not everything can be analyzed by centralized infrastructure. New colonies in particular require specialized drones to gather local data and conduct on-site experiments to further the collective knowledge of alien worlds."
+ job_xeno_naturalist:0 "Xeno-Naturalist"
+ job_xeno_naturalist_plural:0 "Xeno-Naturalists"
+ job_xeno_naturalist_desc:0 "Expert in all things alien with teeth, these intrepid researchers combine the roles of scientist and colonist, naming new flora and fauna as fast as they can be injured by the same."
+
+ job_xeno_analysis_drone:0 "Xeno-Analysis Drone"
+ job_xeno_analysis_drone_plural:0 "Xeno-Analysis Drones"
+ job_xeno_analysis_drone_desc:0 "Not everything can be analyzed by centralized infrastructure. New colonies in particular require specialized drones to gather local data and conduct on-site experiments to further the collective knowledge of alien worlds."
  
  job_dangerous_wildlife_hunter:0 "Dangerous Wildlife Hunter"
  job_dangerous_wildlife_hunter_plural:0 "Dangerous Wildlife Hunters"
@@ -100,21 +113,38 @@
  mod_planet_miners_physics_research_produces_add:0 "$r_physics_research$ from $job_miner_plural$"
  mod_planet_miners_society_research_produces_add:0 "$r_society_research$ from $job_miner_plural$"
  mod_planet_miners_engineering_research_produces_add:0 "$r_engineering_research$ from $job_miner_plural$"
+ mod_planet_miners_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_miner_plural$"
 
  mod_planet_technician_food_produces_add:0 "£food£ from $job_technician_plural$:"
  mod_planet_technician_minerals_produces_add:0 "$r_minerals$ from $job_technician_plural$"
- mod_planet_technician_minerals_upkeep_add:0 "$r_minerals$ for $job_technician_plural$"
+ mod_planet_technician_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $job_technician_plural$"
  mod_planet_technician_alloys_produces_add:0 "$r_alloys$ from $job_technician_plural$"
  mod_planet_technician_alloys_upkeep_add:0 "$r_energy$ Upkeep for $job_technician_plural$"
+ mod_planet_technician_consumer_goods_produces_add:0 "$r_consumer_goods$ from $job_technician_plural$"
+
+ mod_planet_researchers_food_upkeep_add:0 "$r_food$ Upkeep for $job_researcher_plural$"
+ 
 
  mod_planet_priests_unity_produces_mult:0 "$r_unity$ from $job_priest_plural$"
 
+ mod_planet_pop_assemblers_food_upkeep_mult:0 "$r_food$ Upkeep for $job_pop_assembler_plural$"
+ mod_planet_pop_assemblers_alloys_upkeep_mult:0 "$r_alloys$ Upkeep for $job_pop_assembler_plural$"
+
+ mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
+ 
+
  ### The Blocker Mod - Feature Modifiers
 
- mod_planet_pops_food_upkeep_mult:0 "Pop Food Upkeep"
+ mod_planet_pops_food_upkeep_mult:0 "£pops£Pops $r_food$ Upkeep"
+ mod_planet_pops_energy_upkeep_mult:0 "£pops£Pops $r_energy$ Upkeep"
+ mod_planet_pops_robotics_energy_upkeep_mult:0 "£pops£Robotic $r_energy$ Upkeep"
+
  mod_planet_colonist_produces_mult:0 "Resources from $icon_job_colonists$"
+ mod_pop_category_workers_food_upkeep_add:0 "$r_food$ Upkeep for Workers"
+ mod_pop_category_specialists_energy_upkeep_add:0 "$r_energy$ Upkeep for Specialists"
+
  mod_job_dangerous_wildlife_hunter_add:0 "$job_dangerous_wildlife_hunter$ Jobs"
- mod_job_dangerous_wildlife_poacher_add:0 "$job_dangeorus_wildlife_poacher$ Jobs"
+ mod_job_dangerous_wildlife_poacher_add:0 "$job_dangerous_wildlife_poacher$ Jobs"
 
  mod_edicts_unity_upkeep_mult:0 "Edict £unity£ Upkeep"
 
@@ -139,8 +169,8 @@
  d_sandstone_spires:0 "Sandstone Spires"
  d_sandstone_spires_desc:0 "Towers of fragile stone teeter on the open plains of this world, harboring nooks, crannies, and caves carved by wind and who knows what else inside."
 
- d_gas_vents:0 "REPLACE_ME"
- d_gas_vents_desc:0 "REPLACE_ME"
+ d_gas_vents:0 "Alien Gas Vents"
+ d_gas_vents_desc:0 "Deep chasms slicing through the crust occasionally erupt in plumes of never-before-seen gases. When purified and refined, several of these byproducts have proven very useful in energy generation."
 
  d_natural_gardens:0 "Natural Gardens"
  d_natural_gardens_desc:0 "Whether by design or chance, this region is covered by meticulously crafted ornate gardens. Behind flowers and rare trees are beds of vegetables and fungi for the benefit--intended or otherwise--of our colonists."
@@ -195,7 +225,7 @@
 
  d_barren:0 "Barren"
  d_barren_desc:0 "Bereft of any value, this land is too dry, rocky, and poor to farm. During rains, soil quickly vanishes and floods soon follow. Even birds avoid this place and trees can find no purchase on the slate, which is riddled with impurities that make it useless in our alloy forges. Extensive work is required here to remediate the soil and water table before life can flourish here."
- tooltip_clear_barren:0 "Remediating the soil in this £blocker£Barren will take time, but lead to the creation of a more useful§S Feature§T when our terraformation specialists are done."
+ tooltip_clear_barren:0 "Remediating the soil in this §Y£blocker£Barren§! will take time, but lead to the creation of a more useful §C Feature§! when our terraformation specialists are done."
 
  d_drylands:0 "Drylands"
  d_drylands_desc:0 "Parched and dusty, these rough lowlands stretch across whole regions and make for poor farmland. However, easy accessibility and a relatively stable climate make them ideal for solar farms and larger surface mining operations."
@@ -232,6 +262,20 @@
 
  d_rough_plains:0 "Rough Plainsland"
  d_rough_plains_desc:0 "There is nothing especially remarkable about this region, but its combination of razor-sharp rock, swift-flowing rivers, and unsavory weather leave it low on just about every ranking of potential settlements."
+
+ d_seaweed_shoals:0 "Seaweed Shoals"
+ d_seaweed_shoals_desc:0 "Vast forests of seaweed choke this coastal region, but nutritional analysis indicates the alien aquaflora is filled with nutrients."
+
+ d_magma_lake:0 "Magma Lake"
+ d_magma_lake_desc:0 "In certain regions of this world, surface temperatures are so hot that exposed magma doesn't fully cool. These treacherous places are nevertheless bountiful sources of deep-crust minerals and metals."
+
+ d_coal_bed:0 "Coal Bed"
+ d_coal_bed_desc:0 "A rich vein of coal runs deep beneath the surface of this region, long ago compressed and purified by milennia-old alien geology."
+
+ d_subterranean_gas_lake:0 "Far below the surface, captured gases bubble and sizzle under the immense pressure of thousands of millions of tons of rock."
+
+ d_oil_fields_at_first_light:0 "Oil Fields"
+ d_oil_fields_at_first_light_desc:0 "The immediate substrate in this region is laced with oil deposits, making for easily-accessible if dirty energy."
 
  ### The Blocker Mod - Artificial Features - English
 
@@ -303,6 +347,15 @@
 
  d_dormant_supervolcano:0 "Dormant Supervolcano"
  d_dormant_supervolcano_desc:0 "Stretching across much of a continent's plainsland, a thin planetary crust in this region allows easy energy extraction. If it were to erupt, however, it could easily destroy much of the planet."
+
+ d_experimental_fusion_reactor:0 "Experimental Fusion Reactor"
+ d_experimental_fusion_reactor_desc:0 "Said to be way ahead of its time, this facility has managed to maintain a stable fusion reaction for several hours at a time, massively increasing power generation potential for the inhabitants of this world."
+
+ d_space_academy:0 "Space Academy"
+ d_space_academy_desc:0 "With space travel now widespread in this society, young cadets eagerly sign up to serve on ships far and wide across the stars."
+
+ d_homeworld_cleared_land:0 "Cleared Land"
+ d_homeworld_cleared_land_desc:0 "This land has been carefully prepared for new development projects. Groundwater testing, weather analysis, and tectonic safety protocols all suggest this is a good location for a new district."
 
  ### The Block Mod - Event Features - English
 
@@ -426,6 +479,9 @@
  miners_strike:0 "Miners' Strike\E"
 
  false_prospects:0 "False Prospects"
+
+ subsurface_spaceport_opened:0 "Subsurface Spaceport Opened"
+ subsurface_spaceport_opened_desc:0 "A new sub-aquatic spaceport has greatly facilitated trade and travel on this planet."
 
  ### The Blocker Mod - Event Projects
 

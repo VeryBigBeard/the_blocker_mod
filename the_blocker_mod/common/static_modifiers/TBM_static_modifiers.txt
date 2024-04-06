@@ -3,7 +3,7 @@
 ### General
 
 wild_world = {
-	icon = gfx/interface/icons/planet_modifiers/pm_tropical_planet.dds
+	icon = gfx/interface/icons/planet_modifiers/pm_overgrowth.dds
 	icon_frame = 2
 	planet_max_districts_add = 2
 	job_colonist_add = 2
@@ -12,14 +12,13 @@ wild_world = {
 	planet_researchers_society_research_produces_mult = 0.2
 	planet_researchers_engineering_research_produces_mult = 0.2
 	planet_jobs_upkeep_mult = 0.05
-
 }
 
 pioneering_colonists = {
-	icon = gfx/interface/icons/planet_modifiers/pm_victorious_army.dds
+	icon = gfx/interface/icons/planet_modifiers/pm_archaeology.dds
 	icon_frame = 1
 	deposit_blockers_cost_mult = -0.2
-	planet_clear_blocker_speed_mult = -02
+	planet_clear_blocker_speed_mult = -0.2
 	job_colonist_add = 2
 	planet_colonist_produces_mult = 0.1
 }
@@ -93,7 +92,7 @@ false_prospects = {
 }
 
 mine_safety_standards = {
-	icon = "gfx/interface/icons/planet_modifiers/pm_resources_2.dds"
+	icon = gfx/interface/icons/planet_modifiers/pm_glitchy_matrix.dds
 	planet_miners_minerals_produces_mult = -0.1
 	planet_miners_unity_produces_add = 1
 	planet_miners_energy_upkeep_add = 1

@@ -1,4 +1,6 @@
-### NOTE: May need to set these as blockers = yes to get them to spawn properly; not sure if it has any other effect.
+### The Blocker Mod - Deposit Categories
+
+### Note: Any mod that overwrites these will produce unexpected results when used with The Blocker Mod. Deposits need to be set to blocker = yes for most mod functions to work. For best results, load TBM after any other feature mods.
 
 deposit_cat_tbm_legendary = {
 	blocker = yes # Counts as blockers
@@ -64,6 +66,6 @@ deposit_cat_rare_blocker = {
 deposit_cat_gaia = {	
 }
 
-deposit_category_final = {
+deposit_cat_final = {
 	
 }

@@ -17,39 +17,6 @@ namespace = tbm_hw
 # 15. Privately-Sponsored Colony
 
 
-### 1. Fallen Empire Init
-#	Vanilla solar_system_initializers call clear_blockers on all FE colonies, leaving them without any resource districts. This doesn't matter for the FEs but does for the player if any are conquered.
-#	This script is called on_press_begin and rerolls FE colonies. At the moment it does not touch FE homeworlds but may in the future.
-country_event = {
-	id = tbm_hw.1
-
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		is_fallen_empire = yes
-	}
-
-	immediate = {
-		
-		every_owned_planet = {
-			limit = {
-				has_planet_flag = fallen_empire_world
-				NOT = {
-					is_planet_class = pc_city	# These will eventually be dealt with but for now don't need features
-				}
-			}
-			reroll_deposits = yes
-		}
-		
-		
-
-	}
-
-}
-
-### 2. Precursor Planet Features
-
 
 ### Situation - Food Reserves Running Out - Post-Apocalyptic Origin
 ###	11. Situation Trigger
@@ -202,12 +169,12 @@ situation_event = {
 		}
 		text = tbm_hw.13_desc
 	}
-	desc = {
-		trigger = {
-			owner = { is_gestalt = yes }
-		}
-		text = tbm_hw.13_gestalt_desc
-	}
+	# desc = {
+	# 	trigger = {
+	# 		owner = { is_gestalt = yes }
+	# 	}
+	# 	text = tbm_hw.13_gestalt_desc
+	# }
 	picture = GFX_evt_surrender
 	show_sound = event_public_unrest
 

@@ -129,9 +129,7 @@ d_fjordland = {
 
 		modifier = {
 			add = 0.5
-			OR = {
-				colony_type = col_mining
-			}
+			root = { colony_type = col_mining }
 		}
 		modifier = {
 			add = -0.25
@@ -306,10 +304,12 @@ d_sandstone_spires = {
 
 		modifier = {
 			add = 0.5	# AI always adds 1 in this case, but this feature doesn't provide resource districts and isn't great for resources.
-			free_district_slots < 1
-			OR = {
-				colony_type = col_mining
-				colony_type = col_rural
+			root = {
+				free_district_slots < 1
+				OR = {
+					colony_type = col_mining
+					colony_type = col_rural
+				}
 			}
 		}
 	}
@@ -504,9 +504,11 @@ d_glacier_lake = {
 
 		modifier = {
 			add = -0.5
-			OR = {
-				colony_type = col_farming
-				free_amenities < 5
+			root = {
+				OR = {
+					colony_type = col_farming
+					free_amenities < 5
+				}
 			}
 		}
 	}
@@ -601,10 +603,12 @@ d_giant_tree  = {
 
 		modifier = {
 			add = -0.75	# Amenities on resource worlds are good!
-			OR = {
-				colony_type = col_mining
-				colony_type = col_farming
-				colony_type = col_rural
+			root = {
+				OR = {
+					colony_type = col_mining
+					colony_type = col_farming
+					colony_type = col_rural
+				}
 			}
 		}
 
@@ -785,12 +789,12 @@ d_great_lake = {
 
 		modifier = {
 			add = -1
-			colony_type = col_farming
+			root = { colony_type = col_farming }
 		}
 
 		modifier = {
 			add = 0.5	# King of counter-intuitive, but AI will have lots of housing and amenities on urban worlds already.
-			colony_type = col_city
+			root = { colony_type = col_city }
 		}
 
 		modifier = {
@@ -871,14 +875,16 @@ d_floodplains = {
 
 		modifier = {
 			add = -1.1	# Basically clear these unless it's a big farm world.
-			colony_type = col_farming
+			root = { colony_type = col_farming }
 		}
 
 		modifier = {
 			add = 0.1	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
-			num_free_districts = {
-				type = district_farming
-				value > 0
+			root = {
+				num_free_districts = {
+					type = district_farming
+					value > 0
+				}
 			}
 		}
 
@@ -941,22 +947,26 @@ d_tidal_marshes = {
 
 		modifier = {
 			add = -1.1	# Basically clear these unless it's a big farm or wind world.
-			OR = {
-				colony_type = col_farming
-				colony_type = col_generator
+			root = {
+				OR = {
+					colony_type = col_farming
+					colony_type = col_generator
+				}
 			}
 		}
 
 		modifier = {
 			add = 0.1	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
-			OR = {
-				num_free_districts = {
-					type = district_farming
-					value > 0
-				}
-				num_free_districts = {
-					type = district_generator
-					value > 0
+			root = {
+				OR = {
+					num_free_districts = {
+						type = district_farming
+						value > 0
+					}
+					num_free_districts = {
+						type = district_generator
+						value > 0
+					}
 				}
 			}
 		}
@@ -1093,20 +1103,22 @@ d_basaltic_outcrops = {
 
 		modifier = {
 			add = -0.75		# Metallurgist upkeep reduction
-			colony_type = col_foundry
+			root = { colony_type = col_foundry }
 		}
 
 		modifier = {
 			add = -0.5
-			colony_type = col_mining
+			root = { colony_type = col_mining }
 		}
 
 		modifier = {
 			add = -0.5	# Especially keep these on foundry worlds that have miners as well
-			colony_type = col_foundry
-			num_assigned_jobs = {
-				job = miner
-				value > 2
+			root = {
+				colony_type = col_foundry
+				num_assigned_jobs = {
+					job = miner
+					value > 2
+				}
 			}
 		}
 
@@ -1214,7 +1226,9 @@ d_volcanic_island = {
 		modifier = {
 			add = -5
 			owner = { has_trait = trait_aquatic }
-			NOT = { is_planet_class = pc_ocean }
+			root = {
+				NOT = { is_planet_class = pc_ocean }
+			}
 		}
 	}
 }
@@ -1275,7 +1289,7 @@ d_volcanic_soil = {
 
 		modifier = {
 			add = -1
-			colony_type = col_farming
+			root = { colony_type = col_farming }
 		}
 
 		modifier = {
@@ -1302,7 +1316,7 @@ d_volcanic_soil = {
 }
 
 d_volcanic_ash = {
-	icon = "gfx/interface/icons/deposits/unused/d_molten_planet"
+	icon = gfx/interface/icons/deposits/unused/d_molten_planet
 	category = deposit_cat_blockers
 
 	is_for_colonizable = yes
@@ -1357,11 +1371,13 @@ d_volcanic_ash = {
 
 		modifier = {
 			add = 100	# Always clear when we don't have colonists
-			num_assigned_jobs = {
-				job = colonist
-				value < 1
+			root = {
+				num_assigned_jobs = {
+					job = colonist
+					value < 1
+				}
+				NOT = { colony_type = col_default }	# To help avoid situations where colonists get promoted but the colony is still very new
 			}
-			NOT = { colony_type = col_default }	# To help avoid situations where colonists get promoted but the colony is still very new
 		}
 	}
 }
@@ -1465,12 +1481,12 @@ d_fish_shoals = {
 		modifier = {
 			add = -1
 			owner = { has_trait = trait_aquatic	}
-			is_homeworld = yes
+			root = { is_homeworld = yes }
 		}
 
 		modifier = {
 			add = -0.5
-			colony_type = col_research
+			root = { colony_type = col_research }
 		}
 	}
 }
@@ -1545,7 +1561,7 @@ d_tbm_impact_crater = {
 
 		modifier = {
 			add = -0.75
-			colony_type = col_mining
+			root = { colony_type = col_mining }
 		}
 
 		modifier = {
@@ -1643,15 +1659,17 @@ d_frozen_wasteland = {
 
 		modifier = {
 			add = -0.25 	# Slight boost, but this is still a space killer, so we want to clear it soon even on generator worlds.
-			colony_type = col_generator
+			root = { colony_type = col_generator }
 		}
 
 		modifier = {
 			add = -2 	# However, keep it if we're on a generator world and we're trying to build more generators
-			colony_type = col_generator
-			num_free_districts = {
-				type = district_generator
-				value < 1
+			root = { 
+				colony_type = col_generator
+				num_free_districts = {
+					type = district_generator
+					value < 1
+				}
 			}
 		}
 	}
@@ -1778,17 +1796,21 @@ d_mountain_jungle = {
 
 		modifier = {
 			add = -0.75	# Keep it around for research.
-			any_owned_pop = {
-				has_job = colonist
+			root = {
+				any_owned_pop = {
+					has_job = colonist
+				}
+				NOT = { colony_type = col_default }
 			}
-			NOT = { colony_type = col_default }
 		}
 
 		modifier = {
 			add = -0.75
-			OR = {
-				colony_type = col_research
-				colony_type = col_bureau_spiritualist
+			root = {
+				OR = {
+					colony_type = col_research
+					colony_type = col_bureau_spiritualist
+				}
 			}
 		}
 
@@ -1901,19 +1923,21 @@ d_taiga = {
 
 		modifier = {
 			add = -1	# Will stick around on farm worlds until space is needed.
-			colony_type = col_farming
+			root = { colony_type = col_farming }
 		}
 
 		modifier = {
 			add = -1
-			any_owned_pop = {
-				has_job = colonist
+			root = {
+				any_owned_pop = {
+					has_job = colonist
+				}
 			}
 		}
 
 		modifier = {
 			add = -1
-			colony_type = col_default
+			root = { colony_type = col_default }
 		}
 
 		modifier = {
@@ -2028,19 +2052,21 @@ d_scrubland = {
 
 		modifier = {
 			add = -1	# Will stick around on farm worlds until space is needed.
-			colony_type = col_farming
+			root = { colony_type = col_farming }
 		}
 
 		modifier = {
 			add = -1
-			any_owned_pop = {
-				has_job = colonist
+			root = {
+				any_owned_pop = {
+					has_job = colonist
+				}
 			}
 		}
 
 		modifier = {
 			add = -1
-			colony_type = col_default
+			root = { colony_type = col_default }
 		}
 	}
 }
@@ -2236,14 +2262,16 @@ d_fertile_delta = {
 
 		modifier = {
 			add = 1		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
-			NOR = {
-				colony_type = col_rural
-				colony_type = col_farming
-				colony_type = col_mining
-				colony_type = col_generator
-				num_assigned_jobs = {
-					job = farmer
-					value > 2
+			root = {
+				NOR = {
+					colony_type = col_rural
+					colony_type = col_farming
+					colony_type = col_mining
+					colony_type = col_generator
+					num_assigned_jobs = {
+						job = farmer
+						value > 2
+					}
 				}
 			}
 		}
@@ -2296,10 +2324,12 @@ d_drylands = {
 
 		modifier = {
 			add = 1
-			NOR = {
-				colony_type = col_rural
-				colony_type = col_generator
-				colony_type = col_farming
+			root = {
+				NOR = {
+					colony_type = col_rural
+					colony_type = col_generator
+					colony_type = col_farming
+				}
 			}
 		}
 
@@ -2389,9 +2419,11 @@ d_crags = {
 
 		modifier = {
 			add = 1
-			NOR = {
-				colony_type = col_mining
-				free_amenities < 5
+			root = {
+				NOR = {
+					colony_type = col_mining
+					free_amenities < 5
+				}
 			}
 		}
 
@@ -2487,16 +2519,18 @@ d_dunelands = {
 
 		modifier = {
 			add = -1	# Keep until space needed on generator, otherwise not worth the upkeep.
-			colony_type = col_generator
+			root = { colony_type = col_generator }
 		}
 
 		modifier = {
 			add = -1
-			OR = {
-				any_owned_pop = {
-					has_job = colonist
+			root = {
+				OR = {
+					any_owned_pop = {
+						has_job = colonist
+					}
+					colony_type = col_default
 				}
-				colony_type = col_default
 			}
 		}
 	}
@@ -2576,14 +2610,16 @@ d_highland_lake = {
 
 		modifier = {
 			add = 1		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
-			OR = {
-				colony_type = col_industrial
-				colony_type = col_foundry
-				colony_type = col_factory
-				colony_type = col_city
-				num_assigned_jobs = {
-					job = farmer
-					value < 3
+			root = {
+				OR = {
+					colony_type = col_industrial
+					colony_type = col_foundry
+					colony_type = col_factory
+					colony_type = col_city
+					num_assigned_jobs = {
+						job = farmer
+						value < 3
+					}
 				}
 			}
 		}
@@ -2673,14 +2709,16 @@ d_lakelands = {
 
 		modifier = {
 			add = 1		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
-			OR = {
-				colony_type = col_industrial
-				colony_type = col_foundry
-				colony_type = col_factory
-				colony_type = col_city
-				num_assigned_jobs = {
-					job = farmer
-					value < 3
+			root = {
+				OR = {
+					colony_type = col_industrial
+					colony_type = col_foundry
+					colony_type = col_factory
+					colony_type = col_city
+					num_assigned_jobs = {
+						job = farmer
+						value < 3
+					}
 				}
 			}
 		}
@@ -2760,9 +2798,11 @@ d_lowland_hills = {
 
 		modifier = {
 			add = -0.5
-			OR = {
-				colony_type = col_farming
-				colony_type = col_mining
+			root = {
+				OR = {
+					colony_type = col_farming
+					colony_type = col_mining
+				}
 			}
 		}
 	}
@@ -2841,12 +2881,12 @@ d_misty_plains = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_farming
+			root = { colony_type = col_farming }
 		}
 
 		modifier = {
 			add = -100
-			is_planet_class = pc_nuked	# Mostly for flavor, but can also be more useful for the food on tombs
+			root = { is_planet_class = pc_nuked }	# Mostly for flavor, but can also be more useful for the food on tombs
 		}
 	}
 }
@@ -2861,9 +2901,9 @@ d_salt_flats = {
 
 	prerequisites = {
 			"tech_mountain_range"
-		}
+	}
 
-		time = 1080
+	time = 1080
 
 	resources = {
 		category = deposit_blockers_natural
@@ -2922,7 +2962,7 @@ d_salt_flats = {
 
 		modifier = {
 			add = -1.5
-			colony_type = col_mining
+			root = { colony_type = col_mining }
 		}
 
 		modifier = {
@@ -3008,7 +3048,7 @@ d_arid_plains = {
 
 		modifier = {
 			add = -1
-			colony_type = col_generator
+			root = { colony_type = col_generator }
 		}
 	}
 }
@@ -3175,7 +3215,7 @@ d_sandstone_cliffs = {
 
 		modifier = {
 			add = -0.75
-			colony_type = col_mining
+			root = { colony_type = col_mining }
 		}
 
 		modifier = {
@@ -3257,17 +3297,17 @@ d_highlands = {
 
 		modifier = {
 			add = -2.25
-			colony_type = col_mining
+			root = { colony_type = col_mining }
 		}
 
 		modifier = {
 			add = 0.25
-			free_district_slots < 2
+			root = { free_district_slots < 2 }
 		}
 
 		modifier = {
 			add = -0.5
-			free_amenities < 5
+			root = { free_amenities < 5 }
 		}
 	}
 }
@@ -3321,16 +3361,18 @@ d_rough_plains = {
 
 		modifier = {
 			add = 1	# Clear unless you really need the farming space AND have the amenities covered
-			colony_type = col_farming
-			num_districts = {
-				type = district_farming
-				value < 3
+			root = {
+				colony_type = col_farming
+				num_districts = {
+					type = district_farming
+					value < 3
+				}
+				num_free_districts = {
+					type = district_farming
+					value < 1
+				}
+				free_amenities > 10
 			}
-			num_free_districts = {
-				type = district_farming
-				value < 1
-			}
-			free_amenities > 10
 		}
 	}
 }
@@ -3416,12 +3458,12 @@ d_seaweed_shoals = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_farming
+			root = { colony_type = col_farming }
 		}
 
 		modifier = {
 			add = -0.5	# Keep for sure if aquatic farm world.
-			colony_type = col_farming
+			root = { colony_type = col_farming }
 			owner = { has_trait = trait_aquatic }
 		}
 	}
@@ -3485,7 +3527,7 @@ d_gas_vents = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_generator
+			root = { colony_type = col_generator }
 		}
 	}
 }
@@ -3561,7 +3603,7 @@ d_tbm_slums = {
 		modifier = {
 			add = -0.5
 			owner = { is_authoritarian = yes }
-			num_pops > 40
+			root = { num_pops > 40 }
 		}
 	}
 }
@@ -3648,8 +3690,10 @@ d_tbm_industrial_wasteland = {
 
 		modifier = {
 			add = -1	# Keep until a district is needed so long as there's a researcher.
-			any_owned_pop = {
-				has_job = researcher	
+			root = { 
+				any_owned_pop = {
+					has_job = researcher	
+				}
 			}
 		}
 	}
@@ -3740,14 +3784,14 @@ d_collapsed_cliffs = {
 
 		modifier = {
 			add = -1.5
-			colony_type = col_mining
+			root = { colony_type = col_mining }
 		}
 	}
 }
 
 d_great_river_obstructed = {
 	icon = d_great_river
-	category = deposit_category_final
+	category = deposit_cat_final
 
 	use_for_min_max_adjustments = yes
 
@@ -3814,7 +3858,6 @@ d_urban_power_plant = {
 		category = deposit_blockers
 		cost = {
 			energy = 1000
-			engineering_research = 100
 		}
 	}
 
@@ -3834,10 +3877,12 @@ d_urban_power_plant = {
 
 		modifier = {
 			add = 5	# Keep, but only on generator worlds where we're actually getting some benefit.
-			colony_type = col_generator
-			num_assigned_jobs = {
-				job = technician
-				value > 4
+			root = {
+				colony_type = col_generator
+				num_assigned_jobs = {
+					job = technician
+					value > 4
+				}
 			}
 		}
 
@@ -3915,7 +3960,7 @@ d_hydro_plant = {
 
 d_dyke = {
 	icon = d_natural_farmland
-	category = deposit_category_final
+	category = deposit_cat_final
 
 	use_for_min_max_adjustments = yes
 
@@ -3932,6 +3977,7 @@ d_dyke = {
 
 	planet_modifier = {
 		pop_housing_usage_mult = 0.02
+		planet_farmers_food_produces_mult = 0.05
 	}
 
 	potential = {
@@ -4053,10 +4099,12 @@ d_dustbowl = {
 
 		modifier = {
 			add = -2
-			colony_type = col_mining
-			num_free_districts = {
-				type = district_mining
-				value < 1
+			root = {
+				colony_type = col_mining
+				num_free_districts = {
+					type = district_mining
+					value < 1
+				}
 			}
 		}
 	}
@@ -4214,7 +4262,7 @@ d_coal_bed = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_generator
+			root = { colony_type = col_generator }
 		}
 
 		modifier = {
@@ -4292,7 +4340,7 @@ d_subterranean_gas_lake = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_generator
+			root = { colony_type = col_generator }
 		}
 
 		modifier = {
@@ -4364,7 +4412,7 @@ d_oil_fields_at_first_light = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_generator
+			root = { colony_type = col_generator }
 		}
 
 		modifier = {
@@ -4393,7 +4441,7 @@ d_fusion_reactor = {
 
 	should_swap_deposit_on_terraforming = no
 
-	time = value:reactor_decommissioning
+	time = 1200
 
 	resources = {
 		category = deposit_blockers
@@ -4426,7 +4474,7 @@ d_cold_fusion_pits = {
 
 	should_swap_deposit_on_terraforming = no
 
-	time = value:reactor_decommissioning
+	time = 1500
 
 	resources = {
 		category = deposit_blockers
@@ -4459,7 +4507,7 @@ d_antimatter_core = {
 
 	should_swap_deposit_on_terraforming = no
 
-	time = value:reactor_decommissioning
+	time = 1800
 
 	resources = {
 		category = deposit_blockers
@@ -4491,7 +4539,7 @@ d_zero_point_modules = {
 
 	should_swap_deposit_on_terraforming = no
 
-	time = value:reactor_decommissioning
+	time = 900
 
 	resources = {
 		category = deposit_blockers

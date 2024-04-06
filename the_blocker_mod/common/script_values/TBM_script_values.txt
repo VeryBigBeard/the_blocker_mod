@@ -25,71 +25,43 @@ random_feature_value = {
 feature_research_gestalt_phys = {
 	base = 0
 	complex_trigger_modifier = {
-		trigger = count_owned_planet
-		trigger_scope = owner
+		trigger = count_deposit
+		trigger_scope = planet
 		parameters = {
 			limit = {
-				has_deposit_flag = gestalt_physics_featgure
+				gestalt_physics_feature = yes
 			}
 		}
 		mode = add
-		mult = 1
 	}
 }
 
 feature_research_gestalt_soc = {
 	base = 0
 	complex_trigger_modifier = {
-		trigger = count_owned_planet
-		trigger_scope = owner
+		trigger = count_deposit
+		trigger_scope = planet
 		parameters = {
 			limit = {
-				has_deposit_flag = gestalt_society_feature
+				gestalt_society_feature = yes
 			}
 		}
 		mode = add
-		mult = 1
 	}
 }
 
 feature_research_gestalt_eng = {
 	base = 0
 	complex_trigger_modifier = {
-		trigger = count_owned_planet
-		trigger_scope = owner
+		trigger = count_deposit
+		trigger_scope = planet
 		parameters = {
 			limit = {
-				has_deposit_flag = gestalt_engineering_feature
+				gestalt_engineering_feature = yes
 			}
 		}
 		mode = add
-		mult = 1
 	}
-}
-
-# prototype for variable clearance time
-## This might be better as a system-wide thing influenced by techs?
-reactor_decommissioning = {
-	base = 1800
-	modifier = {
-		owner = {
-			has_technology = tech_cold_fusion_power
-		}
-		subtract = 300
-	}
-	modifier = {
-		owner = {
-			has_technology = tech_antimatter_power
-		}
-		subtract = 300
-	}
-	modifier = {
-		owner = {
-			has_technology = tech_zero_point_power
-		}
-		subtract = 600
-	}
-
 }
 
 megalith_unity_output = {

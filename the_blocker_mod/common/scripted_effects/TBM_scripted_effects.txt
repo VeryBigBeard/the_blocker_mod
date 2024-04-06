@@ -1,12 +1,15 @@
 # ### THe Blocker Mod - Scripted Effects
 
-is_ecu = {
-	OR = {
-		is_planet_class = pc_city
-		is_planet_class = pc_machine
-		is_planet_class = pc_hive
-		
-		# PD Compat
+# Failsafe effect to avoid clearance effects being set; calls remove_deposit (which ignores on_cleared) until all the deposits are gone
+# Call it in planet scope, and be mindful of the performance hit
+clear_deposits_without_effects = {
+	while = {
+		limit = {
+			num_deposits > 0
+		}
+		random_deposit = {
+			remove_deposit = yes
+		}
 	}
 }
 
@@ -55,12 +58,12 @@ remove_city_if_poss_and_other_if_not_regular = {
 				type = district_city
 				value < 0
 			}
-			remove_district = district_city
 		}
+		remove_district = district_city
 	}
 	else_if = {
 		limit = {
-			is_ecu = yes
+			is_artificial = yes
 		}
 		remove_last_built_building = yes
 		if = {
@@ -70,8 +73,8 @@ remove_city_if_poss_and_other_if_not_regular = {
 					value = 0
 				}
 			}
-			add_planet_devastation = 25
 		}
+		add_planet_devastation = 25
 	}
 	else_if = {
 		limit = {

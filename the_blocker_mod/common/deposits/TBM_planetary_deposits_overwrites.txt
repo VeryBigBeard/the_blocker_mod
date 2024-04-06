@@ -1,31 +1,14 @@
 ### The Blocker Mod - Vanilla Overwrites
 #
 #	Overwrites most keys in 01_blocker_deposits.tx and all keys in 01_planetary_deposits.txt
-#	Re-installing those vanilla files will break this mod.
 #
-#	All terraforming weights are set to should_swap_deposit_on_terraforming - no
+#	All terraforming weights are set to should_swap_deposit_on_terraforming = no
 #	Otherwise, you will get some very odd planets and district spreads post-terraform.
 #	Terraforming in this mod is handled mostly by events.
 #
 #	AI Weights are set on each feature to allow for greater flexibility.
 #	Vanilla inline_script references have been removed so as not to interfere with this.
-
-#	VOID AFTER 0.5
-#	Note: For initial release, vanilla features use is_homeworld to re-add lost districts to homeworlds. Otherwise, they start at size 25 with 0 free districts.
-#	This will remain the case until a better solution is found (probably involved game_start events) and a compatibility headache.
-#	Format below is: 
-	# triggered_planet_modifier = {
-	# 	potential = {
-	# 		is_homeworld = yes
-	#		has_planet_flag = lost_colony_homeworld (avoids same on lost colonies)
-	# 	}
-	# 	modifier = {
-	# 		planet_max_district_add = however_many_it_took_away
-	# 	}
-	# }
-#	This only applies to features space effects. You'll still get some nice bonuses, and you can still clear them.
-#	Vanilla "blockers" will not spawn on homeworlds, in keeping with vanilla. Who needs mountains?
-#	Blockers added at game_start by events will still appear.
+###
 
 
 ### VARIABLES
@@ -51,7 +34,7 @@
 
 @base = 1	# Base ai_weight. AI will clear any feature at weight = 1 *if it needs district space*
 @clear = 2	# AI will clear this feature immediately.
-@keep = 0	# AI will clear this feature only after all other features of higher weight)
+@keep = 0	# AI will clear this feature only after all other features of higher weight
 @always_clear = 100	# AI will always clear this feature; used mainly for negative features (e.g., rubble)
 @always_keep = -100 # AI will always keep this feature; used mainly for bonus features and some flavor features
 
@@ -198,8 +181,10 @@ d_mountain_range = {
 
 		modifier = {
 			add = 0.5
-			OR = {
-				colony_type = col_mining
+			root = {
+				OR = {
+					colony_type = col_mining
+				}
 			}
 		}
 		modifier = {
@@ -344,7 +329,7 @@ d_active_volcano = {
 
 		modifier = {
 			add = -0.5
-			OR = {
+			root = {
 				colony_type = col_generator
 			}
 		}
@@ -536,7 +521,7 @@ d_dangerous_wildlife_blocker = {
 		weight = @clear
 
 		inline_script = tbm_personality_weights
-	inline_script = tbm_designation_weights
+		inline_script = tbm_designation_weights
 
 		modifier = {
 			add = -0.5
@@ -686,24 +671,28 @@ d_dense_jungle = {
 		
 		modifier = {
 			add = -0.6
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 
 		modifier = {
 			add = -0.25
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
 			add = -0.33
-			owner_species = {
+			owner_main_species = {
 				has_trait = trait_plantoid_budding
 			}
 		}
 
 		modifier = {
 			add = 0.33
-			owner_species = {
+			owner_main_species = {
 				has_trait = trait_plantoid_phototrophic
 			}
 		}
@@ -824,8 +813,10 @@ d_toxic_kelp = {
 
 		modifier = {
 			add = -0.5
-			any_owned_pop = {
-				has_job = colonist
+			root = {
+				any_owned_pop = {
+					has_job = colonist
+				}
 			}
 		}
 	}
@@ -932,9 +923,11 @@ d_deep_sinkhole = {
 
 		modifier = {
 			add = -0.4
-			OR = {
-				colony_type = col_mining
-				colony_type = col_rural
+			root = {
+				OR = {
+					colony_type = col_mining
+					colony_type = col_rural
+				}
 			}
 		}
 	}
@@ -1053,9 +1046,11 @@ d_quicksand_basin = {
 
 		modifier = {
 			add = -0.4
-			OR = {
-				colony_type = col_mining
-				colony_type = col_rural
+			root = {
+				OR = {
+					colony_type = col_mining
+					colony_type = col_rural
+				}
 			}
 		}
 	}
@@ -1157,14 +1152,18 @@ d_noxious_swamp = {
 
 		modifier = {
 			add = -0.15
-			any_owned_pop = {
-				has_job = colonist
+			root = {
+				any_owned_pop = {
+					has_job = colonist
+				}
 			}
 		}
 
 		modifier = {
 			add = -0.4
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 	}
 }
@@ -1281,7 +1280,9 @@ d_massive_glacier = {
 		
 		modifier = {
 			add = -0.5	# These are pretty good mining features but they're also space-killers, so AI should still clear
-			colony_type = col_mining
+			root = {
+				colony_type = col_mining
+			}
 		}
 		
 		modifier = {
@@ -1390,14 +1391,18 @@ d_radioactive_wasteland = {
 
 		modifier = {
 			add = -0.75		# These get very little other reason to be kept around so should still go.
-			any_owned_pop = {
-				has_job = colonist
+			root = {
+				any_owned_pop = {
+					has_job = colonist
+				}
 			}
 		}
 
 		modifier = {
 			add = -0.5
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 
 		modifier = {
@@ -1475,7 +1480,9 @@ d_city_ruins = {
 
 		modifier = {
 			add = -0.75
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 	}
 }
@@ -1544,9 +1551,11 @@ d_bomb_crater = {
 
 		modifier = {
 			add = -0.5
-			OR = {
-				colony_type = col_research
-				colony_type = col_mining
+			root = {
+				OR = {
+					colony_type = col_research
+					colony_type = col_mining
+				}
 			}
 		}
 
@@ -1679,7 +1688,9 @@ d_arid_highlands = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_mining
+			root = {
+				colony_type = col_mining
+			}
 		}
 
 		modifier = {
@@ -1793,17 +1804,21 @@ d_hot_springs = {
 
 		modifier = {
 			add = -2	# Do not clear baths on unity worlds
-			OR = {
-				colony_type = col_bureau
-				colony_type = col_bureau_hive
-				colony_type = col_bureau_hive
-				colony_type = col_bureau_machine
+			root = {
+				OR = {
+					colony_type = col_bureau
+					colony_type = col_bureau_hive
+					colony_type = col_bureau_hive
+					colony_type = col_bureau_machine
+				}
 			}
 		}
 
 		modifier = {
 			add = -2
-			free_amenities < 10
+			root = {
+				free_amenities < 10
+			}
 		}
 	}
 }
@@ -1815,6 +1830,10 @@ d_rushing_waterfalls = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_hydro_plant
+	}
 
 	time = 480
 
@@ -1829,7 +1848,7 @@ d_rushing_waterfalls = {
 	}
 
 	on_cleared = {	
-		add_deposit = d_hydro_plant
+		#add_deposit = d_hydro_plant
 		hidden_effect = {
 			add_deposit = d_floodplains
 			random_list = {
@@ -1926,17 +1945,21 @@ d_rushing_waterfalls = {
 		
 		modifier = {
 			add = -2	# Do not clear waterfalls on unity worlds
-			OR = {
-				colony_type = col_bureau
-				colony_type = col_bureau_hive
-				colony_type = col_bureau_hive
-				colony_type = col_bureau_machine
+			root = {
+				OR = {
+					colony_type = col_bureau
+					colony_type = col_bureau_hive
+					colony_type = col_bureau_hive
+					colony_type = col_bureau_machine
+				}
 			}
 		}
 
 		modifier = {
 			add = -0.75
-			free_amenities < 5
+			root = {
+				free_amenities < 5
+			}
 		}
 	}
 }
@@ -2077,15 +2100,19 @@ d_searing_desert = {
 
 		modifier = {
 			add = -0.25 	# Slight boost, but this is still a space killer, so we want to clear it soon even on generator worlds.
-			colony_type = col_generator
+			root = {
+				colony_type = col_generator
+			}
 		}
 
 		modifier = {
 			add = -2 	# However, keep it if we're on a generator world and we're trying to build more generators
-			colony_type = col_generator
-			num_free_districts = {
-				type = district_generator
-				value < 1
+			root = {
+				colony_type = col_generator
+				num_free_districts = {
+					type = district_generator
+					value < 1
+				}
 			}
 		}
 	}
@@ -2190,7 +2217,9 @@ d_frozen_gas_lake = {
 		
 		modifier = {
 			add = -0.5
-			colony_type = col_generator
+			root = {
+				colony_type = col_generator
+			}
 		}
 
 		modifier = {
@@ -2306,9 +2335,11 @@ d_geothermal_vent = {
 
 		modifier = {
 			add = -0.5
-			OR = {
-				colony_type = col_generator
-				colony_type = col_research
+			root = {
+				OR = {
+					colony_type = col_generator
+					colony_type = col_research
+				}
 			}
 		}
 	}
@@ -2436,15 +2467,19 @@ d_underwater_vent = {
 
 		modifier = {
 			add = 1
-			NOT = { is_homeworld = yes }
+			root = {
+				NOT = { is_homeworld = yes }
+			}
 			owner = { has_trait = trait_aquatic }
 		}
 
 		modifier = {
 			add = -0.5	# Should result in Aquatics treating these as basically normal blockers but only on generator worlds. Otherwise, they want the space.
-			OR = {
-				colony_type = col_generator
-				colony_type = col_research
+			root = {
+				OR = {
+					colony_type = col_generator
+					colony_type = col_research
+				}
 			}
 		}
 	}
@@ -2535,10 +2570,12 @@ d_tempestous_mountain = {
 
 		modifier = {
 			add = -0.5
-			OR = {
-				colony_type = col_farming
-				colony_type = col_mining
-				colony_type = col_generator
+			root = {
+				OR = {
+					colony_type = col_farming
+					colony_type = col_mining
+					colony_type = col_generator
+				}
 			}
 		}
 
@@ -2655,7 +2692,9 @@ d_veiny_cliffs = {
 
 		modifier = {
 			add = -0.75	# These are upper-end mining features as they don't hit amenities
-			colony_type = col_mining
+			root = {
+				colony_type = col_mining
+			}
 		}
 
 		modifier = {
@@ -2770,7 +2809,9 @@ d_mineral_fields = {
 
 		modifier = {
 			add = -0.75	# These are upper-end mining features as they don't hit amenities
-			colony_type = col_mining
+			root = {
+				colony_type = col_mining
+			}
 		}
 
 		modifier = {
@@ -3118,9 +3159,11 @@ d_rich_mountain = {
 
 		modifier = {
 			add = -0.75
-			OR = {
-				colony_type = col_mining
-				colony_type = col_farming
+			root = {
+				OR = {
+					colony_type = col_mining
+					colony_type = col_farming
+				}
 			}
 		}
 
@@ -3267,7 +3310,9 @@ d_submerged_ore_veins = {
 
 		modifier = {
 			add = -0.75
-			colony_type = col_mining
+			root = {
+				colony_type = col_mining
+			}
 		}
 	}
 }
@@ -3380,8 +3425,10 @@ d_lichen_fields = {
 
 		modifier = {
 			add = -0.25
-			colony_type = col_farming
-			is_cold = yes	# Needs to be both, otherwise this feature really isn't worth it
+			root = {
+				colony_type = col_farming
+				is_cold = yes	# Needs to be both, otherwise this feature really isn't worth it
+			}
 		}
 
 		modifier = {
@@ -3393,11 +3440,13 @@ d_lichen_fields = {
 
 		modifier = {
 			add = 0.75
-			OR = {
-				colony_type = col_bureau
-				colony_type = col_bureau_hive
-				colony_type = col_bureau_hive
-				colony_type = col_bureau_machine
+			root = {
+				OR = {
+					colony_type = col_bureau
+					colony_type = col_bureau_hive
+					colony_type = col_bureau_hive
+					colony_type = col_bureau_machine
+				}
 			}
 		}
 
@@ -3493,7 +3542,9 @@ d_bountiful_plains = {
 
 		modifier = {
 			add = -1
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
@@ -3651,7 +3702,9 @@ d_rugged_woods = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
@@ -3893,7 +3946,9 @@ d_forgiving_tundra = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 		
 		modifier = {
@@ -4013,12 +4068,16 @@ d_boggy_fens = {
 
 		modifier = {
 			add = -1
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 
 		modifier = {
 			add = 0.5
-			free_amenities < -10	# Only if we're in crisis here. AIs don't need any more help having planetary revolts.
+			root = {
+				free_amenities < -10	# Only if we're in crisis here. AIs don't need any more help having planetary revolts.
+			}
 		}
 	}
 }
@@ -4114,7 +4173,9 @@ d_nutritious_mudland = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
@@ -4320,12 +4381,16 @@ d_lush_jungle = {
 		
 		modifier = {
 			add = -0.6
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 
 		modifier = {
 			add = -0.25
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
@@ -4430,7 +4495,9 @@ d_fertile_lands = {
 
 		modifier = {
 			add = -1
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
@@ -4615,7 +4682,9 @@ d_black_soil = {
 
 		modifier = {
 			add = -1
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
@@ -4782,12 +4851,16 @@ d_teeming_reef = {
 		modifier = {
 			add = -1
 			owner = { has_trait = trait_aquatic	}
-			is_homeworld = yes
+			root = {
+				is_homeworld = yes
+			}
 		}
 
 		modifier = {
 			add = -0.5
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 	}
 }
@@ -4887,7 +4960,9 @@ d_marvelous_oasis = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 	}
 }
@@ -5002,7 +5077,9 @@ d_tropical_island = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
@@ -5115,24 +5192,28 @@ d_fungal_forest = {
 		
 		modifier = {
 			add = -0.6
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 
 		modifier = {
 			add = -0.25
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
 			add = -0.33
-			owner_species = {
+			owner_main_species = {
 				has_trait = trait_plantoid_budding
 			}
 		}
 
 		modifier = {
 			add = 0.33
-			owner_species = {
+			owner_main_species = {
 				has_trait = trait_plantoid_phototrophic
 			}
 		}
@@ -5295,12 +5376,16 @@ d_buzzing_plains = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_generator
+			root = {
+				colony_type = col_generator
+			}
 		}
 
 		modifier = {
 			add = -0.5
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 
 		modifier = {
@@ -5383,12 +5468,16 @@ d_mineral_striations = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_mining
+			root = {
+				colony_type = col_mining
+			}
 		}
 
 		modifier = {
 			add = -0.5
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 
 		modifier = {
@@ -5439,12 +5528,16 @@ d_natural_farmland = {
 
 		modifier = {
 			add = -0.5
-			colony_type = col_farming
+			root = {
+				colony_type = col_farming
+			}
 		}
 
 		modifier = {
 			add = -0.5
-			colony_type = col_research
+			root = {
+				colony_type = col_research
+			}
 		}
 
 		modifier = {
