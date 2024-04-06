@@ -6,13 +6,16 @@
 
 ### Init Events
 on_game_start = {
-	
+	events = {
+		tbm_handler.1	# Scripted Planets Handler; Fallen Empire Fix; Imperial Fiefdom
+		tbm_handler.2	# Advanced Start Feature Fixer
+	}
 }
 
 on_press_begin = {
 	events = {
-		tbm_handler.1	# Scripted Planets Handler
-		tbm_handler.2	# Advanced Start Feature Fixer
+		#tbm_handler.1	# Scripted Planets Handler
+		#tbm_handler.2	# Advanced Start Feature Fixer
 		tbm_handler.102 # Add Wild World to planets that need it
 	}
 }

@@ -35,41 +35,212 @@ event = {
 			
 			# IF Overlord
 			event_target:origin_imperial_homeland_country = {
+				
+				# Empire Capital
 				event_target:origin_imperial_homeland = {
 					clear_deposits = yes
 					clear_blocker = yes
 
 					generate_start_deposits_and_blockers = yes
 					fix_advanced_start_empire_features = yes
+					while = {
+						count = 6
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
+					
 					# IF Overlord features
 				}
+				
+				# Overlord Colonies
+				set_variable = {
+					which = x
+					value = trigger:num_owned_planets
+				}
 
-				every_owned_planet = {
+				ordered_owned_planet = {
+					position = 1
+					order_by = x
 					limit = {
 						NOT = { is_same_value = event_target:origin_imperial_homeland }
 					}
-					clear_deposits = yes
-					clear_blockers = yes
+					clear_deposits_without_effects = yes
+					while = {
+						count = 3
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
 					reroll_deposits = yes
-					# IF Overlord colonies
+				}
+				ordered_owned_planet = {
+					position = 2
+					order_by = x
+					limit = {
+						NOT = { is_same_value = event_target:origin_imperial_homeland }
+					}
+					clear_deposits_without_effects = yes
+					while = {
+						count = 2
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
+					reroll_deposits = yes
+				}
+
+
+
+
+				# while = {
+				# 	count < trigger:num_owned_planets	# Less than because we want to excluse the capital
+				# 	ordered_owned_planet = {
+				# 		position = 1
+				# 		order_by = x
+				# 		limit = {
+				# 			NOT = { is_same_value = event_target:origin_imperial_homeland }
+				# 		}
+				# 		clear_deposits_without_effects = yes
+				# 		reroll_deposits = yes
+				# 		while = {
+				# 			count = 3
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_city
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_mining
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_farming
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_generator
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_industrial
+				# 			}
+				# 		}
+				# 	}
+				# 	ordered_owned_planet = {
+				# 		position = 2
+				# 		order_by = x
+				# 		limit = {
+				# 			NOT = { is_same_value = event_target:origin_imperial_homeland }
+				# 		}
+				# 		clear_deposits_without_effects = yes
+				# 		reroll_deposits = yes
+				# 		while = {
+				# 			count = 2
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_city
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_mining
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_farming
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_generator
+				# 			}
+				# 			add_district_and_planet_size_if_needed_effect = {
+				# 				district = district_industrial
+				# 			}
+				# 		}
+				# 	}
+				# }
+			}
+
+			# Vassal 1
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_2
+				}
+				event_target:origin_imperial_homeland_country_2 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
 				}
 			}
 
-			event_target:origin_imperial_homeland_country_2 = {
-				every_owned_planet = {
-					clear_deposits = yes
-					clear_blockers = yes
-					generate_start_deposits_and_blockers = yes
-					# IF Vassal
+			# Vassal 2
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_3
+				}
+				event_target:origin_imperial_homeland_country_3 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
 				}
 			}
 
-			event_target:origin_imperial_homeland_country_3 = {
-				every_owned_planet = {
-					clear_deposits = yes
-					clear_blockers = yes
-					generate_start_deposits_and_blockers = yes
-					# IF Vassal
+			# Vassal 3
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_4
+				}
+				event_target:origin_imperial_homeland_country_4 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+
+			# Vassal 4
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_5
+				}
+				event_target:origin_imperial_homeland_country_5 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
 				}
 			}
 		}		

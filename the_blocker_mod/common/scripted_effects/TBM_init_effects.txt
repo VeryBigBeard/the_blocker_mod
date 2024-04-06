@@ -288,3 +288,64 @@ fix_fallen_empire_worlds = {
 	# 	}
 	# }
 }
+
+generate_imperial_fiefdoms = {
+	
+	# Overlord
+	event_target:origin_imperial_homeland_country = {
+		event_target:origin_imperial_homeland = {	# Planet scope
+			clear_deposits = yes
+			clear_blocker = yes
+
+			# IF Overlord features: 6 of each district
+			generate_start_deposits_and_blockers = yes
+			fix_advanced_start_empire_features = yes
+			while = {
+				count = 6
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_city
+				}
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_mining
+				}
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_farming
+				}
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_generator
+				}
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_industrial
+				}
+			}
+		}
+
+		every_owned_planet = {
+			limit = {
+				NOT = { is_same_value = event_target:origin_imperial_homeland }
+			}
+			clear_deposits = yes
+			clear_blockers = yes
+			reroll_deposits = yes
+			# IF Overlord colonies
+		}
+	}
+
+	event_target:origin_imperial_homeland_country_2 = {
+		every_owned_planet = {
+			clear_deposits = yes
+			clear_blockers = yes
+			generate_start_deposits_and_blockers = yes
+			# IF Vassal
+		}
+	}
+
+	event_target:origin_imperial_homeland_country_3 = {
+		every_owned_planet = {
+			clear_deposits = yes
+			clear_blockers = yes
+			generate_start_deposits_and_blockers = yes
+			# IF Vassal
+		}
+	}
+}
