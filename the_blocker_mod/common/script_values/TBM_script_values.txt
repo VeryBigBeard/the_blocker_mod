@@ -89,3 +89,17 @@ highway_engineers_to_change_a_lightbulb = {
 	min = @tier4researchmin
 	max = @tier4researchmax
 }
+
+# 1 pop worth of a resource -- value:resource_shipment|RESOURCE|<resource key>
+# scope = pop
+resource_shipment = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = pop_produces_resource
+		trigger_scope = pop
+		parameters = {
+			type = $RESOURCE$
+		}
+		mode = set
+	}
+}

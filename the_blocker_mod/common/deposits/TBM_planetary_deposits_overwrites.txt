@@ -1195,7 +1195,7 @@ d_massive_glacier = {
 		}
 
 		# Climate Control Network Malfunctions
-		inline_script = climate_control_activate
+		climate_control_activate = yes
 	}
 
 	planet_modifier = {

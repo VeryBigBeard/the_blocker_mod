@@ -13,6 +13,7 @@ planet_event = {
 	show_sound = event_finding_loot
 
 	is_triggered_only = yes
+	location = this
 
 	# Scope to one particular Searing Desert and the planet's governor
 
@@ -70,6 +71,7 @@ planet_event = {
 	hide_window = yes
 
 	is_triggered_only = yes
+	location = this
 
 	pre_triggers = {
 		has_owner = yes
@@ -161,7 +163,7 @@ planet_event = {
 	show_sound = event_finding_loot
 
 	is_triggered_only = yes
-	fire_only_once = yes
+	location = this
 
 	trigger = {
 		has_modifier = dream_city
@@ -197,6 +199,7 @@ planet_event = {
 	show_sound = event_finding_loot
 
 	is_triggered_only = yes
+	location = this
 
 	pre_triggers = {
 		is_ai = no
@@ -231,6 +234,7 @@ planet_event = {
 	show_sound = event_finding_loot
 
 	is_triggered_only = yes
+	location = this
 
 	pre_triggers = {
 		is_ai = no
@@ -358,6 +362,7 @@ planet_event = {
 	show_sound = ship_explosion
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		add_planet_devastation = 25
@@ -383,6 +388,7 @@ planet_event = {
 	show_sound = sfx_amb_psi_storm_1
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		owner = {
@@ -411,6 +417,7 @@ planet_event = {
 	show_sound = event_finding_loot
 
 	is_triggered_only = yes
+	location = this
 
 	# Adds empire modifier and disables event chain.
 	immediate = {
@@ -491,6 +498,7 @@ planet_event = {
 	show_sound = fungoid_colossus_closing
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = tbm_desert.39.yes
@@ -514,6 +522,7 @@ planet_event = {
 	show_sound = event_energy_field
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = tbm_desert.40.yes
@@ -537,6 +546,7 @@ planet_event = {
 	show_sound = event_first_contact_plantoid
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = tbm_desert.41.yes
@@ -560,6 +570,7 @@ planet_event = {
 	show_sound = event_galactic_market
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		owner = {
@@ -639,6 +650,7 @@ planet_event = {
 	show_sound = event_slot_machine
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = tbm_desert.43.yes
@@ -662,6 +674,7 @@ planet_event = {
 	show_sound = event_engineered_evolution
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = tbm_desert.44.yes
@@ -685,6 +698,7 @@ planet_event = {
 	show_sound = event_first_contact_aquatic
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = tbm_desert.45.yes

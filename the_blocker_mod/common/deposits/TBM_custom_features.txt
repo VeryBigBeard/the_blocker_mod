@@ -1604,6 +1604,7 @@ d_frozen_wasteland = {
 	}
 	
 	on_cleared = {
+		climate_control_activate = yes
 		owner = {
 			add_resource = {
 				minerals = 200

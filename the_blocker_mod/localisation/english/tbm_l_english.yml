@@ -449,7 +449,9 @@
  dangerous_wildlife_poachers:0 "Dangerous Wildlife Poacher Rewards"
  dangerous_wildlife_toxin:0 "Dangerous Wildlife Toxin"
  dangerous_wildlife_contamination:0 "Dangerous Wildlife Toxin Contamination"
+ dangerous_wildlife_contamination_desc:0 "Toxins used to control wildlife populations on this world have seeped into the colony's water supply, causing illnesses and leading to significant criticism of the local administration."
  dangerous_wildlife_food_changes:0 "Dangerous Wildlife\:\ Food Chain Changes"
+ dangerous_wildlife_food_changes_desc:0 "Changes in the apex predator population on this planet have led to an explosion of pests and vermin on the world, decimating crops and annoying the colonists."
 
  denied_investment:0 "Denied Investment"
  recreational_investment:0 "Recreational Investment"
@@ -457,7 +459,7 @@
  kelp_bioweapons:0 "Kelp Bio-Weapons"
  kelp_bioweapons_tooltip:0 "Our fleets now use explosive warheards containing lethally toxic barbs and aerosols derived from £blocker£ §YToxic Kelp§!.\n\n"
  kelp_breakfasts:0 "Kelp For Breakfast"
- kelp_breakfast_tooltip:0 "Once the poisonous barbs are removed, £blocker£ §YToxic Kelp§! on makes for a nutritious meal. So far, there have only been a few casualties.\\n\n"
+ kelp_breakfast_tooltip:0 "Once the poisonous barbs are removed, £blocker£ §YToxic Kelp§! makes for a nutritious way to start your day. So far, there have been only a few casualties.\n\n"
 
  bigger_fish:0 "Bigger Fish"
  bigger_fish_desc:0 "There is always a bigger fish."
@@ -511,6 +513,3 @@
  settled_system:0 "REPLACE_ME"
  geothermal_instability:0 "REPLACE_ME"
  subterranean_river_cruises:0 "REPLACE_ME"
-
- tbm.message.slumgenerator:0 "REPLACE_ME"
- tbm.message.sinkhole:0 "REPLACE_ME"

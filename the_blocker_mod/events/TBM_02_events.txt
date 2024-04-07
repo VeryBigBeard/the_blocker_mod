@@ -37,6 +37,7 @@ planet_event = {
 	show_sound = event_alien_nature
 
 	is_triggered_only = yes
+	location = this
 
 	pre_triggers = {
 		is_homeworld = no
@@ -91,6 +92,7 @@ planet_event = {
 	show_sound = event_scanner
 
 	is_triggered_only = yes
+	location = this
 
 	pre_triggers = {
 		has_owner = yes
@@ -225,42 +227,36 @@ planet_event = {
 	picture = GFX_evt_unspeakable_horror
 	show_sound = dragon_attack_mouth
 
+	location = this
 	is_triggered_only = yes
 
 	option = {
 		name = tbm.54.name
 		custom_tooltip = tbm.54.worse
 
-		# Figure out how much was in the sub (1 month worth of minerals from planet)
+		# Figure out how much was in the sub (1 month worth of 2 pops minerals from planet)
 		hidden_effect = {
-			every_owned_pop = {
+			random_owned_pop = {
 				limit = {
 					has_job = miner
 				}
-				export_trigger_value_to_variable = {
-					trigger = pop_produces_resource
-					parameters = {
-						type = minerals
-					}
-					variable = @miner_monthly
-				}
-				change_variable = {		# increment
+				save_event_target_as = sub_miner
+				set_variable = {
 					which = @miner_output_add
-					value = @miner_monthly
+					value = value:resource_shipment|RESOURCE|minerals
+				}
+				multiply_variable = {
+					which = @miner_output_add
+					value = -2
 				}
 			}
 		}
 
-		# set_variable = {
-		# 	which = @miner_output_mult
-		# 	value = prev.miner_output_add
-		# }
-
-		# Lose the shipment			
+		# Lose the shipment
 		owner = {
 			add_resource = {
 				minerals = @miner_output_add
-			}	
+			}
 		}	
 
 		# Miners on the sub die
@@ -268,11 +264,13 @@ planet_event = {
 			limit = { 
 				NOT = { has_planet_flag = crew_escaped }
 			}
+			event_target:sub_miner = {
+				kill_pop = yes
+			}
 			random_owned_pop = {
 				limit = {
 					has_job = miner
 				}
-				kill_pop = yes
 				kill_pop = yes
 			}
 		}
@@ -296,7 +294,7 @@ planet_event = {
 				20 = {
 					planet_event = { 
 						id = tbm.55
-						days = 3600
+						days = 1440
 						random = 720 
 					}
 				}
@@ -305,7 +303,7 @@ planet_event = {
 				10 = {
 					planet_event = { 
 						id = tbm.56 
-						days = 3600 
+						days = 1440 
 						random = 720 
 					}
 				}
@@ -337,6 +335,7 @@ planet_event = {
 	show_sound = aqu_dragon_attack_mouth
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = tbm.55.a
@@ -392,6 +391,7 @@ planet_event = {
 	show_sound = aqu_dragon_attack_mouth_deluge
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		add_deposit = d_titanic_life_blocker
@@ -426,11 +426,11 @@ planet_event = {
 		}
 		text = tbm.57.psionic
 	}
-	desc = tbm.57.end
 	picture = GFX_evt_zro_3
 	show_sound = event_psionic
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		event_target:fish_planet = {
@@ -495,8 +495,16 @@ planet_event = {
 	show_sound = dragon_wing_attack
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
+		
+		event_target:xenofish_specialist = {
+			kill_leader = {
+				show_notification = yes
+			}
+		}
+
 		event_target:fish_planet = {
 			hidden_effect = {
 				random_deposit = {
@@ -525,6 +533,12 @@ planet_event = {
 
 	option = {
 		name = OK
+	}
+
+	after = {
+		hidden_effect = {
+			clear_global_event_target = xenofish_specialist
+		}
 	}
 }
 
@@ -700,6 +714,7 @@ planet_event = {
 	show_sound = event_swarm
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		add_deposit = d_quicksand_basin
@@ -895,12 +910,14 @@ planet_event = {
 planet_event = {
 	id = tbm.81
 
-	title = tbm.81.name
-	desc = tbm.81.desc
-	picture = "GFX_evt_collapsing_roof"
-	show_sound = event_collapsing_ruins
+	# title = tbm.81.name
+	# desc = tbm.81.desc
+	# picture = "GFX_evt_collapsing_roof"
+	# show_sound = event_collapsing_ruins
 
 	is_triggered_only = yes
+	hide_window = yes
+	# location = this
 
 	immediate = {
 		
@@ -959,6 +976,7 @@ planet_event = {
 	show_sound = event_activating_unknown_technology
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		add_deposit = d_deep_sinkhole
@@ -1012,6 +1030,7 @@ planet_event = {
 	show_sound = aqu_dragon_attack_mouth_deluge
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = tbm.83.safe
@@ -1090,6 +1109,7 @@ planet_event = {
 	show_sound = event_wind_ruins
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		owner = {
@@ -1210,6 +1230,7 @@ planet_event = {
 	show_sound = event_machinery
 
 	is_triggered_only = yes
+	location = this
 
 	option = {
 		name = TBM_WONDERFUL
@@ -1264,6 +1285,7 @@ planet_event = {
 	show_sound = event_wind_ruins
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		add_modifier = {
@@ -1369,6 +1391,7 @@ planet_event = {
 	id = tbm.90
 
 	is_triggered_only = yes
+	location = this
 
 	title = tbm.90.name
 	desc = {
