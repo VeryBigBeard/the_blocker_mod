@@ -52,6 +52,7 @@ planet_event = {
 		name = tbm_hw.6_decommission
 		custom_tooltip = tbm_hw.6_lose_generator
 		remove_deposit = d_experimental_geothermal_tap
+		add_deposit = d_active_volcano
 	}
 	
 	option = {
@@ -59,7 +60,7 @@ planet_event = {
 		custom_tooltip = tbm_hw.6_nanocomppsite_shortage
 		owner = {
 			add_resource = {
-				minerals = -800
+				energy = -800
 			}
 			add_modifier = {
 				modifier = nanocomposite_shortage

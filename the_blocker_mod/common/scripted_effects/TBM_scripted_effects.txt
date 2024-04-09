@@ -65,16 +65,18 @@ remove_city_if_poss_and_other_if_not_regular = {
 		limit = {
 			is_artificial = yes
 		}
-		remove_last_built_building = yes
 		if = {
 			limit = {
 				num_districts = {
 					type = any
-					value = 0
+					value > 0
 				}
 			}
+			remove_last_built_district = yes
 		}
-		add_planet_devastation = 25
+		else = {
+			add_planet_devastation = 25
+		}
 	}
 	else_if = {
 		limit = {

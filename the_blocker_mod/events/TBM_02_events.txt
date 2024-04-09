@@ -243,7 +243,7 @@ planet_event = {
 				save_event_target_as = sub_miner
 				set_variable = {
 					which = @miner_output_add
-					value = value:resource_shipment|RESOURCE|minerals
+					value = value:resource_shipment|RESOURCE|minerals|
 				}
 				multiply_variable = {
 					which = @miner_output_add
@@ -943,9 +943,9 @@ planet_event = {
 		}
 	}
 
-	option = {
-		name = OK
-	}
+	# option = {
+	# 	name = OK
+	# }
 
 	# after = {
 	# 	hidden_effect = {

@@ -646,7 +646,7 @@ d_giant_tree  = {
 
 d_sea_monster = {
 	icon = d_landed_dragon
-	category = deposit_category_final
+	category = deposit_cat_final
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
