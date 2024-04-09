@@ -316,3 +316,10 @@ subterranean_river_cruises = {
 	trade_value_mult = 0.1
 	planet_amenities_mult = 0.1
 }
+
+### Experimental Geothermal Tap
+
+nanocomposite_shortage = {
+	icon = gfx/interface/icons/planet_modifiers/pm_resources.dds
+	shipclass_military_build_speed_mult = -0.2
+}

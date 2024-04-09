@@ -485,6 +485,9 @@
  subsurface_spaceport_opened:0 "Subsurface Spaceport Opened"
  subsurface_spaceport_opened_desc:0 "A new sub-aquatic spaceport has greatly facilitated trade and travel on this planet."
 
+ nanocomposite_shortage:0 "Nanocomposite Shortage"
+ nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker£ Advanced Geothermal Tap§! have led to delays in military shipbuiliding requisitions."
+
  ### The Blocker Mod - Event Projects
 
  XENOFISH_STUDY:0 "Xenofish Study"

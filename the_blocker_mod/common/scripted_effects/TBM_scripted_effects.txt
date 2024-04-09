@@ -56,7 +56,7 @@ remove_city_if_poss_and_other_if_not_regular = {
 		limit = {
 			num_districts = {
 				type = district_city
-				value < 0
+				value > 0
 			}
 		}
 		remove_district = district_city
@@ -80,7 +80,7 @@ remove_city_if_poss_and_other_if_not_regular = {
 		limit = {
 			num_districts = {
 				type = district_industrial
-				value < 0
+				value > 0
 			}
 		}
 		remove_district = district_industrial
@@ -89,13 +89,13 @@ remove_city_if_poss_and_other_if_not_regular = {
 		limit = {
 			num_districts = {
 				type = any
-				value < 0
+				value > 0
 			}
 		}
-		remove_last_built_building = yes
+		remove_last_built_district = yes
 	}
 	else = {
-		add_planet_devastation = 20
+		add_planet_devastation = 25
 	}
 }
 
