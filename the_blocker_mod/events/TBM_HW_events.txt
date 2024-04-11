@@ -1065,7 +1065,7 @@ planet_event = {
 
 
 ### 51. Food Replicator Breaks Down - Warning (Remnant Origin)
-#	(on_colony_yearly_pulse, 15 years have to have pased, only called on homeworlds)
+#	(on_colony_five_yearly_pulse, 15 years have to have pased, only called on homeworlds)
 planet_event = {
 	id = tbm_hw.51
 
@@ -1081,6 +1081,7 @@ planet_event = {
 	show_sound = event_machinery
 
 	is_triggered_only = yes
+	location = this
 
 	pre_triggers = {
 		has_owner = yes
@@ -1103,7 +1104,7 @@ planet_event = {
 		}
 		hidden_effect = {
 			planet_event = {
-				id = tbm_handler.101
+				id = tbm_hw.52
 				days = 1800
 				random = 720
 			}

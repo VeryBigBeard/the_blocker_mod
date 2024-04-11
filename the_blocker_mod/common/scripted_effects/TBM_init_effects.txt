@@ -16,7 +16,7 @@ fix_advanced_start_empire_features = {
 
 	### URBAN (for building slots, so they dopn't ruin their own advanced buildings)
 	add_deposit = d_homeworld_cleared_land
-	add_deposit = d_homeworld_cleared_land
+	add_deposit = d_homeworld_arcology
 
 	### ENERGY: +2 jobs, +1 district
 	add_deposit = d_experimental_fusion_reactor
@@ -61,6 +61,17 @@ fix_advanced_start_empire_features = {
 
 	### OTHER JOBS
 	add_deposit = d_space_academy
+	
+	### AMENTIES
+	if = {
+		limit = {
+			owner = { is_gestalt = yes }
+		}
+		add_deposit = d_upgrade_facility
+	}
+	else = {
+		add_deposit = d_flying_party
+	}
 
 
 	

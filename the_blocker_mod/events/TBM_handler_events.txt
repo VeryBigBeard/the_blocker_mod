@@ -1037,7 +1037,7 @@ planet_event = {
 
 	trigger = {
 		is_artificial = no
-		NOT = { has_planet_flag = mining_bust } 	# Helps avoid over-firing whenc onstructing a lot of districts.
+		NOT = { has_planet_flag = mining_bust } 	# Helps avoid over-firing when constructing a lot of districts.
 		last_district_changed = district_mining
 		any_deposit = {
 			has_mineral_seam = yes
@@ -1069,7 +1069,7 @@ planet_event = {
 				}
 
 				planet_event = {
-					id = tbm.89
+					id = tbm.88
 					days = 720
 					random = 180
 				}

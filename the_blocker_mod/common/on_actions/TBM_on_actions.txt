@@ -67,12 +67,19 @@ on_colony_five_yearly_pulse = {
 	events = {
 		tbm_desert.46	# A City of the Desert
 		tbm.301 # Fossil Fuel Discovery
+		tbm_hw.51 	# Food Replicators Malfunction
+	}
+}
+
+on_colony_25_years_old = {
+	events = {
+		tbm_hw.6 	# Deteriorating Geothermal Tap
 	}
 }
 
 on_district_complete = {
 	events = {
-		tbm.88	# False Prospects
+		tbm_handler.20	# False Prospects
 	}
 	
 	random_events = {

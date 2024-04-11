@@ -1288,9 +1288,20 @@ planet_event = {
 	location = this
 
 	immediate = {
-		add_modifier = {
-			modifier = false_prospects
-			years = 5
+		if = {
+			limit = {
+				owner = { is_gestalt = yes }
+			}
+			add_modifier = {
+				modifier = false_prospects_gestalt
+				years = 5
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = false_prospects
+				years = 5
+			}
 		}
 		event_target:mineral_seam = {
 			remove_deposit = yes
