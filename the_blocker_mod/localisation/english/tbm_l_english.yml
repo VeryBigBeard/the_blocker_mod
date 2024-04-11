@@ -105,7 +105,7 @@
 
  mod_planet_farmers_energy_produces_add:0 "$r_food$ from $job_farmer_plural$"
  mod_planet_farmers_alloys_upkeep_add:0 "$r_alloys$ Upkeep for $job_farmer_plural$"
- mod_planet_farmers_consumer_goods_upkeep_add:0 "$r_consumer_goods Upkeep for $job_farmer_plural$"
+ mod_planet_farmers_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_farmer_plural$"
  mod_planet_farmers_unity_upkeep_add:0 "$r_unity$ Upkeep for $job_farmer_plural$"
  
  mod_planet_miners_unity_produces_add:0 "$r_minerals$ from $job_miner_plural$"
