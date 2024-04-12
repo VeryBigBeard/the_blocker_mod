@@ -276,7 +276,7 @@ generate_start_deposits_and_blockers = {
 
 	}
 
-	### --- Special Homeworld feature sets - Can only have one --- ###
+	### --- Special Homeworld feature sets - Can only have one, usually from an origin --- ###
 	#		These clear everything above and re-do.
 
 	### POST-APOC - Regular
@@ -288,7 +288,7 @@ generate_start_deposits_and_blockers = {
 		}
 		
 		# Remove last vestiges of civilization
-		clear_deposits = yes
+		clear_deposits_without_effects = yes
 
 		# Vanilla Features - TBM includes these for now but may eventually replace them
 		# add_deposit = d_tomb_world_ruins
@@ -341,7 +341,8 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_ruined_arcology
 		}
 
-		#clear_deposits = yes
+		# Goodbye to the old world
+		clear_deposits_without_effects = yes
 
 		### Special
 		add_deposit = d_collapsed_superhighway
@@ -374,7 +375,9 @@ generate_start_deposits_and_blockers = {
 	#	Life-Seeded will now have most of its massive planet blocked, to allow for choices as the empire develops.
 	else_if = {
 		limit = { owner = { has_origin = origin_life_seeded}}
-		clear_deposits = yes
+		
+		# We don't need any other features
+		clear_deposits_without_effects = yes
 
 		# Energy - 8 total, -3 districts, 2 blocked	
 		add_deposit = d_fertile_delta	# Provies 1 farming as well
@@ -420,7 +423,7 @@ generate_start_deposits_and_blockers = {
 
 		# First, ignore the landlubbers
 		clear_blockers = yes
-		clear_deposits = yes
+		clear_deposits_without_effects = yes
 
 		### Energy
 		add_deposit = d_homeworld_tidal_turbines

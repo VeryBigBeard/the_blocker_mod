@@ -376,7 +376,7 @@ d_steppe_uplands = {
 		planet_max_districts_add = -2
 		district_mining_max = 1
 		district_generator_max = 1
-		planet_jobs_productive_produces_mult = 0.05
+		pop_category_workers_produces_mult = 0.05
 	}
 
 	prerequisites = { "tech_terrestrial_sculpting" }
