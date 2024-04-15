@@ -268,10 +268,59 @@ event = {
 			every_owned_planet = {
 				### Get rid of unwanted fish. For real this time.
 				clear_blockers = yes
-				clear_deposits = yes
+				#clear_deposits = yes
+				every_deposit = {
+					remove_deposit = yes
+				}
 
 				generate_start_deposits_and_blockers = yes	# Re-runs basic TBM feature init.
 				fix_advanced_start_empire_features = yes		
+			}
+		}
+	}
+}
+
+### 3. Aquatic Fix
+#	This is a hack to fix a peristent bug with Aquatic empires where they would get appropriate features not districts due to some unknown problem with generate_start_buildings_and_districts that TBM does not patch. Until I can find it, this should reset their planets properly at the expense of a bit of a performance hit.
+event = {
+	id = tbm_handler.3
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				OR = {
+					is_anglers_empire = yes
+					has_trait = trait_aquatic
+				}
+			}
+
+			every_owned_planet = {
+				remove_all_buildings = yes
+				generate_start_buildings_and_districts = yes
+			}
+
+			if = {
+				limit = { has_country_flag = is_advanced_start_AI }
+				capital_scope = {
+					planet_event = {
+						id = game_start.22	# Re-do the advanced building spawn
+					}
+				}
+			}
+		}
+
+		### Little clean-up due to problem with remove_deposit = yes - you can only get this if we clear Public Mining Concerns; sometimes this happens if a Prosperous Unification empire is also Aquatic or an Advanced Start
+		every_country = {
+			every_owned_planet = {
+				if = {
+					limit = {
+						has_modifier = privatizations
+					}
+					remove_modifier = privatizations
+				}
 			}
 		}
 	}

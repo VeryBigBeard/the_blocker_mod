@@ -9,6 +9,7 @@ on_game_start = {
 	events = {
 		tbm_handler.1	# Scripted Planets Handler; Fallen Empire Fix; Imperial Fiefdom
 		tbm_handler.2	# Advanced Start Feature Fixer
+		tbm_handler.3 	# Hack to fix Aquatics bug
 	}
 }
 

@@ -73,7 +73,7 @@ evacuations = {
 	pop_happiness = -0.1
 }
 
-modifier_privatizations = {
+privatizations = {
 	pop_ethic_egalitarian_attraction_mult = 0.25
 	pop_happiness = -0.1
 }

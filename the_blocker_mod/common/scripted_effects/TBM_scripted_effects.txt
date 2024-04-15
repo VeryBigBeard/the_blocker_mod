@@ -2,11 +2,13 @@
 
 # Failsafe effect to avoid clearance effects being set; calls remove_deposit (which ignores on_cleared) until all the deposits are gone
 # Call it in planet scope, and be mindful of the performance hit
+# This appears not to work on 3.10.* for unclear reasons; remove_deposit will not have any effect when called in deposit scope.
 clear_deposits_without_effects = {
 	while = {
-		limit = {
-			num_deposits > 0
-		}
+		count = trigger:num_deposits
+		# limit = {
+		# 	num_deposits > 0
+		# }
 		random_deposit = {
 			remove_deposit = yes
 		}

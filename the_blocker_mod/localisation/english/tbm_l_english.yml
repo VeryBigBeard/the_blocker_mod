@@ -490,7 +490,7 @@
  false_prospects:0 "False Prospects"
  false_prospects_gestalt:0 "False Prospects"
  false_prospects_desc:0 "Newly-constructed $district_mining_plural$ are yielding much fewer minerals than expected."
- false_prospects_gestalt_desc:0 "Newly-constructed $district_mining_plural$ are yielding much fewer minerals than expected.
+ false_prospects_gestalt_desc:0 "Newly-constructed $district_mining_plural$ are yielding much fewer minerals than expected."
 
  subsurface_spaceport_opened:0 "Subsurface Spaceport Opened"
  subsurface_spaceport_opened_desc:0 "A new sub-aquatic spaceport has greatly facilitated trade and travel on this planet."

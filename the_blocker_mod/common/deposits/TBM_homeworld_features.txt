@@ -3789,7 +3789,7 @@ d_public_mining_concerns = {
 					}
 				}
 				add_modifier = {
-					modifier = modifier_privatizations
+					modifier = privatizations
 					years = 20
 				}
 			}
