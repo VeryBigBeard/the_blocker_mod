@@ -2,11 +2,13 @@
 
 # Failsafe effect to avoid clearance effects being set; calls remove_deposit (which ignores on_cleared) until all the deposits are gone
 # Call it in planet scope, and be mindful of the performance hit
+# This appears not to work on 3.10.* for unclear reasons; remove_deposit will not have any effect when called in deposit scope.
 clear_deposits_without_effects = {
 	while = {
-		limit = {
-			num_deposits > 0
-		}
+		count = trigger:num_deposits
+		# limit = {
+		# 	num_deposits > 0
+		# }
 		random_deposit = {
 			remove_deposit = yes
 		}
@@ -56,7 +58,7 @@ remove_city_if_poss_and_other_if_not_regular = {
 		limit = {
 			num_districts = {
 				type = district_city
-				value < 0
+				value > 0
 			}
 		}
 		remove_district = district_city
@@ -65,22 +67,24 @@ remove_city_if_poss_and_other_if_not_regular = {
 		limit = {
 			is_artificial = yes
 		}
-		remove_last_built_building = yes
 		if = {
 			limit = {
 				num_districts = {
 					type = any
-					value = 0
+					value > 0
 				}
 			}
+			remove_last_built_district = yes
 		}
-		add_planet_devastation = 25
+		else = {
+			add_planet_devastation = 25
+		}
 	}
 	else_if = {
 		limit = {
 			num_districts = {
 				type = district_industrial
-				value < 0
+				value > 0
 			}
 		}
 		remove_district = district_industrial
@@ -89,13 +93,13 @@ remove_city_if_poss_and_other_if_not_regular = {
 		limit = {
 			num_districts = {
 				type = any
-				value < 0
+				value > 0
 			}
 		}
-		remove_last_built_building = yes
+		remove_last_built_district = yes
 	}
 	else = {
-		add_planet_devastation = 20
+		add_planet_devastation = 25
 	}
 }
 
@@ -284,7 +288,7 @@ melt_something = {
 				is_deposit_type = d_frozen_wasteland
 			}
 		}
-		add_deposit = d_rough_plains
+		add_deposit = d_lakelands
 	}
 
 	else = {

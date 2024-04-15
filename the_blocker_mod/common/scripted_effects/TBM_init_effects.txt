@@ -16,7 +16,7 @@ fix_advanced_start_empire_features = {
 
 	### URBAN (for building slots, so they dopn't ruin their own advanced buildings)
 	add_deposit = d_homeworld_cleared_land
-	add_deposit = d_homeworld_cleared_land
+	add_deposit = d_homeworld_arcology
 
 	### ENERGY: +2 jobs, +1 district
 	add_deposit = d_experimental_fusion_reactor
@@ -61,6 +61,20 @@ fix_advanced_start_empire_features = {
 
 	### OTHER JOBS
 	add_deposit = d_space_academy
+	
+	### AMENTIES
+	if = {
+		limit = {
+			owner = { is_gestalt = yes }
+		}
+		add_deposit = d_upgrade_facility
+	}
+	else = {
+		add_deposit = d_flying_party
+	}
+
+	### Bonus
+	remove_modifier = privatizations	# Was getting added due to clearing deposits
 
 
 	
@@ -89,7 +103,7 @@ scripted_planet_reroll = {
 
 		# primitive_robot_system
 		# clear_blockers is commented out in vanilla; this is its standard spread
-		every_system_planet = {
+		every_galaxy_planet = {
 			limit = { has_planet_flag = primitive_robot_planet }
 			clear_deposits = yes
 			reroll_deposits = yes
@@ -102,7 +116,7 @@ scripted_planet_reroll = {
 
 		# superflare_system
 		# Standard spread for now, should get basic tomb features as well
-		every_system_planet = {
+		every_galaxy_planet = {
 			limit = { has_planet_flag = frozen_in_time_flag }
 			clear_deposits = yes
 			reroll_deposits = yes
@@ -113,7 +127,7 @@ scripted_planet_reroll = {
 
 		# living_planet_system
 		# Standard spread, will eventually do special set
-		every_system_planet = {
+		every_galaxy_planet = {
 			limit = { has_planet_flag = living_planet }
 			clear_deposits = yes
 			reroll_deposits = yes
@@ -150,7 +164,7 @@ fix_fallen_empire_worlds = {
 	}
 
 	# Reroll Holy Worlds (similar to scripted planets)
-	every_system_planet = {
+	every_galaxy_planet = {
 		limit = {
 			OR = {
 				has_planet_flag = holy_world_1

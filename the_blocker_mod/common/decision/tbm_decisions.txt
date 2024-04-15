@@ -118,7 +118,7 @@ decision_open_fusion_reactor = {
 
 	potential = {
 		owner = { has_technology = tech_fusion_power }
-		NOT = { has_deposit = d_fusion_reactor	# planet - we don't want two, partly balance partly realism }
+		NOT = { has_deposit = d_fusion_reactor }	# planet - we don't want two, partly balance partly realism
 	}
 
 	effect = {

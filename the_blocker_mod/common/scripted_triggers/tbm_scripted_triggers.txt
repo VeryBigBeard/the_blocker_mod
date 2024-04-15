@@ -71,7 +71,7 @@ gestalt_physics_feature = {
 	}
 }
 
-gestalt_society_features = {
+gestalt_society_feature = {
 	OR = {
 		is_deposit_type = d_toxic_kelp
 		is_deposit_type = d_lush_jungle
@@ -100,7 +100,7 @@ gestalt_society_features = {
 	}
 }
 
-gestalt_engineering_features = {
+gestalt_engineering_feature = {
 	OR = {
 		is_deposit_type = d_quicksand_basin
 		is_deposit_type = d_lush_jungle

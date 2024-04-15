@@ -7,16 +7,13 @@
 
 @casualties = 0
 @casualty_chance = 50	# Usually used as a chance modifier
+@damage = 0
 
 
 @miners = 1
 @miner_output_add = 0
 @miner_output_mult = 0
-<<<<<<< Updated upstream
 @miner_monthly = 4
-=======
-@miner_monthly = 4
-
 
 ### Event Variables (used globally for certain situations)
 
@@ -27,4 +24,3 @@
 @post_apoc_population = 0
 @colonial_farmsteads = 0
 @colonial_population = 0
->>>>>>> Stashed changes

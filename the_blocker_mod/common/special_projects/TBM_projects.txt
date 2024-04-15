@@ -10,6 +10,7 @@ special_project = {
 	picture = GFX_evt_landing_ship
 
 	event_scope = planet_event
+	location = yes
 
 	on_success = {
 		planet_event = { id = tbm.9 }
@@ -23,6 +24,7 @@ special_project = {
 	picture = GFX_evt_alien_wildlife
 
 	event_scope = ship_event
+	location = yes
 	
 	requirements = {
 		shipclass_military = 1
@@ -39,6 +41,7 @@ special_project = {
 special_project = {
 	key = "WATERS_OF_LIFE"
 	event_scope = ship_event
+	location = yes
 	days_to_research = 1800
 	requirements = {
 		shipclass_science_ship = 1
@@ -70,10 +73,11 @@ special_project = {
 	}
 }
 
-### Fish Attack Continues
+### Xenofish Study
 special_project = {
 	key = "XENOFISH_STUDY"
 	event_scope = ship_event
+	location = yes
 
 	requirements = {
 		leader = scientist
@@ -92,6 +96,9 @@ special_project = {
 						}
 					}
 				}
+				leader = {
+					save_global_event_target_as = xenofish_specialist
+				}
 				event_target:fish_planet = {
 					planet_event = { id = tbm.57 days = 1 }
 				}
@@ -100,6 +107,9 @@ special_project = {
 				modifier = {
 					factor = 2
 					leader = { has_trait = leader_trait_carefree }
+				}
+				leader = {
+					save_global_event_target_as = xenofish_specialist
 				}
 				event_target:fish_planet = {
 					planet_event = { id = tbm.58 days = 1	}
@@ -118,6 +128,7 @@ special_project = {
 special_project = {
 	key = "SHIFTING_SANDS"
 	event_scope = ship_event
+	location = yes
 	on_success = { 
 		event_target:sand_planet = {
 			planet_event = { id = tbm.79 }

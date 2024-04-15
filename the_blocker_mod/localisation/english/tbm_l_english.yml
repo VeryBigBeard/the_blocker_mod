@@ -92,21 +92,20 @@
  # TBM Job Modifiers
  mod_planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$" 
 
- mod_planet_colonist_food_produces_add:0 "£food£ Food from £colonist£ Colonists:"
- mod_planet_colonist_minerals_produces_add:0 "$r_minerals$ from $icon_job_colonists$:"
- mod_planet_colonist_energy_produces_add:0 "$r_energy$ from $icon_job_colonists$:"
- mod_planet_colonist_physics_research_produces_add:0 "$r_physics_research$ from $icon_job_colonists$:"
- mod_planet_colonist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$:"
- mod_planet_colonist_engineering_research_produces_add:0 "$r_engineering_research$ from $icon_job_colonists$:"
- mod_planet_colonist_unity_produces_add:0 "$r_unity$ from $icon_job_colonists$:"
+ mod_planet_colonist_food_produces_add:0 "£food£ Food from £colonist£ Colonists"
+ mod_planet_colonist_minerals_produces_add:0 "$r_minerals$ from $icon_job_colonists$"
+ mod_planet_colonist_energy_produces_add:0 "$r_energy$ from $icon_job_colonists$"
+ mod_planet_colonist_physics_research_produces_add:0 "$r_physics_research$ from $icon_job_colonists$"
+ mod_planet_colonist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$"
+ mod_planet_colonist_engineering_research_produces_add:0 "$r_engineering_research$ from $icon_job_colonists$"
+ mod_planet_colonist_unity_produces_add:0 "$r_unity$ from $icon_job_colonists$"
 
- mod_planet_xeno_naturalist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$ $xeno_naturalist_plural$:"
-
- mod_planet_xeno_naturalist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$ $xeno_analysis_drones_plural$:"
+ mod_planet_xeno_naturalist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$ $job_xeno_naturalist_plural$"
+ mod_planet_xeno_naturalist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$ $job_xeno_analysis_drone_plural$"
 
  mod_planet_farmers_energy_produces_add:0 "$r_food$ from $job_farmer_plural$"
  mod_planet_farmers_alloys_upkeep_add:0 "$r_alloys$ Upkeep for $job_farmer_plural$"
- mod_planet_farmers_consumer_goods_upkeep_add:0 "$r_consumer_goods Upkeep for $job_farmer_plural$"
+ mod_planet_farmers_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_farmer_plural$"
  mod_planet_farmers_unity_upkeep_add:0 "$r_unity$ Upkeep for $job_farmer_plural$"
  
  mod_planet_miners_unity_produces_add:0 "$r_minerals$ from $job_miner_plural$"
@@ -119,16 +118,15 @@
  mod_planet_technician_minerals_produces_add:0 "$r_minerals$ from $job_technician_plural$"
  mod_planet_technician_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $job_technician_plural$"
  mod_planet_technician_alloys_produces_add:0 "$r_alloys$ from $job_technician_plural$"
- mod_planet_technician_alloys_upkeep_add:0 "$r_energy$ Upkeep for $job_technician_plural$"
+ mod_planet_technician_alloys_upkeep_add:0 "$r_alloys$ Upkeep for $job_technician_plural$"
  mod_planet_technician_consumer_goods_produces_add:0 "$r_consumer_goods$ from $job_technician_plural$"
 
  mod_planet_researchers_food_upkeep_add:0 "$r_food$ Upkeep for $job_researcher_plural$"
  
-
  mod_planet_priests_unity_produces_mult:0 "$r_unity$ from $job_priest_plural$"
 
- mod_planet_pop_assemblers_food_upkeep_mult:0 "$r_food$ Upkeep for $job_pop_assembler_plural$"
- mod_planet_pop_assemblers_alloys_upkeep_mult:0 "$r_alloys$ Upkeep for $job_pop_assembler_plural$"
+ mod_planet_pop_assemblers_food_upkeep_mult:0 "Pop Assembly $r_food$ Cost"
+ mod_planet_pop_assemblers_alloys_upkeep_mult:0 "Pop Assembly $r_alloys$ Cost"
 
  mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
  
@@ -137,7 +135,7 @@
 
  mod_planet_pops_food_upkeep_mult:0 "£pops£Pops $r_food$ Upkeep"
  mod_planet_pops_energy_upkeep_mult:0 "£pops£Pops $r_energy$ Upkeep"
- mod_planet_pops_robotics_energy_upkeep_mult:0 "£pops£Robotic $r_energy$ Upkeep"
+ mod_planet_pops_robotics_energy_upkeep_mult:0 "$r_energy$ Upkeep for £pops£ Robots"
 
  mod_planet_colonist_produces_mult:0 "Resources from $icon_job_colonists$"
  mod_pop_category_workers_food_upkeep_add:0 "$r_food$ Upkeep for Workers"
@@ -225,7 +223,7 @@
 
  d_barren:0 "Barren"
  d_barren_desc:0 "Bereft of any value, this land is too dry, rocky, and poor to farm. During rains, soil quickly vanishes and floods soon follow. Even birds avoid this place and trees can find no purchase on the slate, which is riddled with impurities that make it useless in our alloy forges. Extensive work is required here to remediate the soil and water table before life can flourish here."
- tooltip_clear_barren:0 "Remediating the soil in this §Y£blocker£Barren§! will take time, but lead to the creation of a more useful §C Feature§! when our terraformation specialists are done."
+ tooltip_clear_barren:0 "Remediating the soil in this §Y£blocker£ Barren§! will take time, but lead to the creation of a more useful §CFeature§! when our terraformation specialists are done."
 
  d_drylands:0 "Drylands"
  d_drylands_desc:0 "Parched and dusty, these rough lowlands stretch across whole regions and make for poor farmland. However, easy accessibility and a relatively stable climate make them ideal for solar farms and larger surface mining operations."
@@ -357,6 +355,15 @@
  d_homeworld_cleared_land:0 "Cleared Land"
  d_homeworld_cleared_land_desc:0 "This land has been carefully prepared for new development projects. Groundwater testing, weather analysis, and tectonic safety protocols all suggest this is a good location for a new district."
 
+ d_homeworld_arcology:0 "Arcology"
+ d_homeworld_arcology_desc:0 "To mark the beginning of the 23rd century, this region was designated the world's first Arcology. An expansive, climate-controlled dome covers the cityscape inside, regulating pollution, light, and weather. Infrastructure inside can be carefully planned and optimized, and its residential towers are some of the best available."
+
+ d_flying_party:0 "Atmospheric Terraces"
+ d_flying_party_desc:0 "The elite of this world live and work on vast sub-orbital sky terraces drifting slowly above the pollution and crime on the surface below. These flying pavilions boast some of the finest attractions and amenities 23rd century money can buy, and all the parties for the discerning crowd. The rabble, naturally, are not invited."
+
+ d_upgrade_facility:0 "Upgrade Facility"
+ d_upgrade_facility_desc:0 "Drones on this world are regularly fitted with expensive enhancements and augmentations to ensure they work more efficiently and break down less frequently."
+
  ### The Block Mod - Event Features - English
 
  d_private_farming_colony:0 "Private Farming Colony"
@@ -449,7 +456,9 @@
  dangerous_wildlife_poachers:0 "Dangerous Wildlife Poacher Rewards"
  dangerous_wildlife_toxin:0 "Dangerous Wildlife Toxin"
  dangerous_wildlife_contamination:0 "Dangerous Wildlife Toxin Contamination"
+ dangerous_wildlife_contamination_desc:0 "Toxins used to control wildlife populations on this world have seeped into the colony's water supply, causing illnesses and leading to significant criticism of the local administration."
  dangerous_wildlife_food_changes:0 "Dangerous Wildlife\:\ Food Chain Changes"
+ dangerous_wildlife_food_changes_desc:0 "Changes in the apex predator population on this planet have led to an explosion of pests and vermin on the world, decimating crops and annoying the colonists."
 
  denied_investment:0 "Denied Investment"
  recreational_investment:0 "Recreational Investment"
@@ -457,7 +466,7 @@
  kelp_bioweapons:0 "Kelp Bio-Weapons"
  kelp_bioweapons_tooltip:0 "Our fleets now use explosive warheards containing lethally toxic barbs and aerosols derived from £blocker£ §YToxic Kelp§!.\n\n"
  kelp_breakfasts:0 "Kelp For Breakfast"
- kelp_breakfast_tooltip:0 "Once the poisonous barbs are removed, £blocker£ §YToxic Kelp§! on makes for a nutritious meal. So far, there have only been a few casualties.\\n\n"
+ kelp_breakfast_tooltip:0 "Once the poisonous barbs are removed, £blocker£ §YToxic Kelp§! makes for a nutritious way to start your day. So far, there have been only a few casualties.\n\n"
 
  bigger_fish:0 "Bigger Fish"
  bigger_fish_desc:0 "There is always a bigger fish."
@@ -479,9 +488,15 @@
  miners_strike:0 "Miners' Strike\E"
 
  false_prospects:0 "False Prospects"
+ false_prospects_gestalt:0 "False Prospects"
+ false_prospects_desc:0 "Newly-constructed $district_mining_plural$ are yielding much fewer minerals than expected."
+ false_prospects_gestalt_desc:0 "Newly-constructed $district_mining_plural$ are yielding much fewer minerals than expected."
 
  subsurface_spaceport_opened:0 "Subsurface Spaceport Opened"
  subsurface_spaceport_opened_desc:0 "A new sub-aquatic spaceport has greatly facilitated trade and travel on this planet."
+
+ nanocomposite_shortage:0 "Nanocomposite Shortage"
+ nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker£ Advanced Geothermal Tap§! have led to delays in military shipbuiliding requisitions."
 
  ### The Blocker Mod - Event Projects
 
@@ -511,6 +526,3 @@
  settled_system:0 "REPLACE_ME"
  geothermal_instability:0 "REPLACE_ME"
  subterranean_river_cruises:0 "REPLACE_ME"
-
- tbm.message.slumgenerator:0 "REPLACE_ME"
- tbm.message.sinkhole:0 "REPLACE_ME"

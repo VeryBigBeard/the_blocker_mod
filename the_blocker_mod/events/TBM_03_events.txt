@@ -15,6 +15,7 @@ planet_event = {
 	show_sound = event_machinery
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		# Determine mining feature
@@ -226,6 +227,7 @@ planet_event = {
 	id = tbm.302
 
 	is_triggered_only = yes
+	location = this
 
 	title = tbm.302_name
 	desc = {
@@ -505,6 +507,7 @@ planet_event = {
 	id = tbm.311
 
 	is_triggered_only = yes
+	location = this	
 
 	title = tbm.311_name
 	desc = {
@@ -588,6 +591,7 @@ planet_event = {
 	id = tbm.312
 
 	is_triggered_only = yes
+	location = this
 
 	title = tbm.312_name
 	desc = {
@@ -689,6 +693,7 @@ planet_event = {
 	id = tbm.313
 
 	is_triggered_only = yes
+	location = this
 
 	title = tbm.313_name
 	desc = {
@@ -827,6 +832,7 @@ system_event = {
 	id = tbm.314
 
 	is_triggered_only = yes
+	location = this
 
 	title = tbm.314_name
 	desc = tbm.314_desc
@@ -851,6 +857,7 @@ planet_event = {
 	id = tbm.315
 
 	is_triggered_only = yes
+	location = this
 
 	title = tbm.315_name
 	desc = {

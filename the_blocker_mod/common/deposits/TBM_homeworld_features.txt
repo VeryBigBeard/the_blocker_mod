@@ -3789,7 +3789,7 @@ d_public_mining_concerns = {
 					}
 				}
 				add_modifier = {
-					modifier = modifier_privatizations
+					modifier = privatizations
 					years = 20
 				}
 			}
@@ -3856,10 +3856,7 @@ d_hive_aquifers = {
 
 	planet_modifier = {
 		district_mining_max = 1
-	}
-
-	country_modifier = {
-		leaders_energy_cost_add = 0.5
+		planet_miners_energy_upkeep_add = 0.2
 	}
 
 	potential = {
@@ -3906,10 +3903,7 @@ d_machine_water_reserve = {
 
 	planet_modifier = {
 		district_mining_max = 1
-	}
-
-	country_modifier = {
-		leaders_energy_cost_add = 0.5
+		planet_miners_energy_upkeep_add = 0.2
 	}
 
 	potential = {
@@ -3986,7 +3980,7 @@ d_outdated_food_equipment = {	# Gestalt Prosperous ag district
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_farmers_energy_upkeep_add = 1
+		planet_farmers_energy_upkeep_add = 0.2
 	}
 
 	potential = {
@@ -4681,6 +4675,44 @@ d_homeworld_cleared_land = {
 	potential = {
 		always = no
 	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_homeworld_arcology = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 600
+		}
+		produces = {
+			alloys = -1
+		}
+	}
+
+	planet_modifier = {
+		planet_max_buildings_add = 1
+		#planet_crime_mult = -0.2
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
 }
 
 d_experimental_fusion_reactor = {
@@ -4816,5 +4848,75 @@ d_space_academy = {
 		planet_jobs_engineering_research_produces_mult = 0.05
 	}
 
+	potential = {
+		always = no
+	}
 
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_flying_party = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+	
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			unity = 2000
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 10
+		pop_cat_worker_happiness = -0.20
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_upgrade_facility = {
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 600
+			alloys = 300
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 10
+		planet_pop_assembly_mult = -0.2
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
 }

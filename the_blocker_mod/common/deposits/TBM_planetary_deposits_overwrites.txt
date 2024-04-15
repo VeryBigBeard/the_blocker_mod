@@ -1195,7 +1195,7 @@ d_massive_glacier = {
 		}
 
 		# Climate Control Network Malfunctions
-		inline_script = climate_control_activate
+		climate_control_activate = yes
 	}
 
 	planet_modifier = {
@@ -1695,13 +1695,15 @@ d_arid_highlands = {
 
 		modifier = {
 			add = -2 # Never clear
-			OR = {
-				owner = {
-					has_modifier = waters_of_life
-				}
-				planet = {
-					has_planet_flag = desert_strong
-				}
+			owner = {
+				has_country_flag = waters_of_life
+			}
+		}
+
+		modifier = {
+			add = -2
+			planet = {
+				has_planet_flag = desert_strong
 			}
 		}
 	}
@@ -5877,7 +5879,7 @@ d_mauritanian_security_zone = {
 		category = deposit_blockers
 		cost = {
 			energy = 1200
-			engineering_research = 500
+			unity = 200
 		}
 	}
 

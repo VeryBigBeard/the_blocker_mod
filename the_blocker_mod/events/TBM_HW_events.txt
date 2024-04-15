@@ -6,7 +6,7 @@ namespace = tbm_hw
 
 ### Index
 #
-# 1. Advanced Geothermal Tap Handler
+# 6. Advanced Geothermal Tap Shutdown
 #
 # SITUATION - Food Reserves Running Out - Post-Apocalyptic Origin
 #
@@ -16,7 +16,108 @@ namespace = tbm_hw
 # 14. Malnutrition
 # 15. Privately-Sponsored Colony
 
+### 6. Advanced Geothermal Tap - Shutdown
+#	(on_colony_25_years_old)
+planet_event = {
+	id = tbm_hw.6
 
+	title = tbm_hw.6_name
+	desc = {
+		text = tbm_hw.6_desc_gestalt
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+	desc = {
+		text = tbm_hw.6_desc
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+	picture = GFX_evt_city_ruins
+	show_sound = event_machinery
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		has_deposit = d_experimental_geothermal_tap
+	}
+
+	option = {
+		name = tbm_hw.6_decommission
+		custom_tooltip = tbm_hw.6_lose_generator
+		remove_deposit = d_experimental_geothermal_tap
+		add_deposit = d_active_volcano
+	}
+	
+	option = {
+		name = tbm_hw.6_maintain
+		custom_tooltip = tbm_hw.6_nanocomppsite_shortage
+		owner = {
+			add_resource = {
+				energy = -800
+			}
+			add_modifier = {
+				modifier = nanocomposite_shortage
+				years = 2
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.6_ignore
+		custom_tooltip = tbm_hw.6_ignore_tooltip
+		set_planet_flag = geothermal_deprecation
+		hidden_effect = {
+			planet_event = {
+				id = tbm_hw.7
+				days = 9000
+				random = 180
+			}
+		}
+	}
+}
+
+### 7. Advanced Geothermal Tap Explodes
+planet_event = {
+	id = tbm_hw.7
+
+	title = tbm_hw.7_name
+	desc = tbm_hw.7_desc
+	picture = GFX_evt_large_explosion
+	show_sound = event_super_explosion
+
+	is_triggered_only = yes
+	location = this
+
+	trigger = {
+		has_planet_flag = geothermal_deprecation
+		has_deposit = d_experimental_geothermal_tap
+	}
+
+	immediate = {
+		set_variable_to_random_value = {
+			which = @damage
+			min = 10
+			max = 40
+		}
+		add_planet_devastation = @damage
+		remove_district = district_generator
+		remove_city_if_poss_and_other_if_not_regular = yes
+		remove_random_district = yes
+		remove_deposit = d_experimental_geothermal_tap
+		remove_planet_flag = geothermal_deprecation
+	}
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
 
 ### Situation - Food Reserves Running Out - Post-Apocalyptic Origin
 ###	11. Situation Trigger
@@ -964,7 +1065,7 @@ planet_event = {
 
 
 ### 51. Food Replicator Breaks Down - Warning (Remnant Origin)
-#	(on_colony_yearly_pulse, 15 years have to have pased, only called on homeworlds)
+#	(on_colony_five_yearly_pulse, 15 years have to have pased, only called on homeworlds)
 planet_event = {
 	id = tbm_hw.51
 
@@ -980,6 +1081,7 @@ planet_event = {
 	show_sound = event_machinery
 
 	is_triggered_only = yes
+	location = this
 
 	pre_triggers = {
 		has_owner = yes
@@ -1002,7 +1104,7 @@ planet_event = {
 		}
 		hidden_effect = {
 			planet_event = {
-				id = tbm_handler.101
+				id = tbm_hw.52
 				days = 1800
 				random = 720
 			}

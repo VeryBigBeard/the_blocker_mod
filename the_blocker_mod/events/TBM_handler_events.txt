@@ -268,10 +268,59 @@ event = {
 			every_owned_planet = {
 				### Get rid of unwanted fish. For real this time.
 				clear_blockers = yes
-				clear_deposits = yes
+				#clear_deposits = yes
+				every_deposit = {
+					remove_deposit = yes
+				}
 
 				generate_start_deposits_and_blockers = yes	# Re-runs basic TBM feature init.
 				fix_advanced_start_empire_features = yes		
+			}
+		}
+	}
+}
+
+### 3. Aquatic Fix
+#	This is a hack to fix a peristent bug with Aquatic empires where they would get appropriate features not districts due to some unknown problem with generate_start_buildings_and_districts that TBM does not patch. Until I can find it, this should reset their planets properly at the expense of a bit of a performance hit.
+event = {
+	id = tbm_handler.3
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				OR = {
+					is_anglers_empire = yes
+					has_trait = trait_aquatic
+				}
+			}
+
+			every_owned_planet = {
+				remove_all_buildings = yes
+				generate_start_buildings_and_districts = yes
+			}
+
+			if = {
+				limit = { has_country_flag = is_advanced_start_AI }
+				capital_scope = {
+					planet_event = {
+						id = game_start.22	# Re-do the advanced building spawn
+					}
+				}
+			}
+		}
+
+		### Little clean-up due to problem with remove_deposit = yes - you can only get this if we clear Public Mining Concerns; sometimes this happens if a Prosperous Unification empire is also Aquatic or an Advanced Start
+		every_country = {
+			every_owned_planet = {
+				if = {
+					limit = {
+						has_modifier = privatizations
+					}
+					remove_modifier = privatizations
+				}
 			}
 		}
 	}
@@ -858,168 +907,168 @@ planet_event = {
 	}
 }
 
-### 18. Mine-Shaft Manager
-planet_event = {
-	id = tbm_handler.18
+# ### 18. Mine-Shaft Manager
+# planet_event = {
+# 	id = tbm_handler.18
 
-	is_triggered_only = yes
-	hide_window = yes
+# 	is_triggered_only = yes
+# 	hide_window = yes
 
-	pre_triggers = {
-		has_owner = yes
-	}
+# 	pre_triggers = {
+# 		has_owner = yes
+# 	}
 
-	trigger = {
-		has_mine_shafts = yes
-		num_districts = {
-			type = district_mining
-			value > 1
-		}
-	}
+# 	trigger = {
+# 		has_mine_shafts = yes
+# 		num_districts = {
+# 			type = district_mining
+# 			value > 1
+# 		}
+# 	}
 
-	immediate = {
+# 	immediate = {
 		
-		export_trigger_value_to_variable = {
-			trigger = num_assigned_jobs
-			parameters = {
-				job = miner
-			}
-			variable = @miners
-		}
+# 		export_trigger_value_to_variable = {
+# 			trigger = num_assigned_jobs
+# 			parameters = {
+# 				job = miner
+# 			}
+# 			variable = @miners
+# 		}
 
-		random_list = {
-			10 = {
-				modifier = {
-					add = @miners
-				}
-				modifier = {
-					add = @mines
-				}
-				modifier = {
-					factor = 1.15
-					owner = {
-						OR = {
-							is_capitalist = yes
-							is_industrialist = yes
-						}
-					}
-				}
+# 		random_list = {
+# 			10 = {
+# 				modifier = {
+# 					add = @miners
+# 				}
+# 				modifier = {
+# 					add = @mines
+# 				}
+# 				modifier = {
+# 					factor = 1.15
+# 					owner = {
+# 						OR = {
+# 							is_capitalist = yes
+# 							is_industrialist = yes
+# 						}
+# 					}
+# 				}
 
-				random_deposit = {
-					limit = {
-						has_mine_shafts = yes
-					}
-					save_event_target_as = collapsed_mine
-				}
-				planet_event = {
-					id = tbm.90
-					days = 60
-					random = 15
-				}
-			}
-			90 = {}
-		}
-	}
-}
+# 				random_deposit = {
+# 					limit = {
+# 						has_mine_shafts = yes
+# 					}
+# 					save_event_target_as = collapsed_mine
+# 				}
+# 				planet_event = {
+# 					id = tbm.90
+# 					days = 60
+# 					random = 15
+# 				}
+# 			}
+# 			90 = {}
+# 		}
+# 	}
+# }
 
-### 19. Mine-Shaft Collapser
-planet_event = {
-	id = tbm_handler.19
+# ### 19. Mine-Shaft Collapser
+# planet_event = {
+# 	id = tbm_handler.19
 
-	is_triggered_only = yes
-	hide_window = yes
+# 	is_triggered_only = yes
+# 	hide_window = yes
 
-	immediate = {
+# 	immediate = {
 		
-		hidden_effect = {
-			set_variable_to_random_value = {
-				which = @casualty_chance
-				min = 1
-				max = 100
-			}
-		}
+# 		hidden_effect = {
+# 			set_variable_to_random_value = {
+# 				which = @casualty_chance
+# 				min = 1
+# 				max = 100
+# 			}
+# 		}
 
-		### Damage
-		add_planet_devastation = 10
-		event_target:collapsed_mine = {
-			remove_deposit = yes
-		}
+# 		### Damage
+# 		add_planet_devastation = 10
+# 		event_target:collapsed_mine = {
+# 			remove_deposit = yes
+# 		}
 		
-		### Casualties
-		if = {
-			limit = {
-				check_variable = {
-					which = @casualty_chance
-					value > 50
-				}
-			}
-			if = {
-				limit = {
-					owner = {
-						OR = {
-							has_policy_flag = ai_servitude
-							is_gestalt = yes
-						}
-					}
-					count_owned_pop = {
-						limit = {
-							has_job = miner
-							is_robotic_species = yes
-						}
-						count >= 2
-					}
-				}
-				random_owned_pop = {
-					limit = {
-						has_job = miner
-						OR = {
-							AND = {
-								is_robotic_species = yes
-								owner = { is_gestalt = no }
-							}
-							owner = { is_gestalt = yes }
-						}
-					}
-					kill_pop = yes
-					kill_pop = yes
-				}
+# 		### Casualties
+# 		if = {
+# 			limit = {
+# 				check_variable = {
+# 					which = @casualty_chance
+# 					value > 50
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					owner = {
+# 						OR = {
+# 							has_policy_flag = ai_servitude
+# 							is_gestalt = yes
+# 						}
+# 					}
+# 					count_owned_pop = {
+# 						limit = {
+# 							has_job = miner
+# 							is_robotic_species = yes
+# 						}
+# 						count >= 2
+# 					}
+# 				}
+# 				random_owned_pop = {
+# 					limit = {
+# 						has_job = miner
+# 						OR = {
+# 							AND = {
+# 								is_robotic_species = yes
+# 								owner = { is_gestalt = no }
+# 							}
+# 							owner = { is_gestalt = yes }
+# 						}
+# 					}
+# 					kill_pop = yes
+# 					kill_pop = yes
+# 				}
 
-				create_message = {
-					type = "MINE_SHAFT_COLLAPSE"
-					localization = tbm_message_mine_shaft_collapse_robot_casaulties
-					days = -1
-				}
-			}
-			else = {
-				random_owned_pop = {
-					limit = {
-						has_job = miner
-					}
-					kill_pop = yes
-					kill_pop = yes
-				}
+# 				create_message = {
+# 					type = "MINE_SHAFT_COLLAPSE"
+# 					localization = tbm_message_mine_shaft_collapse_robot_casaulties
+# 					days = -1
+# 				}
+# 			}
+# 			else = {
+# 				random_owned_pop = {
+# 					limit = {
+# 						has_job = miner
+# 					}
+# 					kill_pop = yes
+# 					kill_pop = yes
+# 				}
 
-				add_modifier = {
-					modifier = miners_strike
-					days = 720
-				}
+# 				add_modifier = {
+# 					modifier = miners_strike
+# 					days = 720
+# 				}
 
-				create_message = {
-					type = "MINE_SHAFT_COLLAPSE"
-					localization = tbm_message_mine_shaft_collapse_miners_dead
-					days = -1
-				}
-			}
-		}
-		else = {
-			create_message = {
-				type = "MINE_SHAFT_COLLAPSE"
-				localization = tbm_message_mine_shaft_collapse_no_casaulties
-				days = -1
-			}
-		}
-	}
-}
+# 				create_message = {
+# 					type = "MINE_SHAFT_COLLAPSE"
+# 					localization = tbm_message_mine_shaft_collapse_miners_dead
+# 					days = -1
+# 				}
+# 			}
+# 		}
+# 		else = {
+# 			create_message = {
+# 				type = "MINE_SHAFT_COLLAPSE"
+# 				localization = tbm_message_mine_shaft_collapse_no_casaulties
+# 				days = -1
+# 			}
+# 		}
+# 	}
+# }
 
 ### 20. False Prospects Handler (on_district_complete)
 #	For event, see TBM_02_events.txt
@@ -1037,7 +1086,7 @@ planet_event = {
 
 	trigger = {
 		is_artificial = no
-		NOT = { has_planet_flag = mining_bust } 	# Helps avoid over-firing whenc onstructing a lot of districts.
+		NOT = { has_planet_flag = mining_bust } 	# Helps avoid over-firing when constructing a lot of districts.
 		last_district_changed = district_mining
 		any_deposit = {
 			has_mineral_seam = yes
@@ -1069,7 +1118,7 @@ planet_event = {
 				}
 
 				planet_event = {
-					id = tbm.89
+					id = tbm.88
 					days = 720
 					random = 180
 				}
@@ -1139,6 +1188,7 @@ planet_event = {
 	show_sound = event_default
 
 	is_triggered_only = yes
+	location = this
 
 	immediate = {
 		add_modifier = {
@@ -1238,19 +1288,20 @@ planet_event = {
 	}
 }
 
-### TEST - Imperial Fiefdom
-event = {
-	id = tbm_handler.104
+### 105. Pre-FTL Achieve FTL
+#	Handles features for empires achieving FTL. Called from achieve_ftl_effect via on_action tbm_achieve_ftl.
+#	Vanilla Pre-FTLs clear their two Early Space Age blockers on reaching the Space Age via clear_blockers = yes, which wipes out all TBM features. This re-generates a standard starting spread.
+#	Note: from = prev due to custom on_action
+country_event = {
+	id = tbm_handler.105
 
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		event_target:origin_imperial_homeland_country = {
-			every_owned_planet = {
-				add_deposit = d_space_academy
-			}
-			log = "Added on_game_start to IF Overlord"
+		from.prev.capital_scope = {
+			clear_deposits_without_effects = yes
+			generate_start_deposits_and_blockers = yes
 		}
 	}
 }

@@ -376,7 +376,7 @@ d_steppe_uplands = {
 		planet_max_districts_add = -2
 		district_mining_max = 1
 		district_generator_max = 1
-		planet_jobs_productive_produces_mult = 0.05
+		pop_category_workers_produces_mult = 0.05
 	}
 
 	prerequisites = { "tech_terrestrial_sculpting" }
@@ -646,7 +646,7 @@ d_giant_tree  = {
 
 d_sea_monster = {
 	icon = d_landed_dragon
-	category = deposit_category_final
+	category = deposit_cat_final
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1604,6 +1604,7 @@ d_frozen_wasteland = {
 	}
 	
 	on_cleared = {
+		climate_control_activate = yes
 		owner = {
 			add_resource = {
 				minerals = 200
