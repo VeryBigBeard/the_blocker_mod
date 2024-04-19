@@ -340,26 +340,21 @@ planet_event = {
 
 	# Several pre-reqs here that basically amount to crummy urban living; should be less common in late-game post-scarcity economies
 	trigger = {
-		owner = {
-			any_owned_planet = {
-			
-				is_artificial = no
+		is_artificial = no
 				
-				# Got to have one each of sprawl and poor conditions
-				OR = {
-					free_amenities < 5
-					free_housing > 5
-					#planet_crime > 15
-				}
-				OR = {
-					free_district_slots < 1
-					num_districts = {
-						type = district_city
-						value >= 3
-					}
-				}	
-			}
+		# Got to have one each of sprawl and poor conditions
+		OR = {
+			free_amenities < 5
+			free_housing > 5
+			#planet_crime > 15
 		}
+		OR = {
+			free_district_slots < 1
+			num_districts = {
+				type = district_city
+				value >= 3
+			}
+		}	
 	}
 
 	immediate = {
@@ -417,6 +412,8 @@ planet_event = {
 
 				planet_event = {
 					id = tbm_handler.5
+					days = 180
+					random = 90
 				}
 			}
 			# No slums this time.
@@ -455,7 +452,7 @@ planet_event = {
 	
 }
 
-### 6. Industrial Wasteland Generator (on_colony_yearly_pulse)
+### 6. Industrial Wasteland Handler (on_colony_yearly_pulse)
 planet_event = {
 	id = tbm_handler.6
 	hide_window = yes
@@ -463,37 +460,34 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		owner = {
-			any_owned_planet = {
-				is_artificial = no
+		is_artificial = no
 	
-				# Got to have one each of sprawl and poor business conditions
+		# Got to have one each of sprawl and poor business conditions
+		OR = {
+			free_amenities < 8
+			planet_crime > 10
+			any_owned_pop = {
 				OR = {
-					free_amenities < 8
-					planet_crime > 10
-					any_owned_pop = {
-						OR = {
-							has_job = merchant
-						}
-					}
+					has_job = merchant
 				}
-				OR = {
-					# Partly to punish highly-specialized planets of any kind, but okay as long as you don't stuff it.
-					free_district_slots < 2
-					OR = {
-						num_districts = {
-							type = district_industrial
-							value >= 3
-						}
-						num_districts = {
-							type = district_mining
-							value >= 3
-						}
-						num_districts = {
-							type = district_generator
-							value >= 3
-						}
-					}
+			}
+		}
+
+		# Partly to punish highly-specialized planets of any kind, but okay as long as you don't stuff it.
+		OR = {
+			free_district_slots < 2
+			OR = {
+				num_districts = {
+					type = district_industrial
+					value >= 3
+				}
+				num_districts = {
+					type = district_mining
+					value >= 3
+				}
+				num_districts = {
+					type = district_generator
+					value >= 3
 				}
 			}
 		}
@@ -536,7 +530,7 @@ planet_event = {
 					random = 90
 				}
 			}
-			# No slums this time.
+			# No wasteland this time.
 			50 = {
 
 			}
@@ -573,13 +567,21 @@ planet_event = {
 
 	pre_triggers = {
 		has_owner = yes
-		is_occupied_flag = yes	# Occupying forces not so keen on new settlements as they are on new power plants
+		is_occupied_flag = no	# Occupying forces not so keen on new settlements as they are on new power plants
 		is_homeworld = no
 	}
 
 	trigger = {
-		has_building = building_capital 	# If too much, can change this to is_col_type = col_default for colony des only
+		is_artificial = no
+		OR = {
+			has_building = building_colony_shelter
+			has_building = building_capital 	# If too much, can change this to is_col_type = col_default for colony des only
+		}
 		owner = { is_gestalt = no }
+		num_free_districts = {
+			type = any
+			value > 0
+		}
 	}
 
 	immediate = {
@@ -603,14 +605,14 @@ planet_event = {
 					factor = 0.5
 					count_deposits = {
 						type = d_settlement
-						count > 2
+						count >= 2
 					}
 				}
 				modifier = {
 					factor = 0.5
 					count_deposits = {
 						type = d_settlement
-						count > 4
+						count >= 4
 					}
 				}
 
@@ -655,7 +657,12 @@ planet_event = {
 	}
 
 	trigger = {
+		is_artificial = no
 		owner = { is_gestalt = no }
+		num_free_districts = {
+			type = district_city
+			value > 0
+		}
 	}
 
 	immediate = {
@@ -694,7 +701,11 @@ planet_event = {
 					}
 				}
 
-				
+				planet_event = {
+					id = tbm_handler.11
+					days = 180
+					random = 90
+				}
 			}
 			
 			90 = {}

@@ -48,9 +48,14 @@ planet_event = {
 		has_deposit = d_experimental_geothermal_tap
 	}
 
+	immediate = {
+		log = "Called tbm_hw.6 - Geothermal Tap Warning"
+	}
+
 	option = {
 		name = tbm_hw.6_decommission
 		custom_tooltip = tbm_hw.6_lose_generator
+
 		remove_deposit = d_experimental_geothermal_tap
 		add_deposit = d_active_volcano
 	}
@@ -58,6 +63,7 @@ planet_event = {
 	option = {
 		name = tbm_hw.6_maintain
 		custom_tooltip = tbm_hw.6_nanocomppsite_shortage
+
 		owner = {
 			add_resource = {
 				energy = -800
@@ -72,6 +78,7 @@ planet_event = {
 	option = {
 		name = tbm_hw.6_ignore
 		custom_tooltip = tbm_hw.6_ignore_tooltip
+		
 		set_planet_flag = geothermal_deprecation
 		hidden_effect = {
 			planet_event = {

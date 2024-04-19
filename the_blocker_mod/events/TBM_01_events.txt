@@ -1240,6 +1240,7 @@ planet_event = {
 		NOT = {
 			is_homeworld = yes
 		}
+		has_upgraded_capital = yes
 		last_district_changed = district_city	# on_district_complete checks built
 		
 		# Must have a coastal city (long-term, should add check for coastal features + at least one district; for now, just lower req on ocean worlds)
