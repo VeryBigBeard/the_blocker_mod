@@ -1250,15 +1250,6 @@ event = {
 				modifier = wild_world
 			}
 		}
-
-		# Debug
-		set_global_flag = debug_wild_worlds_running
-		
-		every_playable_country = {
-			country_event = {
-				id = tbm.1
-			}
-		}
 	}
 }
 
@@ -1288,6 +1279,27 @@ planet_event = {
 	}
 }
 
+### 104. Gestalt Wild World Adapter
+#	on_colonizzation_started and on_planet_transfer
+planet_event = {
+	id = tbm_handler.104
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = wild_world
+		owner = { is_gestalt = yes }
+	}
+
+	immediate = {
+		remove_modifier = wild_world
+		add_modifier = {
+			modifier = wild_world_gestalt
+		}
+	}
+}
+
 ### 105. Pre-FTL Achieve FTL
 #	Handles features for empires achieving FTL. Called from achieve_ftl_effect via on_action tbm_achieve_ftl.
 #	Vanilla Pre-FTLs clear their two Early Space Age blockers on reaching the Space Age via clear_blockers = yes, which wipes out all TBM features. This re-generates a standard starting spread.
@@ -1300,7 +1312,13 @@ country_event = {
 
 	immediate = {
 		from.prev.capital_scope = {
-			clear_deposits_without_effects = yes
+			clear_deposits = yes
+			if = {
+				limit = {
+					has_modifier = cleared_hot_springs
+				}
+				remove_modifier = cleared_hot_springs
+			}
 			generate_start_deposits_and_blockers = yes
 		}
 	}

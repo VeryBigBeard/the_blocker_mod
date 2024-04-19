@@ -1,5 +1,6 @@
 
 # Adds random delay to certain events that otherwise don't support random = x, mainly messages
+# Not currently used
 generator_value = {
 	base = 120
 	multiply = random_factor
@@ -101,5 +102,46 @@ resource_shipment = {
 			type = $RESOURCE$
 		}
 		mode = set
+	}
+}
+
+### Colonial Strain - Infrastructure
+#	Adds upkeep to colonial infrastructure as population on the planet grows, straining national unity
+colonial_strain_infrastructure = {
+	base = 2
+	modifier = {
+		factor = trigger:num_pops
+	}
+	modifier = {
+		divide = trigger:num_pops
+		num_pops < 10
+	}
+	multiply = 0.1
+	
+	min = 2
+	floor = yes
+}
+
+### Colonial Spaceport Cohesion
+#	Currently kind of an experiment for something that may become a completely different mod.
+#	Checks local trade value, and boosts unity output of Frontier Spaceport if it's being used a lot.
+#	Basically, you can exceed the unity upkeep penalty if you have a bustling colonial spaceport.
+colonial_spaceport_cohesion = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = has_collected_system_trade_value
+		trigger_scope = from.solar_system
+		mode = set
+	}
+}
+
+colonial_cohesion_gestalt = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = num_assigned_jobs
+		parameters = {
+			job = job_synapse_drone
+		}
+		mode = add
 	}
 }

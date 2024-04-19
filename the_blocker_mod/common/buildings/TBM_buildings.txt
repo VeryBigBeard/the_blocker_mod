@@ -3,7 +3,7 @@
 
 building_xeno_synaptic_node = {
 	
-	icon = "gfx/interface/icons/buildings/unused/building_biolab_4.dds"
+	#icon = "gfx/interface/icons/buildings/unused/building_biolab_4.dds"
 
 	can_build = yes
 	can_demolish = yes
@@ -64,7 +64,7 @@ building_xeno_synaptic_node = {
 
 building_science_outposts = {
 	
-	icon = "gfx/interface/icons/buildings/unused/building_hydroponics_farm_3.dds"
+	#icon = "gfx/interface/icons/buildings/unused/building_hydroponics_farm_3.dds"
 
 	base_buildtime = @b1_time
 	base_cap_amount = 1
@@ -92,7 +92,8 @@ building_science_outposts = {
 		}
 		upkeep = {
 			energy = 2
-			unity = 2
+			unity = 1
+			multiplier = value:colonial_strain_infrastructure
 		}
 	}
 
@@ -115,17 +116,87 @@ building_science_outposts = {
 		modifier = {
 			job_xeno_analysis_drone_add = 2
 		}
+	}	
+}
+
+building_frontier_spaceport = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2	# These are colonial buildings intended to built early and eventually removed
+
+	category = resource
+
+	potential = {
+		has_upgraded_capital = no
 	}
 
-	triggered_country_modifier = {
+	ruined_trigger = {
+		has_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 5
+			unity = 1
+			multiplier = value:colonial_strain_infrastructure
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = no }
+			}
+			unity = 1
+			multiplier = value:colonial_spaceport_cohesion
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = yes }
+			}
+			unity = 1
+			multiplier = value:colonial_cohesion_gestalt
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		trade_value_mult = 0.1
+		job_colonist_add = 2
+	}
+
+	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		modifier = {
-			# Neuro-Analysis
+		planet_jobs_unity_produces_mult = 0.1
+	}
 
+	triggered_desc = {
+		text = tbm_frontier_spaceport_desc
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
 		}
 	}
-	
+
+	triggered_desc = {
+		text = tbm_frontier_spaceport_gestalt_desc
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+	}
 }

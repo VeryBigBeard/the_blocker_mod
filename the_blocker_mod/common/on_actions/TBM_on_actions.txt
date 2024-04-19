@@ -32,6 +32,12 @@ on_yearly_pulse = {
 
 ### Main Feature Events
 
+on_colonization_started = {
+	events = {
+		tbm_handler.104 	# Wild World Adapter for gestalts
+	}
+}
+
 on_colonized = {
 	events = {
 		tbm_handler.100	# Pioneering Colonists
@@ -86,5 +92,11 @@ on_district_complete = {
 	random_events = {
 		50 = 0
 		50 = tbm.21 # Proposed Marina
+	}
+}
+
+on_planet_trasnfer = {
+	events = {
+		tbm_handler.104 	# Wild World Adapter for gestlats
 	}
 }

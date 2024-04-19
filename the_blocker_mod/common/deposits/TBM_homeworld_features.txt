@@ -140,6 +140,7 @@ d_impact_memorial = {
 }
 
 d_homeworld_deep_trench = {
+	icon = d_deep_trench
 	category = deposit_cat_blockers
 
 	use_for_min_max_adjustments = yes
@@ -161,10 +162,6 @@ d_homeworld_deep_trench = {
 		cost = {
 			energy = 1000
 		}
-	}
-
-	on_cleared = {
-		add_deposit = d_submerged_ore_veins
 	}
 
 	### Should add on_cleared event for exploration.
@@ -1078,6 +1075,14 @@ d_gestalt_fossil_fuel_reserves = {
 			owner = { is_gestalt = yes }
 		}
 		planet_pops_energy_upkeep_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_machine_servitor }
+		}
+		pop_category_bio_trophy_unity_produces_mult = -0.1
 	}
 
 	potential = {

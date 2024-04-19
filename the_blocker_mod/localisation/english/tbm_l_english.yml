@@ -65,6 +65,11 @@
  mod_job_xeno_naturalist_add:0 "$job_xeno_naturalist$ Jobs"
  mod_job_xeno_analysis_drone_add:0 "$job_xeno_analysis_drone$ Jobs"
 
+ building_frontier_spaceport:0 "Frontier Spaceport"
+ building_frontier_spaceport_desc:0 "Far out on the edges of known civlization, this spaceport handles all manner of cargo and colonists. The noise of half-built dockyards is drowned out by bustling bars and the sound of roading shuttle engines."
+ tbm_frontier_spaceport_desc:0 "§CA §Y£building£ Frontier Spaceport§C helps alleviate strain on £unity£ $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding§!"
+ tbm_frontier_spaceport_gestalt_desc:0 "§CA §Y£building£ Frontier Spaceport§C helps alleviate strain on £unity£ $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_synapsse_drone_plural$§C are present on this world.§!"
+
  # TBM Custom Jobs
 
  planet_colonist:0 "Colonist Jobs"  # Economic Category

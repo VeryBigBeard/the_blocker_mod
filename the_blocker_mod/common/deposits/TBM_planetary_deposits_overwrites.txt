@@ -3743,6 +3743,10 @@ d_green_hills = {
 
 	should_swap_deposit_on_terraforming = no
 
+	prerequisites = {
+		"tech_mountain_range"
+	}
+
 	time = 720
 
 	resources = {

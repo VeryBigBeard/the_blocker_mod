@@ -1316,7 +1316,6 @@ d_volcanic_soil = {
 }
 
 d_volcanic_ash = {
-	icon = gfx/interface/icons/deposits/unused/d_molten_planet
 	category = deposit_cat_blockers
 
 	is_for_colonizable = yes
@@ -2286,6 +2285,10 @@ d_drylands = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
+
+	prerequisites = {
+		"tech_quicksand_basin"	# Placeholder - will likely add hydro tech at some point
+	}
 
 	time = 720
 
@@ -4092,7 +4095,7 @@ d_dustbowl = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_farmers_food_produces_mult = -0.2
+		planet_farmers_food_produces_mult = -0.1
 	}
 
 	ai_weight = {
@@ -4107,6 +4110,47 @@ d_dustbowl = {
 					value < 1
 				}
 			}
+		}
+	}
+}
+
+d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld variant right now.
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+	all_blocker_swap_types = yes
+	blocker_swap_types = {
+		d_submerged_ore_veins
+	}
+
+	time = 480
+
+	prerequisites = {
+		"tech_toxic_kelp"	# This should be a custom tech, as we're not managing ecology here, but going very very deep into a high-pressure environment (esp on a size 30 planet!)
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	### Should add on_cleared event for exploration.
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			add = 1000	# Keep as no negative effects but don't block ecu.
+			root = { free_district_slots = 0 }
+			owner = { has_ascension_perk = ap_arcology_project }
 		}
 	}
 }
