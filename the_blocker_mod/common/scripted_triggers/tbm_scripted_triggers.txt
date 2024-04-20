@@ -9,6 +9,13 @@ is_ecu = {
 	}
 }
 
+# For is_homeworld except encompassing lost colonies and can evaluate to false
+# scope = planet
+is_starting_planet = {
+	is_homeworld = yes
+	is_lost_colony_starting_planet = no
+}
+
 
 # Checks Lost Colony starting world.
 # Really hacky and will probably remove, but currently no other way to check LC starting planet?

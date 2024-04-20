@@ -52,7 +52,6 @@ on_colony_yearly_pulse = {
 		tbm.16 	# Xenofauna Attack
 		tbm.18 	# Landslide
 		tbm.51 # Toxic Kelp
-		tbm.52 # Kelp Insights
 		tbm.84 	# Vicious Sandstorm
 		tbm.86	# Struck the Motherlode
 

@@ -3502,6 +3502,10 @@ d_bountiful_plains = {
 		district_farming_max = 1
 		mult = value:district_amount_mastery_of_nature
 	}
+	
+	potential = {
+		NOT = { is_planet_class = pc_nuked }
+	}
 
 	drop_weight = {
 		weight = @low

@@ -361,6 +361,10 @@ planet_event = {
 		is_occupied_flag = no
 	}
 
+	trigger = {
+		is_starting_planet = no
+	}
+
 	#No change
 	option = {
 		name = tbmker.5.a
@@ -583,6 +587,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		has_deposit = d_active_volcano
 	}
 
@@ -666,6 +671,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		any_deposit = {
 			is_deposit_type = d_active_volcano
 			NOT = { has_deposit_flag = volcano_erupted }
@@ -817,6 +823,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		has_deposit = d_active_volcano	# Even volcanoes that are on cooldown can trigger warnings.
 		owner = { has_technology = tech_volcano }
 	}
@@ -876,6 +883,10 @@ planet_event = {
 		is_ai = no
 	}
 
+	trigger = {
+		is_starting_planet = no
+	}
+
 	immediate = {
 		owner = {
 			add_tech_progress = {
@@ -911,6 +922,10 @@ planet_event = {
 		has_owner = yes
 		is_homeworld = no
 		is_ai = no
+	}
+
+	trigger = {
+		is_starting_planet = no
 	}
 
 	immediate = {
@@ -1004,6 +1019,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		NOR = {
 			has_planet_flag = night_watches_xenofauna
 			has_planet_flag = settlement_attacked
@@ -1119,6 +1135,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		any_deposit = {
 			landmass_collapsable = yes
 		}

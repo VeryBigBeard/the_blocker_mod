@@ -341,6 +341,7 @@ planet_event = {
 	# Several pre-reqs here that basically amount to crummy urban living; should be less common in late-game post-scarcity economies
 	trigger = {
 		is_artificial = no
+		years_passed > 5
 				
 		# Got to have one each of sprawl and poor conditions
 		OR = {
@@ -361,52 +362,33 @@ planet_event = {
 		
 		random_list = {
 			# Slums generated, more likely if conditions are already bad.
-			20 = {
+			10 = {
 				modifier = {
-					factor = 2
+					factor = 2.5
 					any_owned_pop = {
 						has_low_living_standard_type = yes
 					}
 				}
 				modifier = {
-					factor = 2
+					factor = 1.25
 					owner = {
 						has_deficit = consumer_goods
 					}
 				}
-				modifier = {
-					factor = 2
-					planet_resource_compare = {	# TEST performance hit on yearly pulse.
-						resource = consumer_goods
-						value < 2
-					}
-				}
 				modifier = {	# Incentivize local food!
-					factor = 2
+					factor = 1.25
 					planet_resource_compare = {
 						resource = food
 						value < 0
 					}
 				}
 				modifier = {
-					factor = 2
+					factor = 1.25
 					owner = {
 						OR = {
 							has_authority = auth_corporate
 							has_authority = auth_oligarchic
 						}
-					}
-				}
-				modifier = {
-					factor = 2
-					any_owned_pop = {
-						happiness < 20
-					}
-					any_owned_pop = {
-						happiness < 20
-					}
-					any_owned_pop = {
-						happiness < 20
 					}
 				}
 
@@ -461,16 +443,12 @@ planet_event = {
 
 	trigger = {
 		is_artificial = no
-	
+		years_passed > 10	# Grace period for homeworlds; we do want them to struggle with these, but there's a lot going on at game start with other features.
+
 		# Got to have one each of sprawl and poor business conditions
 		OR = {
 			free_amenities < 8
 			planet_crime > 10
-			any_owned_pop = {
-				OR = {
-					has_job = merchant
-				}
-			}
 		}
 
 		# Partly to punish highly-specialized planets of any kind, but okay as long as you don't stuff it.
@@ -573,6 +551,7 @@ planet_event = {
 
 	trigger = {
 		is_artificial = no
+		is_starting_planet = no
 		OR = {
 			has_building = building_colony_shelter
 			has_building = building_capital 	# If too much, can change this to is_col_type = col_default for colony des only
@@ -658,6 +637,7 @@ planet_event = {
 
 	trigger = {
 		is_artificial = no
+		is_starting_planet = no
 		owner = { is_gestalt = no }
 		num_free_districts = {
 			type = district_city
@@ -747,6 +727,10 @@ planet_event = {
 	}
 
 	trigger = {
+		years_passed > 5
+		is_starting_planet = no
+		NOT = { is_same_value = owner.capital_scope }
+		colony_age > 5
 		colony_age < 100
 		check_variable = {
 			which = @prospecting_chance
@@ -759,7 +743,7 @@ planet_event = {
 		planet_event = {
 			id = tbm.300
 			days = 180
-			random = 90
+			random = 180
 		}
 	}
 
@@ -777,24 +761,32 @@ planet_event = {
 	}
 
 	trigger = {
+		years_passed > 50	# Partly because you're unlikely ot have Soil Remediation that quickly and without it, Dustbowls can choke your ag colonies rather quickly before any more complex economy is set up. The intent of these is more to target breadbasket worlds in a larger empire.
+
 		colony_age > 40
 		OR = {
 			num_districts = {
 				type = district_farming
-				value > 3
+				value > 6
 			}
 			num_districts = {
 				type = any
-				value > 7
+				value > 12
 			}
 		}
 		any_deposit = {
 			is_farmland_feature = yes
 			can_be_exhausted = yes
 		}
+		
+		# If we're just maintaining land but not actually growing on it, give osme amnesty; this also helps alleviate situations where Anglers are getting Dustbowls
+		num_assigned_jobs = {
+			job = farmer
+			value > 3
+		}
 	}
 
-	immediate = {
+	immediate = {	
 		random_list = {
 			50 = {
 				planet_event = {
@@ -803,7 +795,13 @@ planet_event = {
 					random = 180
 				}
 			}
-			50 = {}
+			50 = {
+				# Much less chance for lower-density agrarians to exhaust their planets
+				modifier = {
+					factor = 4
+					owner = { has_valid_civic = civic_agrarian_idyll }
+				}
+			}
 		}
 	}
 }

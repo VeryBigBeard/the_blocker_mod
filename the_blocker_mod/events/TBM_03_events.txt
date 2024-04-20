@@ -2,9 +2,6 @@
 
 namespace = tbm
 
-### Variables
-@carbon_economy = 0
-
 ### 300. Mining Prospects (on_colony_yearly_pulse - random = 40)
 planet_event = {
 	id = tbm.300
@@ -56,6 +53,7 @@ planet_event = {
 	# Add a mining feature.
 	option = {
 		name = tbm.300.mining
+		custom_tooltip = tbm.300_mining_tooltip
 		
 		ai_chance = {
 			factor = 100
@@ -111,12 +109,7 @@ planet_event = {
 			remove_deposit = yes
 		}
 
-		random_list = {
-			20 = {
-				add_deposit = d_nature_preserve_blocker
-			}
-			80 = {}
-		}
+		add_deposit = d_big_nature_preserve_blocker
 	}
 
 	after = {
@@ -146,8 +139,12 @@ planet_event = {
 		is_occupied_flag = no
 	}
 
+	trigger = {
+		years_passed > 5
+		is_starting_planet = no
+	}
+
 	immediate = {
-		# No actual trigger check for this--just a bunch of weights below.
 
 		random_list = {
 			# 5% chance to discover new fossil fuels
