@@ -572,6 +572,15 @@ generate_start_deposits_and_blockers = {
 		limit = { owner = { has_authority = auth_corporate }}
 		add_deposit = d_slush_funds
 	}
+
+	### MECHANISTS
+	#	Get extra coffeemakers to make up for lack of clerks caused by low pop count
+	if = {
+		limit = {
+			owner = { has_origin = origin_mechanists }
+		}
+		add_deposit = d_droid_factory
+	}
 	
 	### PROSPEROUS UNIFICATION (adds +1 to all districts, as in vanilla)
 	if = {

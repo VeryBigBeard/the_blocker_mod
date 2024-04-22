@@ -5,19 +5,19 @@
  
  # Handlers & Generators
 
- MESSAGE_SLUM_GENERATOR_TITLE:0 "New £blocker£ §YSprawling Slums§! appeared on [from.GetName]"
+ MESSAGE_SLUM_GENERATOR_TITLE:0 "New £blocker£ §YSprawling Slums§! appeared on [planet.GetName]"
  SLUM_GENERATOR:0 "Cramped and difficult living conditions on §S[planet.GetName]§! have given rise to new £blocker£ §YSprawling Slums§! around the [planet.GetPlanetMoon]'s cities'.\n\nIf left to fester, these may affect happiness and approval. To avoid future slums, improve local conditions by adding amenities and housing."
 
- MESSAGE_INDUSTRIAL_WASTELAND_TITLE:0 "New £blocker£ §YIndustrial Wasteland§! appeared on [from.GetName]"
+ MESSAGE_INDUSTRIAL_WASTELAND_TITLE:0 "New £blocker£ §YIndustrial Wasteland§! appeared on [planet..GetName]"
  INDUSTRIAL_WASTELAND:0 "Chased away by declining local conditions and a poor economy, businesses and industries are abandoning §S[planet.GetName]§! in droves, leaving £blocker£ §YIndustrial Wasteland§! behind.\n\nThese derelict regions are dens of crime and terrible polluters. To avoid future wastelands, improve local conditions by adding amenities and reducing crime."
 
- MESSAGE_URBAN_POWER_PLANT_TITLE:0 "A new £blocker£ §YUrban Power Plant§! has opened on [from.GetName]" 
+ MESSAGE_URBAN_POWER_PLANT_TITLE:0 "A new £blocker£ §YUrban Power Plant§! has opened on [planet.GetName]" 
  URBAN_POWER_PLANT:0 "The growing urban area on §S[planet.GetName]§! has long exceeded the planet's own energy supply, and shipments from off-world aren't enough. Local planners have authorized construction of a new £blocker£ §YUrban Power Plant§! in the heart of the [planet.GetPlanetMoon]'s largest mega-city to meet ballooning energy needs.\n\nAn £blocker£ §YUrban Power Plant§! will allow additional $district_generator$ development, but eat up space and make noisy neighbors. To avoid these unsightly behemoths, ensure the planet has a good ratio of $district_generator_plural$ to $district_industrial_plural$ and $district_city_plural$."
 
- MESSAGE_COLONIAL_SETTLEMENT_TITLE:0 "A new £blocker£ §YPioneer Settlement§! appeared on [from.GetName]"
+ MESSAGE_COLONIAL_SETTLEMENT_TITLE:0 "A new £blocker£ §YPioneer Settlement§! appeared on [planet.GetName]"
  COLONIAL_SETTLEMENT:0 "Enterprising pioneers on §S[planet.GetName]§! have discovered and settled in a rich region on the frontier seeking new and prosperous lives.\n\nAlthough £blocker£ §YPioneer Settlements§! attract all kinds, the £colonist£ §CColonists§! there will help explore and exploit the local terrain. These settlements are more likely on worlds with extra district space and a growing population."
 
- MESSAGE_FRONTIER_FARMLAND_TITLE:0 "New £blocker£ §YFrontier Farmland§! has been granted on [from.GetName]"
+ MESSAGE_FRONTIER_FARMLAND_TITLE:0 "New £blocker£ §YFrontier Farmland§! has been granted on [planet.GetName]"
  FRONTIER_FARMLAND:0 "Ranchers and farmers are flocking to §Y[planet.GetName]§! in search of new lands and new lives, establishing§T Frontier Farmlands§! in outlying regions.\n\nThese homesteads require ample space for grazing and cultivation, but will help provide£T $district_farming_plural$. These farms are more likely to be created on worlds with lots of free space or ideal grazing conditions."
 
  MESSAGE_DUSTBOWL_GENERATOR_TITLE:0 "A new £blocker£§YDustbowl§! has developed on [planet.GetName]"

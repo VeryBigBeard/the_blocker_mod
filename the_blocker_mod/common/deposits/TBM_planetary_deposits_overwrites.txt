@@ -1200,7 +1200,7 @@ d_massive_glacier = {
 
 	planet_modifier = {
 		planet_max_districts_add = -3
-		planet_miners_minerals_produces_mult = 0.05
+		planet_miners_minerals_produces_mult = 0.1
 		planet_researchers_engineering_research_produces_add = 1
 	}
 

@@ -4597,7 +4597,42 @@ d_warm_lagoon = {
 	}
 }
 
+d_droid_factory = {
+	category = deposit_cat_blockers
 
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1200
+			alloys = 500
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_mult = 0.25
+		planet_researchers_produces_mult = -0.15
+		planet_pops_robotics_energy_upkeep_mult = 0.25
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			add = 1
+			free_amenities > 10		# AI often struggles with amenity death spirals. Research hit is harsh, but we want to avoid the spiral.
+		}
+	}
+}
 
 
 
