@@ -214,7 +214,7 @@ d_mine_shafts = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_crime_mult = 0.1
+		planet_crime_add = 5
 		
 	}
 
@@ -313,6 +313,7 @@ d_computerized_extraction_sites = {
 d_tbm_strip_mine = {
 	icon = d_crater
 	category = deposit_cat_blockers
+	custom_tooltip = tbm_deposit_tooltip_test
 
 	use_for_min_max_adjustments = yes
 
@@ -4629,7 +4630,9 @@ d_droid_factory = {
 
 		modifier = {
 			add = 1
-			free_amenities > 10		# AI often struggles with amenity death spirals. Research hit is harsh, but we want to avoid the spiral.
+			root = {
+				free_amenities > 10		# AI often struggles with amenity death spirals. Research hit is harsh, but we want to avoid the spiral.
+			}
 		}
 	}
 }

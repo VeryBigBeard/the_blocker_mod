@@ -159,6 +159,9 @@ fix_fallen_empire_worlds = {
 
 		# Reroll on colonies, clean-up
 		every_owned_planet = {
+			limit = {
+				NOT = { is_planet_class = pc_city }
+			}
 			reroll_planet = yes
 		}
 	}
@@ -254,18 +257,21 @@ fix_fallen_empire_worlds = {
 	}
 
 	# (no changes for now below; handled by the mod compat reroll)
-	# Materialist
-	# every_country = {
-	# 	limit = {
-	# 		is_fallen_empire = yes
-	# 		is_materialist = yes
-	# 	}
+	### Materialist
+	every_country = {
+		limit = {
+			is_fallen_empire = yes
+			is_materialist = yes
+		}
 
-	# 	# Reroll on colonies, clean-up
-	# 	every_owned_planet = {
-	# 		reroll_deposits = yes
-	# 	}
-	# }
+		# Reroll on colonies, clean-up
+		every_owned_planet = {
+			limit = {
+				NOT = { is_planet_class = pc_city }
+			}
+			reroll_deposits = yes
+		}
+	}
 
 	# # Xenophile
 	# every_country = {

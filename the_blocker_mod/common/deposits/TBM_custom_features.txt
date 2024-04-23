@@ -3667,6 +3667,14 @@ d_tbm_industrial_wasteland = {
 		}
 	}
 
+	on_cleared = {
+		owner = {
+			add_resource = {
+				alloys = 500
+			}
+		}
+	}
+
 	planet_modifier = {
 		planet_max_districts_add = -1
 		pop_happiness = -0.05

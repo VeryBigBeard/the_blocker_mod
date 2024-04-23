@@ -1,55 +1,55 @@
 ### The Blocker Mod - Decisions
 
-decision_restore_superhighway = {
-	owned_planets_only = yes
-	icon = gfx/interface/icons/decisions/decision_arcology_project.dds
-	enactment_time = 1800
-	resources = {
-		cost = {
-			trigger = {
-				NOT = {
-					owner = { has_technology = tech_housing_2 }
-				}
-				engineering_research = value:highway_engineers_to_change_a_lightbulb
-				alloys = 2000
-				minerals = 5000
-			}
-		}
-		cost = {
-			alloys = 2000
-			minerals = 5000
-		}
-	}
-	potential = {
-		has_deposit = d_collapsed_superhighway
-	}
+# decision_restore_superhighway = {
+# 	owned_planets_only = yes
+# 	icon = gfx/interface/icons/decisions/decision_arcology_project.dds
+# 	enactment_time = 1800
+# 	resources = {
+# 		cost = {
+# 			trigger = {
+# 				NOT = {
+# 					owner = { has_technology = tech_housing_2 }
+# 				}
+# 				engineering_research = value:highway_engineers_to_change_a_lightbulb
+# 				alloys = 2000
+# 				minerals = 5000
+# 			}
+# 		}
+# 		cost = {
+# 			alloys = 2000
+# 			minerals = 5000
+# 		}
+# 	}
+# 	potential = {
+# 		has_deposit = d_collapsed_superhighway
+# 	}
 
-	effect = {
-		remove_deposit = d_collapsed_superhighway
-	}
+# 	effect = {
+# 		remove_deposit = d_collapsed_superhighway
+# 	}
 
-	ai_weight = {
-		weight = 0
-		modifier = {
-			add = 1000
-			owner = { has_technology = tech_housing_2 }
-		}
-	}
-}
+# 	ai_weight = {
+# 		weight = 0
+# 		modifier = {
+# 			add = 1000
+# 			owner = { has_technology = tech_housing_2 }
+# 		}
+# 	}
+# }
 
 decision_restore_climate = {
 	owned_planets_only = yes
 	enactment_time = 1800
 	resources = {
+		category = decisions
 		cost = {
-			society_research = 2000
+			# society_research = 2000
 			energy = 5000
 		}
 	}
 	potential = {
-		owner = {
-			has_technology = tech_climate_restoration
-		}
+		exists = owner
+		owner = { has_technology = tech_climate_restoration	}
 	}
 
 	effect = {
@@ -79,7 +79,7 @@ decision_restore_climate = {
 				}
 				AND = {
 					num_districts = {
-						type = district_farming_max
+						type = district_farming
 						value < 2
 					}
 					num_free_districts = {
@@ -103,7 +103,7 @@ decision_restore_climate = {
 decision_open_fusion_reactor = {
 	owned_planets_only = yes
 	sound = event_machinery
-	icon = gfx/interface/icons/decisions/decision_drilling_for_gas
+	icon = decision_drilling_for_gas
 
 	enactment_time = 720
 
@@ -115,6 +115,7 @@ decision_open_fusion_reactor = {
 	}
 
 	potential = {
+		exists = owner
 		owner = { has_technology = tech_fusion_power }
 		NOT = { has_deposit = d_fusion_reactor }	# planet - we don't want two, partly balance partly realism
 	}
@@ -151,7 +152,7 @@ decision_open_fusion_reactor = {
 
 decion_open_cold_fusion_pit = {
 	owned_planets_only = yes
-	icon = gfx/interface/icons/decisions/decision_strip_mining
+	icon = decision_strip_mining
 
 	enactment_time = 1260
 
@@ -255,7 +256,7 @@ decion_open_antimatter_core = {
 
 decion_open_zero_point_module = {
 	owned_planets_only = yes
-	icon = gfx/interface/icons/decisions/decision_art_monument
+	icon = decision_art_monument
 
 	enactment_time = 2160
 

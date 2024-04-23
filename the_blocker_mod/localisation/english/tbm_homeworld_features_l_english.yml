@@ -42,10 +42,10 @@
  d_recycling_processes:0 "Recycling Processes"
  d_recycling_processes_desc:0 "Menial drones working here re-use basic materials to ease supply shortages in larger production centers. When their lives end, the drones themselves are likewise recycled into additional building materials."
 
- d_major_impact_site:0 "Major Impact Site"
+ d_major_impact_site:0 "£blocker£ Major Impact Site"
  d_major_impact_site_desc:0 "Now that the area is accessible and any remaining damage has been repaired, mining can begin on the rich nickel and cadmium veins left behind by the 2078 event."
 
- d_gestalt_major_impact_site:0 "Major Impact Site"
+ d_gestalt_major_impact_site:0 "£blocker£ Major Impact Site"
  d_gestalt_major_impact_site_desc:0 "In 2078, a massive asteroid impacted the northern hemisphere, wiping out several population centers. Now that the damage has been repaired, mining can begin on the rich nickel and cadmium veins left behind."
 
  d_rare_metals_lab:0 "Rare Metals Lab"
@@ -57,7 +57,7 @@
  d_homeworld_dustbowl:0 "Dustbowl"
  d_homeworld_dustbowl_desc:0 "Dought and over-exploitation has led to a long-term dustbowl effect in this region, leaving it devoid of the nutrients needed to sustain any large-scale agriculture."
 
- d_reclaimed_land:0 "Reclaimed Land"
+ d_reclaimed_land:0 "£blocker£ Reclaimed Land"
  d_reclaimed_land_desc:0 "Once desolate and drought-ridden, new irrigation techniques have resusciated this region and it will soon be ready for new agricultural development."
 
  ### ENERGY
@@ -103,7 +103,7 @@
  d_homeworld_urban_aeroponics:0 "Urban Aeroponics"
  d_homeworld_urban_aeroponics_desc:0 "Among the residential and commercial towers of the new mega-cities are entire arcologies dedicated to the growing of plant crops. Though not particularly palatable, the food produced here keeps thousands from starvation and is essential for sustaining interplanetary spaceflight."
 
- d_homeworld_gestalt_urban_aeroponics:0 "Mega-Aueroponics"
+ d_homeworld_gestalt_urban_aeroponics:0 "Mega-Aeroponics"
  d_homeworld_gestalt_urban_aeroponics_desc:0 "Among the towering warren of every new hive are entire arcologies dedicated to the growing of plant crops. Though not particularly nutrituious, the food produced here keeps thousands of drones from malfunction and is essential for sustaining interplanetary spaceflight."
 
  d_homeworld_moisture_farming:0 "Moisture Farming"
@@ -151,7 +151,7 @@
 
  ### POST-APOC
 
- d_fallout_zone:0 "Fallout Zone"
+ d_fallout_zone:0 "£blocker£ Fallout Zone"
  d_fallout_zone_desc:0 "High winds blew dust and debris from massive nuclear explosions across this whole region, coating everything living in thick, radioactive ash. Anyone living or working here must take medication and the cancers render any hope of children a dream for different future."
 
  d_unclaimed_cave_complex:0 "REPLACE_ME"
@@ -178,10 +178,10 @@
  d_hive_scavengers:0 "Scavenger Drones"
  d_hive_scavengers_desc:0 "Resource shortages brought on by the collapse have required the allocation of semi-autonomous drones to lead dangerous expeditions into what remains of the old hive. Those few that return are even more valuable, but are prone to deviating from plans to rebuild in order to hoard resources."
 
- d_unexploded_munitions:0 "Unexploded Munitions"
+ d_unexploded_munitions:0 "£blocker£ Unexploded Munitions"
  d_unexploded_munitions_desc:0 "These missiles crashed to the surface and, for whatever reason, refused to detonate. The slightest touch could still trigger the decades-old warheads, but a skilled scavenger can salvage the parts and raw materials from the casing and propulsion systems first, and the stripped warhead can be repurposed into power generators."
 
- d_slag_heap:0 "Slag Heaps"
+ d_slag_heap:0 "£blocker£ Slag Heaps"
  d_slag_heap_desc:0 "These were once cities, now reduced to scrap in a tragic instant. Melted into the metal are the remains of all those whose last glimpse of life was a fire in the sky hot enough to melt steel in an instant."
 
  d_hulks:0 "Hulks"
@@ -216,7 +216,7 @@
  d_idyllic_pastorale:0 "Idyllic Pastorale"
  d_idyllic_pastorale_desc:0 "Equines canter across these gentle swards where you can still find old-fashioned automata puttering along hedge-lined country roads. Artists and musicians flock to the tiny villages hoping to catch sight of birds fishing along the riverbank or meet a pretty member of the opposite sex at a local harvest festival."
 
- d_ancient_forests:0 "Ancient Forest"
+ d_ancient_forests:0 "£blocker£ Ancient Forest"
  d_ancient_forests_desc:0 "Since time immemorial, these forests have swept across the planet. Our society has grown around them through the ages."
 
  ### REMNANT
@@ -227,7 +227,7 @@
  d_repurposed_power_system:0 "Repurposed Power Systems"
  d_repurposed_power_system_desc:0 "Much of our planetary economy revolves around scrounging and selling anything in the ruins with even a hint of power -- batteries, transformers, energy cells. Although inefficient and dirty in equal parts, this black market still produces critical power for research and repairs."
 
- d_collapsed_superhighway:0 "Collapsed Superhighway"
+ d_collapsed_superhighway:0 "£blocker£ Collapsed Superhighway"
  d_collapsed_superhighway_desc:0 "In the distant past, when this world was covered by arcologies and sprawling cityscape, these elevated thoroughfares must have moved billions of inhabitants around the planet."
 
  d_homeworld_scrap_mountain:0 "Scrap Mountain"
@@ -248,10 +248,10 @@
  d_industrial_agromachinery:0 "Industrial Agromachinery"
  d_industrial_agromachinery_desc:0 "These massive hulks once hovered slowly over wide platforms dedicated to artificial farming and aeroponics. Although that infrastructure has long since collapsed into rubble, a subterranean garage housing these machines is still accessible in a region now overgrown by grasses with wild cereal crops poking through the fractured lithosphere."
 
- d_overgrown_ruins:0 "Overgrown Ruins"
+ d_overgrown_ruins:0 "£blocker£ Overgrown Ruins"
  d_overgrown_ruins_desc:0 "Once an endless suburb of some larger mega-city, this region near the equator has since been reclaimed by new growth breaking through the planet's artificial lithosphere."
 
- d_flooded_city:0 "Flooded City"
+ d_flooded_city:0 "£blocker£ Flooded City"
  d_flooded_city_desc:0 "It is only recently the water in this vast sea was deemed safe to touch. Already, some limited plant-based aquaculture has been attempted in the shallow, jagged basin punctuated by the tops of decaying skyscrapers flooded after the ancient£Y Weather-Control System£! malfunctioned."
 
  d_crater_city:0 "Crater City"
@@ -301,7 +301,7 @@
  d_surface_spaceport:0 "Surface Spaceport"
  d_surface_spaceport_desc:0 "Only recently opened to public use, everyone agrees this place is too dang hard to get to during morning rush-hour. But it's a sad necessity of gravity and primitive propulsion systems that even sub-aquatic space-farers have to blast off from somewhere with a gaseous atmosphere."
 
- d_subsurface_spaceport:0 "Subsurface Spaceport"
+ d_subsurface_spaceport:0 "£blocker£ Subsurface Spaceport"
  d_subsurface_spaceport_desc:0 "Now newly sunken, this state-of-the-art spaceport allows interplanetary vessels to launch underwater and ascend first to the sky, then the stars. The former£B Technicians£!, free of their ardurous commute, are now free to take up antiques tading and craft-making in the spaceport lobby, which has been a major boon to the planet's economuy."
 
  d_heavy_weather:0 "Heavy Weather"
@@ -322,7 +322,7 @@
  d_warm_lagoon:0 "Warm Lagoon"
  d_warm_lagoon_desc:0 "The turn of the tide in this warm bay is widely agreed to be among the gentlest on the planet, making it an ideal spot to settle down, raise a family, and start a small seaweed farm."
 
- d_broken_mag_lev_network:0 "Broken Mag-Lev Network"
+ d_broken_mag_lev_network:0 "£blocker£ Broken Mag-Lev Network"
  d_broken_mag_lev_network_desc:0 "Once a beaming ideal of utopian transportation, this global ring of high-speed trains quickly became a money pit rife with mismanagement and corruption and now serves mainly as a market asset and a testament to dreams gone awry."
 
  d_droid_factory:0 "Droid Factory"

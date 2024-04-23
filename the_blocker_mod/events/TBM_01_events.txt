@@ -1173,7 +1173,7 @@ planet_event = {
 		create_message = {
 			type = "LANDSLIDE"
 			localization = message_landslide
-			days = -1
+			days = 30
 			target = this
 		}
 
@@ -1648,7 +1648,7 @@ planet_event = {
 		create_message = {
 			type = "FLOODING_DAMAGE"
 			localization = tbm.27.desc
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -1679,7 +1679,7 @@ planet_event = {
 		create_message = {
 			type = "FLOODING_DAMAGE"
 			localization = tbm.28.desc
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -1710,7 +1710,7 @@ planet_event = {
 		create_message = {
 			type = "FLOODING_DAMAGE"
 			localization = tbm.29.desc
-			days = -1
+			days = 30
 			target = this
 		}
 	}

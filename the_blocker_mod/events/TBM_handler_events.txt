@@ -338,16 +338,14 @@ planet_event = {
 		has_owner = yes
 	}
 
-	# Several pre-reqs here that basically amount to crummy urban living; should be less common in late-game post-scarcity economies
+	# Several pre-reqs here that basically amount to crummy urban living; should be less common in late-game post-scarcity economies but a challenge as you grow quickly.
 	trigger = {
-		is_artificial = no
 		years_passed > 5
 				
 		# Got to have one each of sprawl and poor conditions
 		OR = {
 			free_amenities < 5
-			free_housing > 5
-			#planet_crime > 15
+			num_unemployed > 4
 		}
 		OR = {
 			free_district_slots < 1
@@ -391,7 +389,7 @@ planet_event = {
 						}
 					}
 				}
-
+				log = "[owner.GetName] on [planet.GetName] - Slums Generated."
 				planet_event = {
 					id = tbm_handler.5
 					days = 180
@@ -405,10 +403,11 @@ planet_event = {
 					owner = {
 						OR = {
 							has_civic = civic_idealistic_foundation
+							has_civic = civic_beacon_of_liberty
 						}
 					}
 				}
-
+				log = "[owner.GetName] on [planet.GetName] - Slums not generated."
 			}
 		}
 
@@ -427,7 +426,7 @@ planet_event = {
 		create_message = {
 			type = "SLUM_GENERATOR"
 			localization = SLUM_GENERATOR
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -457,15 +456,15 @@ planet_event = {
 			OR = {
 				num_districts = {
 					type = district_industrial
-					value >= 3
+					value > 3
 				}
 				num_districts = {
 					type = district_mining
-					value >= 3
+					value > 3
 				}
 				num_districts = {
 					type = district_generator
-					value >= 3
+					value > 3
 				}
 			}
 		}
@@ -475,7 +474,7 @@ planet_event = {
 		
 		random_list = {
 			# Wastelands generated, more likely with some other factors.
-			50 = {
+			10 = {
 				modifier = {
 					factor = 2
 					owner = {
@@ -488,7 +487,7 @@ planet_event = {
 				}
 				modifier = {
 					factor = 2
-					root = {
+					owner = {
 						OR = {
 							has_deficit = consumer_goods
 							has_deficit = minerals
@@ -502,15 +501,22 @@ planet_event = {
 					planet_crime > 20
 				}
 
+				log = "[owner.GetName] on [planet.GetName] - Industrial Wasteland generated."
+
 				planet_event = {
 					id = tbm_handler.7
 					days = 180
-					random = 90
+					random = 180
 				}
 			}
 			# No wasteland this time.
-			50 = {
+			90 = {
+				modifier = {
+					factor = 1.5
+					owner = { has_valid_civic = civic_merchant_guilds }
+				}
 
+				log = "[owner.GetName] on [planet.GetName] - No Ind. Wasteland this year."
 			}
 		}
 
@@ -529,7 +535,7 @@ planet_event = {
 		create_message = {
 			type = "INDUSTRIAL_WASTELAND"
 			localization = INDUSTRIAL_WASTELAND
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -618,7 +624,7 @@ planet_event = {
 		create_message = {
 			type = "COLONIAL_SETTLEMENT"
 			localization = COLONIAL_SETTLEMENT
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -705,7 +711,7 @@ planet_event = {
 		create_message = {
 			type = "FRONTIER_FARMLAND"
 			localization = "FRONTIER_FARMLAND"
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -840,7 +846,7 @@ planet_event = {
 		create_message = {
 			type = "DUSTBOWL_GENERATOR"
 			localization = message_dustbowl_generator
-			days = 1
+			days = 30
 			target = this
 		}
 	}
