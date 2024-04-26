@@ -2016,7 +2016,7 @@ d_searing_desert = {
 	planet_modifier = {
 		planet_max_districts_add = -3
 		district_generator_max = 1
-		planet_technician_energy_produces_mult = 0.2
+		planet_technician_energy_produces_mult = 0.1
 		planet_buildings_energy_upkeep_mult = 0.1
 	}
 	

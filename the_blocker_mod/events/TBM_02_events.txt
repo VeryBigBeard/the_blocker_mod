@@ -917,7 +917,7 @@ planet_event = {
 # 	}
 # }
 
-### 80. Sudden Sinkhole Spawner
+### 80.
 
 ### 81. Sudden Sinkhole (Deep Sinkhole)
 #	Triggered from tbm_handler.17 (Sinkhole Spawner)
@@ -953,7 +953,7 @@ planet_event = {
 		create_message = {
 			type = "SUDDEN_SINKHOLE"
 			localization = tbm_message_sudden_sinkhole
-			days = -1
+			days = 30
 		}
 	}
 
@@ -1126,12 +1126,6 @@ planet_event = {
 	location = this
 
 	immediate = {
-		owner = {
-			add_resource = {
-				energy = -1000
-			}
-		}
-		add_planet_devastation = 20
 		hidden_effect = {
 			set_timed_planet_flag = {
 				flag = sandstorm
@@ -1142,6 +1136,12 @@ planet_event = {
 
 	option = {
 		name = OK
+		owner = {
+			add_resource = {
+				energy = -1000
+			}
+		}
+		add_planet_devastation = 20
 	}
 }
 

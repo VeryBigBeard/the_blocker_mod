@@ -2,7 +2,7 @@
 
 namespace = tbm
 
-### 300. Mining Prospects (on_colony_yearly_pulse - random = 40)
+### 300. Mining Prospects
 planet_event = {
 	id = tbm.300
 
@@ -141,10 +141,15 @@ planet_event = {
 
 	trigger = {
 		years_passed > 5
+		colony_age > 20
+		colony_age < 100
 		is_starting_planet = no
+		NOT = { has_planet_flag = fossil_fuel_discovered }
 	}
 
 	immediate = {
+
+		set_planet_flag = fossil_fuel_discovered
 
 		random_list = {
 			# 5% chance to discover new fossil fuels

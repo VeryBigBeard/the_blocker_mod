@@ -59,6 +59,9 @@
  r_unity:0 "§Y£unity£ Unity§!"
 
  # TBM Buildings
+ 
+ tbm_unity_colonial_building_scale:0 "\n\n§YAs colonial population grows, frontier infrastructure will exert more and more strain on national cohesion, increasing its $r_unity# Upkeep."
+
  building_xeno_synaptic_node:0 "Xeno-Synaptic Node"
  building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£Xeno-Synaptic Node§C requires significant upkeep, but will produce £r_physics_research££r_society_research££r_engineering_reseach£Research for many £blocker£ §YNatural Blockers§! across the empire. They can only be built on the gestalt's capital."
 

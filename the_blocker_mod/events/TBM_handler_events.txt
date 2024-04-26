@@ -552,7 +552,6 @@ planet_event = {
 	pre_triggers = {
 		has_owner = yes
 		is_occupied_flag = no	# Occupying forces not so keen on new settlements as they are on new power plants
-		is_homeworld = no
 	}
 
 	trigger = {
@@ -574,14 +573,14 @@ planet_event = {
 			# Colonial Settlement - adds feature, housing, and colonist jobs.
 			10 = {
 				modifier = {
-					factor = 5
+					add = 10
 					num_free_districts = {
 						type = any
 						value > 3
 					}
 				}
 				modifier = {
-					factor = 2
+					add = 10
 					num_pops > 8	# Should result in a few more settlements at that tight spot right before you get Planetary Admin.
 				}
 
@@ -638,7 +637,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	pre_triggers = {
-		is_homeworld = no
+		has_owner = yes
 	}
 
 	trigger = {
@@ -655,14 +654,14 @@ planet_event = {
 		random_list = {
 			10 = {
 				modifier = {
-					factor = 5
+					add = 10
 					num_free_districts = {
 						type = any
 						value > 5
 					}
 				}
 				modifier = {
-					factor = 2
+					add = 20
 					# Planets where the ranchin' is good
 					OR = {
 						is_dry = yes
@@ -670,7 +669,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					factor = 10
+					add = 20
 					owner = { has_valid_civic = civic_agrarian_idyll }
 				}
 				
@@ -718,7 +717,7 @@ planet_event = {
 	
 }
 
-### 12. Mining Prospects Handler
+### 12. Mining Prospects Handler (on_colony_yearly_pulse)
 planet_event = {
 	id = tbm_handler.12
 
@@ -737,7 +736,7 @@ planet_event = {
 		is_starting_planet = no
 		NOT = { is_same_value = owner.capital_scope }
 		colony_age > 5
-		colony_age < 100
+		colony_age < 50
 		check_variable = {
 			which = @prospecting_chance
 			value < 3
@@ -746,10 +745,30 @@ planet_event = {
 	}
 
 	immediate = {
-		planet_event = {
-			id = tbm.300
-			days = 180
-			random = 180
+		random_list = {
+			# Quite rare, but higher on mining worlds and new colonies to account for natural exploration.
+			5 = {
+				modifier = {
+					add = 5
+					colony_age < 20
+				}
+
+				modifier = {
+					add = 10
+					num_assigned_jobs = {
+						job = miner
+						value > 4
+					}
+				}
+				
+				planet_event = {
+					id = tbm.300
+					days = 180
+					random = 180
+				}
+			}
+
+			95 = {}
 		}
 	}
 
@@ -785,7 +804,7 @@ planet_event = {
 			can_be_exhausted = yes
 		}
 		
-		# If we're just maintaining land but not actually growing on it, give osme amnesty; this also helps alleviate situations where Anglers are getting Dustbowls
+		# If we're just maintaining land but not actually growing on it, give some amnesty; this also helps alleviate situations where Anglers are getting Dustbowls
 		num_assigned_jobs = {
 			job = farmer
 			value > 3
@@ -794,14 +813,14 @@ planet_event = {
 
 	immediate = {	
 		random_list = {
-			50 = {
+			10 = {
 				planet_event = {
 					id = tbm_handler.16
 					days = 180
 					random = 180
 				}
 			}
-			50 = {
+			90 = {
 				# Much less chance for lower-density agrarians to exhaust their planets
 				modifier = {
 					factor = 4
@@ -901,6 +920,7 @@ planet_event = {
 							type = d_deep_sinkhole
 						}
 					}
+					
 					planet_event = {
 						id = tbm.81
 						days = 360

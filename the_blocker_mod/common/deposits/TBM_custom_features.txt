@@ -3768,9 +3768,6 @@ d_collapsed_cliffs = {
 		cost = {
 			energy = 500
 		}
-		produces = {
-			minerals = 800
-		}
 	}
 
 	planet_modifier = {
@@ -4233,7 +4230,6 @@ d_black_market = {
 
 d_private_mines = {
 	category = deposit_cat_blockers
-	icon = d_mine_shafts
 
 	use_for_min_max_adjustments = yes
 

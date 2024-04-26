@@ -199,4 +199,11 @@ building_frontier_spaceport = {
 			owner = { is_gestalt = yes }
 		}
 	}
+
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
 }
