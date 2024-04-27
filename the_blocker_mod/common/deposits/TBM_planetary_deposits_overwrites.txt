@@ -5313,7 +5313,7 @@ d_betharian_deposit = {
 #	The Block Mod changes these to spawn everywhere (for more variety), though they are still somewhat special.
 
 d_buzzing_plains = {
-	category = deposit_cat_energy_rare
+	category = deposit_cat_energy
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -5333,6 +5333,7 @@ d_buzzing_plains = {
 		planet_max_districts_add = -1
 		district_generator_max = 2
 		planet_researchers_physics_research_produces_add = 2
+		biological_pop_happiness = -0.05
 	}
 
 	triggered_planet_modifier = {
@@ -5360,7 +5361,7 @@ d_buzzing_plains = {
 		weight = @very_low
 		
 		modifier = {
-			factor = 2
+			factor = 1.25
 			OR = {
 				is_planet_class = pc_arid
 				is_planet_class = pc_savannah

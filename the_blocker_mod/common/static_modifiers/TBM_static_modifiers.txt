@@ -337,7 +337,7 @@ subterranean_river_cruises = {
 
 nanocomposite_shortage = {
 	icon = gfx/interface/icons/planet_modifiers/pm_resources.dds
-	shipclass_military_build_speed_mult = -0.2
+	shipclass_military_build_speed_mult = -0.5
 }
 
 ### Failing Food Replicator

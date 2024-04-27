@@ -351,7 +351,7 @@ planet_event = {
 			free_district_slots < 1
 			num_districts = {
 				type = district_city
-				value >= 3
+				value > 3
 			}
 		}	
 	}
@@ -451,7 +451,7 @@ planet_event = {
 		}
 
 		# Partly to punish highly-specialized planets of any kind, but okay as long as you don't stuff it.
-		OR = {
+		AND = {
 			free_district_slots < 2
 			OR = {
 				num_districts = {
@@ -573,14 +573,14 @@ planet_event = {
 			# Colonial Settlement - adds feature, housing, and colonist jobs.
 			10 = {
 				modifier = {
-					add = 10
+					add = 5
 					num_free_districts = {
 						type = any
 						value > 3
 					}
 				}
 				modifier = {
-					add = 10
+					add = 5
 					num_pops > 8	# Should result in a few more settlements at that tight spot right before you get Planetary Admin.
 				}
 
@@ -642,11 +642,23 @@ planet_event = {
 
 	trigger = {
 		is_artificial = no
+		NOR = {
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked
+		}
 		is_starting_planet = no
 		owner = { is_gestalt = no }
 		num_free_districts = {
 			type = district_city
 			value > 0
+		}
+		num_free_districts = {
+			type = district_farming
+			value > 1
+		}
+		count_deposits = {
+			type = d_frontier_farmstead
+			count < 4
 		}
 	}
 
@@ -654,14 +666,14 @@ planet_event = {
 		random_list = {
 			10 = {
 				modifier = {
-					add = 10
+					add = 5
 					num_free_districts = {
 						type = any
 						value > 5
 					}
 				}
 				modifier = {
-					add = 20
+					add = 10
 					# Planets where the ranchin' is good
 					OR = {
 						is_dry = yes
@@ -669,11 +681,18 @@ planet_event = {
 					}
 				}
 				modifier = {
-					add = 20
+					add = 10
 					owner = { has_valid_civic = civic_agrarian_idyll }
 				}
 				
-				# Don't spawn rural farmsteads on worlds that are getting denser.
+				# Don't spawn rural farmsteads on worlds that are getting denser or already have a lot of farmsteads.
+				modifier = {
+					factor = 0.5
+					count_deposits = {
+						type = d_frontier_farmstead
+						count >= 2
+					}
+				}
 				modifier = {
 					factor = 0.5
 					num_pops > 20

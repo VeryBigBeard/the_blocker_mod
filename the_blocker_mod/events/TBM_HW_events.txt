@@ -12,8 +12,23 @@ namespace = tbm_hw
 # 14. Malnutrition
 # 15. Privately-Sponsored Colony
 
+### 5. Experimental Geothermal Tap - Handler
+planet_event = {
+	id = tbm_hw.5
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_timed_planet_flag = {
+			flag = experimental_geothermal_tap
+			years = 25
+		}
+	}
+}
+
 ### 6. Advanced Geothermal Tap - Shutdown
-#	(on_colony_25_years_old)
+#	on_colony_five_yearly_pulse (on_colony_25_years_old does not work on starting planets for some reason)
 planet_event = {
 	id = tbm_hw.6
 
@@ -42,10 +57,11 @@ planet_event = {
 
 	trigger = {
 		has_deposit = d_experimental_geothermal_tap
+		NOT = { has_planet_flag = experimental_geothermal_tap }
 	}
 
 	immediate = {
-		log = "Called tbm_hw.6 - Geothermal Tap Warning"
+		log = "Called tbm_hw.6 - Geothermal Tap Warning"	# Debug
 	}
 
 	option = {

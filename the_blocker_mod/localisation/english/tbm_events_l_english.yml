@@ -62,7 +62,7 @@
  # Xenofauna Attacks Settlement
  tbm.17.name:0 "Xenofauna Attacks Settlement"
  tbm.17.desc_clearance:0 "Hunters sent into [planet.GetName]'s wild frontier to track the §Y£blocker£ Dangerous Wildlife§! thought they had exterminated the last of the herd, but a small and hungry group of lethal predators has attacked one of our outlying settlements, killing several colonists as well as dragging away livestock and even food supplies before security services from larger population centers could respond.\n\nThe remaining colonists are angry and terrified, and while the $job_dangerous_wildlife_hunter_plural$ are certain they can track this final pack, local §job_enforcer_plural§ admit the mood on the colony is dark."
- tbm.17.desc_exists:0 "Many creatures live in the [wildlife_lair.GetName] on [planet.GetName], some of them quite monstrously predatory. Our explorers have disrupted their usual hunting grounds and, unfortunately, the creatures seem to recognize [owner.GetSpeciesName] as prey.\n\nEver since settling on the [planet.GetPlanetMoon], [owner.GetSpeciesSpawnNamePlural] have been warned about wandering off alone, and explorers, travelers, and livestock all have gone missing.\n\nNow, a pack of the beasts, with more teeth than any previously-encountered fauna have attacked an outlying settlement, killing or mauling a large number of [owner.GetSpeciesNamePlural]. Survivors are terrified and local $job_enforcer_plural$ admit they have no idea how to prevent future attacks."
+ tbm.17.desc_exists:0 "Many creatures live in the §Y[wildlife_lair.GetName]§! on §Y[planet.GetName]§!, some of them quite monstrously predatory. Ever since settling on the [planet.GetPlanetMoon[, [root.owner.GetSpeciesSpawnNamePlural] have been warned not to wander off alone, and livestock has vanished in the night.\n\nExplorers have disrupted the pradators' hunting grounds and, unfortunately, a pack of the beasts with more teeth than any previously-encountered creature has attacked an outlying settlement, killing or mauling a large number of [root.owner.GetSpeciesNamePlural]. Survivors are terrified and local $job_enforcer_plural$ admit they have no idea how to prevent future attacks."
  tbm.17.military:0 "Send in the military."
  tbm.17.security:0 "Allocate additional security to the outer settlements."
  tbm.17.announcements:0 "Remind the public to be on the lookout."
@@ -259,7 +259,7 @@
  tbm.300_title:0 "New Prospects"
  tbm.300_desc:0 "Prospectors on §Y[planet.GetName]§! have discovered a new mineral seam previously undetected on orbital surveys.\n\nPartially for this reason, the new deposit is located well away from previously developed population centers. Enterprising mining concerns on [owner_main_species.GetHomeworldName] are offering to develop it in exchange for tax breaks and public handouts.\n\nIt bears noting, however, that the region in which the seam was discovered is one of particular natural beauty and exploiting it would ruin a perfectly nice view."
  tbm.300.mining:0 "Excellent -- we need those minerals!"
- tbm.300_mining_tooltip:0 "Adds a random §YMining§ feature to [from.GetName]."
+ tbm.300_mining_tooltip:0 "Adds a random §YMining§! feature to [from.GetName]."
  tbm.300.sell:0 "Sell the mine to the highest bidder."
  tbm.300.tooltip:0 "The mine will provide some tax revenue, but could also be a heavy polluter."
  tbm.300.preserve_landscape:0 "Protect the sanctity of the land."

@@ -33,17 +33,19 @@ namespace = tbm
 
 @volcanic_devastation = 20
 
-### 1. Debug Event
+### 1. Init Event
+#	Sets up mod flag and any debugging currently active
 country_event = {
 	id = tbm.1
 
 	is_triggered_only = yes
 	hide_window = yes
 
-	# Debugged Code
-
 	immediate = {
-		log = "Debug Event is running."
+		log = "The Blocker Mod is active."
+
+		### Init
+		set_global_flag = the_blocker_mod
 	}
 }
 
@@ -1012,17 +1014,24 @@ planet_event = {
 
 	pre_triggers = {
 		has_owner = yes
-		is_homeworld = no
-		is_ai = no
 		original_owner = yes
 		is_occupied_flag = no
 	}
 
 	trigger = {
+		any_owned_pop = {
+			has_job = enforcer # To avoid colony abandonment and make the desc work; admittedly it's kind of appropriate but it causes UX problems
+		}
 		is_starting_planet = no
 		NOR = {
 			has_planet_flag = night_watches_xenofauna
 			has_planet_flag = settlement_attacked
+			AND = {
+				any_deposit = {
+					tree_feature = yes
+				}
+				has_planet_flag = xenofauna_attack	
+			}
 		}
 		any_deposit = {
 			tree_feature = yes
@@ -1030,13 +1039,18 @@ planet_event = {
 	}
 
 	immediate = {
+		set_timed_planet_flag = {
+			flag = xenofauna_attack
+			years = 5
+		}
+
 		random_deposit = {
 			limit = { tree_feature = yes }
 			save_event_target_as = wildlife_lair
 		}
 		
 		random_list = {
-			20 = {
+			5 = {
 				this = {
 					planet_event = {
 						id = tbm.17
@@ -1136,6 +1150,7 @@ planet_event = {
 
 	trigger = {
 		is_starting_planet = no
+		NOT = { has_planet_flag = landslide }
 		any_deposit = {
 			landmass_collapsable = yes
 		}
@@ -1143,7 +1158,7 @@ planet_event = {
 
 	immediate = {
 		random_list = {
-			20 = {
+			5 = {
 				planet_event = {
 					id = tbm.19
 					days = 180
@@ -1168,6 +1183,10 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		set_timed_planet_flag = {
+			flag = landsldie
+			years = 5
+		}
 		add_planet_devastation = 10	
 		
 		create_message = {

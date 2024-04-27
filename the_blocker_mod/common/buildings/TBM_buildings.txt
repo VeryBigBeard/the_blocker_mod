@@ -78,10 +78,10 @@ building_science_outposts = {
 	category = resource
 
 	potential = {
-		has_upgraded_capital = no
+		has_major_capital = no
 	}
 
-	ruined_trigger = {
+	destroy_trigger = {
 		has_upgraded_capital = yes
 	}
 
@@ -116,7 +116,14 @@ building_science_outposts = {
 		modifier = {
 			job_xeno_analysis_drone_add = 2
 		}
-	}	
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
 }
 
 building_frontier_spaceport = {
@@ -132,11 +139,11 @@ building_frontier_spaceport = {
 	category = resource
 
 	potential = {
-		has_upgraded_capital = no
+		has_major_capital = no
 	}
 
-	ruined_trigger = {
-		has_upgraded_capital = yes
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
 	}
 
 	resources = {
@@ -155,7 +162,7 @@ building_frontier_spaceport = {
 				owner = { is_gestalt = no }
 			}
 			unity = 1
-			multiplier = value:colonial_spaceport_cohesion
+			mult = value:colonial_spaceport_cohesion
 		}
 		produces = {
 			trigger = {
@@ -163,7 +170,7 @@ building_frontier_spaceport = {
 				owner = { is_gestalt = yes }
 			}
 			unity = 1
-			multiplier = value:colonial_cohesion_gestalt
+			mult = value:colonial_cohesion_gestalt
 		}
 	}
 

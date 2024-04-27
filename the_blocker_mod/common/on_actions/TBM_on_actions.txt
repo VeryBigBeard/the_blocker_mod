@@ -71,6 +71,9 @@ on_colony_yearly_pulse = {
 
 on_colony_5_year_pulse = {
 	events = {
+		tbm_hw.5	# Experimental Geothermal Tap Handler
+		tbm_hw.6 	# Experimental Geothermal Tap Event
+		
 		tbm_desert.46	# A City of the Desert
 		tbm.301 # Fossil Fuel Discovery
 		tbm_hw.51 	# Food Replicators Malfunction
@@ -79,7 +82,7 @@ on_colony_5_year_pulse = {
 
 on_colony_25_years_old = {
 	events = {
-		tbm_hw.6 	# Deteriorating Geothermal Tap
+		#tbm_hw.6 	# Deteriorating Geothermal Tap
 	}
 }
 

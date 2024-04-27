@@ -3678,7 +3678,7 @@ d_tbm_industrial_wasteland = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		pop_happiness = -0.05
-		
+		planet_pops_consumer_goods_upkeep_mult = -0.05	# Cheaper cost of living
 		trade_value_mult = 0.02
 		planet_crime_mult = 0.05
 	}
@@ -4048,7 +4048,7 @@ d_frontier_farmstead = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
-		planet_farmers_unity_upkeep_add = -0.25
+		planet_farmers_unity_upkeep_add = 0.25
 	}
 
 	triggered_planet_modifier = {

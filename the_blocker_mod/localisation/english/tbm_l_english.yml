@@ -60,7 +60,8 @@
 
  # TBM Buildings
  
- tbm_unity_colonial_building_scale:0 "\n\n§YAs colonial population grows, frontier infrastructure will exert more and more strain on national cohesion, increasing its $r_unity# Upkeep."
+ tbm_unity_colonial_building_scale:0 "\n\n§YAs colonial population grows, frontier infrastructure will exert more and more strain on national cohesion, increasing its $r_unity$ Upkeep.§!"
+ tbm_buildings_colonial_infrastructure_tooltip:0 "\n\nColonial infrastructure buildings cannot be built after a planet has consolidated into a single capital region under a §CPlanetary Capital§Y or equivalent. Any existing buildings will fall into disrepair due to being too far from the seat of local power.§!"
 
  building_xeno_synaptic_node:0 "Xeno-Synaptic Node"
  building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£Xeno-Synaptic Node§C requires significant upkeep, but will produce £r_physics_research££r_society_research££r_engineering_reseach£Research for many £blocker£ §YNatural Blockers§! across the empire. They can only be built on the gestalt's capital."
@@ -337,7 +338,7 @@
  d_prototype_gas_generator_desc:0 "Experimental processes are used to harvest alien thermal gases here. The resulting power fuels much of the colony, though residents have raised concerns about its safety."
 
  d_settlement:0 "Pioneer Settlement"
- d_settlement_desc:0 "A frontier settlement on this world attracts £colonist£§CColonists§! and new settlers of all kinds to this world, as well as a handful of scurrilous types who enjoy being free of centralized authority."
+ d_settlement_desc:0 "A frontier settlement on this world attracts £colonist£ §CColonists§! and new settlers of all kinds to this world, as well as a handful of scurrilous types who enjoy being free of centralized authority."
 
  d_frontier_farmstead:0 "£blocker£ Frontier Farmsteads"
  d_frontier_farmstead_desc:0 "New land grants on this world have drawn settlers seeking a new life on the frontier, where they can raze livestock and grow crops on sprawling ranches and estates."

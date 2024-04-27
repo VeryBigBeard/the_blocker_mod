@@ -71,7 +71,7 @@ planet_event = {
 		}
 		add_blocker = {
 			type = d_private_mines
-			blocked_deposit = last_added_deposit
+			blocked_deposit = event_target:mine
 		}
 
 		ai_chance = {
