@@ -77,6 +77,11 @@ d_homeworld_bandit_camp = {
 
 	ai_weight = {
 		weight = @always_clear
+
+		modifier = {
+			add = 1
+			planet_crime > 20	# These hit Advanced AIs really early due to crime, should be priority to clear it.
+		}
 	}
 }
 

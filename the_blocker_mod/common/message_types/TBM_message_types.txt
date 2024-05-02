@@ -52,7 +52,7 @@ message_type = {
 
 # Colonial Settlement Generator (tbm_handler.8)
 message_type = {
-	icon = "TBM_message_neutral"
+	icon = TBM_message_neutral
 	key = "COLONIAL_SETTLEMENT"
 	icon_frame = 3
 	sound = alert_negative
@@ -64,7 +64,7 @@ message_type = {
 
 # Frontier Farmland Generator (tbm_handler.10)
 message_type = {
-	icon = "TBM_message_neutral"
+	icon = TBM_message_neutral
 	key = "FRONTIER_FARMLAND"
 	icon_frame = 3
 	sound = alert_negative

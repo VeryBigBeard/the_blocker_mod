@@ -344,7 +344,7 @@ country_event = {
 # }
 
 
-### 5. Dangerous Wildlife - Cull the Herd?
+### 5. Dangerous Wildlife - Cull the Herd? - currently disabled
 planet_event = {
 	id = tbm.5
 	title = tbm.5.name
@@ -682,6 +682,42 @@ planet_event = {
 
 	immediate = {
 		set_variable_to_random_value = { which = @volcanic_devastation min = 20 max = 40  }
+	}
+
+	option = {
+		name = tbm.11.a
+	}
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_authority = auth_democratic
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+				}
+			}
+			# Prevent country that somehow has negative unity income from being able to pull through (or receive negative reward)
+			owner = {
+				has_monthly_income = { resource = unity  value < 0 }
+			}
+		}
+		name = tbm.11.b
+
+		owner = {
+			add_resource = {
+				food = -500
+				energy = -500
+			}
+			
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 24
+			}
+		}
+	}
+
+	after = {
+		
 		add_planet_devastation = @volcanic_devastation
 		
 		### 20% chance for volcano to deactivate and leave behind a feature
@@ -749,14 +785,15 @@ planet_event = {
 		#	1% chance to send planet into volcanic winter
 		random_list = {
 			99 = {
-				random_list = {
-					80 = {
-						add_deposit = d_volcanic_soil
-					}
-					20 = {
-						add_deposit = d_volcanic_island
-					}
-				}
+				### Disabled - this should be a separate event for new volcanoes
+				# random_list = {
+				# 	80 = {
+				# 		add_deposit = d_volcanic_soil
+				# 	}
+				# 	20 = {
+				# 		add_deposit = d_volcanic_island
+				# 	}
+				# }
 			}
 			1 = {
 				planet_event = {
@@ -767,41 +804,6 @@ planet_event = {
 			}
 		}
 
-	}
-
-	option = {
-		name = tbm.11.a
-	}
-	option = {
-		trigger = {
-			owner = {
-				OR = {
-					has_authority = auth_democratic
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_egalitarian
-				}
-			}
-			# Prevent country that somehow has negative unity income from being able to pull through (or receive negative reward)
-			owner = {
-				has_monthly_income = { resource = unity  value < 0 }
-			}
-		}
-		name = tbm.11.b
-
-		owner = {
-			add_resource = {
-				food = -500
-				energy = -500
-			}
-			
-			add_monthly_resource_mult = {
-				resource = unity
-				value = 24
-			}
-		}
-	}
-
-	after = {
 		clear_global_event_target = head_of_research
 	}
 }
@@ -890,12 +892,6 @@ planet_event = {
 	}
 
 	immediate = {
-		owner = {
-			add_tech_progress = {
-				tech = tech_terrestrial_sculpting
-				progress = 0.2
-			}
-		}
 	}
 
 	option = {
@@ -903,8 +899,16 @@ planet_event = {
 	}
 
 	after = {
-		clear_global_event_target = head_of_research
+		owner = {
+			add_tech_progress = {
+				tech = tech_terrestrial_sculpting
+				progress = 0.2
+			}
+		}
+
 		change_pc = pc_nuked
+		
+		clear_global_event_target = head_of_research
 	}
 }
 
@@ -932,6 +936,13 @@ planet_event = {
 
 	immediate = {
 		set_variable_to_random_value = { which = @volcanic_devastation min = 20 max = 40  }
+	}
+
+	option = {
+		name = tbm.11.a
+	}
+
+	after = {
 		add_planet_devastation = @volcanic_devastation
 		
 		### 20% chance for volcano to deactivate and leave behind a feature
@@ -994,13 +1005,7 @@ planet_event = {
 				add_deposit = d_volcanic_ash
 			}
 		}
-	}
-
-	option = {
-		name = tbm.11.a
-	}
-
-	after = {
+		
 		clear_global_event_target = head_of_research
 	}
 }
@@ -1081,18 +1086,6 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
-	immediate = {
-		random_owned_pop = {
-			limit = {
-				OR = {
-					has_job = dangerous_wildlife_hunter
-					has_job = colonist
-				}
-			}
-			kill_pop = yes
-		}
-	}
-
 	# Send in the military
 	option = {
 		trigger = {
@@ -1133,6 +1126,19 @@ planet_event = {
 	option = {
 		name = UNFORTUNATE
 	}
+
+	after = {
+		random_owned_pop = {
+			limit = {
+				OR = {
+					has_job = dangerous_wildlife_hunter
+					has_job = colonist
+				}
+			}
+			kill_pop = yes
+		}
+	}
+	
 }
 
 ### 18. Landslide (Handler)
@@ -1598,7 +1604,7 @@ planet_event = {
 		}
 		
 		random_list = {
-			20 = {
+			10 = {
 				# modifier = {
 				# 	factor = 1.5
 				# 	# Greater chance if fewer marshes or poor water system.
@@ -1638,6 +1644,8 @@ planet_event = {
 					}
 				}
 			}
+
+			90 = {}
 		}
 	}
 }
@@ -1760,20 +1768,45 @@ planet_event = {
 		}
 		
 		random_list = {
-			# Too much water results in flooding
-			25 = {
-				planet_event = {
-					id = tbm.31
-					days = 30
-					random = 15
+			20 = {
+				random_list = {
+					# Too much water results in flooding
+					25 = {
+						planet_event = {
+							id = tbm.31
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Overheating, made a desert
+					25 = {
+						planet_event = {
+							id = tbm.32
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Oops, we missed, got wrong feature
+					25 = {
+						planet_event = {
+							id = tbm.33
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Broken machine, partial job
+					planet_event = {
+						id = tbm.34
+						days = 30
+						random = 15
+					}
 				}
 			}
 
-			# Overheating, made a desert
-
-			# Oops, we missed, got wrong feature
-
-			# Broken machine, partial job
+			80 = {}
 		}
 	}
 }

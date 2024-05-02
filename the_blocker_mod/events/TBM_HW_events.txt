@@ -28,7 +28,7 @@ planet_event = {
 }
 
 ### 6. Advanced Geothermal Tap - Shutdown
-#	on_colony_five_yearly_pulse (on_colony_25_years_old does not work on starting planets for some reason)
+#	on_colony_five_yearly_pulse (on_colony_25_years_old does not work on starting planets)
 planet_event = {
 	id = tbm_hw.6
 

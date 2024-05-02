@@ -59,6 +59,8 @@
  r_unity:0 "§Y£unity£ Unity§!"
 
  # TBM Buildings
+
+ mod_planet_building_cost_mult:0 "§Y£building£ Building Cost§!"
  
  tbm_unity_colonial_building_scale:0 "\n\n§YAs colonial population grows, frontier infrastructure will exert more and more strain on national cohesion, increasing its $r_unity$ Upkeep.§!"
  tbm_buildings_colonial_infrastructure_tooltip:0 "\n\nColonial infrastructure buildings cannot be built after a planet has consolidated into a single capital region under a §CPlanetary Capital§Y or equivalent. Any existing buildings will fall into disrepair due to being too far from the seat of local power.§!"
@@ -319,7 +321,7 @@
  d_hydro_plant:0 "Hydro Power Plant"
  d_hydro_plant_desc:0 "These £blocker£ Rushing Waterfalls have been diverted to power a nearby city."
 
- d_dyke:0 "£blocker£ Dyke"
+ d_dyke:0 "Dyke"
  d_dyke_desc:0 "Tall mounds of earth hold back the tides on this world and protect nearby cities from flooding."
 
  #  d_ruler_mountain:0 "Mt. [planet.owner.ruler_at_the_time.GetFirstName]"
@@ -375,6 +377,9 @@
 
  d_upgrade_facility:0 "Upgrade Facility"
  d_upgrade_facility_desc:0 "Drones on this world are regularly fitted with expensive enhancements and augmentations to ensure they work more efficiently and break down less frequently."
+
+ d_deep_trench:0 "Deep Trench"
+ d_deep_trench_desc:0 "Fathomless and unexplored, this underwater trench obstructs further seabed development in the region."
 
  ### The Block Mod - Event Features - English
 
@@ -533,9 +538,13 @@
 
  ### Decisions
  decision_open_fusion_reactor:0 "Create New Fusion Reactor"
+ decision_open_fusion_reactor_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nLand is set aside for a large fusion containment center, as well as for safety boundaries, failsafe zones, and hazard areas surrounding the core reactor."
  decion_open_cold_fusion_pit:0 "Open New Cold Fusion Pits"
+ decision_open_cold_fusion_pits_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nNobody is going to pretend these deep insulation pits and coolant crevasses are eye-catching, except in terms of the scale of power production they can support."
  decion_open_antimatter_core:0 "Develop New Antimatter Core"
+ decision_open_antimatter_core_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nAlthough antimatter reactors are smaller than fusion cores, they are several orders of magnitude more finicky, and require extensive support networks to regulate the matter/antimatter flow."
  decion_open_zero_point_module:0 "Install New Zero-Point Module"
+ decision_open_zero_point_module:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nA Zero-Point Module itself is tiny, but the power it produces is immense. Most of this land will be set aside for transformers, support cables, and quite honestly a housing suitably ornate for such advanced energy technology."
 
 
  mine_safety_standards:0 "REPLACE_ME"

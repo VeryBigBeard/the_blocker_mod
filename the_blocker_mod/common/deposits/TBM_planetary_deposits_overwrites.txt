@@ -387,7 +387,6 @@ d_dangerous_wildlife_blocker = {
 		}
 		
 		
-		
 		# Cull the Herd?
 		#planet_event = { id = tbm.5 }	# Disabled for now.
 		
@@ -566,8 +565,7 @@ d_dense_jungle = {
 	planet_modifier = {
 		planet_max_districts_add = -2
 		planet_jobs_food_produces_mult = 0.05
-		planet_researchers_society_research_produces_add = 2
-		planet_amenities_add = 2
+		planet_researchers_society_research_produces_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -1841,9 +1839,6 @@ d_rushing_waterfalls = {
 
 	resources = {
 		category = deposit_blockers_natural
-		produces = {
-			unity = 2
-		}
 		cost = {
 			energy = 800
 		}
@@ -2496,6 +2491,10 @@ d_tempestous_mountain = {
 	should_swap_deposit_on_terraforming = no
 
 	time = 720
+
+	prerequisites = {
+		"tech_terrestrial_sculpting"
+	}
 
 	resources = {
 		category = deposit_blockers_natural

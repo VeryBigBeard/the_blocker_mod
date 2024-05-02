@@ -4,7 +4,7 @@ namespace = tbm
 
 ### INDEX ###
 #
-#	51. Poisoned By Kelp
+#	50. Poioned By Kelp
 #	52. Kelp Insights
 #	53. Fish Attack
 #	62. Plugging It Up
@@ -27,17 +27,12 @@ namespace = tbm
 
 @trees = 0
 
-# 51. Poisoned By Kelp (Toxic Kelp)
+### 50. Kelp Handler
 planet_event = {
-	id = tbm.51
+	id = tbm.50
 
-	title = tbm.51.name
-	desc = tbm.51.desc
-	picture = GFX_evt_underwater_ruins
-	show_sound = event_alien_nature
-
+	hide_window = yes
 	is_triggered_only = yes
-	location = this
 
 	pre_triggers = {
 		is_homeworld = no
@@ -55,20 +50,46 @@ planet_event = {
 	}
 
 	immediate = {
-		random_owned_pop = {
-			limit = { has_job = colonist }
-			kill_pop = yes
-		}
-		# Kill a second colonist if aquatic. Potential colony abandonment WAD -- Kelp Is Dangerous!!!
-		if = {
-			limit = {
-				owner.species = { has_trait = trait_aquatic }
+		random_list = {
+			25 = {
+				planet_event = {
+					id = tbm.51
+				}
 			}
-			random_owned_pop = {
-				limit = { has_job = colonist }
-				kill_pop = yes
-			}
+
+			75 = {}
 		}
+	}
+}
+
+# 51. Poisoned By Kelp (Toxic Kelp)
+planet_event = {
+	id = tbm.51
+
+	title = tbm.51.name
+	desc = tbm.51.desc
+	picture = GFX_evt_underwater_ruins
+	show_sound = event_alien_nature
+
+	is_triggered_only = yes
+	location = this
+
+	# pre_triggers = {
+	# 	is_homeworld = no
+	# 	has_owner = yes
+	# }
+
+	# trigger = {
+	# 	is_starting_planet = no
+	# 	has_deposit = d_toxic_kelp
+	# 	any_owned_pop = {
+	# 		has_job = colonist
+	# 	}
+	# 	colony_age > 2	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.
+	# 	NOT = { has_planet_flag = toxic_kelp_encounter }
+	# }
+
+	immediate = {
 		hidden_effect = {
 			set_timed_planet_flag = {
 				flag = toxic_kelp_encounter
@@ -79,6 +100,20 @@ planet_event = {
 
 	option = {
 		name = tbm.51.kelp
+		random_owned_pop = {
+			limit = { has_job = colonist }
+			kill_pop = yes
+		}
+		# Kill a second colonist if aquatic. Potential colony abandonment WAD -- Kelp Is Dangerous!!!
+		if = {
+			limit = {
+				owner_main_species = { has_trait = trait_aquatic }
+			}
+			random_owned_pop = {
+				limit = { has_job = colonist }
+				kill_pop = yes
+			}
+		}
 	}
 }
 
@@ -111,14 +146,6 @@ planet_event = {
 		}
 	}
 
-	immediate = {
-		owner = {
-			add_resource = {
-				society_research = @tier2researchreward
-			}
-		}
-	}
-
 	option = {
 		name = tbm.52.weapons
 		owner = {
@@ -133,6 +160,14 @@ planet_event = {
 		owner = {
 			add_modifier = {
 				modifier = kelp_breakfasts
+			}
+		}
+	}
+
+	after = {
+		owner = {
+			add_resource = {
+				society_research = @tier2researchreward
 			}
 		}
 	}
@@ -168,9 +203,9 @@ planet_event = {
 		}
 
 		random_list = {
-			15 = {
+			5 = {
 				modifier = {
-					factor = 2
+					add = 5
 					is_wet = yes
 				}
 				modifier = {
@@ -180,13 +215,13 @@ planet_event = {
 					}
 				}
 				modifier = {
-					factor = 4
+					add = 10
 					is_planet_class = pc_ocean
 				}
 				modifier = {
-					factor = 10
+					add = 10
 					OR = {
-						#is_planet_class = pc_pdaquatic	# Ignore error, PD compatibility bonus.
+						#is_planet_class = pc_pdaquatic
 						has_planet_flag = planet_drenched	# Something unexpected got in there.
 						check_variable = {
 							which = ice_dumping_happened
@@ -731,8 +766,7 @@ planet_event = {
 	location = this
 
 	immediate = {
-		add_deposit = d_quicksand_basin
-		save_event_target_as = sand_planet@this
+		this = { save_event_target_as = sand_planet }
 	}
 
 	option = {
@@ -754,6 +788,10 @@ planet_event = {
 
 	option = {
 		name = tbm.77.survive
+	}
+
+	after = {
+		add_deposit = d_quicksand_basin
 	}
 }
 
@@ -1301,7 +1339,9 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
-	immediate = {
+	option = {
+		name = OK
+
 		if = {
 			limit = {
 				owner = { is_gestalt = yes }
@@ -1332,10 +1372,6 @@ planet_event = {
 			species = owner_main_species
 			ethos = random
 		}
-	}
-
-	option = {
-		name = OK
 	}
 }
 
@@ -1378,7 +1414,7 @@ planet_event = {
 					add = @mines
 				}
 				modifier = {
-					factor = 1.15
+					add = 5
 					owner = {
 						OR = {
 							is_capitalist = yes
@@ -1461,8 +1497,12 @@ planet_event = {
 	}
 	picture = GFX_evt_collapsing_roof
 	show_sound = event_structural_collapse
-	
-	immediate = {
+
+	option = {
+		name = UNFORTUNATE
+	}
+
+	after = {
 
 		### Damage
 		event_target:collapsed_mine = {
@@ -1525,9 +1565,5 @@ planet_event = {
 		}
 		else = {
 		}
-	}
-
-	option = {
-		name = UNFORTUNATE
 	}
 }

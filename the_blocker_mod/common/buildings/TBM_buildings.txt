@@ -78,7 +78,7 @@ building_science_outposts = {
 	category = resource
 
 	potential = {
-		has_major_capital = no
+		NOT = { has_major_capital = yes }
 	}
 
 	destroy_trigger = {
@@ -139,7 +139,7 @@ building_frontier_spaceport = {
 	category = resource
 
 	potential = {
-		has_major_capital = no
+		NOT = { has_major_capital = yes }
 	}
 
 	destroy_trigger = {
