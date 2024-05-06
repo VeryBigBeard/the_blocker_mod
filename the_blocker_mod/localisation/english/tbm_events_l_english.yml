@@ -82,15 +82,15 @@
 
  tbm.21.approve:0 "A marina sounds like great fun."
  tbm.21.deny:0 "Deny the proposal--the reef is far too valuable."
- tbm.21.possible_protests:0 "major protests engulf the colony."
- tbm.21.no_protests:0 "the furor blows over and the marina gets built."
+ tbm.21.possible_protests:0 "major protests engulfing the colony."
+ tbm.21.no_protests:0 "the furor blowing over and the marina getting built."
  tbm.21.preserve:0 "Designate the reef an environmental preserve.\n\n"
  tbm.21.preserve.tooltip:0 "Environmental and scientific groups will be thrilled, but £blocker£ Teeming Reefs will no longer be clearable."
  tbm.21.crackdown:0 "Crack down on the protestors and buy a nice boat."
  tbm.21.nothing:0 "There's not much can be done."
 
  tbm.23.name:0 "Proposed Marina - Mass Protests"
- tbm.23.desc:0 "The planned protests over the proposed marina on [planet.GetName]'s§Y Teeming Reef§! have escalated beyond the local authorities' means to control them. After weeks of protests, [planet.RowdyBunch] set on protecting the [planet.GetPlanetMoon]'s ecosystem and natural spaces have even managed to shut down the [planet.GetPlanetMoon]'s largest spaceport.\n\nThe developers behind the marina are apparently unfazed, and have suggested building a large city on the reef to appease the locals, and have even offered to pay to clear the area as well.\n\nLeaders in the protest movement are demanding the reef be designated a £blocker£ Nature Preserve."
+ tbm.23.desc:0 "The planned protests over the proposed marina on [planet.GetName]'s§Y Teeming Reef§! have escalated beyond the local authorities' means to control them. After weeks of protests, [planet.RowdyBunch] set on protecting the [planet.GetPlanetMoon]'s ecosystem and natural spaces have even managed to shut down the [planet.GetPlanetMoon]'s largest spaceport.\n\nThe developers behind the marina are apparently unfazed, and have suggested building a large city on the reef to appease the locals. They've even offered to pay to clear the area as well but leaders in the protest movement are demanding the reef be designated a £blocker£ Nature Preserve."
  tbm.23.military:0 "Send in the military, get the spaceport reopened."
  tbm.23.governor:0 "Hold Governor [planet.leader.GetName] accountable for this oversight."
  tbm.23.address:0 "The protestors concerns must be addressed."

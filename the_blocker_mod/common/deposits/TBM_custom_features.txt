@@ -2155,6 +2155,14 @@ d_barren = {
 		"tech_quicksand_basin"
 	}
 
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1200
+			minerals = 250
+		}
+	}
+
 	on_cleared = {
 		custom_tooltip = tooltip_clear_barren
 		hidden_effect = {
@@ -3567,11 +3575,11 @@ d_tbm_slums = {
 		}
 	}
 		
-	on_cleared = {
-		create_pop = {
-			species = owner
-		}
-	}
+	# on_cleared = {	# Disabled for now. Slightly too easy to farm, plus it caused weirdness with planets dominated by other species.
+	# 	create_pop = {
+	# 		species = owner
+	# 	}
+	# }
 
 
 	planet_modifier = {
@@ -4008,6 +4016,7 @@ d_settlement = {
 		category = deposit_blockers
 		produces = {
 			unity = -1
+			mult = trigger:num_pops
 		}
 		cost = {
 			energy = 200

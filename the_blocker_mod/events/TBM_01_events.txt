@@ -1280,11 +1280,11 @@ planet_event = {
 	trigger = {
 		NOT = { has_planet_flag = proposed_marina }	
 		NOT = {
-			is_homeworld = yes
+			is_starting_planet = yes
 		}
 		has_upgraded_capital = yes
 		last_district_changed = district_city	# on_district_complete checks built
-		
+		has_deposit = d_teeming_reef
 		# Must have a coastal city (long-term, should add check for coastal features + at least one district; for now, just lower req on ocean worlds)
 		if = {
 			limit = {
@@ -1451,10 +1451,6 @@ planet_event = {
 		}
 		name = tbm.23.military
 
-		add_modifier = {
-			modifier = denied_investment
-			years = 20
-		}
 		add_modifier = {
 			modifier = mass_protest
 			days = 360

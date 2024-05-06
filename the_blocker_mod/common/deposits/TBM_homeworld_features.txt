@@ -31,13 +31,12 @@ d_homeworld_bandit_camp = {
 
 	should_swap_deposit_on_terraforming = no
 
-	#all_blocker_swap_types = yes
-	#use_weights_for_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_gaia_homeworld_fossil_fuels
 		d_fossil_fuel_reserves
 		d_gestalt_fossil_fuel_reserves
 	}
+	use_weights_for_blocker_swap_types = yes
 
 	time = 180
 
@@ -96,7 +95,7 @@ d_impact_memorial = {
 	#use_weights_for_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_major_impact_site
-		#d_gestalt_major_impact_site
+		d_gestalt_major_impact_site
 	}
 
 	time = 180
@@ -106,18 +105,6 @@ d_impact_memorial = {
 		cost = {
 			energy = 150
 			unity = 100
-		}
-	}
-
-	on_cleared = {
-		if = {
-			limit = {
-				owner = { is_gestalt = yes }
-			}
-			add_deposit = d_gestalt_major_impact_site
-		}
-		else = {
-			add_deposit = d_major_impact_site
 		}
 	}
 
@@ -637,6 +624,10 @@ d_homeworld_dustbowl = {
 	#all_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_reclaimed_land
+	}
+
+	can_be_cleared = {
+		owner = { has_technology = tech_quicksand_basin }
 	}
 
 	time = 1080
@@ -4355,8 +4346,8 @@ d_heavy_weather = {
 		}
 	}
 
-	prerequisites = {
-		"tech_housing_1"
+	can_be_cleared = {
+		owner = { has_technology = tech_housing_1 }
 	}
 
 	planet_modifier = {

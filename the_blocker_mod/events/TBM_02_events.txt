@@ -969,29 +969,30 @@ planet_event = {
 
 	is_triggered_only = yes
 	hide_window = yes
-	# location = this
+	location = this
 
 	immediate = {
 		
-		add_deposit = d_deep_sinkhole
 		if = {
 			limit = {
-				num_districts = {
+				num_free_districts = {
 					type = any
-					value > 0
+					value > 1
 				}
 			}
-			remove_random_district = yes
-			
+			# Do nothing, will lose district with feature.
 		}
 		else = {
 			add_planet_devastation = 10
 		}
 
+		add_deposit = d_deep_sinkhole
+
 		create_message = {
 			type = "SUDDEN_SINKHOLE"
 			localization = tbm_message_sudden_sinkhole
 			days = 30
+			target = this
 		}
 	}
 
@@ -1031,19 +1032,21 @@ planet_event = {
 	location = this
 
 	immediate = {
-		add_deposit = d_deep_sinkhole
+		
 		if = {
 			limit = {
-				num_districts = {
+				num_free_districts = {
 					type = any
-					value > 0
+					value > 1
 				}
 			}
-			remove_random_district = yes
+			# Do nothing, will lose district with feature.
 		}
 		else = {
 			add_planet_devastation = 10
 		}
+
+		add_deposit = d_deep_sinkhole
 	}
 
 	option = {
@@ -1059,9 +1062,11 @@ planet_event = {
 		owner = {
 			add_resource = {
 				energy = -250
+				minerals = -200
 			}
 		}
 		remove_deposit = d_deep_sinkhole
+		set_planet_flag = occasional_sinkholes
 	}
 }
 

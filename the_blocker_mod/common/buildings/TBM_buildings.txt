@@ -78,11 +78,14 @@ building_science_outposts = {
 	category = resource
 
 	potential = {
-		NOT = { has_major_capital = yes }
+		NOR = { 
+			has_major_upgraded_capital = yes
+			is_starting_planet = yes
+		}
 	}
 
 	destroy_trigger = {
-		has_upgraded_capital = yes
+		has_major_upgraded_capital = yes
 	}
 
 	resources = {

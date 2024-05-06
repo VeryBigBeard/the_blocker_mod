@@ -20,9 +20,11 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_timed_planet_flag = {
-			flag = experimental_geothermal_tap
-			years = 25
+		owner.capital_scope = {		# Kind of imprecise but this fires on game start so it will always be your starting planet.
+			set_timed_planet_flag = {
+				flag = experimental_geothermal_tap
+				years = 25
+			}
 		}
 	}
 }

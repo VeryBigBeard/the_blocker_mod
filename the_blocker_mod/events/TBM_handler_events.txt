@@ -559,19 +559,19 @@ planet_event = {
 		is_starting_planet = no
 		OR = {
 			has_building = building_colony_shelter
-			has_building = building_capital 	# If too much, can change this to is_col_type = col_default for colony des only
+			has_building = building_capital
 		}
 		owner = { is_gestalt = no }
 		num_free_districts = {
 			type = any
-			value > 0
+			value > 2	# Weed reduction, but also makes it a bit harder to farm these for housing unless you invest in clearing space (or get lucky and have a lot of frontier land).
 		}
 	}
 
 	immediate = {
 		random_list = {
 			# Colonial Settlement - adds feature, housing, and colonist jobs.
-			10 = {
+			5 = {
 				modifier = {
 					add = 5
 					num_free_districts = {
@@ -592,8 +592,14 @@ planet_event = {
 						count >= 2
 					}
 				}
+
 				modifier = {
 					factor = 0.5
+					num_pops > 12
+				}
+
+				modifier = {
+					factor = 0
 					count_deposits = {
 						type = d_settlement
 						count >= 4
@@ -650,7 +656,7 @@ planet_event = {
 		owner = { is_gestalt = no }
 		num_free_districts = {
 			type = district_city
-			value > 0
+			value > 3	# These are meant to be mostly good, and get very annoying if they spawn whyen you're trying to clear space for something else, like actual farms.
 		}
 		num_free_districts = {
 			type = district_farming
@@ -664,16 +670,16 @@ planet_event = {
 
 	immediate = {
 		random_list = {
-			10 = {
+			5 = {
 				modifier = {
 					add = 5
 					num_free_districts = {
 						type = any
-						value > 5
+						value > 7
 					}
 				}
 				modifier = {
-					add = 10
+					add = 5
 					# Planets where the ranchin' is good
 					OR = {
 						is_dry = yes
@@ -805,7 +811,7 @@ planet_event = {
 	}
 
 	trigger = {
-		years_passed > 50	# Partly because you're unlikely ot have Soil Remediation that quickly and without it, Dustbowls can choke your ag colonies rather quickly before any more complex economy is set up. The intent of these is more to target breadbasket worlds in a larger empire.
+		years_passed > 50	# Partly because you're unlikely to have Soil Remediation that quickly and without it, Dustbowls can choke your ag colonies rather quickly before any more complex economy is set up. The intent of these is more to target breadbasket worlds in a larger empire.
 
 		colony_age > 40
 		OR = {
@@ -826,7 +832,7 @@ planet_event = {
 		# If we're just maintaining land but not actually growing on it, give some amnesty; this also helps alleviate situations where Anglers are getting Dustbowls
 		num_assigned_jobs = {
 			job = farmer
-			value > 3
+			value > 4
 		}
 	}
 
@@ -865,10 +871,10 @@ planet_event = {
 					value > 0
 				}
 			}
-			remove_district = district_farming	# Preference is to remove a farm, since it makes the most sense. In all likelihood, given the triggers, there will be at least one. If not, remove at random.
+			remove_district = district_farming
 		}
 		else = {
-			remove_random_district = yes
+			# Do nothing, let the feature removal take care of it.
 		}
 
 		random_deposit = {
@@ -915,9 +921,10 @@ planet_event = {
 	immediate = {
 		if = {
 			limit = {
-				has_planet_flag = sinkhole_causes
 				NOT = { has_planet_flag = sinkhole_causes } # Prevents firing the event to give the project when you already have it.
 			}
+			
+			# Sinkhole Cause Investigation
 			planet_event = {
 				id = tbm.82
 				days = 360
@@ -925,6 +932,7 @@ planet_event = {
 			}
 		}
 
+		# 20% chance for Sudden Sinkhole this year
 		else = {
 			random_list = {
 				20 = {
@@ -938,6 +946,10 @@ planet_event = {
 							count > 1
 							type = d_deep_sinkhole
 						}
+					}
+					modifier = {
+						factor = 0.5 	# Less common if you've chosen to live with them; I have a heart
+						has_planet_flag = occasional_sinkholes
 					}
 					
 					planet_event = {
@@ -1365,7 +1377,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		from.prev.capital_scope = {
+		from = {
 			clear_deposits = yes
 			if = {
 				limit = {

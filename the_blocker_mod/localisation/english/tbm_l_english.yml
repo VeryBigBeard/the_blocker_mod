@@ -76,8 +76,8 @@
 
  building_frontier_spaceport:0 "Frontier Spaceport"
  building_frontier_spaceport_desc:0 "Far out on the edges of known civlization, this spaceport handles all manner of cargo and colonists. The noise of half-built dockyards is drowned out by bustling bars and the sound of roading shuttle engines."
- tbm_frontier_spaceport_desc:0 "§CA §Y£building£ Frontier Spaceport§C helps alleviate strain on £unity£ $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding§!"
- tbm_frontier_spaceport_gestalt_desc:0 "§CA §Y£building£ Frontier Spaceport§C helps alleviate strain on £unity£ $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_synapsse_drone_plural$§C are present on this world.§!"
+ tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding§!"
+ tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_synapsse_drone_plural$§C are present on this world.§!"
 
  # TBM Custom Jobs
 
@@ -340,7 +340,7 @@
  d_prototype_gas_generator_desc:0 "Experimental processes are used to harvest alien thermal gases here. The resulting power fuels much of the colony, though residents have raised concerns about its safety."
 
  d_settlement:0 "Pioneer Settlement"
- d_settlement_desc:0 "A frontier settlement on this world attracts £colonist£ §CColonists§! and new settlers of all kinds to this world, as well as a handful of scurrilous types who enjoy being free of centralized authority."
+ d_settlement_desc:0 "A frontier settlement on this world attracts £colonist£ §CColonists§! and new settlers of all kinds to this world, as well as a handful of scurrilous types who enjoy being free of centralized authority.\n\n§YPioneer Settlements can be very helpful early in a colony's life, but will begin to strain $r_unity$ as the population grows.§!"
 
  d_frontier_farmstead:0 "£blocker£ Frontier Farmsteads"
  d_frontier_farmstead_desc:0 "New land grants on this world have drawn settlers seeking a new life on the frontier, where they can raze livestock and grow crops on sprawling ranches and estates."

@@ -27,7 +27,7 @@
  message_landslide:0 "After heavy rains, landslides have washed away settlements and resource infrastructure on §Y[planet.GetName]§!.\n\nThe collapse may provide mining opportunities once the dust has settled."
 
  MESSAGE_SUDDEN_SINKHOLE_TITLE:0 "§Y£blocker£Sudden Sinkhole§!" 
- tbm.message.sinkhole:0 "Despite our best efforts, a new §Y£blocker£Deep Sinkhole§! has appeared on [planet.GetName][sinkhole_destruction].\n\nThe exact cause of these sinkholes remains unknown and it has so far been impossible to predict the next location to be affected. All we can do is fill them again and hope they stays filled."
+ tbm.message.sinkhole:0 "Despite our best efforts, a new §Y£blocker£Deep Sinkhole§! has appeared on [planet.GetName][sinkhole_destruction].\n\nThe exact cause of these sinkholes remains unknown and it has so far been impossible to predict the next location to be affected. All we can do is fill them again and hope they stay filled."
 
  
  tbm_message_mine_shaft_collapse_robot_casaulties:0 "A mine shaft at the §Y£blcoker£[collapsed_mine]§! on [planet.GetName] has collapsed, trapping several robotic mining units inside. Fortunately, there has been no loss of life, but the mining units will have to be replaced."

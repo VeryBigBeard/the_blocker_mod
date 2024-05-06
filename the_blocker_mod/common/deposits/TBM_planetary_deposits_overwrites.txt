@@ -845,11 +845,13 @@ d_deep_sinkhole = {
 		}
 		
 		# Clearing sinkholes sometimes makes other sinkholes.
-		random_list = {
-			33 = {
-				set_planet_flag = occasional_sinkholes
+		hidden_effect = {
+			random_list = {
+				33 = {
+					set_planet_flag = occasional_sinkholes
+				}
+				66 = {}
 			}
-			66 = {}
 		}
 	}
 
