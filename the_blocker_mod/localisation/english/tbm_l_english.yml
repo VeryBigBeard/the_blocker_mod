@@ -456,7 +456,7 @@
  wild_world_gestalt:0 "Wild World"
  wild_world_gestalt_desc:0 "Teeming with thousands of species of alien flora and fauna, this planet represents a significant colonization challenge, and a tantalizing scientific project."
 
- # Pioneering Colonists (Called on worlds with negative district space) 
+ # Pioneering Colonists
 
  pioneering_colonists:0 "Pioneering Colonists"
  pioneering_colonists_desc:0 "The colonists on this planet are ready to face the harsh unknown that awaits, and will work to fashion this untamed world into a new home.\n\n"
@@ -524,7 +524,8 @@
 
  DESCENT:0 "REPLACE_ME"
  SHIFTING_SANDS:0 "REPLACE_ME"
- SOMETHING_IN_THE_PIPES:0 "REPLACE_ME"
+ SOMETHING_IN_THE_PIPES:0 "Sinkhole Investigations"   # Temporary title; something MUCH more interesting coming here in due time....
+ SOMETHING_IN_THE_PIPES_DESC;0 "An expedition in planned beneath the surface of [from.GetName] to determine the true cause of the sudden sinkholes."
  MEGASTRUCTURE_TOUR:0 "REPLACE_ME"
 
  PREDATOR_MODIFICATION_PROJECT:0 "Predator Modification Project"

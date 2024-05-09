@@ -27,7 +27,6 @@ on_press_begin = {
 on_yearly_pulse = {
 	events = {
 		tbm_handler.103		# Wild World Remover (removes Wild World when planets develop)
-		tbm_hw.6 	# Experimental Geothermal Tap Event
 	}
 }
 
@@ -48,6 +47,8 @@ on_colonized = {
 
 on_colony_yearly_pulse = {
 	events = {
+		tbm_hw.6 	# Experimental Geothermal Tap Event
+		
 		#tbm.101	# A Shiny Rock
 		tbm.16 	# Xenofauna Attack
 		tbm.50 # Toxic Kelp

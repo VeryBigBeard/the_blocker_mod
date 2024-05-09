@@ -36,7 +36,8 @@ d_homeworld_bandit_camp = {
 		d_fossil_fuel_reserves
 		d_gestalt_fossil_fuel_reserves
 	}
-	use_weights_for_blocker_swap_types = yes
+	#use_weights_for_blocker_swap_types = yes
+	all_blocker_swap_types = yes
 
 	time = 180
 

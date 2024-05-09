@@ -1051,8 +1051,10 @@ planet_event = {
 
 	option = {
 		name = tbm.82.investigate
-		enable_special_project = {
-			name = "SOMETHING_IN_THE_PIPES"
+		root = {
+			enable_special_project = {
+				name = "SOMETHING_IN_THE_PIPES"
+			}
 		}
 		set_planet_flag = sinkhole_causes
 	}

@@ -199,14 +199,13 @@
  tbm.80.fascinating:0 "REPLACE_ME"
  tbm.80.miracle:0 "REPLACE_ME"
  tbm.80.tooltip:0 "REPLACE_ME"
+
  tbm.81.name:0 "Sudden Sinkhole"
- tbm.81.desc:0 "REPLACE_ME"
- tbm.82.name:0 "REPLACE_ME"
 
  # 82. Sinkhole Causes
 
  tbm.82.name:0 "Sinkhole Causes"
- tbm.82.desc:0 "Another Deep Sinkhole has opened up on [planet.GetName], taking another settlement with it.\n\nThe rapid reappearance of §Y£blocker£ Deep Sinkholes across [planet.GetName] suggests we don't yet know everything there is to know about the [planet.GetPlanetMoon]'s geology.\n\nHowever, the recent discovery of yet another sinkhole has offered some insight into what is causing the collapses. A large subterranean river system runs several kilometres beneath the surface of the largest landmass If we could map the river system using a combination of orbital sensors and surveying teams on the ground, it might be possible to determine what causes the changes in soil density that keep engulfing our settlements, but such a project will take time and organization."
+ tbm.82.desc:0 "Another Deep Sinkhole has opened up on §Y[planet.GetName]7!, taking another settlement with it.\n\nThe rapid reappearance of §Y£blocker£ Deep Sinkholes§! across [planet.GetName] suggests we don't yet know everything there is to know about the [planet.GetPlanetMoon]'s geology.\n\nHowever, the recent discovery of yet another sinkhole has offered some insight into what is causing the collapses. A large subterranean river system runs several kilometres beneath the surface of the largest landmass If we could map the river system using a combination of orbital sensors and surveying teams on the ground, it might be possible to determine what causes the changes in soil density that keep engulfing our settlements, but such a project will take time and organization."
  tbm.82.investigate:0 "Investigate the waterways."
  tbm.82.clear:0 "Just fill it in again."
 

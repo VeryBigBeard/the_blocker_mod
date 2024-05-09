@@ -2,6 +2,8 @@
 
 namespace = tbm
 
+@carbon_economy = 1
+
 ### 300. Mining Prospects
 planet_event = {
 	id = tbm.300
@@ -59,9 +61,7 @@ planet_event = {
 				remove_deposit = yes
 			}
 		}
-		add_deposit = {
-			type = d_private_mines
-		}
+		add_deposit = d_private_mines
 
 		ai_chance = {
 			factor = 10
@@ -317,37 +317,7 @@ planet_event = {
 
 	option = {
 		name = tbm.302_sell
-		if = {
-			limit = {
-				check_variable = {
-					which = @carbon_economy
-					value = 1
-				}
-			}
-			add_deposit = d_coal_bed
-		}
-		else_if = {
-			limit = {
-				check_variable = {
-					which = @carbon_economy
-					value = 2
-				}
-			}
-			add_deposit = d_oil_fields_at_first_light
-		}
-		else_if = {
-			limit = {
-				check_variable = {
-					which = @carbon_economy
-					value = 3
-				}
-			}
-			add_deposit = d_subterranean_gas_lake
-		}
-		add_blocker = {
-			type = d_private_mines
-			blocked_deposit = last_added_deposit
-		}
+		add_deposit = d_private_mines
 		owner = {
 			add_resource = {
 				energy = 2000

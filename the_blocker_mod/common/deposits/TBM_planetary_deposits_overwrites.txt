@@ -2632,6 +2632,7 @@ d_veiny_cliffs = {
 		planet_max_districts_add = -1
 		district_mining_max = 1
 		planet_miners_minerals_produces_mult = 0.05
+		planet_amenities_add = -5
 	}
 
 	triggered_planet_modifier = {

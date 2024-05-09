@@ -7,6 +7,7 @@ namespace = tbm_handler
 ### Variables
 @miners = 0
 @mines = 0
+@sinkholes = 0
 
 #1. Scripted Planets Handler
 ### Many scripted planets in vanilla call clear_blockers on init, or add vanilla deposits that will either be broken or unbalanced by the mod. This event is fired on_press_begin and checks for specific scripted planets. It may cause a slight lag when the game is first started.
@@ -922,6 +923,12 @@ planet_event = {
 		if = {
 			limit = {
 				NOT = { has_planet_flag = sinkhole_causes } # Prevents firing the event to give the project when you already have it.
+				
+				# And only fire Sinkhole Causes after we've seen a couple sinkholes
+				check_variable = {
+					which = @sinkholes
+					value < 3
+				}
 			}
 			
 			# Sinkhole Cause Investigation
@@ -956,6 +963,11 @@ planet_event = {
 						id = tbm.81
 						days = 360
 						random = 180
+					}
+
+					change_variable = {
+						which = @sinkholes
+						value = 1
 					}
 				}
 				80 = {}

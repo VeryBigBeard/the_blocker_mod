@@ -80,7 +80,10 @@ building_science_outposts = {
 	potential = {
 		NOR = { 
 			has_major_upgraded_capital = yes
-			is_starting_planet = yes
+			AND = {
+				is_capital = yes
+				is_custom_capital_location = yes
+			}
 		}
 	}
 
@@ -142,7 +145,13 @@ building_frontier_spaceport = {
 	category = resource
 
 	potential = {
-		NOT = { has_major_capital = yes }
+		NOR = { 
+			has_major_upgraded_capital = yes
+			AND = {
+				is_capital = yes
+				is_custom_capital_location = yes
+			}
+		}
 	}
 
 	destroy_trigger = {

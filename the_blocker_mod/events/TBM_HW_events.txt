@@ -13,14 +13,14 @@ namespace = tbm_hw
 # 15. Privately-Sponsored Colony
 
 ### 5. Experimental Geothermal Tap - Handler
-planet_event = {
+country_event = {
 	id = tbm_hw.5
 
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		owner.capital_scope = {		# Kind of imprecise but this fires on game start so it will always be your starting planet.
+		capital_scope = {
 			set_timed_planet_flag = {
 				flag = experimental_geothermal_tap
 				years = 25
@@ -58,7 +58,6 @@ planet_event = {
 	}
 
 	trigger = {
-		has_deposit = d_experimental_geothermal_tap
 		NOT = { has_planet_flag = experimental_geothermal_tap }
 	}
 
