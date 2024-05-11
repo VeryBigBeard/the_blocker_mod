@@ -874,8 +874,8 @@ d_homeworld_extreme_weather = {
 		cost = {
 			energy = 1500
 		}
-		produces = {
-			unity = -2
+		upkeep = {
+			unity = 2
 		}
 	}
 
@@ -932,6 +932,13 @@ d_experimental_geothermal_tap = {
 	planet_modifier = {
 		district_generator_max = 1
 		planet_technician_energy_produces_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = geothermal_deprecation
+		}
+		district_generator_max = -1
 	}
 
 	potential = {

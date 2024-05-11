@@ -79,6 +79,9 @@
  tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding§!"
  tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_synapsse_drone_plural$§C are present on this world.§!"
 
+ building_colonial_energy:0 "Colonial Energy Conduits"
+ building_colonial_energy_desc:0 "Development of a full, planet-wide energy grid can take decades, and requires large-scale subsurface infrastructure not present on most new colonies. These wire-based transmission cables can be easily stored on a colony ship and are light enough to allow small teams of colonists to install them, powering farther-flung settlements from the ship's converted reactor core."
+
  # TBM Custom Jobs
 
  planet_colonist:0 "Colonist Jobs"  # Economic Category
@@ -381,6 +384,8 @@
  d_deep_trench:0 "Deep Trench"
  d_deep_trench_desc:0 "Fathomless and unexplored, this underwater trench obstructs further seabed development in the region."
 
+ d_worlds_fair:0 "Worlds' Fair"
+
  ### The Block Mod - Event Features - English
 
  d_private_farming_colony:0 "£blocker£ Private Farming Colony"
@@ -515,7 +520,7 @@
  subsurface_spaceport_opened_desc:0 "A new sub-aquatic spaceport has greatly facilitated trade and travel on this planet."
 
  nanocomposite_shortage:0 "Nanocomposite Shortage"
- nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker£ Advanced Geothermal Tap§! have led to delays in military shipbuiliding requisitions."
+ nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker£ $d_experimental_geothermal_tap§! have led to delays in military shipbuiliding requisitions."
 
  ### The Blocker Mod - Event Projects
 

@@ -590,7 +590,10 @@ planet_event = {
 
 	trigger = {
 		is_starting_planet = no
-		has_deposit = d_active_volcano
+		OR = {
+			has_deposit = d_active_volcano
+			has_deposit = d_tbm_active_volcano
+		}
 	}
 
 	immediate = {
@@ -675,7 +678,10 @@ planet_event = {
 	trigger = {
 		is_starting_planet = no
 		any_deposit = {
-			is_deposit_type = d_active_volcano
+			OR = {
+				is_deposit_type = d_active_volcano
+				is_deposit_type = d_tbm_active_volcano
+			}
 			NOT = { has_deposit_flag = volcano_erupted }
 		}
 	}
@@ -725,7 +731,10 @@ planet_event = {
 			10 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					remove_deposit = yes
 				}
@@ -734,7 +743,10 @@ planet_event = {
 			10 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					remove_deposit = yes
 				}
@@ -743,7 +755,10 @@ planet_event = {
 			80 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					set_timed_deposit_flag = {
 						flag = volcano_erupted
@@ -826,9 +841,13 @@ planet_event = {
 		is_ai = no
 	}
 
+	# Even volcanoes that are on cooldown can trigger warnings.
 	trigger = {
 		is_starting_planet = no
-		has_deposit = d_active_volcano	# Even volcanoes that are on cooldown can trigger warnings.
+		OR = {
+			is_deposit_type = d_active_volcano
+			is_deposit_type = d_tbm_active_volcano
+		}	
 		owner = { has_technology = tech_volcano }
 	}
 
@@ -837,7 +856,10 @@ planet_event = {
 		### Some logic to avoid volcanoes on cooldown actually erupting
 		random_deposit = {
 			limit = {
-				is_deposit_type = d_active_volcano
+				OR = {
+					is_deposit_type = d_active_volcano
+					is_deposit_type = d_tbm_active_volcano
+				}
 				NOT = { has_deposit_flag = volcano_erupted }
 			}
 			save_event_target_as = volcano_warning
@@ -950,7 +972,10 @@ planet_event = {
 			10 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					remove_deposit = yes
 				}
@@ -959,7 +984,10 @@ planet_event = {
 			10 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					remove_deposit = yes
 				}
@@ -968,7 +996,10 @@ planet_event = {
 			80 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					set_timed_deposit_flag = {
 						flag = volcano_erupted

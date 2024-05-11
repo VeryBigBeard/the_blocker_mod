@@ -927,7 +927,7 @@ planet_event = {
 				# And only fire Sinkhole Causes after we've seen a couple sinkholes
 				check_variable = {
 					which = @sinkholes
-					value < 3
+					value > 3
 				}
 			}
 			

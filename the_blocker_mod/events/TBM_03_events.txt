@@ -16,8 +16,11 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
-	immediate = {
-		# Determine mining feature
+	# Add a mining feature.
+	option = {
+		name = tbm.300.mining
+		custom_tooltip = tbm.300_mining_tooltip
+		
 		random_list = {
 			20 = {
 				add_deposit = d_submerged_ore_veins
@@ -35,13 +38,7 @@ planet_event = {
 				add_deposit = d_mine_shafts
 			}
 		}
-	}
 
-	# Add a mining feature.
-	option = {
-		name = tbm.300.mining
-		custom_tooltip = tbm.300_mining_tooltip
-		
 		ai_chance = {
 			factor = 100
 		}
@@ -56,11 +53,7 @@ planet_event = {
 				energy = 800
 			}
 		}
-		hidden_effect = {
-			last_added_deposit = {
-				remove_deposit = yes
-			}
-		}
+		
 		add_deposit = d_private_mines
 
 		ai_chance = {

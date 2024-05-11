@@ -1054,6 +1054,7 @@ planet_event = {
 		root = {
 			enable_special_project = {
 				name = "SOMETHING_IN_THE_PIPES"
+				location = this
 			}
 		}
 		set_planet_flag = sinkhole_causes

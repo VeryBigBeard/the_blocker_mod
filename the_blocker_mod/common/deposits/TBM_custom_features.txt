@@ -1071,7 +1071,7 @@ d_basaltic_outcrops = {
 	}
 
 	drop_weight = {
-		weight = @med
+		weight = @low
 
 		modifier = {
 			factor = 2
@@ -4993,5 +4993,141 @@ d_private_farming_colony = {
 
 	ai_weight = {
 		weight = @always_clear
+	}
+}
+
+# Fully-featured volcano that spawns randomly and has blocker swaps. Separated mainly to not interfere with event volcanoes that PDX tends to like to put on scripted worlds in very great number.
+d_tbm_active_volcano = {
+	category = deposit_cat_blockers_natural
+	icon = d_active_volcano
+
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_tempestous_mountain
+		d_prosperous_mesa
+		d_rich_mountain
+		d_fjordland
+		d_tropical_island
+	}
+
+	time = 720
+
+	prerequisites = {
+		"tech_volcano"
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1800
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				minerals = 200
+				engineering_research = 1000
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_generator_max = 1
+		planet_jobs_food_produces_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_volcano }
+		}
+		modifier = {
+			planet_technician_alloys_produces_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			any_deposit = {
+				has_deposit_flag = volcano_erupted	# This has to be applied to a SPECIFIC Active Volcano in the event.
+			}
+		}
+		modifier = {
+			district_farming_max = -1
+			district_mining_max = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_environmentalist }
+		}
+		planet_rangers_energy_produces_add = @ranger_large_production
+	}
+
+	potential = {
+	}
+
+	drop_weight = {
+		weight = @blocker_low
+		modifier = {
+			factor = 2
+			OR = {
+				is_planet_class = pc_alpine
+				is_planet_class = pc_savannah
+				is_planet_class = pc_ocean
+				is_planet_class = pc_nuked
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				is_planet_class = pc_arctic
+				is_planet_class = pc_continental
+				is_planet_class = pc_tundra
+			}
+		}
+		
+		modifier = {
+			factor = 2
+			OR = {
+				planet_size < 15
+				has_planet_modifier = pm_low_gravity
+			}
+		}
+
+		modifier = {
+			factor = 2
+			has_volcanic_activity = yes
+		}
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+
+		modifier = {
+			add = -0.75
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+
+		modifier = {
+			add = -0.5
+			root = {
+				colony_type = col_generator
+			}
+		}
 	}
 }

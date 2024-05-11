@@ -7,7 +7,7 @@
  tbm_hw.6_decommission:0 "Dismantle the remaining facilities."
  tbm_hw.6_lose_generator:0 "§YWe will lose a £district£ $district_generator$ slot.§!"
  tbm_hw.6_maintain:0 "Bring the facilities back up to code."
- tbm_hw.6_nanocomppsite_shortage:0 "We will divert the necessary nanocomposites to rejuvenate the generators, maintaining our number of £district£ $district_generator_plural$"
+ tbm_hw.6_nanocomppsite_shortage:0 "We will divert the necessary nanocomposites to rejuvenate the generators, maintaining our number of £district£ §Y$district_generator_plural$§! at the expense of shipyard efficiency."
  tbm_hw.6_ignore:0 "Ignore the problem."
  tbm_hw.6_ignore_tooltip:0 "The §Y£blocker£ Experimental Geothermal Tap§! will stop working, and §Ywe will lose a £district£ $district_generator$ slot§! as a result."
 

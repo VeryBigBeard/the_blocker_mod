@@ -58,7 +58,10 @@ planet_event = {
 	}
 
 	trigger = {
+		years_passed = 25
+		has_deposit = d_experimental_geothermal_tap
 		NOT = { has_planet_flag = experimental_geothermal_tap }
+		NOT = { has_planet_flag = geothermal_deprecation }
 	}
 
 	immediate = {
@@ -69,13 +72,33 @@ planet_event = {
 		name = tbm_hw.6_decommission
 		custom_tooltip = tbm_hw.6_lose_generator
 
-		remove_deposit = d_experimental_geothermal_tap
+		random_deposit = {
+			limit = {
+				is_deposit_type = d_experimental_geothermal_tap
+			}
+			remove_deposit = yes
+		}
+
+
 		add_deposit = d_active_volcano
+
+		ai_chance = {
+			factor = 100
+		}
 	}
 	
 	option = {
 		name = tbm_hw.6_maintain
 		custom_tooltip = tbm_hw.6_nanocomppsite_shortage
+
+		allow = {
+			owner = {
+				has_resource = {
+					type = energy
+					amount >= 800
+				}
+			}
+		}
 
 		owner = {
 			add_resource = {
@@ -100,6 +123,10 @@ planet_event = {
 				random = 180
 			}
 		}
+	}
+
+	after = {
+		remove_planet_flag = experimental_geothermal_tap
 	}
 }
 
