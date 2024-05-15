@@ -456,7 +456,7 @@ d_glacier_lake = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -2
+		planet_max_districts_add = -1
 		district_farming_max = 1
 		planet_amenities_add = 5
 	}
@@ -1214,6 +1214,19 @@ d_volcanic_island = {
 		modifier = {
 			factor = 4
 			is_planet_class = pc_ocean
+		}
+
+		modifier = {
+			factor = 2
+			has_volcanic_activity = yes
+		}
+
+		modifier = {
+			factor = 2
+			OR = {
+				has_planet_modifier = pm_unstable_tectonics
+				has_planet_modifier = pm_abundant_geothermal_activity
+			}
 		}
 	}
 
@@ -2864,7 +2877,20 @@ d_misty_plains = {
 			}
 		}
 		modifier = {
-			planet_colonist_society_research_produces_add = 2
+			planet_colonist_society_research_produces_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			any_owned_pop = {
+				has_job = colonist
+			}
+			is_planet_class = pc_nuked
+		}
+		modifier = {
+			planet_colonist_society_research_produces_add = 1
 		}
 	}
 
@@ -3684,11 +3710,10 @@ d_tbm_industrial_wasteland = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -1
-		pop_happiness = -0.05
+		#planet_max_districts_add = -1
 		planet_pops_consumer_goods_upkeep_mult = -0.05	# Cheaper cost of living
 		trade_value_mult = 0.02
-		planet_crime_mult = 0.05
+		planet_crime_mult = 0.1
 	}
 
 	triggered_planet_modifier = {
@@ -4014,8 +4039,8 @@ d_settlement = {
 
 	resources = {
 		category = deposit_blockers
-		produces = {
-			unity = -1
+		upkeep = {
+			unity = 1
 			mult = trigger:num_pops
 		}
 		cost = {
@@ -4460,6 +4485,11 @@ d_oil_fields_at_first_light = {
 				is_cold = yes
 			}
 		}
+		modifier = {
+			factor = 2
+			has_planet_modifier = pm_high_gravity
+		}
+
 	}
 
 	ai_weight = {
@@ -5107,6 +5137,14 @@ d_tbm_active_volcano = {
 		modifier = {
 			factor = 2
 			has_volcanic_activity = yes
+		}
+
+		modifier = {
+			factor = 2
+			OR = {
+				has_planet_modifier = pm_unstable_tectonics
+				has_planet_modifier = pm_abundant_geothermal_activity
+			}
 		}
 	}
 

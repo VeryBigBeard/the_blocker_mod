@@ -21,21 +21,23 @@ planet_event = {
 		name = tbm.300.mining
 		custom_tooltip = tbm.300_mining_tooltip
 		
-		random_list = {
-			20 = {
-				add_deposit = d_submerged_ore_veins
-			}
-			20 = {
-				add_deposit = d_ore_rich_caverns
-			}
-			20 = {
-				add_deposit = d_basaltic_outcrops
-			}
-			20 = {
-				add_deposit = d_tbm_strip_mine
-			}
-			20 = {
-				add_deposit = d_mine_shafts
+		hidden_effect = {
+			random_list = {
+				20 = {
+					add_deposit = d_submerged_ore_veins
+				}
+				20 = {
+					add_deposit = d_ore_rich_caverns
+				}
+				20 = {
+					add_deposit = d_basaltic_outcrops
+				}
+				20 = {
+					add_deposit = d_tbm_strip_mine
+				}
+				20 = {
+					add_deposit = d_mine_shafts
+				}
 			}
 		}
 

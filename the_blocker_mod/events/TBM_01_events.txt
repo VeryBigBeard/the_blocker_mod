@@ -589,6 +589,8 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }	# This is here to avoid bugs caused by volcanoes being put on scripted planets; if you use ZoFE, replace with is_zofe_country = yes
 		is_starting_planet = no
 		OR = {
 			has_deposit = d_active_volcano
@@ -1186,6 +1188,8 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
 		is_starting_planet = no
 		NOT = { has_planet_flag = landslide }
 		any_deposit = {
@@ -1202,7 +1206,7 @@ planet_event = {
 					random = 90
 				}
 			}
-			80 = {}
+			95 = {}
 		}
 	}
 }

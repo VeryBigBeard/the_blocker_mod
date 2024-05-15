@@ -76,7 +76,7 @@
 
  building_frontier_spaceport:0 "Frontier Spaceport"
  building_frontier_spaceport_desc:0 "Far out on the edges of known civlization, this spaceport handles all manner of cargo and colonists. The noise of half-built dockyards is drowned out by bustling bars and the sound of roading shuttle engines."
- tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding§!"
+ tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding that will increase its $r_unity$ output.§!"
  tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_synapsse_drone_plural$§C are present on this world.§!"
 
  building_colonial_energy:0 "Colonial Energy Conduits"
@@ -165,6 +165,9 @@
 
 
  ### The Blocker Mod - Custom Features - English
+
+ d_tbm_active_volcano:0 "£blocker£ Active Volcano"
+ d_tbm_active_volcano_desc:0 "There is an active volcano in this region, spewing forth lava and volcanic gases."
  
  d_fjordland:0 "£blocker£ Fjordland"
  d_fjordland_desc:0 "Sharp cliffs plunge straight into deep and misty bays, providing stunning vistas. The crinkly terrain is visible even from space but the ridges are impassavble, makes large-scale development impossible."
@@ -266,7 +269,7 @@
  d_salt_flats:0 "£blocker£ Salt Flats"
  d_salt_flats_desc:0 "This wide plain likely used to be a sea-bed and exposed salt glitters white and red in the parching sunlight while sulfur and phosphorus waft through the air."
 
- d_arid_plains:0 "£blocker£ Arid Plains"
+ d_arid_plains:0 "Arid Plains"
  d_arid_plains_desc:0 "Dry and riddled with rock, these rugged plains make construction and maintenance difficult. A lack of neaby fresh water makes the region a low priority for settlement, but leaves ample space for large-scale energy facilities."
 
  d_sandsea:0 "£blocker£ Sandsea"
@@ -409,6 +412,8 @@
 
  ### The Blocker Mod - A City of the Desert - Features - English
 
+ d_searing_desert_vital:0 "This £blocker£ §YSearing Desert§! has become vital to our way of life on this world, and cannot be cleared."
+
  d_great_desert:0 "£blocker£ The Great Desert Garden"
  d_great_desert_desc:0 "Once a desolate §Y£blocker£ Searing Desert§!, years of toil and work have seen our people turn this place into a thriving region of farms and gardens, all powered by sustainable energy."
  d_great_city:0 "The Great Desert City"
@@ -431,6 +436,7 @@
  overpopulated:0 "Overcrowding"
  stolen_materials:0 "Critical Materials Missing"
  sandstorms:0 "Vicious Sandstorm"
+ sandstorms_desc:0 "A vicious sandstorm has rolled in over a major city on this world. The alien sands, made up of larger and harder particulates than those on our homeworld, seem innocent enough at a distance, but whipped up by high summer winds they can rip through plasteel beams and decimate energy grids, causing damage to the [planet.GetPlanetMoon]'s infrastructure."
 
  # Specialization modifiers (planet)
  great_desert_farms:0 "Desert Farms"

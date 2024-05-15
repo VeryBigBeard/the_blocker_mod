@@ -134,13 +134,40 @@ scripted_planet_reroll = {
 			add_deposit = d_betharian_deposit
 		}
 
+		#big_rip_system
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = big_rip_planet
+			}
+			clear_deposits = yes
+			reroll_deposits = yes
+		}
+
 	### federations_initializers / On the Shoulders of Giants
 	#	These are initialized separately so will be dealt with elsewhere.
+
+	### megacorp_initializers
+		every_galaxy_planet = {
+			limit = {
+				solar_system = {
+					has_star_flag = ruined_interstellar_assembly_system
+				}
+			}
+			clear_deposits = yes
+			reroll_deposits = yes
+		}
 
 		
 	### unique_system_initializer
 		
-		# unique_system_initializer_02 - Relic world, not needed yet
+		# unique_system_initializer_02
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = hive_planet_larion
+			}
+			reroll_deposits = yes 	# without clearing so we save the district spread
+			# This really needs a proper feature set
+		}
 }
 
 fix_fallen_empire_worlds = {

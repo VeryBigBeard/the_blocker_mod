@@ -73,6 +73,7 @@
 
  d_homeworld_extreme_weather:0 "Extreme Weather"
  d_homeworld_extreme_weather_desc:0 "A product of unchecked global warming in the early 21st century, this region is regularly wracked by severe seasonal storms. Sturdy communities cling on amid the high-maintenance wind farms."
+ d_extreme_weather_tooltip:0 "$r_unity$ §YUnity Upkeep increases for each £building£ Building constructed."
 
  d_experimental_geothermal_tap:0 "Experimental Geothermal Tap"
  d_experimental_geothermal_tap_desc:0 "Designed in 2107 to combat fossil fuel dependency, this network of experimental subsurface taps never lived up to the promise of the 22nd century, and a recent news exposé has revealed much of the science involved to be based on a hoax."
@@ -88,13 +89,13 @@
 
  ### FOOD
 
- d_homestead_farms:0 "Homestead Farms"
+ d_homestead_farms:0 "£blocker£ Homestead Farms"
  d_homestead_farms_desc:0 "Though many now choose to live in the mega-cities, some traditionalists still keep a family farm. It's a hard life, but they still play a crucial part in the global food distribution system."
 
- d_metabolic_processing:0 "Metabolic Processing Centers"
+ d_metabolic_processing:0 "£blocker£ Metabolic Processing Centers"
  d_metabolic_processing_desc:0 " Ever-expanding drone populations across the globe necessitated the creation of these vast feeding chambers. Though inefficient, the hive could not have sustained interplanetary growth without them."
 
- d_nutrient_terminals:0 "Nutrient Distribution Terminals"
+ d_nutrient_terminals:0 "£blocker£ Nutrient Distribution Terminals"
  d_nutrient_terminals_desc:0 "Organic lifeforms require timely infusions of carbon-based proteins to survive. These early models replicate the texture and consistency of food and regulate organic intake for maximum lifespan and fertility."
 
  d_factory_slaughterhouses:0 "Factory Farming"
@@ -119,9 +120,11 @@
 
  d_megaliths:0 "Megaliths"
  d_megaliths_desc:0 "Colossal constructions built by the ancient awoken still dot the landscape, serving as reminders of stones gone to sleep."
+ d_megaliths_tooltip:0 "§Y$r_unity$ incfome increases with the number of Lithoid £pops£ §CPops§! living on the world.§!"
 
  d_crumbling_mountain:0 "Crumbling Mountain"
  d_crumbling_mountain_desc:0 "This used to be a mountain, but after being voted Tastiest Landscape on a popular show three years running, very little remains, and surrounding communities have raised concerns about landslides and food security."
+ d_crumbling_mountain_tooltip:0 "§Y$r_unity$ Upkeep increases every year.§!"
 
  d_crystal_outcrops:0 "Crystalline Outcrops"
  d_crystal_outcrops_desc:0 "These mysterious and diamond-hard crystals were once thought to be magic, though more recent geocultural study has linked their properties to our own anatomy. Growing them takes millennia and extracting them from the remotest areas of the planet can take months, but their mineral output is among the most nutritious for young lithoids available."
@@ -154,9 +157,6 @@
  d_fallout_zone:0 "£blocker£ Fallout Zone"
  d_fallout_zone_desc:0 "High winds blew dust and debris from massive nuclear explosions across this whole region, coating everything living in thick, radioactive ash. Anyone living or working here must take medication and the cancers render any hope of children a dream for different future."
 
- d_unclaimed_cave_complex:0 "REPLACE_ME"
- d_unclaimed_cave_complex_desc:0 "REPLACE_ME"
-
  d_library_of_before:0 "The Library of Before"
  d_library_of_before_desc:0 "Very little survives from before the blasts destroyed our world. In the days after, a few collectors tried to preserve what culture they could. It isn't much, but hidden in its halls are the secrets to our forebears technology -- and the terrible reasons they brought about thier own doom. Not all would keep such things."
 
@@ -166,7 +166,7 @@
  d_food_rations:0 "Food Rations"
  d_food_rations_desc:0 "Some of the bunkers across our planet survived its fiery fall thanks to rations of canned or dried food. As we begin the long road to rebuilding our society, what remains of these rations have been pooled and placed under strict guard, with allocations doled out based on need. It is rarely enough, and there are constant rumors of reserves running low."
 
- d_survival_camps:0 "Survival Camps"
+ d_survival_camps:0 "£blocker£ Survival Camps"
  d_survival_camps_desc:0 "Those not fortunate enough to be able to reach a shelter mostly congregated in meager camps in whatever hospitable regions they could find. Since then, these communities have become somewhat self-sufficient, but life in them is an ordeal, with most of the camps run more by criminals and anarchic tyrants."
 
  d_seed_banks:0 "Seed Banks"
@@ -288,7 +288,7 @@
  d_exoagricultural_experimentation:0 "Exoagricultural Experimentation"
  d_exoagricultural_experimentation_desc:0 "The colonial mission included a large contingent of bio-engineers and xeno-agricultural specialists who had spent years preparing seed samples and livestock genomes for alien ecosystems."
 
- d_homeworld_frontier_farmsteads:0 "Frontier Farmsteads"
+ d_homeworld_frontier_farmsteads:0 "£blocker£ Frontier Farmsteads"
  d_homeworld_frontier_farmsteads_desc:0 "These sprawling land grants allowed colonists to set off on their own and start farms and families that now form the backbone of the colony."
 
  ### CORPORATE

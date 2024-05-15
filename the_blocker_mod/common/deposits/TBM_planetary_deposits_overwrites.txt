@@ -922,7 +922,7 @@ d_quicksand_basin = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		planet_miners_minerals_produces_mult = 0.05
+		planet_researchers_engineering_research_produces_mult = 0.05
 		pop_happiness = -0.05
 	}
 
@@ -945,16 +945,6 @@ d_quicksand_basin = {
 		}
 		modifier = {
 			planet_miners_minerals_produces_mult = 0.05
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_technology = tech_quicksand_basin }
-		}
-		modifier = {
-			planet_farmers_food_produces_mult = 0.05
 		}
 	}
 
@@ -1932,18 +1922,23 @@ d_searing_desert = {
 	should_swap_deposit_on_terraforming = no
 
 	can_be_cleared = {
-		NOR = {
-			owner = {
-				NOR = {
-					has_country_flag = desert_cities
-					has_modifier = waters_of_life
-					has_modifier = great_desert_city
-				}
+		hidden_trigger = {
+			fail_text = {
+				text = d_searing_desert_vital
 			}
-			planet = {
-				OR = {
-					has_modifier = bringing_water
-					has_modifier = dream_city
+			NOR = {
+				owner = {
+					NOR = {
+						has_country_flag = desert_cities
+						has_modifier = waters_of_life
+						has_modifier = great_desert_city
+					}
+				}
+				planet = {
+					OR = {
+						has_modifier = bringing_water
+						has_modifier = dream_city
+					}
 				}
 			}
 		}
@@ -2284,6 +2279,10 @@ d_geothermal_vent = {
 			add = 5		### Add is deliberate! Won't spawn on dry worlds UNLESS they have volcanic activity.
 			has_volcanic_activity = yes
 		}
+		modifier = {
+			factor = 2
+			has_planet_modifier = pm_abundant_geothermal_activity
+		}
 	}
 
 	ai_weight = {
@@ -2415,6 +2414,10 @@ d_underwater_vent = {
 		modifier = {
 			factor = 2
 			has_volcanic_activity = yes
+		}
+		modifier = {
+			factor = 2
+			has_planet_modifier = pm_abundant_geothermal_activity
 		}
 	}
 

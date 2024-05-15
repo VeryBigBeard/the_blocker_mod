@@ -29,7 +29,7 @@ pioneering_colonists = {
 	icon = gfx/interface/icons/planet_modifiers/pm_archaeology.dds
 	icon_frame = 1
 	deposit_blockers_cost_mult = -0.2
-	planet_clear_blocker_speed_mult = -0.2
+	planet_clear_blocker_speed_mult = 0.2
 	job_colonist_add = 2
 	planet_colonist_produces_mult = 0.1
 }
@@ -302,6 +302,8 @@ xenofish_attacks = {
 	icon = gfx/interface/icons/planet_modifiers/pm_slave_riots.dds
 	custom_tooltip = xenofish.attacks	# This modifier is just a tooltip.
 }
+
+
 
 ### Geothermal Energy and Vents
 

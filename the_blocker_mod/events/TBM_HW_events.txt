@@ -76,11 +76,8 @@ planet_event = {
 			limit = {
 				is_deposit_type = d_experimental_geothermal_tap
 			}
-			remove_deposit = yes
+			clear_blocker = yes
 		}
-
-
-		add_deposit = d_active_volcano
 
 		ai_chance = {
 			factor = 100

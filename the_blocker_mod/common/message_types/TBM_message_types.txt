@@ -16,7 +16,7 @@ message_type = {
 
 #	Deteriorating Conditions (Slum Generator) (tbm_handler.2)
 message_type = {
-	icon = "TBM_message_blocker"
+	icon = "TBM_message_bad_thing"
 	key = "SLUM_GENERATOR"
 	icon_frame = 3
 	sound = alert_negative
@@ -28,7 +28,7 @@ message_type = {
 
 # Deteriorating Conditions (Industrial Wasteland) (tbm_handler.4)
 message_type = {
-	icon = "TBM_message_blocker"
+	icon = "TBM_message_bad_thing"
 	key = "INDUSTRIAL_WASTELAND"
 	icon_frame = 3
 	sound = alert_negative
@@ -128,6 +128,19 @@ message_type = {
 # Landslide
 message_type = {
 	key = "LANDSLIDE"
+	icon = TBM_message_bad_thing
+	icon_frame = 1
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_red"
+
+	category = planets
+}
+
+
+# Sandstorm
+message_type = {
+	key = "SANDSTORM"
 	icon = TBM_message_bad_thing
 	icon_frame = 1
 	sound = alert_negative

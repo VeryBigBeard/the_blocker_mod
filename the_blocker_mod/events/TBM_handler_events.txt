@@ -341,6 +341,9 @@ planet_event = {
 
 	# Several pre-reqs here that basically amount to crummy urban living; should be less common in late-game post-scarcity economies but a challenge as you grow quickly.
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
 		years_passed > 5
 				
 		# Got to have one each of sprawl and poor conditions
@@ -361,7 +364,7 @@ planet_event = {
 		
 		random_list = {
 			# Slums generated, more likely if conditions are already bad.
-			10 = {
+			15 = {
 				modifier = {
 					factor = 2.5
 					any_owned_pop = {
@@ -398,7 +401,7 @@ planet_event = {
 				}
 			}
 			# No slums this time.
-			80 = {
+			85 = {
 				modifier = {
 					factor = 2
 					owner = {
@@ -442,6 +445,9 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
 		is_artificial = no
 		years_passed > 10	# Grace period for homeworlds; we do want them to struggle with these, but there's a lot going on at game start with other features.
 
@@ -475,7 +481,7 @@ planet_event = {
 		
 		random_list = {
 			# Wastelands generated, more likely with some other factors.
-			10 = {
+			15 = {
 				modifier = {
 					factor = 2
 					owner = {
@@ -511,7 +517,7 @@ planet_event = {
 				}
 			}
 			# No wasteland this time.
-			90 = {
+			85 = {
 				modifier = {
 					factor = 1.5
 					owner = { has_valid_civic = civic_merchant_guilds }
@@ -556,6 +562,9 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
 		is_artificial = no
 		is_starting_planet = no
 		OR = {
@@ -574,20 +583,13 @@ planet_event = {
 			# Colonial Settlement - adds feature, housing, and colonist jobs.
 			5 = {
 				modifier = {
-					add = 5
-					num_free_districts = {
-						type = any
-						value > 3
-					}
-				}
-				modifier = {
-					add = 5
+					factor = 2
 					num_pops > 8	# Should result in a few more settlements at that tight spot right before you get Planetary Admin.
 				}
 
 				# Reduce likelihood if we have settlements already, we don't want these getting weedy.
 				modifier = {
-					factor = 0.5
+					multiply = 0.5
 					count_deposits = {
 						type = d_settlement
 						count >= 2
@@ -595,7 +597,7 @@ planet_event = {
 				}
 
 				modifier = {
-					factor = 0.5
+					multiply = 0.5
 					num_pops > 12
 				}
 
@@ -648,6 +650,9 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
 		is_artificial = no
 		NOR = {
 			is_planet_class = pc_relic
@@ -812,6 +817,9 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
 		years_passed > 50	# Partly because you're unlikely to have Soil Remediation that quickly and without it, Dustbowls can choke your ag colonies rather quickly before any more complex economy is set up. The intent of these is more to target breadbasket worlds in a larger empire.
 
 		colony_age > 40
@@ -909,6 +917,8 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
 		OR = {		
 			# Sinkholes make more sinkholes
 			has_deposit = d_deep_sinkhole
@@ -1397,6 +1407,7 @@ country_event = {
 				}
 				remove_modifier = cleared_hot_springs
 			}
+			add_planet_devastation = -100
 			generate_start_deposits_and_blockers = yes
 		}
 	}

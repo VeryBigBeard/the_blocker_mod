@@ -1121,6 +1121,8 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
 		is_dry = yes
 		OR = {
 			has_deposit = d_searing_desert
@@ -1140,7 +1142,7 @@ planet_event = {
 		}
 		
 		random_list = {
-			10 = {
+			5 = {
 				modifier = {
 					factor = 2	
 					check_variable = {
@@ -1154,7 +1156,7 @@ planet_event = {
 					random = 20
 				}
 			}
-			90 = {}
+			95 = {}
 		}
 	}
 }
@@ -1162,11 +1164,6 @@ planet_event = {
 ### 85. Vicious Sandstorm
 planet_event = {
 	id = tbm.85
-
-	title = tbm.85.name
-	desc = tbm.85.desc
-	picture = GFX_evt_landing_ship
-	show_sound = event_wind_ruins
 
 	is_triggered_only = yes
 	location = this
@@ -1178,16 +1175,19 @@ planet_event = {
 				years = 10
 			}
 		}
-	}
 
-	option = {
-		name = OK
-		owner = {
-			add_resource = {
-				energy = -1000
-			}
+		add_planet_devastation = 10
+		add_modifier = {
+			modifier = sandstorms
+			days = 180
 		}
-		add_planet_devastation = 20
+
+		create_message = {
+			type = "SANDSTORM"
+			localization = message_sandstorm
+			days = 30
+			target = this
+		}
 	}
 }
 

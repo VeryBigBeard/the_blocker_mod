@@ -837,7 +837,7 @@ d_battery_farms = {
 	}
 
 	potential = {
-		always = yes
+		always = no
 	}
 
 	ai_weight = {
@@ -862,6 +862,7 @@ d_battery_farms = {
 
 d_homeworld_extreme_weather = {
 	category = deposit_cat_blockers
+	custom_tooltip = d_extreme_weather_tooltip
 
 	use_for_min_max_adjustments = yes
 
@@ -875,7 +876,8 @@ d_homeworld_extreme_weather = {
 			energy = 1500
 		}
 		upkeep = {
-			unity = 2
+			unity = 1
+			mult = value:extreme_weather_strain		# Adds multiplier per buildinmg.
 		}
 	}
 
@@ -1684,6 +1686,7 @@ d_reclaimed_land = {
 
 d_megaliths = {
 	category = deposit_cat_blockers
+	custom_tooltip = d_megaliths_tooltip
 
 	use_for_min_max_adjustments = yes
 
@@ -1702,7 +1705,7 @@ d_megaliths = {
 				owner = { is_lithoid = yes }
 			}
 			unity = 1
-			multiplier = value:megalith_unity_output
+			mult = value:megalith_unity_output
 			
 		}
 	}
@@ -1741,6 +1744,7 @@ d_megaliths = {
 
 d_crumbling_mountain = {
 	category = deposit_cat_blockers
+	custom_tooltip = d_crumbling_mountain_tooltip
 
 	use_for_min_max_adjustments = yes
 
@@ -1753,8 +1757,9 @@ d_crumbling_mountain = {
 		cost = {
 			energy = 800
 		}
-		produces = {
-			unity = -2
+		upkeep = {
+			unity = 2
+			mult = trigger:years_passed
 		}
 	}
 
@@ -4211,6 +4216,10 @@ d_slush_funds = {
 		planet_crime_mult = 0.1
 	}
 
+	potential = {
+		always = no
+	}
+
 	ai_weight = {
 		weight = @clear
 	}
@@ -4694,7 +4703,7 @@ d_inefficient_energy = {	# Currently unused, probably nix.
 	}
 
 	potential = {
-		always = yes
+		always = no
 	}
 }
 
