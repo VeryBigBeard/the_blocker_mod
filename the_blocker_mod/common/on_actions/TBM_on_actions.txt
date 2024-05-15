@@ -18,6 +18,7 @@ on_press_begin = {
 		#tbm_handler.1	# Scripted Planets Handler
 		#tbm_handler.2	# Advanced Start Feature Fixer
 		tbm_handler.102 # Add Wild World to planets that need it
+		tbm_hw.5	# Experimental Geothermal Tap Handler
 	}
 }
 
@@ -32,25 +33,27 @@ on_yearly_pulse = {
 
 ### Main Feature Events
 
+on_colonization_started = {
+	events = {
+		tbm_handler.104 	# Wild World Adapter for gestalts
+	}
+}
+
 on_colonized = {
 	events = {
 		tbm_handler.100	# Pioneering Colonists
 	}
 }
 
-on_colony_yearly_oulse = {
+on_colony_yearly_pulse = {
 	events = {
+		tbm_hw.6 	# Experimental Geothermal Tap Event
+		tbm_hw.7 	# Experimental Geotheramal Tap Explodes
+		
 		#tbm.101	# A Shiny Rock
-
-		tbm.10	# Volcanic Eruption
 		tbm.16 	# Xenofauna Attack
-		tbm.18 	# Landslide
-		tbm.51 # Toxic Kelp
-		tbm.52 # Kelp Insights
+		tbm.50 # Toxic Kelp
 		tbm.84 	# Vicious Sandstorm
-		tbm.86	# Struck the Motherlode
-
-		tbm.301 	# Fossil Fuel Discovery
 		
 		### Handler Events
 		tbm_handler.4 	# Slum Generator
@@ -64,27 +67,49 @@ on_colony_yearly_oulse = {
 	}
 }
 
-on_colony_five_yearly_pulse = {
+on_colony_5_yearly_pulse = {
 	events = {
-		tbm_desert.46	# A City of the Desert
+		tbm.18 	# Landslide
+		tbm.301 	# Fossil Fuel Discovery
+	}
+}
+
+on_colony_10_yearly_pulse = {
+	events = {
+		tbm.10	# Volcanic Eruption
+	}
+}
+
+on_colony_5_year_pulse = {
+	events = {
 		tbm.301 # Fossil Fuel Discovery
+		
+		tbm_desert.46	# A City of the Desert
 		tbm_hw.51 	# Food Replicators Malfunction
+		
 	}
 }
 
 on_colony_25_years_old = {
 	events = {
-		tbm_hw.6 	# Deteriorating Geothermal Tap
+		#tbm_hw.6 	# Deteriorating Geothermal Tap
 	}
 }
 
 on_district_complete = {
 	events = {
+		tbm.86	# Struck the Motherlode
 		tbm_handler.20	# False Prospects
 	}
 	
 	random_events = {
 		50 = 0
 		50 = tbm.21 # Proposed Marina
+	}
+}
+
+on_planet_trasnfer = {
+	events = {
+		tbm_handler.104 	# Wild World Adapter for gestlats
 	}
 }

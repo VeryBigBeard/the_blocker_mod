@@ -138,7 +138,14 @@ achieve_ftl_effect = {
 	}
 
 	capital_scope = {
-		clear_blockers = yes
+		#clear_blockers = yes
+		### TBM OVERWRITE
+		fire_on_action = {
+			on_action = tbm_achieve_ftl
+			scopes = {
+				from = this
+			}
+		}
 		remove_all_buildings = yes
 		if = {
 			limit = {
@@ -293,13 +300,5 @@ achieve_ftl_effect = {
 			exists = event_target:previous_system_owner
 		}
 		establish_communications_no_message = event_target:previous_system_owner
-	}
-
-	### TBM OVERWRITE
-	fire_on_action = {
-		on_action = tbm_achieve_ftl
-		scopes = {
-			from = prev
-		}
 	}
 }

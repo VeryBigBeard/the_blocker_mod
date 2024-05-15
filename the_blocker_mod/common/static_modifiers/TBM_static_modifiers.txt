@@ -14,11 +14,22 @@ wild_world = {
 	planet_jobs_upkeep_mult = 0.05
 }
 
+wild_world_gestalt = {
+	icon = gfx/interface/icons/planet_modifiers/pm_overgrowth.dds
+	icon_frame = 2
+	planet_max_districts_add = 2
+	job_researcher_add = 2
+	planet_researchers_physics_research_produces_mult = 0.2
+	planet_researchers_society_research_produces_mult = 0.2
+	planet_researchers_engineering_research_produces_mult = 0.2
+	planet_jobs_upkeep_mult = 0.05
+}
+
 pioneering_colonists = {
 	icon = gfx/interface/icons/planet_modifiers/pm_archaeology.dds
 	icon_frame = 1
 	deposit_blockers_cost_mult = -0.2
-	planet_clear_blocker_speed_mult = -0.2
+	planet_clear_blocker_speed_mult = 0.2
 	job_colonist_add = 2
 	planet_colonist_produces_mult = 0.1
 }
@@ -292,6 +303,8 @@ xenofish_attacks = {
 	custom_tooltip = xenofish.attacks	# This modifier is just a tooltip.
 }
 
+
+
 ### Geothermal Energy and Vents
 
 studying_latent_underlying_geothermal_gas_eruption_rhythm = {
@@ -326,7 +339,7 @@ subterranean_river_cruises = {
 
 nanocomposite_shortage = {
 	icon = gfx/interface/icons/planet_modifiers/pm_resources.dds
-	shipclass_military_build_speed_mult = -0.2
+	shipclass_military_build_speed_mult = -0.5
 }
 
 ### Failing Food Replicator

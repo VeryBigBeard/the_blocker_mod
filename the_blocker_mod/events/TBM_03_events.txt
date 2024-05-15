@@ -2,10 +2,9 @@
 
 namespace = tbm
 
-### Variables
-@carbon_economy = 0
+@carbon_economy = 1
 
-### 300. Mining Prospects (on_colony_yearly_pulse - random = 40)
+### 300. Mining Prospects
 planet_event = {
 	id = tbm.300
 
@@ -17,46 +16,31 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
-	immediate = {
-		# Determine mining feature
-		random_list = {
-			20 = {
-				add_deposit = d_submerged_ore_veins
-				last_added_deposit = {
-					save_event_target_as = mine
-				}
-			}
-			20 = {
-				add_deposit = d_ore_rich_caverns
-				last_added_deposit = {
-					save_event_target_as = mine
-				}
-			}
-			20 = {
-				add_deposit = d_basaltic_outcrops
-				last_added_deposit = {
-					save_event_target_as = mine
-				}
-			}
-			20 = {
-				add_deposit = d_tbm_strip_mine
-				last_added_deposit = {
-					save_event_target_as = mine
-				}
-			}
-			20 = {
-				add_deposit = d_mine_shafts
-				last_added_deposit = {
-					save_event_target_as = mine
-				}
-			}
-		}
-	}
-
 	# Add a mining feature.
 	option = {
 		name = tbm.300.mining
+		custom_tooltip = tbm.300_mining_tooltip
 		
+		hidden_effect = {
+			random_list = {
+				20 = {
+					add_deposit = d_submerged_ore_veins
+				}
+				20 = {
+					add_deposit = d_ore_rich_caverns
+				}
+				20 = {
+					add_deposit = d_basaltic_outcrops
+				}
+				20 = {
+					add_deposit = d_tbm_strip_mine
+				}
+				20 = {
+					add_deposit = d_mine_shafts
+				}
+			}
+		}
+
 		ai_chance = {
 			factor = 100
 		}
@@ -71,10 +55,8 @@ planet_event = {
 				energy = 800
 			}
 		}
-		add_blocker = {
-			type = d_private_mines
-			blocked_deposit = last_added_deposit
-		}
+		
+		add_deposit = d_private_mines
 
 		ai_chance = {
 			factor = 10
@@ -111,12 +93,7 @@ planet_event = {
 			remove_deposit = yes
 		}
 
-		random_list = {
-			20 = {
-				add_deposit = d_nature_preserve_blocker
-			}
-			80 = {}
-		}
+		add_deposit = d_big_nature_preserve_blocker
 	}
 
 	after = {
@@ -146,8 +123,17 @@ planet_event = {
 		is_occupied_flag = no
 	}
 
+	trigger = {
+		years_passed > 5
+		colony_age > 20
+		colony_age < 100
+		is_starting_planet = no
+		NOT = { has_planet_flag = fossil_fuel_discovered }
+	}
+
 	immediate = {
-		# No actual trigger check for this--just a bunch of weights below.
+
+		set_planet_flag = fossil_fuel_discovered
 
 		random_list = {
 			# 5% chance to discover new fossil fuels
@@ -326,37 +312,7 @@ planet_event = {
 
 	option = {
 		name = tbm.302_sell
-		if = {
-			limit = {
-				check_variable = {
-					which = @carbon_economy
-					value = 1
-				}
-			}
-			add_deposit = d_coal_bed
-		}
-		else_if = {
-			limit = {
-				check_variable = {
-					which = @carbon_economy
-					value = 2
-				}
-			}
-			add_deposit = d_oil_fields_at_first_light
-		}
-		else_if = {
-			limit = {
-				check_variable = {
-					which = @carbon_economy
-					value = 3
-				}
-			}
-			add_deposit = d_subterranean_gas_lake
-		}
-		add_blocker = {
-			type = d_private_mines
-			blocked_deposit = last_added_deposit
-		}
+		add_deposit = d_private_mines
 		owner = {
 			add_resource = {
 				energy = 2000
@@ -525,8 +481,12 @@ planet_event = {
 	picture = GFX_evt_nuclear_explosion
 	show_sound = event_air_raid_siren
 
-	immediate = {		
-				
+	option = {
+		name = UNFORTUNATE
+	}
+
+	after = {
+		add_planet_devastation = 25
 		#  Always: Remove reactor (naturally), destroy city, kill pop living there
 		event_target:reactor = {
 			remove_deposit = yes
@@ -575,14 +535,6 @@ planet_event = {
 				}
 			}
 		}		
-	}
-
-	option = {
-		name = UNFORTUNATE
-	}
-
-	after = {
-		add_planet_devastation = 25
 	}
 }
 
@@ -609,7 +561,12 @@ planet_event = {
 	picture = GFX_evt_nuclear_explosion
 	show_sound = event_air_raid_siren
 
-	immediate = {		
+	option = {
+		name = UNFORTUNATE
+	}
+
+	after = {
+		add_planet_devastation = 50
 		#  Always: Remove reactor (naturally), destroy city, kill pop living there
 		event_target:reactor = {
 			remove_deposit = yes
@@ -676,15 +633,7 @@ planet_event = {
 					kill_pop = yes
 				}
 			}
-		}				
-	}
-
-	option = {
-		name = UNFORTUNATE
-	}
-
-	after = {
-		add_planet_devastation = 50
+		}
 	}
 }
 
@@ -711,8 +660,11 @@ planet_event = {
 	picture = GFX_evt_nuclear_explosion
 	show_sound = event_air_raid_siren
 
-	immediate = {		
-		
+	option = {
+		name = UNFORTUNATE
+	}
+
+	after = {
 		#  Always: Remove reactor (naturally), destroy city, kill pop living there
 		event_target:reactor = {
 			remove_deposit = yes
@@ -800,13 +752,7 @@ planet_event = {
 				}
 			}
 		}				
-	}
-
-	option = {
-		name = UNFORTUNATE
-	}
-
-	after = {
+		
 		add_planet_devastation = 75
 		
 		hidden_effect = {

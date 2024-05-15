@@ -31,13 +31,13 @@ d_homeworld_bandit_camp = {
 
 	should_swap_deposit_on_terraforming = no
 
-	#all_blocker_swap_types = yes
-	#use_weights_for_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_gaia_homeworld_fossil_fuels
 		d_fossil_fuel_reserves
 		d_gestalt_fossil_fuel_reserves
 	}
+	#use_weights_for_blocker_swap_types = yes
+	all_blocker_swap_types = yes
 
 	time = 180
 
@@ -77,6 +77,11 @@ d_homeworld_bandit_camp = {
 
 	ai_weight = {
 		weight = @always_clear
+
+		modifier = {
+			add = 1
+			planet_crime > 20	# These hit Advanced AIs really early due to crime, should be priority to clear it.
+		}
 	}
 }
 
@@ -91,7 +96,7 @@ d_impact_memorial = {
 	#use_weights_for_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_major_impact_site
-		#d_gestalt_major_impact_site
+		d_gestalt_major_impact_site
 	}
 
 	time = 180
@@ -101,18 +106,6 @@ d_impact_memorial = {
 		cost = {
 			energy = 150
 			unity = 100
-		}
-	}
-
-	on_cleared = {
-		if = {
-			limit = {
-				owner = { is_gestalt = yes }
-			}
-			add_deposit = d_gestalt_major_impact_site
-		}
-		else = {
-			add_deposit = d_major_impact_site
 		}
 	}
 
@@ -140,6 +133,7 @@ d_impact_memorial = {
 }
 
 d_homeworld_deep_trench = {
+	icon = d_deep_trench
 	category = deposit_cat_blockers
 
 	use_for_min_max_adjustments = yes
@@ -161,10 +155,6 @@ d_homeworld_deep_trench = {
 		cost = {
 			energy = 1000
 		}
-	}
-
-	on_cleared = {
-		add_deposit = d_submerged_ore_veins
 	}
 
 	### Should add on_cleared event for exploration.
@@ -217,7 +207,7 @@ d_mine_shafts = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_crime_mult = 0.1
+		planet_crime_add = 5
 		
 	}
 
@@ -316,6 +306,7 @@ d_computerized_extraction_sites = {
 d_tbm_strip_mine = {
 	icon = d_crater
 	category = deposit_cat_blockers
+	custom_tooltip = tbm_deposit_tooltip_test
 
 	use_for_min_max_adjustments = yes
 
@@ -332,7 +323,7 @@ d_tbm_strip_mine = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_amenities_mult = -0.1
+		pop_happiness = -0.05
 	}
 
 	potential = {
@@ -625,7 +616,7 @@ d_gestalt_rare_metals_lab = {
 }
 
 d_homeworld_dustbowl = {
-	icon = d_dustowl
+	icon = d_dustbowl
 	category = deposit_cat_blockers
 
 	use_for_min_max_adjustments = yes
@@ -634,6 +625,10 @@ d_homeworld_dustbowl = {
 	#all_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_reclaimed_land
+	}
+
+	can_be_cleared = {
+		owner = { has_technology = tech_quicksand_basin }
 	}
 
 	time = 1080
@@ -842,7 +837,7 @@ d_battery_farms = {
 	}
 
 	potential = {
-		always = yes
+		always = no
 	}
 
 	ai_weight = {
@@ -867,6 +862,7 @@ d_battery_farms = {
 
 d_homeworld_extreme_weather = {
 	category = deposit_cat_blockers
+	custom_tooltip = d_extreme_weather_tooltip
 
 	use_for_min_max_adjustments = yes
 
@@ -879,8 +875,9 @@ d_homeworld_extreme_weather = {
 		cost = {
 			energy = 1500
 		}
-		produces = {
-			unity = -2
+		upkeep = {
+			unity = 1
+			mult = value:extreme_weather_strain		# Adds multiplier per buildinmg.
 		}
 	}
 
@@ -937,6 +934,13 @@ d_experimental_geothermal_tap = {
 	planet_modifier = {
 		district_generator_max = 1
 		planet_technician_energy_produces_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = geothermal_deprecation
+		}
+		district_generator_max = -1
 	}
 
 	potential = {
@@ -1078,6 +1082,14 @@ d_gestalt_fossil_fuel_reserves = {
 			owner = { is_gestalt = yes }
 		}
 		planet_pops_energy_upkeep_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_machine_servitor }
+		}
+		pop_category_bio_trophy_unity_produces_mult = -0.1
 	}
 
 	potential = {
@@ -1674,6 +1686,7 @@ d_reclaimed_land = {
 
 d_megaliths = {
 	category = deposit_cat_blockers
+	custom_tooltip = d_megaliths_tooltip
 
 	use_for_min_max_adjustments = yes
 
@@ -1692,7 +1705,7 @@ d_megaliths = {
 				owner = { is_lithoid = yes }
 			}
 			unity = 1
-			multiplier = value:megalith_unity_output
+			mult = value:megalith_unity_output
 			
 		}
 	}
@@ -1731,6 +1744,7 @@ d_megaliths = {
 
 d_crumbling_mountain = {
 	category = deposit_cat_blockers
+	custom_tooltip = d_crumbling_mountain_tooltip
 
 	use_for_min_max_adjustments = yes
 
@@ -1743,8 +1757,9 @@ d_crumbling_mountain = {
 		cost = {
 			energy = 800
 		}
-		produces = {
-			unity = -2
+		upkeep = {
+			unity = 2
+			mult = trigger:years_passed
 		}
 	}
 
@@ -4201,6 +4216,10 @@ d_slush_funds = {
 		planet_crime_mult = 0.1
 	}
 
+	potential = {
+		always = no
+	}
+
 	ai_weight = {
 		weight = @clear
 	}
@@ -4344,8 +4363,8 @@ d_heavy_weather = {
 		}
 	}
 
-	prerequisites = {
-		"tech_housing_1"
+	can_be_cleared = {
+		owner = { has_technology = tech_housing_1 }
 	}
 
 	planet_modifier = {
@@ -4592,7 +4611,44 @@ d_warm_lagoon = {
 	}
 }
 
+d_droid_factory = {
+	category = deposit_cat_blockers
 
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1200
+			alloys = 500
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_mult = 0.25
+		planet_researchers_produces_mult = -0.15
+		planet_pops_robotics_energy_upkeep_mult = 0.25
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			add = 1
+			root = {
+				free_amenities > 10		# AI often struggles with amenity death spirals. Research hit is harsh, but we want to avoid the spiral.
+			}
+		}
+	}
+}
 
 
 
@@ -4647,7 +4703,7 @@ d_inefficient_energy = {	# Currently unused, probably nix.
 	}
 
 	potential = {
-		always = yes
+		always = no
 	}
 }
 

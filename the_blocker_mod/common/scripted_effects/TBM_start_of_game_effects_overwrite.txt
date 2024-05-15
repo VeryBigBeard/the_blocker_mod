@@ -183,7 +183,7 @@ generate_start_deposits_and_blockers = {
 		if = {
 			limit = { owner = { is_lithoid_empire = yes }}
 			add_deposit = d_fertile_delta
-			add_deposit = d_dustbowl
+			add_deposit = d_homeworld_dustbowl
 		}
 		else = {
 			add_deposit = d_metabolic_processing
@@ -192,7 +192,7 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_homeworld_gestalt_urban_aeroponics
 			add_deposit = d_homeworld_gestalt_urban_aeroponics
 			add_deposit = d_reclaimed_land
-			add_deposit = d_dustbowl
+			add_deposit = d_homeworld_dustbowl
 		}
 		
 		# Fish Shoals / Moisture Farming (+1 farming)
@@ -236,7 +236,7 @@ generate_start_deposits_and_blockers = {
 		### FARMING: 4, 1 blocked (Servitors and Assimilators get more below)
 		add_deposit = d_factory_slaughterhouses
 		add_deposit = d_fertile_delta # +1 generator
-		add_deposit = d_dustbowl
+		add_deposit = d_homeworld_dustbowl
 	}
 
 	### AQUATICS 
@@ -345,7 +345,7 @@ generate_start_deposits_and_blockers = {
 		# Farming: 8, -1 total district
 		if = {
 			limit = { owner = { is_lithoid_empire = yes }}
-			add_deposit = d_dustbowl
+			add_deposit = d_homeworld_dustbowl
 			add_deposit = d_fertile_delta
 		}
 		else = {
@@ -355,7 +355,7 @@ generate_start_deposits_and_blockers = {
 			add_deposit = d_fertile_delta
 			add_deposit = d_homeworld_urban_aeroponics
 			add_deposit = d_food_banks
-			add_deposit = d_dustbowl
+			add_deposit = d_homeworld_dustbowl
 		}
 
 	}
@@ -572,6 +572,15 @@ generate_start_deposits_and_blockers = {
 		limit = { owner = { has_authority = auth_corporate }}
 		add_deposit = d_slush_funds
 	}
+
+	### MECHANISTS
+	#	Get extra coffeemakers to make up for lack of clerks caused by low pop count
+	if = {
+		limit = {
+			owner = { has_origin = origin_mechanists }
+		}
+		add_deposit = d_droid_factory
+	}
 	
 	### PROSPEROUS UNIFICATION (adds +1 to all districts, as in vanilla)
 	if = {
@@ -713,7 +722,7 @@ generate_earth_deposits_and_blockers = {
 	# Mining (3, equal to vanilla)
 	add_deposit = d_stasis_prison
 	add_deposit = d_recycling_programs
-	add_deposit = d_dustbowl
+	add_deposit = d_homeworld_dustbowl
 
 	# Farming (5, +1 from vanilla)
 	add_deposit = d_homestead_farms

@@ -20,6 +20,8 @@
 
 @prospecting_chance = 1
 
+@carbon_economy = 1
+
 # Post-Apocalyptic Origin
 @post_apoc_population = 0
 @colonial_farmsteads = 0

@@ -2,46 +2,45 @@
 #	Mostly used for events. No overwrites.
 
 # A Shiny Rock event trait
-leader_trait_whiz_kid = {
-	cost = 0
-	icon = "gfx/interface/icons/traits/leader_trait_inspired.dds"
-	initial = no
-	randomized = no
-	
-	leader_trait = { all }
-	leader_class = { all }
+# leader_trait_whiz_kid = {
+# 	cost = 0
+# 	icon = "gfx/interface/icons/traits/leader_trait_inspired.dds"
+# 	initial = no
+# 	randomized = no
+# 	leader_trait = { all }
+# 	leader_class = { all }
 
-	modifier = {
-		country_physics_tech_research_speed = 0.15
-		ship_anomaly_fail_risk = -0.1
-		ship_accuracy_mult = 0.1
-		ship_archaeological_site_clues_add = 2
-	}
+# 	modifier = {
+# 		country_physics_tech_research_speed = 0.15
+# 		ship_anomaly_fail_risk = -0.1
+# 		ship_accuracy_mult = 0.1
+# 		ship_archaeological_site_clues_add = 2
+# 	}
 
-	leader_potential_add = { always = no }
-}
+# 	leader_potential_add = { always = no }
+# }
 
 # A Shiny Rock event trait
-leader_trait_memories = {
-	cost = 0
-	icon = "gfx/interface/icons/traits/trait_nomadic"
-	initial = no
-	randomized = no
-	modification = no
+# leader_trait_memories = {
+# 	cost = 0
+# 	icon = "gfx/interface/icons/traits/trait_nomadic"
+# 	initial = no
+# 	randomized = no
+# 	modification = no
 
-	leader_trait = { all }
-	leader_class = { all }
+# 	leader_trait = { all }
+# 	leader_class = { all }
 
-	modifier = {
-		ship_archaeological_site_clues_add = 3
-		ship_archaeological_site_excavation_speed_mult = 0.20
-		ship_anomaly_fail_risk = -0.1
-		country_unity_produces_mult = 0.25
-		edicts_unity_upkeep_mult = -0.1		# This is really good but doesn't fit the lore. Should tweak based on new trait modifiers in 3.8.
-	}
+# 	modifier = {
+# 		ship_archaeological_site_clues_add = 3
+# 		ship_archaeological_site_excavation_speed_mult = 0.20
+# 		ship_anomaly_fail_risk = -0.1
+# 		country_unity_produces_mult = 0.25
+# 		edicts_unity_upkeep_mult = -0.1		# This is really good but doesn't fit the lore. Should tweak based on new trait modifiers in 3.8.
+# 	}
 
-	leader_potential_add = { always = no }
-}
+# 	leader_potential_add = { always = no }
+# }
 
 # Food Reserves Run Out event trait
 leader_trait_cannibal_councilor = {

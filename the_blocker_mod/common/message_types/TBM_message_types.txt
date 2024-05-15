@@ -22,6 +22,8 @@ message_type = {
 	sound = alert_negative
 	auto_opens = none
 	ping = ping_notification_yellow
+
+	category = planets
 }
 
 # Deteriorating Conditions (Industrial Wasteland) (tbm_handler.4)
@@ -32,36 +34,44 @@ message_type = {
 	sound = alert_negative
 	auto_opens = none
 	ping = ping_notification_yellow
+
+	category = planets
 }
 
 # Urban Power Plant (tbm_handler.6)
 message_type = {
-	icon = "TBM_message_bad_thing"
+	icon = "TBM_message_neutral"
 	key = "URBAN_POWER_PLANT"
 	icon_frame = 3
 	sound = alert_negative
 	auto_opens = none
 	ping = ping_notification_yellow
+
+	category = planets
 }
 
 # Colonial Settlement Generator (tbm_handler.8)
 message_type = {
-	icon = "TBM_message_bad_thing"
+	icon = TBM_message_neutral
 	key = "COLONIAL_SETTLEMENT"
 	icon_frame = 3
 	sound = alert_negative
 	auto_opens = none
 	ping = ping_notification_green
+
+	category = planets
 }
 
 # Frontier Farmland Generator (tbm_handler.10)
 message_type = {
-	icon = "TBM_message_bad_thing"
+	icon = TBM_message_neutral
 	key = "FRONTIER_FARMLAND"
 	icon_frame = 3
 	sound = alert_negative
 	auto_opens = none
 	ping = ping_notification_green
+
+	category = planets
 }
 
 # Dustbowl Generator
@@ -72,6 +82,8 @@ message_type = {
 	sound = alert_negative
 	auto_opens = none
 	ping = "ping_notification_red"
+
+	category = planets
 }
 
 
@@ -85,6 +97,8 @@ message_type = {
 	sound = alert_negative
 	auto_opens = none
 	ping = "ping_notification_yellow"
+
+	category = planets
 }
 
 # Flooding
@@ -95,6 +109,8 @@ message_type = {
 	sound = alert_negative
 	auto_opens = none
 	ping = "ping_notification_red"
+
+	category = planets
 }
 
 # Mine-Shaft Collapse
@@ -105,6 +121,8 @@ message_type = {
 	sound = alert_negative
 	auto_opens = none
 	ping = "ping_notification_red"
+
+	category = planets
 }
 
 # Landslide
@@ -115,4 +133,19 @@ message_type = {
 	sound = alert_negative
 	auto_opens = none
 	ping = "ping_notification_red"
+
+	category = planets
+}
+
+
+# Sandstorm
+message_type = {
+	key = "SANDSTORM"
+	icon = TBM_message_bad_thing
+	icon_frame = 1
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_red"
+
+	category = planets
 }

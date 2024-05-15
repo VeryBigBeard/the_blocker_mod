@@ -134,13 +134,40 @@ scripted_planet_reroll = {
 			add_deposit = d_betharian_deposit
 		}
 
+		#big_rip_system
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = big_rip_planet
+			}
+			clear_deposits = yes
+			reroll_deposits = yes
+		}
+
 	### federations_initializers / On the Shoulders of Giants
 	#	These are initialized separately so will be dealt with elsewhere.
+
+	### megacorp_initializers
+		every_galaxy_planet = {
+			limit = {
+				solar_system = {
+					has_star_flag = ruined_interstellar_assembly_system
+				}
+			}
+			clear_deposits = yes
+			reroll_deposits = yes
+		}
 
 		
 	### unique_system_initializer
 		
-		# unique_system_initializer_02 - Relic world, not needed yet
+		# unique_system_initializer_02
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = hive_planet_larion
+			}
+			reroll_deposits = yes 	# without clearing so we save the district spread
+			# This really needs a proper feature set
+		}
 }
 
 fix_fallen_empire_worlds = {
@@ -159,6 +186,9 @@ fix_fallen_empire_worlds = {
 
 		# Reroll on colonies, clean-up
 		every_owned_planet = {
+			limit = {
+				NOT = { is_planet_class = pc_city }
+			}
 			reroll_planet = yes
 		}
 	}
@@ -206,23 +236,18 @@ fix_fallen_empire_worlds = {
 			set_planet_flag = celestial_throne
 			clear_deposits = yes
 			while = {
-				limit = {
-					num_districts = {
-						type = district_mining
-						value <= 8
-					}
+				count = 8
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_mining
 				}
-				add_district = district_mining
 			}
 			while = {
-				limit = {
-					num_districts = {
-						type = district_farming
-						value <= 8
-					}
+				count = 8
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_farming
 				}
-				add_district = district_farming
 			}
+			reroll_deposits = yes	# Reroll here so we don't validate out the above district spread, then add generators below.
 			add_deposit = d_buzzing_plains
 			add_deposit = d_betharian_deposit
 			add_deposit = d_buzzing_plains
@@ -237,24 +262,20 @@ fix_fallen_empire_worlds = {
 					NOT = { has_planet_flag = celestial_throne }
 				}
 				set_planet_flag = sky_temple
+				clear_deposits = yes
 				while = {
-					limit = {
-						num_districts = {
-							type = district_mining
-							value <= 5
-						}
+					count = 5
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_mining
 					}
-					add_district = district_mining
 				}
 				while = {
-					limit = {
-						num_districts = {
-							type = district_farming
-							value <= 5
-						}
+					count = 5
+					add_district_and_planet_size_if_needed_effect = {
+						district = district_farming
 					}
-					add_district = district_farming
 				}
+				reroll_deposits = yes
 				add_deposit = d_buzzing_plains
 				add_deposit = d_frozen_gas_lake
 				add_deposit = d_geothermal_vent
@@ -263,18 +284,21 @@ fix_fallen_empire_worlds = {
 	}
 
 	# (no changes for now below; handled by the mod compat reroll)
-	# Materialist
-	# every_country = {
-	# 	limit = {
-	# 		is_fallen_empire = yes
-	# 		is_materialist = yes
-	# 	}
+	### Materialist
+	every_country = {
+		limit = {
+			is_fallen_empire = yes
+			is_materialist = yes
+		}
 
-	# 	# Reroll on colonies, clean-up
-	# 	every_owned_planet = {
-	# 		reroll_deposits = yes
-	# 	}
-	# }
+		# Reroll on colonies, clean-up
+		every_owned_planet = {
+			limit = {
+				NOT = { is_planet_class = pc_city }
+			}
+			reroll_deposits = yes
+		}
+	}
 
 	# # Xenophile
 	# every_country = {

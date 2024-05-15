@@ -9,6 +9,13 @@ is_ecu = {
 	}
 }
 
+# For is_homeworld except encompassing lost colonies and can evaluate to false
+# scope = planet
+is_starting_planet = {
+	is_homeworld = yes
+	is_lost_colony_starting_planet = no
+}
+
 
 # Checks Lost Colony starting world.
 # Really hacky and will probably remove, but currently no other way to check LC starting planet?
@@ -171,6 +178,7 @@ has_mineral_seam = {
 	OR = {
 		has_deposit = d_mountain_range
 		has_deposit = d_active_volcano
+		has_deposit = d_tbm_active_volcano
 		has_deposit = d_deep_sinkhole
 		has_deposit = d_tempestous_mountain
 		has_deposit = d_veiny_cliffs
@@ -208,6 +216,7 @@ mountain_feature = {
 	OR = {
 		is_deposit_type = d_rich_mountain
 		is_deposit_type = d_active_volcano
+		is_deposit_type = d_tbm_active_volcano
 		is_deposit_type = d_tempestous_mountain
 		is_deposit_type = d_prosperous_mesa
 		is_deposit_type = d_fjordland

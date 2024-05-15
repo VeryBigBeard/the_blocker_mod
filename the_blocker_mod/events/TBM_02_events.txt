@@ -4,7 +4,7 @@ namespace = tbm
 
 ### INDEX ###
 #
-#	51. Poisoned By Kelp
+#	50. Poioned By Kelp
 #	52. Kelp Insights
 #	53. Fish Attack
 #	62. Plugging It Up
@@ -27,6 +27,41 @@ namespace = tbm
 
 @trees = 0
 
+### 50. Kelp Handler
+planet_event = {
+	id = tbm.50
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		is_homeworld = no
+		has_owner = yes
+	}
+
+	trigger = {
+		is_starting_planet = no
+		has_deposit = d_toxic_kelp
+		any_owned_pop = {
+			has_job = colonist
+		}
+		colony_age > 2	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.
+		NOT = { has_planet_flag = toxic_kelp_encounter }
+	}
+
+	immediate = {
+		random_list = {
+			25 = {
+				planet_event = {
+					id = tbm.51
+				}
+			}
+
+			75 = {}
+		}
+	}
+}
+
 # 51. Poisoned By Kelp (Toxic Kelp)
 planet_event = {
 	id = tbm.51
@@ -39,35 +74,22 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
-	pre_triggers = {
-		is_homeworld = no
-		has_owner = yes
-	}
+	# pre_triggers = {
+	# 	is_homeworld = no
+	# 	has_owner = yes
+	# }
 
-	trigger = {
-		has_deposit = d_toxic_kelp
-		any_owned_pop = {
-			has_job = colonist
-		}
-		colony_age > 2	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.
-		NOT = { has_planet_flag = toxic_kelp_encounter }
-	}
+	# trigger = {
+	# 	is_starting_planet = no
+	# 	has_deposit = d_toxic_kelp
+	# 	any_owned_pop = {
+	# 		has_job = colonist
+	# 	}
+	# 	colony_age > 2	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.
+	# 	NOT = { has_planet_flag = toxic_kelp_encounter }
+	# }
 
 	immediate = {
-		random_owned_pop = {
-			limit = { has_job = colonist }
-			kill_pop = yes
-		}
-		# Kill a second colonist if aquatic. Potential colony abandonment WAD -- Kelp Is Dangerous!!!
-		if = {
-			limit = {
-				owner.species = { has_trait = trait_aquatic }
-			}
-			random_owned_pop = {
-				limit = { has_job = colonist }
-				kill_pop = yes
-			}
-		}
 		hidden_effect = {
 			set_timed_planet_flag = {
 				flag = toxic_kelp_encounter
@@ -78,6 +100,20 @@ planet_event = {
 
 	option = {
 		name = tbm.51.kelp
+		random_owned_pop = {
+			limit = { has_job = colonist }
+			kill_pop = yes
+		}
+		# Kill a second colonist if aquatic. Potential colony abandonment WAD -- Kelp Is Dangerous!!!
+		if = {
+			limit = {
+				owner_main_species = { has_trait = trait_aquatic }
+			}
+			random_owned_pop = {
+				limit = { has_job = colonist }
+				kill_pop = yes
+			}
+		}
 	}
 }
 
@@ -100,10 +136,12 @@ planet_event = {
 		is_ai = no
 	}
 
-	immediate = {
+	trigger = {
+		is_starting_planet = no
 		owner = {
-			add_resource = {
-				society_research = @tier2researchreward
+			NOR = {
+				has_modifier = kelp_bioweapons
+				has_modifier = kelp_breakfasts
 			}
 		}
 	}
@@ -126,6 +164,14 @@ planet_event = {
 		}
 	}
 
+	after = {
+		owner = {
+			add_resource = {
+				society_research = @tier2researchreward
+			}
+		}
+	}
+
 }
 
 # 53. Fish Attack (Submerged Ore Veins, possibly others)
@@ -144,6 +190,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		has_deposit = d_submerged_ore_veins
 		has_district = district_mining
 	}
@@ -156,9 +203,9 @@ planet_event = {
 		}
 
 		random_list = {
-			15 = {
+			5 = {
 				modifier = {
-					factor = 2
+					add = 5
 					is_wet = yes
 				}
 				modifier = {
@@ -168,13 +215,13 @@ planet_event = {
 					}
 				}
 				modifier = {
-					factor = 4
+					add = 10
 					is_planet_class = pc_ocean
 				}
 				modifier = {
-					factor = 10
+					add = 10
 					OR = {
-						#is_planet_class = pc_pdaquatic	# Ignore error, PD compatibility bonus.
+						#is_planet_class = pc_pdaquatic
 						has_planet_flag = planet_drenched	# Something unexpected got in there.
 						check_variable = {
 							which = ice_dumping_happened
@@ -562,6 +609,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		OR = {
 			has_deposit = d_geothermal_vent
 			AND = {
@@ -688,6 +736,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		is_dry = yes
 	}
 
@@ -717,8 +766,7 @@ planet_event = {
 	location = this
 
 	immediate = {
-		add_deposit = d_quicksand_basin
-		save_event_target_as = sand_planet@this
+		this = { save_event_target_as = sand_planet }
 	}
 
 	option = {
@@ -740,6 +788,10 @@ planet_event = {
 
 	option = {
 		name = tbm.77.survive
+	}
+
+	after = {
+		add_deposit = d_quicksand_basin
 	}
 }
 
@@ -903,7 +955,7 @@ planet_event = {
 # 	}
 # }
 
-### 80. Sudden Sinkhole Spawner
+### 80.
 
 ### 81. Sudden Sinkhole (Deep Sinkhole)
 #	Triggered from tbm_handler.17 (Sinkhole Spawner)
@@ -917,29 +969,30 @@ planet_event = {
 
 	is_triggered_only = yes
 	hide_window = yes
-	# location = this
+	location = this
 
 	immediate = {
 		
-		add_deposit = d_deep_sinkhole
 		if = {
 			limit = {
-				num_districts = {
+				num_free_districts = {
 					type = any
-					value > 0
+					value > 1
 				}
 			}
-			remove_random_district = yes
-			
+			# Do nothing, will lose district with feature.
 		}
 		else = {
 			add_planet_devastation = 10
 		}
 
+		add_deposit = d_deep_sinkhole
+
 		create_message = {
 			type = "SUDDEN_SINKHOLE"
 			localization = tbm_message_sudden_sinkhole
-			days = -1
+			days = 30
+			target = this
 		}
 	}
 
@@ -979,25 +1032,30 @@ planet_event = {
 	location = this
 
 	immediate = {
-		add_deposit = d_deep_sinkhole
+		
 		if = {
 			limit = {
-				num_districts = {
+				num_free_districts = {
 					type = any
-					value > 0
+					value > 1
 				}
 			}
-			remove_random_district = yes
+			# Do nothing, will lose district with feature.
 		}
 		else = {
 			add_planet_devastation = 10
 		}
+
+		add_deposit = d_deep_sinkhole
 	}
 
 	option = {
 		name = tbm.82.investigate
-		enable_special_project = {
-			name = "SOMETHING_IN_THE_PIPES"
+		root = {
+			enable_special_project = {
+				name = "SOMETHING_IN_THE_PIPES"
+				location = this
+			}
 		}
 		set_planet_flag = sinkhole_causes
 	}
@@ -1007,9 +1065,11 @@ planet_event = {
 		owner = {
 			add_resource = {
 				energy = -250
+				minerals = -200
 			}
 		}
 		remove_deposit = d_deep_sinkhole
+		set_planet_flag = occasional_sinkholes
 	}
 }
 
@@ -1061,6 +1121,8 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
 		is_dry = yes
 		OR = {
 			has_deposit = d_searing_desert
@@ -1080,7 +1142,7 @@ planet_event = {
 		}
 		
 		random_list = {
-			10 = {
+			5 = {
 				modifier = {
 					factor = 2	
 					check_variable = {
@@ -1094,7 +1156,7 @@ planet_event = {
 					random = 20
 				}
 			}
-			90 = {}
+			95 = {}
 		}
 	}
 }
@@ -1103,31 +1165,29 @@ planet_event = {
 planet_event = {
 	id = tbm.85
 
-	title = tbm.85.name
-	desc = tbm.85.desc
-	picture = GFX_evt_landing_ship
-	show_sound = event_wind_ruins
-
 	is_triggered_only = yes
 	location = this
 
 	immediate = {
-		owner = {
-			add_resource = {
-				energy = -1000
-			}
-		}
-		add_planet_devastation = 20
 		hidden_effect = {
 			set_timed_planet_flag = {
 				flag = sandstorm
 				years = 10
 			}
 		}
-	}
 
-	option = {
-		name = OK
+		add_planet_devastation = 10
+		add_modifier = {
+			modifier = sandstorms
+			days = 180
+		}
+
+		create_message = {
+			type = "SANDSTORM"
+			localization = message_sandstorm
+			days = 30
+			target = this
+		}
 	}
 }
 
@@ -1287,7 +1347,9 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
-	immediate = {
+	option = {
+		name = OK
+
 		if = {
 			limit = {
 				owner = { is_gestalt = yes }
@@ -1318,10 +1380,6 @@ planet_event = {
 			species = owner_main_species
 			ethos = random
 		}
-	}
-
-	option = {
-		name = OK
 	}
 }
 
@@ -1364,7 +1422,7 @@ planet_event = {
 					add = @mines
 				}
 				modifier = {
-					factor = 1.15
+					add = 5
 					owner = {
 						OR = {
 							is_capitalist = yes
@@ -1447,8 +1505,12 @@ planet_event = {
 	}
 	picture = GFX_evt_collapsing_roof
 	show_sound = event_structural_collapse
-	
-	immediate = {
+
+	option = {
+		name = UNFORTUNATE
+	}
+
+	after = {
 
 		### Damage
 		event_target:collapsed_mine = {
@@ -1511,9 +1573,5 @@ planet_event = {
 		}
 		else = {
 		}
-	}
-
-	option = {
-		name = UNFORTUNATE
 	}
 }

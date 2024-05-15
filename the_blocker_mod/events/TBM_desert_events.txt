@@ -80,6 +80,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		OR = {
 			has_modifier = dream_city
 			has_modifier = bringing_water	
@@ -207,6 +208,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		OR = {
 			has_modifier = bringing_water
 			has_modifier = dream_city
@@ -239,6 +241,10 @@ planet_event = {
 	pre_triggers = {
 		is_ai = no
 		is_homeworld = no
+	}
+
+	trigger = {
+		is_starting_planet = no
 	}
 
 	immediate = {
@@ -730,6 +736,7 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		owner = {
 			is_gestalt = no
 			NOT = { has_country_flag = desert_cities }

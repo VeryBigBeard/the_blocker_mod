@@ -202,6 +202,7 @@ d_mountain_range = {
 	}
 }
 
+# Vanilla-friendly version for events; largely the same, but see d_tbm_active_volcano for fully-featured
 d_active_volcano = {
 	category = deposit_cat_blockers_natural
 
@@ -209,14 +210,6 @@ d_active_volcano = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-
-	blocker_swap_types = {
-		d_tempestous_mountain
-		d_prosperous_mesa
-		d_rich_mountain
-		d_fjordland
-		d_tropical_island
-	}
 
 	time = 720
 
@@ -278,40 +271,7 @@ d_active_volcano = {
 	}
 
 	potential = {
-	}
-
-	drop_weight = {
-		weight = @blocker_low
-		modifier = {
-			factor = 2
-			OR = {
-				is_planet_class = pc_alpine
-				is_planet_class = pc_savannah
-				is_planet_class = pc_ocean
-				is_planet_class = pc_nuked
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				is_planet_class = pc_arctic
-				is_planet_class = pc_continental
-				is_planet_class = pc_tundra
-			}
-		}
-		
-		modifier = {
-			factor = 2
-			OR = {
-				planet_size < 15
-				has_planet_modifier = pm_low_gravity
-			}
-		}
-
-		modifier = {
-			factor = 2
-			has_volcanic_activity = yes
-		}
+		always = no		# This does not spawn randomly; exists mainly for event volcanoes
 	}
 
 	ai_weight = {
@@ -385,7 +345,6 @@ d_dangerous_wildlife_blocker = {
 				}
 			}
 		}
-		
 		
 		
 		# Cull the Herd?
@@ -566,8 +525,7 @@ d_dense_jungle = {
 	planet_modifier = {
 		planet_max_districts_add = -2
 		planet_jobs_food_produces_mult = 0.05
-		planet_researchers_society_research_produces_add = 2
-		planet_amenities_add = 2
+		planet_researchers_society_research_produces_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -847,11 +805,13 @@ d_deep_sinkhole = {
 		}
 		
 		# Clearing sinkholes sometimes makes other sinkholes.
-		random_list = {
-			33 = {
-				set_planet_flag = occasional_sinkholes
+		hidden_effect = {
+			random_list = {
+				33 = {
+					set_planet_flag = occasional_sinkholes
+				}
+				66 = {}
 			}
-			66 = {}
 		}
 	}
 
@@ -962,7 +922,7 @@ d_quicksand_basin = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		planet_miners_minerals_produces_mult = 0.05
+		planet_researchers_engineering_research_produces_mult = 0.05
 		pop_happiness = -0.05
 	}
 
@@ -985,16 +945,6 @@ d_quicksand_basin = {
 		}
 		modifier = {
 			planet_miners_minerals_produces_mult = 0.05
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_technology = tech_quicksand_basin }
-		}
-		modifier = {
-			planet_farmers_food_produces_mult = 0.05
 		}
 	}
 
@@ -1200,7 +1150,7 @@ d_massive_glacier = {
 
 	planet_modifier = {
 		planet_max_districts_add = -3
-		planet_miners_minerals_produces_mult = 0.05
+		planet_miners_minerals_produces_mult = 0.1
 		planet_researchers_engineering_research_produces_add = 1
 	}
 
@@ -1702,7 +1652,7 @@ d_arid_highlands = {
 
 		modifier = {
 			add = -2
-			planet = {
+			root = {
 				has_planet_flag = desert_strong
 			}
 		}
@@ -1841,9 +1791,6 @@ d_rushing_waterfalls = {
 
 	resources = {
 		category = deposit_blockers_natural
-		produces = {
-			unity = 2
-		}
 		cost = {
 			energy = 800
 		}
@@ -1975,18 +1922,23 @@ d_searing_desert = {
 	should_swap_deposit_on_terraforming = no
 
 	can_be_cleared = {
-		NOR = {
-			owner = {
-				NOR = {
-					has_country_flag = desert_cities
-					has_modifier = waters_of_life
-					has_modifier = great_desert_city
-				}
+		hidden_trigger = {
+			fail_text = {
+				text = d_searing_desert_vital
 			}
-			planet = {
-				OR = {
-					has_modifier = bringing_water
-					has_modifier = dream_city
+			NOR = {
+				owner = {
+					NOR = {
+						has_country_flag = desert_cities
+						has_modifier = waters_of_life
+						has_modifier = great_desert_city
+					}
+				}
+				planet = {
+					OR = {
+						has_modifier = bringing_water
+						has_modifier = dream_city
+					}
 				}
 			}
 		}
@@ -2016,7 +1968,7 @@ d_searing_desert = {
 	planet_modifier = {
 		planet_max_districts_add = -3
 		district_generator_max = 1
-		planet_technician_energy_produces_mult = 0.2
+		planet_technician_energy_produces_mult = 0.1
 		planet_buildings_energy_upkeep_mult = 0.1
 	}
 	
@@ -2327,6 +2279,10 @@ d_geothermal_vent = {
 			add = 5		### Add is deliberate! Won't spawn on dry worlds UNLESS they have volcanic activity.
 			has_volcanic_activity = yes
 		}
+		modifier = {
+			factor = 2
+			has_planet_modifier = pm_abundant_geothermal_activity
+		}
 	}
 
 	ai_weight = {
@@ -2459,6 +2415,10 @@ d_underwater_vent = {
 			factor = 2
 			has_volcanic_activity = yes
 		}
+		modifier = {
+			factor = 2
+			has_planet_modifier = pm_abundant_geothermal_activity
+		}
 	}
 
 	ai_weight = {
@@ -2496,6 +2456,10 @@ d_tempestous_mountain = {
 	should_swap_deposit_on_terraforming = no
 
 	time = 720
+
+	prerequisites = {
+		"tech_terrestrial_sculpting"
+	}
 
 	resources = {
 		category = deposit_blockers_natural
@@ -2631,6 +2595,7 @@ d_veiny_cliffs = {
 		planet_max_districts_add = -1
 		district_mining_max = 1
 		planet_miners_minerals_produces_mult = 0.05
+		planet_amenities_add = -5
 	}
 
 	triggered_planet_modifier = {
@@ -3502,6 +3467,10 @@ d_bountiful_plains = {
 		district_farming_max = 1
 		mult = value:district_amount_mastery_of_nature
 	}
+	
+	potential = {
+		NOT = { is_planet_class = pc_nuked }
+	}
 
 	drop_weight = {
 		weight = @low
@@ -3742,6 +3711,10 @@ d_green_hills = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
+
+	prerequisites = {
+		"tech_mountain_range"
+	}
 
 	time = 720
 
@@ -5305,7 +5278,7 @@ d_betharian_deposit = {
 #	The Block Mod changes these to spawn everywhere (for more variety), though they are still somewhat special.
 
 d_buzzing_plains = {
-	category = deposit_cat_energy_rare
+	category = deposit_cat_energy
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -5323,8 +5296,9 @@ d_buzzing_plains = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_generator_max = 2
+		district_generator_max = 1
 		planet_researchers_physics_research_produces_add = 2
+		biological_pop_happiness = -0.05
 	}
 
 	triggered_planet_modifier = {
@@ -5352,7 +5326,7 @@ d_buzzing_plains = {
 		weight = @very_low
 		
 		modifier = {
-			factor = 2
+			factor = 1.25
 			OR = {
 				is_planet_class = pc_arid
 				is_planet_class = pc_savannah

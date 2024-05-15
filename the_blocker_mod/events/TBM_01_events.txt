@@ -33,17 +33,19 @@ namespace = tbm
 
 @volcanic_devastation = 20
 
-### 1. Debug Event
+### 1. Init Event
+#	Sets up mod flag and any debugging currently active
 country_event = {
 	id = tbm.1
 
 	is_triggered_only = yes
 	hide_window = yes
 
-	# Debugged Code
-
 	immediate = {
-		log = "Debug Event is running."
+		log = "The Blocker Mod is active."
+
+		### Init
+		set_global_flag = the_blocker_mod
 	}
 }
 
@@ -342,7 +344,7 @@ country_event = {
 # }
 
 
-### 5. Dangerous Wildlife - Cull the Herd?
+### 5. Dangerous Wildlife - Cull the Herd? - currently disabled
 planet_event = {
 	id = tbm.5
 	title = tbm.5.name
@@ -359,6 +361,10 @@ planet_event = {
 		is_ai = no
 		has_ground_combat = no
 		is_occupied_flag = no
+	}
+
+	trigger = {
+		is_starting_planet = no
 	}
 
 	#No change
@@ -583,7 +589,13 @@ planet_event = {
 	}
 
 	trigger = {
-		has_deposit = d_active_volcano
+		exists = owner
+		owner = { is_country_type = default }	# This is here to avoid bugs caused by volcanoes being put on scripted planets; if you use ZoFE, replace with is_zofe_country = yes
+		is_starting_planet = no
+		OR = {
+			has_deposit = d_active_volcano
+			has_deposit = d_tbm_active_volcano
+		}
 	}
 
 	immediate = {
@@ -666,14 +678,54 @@ planet_event = {
 	}
 
 	trigger = {
+		is_starting_planet = no
 		any_deposit = {
-			is_deposit_type = d_active_volcano
+			OR = {
+				is_deposit_type = d_active_volcano
+				is_deposit_type = d_tbm_active_volcano
+			}
 			NOT = { has_deposit_flag = volcano_erupted }
 		}
 	}
 
 	immediate = {
 		set_variable_to_random_value = { which = @volcanic_devastation min = 20 max = 40  }
+	}
+
+	option = {
+		name = tbm.11.a
+	}
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_authority = auth_democratic
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+				}
+			}
+			# Prevent country that somehow has negative unity income from being able to pull through (or receive negative reward)
+			owner = {
+				has_monthly_income = { resource = unity  value < 0 }
+			}
+		}
+		name = tbm.11.b
+
+		owner = {
+			add_resource = {
+				food = -500
+				energy = -500
+			}
+			
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 24
+			}
+		}
+	}
+
+	after = {
+		
 		add_planet_devastation = @volcanic_devastation
 		
 		### 20% chance for volcano to deactivate and leave behind a feature
@@ -681,7 +733,10 @@ planet_event = {
 			10 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					remove_deposit = yes
 				}
@@ -690,7 +745,10 @@ planet_event = {
 			10 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					remove_deposit = yes
 				}
@@ -699,7 +757,10 @@ planet_event = {
 			80 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					set_timed_deposit_flag = {
 						flag = volcano_erupted
@@ -741,14 +802,15 @@ planet_event = {
 		#	1% chance to send planet into volcanic winter
 		random_list = {
 			99 = {
-				random_list = {
-					80 = {
-						add_deposit = d_volcanic_soil
-					}
-					20 = {
-						add_deposit = d_volcanic_island
-					}
-				}
+				### Disabled - this should be a separate event for new volcanoes
+				# random_list = {
+				# 	80 = {
+				# 		add_deposit = d_volcanic_soil
+				# 	}
+				# 	20 = {
+				# 		add_deposit = d_volcanic_island
+				# 	}
+				# }
 			}
 			1 = {
 				planet_event = {
@@ -759,41 +821,6 @@ planet_event = {
 			}
 		}
 
-	}
-
-	option = {
-		name = tbm.11.a
-	}
-	option = {
-		trigger = {
-			owner = {
-				OR = {
-					has_authority = auth_democratic
-					has_ethic = ethic_egalitarian
-					has_ethic = ethic_fanatic_egalitarian
-				}
-			}
-			# Prevent country that somehow has negative unity income from being able to pull through (or receive negative reward)
-			owner = {
-				has_monthly_income = { resource = unity  value < 0 }
-			}
-		}
-		name = tbm.11.b
-
-		owner = {
-			add_resource = {
-				food = -500
-				energy = -500
-			}
-			
-			add_monthly_resource_mult = {
-				resource = unity
-				value = 24
-			}
-		}
-	}
-
-	after = {
 		clear_global_event_target = head_of_research
 	}
 }
@@ -816,8 +843,13 @@ planet_event = {
 		is_ai = no
 	}
 
+	# Even volcanoes that are on cooldown can trigger warnings.
 	trigger = {
-		has_deposit = d_active_volcano	# Even volcanoes that are on cooldown can trigger warnings.
+		is_starting_planet = no
+		OR = {
+			is_deposit_type = d_active_volcano
+			is_deposit_type = d_tbm_active_volcano
+		}	
 		owner = { has_technology = tech_volcano }
 	}
 
@@ -826,7 +858,10 @@ planet_event = {
 		### Some logic to avoid volcanoes on cooldown actually erupting
 		random_deposit = {
 			limit = {
-				is_deposit_type = d_active_volcano
+				OR = {
+					is_deposit_type = d_active_volcano
+					is_deposit_type = d_tbm_active_volcano
+				}
 				NOT = { has_deposit_flag = volcano_erupted }
 			}
 			save_event_target_as = volcano_warning
@@ -876,13 +911,11 @@ planet_event = {
 		is_ai = no
 	}
 
+	trigger = {
+		is_starting_planet = no
+	}
+
 	immediate = {
-		owner = {
-			add_tech_progress = {
-				tech = tech_terrestrial_sculpting
-				progress = 0.2
-			}
-		}
 	}
 
 	option = {
@@ -890,8 +923,16 @@ planet_event = {
 	}
 
 	after = {
-		clear_global_event_target = head_of_research
+		owner = {
+			add_tech_progress = {
+				tech = tech_terrestrial_sculpting
+				progress = 0.2
+			}
+		}
+
 		change_pc = pc_nuked
+		
+		clear_global_event_target = head_of_research
 	}
 }
 
@@ -913,8 +954,19 @@ planet_event = {
 		is_ai = no
 	}
 
+	trigger = {
+		is_starting_planet = no
+	}
+
 	immediate = {
 		set_variable_to_random_value = { which = @volcanic_devastation min = 20 max = 40  }
+	}
+
+	option = {
+		name = tbm.11.a
+	}
+
+	after = {
 		add_planet_devastation = @volcanic_devastation
 		
 		### 20% chance for volcano to deactivate and leave behind a feature
@@ -922,7 +974,10 @@ planet_event = {
 			10 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					remove_deposit = yes
 				}
@@ -931,7 +986,10 @@ planet_event = {
 			10 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					remove_deposit = yes
 				}
@@ -940,7 +998,10 @@ planet_event = {
 			80 = {
 				random_deposit = {
 					limit = {
-						is_deposit_type = d_active_volcano
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
 					}
 					set_timed_deposit_flag = {
 						flag = volcano_erupted
@@ -977,13 +1038,7 @@ planet_event = {
 				add_deposit = d_volcanic_ash
 			}
 		}
-	}
-
-	option = {
-		name = tbm.11.a
-	}
-
-	after = {
+		
 		clear_global_event_target = head_of_research
 	}
 }
@@ -997,16 +1052,24 @@ planet_event = {
 
 	pre_triggers = {
 		has_owner = yes
-		is_homeworld = no
-		is_ai = no
 		original_owner = yes
 		is_occupied_flag = no
 	}
 
 	trigger = {
+		any_owned_pop = {
+			has_job = enforcer # To avoid colony abandonment and make the desc work; admittedly it's kind of appropriate but it causes UX problems
+		}
+		is_starting_planet = no
 		NOR = {
 			has_planet_flag = night_watches_xenofauna
 			has_planet_flag = settlement_attacked
+			AND = {
+				any_deposit = {
+					tree_feature = yes
+				}
+				has_planet_flag = xenofauna_attack	
+			}
 		}
 		any_deposit = {
 			tree_feature = yes
@@ -1014,13 +1077,18 @@ planet_event = {
 	}
 
 	immediate = {
+		set_timed_planet_flag = {
+			flag = xenofauna_attack
+			years = 5
+		}
+
 		random_deposit = {
 			limit = { tree_feature = yes }
 			save_event_target_as = wildlife_lair
 		}
 		
 		random_list = {
-			20 = {
+			5 = {
 				this = {
 					planet_event = {
 						id = tbm.17
@@ -1050,18 +1118,6 @@ planet_event = {
 
 	is_triggered_only = yes
 	location = this
-
-	immediate = {
-		random_owned_pop = {
-			limit = {
-				OR = {
-					has_job = dangerous_wildlife_hunter
-					has_job = colonist
-				}
-			}
-			kill_pop = yes
-		}
-	}
 
 	# Send in the military
 	option = {
@@ -1103,6 +1159,19 @@ planet_event = {
 	option = {
 		name = UNFORTUNATE
 	}
+
+	after = {
+		random_owned_pop = {
+			limit = {
+				OR = {
+					has_job = dangerous_wildlife_hunter
+					has_job = colonist
+				}
+			}
+			kill_pop = yes
+		}
+	}
+	
 }
 
 ### 18. Landslide (Handler)
@@ -1119,6 +1188,10 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		is_starting_planet = no
+		NOT = { has_planet_flag = landslide }
 		any_deposit = {
 			landmass_collapsable = yes
 		}
@@ -1126,14 +1199,14 @@ planet_event = {
 
 	immediate = {
 		random_list = {
-			20 = {
+			5 = {
 				planet_event = {
 					id = tbm.19
 					days = 180
 					random = 90
 				}
 			}
-			80 = {}
+			95 = {}
 		}
 	}
 }
@@ -1151,12 +1224,16 @@ planet_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		set_timed_planet_flag = {
+			flag = landsldie
+			years = 5
+		}
 		add_planet_devastation = 10	
 		
 		create_message = {
 			type = "LANDSLIDE"
 			localization = message_landslide
-			days = -1
+			days = 30
 			target = this
 		}
 
@@ -1238,10 +1315,11 @@ planet_event = {
 	trigger = {
 		NOT = { has_planet_flag = proposed_marina }	
 		NOT = {
-			is_homeworld = yes
+			is_starting_planet = yes
 		}
+		has_upgraded_capital = yes
 		last_district_changed = district_city	# on_district_complete checks built
-		
+		has_deposit = d_teeming_reef
 		# Must have a coastal city (long-term, should add check for coastal features + at least one district; for now, just lower req on ocean worlds)
 		if = {
 			limit = {
@@ -1409,10 +1487,6 @@ planet_event = {
 		name = tbm.23.military
 
 		add_modifier = {
-			modifier = denied_investment
-			years = 20
-		}
-		add_modifier = {
 			modifier = mass_protest
 			days = 360
 		}
@@ -1561,7 +1635,7 @@ planet_event = {
 		}
 		
 		random_list = {
-			20 = {
+			10 = {
 				# modifier = {
 				# 	factor = 1.5
 				# 	# Greater chance if fewer marshes or poor water system.
@@ -1601,6 +1675,8 @@ planet_event = {
 					}
 				}
 			}
+
+			90 = {}
 		}
 	}
 }
@@ -1630,7 +1706,7 @@ planet_event = {
 		create_message = {
 			type = "FLOODING_DAMAGE"
 			localization = tbm.27.desc
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -1661,7 +1737,7 @@ planet_event = {
 		create_message = {
 			type = "FLOODING_DAMAGE"
 			localization = tbm.28.desc
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -1692,7 +1768,7 @@ planet_event = {
 		create_message = {
 			type = "FLOODING_DAMAGE"
 			localization = tbm.29.desc
-			days = -1
+			days = 30
 			target = this
 		}
 	}
@@ -1723,20 +1799,45 @@ planet_event = {
 		}
 		
 		random_list = {
-			# Too much water results in flooding
-			25 = {
-				planet_event = {
-					id = tbm.31
-					days = 30
-					random = 15
+			20 = {
+				random_list = {
+					# Too much water results in flooding
+					25 = {
+						planet_event = {
+							id = tbm.31
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Overheating, made a desert
+					25 = {
+						planet_event = {
+							id = tbm.32
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Oops, we missed, got wrong feature
+					25 = {
+						planet_event = {
+							id = tbm.33
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Broken machine, partial job
+					planet_event = {
+						id = tbm.34
+						days = 30
+						random = 15
+					}
 				}
 			}
 
-			# Overheating, made a desert
-
-			# Oops, we missed, got wrong feature
-
-			# Broken machine, partial job
+			80 = {}
 		}
 	}
 }

@@ -456,7 +456,7 @@ d_glacier_lake = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -2
+		planet_max_districts_add = -1
 		district_farming_max = 1
 		planet_amenities_add = 5
 	}
@@ -1071,7 +1071,7 @@ d_basaltic_outcrops = {
 	}
 
 	drop_weight = {
-		weight = @med
+		weight = @low
 
 		modifier = {
 			factor = 2
@@ -1215,6 +1215,19 @@ d_volcanic_island = {
 			factor = 4
 			is_planet_class = pc_ocean
 		}
+
+		modifier = {
+			factor = 2
+			has_volcanic_activity = yes
+		}
+
+		modifier = {
+			factor = 2
+			OR = {
+				has_planet_modifier = pm_unstable_tectonics
+				has_planet_modifier = pm_abundant_geothermal_activity
+			}
+		}
 	}
 
 	ai_weight = {
@@ -1316,7 +1329,6 @@ d_volcanic_soil = {
 }
 
 d_volcanic_ash = {
-	icon = gfx/interface/icons/deposits/unused/d_molten_planet
 	category = deposit_cat_blockers
 
 	is_for_colonizable = yes
@@ -2156,6 +2168,14 @@ d_barren = {
 		"tech_quicksand_basin"
 	}
 
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1200
+			minerals = 250
+		}
+	}
+
 	on_cleared = {
 		custom_tooltip = tooltip_clear_barren
 		hidden_effect = {
@@ -2286,6 +2306,10 @@ d_drylands = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
+
+	prerequisites = {
+		"tech_quicksand_basin"	# Placeholder - will likely add hydro tech at some point
+	}
 
 	time = 720
 
@@ -2853,7 +2877,20 @@ d_misty_plains = {
 			}
 		}
 		modifier = {
-			planet_colonist_society_research_produces_add = 2
+			planet_colonist_society_research_produces_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			any_owned_pop = {
+				has_job = colonist
+			}
+			is_planet_class = pc_nuked
+		}
+		modifier = {
+			planet_colonist_society_research_produces_add = 1
 		}
 	}
 
@@ -2926,7 +2963,7 @@ d_salt_flats = {
 		planet_max_districts_add = -1
 		district_mining_max = 1
 		planet_miners_minerals_produces_mult = 0.15
-		pop_happiness = -0.15
+		habitability_ceil_add = -0.1
 	}
 
 	triggered_planet_modifier = {
@@ -3564,11 +3601,11 @@ d_tbm_slums = {
 		}
 	}
 		
-	on_cleared = {
-		create_pop = {
-			species = owner
-		}
-	}
+	# on_cleared = {	# Disabled for now. Slightly too easy to farm, plus it caused weirdness with planets dominated by other species.
+	# 	create_pop = {
+	# 		species = owner
+	# 	}
+	# }
 
 
 	planet_modifier = {
@@ -3664,12 +3701,19 @@ d_tbm_industrial_wasteland = {
 		}
 	}
 
+	on_cleared = {
+		owner = {
+			add_resource = {
+				alloys = 500
+			}
+		}
+	}
+
 	planet_modifier = {
-		planet_max_districts_add = -1
-		pop_happiness = -0.05
-		
+		#planet_max_districts_add = -1
+		planet_pops_consumer_goods_upkeep_mult = -0.05	# Cheaper cost of living
 		trade_value_mult = 0.02
-		planet_crime_mult = 0.05
+		planet_crime_mult = 0.1
 	}
 
 	triggered_planet_modifier = {
@@ -3756,9 +3800,6 @@ d_collapsed_cliffs = {
 		category = deposit_blockers
 		cost = {
 			energy = 500
-		}
-		produces = {
-			minerals = 800
 		}
 	}
 
@@ -3998,8 +4039,9 @@ d_settlement = {
 
 	resources = {
 		category = deposit_blockers
-		produces = {
-			unity = -1
+		upkeep = {
+			unity = 1
+			mult = trigger:num_pops
 		}
 		cost = {
 			energy = 200
@@ -4040,7 +4082,7 @@ d_frontier_farmstead = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
-		planet_farmers_unity_upkeep_add = -0.25
+		planet_farmers_unity_upkeep_add = 0.25
 	}
 
 	triggered_planet_modifier = {
@@ -4092,7 +4134,7 @@ d_dustbowl = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_farmers_food_produces_mult = -0.2
+		planet_farmers_food_produces_mult = -0.1
 	}
 
 	ai_weight = {
@@ -4107,6 +4149,47 @@ d_dustbowl = {
 					value < 1
 				}
 			}
+		}
+	}
+}
+
+d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld variant right now.
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+	all_blocker_swap_types = yes
+	blocker_swap_types = {
+		d_submerged_ore_veins
+	}
+
+	time = 480
+
+	prerequisites = {
+		"tech_toxic_kelp"	# This should be a custom tech, as we're not managing ecology here, but going very very deep into a high-pressure environment (esp on a size 30 planet!)
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	### Should add on_cleared event for exploration.
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			add = 1000	# Keep as no negative effects but don't block ecu.
+			root = { free_district_slots = 0 }
+			owner = { has_ascension_perk = ap_arcology_project }
 		}
 	}
 }
@@ -4181,7 +4264,6 @@ d_black_market = {
 
 d_private_mines = {
 	category = deposit_cat_blockers
-	icon = d_mine_shafts
 
 	use_for_min_max_adjustments = yes
 
@@ -4403,6 +4485,11 @@ d_oil_fields_at_first_light = {
 				is_cold = yes
 			}
 		}
+		modifier = {
+			factor = 2
+			has_planet_modifier = pm_high_gravity
+		}
+
 	}
 
 	ai_weight = {
@@ -4936,5 +5023,149 @@ d_private_farming_colony = {
 
 	ai_weight = {
 		weight = @always_clear
+	}
+}
+
+# Fully-featured volcano that spawns randomly and has blocker swaps. Separated mainly to not interfere with event volcanoes that PDX tends to like to put on scripted worlds in very great number.
+d_tbm_active_volcano = {
+	category = deposit_cat_blockers_natural
+	icon = d_active_volcano
+
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_tempestous_mountain
+		d_prosperous_mesa
+		d_rich_mountain
+		d_fjordland
+		d_tropical_island
+	}
+
+	time = 720
+
+	prerequisites = {
+		"tech_volcano"
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1800
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				minerals = 200
+				engineering_research = 1000
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_generator_max = 1
+		planet_jobs_food_produces_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_volcano }
+		}
+		modifier = {
+			planet_technician_alloys_produces_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			any_deposit = {
+				has_deposit_flag = volcano_erupted	# This has to be applied to a SPECIFIC Active Volcano in the event.
+			}
+		}
+		modifier = {
+			district_farming_max = -1
+			district_mining_max = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_environmentalist }
+		}
+		planet_rangers_energy_produces_add = @ranger_large_production
+	}
+
+	potential = {
+	}
+
+	drop_weight = {
+		weight = @blocker_low
+		modifier = {
+			factor = 2
+			OR = {
+				is_planet_class = pc_alpine
+				is_planet_class = pc_savannah
+				is_planet_class = pc_ocean
+				is_planet_class = pc_nuked
+			}
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				is_planet_class = pc_arctic
+				is_planet_class = pc_continental
+				is_planet_class = pc_tundra
+			}
+		}
+		
+		modifier = {
+			factor = 2
+			OR = {
+				planet_size < 15
+				has_planet_modifier = pm_low_gravity
+			}
+		}
+
+		modifier = {
+			factor = 2
+			has_volcanic_activity = yes
+		}
+
+		modifier = {
+			factor = 2
+			OR = {
+				has_planet_modifier = pm_unstable_tectonics
+				has_planet_modifier = pm_abundant_geothermal_activity
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+
+		modifier = {
+			add = -0.75
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+
+		modifier = {
+			add = -0.5
+			root = {
+				colony_type = col_generator
+			}
+		}
 	}
 }

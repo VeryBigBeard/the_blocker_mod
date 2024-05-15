@@ -1,14 +1,3 @@
-
-# Adds random delay to certain events that otherwise don't support random = x, mainly messages
-generator_value = {
-	base = 120
-	multiply = random_factor
-	min = 90
-	max = 180
-	round = yes
-}
-
-
 # Curreently unused, set up mainly for experiment/test/future use.
 random_feature_value = {
 	base = 1
@@ -64,15 +53,34 @@ feature_research_gestalt_eng = {
 	}
 }
 
-megalith_unity_output = {
-	base = 4
-	add = trigger:years_passed
+### Feature Values
+
+extreme_weather_strain = {
+	base = 2
+	complex_trigger_modifier = {
+		trigger = num_buildings
+		trigger_scope = planet
+		parameters = {
+			type = any
+			in_construction = any
+		}
+		mode = add
+	}
 }
 
-num_private_farms = {
-	base = 0
-	add = trigger:num_private_farms
-	max = 4
+
+megalith_unity_output = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = count_owned_pop
+		trigger_scope = planet
+		parameters = {
+			limit = {
+				has_trait = trait_lithoid
+			}
+		}
+		mode = add
+	}
 }
 
 highway_engineers_to_change_a_lightbulb = {
@@ -90,6 +98,14 @@ highway_engineers_to_change_a_lightbulb = {
 	max = @tier4researchmax
 }
 
+### Food Rations Situation
+
+num_private_farms = {
+	base = 0
+	add = trigger:num_private_farms
+	max = 4
+}
+
 # 1 pop worth of a resource -- value:resource_shipment|RESOURCE|<resource key>
 # scope = pop
 resource_shipment = {
@@ -102,4 +118,50 @@ resource_shipment = {
 		}
 		mode = set
 	}
+}
+
+### Colonial Strain - Infrastructure
+#	Adds upkeep to colonial infrastructure as population on the planet grows, straining national unity
+colonial_strain_infrastructure = {
+	base = 2
+	modifier = {
+		factor = trigger:num_pops
+	}
+	modifier = {
+		divide = trigger:num_pops
+		num_pops < 10
+	}
+	multiply = 0.1	# 0.1/pop above 10
+	multiply = 2	# Then mult the whole thing by 2 because it's otherwise too minor to matter.
+	
+	min = 2
+	floor = yes
+}
+
+### Colonial Spaceport Cohesion
+#	Currently kind of an experiment for something that may become a completely different mod.
+#	Checks local trade value, and boosts unity output of Frontier Spaceport if it's being used a lot.
+#	Basically, you can exceed the unity upkeep penalty if you have a bustling colonial spaceport.
+colonial_spaceport_cohesion = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = has_collected_system_trade_value
+		trigger_scope = from.root.solar_system
+		mode = set
+	}
+	
+	floor = yes
+}
+
+colonial_cohesion_gestalt = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = num_assigned_jobs
+		parameters = {
+			job = job_synapse_drone
+		}
+		mode = add
+	}
+
+	floor = yes
 }
