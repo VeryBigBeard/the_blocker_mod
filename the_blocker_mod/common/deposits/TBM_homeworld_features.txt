@@ -79,7 +79,9 @@ d_homeworld_bandit_camp = {
 
 		modifier = {
 			add = 1
-			planet_crime > 20	# These hit Advanced AIs really early due to crime, should be priority to clear it.
+			root = {
+				planet_crime > 20	# These hit Advanced AIs really early due to crime, should be priority to clear it.
+			}
 		}
 	}
 }
@@ -91,8 +93,8 @@ d_impact_memorial = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-	#all_blocker_swap_types = yes
-	#use_weights_for_blocker_swap_types = yes
+
+	use_weights_for_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_major_impact_site
 		d_gestalt_major_impact_site
@@ -127,6 +129,12 @@ d_impact_memorial = {
 					value < 10
 				}
 			}
+			root = {
+				num_free_districts = {
+					type = district_mining
+					value < 1
+				}
+			}
 		}
 	}
 }
@@ -138,7 +146,7 @@ d_homeworld_deep_trench = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-	all_blocker_swap_types = yes
+
 	blocker_swap_types = {
 		d_submerged_ore_veins
 	}
@@ -290,7 +298,7 @@ d_computerized_extraction_sites = {
 		weight = @base
 
 		modifier = {
-			add = 1	# Clear it if a machine is in energy deficit,a s that's bad and it can get minerals later.
+			add = 1	# Clear it if a machine is in energy deficit, as that's bad and it can get minerals later.
 			owner = {
 				is_machine_empire = yes	# Should always be to start, but if it gets conquered
 				resource_income_compare = {
@@ -337,7 +345,7 @@ d_tbm_strip_mine = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -377,7 +385,7 @@ d_tbm_gestalt_strip_mine = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -411,7 +419,16 @@ d_recycling_programs = {
 	}
 
 	ai_weight = {
-		weight = @always_keep	#CG hit isn't that bad and AI needs mining flexibility.
+		weight = @keep
+
+		modifier = {
+			set = @always_clear
+			owner = {
+				is_difficulty >= 3
+				num_owned_planets < 3
+				# Logic here is that low difficulty AIs often get boxed in and end up needing the mining district more than the build speed. But the build speed hit hurts the AI a *lot* early on because it changes stuff around more, so we want it gone if possible.
+			}
+		}
 	}
 }
 
@@ -447,7 +464,7 @@ d_recycling_processes = {
 		weight = @keep
 
 		modifier = {
-			add = 1	# Get rid of this when upgrading the assembly facility or capital to asave alloy upkeep
+			add = 1	# Get rid of this when upgrading the assembly facility or capital to save alloy upkeep
 			root = {
 				num_assigned_jobs = {
 					job = replicator
@@ -482,10 +499,17 @@ d_major_impact_site = {
 	}
 
 	potential = {
-		#always = no
-		exists = owner
-		owner = { is_gestalt = yes }
-		###is_homeworld = yes
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 0
+
+		modifier = {
+			add = 10
+			owner = { is_gestalt = no }
+			has_deposit = d_impact_memorial
+		}
 	}
 
 	ai_weight = {
@@ -514,11 +538,20 @@ d_gestalt_major_impact_site = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_mining_max = 1
-		planet_crime_mult = 0.05
 	}
 
 	potential = {
-		always = no
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 0
+
+		modifier = {
+			add = 10
+			owner = { is_gestalt = yes }
+			has_deposit = d_impact_memorial
+		}
 	}
 
 	ai_weight = {
@@ -564,11 +597,11 @@ d_rare_metals_lab = {
 		weight = @base
 
 		modifier = {
-			add = 1	# Get rid of this as soon as minerals look okay
+			set = @always_clear	# Get rid of this as soon as minerals look okay
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value > 50
 				}
 			}
 		}
@@ -607,7 +640,7 @@ d_gestalt_rare_metals_lab = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value > 50
 				}
 			}
 		}
@@ -661,7 +694,7 @@ d_homeworld_dustbowl = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value > 50
 				}
 				resource_income_compare = {
 					resource = food
@@ -727,7 +760,7 @@ d_high_wire_network = {
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -776,7 +809,7 @@ d_neural_network = {
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -847,7 +880,7 @@ d_battery_farms = {
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -947,7 +980,18 @@ d_experimental_geothermal_tap = {
 	}
 
 	ai_weight = {
-		weight = @always_clear
+		weight = @keep	# Is set to always get rid of this during the event chain, so keep it if the bonus is helpful
+
+		modifier = {
+			set = @clear
+			years_passed = 20
+			root = {
+				num_free_districts = {
+					type = district_generator
+					value > 1
+				}
+			}
+		}
 	}
 }
 
@@ -994,7 +1038,18 @@ d_gestlat_experimental_geothermal_tap = {
 	}
 
 	ai_weight = {
-		weight = @always_clear
+		weight = @keep	# Is set to always get rid of this during the event chain, so keep it if the bonus is helpful
+
+		modifier = {
+			set = @clear
+			years_passed = 20
+			root = {
+				num_free_districts = {
+					type = district_generator
+					value > 1
+				}
+			}
+		}
 	}
 }
 
@@ -1039,17 +1094,13 @@ d_fossil_fuel_reserves = {
 	}
 
 	drop_weight = {
-		weight = 10
+		weight = 0
 
 		modifier = {
-			factor = 0
+			add = 10
 			exists = owner
 			owner = { is_gestalt = yes }
-		}
-
-		modifier = {
-			factor = 0
-			is_planet_class = pc_gaia
+			has_deposit = d_homeworld_bandit_camp
 		}
 	}
 
@@ -1108,12 +1159,13 @@ d_gestalt_fossil_fuel_reserves = {
 	}
 
 	drop_weight = {
-		weight = 10
+		weight = 0
 
 		modifier = {
-			factor = 0
+			add = 10
 			exists = owner
 			owner = { is_gestalt = no }
+			has_deposit = d_homeworld_bandit_camp
 		}
 	}
 
@@ -1163,11 +1215,11 @@ d_inaugural_spaceport = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @always_clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 25	# alloy hit hurts a lot, os get rid of this as soon as economic plan on track
 				}
 			}
 		}
@@ -1215,11 +1267,11 @@ d_gestalt_inaugural_spaceport = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @always_clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 25	# alloy hit hurts a lot, os get rid of this as soon as economic plan on track
 				}
 			}
 		}
@@ -1338,7 +1390,7 @@ d_metabolic_processing = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1364,7 +1416,7 @@ d_nutrient_terminals = {
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_bio_trophies_unity_produces_mult = -0.01
+		planet_bio_trophies_unity_produces_mult = -0.1
 	}
 
 	potential = {
@@ -1379,7 +1431,7 @@ d_nutrient_terminals = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1415,7 +1467,7 @@ d_factory_slaughterhouses = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @always_clear
 			owner = {
 				resource_income_compare = {
 					resource = food
@@ -1461,7 +1513,13 @@ d_homeworld_urban_aeroponics = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+				}
+			}
+			root = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
 				}
 			}
 		}
@@ -1503,7 +1561,13 @@ d_homeworld_gestalt_urban_aeroponics = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+				}
+			}
+			root = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
 				}
 			}
 		}
@@ -1548,7 +1612,7 @@ d_homeworld_moisture_farming = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1602,7 +1666,7 @@ d_migratory_fishing_fleets = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1646,7 +1710,7 @@ d_food_banks = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1693,7 +1757,7 @@ d_reclaimed_land = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1776,6 +1840,13 @@ d_megaliths = {
 				is_spiritualist = yes
 			}
 		}
+
+		modifier = {
+			set = @always_clear
+			owner_main_species = {
+				NOT = { has_trait = trait_lithoid }
+			}
+		}
 	}
 }
 
@@ -1795,6 +1866,11 @@ d_crumbling_mountain = {
 			energy = 800
 		}
 		upkeep = {
+			trigger = {
+				owner_main_species = {
+					has_trait = trait_lithoid
+				}
+			}
 			unity = 0.2
 			mult = value:megalith_unity_output	# Ignore that this is weird. Idea here to balance the Megalith unity income early on
 		}
@@ -1825,7 +1901,7 @@ d_crumbling_mountain = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1867,7 +1943,7 @@ d_crystal_outcrops = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1896,7 +1972,6 @@ d_crowded_reef = {
 	}
 
 	planet_modifier = {
-		planet_crime_mult = 0.05
 		pop_happiness = -0.05	# Bad vibes.
 	}
 
@@ -1951,7 +2026,7 @@ d_shallow_bay = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1992,7 +2067,7 @@ d_homeworld_tidal_turbines = {
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 50	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -2040,7 +2115,7 @@ d_flotsam = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -2083,7 +2158,7 @@ d_fish_plants = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -2125,7 +2200,7 @@ d_windy_archipelago = {
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 50	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -2961,7 +3036,7 @@ d_homeworld_dormant_supervolcano = {
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 60	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -3003,22 +3078,19 @@ d_gaia_homeworld_fossil_fuels = {
 	}
 
 	drop_weight = {
-		weight = 10
+		weight = 0
 
 		modifier = {
-			factor = 0
+			add = 10
 			exists = owner
-			owner = { is_gestalt = yes }
-		}
-
-		modifier = {
-			factor = 0
-			NOT = { is_planet_class = pc_gaia }
+			owner = { is_gestalt = no }
+			is_planet_class = pc_gaia
+			has_deposit = d_homeworld_bandit_camp
 		}
 	}
 
 	ai_weight = {
-		weight = @clear
+		weight = @always_clear
 	}
 }
 
@@ -3067,7 +3139,7 @@ d_homeworld_sculpted_mountains = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# We generally want these gone as long as we have enough minerals
+					value >= 30	# We generally want these gone as long as we have enough minerals
 				}
 			}
 		}
@@ -3173,7 +3245,7 @@ d_idyllic_pastorale = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -3215,6 +3287,10 @@ d_ancient_forests = {
 
 	potential = {
 		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
 	}
 }
 
@@ -3405,7 +3481,7 @@ d_homeworld_scrap_mountain = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40
+					value >= 30
 				}
 			}
 		}
@@ -3525,7 +3601,7 @@ d_destroyed_spaceport = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value >= 30
 				}
 			}
 		}
@@ -3573,7 +3649,7 @@ d_derelict_smelting_facility = {
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value >= 30
 				}
 			}
 		}
@@ -3643,7 +3719,7 @@ d_industrial_agromachinery = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 30
+					value >= 20
 				}
 			}
 		}
@@ -3751,7 +3827,14 @@ d_crater_city = {
 	}
 
 	ai_weight = {
-		weight = @always_clear
+		weight = @always_keep
+
+		modifier = {
+			set = @always_clear
+			owner = {
+				has_technology = tech_housing_2
+			}
+		}
 	}
 }
 
@@ -3801,7 +3884,7 @@ d_renewable_energy_programs = {
 		weight = @clear
 
 		modifier = {
-			add = -1
+			set = @always_clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
@@ -4022,7 +4105,14 @@ d_crop_shares = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 30
+					value >= 20
+				}
+			}
+
+			root = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
 				}
 			}
 		}
@@ -4061,7 +4151,14 @@ d_outdated_food_equipment = {	# Gestalt Prosperous ag district
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 30
+					value >= 20
+				}
+			}
+
+			root = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
 				}
 			}
 		}
@@ -4194,7 +4291,7 @@ d_exoagricultural_experimentation = {
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 20
+					value >= 20
 				}
 			}
 		}
@@ -4272,7 +4369,7 @@ d_slush_funds = {
 	}
 
 	ai_weight = {
-		weight = @clear
+		weight = @always_clear
 	}
 }
 
@@ -4530,7 +4627,7 @@ d_pearl_fields = {
 				}
 			}
 		}
-		planet_anglers_energy_produces_add = 1
+		planet_farmers_energy_upkeep_add = 1
 	}
 
 	triggered_planet_modifier = {
