@@ -267,8 +267,12 @@ event = {
 			}
 
 			every_owned_planet = {
+				limit = {
+					is_same_value = capital_scope
+				}
+				
 				### Get rid of unwanted fish. For real this time.
-				clear_blockers = yes
+				#clear_blockers = yes
 				#clear_deposits = yes
 				every_deposit = {
 					remove_deposit = yes
@@ -276,6 +280,15 @@ event = {
 
 				generate_start_deposits_and_blockers = yes	# Re-runs basic TBM feature init.
 				fix_advanced_start_empire_features = yes		
+			}
+
+			every_owned_planet = {
+				limit = {
+					NOT = { is_same_value = capital_scope }
+				}
+
+				clear_deposits = yes
+				reroll_deposits = yes
 			}
 		}
 	}
@@ -572,10 +585,10 @@ planet_event = {
 			has_building = building_capital
 		}
 		owner = { is_gestalt = no }
-		num_free_districts = {
-			type = any
-			value > 2	# Weed reduction, but also makes it a bit harder to farm these for housing unless you invest in clearing space (or get lucky and have a lot of frontier land).
-		}
+		# num_free_districts = {
+		# 	type = any
+		# 	value > 2	# Weed reduction, but also makes it a bit harder to farm these for housing unless you invest in clearing space (or get lucky and have a lot of frontier land).
+		# }
 	}
 
 	immediate = {

@@ -36,8 +36,7 @@ d_homeworld_bandit_camp = {
 		d_fossil_fuel_reserves
 		d_gestalt_fossil_fuel_reserves
 	}
-	#use_weights_for_blocker_swap_types = yes
-	all_blocker_swap_types = yes
+	use_weights_for_blocker_swap_types = yes
 
 	time = 180
 
@@ -1036,10 +1035,22 @@ d_fossil_fuel_reserves = {
 	}
 
 	potential = {
-		#always = no
-		NOT = { is_planet_class = pc_gaia }
-		exists = owner
-		owner = { is_gestalt = no }
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 10
+
+		modifier = {
+			factor = 0
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+
+		modifier = {
+			factor = 0
+			is_planet_class = pc_gaia
+		}
 	}
 
 	ai_weight = {
@@ -1093,10 +1104,17 @@ d_gestalt_fossil_fuel_reserves = {
 	}
 
 	potential = {
-		#always = no
-		NOT = { is_planet_class = pc_gaia }
-		exists = owner
-		owner = { is_gestalt = yes }
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 10
+
+		modifier = {
+			factor = 0
+			exists = owner
+			owner = { is_gestalt = no }
+		}
 	}
 
 	ai_weight = {
@@ -1705,8 +1723,13 @@ d_megaliths = {
 				owner = { is_lithoid = yes }
 			}
 			unity = 1
-			mult = value:megalith_unity_output
-			
+			mult = trigger:years_passed
+		}
+		produces = {
+			trigger = {
+				years_passed < 1	# This is here so you see the unity icon on the thing at game start.
+			}
+			unity = 1
 		}
 	}
 
@@ -1732,11 +1755,25 @@ d_megaliths = {
 
 		modifier = {
 			add = 1
-			owner = {
-				resource_income_compare = {
-					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+			owner_main_species = {
+				has_trait = trait_slow_breeders
+			}
+		}
+
+		modifier = {
+			add = -2
+			owner_main_species = {
+				OR = {
+					has_trait = trait_rapid_breeders
+					has_trait = trait_necrophage
 				}
+			}
+		}
+
+		modifier = {
+			add = -0.5
+			owner = {
+				is_spiritualist = yes
 			}
 		}
 	}
@@ -1758,8 +1795,8 @@ d_crumbling_mountain = {
 			energy = 800
 		}
 		upkeep = {
-			unity = 2
-			mult = trigger:years_passed
+			unity = 0.2
+			mult = value:megalith_unity_output	# Ignore that this is weird. Idea here to balance the Megalith unity income early on
 		}
 	}
 
@@ -2962,8 +2999,22 @@ d_gaia_homeworld_fossil_fuels = {
 	}
 
 	potential = {
-		#always = no
-		is_planet_class = pc_gaia
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 10
+
+		modifier = {
+			factor = 0
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+
+		modifier = {
+			factor = 0
+			NOT = { is_planet_class = pc_gaia }
+		}
 	}
 
 	ai_weight = {
@@ -4787,10 +4838,10 @@ d_experimental_fusion_reactor = {
 		cost = {
 			minerals = 800
 		}
-		produces = {
+		upkeep = {
 			# Advanced Starts will get a little rubber-banding effect for their extra bonus.
-			engineering_research = -1
-			physics_research = -1
+			engineering_research = 1
+			physics_research = 1
 		}
 	}
 

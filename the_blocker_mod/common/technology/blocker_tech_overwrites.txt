@@ -1,0 +1,747 @@
+### The Blocker Mod - Blocker Tech Overwrites / Removal
+#	TBM changes the effects of these techs on various deposits.
+#	This script mainly adds information to the tech cards displayed in the UI.
+#	It also adjusts some of the AI weights and, during TBM's beta-phase, some of these techs are disabled. However, this feature is optional and this file can be safely removed from the mod if a compatibility issue arises--just don't research techs that do nothing!
+
+
+### Planetary Resurfacing
+tech_mountain_range = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier2weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_mountain_range"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 3
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_mountain_range"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+### Deep-Crust Engineering
+tech_volcano = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier2weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_active_volcano"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_active_volcano"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+# Dangerous Widlife Remval - DISABLED
+tech_dangerous_wildlife = {
+	cost = @tier2cost2
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+
+	potential = {
+		always = no 	# Tech currently does nothing in TBM Beta 0.6.4, disabled
+	}
+
+
+	weight = @tier2weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = d_dangerous_wildlife_blocker
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = d_dangerous_wildlife_blocker
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+### Selective Defoliants - DISABLED
+tech_dense_jungle = {
+	cost = @tier1cost2
+	area = society
+	tier = 1
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+
+
+	potential = {
+		always = no 	# Tech currently does nothing in TBM Beta 0.6.4, disabled
+	}
+
+	weight = @tier1weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_dense_jungle"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_dense_jungle"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+### Soil Remediation
+tech_quicksand_basin = {
+	cost = @tier1cost2
+	area = society
+	tier = 1
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier1weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_quicksand_basin"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_quicksand_basin"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+### Xeno-Hydraulic Mastery
+tech_noxious_swamp = {
+	cost = @tier1cost2
+	area = society
+	tier = 1
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier1weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_noxious_swamp"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_noxious_swamp"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+### Climate Control Network
+tech_massive_glacier = {
+	cost = @tier1cost2
+	area = society
+	tier = 1
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier1weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_massive_glacier"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_massive_glacier"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+### Toxic Kelp Removal - DISABLED
+tech_toxic_kelp = {
+	cost = @tier1cost2
+	area = society
+	tier = 1
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+
+	potential = {
+		always = no 	# Tech currently does nothing in TBM Beta 0.6.4, disabled
+	}
+
+	weight = @tier1weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_toxic_kelp"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_toxic_kelp"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+### Subterranean Colonization
+tech_deep_sinkhole = {
+	cost = @tier1cost2
+	area = society
+	tier = 1
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier1weight2
+
+	weight_groups = {
+		deposit_blockers
+	}
+	mod_weight_if_group_picked = {
+		deposit_blockers = 0.5
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+		}
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = {
+			factor = 4
+			has_ascension_perk = ap_mastery_of_nature
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_deep_sinkhole"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_planet = {
+					has_deposit = "d_deep_sinkhole"
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			num_owned_planets < 2
+		}
+	}
+}
+
+# ##################
+# Terraformation
+# ##################
+
+### Terrestrial Sculpting
+tech_terrestrial_sculpting = {
+	cost = @tier2cost3
+	area = society
+	tier = 2
+	category = { new_worlds }
+	prerequisites = { "tech_colonization_1" }
+	weight = @tier2weight3
+
+	feature_flags = {
+		build_terraform_station
+	}
+
+	weight_modifier = {
+		factor = 1.5	# terraforming needs to be a bit more common
+		modifier = {
+			factor = 0
+			is_lithoid_empire = yes
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+		modifier = { #if you're a fish, you're definitely gonna prioritise finding out how to make more oceans
+			factor = 1.25
+			has_trait = trait_aquatic
+		}
+		modifier = {
+			factor = 1.25
+			has_origin = origin_life_seeded
+		}
+
+	}
+
+	ai_weight = {
+		factor = @terraforming_tech_ai_factor
+
+		modifier = {
+			factor = 2
+			is_xenophobe = yes
+		}
+		modifier = {
+			factor = 0
+			OR = {
+				has_origin = origin_shattered_ring
+				has_origin = origin_void_dwellers
+			}
+			is_ai = yes
+		}
+		modifier = {
+			factor = 5
+			any_system_within_border = {
+				any_system_planet = {
+					is_colonizable = yes
+					habitability = {
+						who = root
+						value < 0.5
+					}
+				}
+			}
+		}
+		modifier = { #Hydrocentric is really good and needs this
+			factor = 1000
+			has_trait = trait_aquatic
+		}
+		modifier = {
+			factor = 100
+			has_origin = origin_life_seeded
+		}
+		modifier = {
+			factor = 2
+			is_ai = no #auto-research
+		}
+	}
+}
+
+#Ecological Adaptation
+tech_ecological_adaptation = {
+	cost = @tier3cost2
+	area = society
+	tier = 3
+	category = { new_worlds }
+	prerequisites = { "tech_terrestrial_sculpting" }
+	weight = @tier3weight2
+
+	feature_flags = {
+		terraform_inhabited
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+
+	}
+
+	ai_weight = {
+		factor = @terraforming_tech_ai_factor
+
+		modifier = {
+			factor = 2
+			is_xenophobe = yes
+		}
+		modifier = {
+			factor = 5
+			OR = {
+				any_owned_planet = {
+					habitability = {
+						who = root
+						value < 0.5
+					}
+				}
+				any_system_within_border = {
+					any_system_planet = {
+						is_planet_class = pc_nuked
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 5
+			has_origin = origin_life_seeded
+		}
+		modifier = {
+			factor = 2
+			is_ai = no #auto-research
+		}
+	}
+}
+
+#Climate Transformation
+tech_climate_restoration = {
+	cost = @tier4cost1
+	area = society
+	tier = 4
+	category = { new_worlds }
+	prerequisites = { "tech_terrestrial_sculpting" }
+	weight = @tier4weight1
+
+	# unlocks additional terraforming-options
+
+	prereqfor_desc = {
+		diplo_action = {
+			title = "TECH_UNLOCK_TERRAFORMING_NUKED_CHANGE_TITLE"
+			desc = "TECH_UNLOCK_TERRAFORMING_NUKED_CHANGE_DESC"
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_expansion_adopt
+		}
+
+	}
+
+	ai_weight = {
+		factor = @terraforming_tech_ai_factor
+
+		modifier = {
+			factor = 5
+			has_origin = origin_life_seeded
+		}
+		modifier = {
+			factor = 5
+			any_system_within_border = {
+				any_system_planet = {
+					is_planet_class = pc_nuked
+				}
+			}
+		}
+	}
+}
