@@ -14,10 +14,8 @@ building_xeno_synaptic_node = {
 
 	category = research
 
-	empire_limit = 1
-
 	potential = {
-		#is_capital = yes
+		is_starting_planet = no
 		exists = owner
 		owner = { is_gestalt = yes }
 	}

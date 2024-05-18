@@ -32,8 +32,48 @@ d_homeworld_bandit_camp = {
 	should_swap_deposit_on_terraforming = no
 
 	blocker_swap_types = {
-		d_gaia_homeworld_fossil_fuels
 		d_fossil_fuel_reserves
+	}
+	use_weights_for_blocker_swap_types = yes
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+			unity = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = 15
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+
+		modifier = {
+			add = 1
+			root = {
+				planet_crime > 20	# These hit Advanced AIs really early due to crime, should be priority to clear it.
+			}
+		}
+	}
+}
+
+d_gestalt_homeworld_bandit_camp = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
 		d_gestalt_fossil_fuel_reserves
 	}
 	use_weights_for_blocker_swap_types = yes
@@ -48,23 +88,47 @@ d_homeworld_bandit_camp = {
 		}
 	}
 
-	# on_cleared = {
-	# 	if = {
-	# 		limit = {
-	# 			planet = { is_planet_class = pc_gaia }
-	# 		}
-	# 		add_deposit = d_gaia_homeworld_fossil_fuels
-	# 	}
-	# 	else_if = {
-	# 		limit = {
-	# 			owner = { is_gestalt = yes }
-	# 		}
-	# 		add_deposit = d_gestalt_fossil_fuel_reserves
-	# 	}
-	# 	else = {
-	# 		add_deposit = d_fossil_fuel_reserves
-	# 	}
-	# }
+	planet_modifier = {
+		planet_crime_add = 15
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+
+		modifier = {
+			add = 1
+			root = {
+				planet_crime > 20	# These hit Advanced AIs really early due to crime, should be priority to clear it.
+			}
+		}
+	}
+}
+
+d_gaia_homeworld_bandit_camp = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_gaia_homeworld_fossil_fuels
+	}
+	use_weights_for_blocker_swap_types = yes
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+			unity = 200
+		}
+	}
 
 	planet_modifier = {
 		planet_crime_add = 15
@@ -1072,7 +1136,7 @@ d_fossil_fuel_reserves = {
 	on_cleared = {
 		owner = {
 			add_resource = {
-				unity = 100	# Not monthly mult, more reward for this if you get off the oil quick.
+				unity = 500	# Not monthly mult, more reward for this if you get off the oil quick.
 			}
 		}
 	}
@@ -1094,13 +1158,15 @@ d_fossil_fuel_reserves = {
 	}
 
 	drop_weight = {
-		weight = 0
+		weight = 100
 
 		modifier = {
-			add = 10
-			exists = owner
-			owner = { is_gestalt = yes }
-			has_deposit = d_homeworld_bandit_camp
+			factor = 0
+			NOT = {
+				exists = owner
+				owner = { is_gestalt = yes }
+				has_deposit = d_homeworld_bandit_camp
+			}
 		}
 	}
 
@@ -1129,7 +1195,7 @@ d_gestalt_fossil_fuel_reserves = {
 	on_cleared = {
 		owner = {
 			add_resource = {
-				unity = 100	# Not monthly mult, more reward for this if you get off the oil quick.
+				unity = 500	# Not monthly mult, more reward for this if you get off the oil quick.
 			}
 		}
 	}
@@ -1159,13 +1225,15 @@ d_gestalt_fossil_fuel_reserves = {
 	}
 
 	drop_weight = {
-		weight = 0
+		weight = 100
 
 		modifier = {
-			add = 10
-			exists = owner
-			owner = { is_gestalt = no }
-			has_deposit = d_homeworld_bandit_camp
+			factor = 0
+			NOT = {
+				exists = owner
+				owner = { is_gestalt = no }
+				has_deposit = d_homeworld_bandit_camp
+			}
 		}
 	}
 
@@ -1928,7 +1996,32 @@ d_crystal_outcrops = {
 	planet_modifier = {
 		district_mining_max = 1
 		planet_miners_minerals_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			country_uses_consumer_goods = yes
+		}
 		planet_miners_consumer_goods_upkeep_add = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			country_uses_consumer_goods = no
+		}
+		planet_miners_food_upkeep_add = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			country_uses_consumer_goods = no
+			owner = { has_trait = trait_lithoid }
+		}
+		planet_miners_food_upkeep_add = -0.1
+		planet_miners_minerals_upkeep_add = 0.1
 	}
 
 	potential = {
@@ -3063,7 +3156,7 @@ d_gaia_homeworld_fossil_fuels = {
 	on_cleared = {
 		owner = {
 			add_resource = {
-				unity = 20	# Not monthly mult, more reward for this if you get off the oil quick.
+				unity = 400	# Not monthly mult, more reward for this if you get off the oil quick.
 			}
 		}
 	}
@@ -3078,14 +3171,17 @@ d_gaia_homeworld_fossil_fuels = {
 	}
 
 	drop_weight = {
-		weight = 0
+		weight = 100
 
 		modifier = {
-			add = 10
-			exists = owner
-			owner = { is_gestalt = no }
-			is_planet_class = pc_gaia
-			has_deposit = d_homeworld_bandit_camp
+			factor = 0
+			NOT = {
+				exists = owner
+				owner = { is_gestalt = no }
+				is_planet_class = pc_gaia
+				has_deposit = d_homeworld_bandit_camp
+			}
+			
 		}
 	}
 

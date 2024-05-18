@@ -7,6 +7,12 @@
  d_homeworld_bandit_camp:0 "Bandit Camp"
  d_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
 
+ d_gestalt_homeworld_bandit_camp:0 "Bandit Camp"
+ d_gestalt_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
+
+ d_gaia_homeworld_bandit_camp:0 "Bandit Camp"
+ d_gaia_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
+
  d_fossil_fuel_reserves:0 "Fossil Fuel Reserves"
  d_fossil_fuel_reserves_desc:0 "The nation-states of the 21st century built up massive strategic energy reserves in anticipation of global conflicts. Still dotted around the globe, these tank fields, battery farms, and generator complexes serve as a reminder of the century's turmoil."
 
@@ -73,7 +79,7 @@
 
  d_homeworld_extreme_weather:0 "Extreme Weather"
  d_homeworld_extreme_weather_desc:0 "A product of unchecked global warming in the early 21st century, this region is regularly wracked by severe seasonal storms. Sturdy communities cling on amid the high-maintenance wind farms."
- d_extreme_weather_tooltip:0 "$r_unity$ §YUnity Upkeep increases for each £building£ Building constructed."
+ d_extreme_weather_tooltip:0 "$r_unity$ §YUnity Upkeep increases for each £building£ Building constructed.§!"
 
  d_experimental_geothermal_tap:0 "Experimental Geothermal Tap"
  d_experimental_geothermal_tap_desc:0 "Designed in 2107 to combat fossil fuel dependency, this network of experimental subsurface taps never lived up to the promise of the 22nd century, and a recent news exposé has revealed much of the science involved to be based on a hoax."
@@ -120,11 +126,11 @@
 
  d_megaliths:0 "Megaliths"
  d_megaliths_desc:0 "Colossal constructions built by the ancient awoken still dot the landscape, serving as reminders of stones gone to sleep."
- d_megaliths_tooltip:0 "§Y$r_unity$ incfome increases with the number of Lithoid £pops£ §CPops§! living on the world.§!"
+ d_megaliths_tooltip:0 "§Y$r_unity$ incfome increases every year§!"
 
  d_crumbling_mountain:0 "Crumbling Mountain"
  d_crumbling_mountain_desc:0 "This used to be a mountain, but after being voted Tastiest Landscape on a popular show three years running, very little remains, and surrounding communities have raised concerns about landslides and food security."
- d_crumbling_mountain_tooltip:0 "§Y$r_unity$ Upkeep increases every year.§!"
+ d_crumbling_mountain_tooltip:0 "§Y$r_unity$ Upkeep increases with the number of Lithoid £pops£ §CPops§! living on the world.§!"
 
  d_crystal_outcrops:0 "Crystalline Outcrops"
  d_crystal_outcrops_desc:0 "These mysterious and diamond-hard crystals were once thought to be magic, though more recent geocultural study has linked their properties to our own anatomy. Growing them takes millennia and extracting them from the remotest areas of the planet can take months, but their mineral output is among the most nutritious for young lithoids available."

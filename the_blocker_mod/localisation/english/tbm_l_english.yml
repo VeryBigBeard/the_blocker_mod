@@ -52,7 +52,7 @@
  ### The Blocker Mod - Jobs
 
  # TBM Shorthand
- icon_job_colonists:0 "£colonist£ Colonists:"
+ icon_job_colonists:0 "£colonist£ Colonists"
  r_physics_research:0 "§Y£physics_research£ Physics Research§!"
  r_society_research:0 "§Y£society_research£ Society Research§!"
  r_engineering_research:0 "§Y£engineering_research£ Engineering Research§!"
@@ -66,7 +66,7 @@
  tbm_buildings_colonial_infrastructure_tooltip:0 "\n\nColonial infrastructure buildings cannot be built after a planet has consolidated into a single capital region under a §CPlanetary Capital§Y or equivalent. Any existing buildings will fall into disrepair due to being too far from the seat of local power.§!"
 
  building_xeno_synaptic_node:0 "Xeno-Synaptic Node"
- building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£Xeno-Synaptic Node§C requires significant upkeep, but will produce £r_physics_research££r_society_research££r_engineering_reseach£Research for many £blocker£ §YNatural Blockers§! across the empire. They can only be built on the gestalt's capital."
+ building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£ Xeno-Synaptic Node§C requires significant upkeep, but will produce £research£ §CResearch§! for many £blocker£ §YNatural Blockers§! on this world."
 
  building_science_outposts:0 "Science Outposts"
  building_science_outposts_desc:0 "As soon as the colonization effort was announced, researchers were eager to set up laboratories on-site to study the alien world first-hand."
@@ -125,6 +125,7 @@
  mod_planet_farmers_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_farmer_plural$"
  mod_planet_farmers_unity_upkeep_add:0 "$r_unity$ Upkeep for $job_farmer_plural$"
  
+ mod_planet_miners_food_upkeep_add:0 "$r_food$ Upkeep for $job_miner_plural"
  mod_planet_miners_unity_produces_add:0 "$r_minerals$ from $job_miner_plural$"
  mod_planet_miners_physics_research_produces_add:0 "$r_physics_research$ from $job_miner_plural$"
  mod_planet_miners_society_research_produces_add:0 "$r_society_research$ from $job_miner_plural$"
@@ -150,8 +151,8 @@
 
  ### The Blocker Mod - Feature Modifiers
 
- mod_planet_pops_food_upkeep_mult:0 "£pops£Pops $r_food$ Upkeep"
- mod_planet_pops_energy_upkeep_mult:0 "£pops£Pops $r_energy$ Upkeep"
+ mod_planet_pops_food_upkeep_mult:0 "£pops£ Pops $r_food$ Upkeep"
+ mod_planet_pops_energy_upkeep_mult:0 "£pops£ Pops $r_energy$ Upkeep"
  mod_planet_pops_robotics_energy_upkeep_mult:0 "$r_energy$ Upkeep for £pops£ Robots"
 
  mod_planet_colonist_produces_mult:0 "Resources from $icon_job_colonists$"

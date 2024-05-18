@@ -135,7 +135,7 @@ generate_start_deposits_and_blockers = {
 		}
 	}
 
-	# Devouring Lithopids
+	# Devouring Lithoids
 	if = {
 		limit = {
 			owner = {
@@ -166,9 +166,10 @@ generate_start_deposits_and_blockers = {
 		### ENERGY: 5 + 1 from dual feature, 1 blocked, -1 districts
 		add_deposit = d_neural_network
 		# Macro-Mitochondria / Protein Metabolyzers (replacing Power Plant)
+		add_deposit = d_gestalt_inaugural_spaceport
 		add_deposit = d_homeworld_extreme_weather
 		add_deposit = d_gestlat_experimental_geothermal_tap
-		add_deposit = d_homeworld_bandit_camp
+		add_deposit = d_gestalt_homeworld_bandit_camp
 		# +1 from Fertile Delta
 
 		### MINING: 6, -1 district
@@ -202,12 +203,21 @@ generate_start_deposits_and_blockers = {
 					is_wet = yes
 					is_planet_class = pc_gaia
 				}
+				owner = {
+					NOT = { has_trait = trait_lithoid }
+				}
 			}
 			add_deposit = d_fish_shoals
 		}
-		else = {
+		else_if = {
+			limit = {
+				owner = {
+					NOT = { has_trait = trait_lithoid }
+				}
+			}
 			add_deposit = d_homeworld_moisture_farming
 		}
+		else = {}
 	}
 	### MACHINES
 	# Exterminators & Servitors get extra districts later.
@@ -219,10 +229,11 @@ generate_start_deposits_and_blockers = {
 		### ENERGY: 5, 1 from dual feature, 1 blocked, -1 total district
 		add_deposit = d_high_wire_network
 		# Central Power Nexus (like power plant but ME-flavor and no district hit)
+		add_deposit = d_gestalt_inaugural_spaceport
 		add_deposit = d_battery_farms
 		add_deposit = d_homeworld_extreme_weather
 		add_deposit = d_gestlat_experimental_geothermal_tap
-		add_deposit = d_homeworld_bandit_camp
+		add_deposit = d_gestalt_homeworld_bandit_camp
 		# +1 from Fertile Delta
 
 		### MINING: 6
@@ -475,7 +486,7 @@ generate_start_deposits_and_blockers = {
 		add_deposit = d_inaugural_spaceport
 		add_deposit = d_high_wire_network
 		add_deposit = d_hot_springs
-		add_deposit = d_homeworld_bandit_camp
+		add_deposit = d_gaia_homeworld_bandit_camp
 		add_deposit = d_sandsea	# Mainly to give two generators, but also gives Aquatics a reason to take Life-Seeded
 		
 		# Mining - 8 total, 1 blocked, -3 districts
@@ -611,7 +622,7 @@ generate_start_deposits_and_blockers = {
 			owner = { has_origin = origin_machine } # Checking this rather than planet class for mod compatibility in case anything gives you a machine start with its own feature spread
 		 }
 		 add_deposit = d_resource_consolidation_1
-		 # Is apparently supposed to get a Malfunctiong Replicator Bay here in vanilla but I can't actually find it anywhere in the vinalla files
+		 # Is apparently supposed to get a Malfunctiong Replicator Bay here in vanilla but I can't actually find it anywhere in the vanilla files
 		 if = {
 			limit = {
 				owner = { has_civic = civic_machine_assimilator }
