@@ -163,9 +163,9 @@ generate_start_deposits_and_blockers = {
 			owner = { is_hive_empire = yes }
 		}
 
-		### ENERGY: 5 + 1 from dual feature, 1 blocked, -1 districts
+		### ENERGY: 6 + 1 from dual feature, 1 blocked, -1 districts
 		add_deposit = d_neural_network
-		# Macro-Mitochondria / Protein Metabolyzers (replacing Power Plant)
+		add_deposit = d_mitochondria
 		add_deposit = d_gestalt_inaugural_spaceport
 		add_deposit = d_homeworld_extreme_weather
 		add_deposit = d_gestlat_experimental_geothermal_tap
@@ -228,7 +228,7 @@ generate_start_deposits_and_blockers = {
 
 		### ENERGY: 5, 1 from dual feature, 1 blocked, -1 total district
 		add_deposit = d_high_wire_network
-		# Central Power Nexus (like power plant but ME-flavor and no district hit)
+		add_deposit = d_central_power_nexus
 		add_deposit = d_gestalt_inaugural_spaceport
 		add_deposit = d_battery_farms
 		add_deposit = d_homeworld_extreme_weather

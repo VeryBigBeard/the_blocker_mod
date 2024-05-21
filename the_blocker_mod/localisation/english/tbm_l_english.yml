@@ -479,6 +479,12 @@
  terra_incognita:0 "Terra Incognita"
  terra_incognita_desc:0 "For the first time, we have set foot on a brave new world. Colonists are even now exploring the planet and discovering new alien wonders with every step."
 
+ new_branch:0 "New Branch"
+ new_branch_desc:0 "On this world, a brand new branch of the Organism is taking root. This endeavor is not without its risks, and its strain on our unity will be measurable, but the potential rewards are great."
+
+ new_function:0 "New Branch"  # Yes, this is kind of a bad Git joke
+ new_function_desc:0 "After months of testing and refactoring, a new batch of core code has begun running on this faraway planet. Early signs suggest there are some efficiency gains to a more decentralized execution, but failsafe processing power has been set aside in case of any exceptions."
+
  # Event Modifiers
 
  sold_famous_mountain:0 "Sold Famous Mountain"
@@ -528,6 +534,15 @@
 
  nanocomposite_shortage:0 "Nanocomposite Shortage"
  nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker£ $d_experimental_geothermal_tap§! have led to delays in military shipbuiliding requisitions."
+
+ breathing_without_the_body:0 "Breathing Without the Body"
+ breathing_without_the_body_desc:0 "Over the course of milennia, the Organism's evolution encompassed and relied upon the whims and fortunes of its surroundings. These symbiotic lifeforms have been essential to the hive's functioning, but also a liability, uncontrolled by the consciousness of all things. Now, our technological progress has allowed us to replicate such symbioses for ourselves, strengthening and, where necessary, replacing the vulnerabilities of chance, fortune, and survival."
+
+ overambitious_evolution:0 "Overambitious Evolution"
+ overambitious_evolution_desc:0 "Over the course of milennia, the Organism's evolution encompassed and relied upon the whims and fortunes of its surroundings. These symbiotic lifeforms have been essential to the hive's functioning, and we have too quickly tried to replicate and replace their functioning. The mysteries of life itself still elude our consciousness, and even now our voices wither for the loss of this symbiosis."
+
+ damaged_power_nexus:0 "Damaged Power Nexus"
+ damaged_power_nexus_desc:0 "Recent disasters have resulted in damage to the £blocker£ Central Power Nexus. While failsafes and sub-systems will ensure the machine continues to function, repairs are expected to take some time."
 
  ### The Blocker Mod - Event Projects
 

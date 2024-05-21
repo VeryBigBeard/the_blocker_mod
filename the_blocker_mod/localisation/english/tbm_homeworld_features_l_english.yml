@@ -93,6 +93,9 @@
  d_gestalt_inaugural_spaceport:0 "Inaugural Spaceport"
  d_gestalt_inaugural_spaceport_desc:0 "This futuristic launchpad for interplanetary construction craft was a landmark achievement -- in 2063. After nearly 150 years of continuous use, its cargo docks are falling apart and its maintenance budget has been identified as a strategic liability."
 
+ d_mitochondria:0 "Mitochondria"
+ d_mitochondria_desc:0 "For any organism, to consume food is to generate energy. To sustain an Organism as large as a hive-mind, a vast network of sub-cellular prokaryotes to metabolizes nutrients, converting them into energy. Not all these organisms are necessarily native to the hive itself, but evolved alongside and within its complex web of fibers and filaments."
+
  ### FOOD
 
  d_homestead_farms:0 "£blocker£ Homestead Farms"
@@ -282,6 +285,9 @@
 
  d_outdated_food_equipment:0 "Large Nutrient Vacuoles"
  d_outdated_food_equipment_desc:0 "These large, easily transported sacs of nutritious fluids have allowed for unusually cohesive drone populations and healthy growth across the entire planet."
+
+ d_central_power_nexus:0 "Central Power Nexus"
+ d_central_power_nexus_desc:0 "While not structurally the center of the Machine, the Central Power Nexus serves as the central power and data distribution condui. Almost every major subroutine is registered and synchronized here, and it is absolutely critical to the system's functioning.\n\n§YThe £blocker£ Central Power Nexus is a very vulnerable part of our infrastructure and it must be protected from any planetary damage. Routing around it is possible, but expensive.§!"
 
  ### LOST COLONY
 

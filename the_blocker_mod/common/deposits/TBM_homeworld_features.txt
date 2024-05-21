@@ -34,7 +34,6 @@ d_homeworld_bandit_camp = {
 	blocker_swap_types = {
 		d_fossil_fuel_reserves
 	}
-	use_weights_for_blocker_swap_types = yes
 
 	time = 180
 
@@ -68,6 +67,7 @@ d_homeworld_bandit_camp = {
 
 d_gestalt_homeworld_bandit_camp = {
 	category = deposit_cat_blockers
+	icon = d_homeworld_bandit_camp
 
 	use_for_min_max_adjustments = yes
 
@@ -76,7 +76,6 @@ d_gestalt_homeworld_bandit_camp = {
 	blocker_swap_types = {
 		d_gestalt_fossil_fuel_reserves
 	}
-	use_weights_for_blocker_swap_types = yes
 
 	time = 180
 
@@ -110,6 +109,7 @@ d_gestalt_homeworld_bandit_camp = {
 
 d_gaia_homeworld_bandit_camp = {
 	category = deposit_cat_blockers
+	icon = d_homeworld_bandit_camp
 
 	use_for_min_max_adjustments = yes
 
@@ -118,7 +118,6 @@ d_gaia_homeworld_bandit_camp = {
 	blocker_swap_types = {
 		d_gaia_homeworld_fossil_fuels
 	}
-	use_weights_for_blocker_swap_types = yes
 
 	time = 180
 
@@ -516,8 +515,34 @@ d_recycling_processes = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_pop_assemblers_food_upkeep_mult = 0.05
 		planet_pop_assemblers_alloys_upkeep_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_lithoid_empire = yes }
+		}
+		planet_pop_assemblers_minerals_upkeep_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_lithoid_empire = no
+				is_hive_empire = yes
+			}
+		}
+		planet_pop_assemblers_food_upkeep_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		planet_pop_assemblers_energy_upkeep_mult = 0.05
 	}
 
 	potential = {
@@ -692,8 +717,7 @@ d_gestalt_rare_metals_lab = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_pop_assembly_mult = -0.05
-		pop_happiness = -0.05
+		planet_pop_assembly_mult = -0.05	# No happiness equivalent for gestalts since assembly hits them much harder.
 	}
 
 	ai_weight = {
@@ -1343,6 +1367,110 @@ d_gestalt_inaugural_spaceport = {
 				}
 			}
 		}
+	}
+}
+
+d_mitochondria = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1280
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			unity = 200
+		}
+	}
+
+	on_cleared = {
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_ascension_perk = ap_engineered_evolution
+						has_ascension_perk = ap_the_flesh_is_weak
+						# May at some point add some more interesting mechanics here re: how this works, but that's a longer-term thing
+					}
+				}
+			}
+			add_modifier = {
+				modifier = breathing_without_the_body
+				years = 20
+			}
+		}
+		
+		else = {
+			add_modifier = {
+				modifier = overambitious_evolution
+				years = 20
+			}
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_crime_mult = 0.05	# Any higher and it'd be too punishing for a homeworld feature, but the idea is to limit hive blobbing a bit until they begin to ascend.
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+
+		modifier = {
+			set = @always_clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_engineered_evolution
+					has_ascension_perk = ap_the_flesh_is_weak
+				}
+			}
+		}
+	}
+}
+
+d_central_power_nexus = {
+	icon = d_fractal_seed
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1800
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1000
+			alloys = 800
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet_devastation > 40
+		}
+		planet_jobs_energy_produces_mult = -0.5
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear	# Yeah, it's pricey but the AI often has extra alloys and its planets tend to get more devastation--you really don't want this to get damaged.
 	}
 }
 
@@ -2021,7 +2149,7 @@ d_crystal_outcrops = {
 			owner = { has_trait = trait_lithoid }
 		}
 		planet_miners_food_upkeep_add = -0.1
-		planet_miners_minerals_upkeep_add = 0.1
+		planet_miners_energy_upkeep_add = 0.1
 	}
 
 	potential = {

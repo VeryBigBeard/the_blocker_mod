@@ -1234,6 +1234,33 @@ planet_event = {
 	}
 }
 
+### 21. Central Power Nexus Breaks
+#	Fires any time planet devastation is greater than 80
+planet_event = {
+	id = tbm_handler.21
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		planet_devastation > 80
+		has_deposit = d_central_power_nexus
+		owner = { is_machine_empire = yes }	# Don't apply nasty debuff if owner isn'[t a machine.
+	}
+
+	immediate = {
+		add_modifier = {
+			modifier = damaged_power_nexus
+			years = 20
+		}
+	}
+	
+}
+
 
 
 
@@ -1267,10 +1294,18 @@ planet_event = {
 	immediate = {
 		log = "Added Pioneering Colonists"
 		this = {
-			planet_event = {
-				id = tbm_handler.101
-				days = 10
-				random = 5
+			if = {
+				limit = {
+					owner = { is_gestalt = yes }
+				}
+				planet_event = {
+					id = tbm_handler.106
+				}
+			}
+			else = {
+				planet_event = {
+					id = tbm_handler.101
+				}
 			}
 		}
 	}
@@ -1422,6 +1457,42 @@ country_event = {
 			}
 			add_planet_devastation = -100
 			generate_start_deposits_and_blockers = yes
+		}
+	}
+}
+
+### 106. Gestalt Colonial Buff
+planet_event = {
+	id = tbm_handler.106
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner = { is_hive_empire = yes }
+			}
+
+			add_modifier = {
+				modifier = new_branch
+				years = 25
+			}
+		}
+		else_if = {
+			limit = {
+				owner = { is_machine_empire = yes }
+			}
+			add_modifier = {
+				modifier = new_function
+				years = 25
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = new_frontier
+				years = 20
+			}
 		}
 	}
 }
