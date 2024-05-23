@@ -585,10 +585,7 @@ planet_event = {
 			has_building = building_capital
 		}
 		owner = { is_gestalt = no }
-		# num_free_districts = {
-		# 	type = any
-		# 	value > 2	# Weed reduction, but also makes it a bit harder to farm these for housing unless you invest in clearing space (or get lucky and have a lot of frontier land).
-		# }
+		colony_age < 20
 	}
 
 	immediate = {
@@ -1440,24 +1437,22 @@ planet_event = {
 #	Handles features for empires achieving FTL. Called from achieve_ftl_effect via on_action tbm_achieve_ftl.
 #	Vanilla Pre-FTLs clear their two Early Space Age blockers on reaching the Space Age via clear_blockers = yes, which wipes out all TBM features. This re-generates a standard starting spread.
 #	Note: from = prev due to custom on_action
-country_event = {
+planet_event = {
 	id = tbm_handler.105
 
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		from = {
-			clear_deposits = yes
-			if = {
-				limit = {
-					has_modifier = cleared_hot_springs
-				}
-				remove_modifier = cleared_hot_springs
+		clear_deposits = yes
+		if = {
+			limit = {
+				has_modifier = cleared_hot_springs
 			}
-			add_planet_devastation = -100
-			generate_start_deposits_and_blockers = yes
+			remove_modifier = cleared_hot_springs
 		}
+		add_planet_devastation = -100
+		generate_start_deposits_and_blockers = yes
 	}
 }
 

@@ -79,7 +79,7 @@
  tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding that will increase its $r_unity$ output.§!"
  tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_synapsse_drone_plural$§C are present on this world.§!"
 
- building_colonial_energy_conduits:0 "Colonial Energy Conduits"
+ building_colonial_energy_conduits:0 "Colonial Energy Coree"
  building_colonial_energy_conduitsdesc:0 "Development of a full, planet-wide energy grid can take decades, and requires large-scale subsurface infrastructure not present on most new colonies. These wire-based transmission cables can be easily stored on a colony ship and are light enough to allow small teams of colonists to install them, powering farther-flung settlements from the ship's converted reactor core."
 
  # TBM Custom Jobs
@@ -145,6 +145,7 @@
 
  mod_planet_pop_assemblers_food_upkeep_mult:0 "Pop Assembly $r_food$ Cost"
  mod_planet_pop_assemblers_alloys_upkeep_mult:0 "Pop Assembly $r_alloys$ Cost"
+ mod_planet_pop_assemblers_energy_upkeep_mult:0 "Pop Assembly $r_energy$ Cost"
 
  mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
  
@@ -301,13 +302,13 @@
  d_vanilla_failing_infrastructure:0 "£blocker£ Industrial Wasteland"
  d_vanilla_failing_infrastructure_desc:0 "This region is covered by ruined industrial complexes and toxic soil, detritus from a past age of progress."
 
- d_tbm_slums:0 "£blocker£ Sprawling Slums"
+ d_tbm_slums:0 "Sprawling Slums"
  d_tbm_slums_desc:0 "Poor urban planning has resulted in this expansive region of impoverished dwellings, where denizens live in squalor and are preyed upon by the less savory elements of society."
 
  d_tbm_crater:0 "£blocker£ Crater"
  d_tbm_crater_desc:0 "A massive explosion has decimated this area, leaving a crater miles wide and several hundred feet deep where something used to be."
 
- d_tbm_industrial_wasteland:0 "£blocker£ Industrial Wasteland"
+ d_tbm_industrial_wasteland:0 "Industrial Wasteland"
  d_tbm_industrial_wasteland_desc:0 "Whether due to excessive taxation, the recent economic downturn, or just outrght incompetence, this district has become a ghost-town of shuttered businesses and derelict manufacturing plants. What few legitimate concerns remain are struggling to get by."
 
  d_rubble:0 "£blocker£ Rubble"
@@ -319,7 +320,7 @@
  d_great_river_obstructed:0 "Great River (Obstructed)"
  d_great_river_obstructed_desc:0 "A large dam was built across this colossal river, providing power for much of the planet at the cost of creating floodplains upstream."
 
- d_urban_power_plant:0 "£blocker£ Urban Power Plant"
+ d_urban_power_plant:0 "Urban Power Plant"
  d_urban_power_plant_desc:0 "Not a tourist destination, but certainly essential to keep the lights on in a nearby city. Concern over emissions drowns out the hum of transformers all day and night."
 
  d_geothermal_power_plant:0 "Geothermal Power Plant"

@@ -199,7 +199,7 @@ planet_event = {
 				planet_event = {
 					id = tbm.302
 					days = 180
-					random = 90
+					random = 180
 				}
 			}
 
@@ -307,6 +307,9 @@ planet_event = {
 				}
 			}
 			add_deposit = d_subterranean_gas_lake
+		}
+		else = {
+			log = "Failed to add fossil fuel deposit. Carbon Economy set to [this.carbon_economy]."
 		}
 	}
 

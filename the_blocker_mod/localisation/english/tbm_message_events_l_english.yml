@@ -5,13 +5,13 @@
  
  # Handlers & Generators
 
- MESSAGE_SLUM_GENERATOR_TITLE:0 "New £blocker£ §YSprawling Slums§!"
+ MESSAGE_SLUM_GENERATOR_TITLE:0 "New §YSprawling Slums§!"
  SLUM_GENERATOR:0 "Cramped and difficult living conditions on §S[planet.GetName]§! have given rise to new £blocker£ §YSprawling Slums§! around the [planet.GetPlanetMoon]'s cities'.\n\nIf left to fester, these may affect happiness and approval. To avoid future slums, improve local conditions by adding amenities and housing."
 
- MESSAGE_INDUSTRIAL_WASTELAND_TITLE:0 "New £blocker£ §YIndustrial Wasteland§! appeared"
- INDUSTRIAL_WASTELAND:0 "Chased away by declining local conditions and a poor economy, businesses and industries are abandoning §S[planet.GetName]§! in droves, leaving £blocker£ §YIndustrial Wasteland§! behind.\n\nThese derelict regions are dens of crime and terrible polluters. To avoid future wastelands, improve local conditions by adding amenities and reducing crime."
+ MESSAGE_INDUSTRIAL_WASTELAND_TITLE:0 "New §YIndustrial Wasteland§! appeared"
+ INDUSTRIAL_WASTELAND:0 "Chased away by declining local conditions and a poor economy, businesses and industries are abandoning §S[planet.GetName]§! in droves, leaving §YIndustrial Wasteland§! behind.\n\nThese derelict regions are dens of crime and terrible polluters. To avoid future wastelands, improve local conditions by adding amenities and reducing crime."
 
- MESSAGE_URBAN_POWER_PLANT_TITLE:0 "A new £blocker£ §YUrban Power Plant§! has opened" 
+ MESSAGE_URBAN_POWER_PLANT_TITLE:0 "A new §YUrban Power Plant§! has opened" 
  URBAN_POWER_PLANT:0 "The growing urban area on §S[planet.GetName]§! has long exceeded the planet's own energy supply, and shipments from off-world aren't enough. Local planners have authorized construction of a new £blocker£ §YUrban Power Plant§! in the heart of the [planet.GetPlanetMoon]'s largest mega-city to meet ballooning energy needs.\n\nAn £blocker£ §YUrban Power Plant§! will allow additional $district_generator$ development, but eat up space and make noisy neighbors. To avoid these unsightly behemoths, ensure the planet has a good ratio of $district_generator_plural$ to $district_industrial_plural$ and $district_city_plural$."
 
  MESSAGE_COLONIAL_SETTLEMENT_TITLE:0 "A new £blocker£ §YPioneer Settlement§! appeared"

@@ -742,7 +742,7 @@ d_homeworld_dustbowl = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-	#all_blocker_swap_types = yes
+	
 	blocker_swap_types = {
 		d_reclaimed_land
 	}
@@ -761,9 +761,9 @@ d_homeworld_dustbowl = {
 		}
 	}
 
-	on_cleared = {
-		add_deposit = d_reclaimed_land
-	}
+	# on_cleared = {
+	# 	add_deposit = d_reclaimed_land
+	# }
 
 	planet_modifier = {
 		district_mining_max = 1
@@ -930,7 +930,7 @@ d_battery_farms = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		planet_pops_robotics_energy_upkeep_mult = 1
+		planet_pops_robotics_energy_upkeep_mult = 0.1
 	}
 
 	triggered_planet_modifier = {

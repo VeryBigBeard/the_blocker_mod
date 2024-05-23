@@ -15,8 +15,6 @@ on_game_start = {
 
 on_press_begin = {
 	events = {
-		#tbm_handler.1	# Scripted Planets Handler
-		#tbm_handler.2	# Advanced Start Feature Fixer
 		tbm_handler.102 # Add Wild World to planets that need it
 		tbm_hw.5	# Experimental Geothermal Tap Handler
 	}

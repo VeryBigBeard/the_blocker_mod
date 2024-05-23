@@ -2505,7 +2505,7 @@ d_tempestous_mountain = {
 	}
 
 	drop_weight = {
-		weight = @blocker_high
+		weight = @blocker_low
 		modifier = {
 			factor = 2
 			OR = {
@@ -4093,7 +4093,7 @@ d_nutritious_mudland = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
 		planet_farmers_unity_produces_add = 1
-		biological_pop_happiness = 0.1
+		pop_happiness = -0.1
 	}
 
 	triggered_planet_modifier = {
@@ -4102,7 +4102,7 @@ d_nutritious_mudland = {
 			owner = { has_trait = trait_lithoid }
 		}
 		modifier = {
-			habitability_ceil_add = 0.1
+			lithoid_pop_happiness = 0.1
 		}
 	}
 
@@ -4115,7 +4115,7 @@ d_nutritious_mudland = {
 	}
 
 	drop_weight = {
-		weight = @blocker_low
+		weight = @med
 		modifier = {
 			factor = 2
 			OR = {
