@@ -1,0 +1,51 @@
+d_terraform_test_1 = {
+	category = deposit_cat_energy
+
+	should_swap_deposit_on_terraforming = no
+	is_for_colonizable = yes
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_max_districts_add = -1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = 0.5
+	}
+}
+
+d_terraform_test_2 = {
+	category = deposit_cat_minerals
+
+	should_swap_deposit_on_terraforming = yes
+	is_for_colonizable = yes
+
+	planet_modifier = {
+		district_mining_max = 1
+		planet_max_districts_add = -1
+	}
+
+	ai_weight = {
+		weight = 0.75
+	}
+}
+
+d_terraform_test_3 = {
+	category = deposit_cat_blockers
+
+	should_swap_deposit_on_terraforming = no
+	is_for_colonizable = yes
+
+	planet_modifier = {
+		district_farming_max = 1
+		planet_max_districts_add = -1
+	}
+
+	ai_weight = {
+		weight = 1.25
+	}
+}

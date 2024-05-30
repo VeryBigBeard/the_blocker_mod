@@ -1,7 +1,5 @@
 ### TBM Custom on_actions
 
 tbm_achieve_ftl = {
-	events = {
-		tbm_handler.105		# Clean-up and regenerate starting features on Space Age
-	}
+	
 }

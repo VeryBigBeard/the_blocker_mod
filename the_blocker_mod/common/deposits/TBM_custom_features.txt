@@ -985,48 +985,6 @@ d_tidal_marshes = {
 	}
 }
 
-# Diabled until Phase 2
-# d_sheltered_bay = {
-		
-# 	is_for_colonizable = yes
-# 	should_swap_deposit_on_terraforming = yes
-# 	category = deposit_category_gaia
-
-# 	use_for_min_max_adjustments = yes
-
-# 	planet_modifier = {
-# 		planet_max_districts_add = 1
-# 		district_farming_max = 1
-# 		planet_amenities_mult = 0.05
-# 	}
-
-# 	drop_weight = {
-# 		weight = @blocker_low
-
-# 		modifier = {
-# 			factor = 2
-# 			OR = {
-# 				is_planet_class = pc_continental
-# 				is_planet_class = pc_gaia
-# 				is_planet_class = pc_ocean
-# 			}
-# 		}
-# 		modifier = {
-# 			factor = 0.5
-# 			OR = {
-# 				is_planet_class = pc_tropical
-# 				is_planet_class = pc_alpine
-# 				is_planet_class = pc_tundra
-# 				is_planet_class = pc_nuked
-# 			}
-# 		}
-# 		modifier = {
-# 			factor = 0
-# 			is_dry = yes
-# 		}
-# 	}
-# }
-
 d_basaltic_outcrops = {
 	category = deposit_cat_minerals
 
@@ -2084,76 +2042,6 @@ d_scrubland = {
 	}
 }
 
-# Disable for Phase 1
-# d_great_valley = {
-		
-# 	is_for_colonizable = yes
-# 	use_for_min_max_adjustments = yes
-
-# 	category = deposit_category_gaia
-
-# 	use_weights_for_terraforming_swap_types = yes
-# 	should_swap_deposit_on_terraforming = yes
-
-# 	icon = d_wide_valley
-
-# 	planet_modifier = {
-# 		district_farming_max = 2
-# 		planet_farmers_food_produces_mult = 0.1
-# 	}
-
-# 	drop_weight = {
-# 		weight = @very_low
-
-# 		modifier = {
-# 			add = 40
-# 			is_planet_class = pc_gaia
-# 		}
-# 	}
-# }
-
-# Disabled for Phase 1
-# d_wide_valley = {
-		
-# 	is_for_colonizable = yes
-# 	use_for_min_max_adjustments = yes
-
-# 	category = deposit_category_gaia
-
-# 	use_weights_for_terraforming_swap_types = yes
-# 	should_swap_deposit_on_terraforming = yes
-
-# 	planet_modifier = {
-# 		district_farming_max = 1
-# 	}
-
-# 	drop_weight = {
-# 		weight = @med
-
-# 		modifier = {
-# 			factor = 0.25
-# 			OR = {
-# 				is_planet_class = pc_arid
-# 				is_planet_class = pc_arctic
-# 				is_planet_class = pc_tropical
-# 				is_planet_class = pc_tundra
-# 			}
-# 		}
-# 		modifier = {
-# 			factor = 0
-# 			OR = {
-# 				is_planet_class = pc_ocean
-# 				is_planet_class = pc_desert
-# 			}
-# 		}
-
-# 		modifier = {
-# 			factor = 2
-# 			has_deposit = d_great_river
-# 		}
-# 	}
-# }
-
 d_barren = {
 	category = deposit_cat_blockers_natural
 	
@@ -2964,6 +2852,7 @@ d_salt_flats = {
 		district_mining_max = 1
 		planet_miners_minerals_produces_mult = 0.15
 		habitability_ceil_add = -0.1
+		habitability_floor_add = -0.1
 	}
 
 	triggered_planet_modifier = {
@@ -3418,6 +3307,7 @@ d_rough_plains = {
 d_seaweed_shoals = {
 	icon = d_boggy_fens
 	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3509,6 +3399,7 @@ d_seaweed_shoals = {
 
 d_gas_vents = {
 	category = deposit_cat_energy
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 	should_swap_deposit_on_terraforming = no
@@ -3731,6 +3622,7 @@ d_tbm_industrial_wasteland = {
 d_rubble = {
 	icon = d_rubble
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3773,6 +3665,7 @@ d_rubble = {
 d_collapsed_cliffs = {
 	icon = d_veiny_cliffs
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3818,6 +3711,7 @@ d_collapsed_cliffs = {
 d_great_river_obstructed = {
 	icon = d_great_river
 	category = deposit_cat_final
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3873,6 +3767,7 @@ d_great_river_obstructed = {
 d_urban_power_plant = {
 	icon = d_reactor
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3926,6 +3821,7 @@ d_urban_power_plant = {
 d_geothermal_power_plant = {
 	icon = d_bunker_door
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3956,6 +3852,7 @@ d_geothermal_power_plant = {
 d_hydro_plant = {
 	icon = d_ruins_medium
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3986,6 +3883,7 @@ d_hydro_plant = {
 d_dyke = {
 	icon = d_natural_farmland
 	category = deposit_cat_final
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4011,8 +3909,8 @@ d_dyke = {
 }
 
 d_settlement = {
-
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 	
@@ -4057,6 +3955,7 @@ d_settlement = {
 
 d_frontier_farmstead = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4102,6 +4001,7 @@ d_frontier_farmstead = {
 
 d_dustbowl = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4148,6 +4048,7 @@ d_dustbowl = {
 
 d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld variant right now.
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4188,8 +4089,8 @@ d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld 
 }
 
 d_moisture_farms = {
-
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4216,6 +4117,7 @@ d_moisture_farms = {
 
 d_black_market = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4257,6 +4159,7 @@ d_black_market = {
 
 d_private_mines = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4288,8 +4191,9 @@ d_private_mines = {
 }
 
 d_coal_bed = {
-	category = deposit_cat_blockers_natural
 	icon = d_mining_tunnels
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4362,8 +4266,9 @@ d_coal_bed = {
 }
 
 d_subterranean_gas_lake = {
-	category = deposit_cat_blockers_natural
 	icon = d_magma_lake
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4439,6 +4344,7 @@ d_subterranean_gas_lake = {
 
 d_oil_fields_at_first_light = {
 	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 	
 	use_for_min_max_adjustments = yes
 
@@ -4517,6 +4423,7 @@ d_oil_fields_at_first_light = {
 d_fusion_reactor = {
 	icon = d_reactor
 	category = deposit_cat_energy
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4548,8 +4455,9 @@ d_fusion_reactor = {
 }
 
 d_cold_fusion_pits = {
-	category = deposit_cat_blockers
 	icon = d_quarantine_zone
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4581,8 +4489,9 @@ d_cold_fusion_pits = {
 }
 
 d_antimatter_core = {
-	category = deposit_cat_blockers
 	icon = d_broken_transformer
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4615,6 +4524,7 @@ d_antimatter_core = {
 
 d_zero_point_modules = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4844,6 +4754,7 @@ d_colonist_mountain = {
 d_great_desert = {
 	icon = d_searing_desert
 	category = deposit_cat_artificial
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4867,6 +4778,7 @@ d_great_desert = {
 d_great_city = {
 	icon = d_searing_desert
 	category = deposit_cat_artificial
+	is_for_colonizable = yes
 	
 	use_for_min_max_adjustments = yes
 
@@ -4890,6 +4802,7 @@ d_great_city = {
 d_submerged_zro_seam = {
 	icon = d_submerged_ore_veins
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4964,6 +4877,7 @@ d_submerged_zro_seam = {
 d_prototype_gas_generator = {
 	icon = d_submerged_ore_veins
 	category = deposit_cat_artificial
+	is_for_colonizable = yes
 	
 	use_for_min_max_adjustments = yes
 
@@ -4990,6 +4904,7 @@ d_prototype_gas_generator = {
 d_private_farming_colony = {
 	icon = d_frontier_farmstead
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -5021,8 +4936,9 @@ d_private_farming_colony = {
 
 # Fully-featured volcano that spawns randomly and has blocker swaps. Separated mainly to not interfere with event volcanoes that PDX tends to like to put on scripted worlds in very great number.
 d_tbm_active_volcano = {
-	category = deposit_cat_blockers_natural
 	icon = d_active_volcano
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes

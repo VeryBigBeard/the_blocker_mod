@@ -160,7 +160,6 @@ d_impact_memorial = {
 	use_weights_for_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_major_impact_site
-		d_gestalt_major_impact_site
 	}
 
 	time = 180
@@ -376,7 +375,6 @@ d_computerized_extraction_sites = {
 d_tbm_strip_mine = {
 	icon = d_crater
 	category = deposit_cat_blockers
-	custom_tooltip = tbm_deposit_tooltip_test
 
 	use_for_min_max_adjustments = yes
 
@@ -392,6 +390,7 @@ d_tbm_strip_mine = {
 	}
 
 	planet_modifier = {
+		planet_max_districts_add = -1
 		district_mining_max = 1
 		pop_happiness = -0.05
 	}

@@ -46,7 +46,6 @@ on_colonized = {
 on_colony_yearly_pulse = {
 	events = {
 		tbm_hw.6 	# Experimental Geothermal Tap Event
-		tbm_hw.7 	# Experimental Geotheramal Tap Explodes
 		
 		#tbm.101	# A Shiny Rock
 		tbm.16 	# Xenofauna Attack
@@ -89,9 +88,7 @@ on_colony_5_year_pulse = {
 }
 
 on_colony_25_years_old = {
-	events = {
-		#tbm_hw.6 	# Deteriorating Geothermal Tap
-	}
+
 }
 
 on_district_complete = {

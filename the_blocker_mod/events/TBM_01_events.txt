@@ -1794,10 +1794,9 @@ planet_event = {
 	}
 
 	immediate = {
-		from = {
-			save_event_target_as = melted_deposit
-		}
 		
+		# Do not overwrite melted_deposit here, it is already set in climate_control_network_activate
+
 		random_list = {
 			20 = {
 				random_list = {

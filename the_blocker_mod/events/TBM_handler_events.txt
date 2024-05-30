@@ -358,7 +358,12 @@ planet_event = {
 		owner = { is_country_type = default }
 		
 		years_passed > 5
-				
+		
+		num_districts = {
+			type = district_city
+			value >= 1
+		}
+
 		# Got to have one each of sprawl and poor conditions
 		OR = {
 			free_amenities < 5
@@ -462,6 +467,10 @@ planet_event = {
 		owner = { is_country_type = default }
 		
 		is_artificial = no
+		num_districts = {
+			type = district_industrial
+			value >= 1
+		}
 		years_passed > 10	# Grace period for homeworlds; we do want them to struggle with these, but there's a lot going on at game start with other features.
 
 		# Got to have one each of sprawl and poor business conditions
@@ -775,6 +784,7 @@ planet_event = {
 	trigger = {
 		years_passed > 5
 		is_starting_planet = no
+		is_artificial = no
 		NOT = { is_same_value = owner.capital_scope }
 		colony_age > 5
 		colony_age < 50
@@ -798,7 +808,7 @@ planet_event = {
 					add = 10
 					num_assigned_jobs = {
 						job = miner
-						value > 4
+						value > 6
 					}
 				}
 				
@@ -1278,6 +1288,9 @@ planet_event = {
 
 	trigger = {
 		NOT = { has_planet_flag = lost_colony_planet }	# Do not spawn this on LC parents or their colonies generated at game start.
+
+		is_artificial = no
+
 		# owner = {
 		# 	num_owned_planets < 6	# Only applied for first few colonies
 		# }

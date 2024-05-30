@@ -3,6 +3,7 @@
 namespace = tbm_hw
 
 #@post_apoc_population = 0
+@damage = 10
 
 ### Index
 #
@@ -90,9 +91,9 @@ planet_event = {
 
 		allow = {
 			owner = {
-				has_resource = {
-					type = energy
-					amount >= 800
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 800
 				}
 			}
 		}

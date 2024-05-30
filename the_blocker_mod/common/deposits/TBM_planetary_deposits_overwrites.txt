@@ -2106,22 +2106,18 @@ d_frozen_gas_lake = {
 
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			any_owned_pop = {
-				has_job = colonist
-			}
-		}
-		modifier = {
-			planet_colonist_food_produces_add = 2
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
 			always = yes
 		}
 		district_generator_max = 1
 		mult = value:district_amount_mastery_of_nature
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_exotic_gases }
+		}
+		planet_jobs_exotic_gases_upkeep_mult = -0.1
 	}
 
 	drop_weight = {
@@ -3027,6 +3023,10 @@ d_rich_mountain = {
 	should_swap_deposit_on_terraforming = no
 
 	time = 720
+
+	prerequisites = {
+		tech_mountain_range
+	}
 	
 	resources = {
 		category = deposit_blockers_natural
@@ -3338,7 +3338,7 @@ d_lichen_fields = {
 			owner = { has_trait = trait_lithoid }
 		}
 		modifier = {
-			habitability_ceil_add = -0.1
+			habitability_floor_add = -0.1
 		}
 	}
 
@@ -4891,9 +4891,9 @@ d_marvelous_oasis = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -1
-		district_farming_max = 1
 		planet_amenities_mult = 0.05
+		planet_farmers_food_produces_mult = 0.1
+		trade_value_mult = 0.1
 	}
 
 	triggered_planet_modifier = {
