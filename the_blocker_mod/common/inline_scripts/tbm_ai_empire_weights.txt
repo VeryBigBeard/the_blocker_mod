@@ -1,12 +1,31 @@
-### TBM - AI Feature Clearing Archetypes
+### TBM - AI Empire Weights
+#	Manages AI approach based on empire archetype. Subjects need to behave differently to make tax.
+#	Mainly applied to resource features
 
-### AI Types - Subjects, Overlords, and other Special AIs
-
-# Prospectoria
+# Do not clear features if subject since we may need the resources
 modifier = {
-	add = -1	
+	factor = 0
 	owner = {
 		is_subject = yes
-		has_active_specialization = specialist_prospectorium
+		#has_active_specialization = specialist_prospectorium
+	}
+}
+
+# Clear features if trying to make an ecu, usually used alongside features that would otherwise be kept
+modifier = {
+	add = 2
+	owner = {
+		OR = {
+			has_ascension_perk = ap_arcology_project
+			has_ascension_perk = ap_hive_worlds
+			has_ascension_perk = ap_machine_worlds
+		}
+	}
+	root = {
+		num_pops > 40
+		num_districts = {
+			type = district_industrial
+			value >= 6
+		}
 	}
 }

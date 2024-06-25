@@ -33,6 +33,10 @@
  
  # Debug
 
+ d_terraform_test_1:0 "Weight 0, Set always_clear"
+ d_terraform_test_2:0 "Variable test, var = 1"
+ d_terraform_test_3:0 "Weight 0.25"
+
  tbm_debug_name:0 "Debug Event"
  tbm_debug_desc:0 "[DEBUG_TEXT]"
  tbm_debug_is_on:0 "Debug Script is running.\n\n"
@@ -76,7 +80,7 @@
 
  building_frontier_spaceport:0 "Frontier Spaceport"
  building_frontier_spaceport_desc:0 "Far out on the edges of known civlization, this spaceport handles all manner of cargo and colonists. The noise of half-built dockyards is drowned out by bustling bars and the sound of roading shuttle engines."
- tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding that will increase its $r_unity$ output.§!"
+ tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §CTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding that will increase its $r_unity$ output.§!"
  tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_synapsse_drone_plural$§C are present on this world.§!"
 
  building_colonial_energy_conduits:0 "Colonial Energy Core"
@@ -107,6 +111,9 @@
  job_dangerous_wildlife_poacher_desc:0 "The poachers are a more extreme solution to the Dangerous Wildlife Problem. While not beloved by the local production, they get the job done and their bounty can feed a major settlement for a month -- at a price, of course."
 
  # TBM Job Modifiers
+ mod_planet_jobs_exotic_gases_upkeep_mult:0 "$r_exotic_gases$ from Jobs"
+ planet_jobs_consumer_goods_produces_mult:0 "$r_consumer_goods$ from Jobs"
+
  mod_planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$" 
 
  mod_planet_colonist_food_produces_add:0 "£food£ Food from £colonist£ Colonists"
@@ -124,6 +131,7 @@
  mod_planet_farmers_alloys_upkeep_add:0 "$r_alloys$ Upkeep for $job_farmer_plural$"
  mod_planet_farmers_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_farmer_plural$"
  mod_planet_farmers_unity_upkeep_add:0 "$r_unity$ Upkeep for $job_farmer_plural$"
+ mod_planet_farmers_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_farmer_plural$"
  
  mod_planet_miners_food_upkeep_add:0 "$r_food$ Upkeep for $job_miner_plural"
  mod_planet_miners_unity_produces_add:0 "$r_minerals$ from $job_miner_plural$"
@@ -146,6 +154,7 @@
  mod_planet_pop_assemblers_food_upkeep_mult:0 "Pop Assembly $r_food$ Cost"
  mod_planet_pop_assemblers_alloys_upkeep_mult:0 "Pop Assembly $r_alloys$ Cost"
  mod_planet_pop_assemblers_energy_upkeep_mult:0 "Pop Assembly $r_energy$ Cost"
+ mod_planet_pop_assemblers_minerals_upkeep_mult:0 "Pop Assembly $r_minerals$ Cost"
 
  mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
  
@@ -292,7 +301,8 @@
  d_coal_bed:0 "Coal Bed"
  d_coal_bed_desc:0 "A rich vein of coal runs deep beneath the surface of this region, long ago compressed and purified by milennia-old alien geology."
 
- d_subterranean_gas_lake:0 "Far below the surface, captured gases bubble and sizzle under the immense pressure of thousands of millions of tons of rock."
+ d_subterranean_gas_lake:0 "Subterranean Gas Lake"
+ d_subterranean_gas_lake_desc:0 "Far below the surface, captured gases bubble and sizzle under the immense pressure of thousands of millions of tons of rock."
 
  d_oil_fields_at_first_light:0 "£blocker£ Oil Fields"
  d_oil_fields_at_first_light_desc:0 "The immediate substrate in this region is laced with oil deposits, making for easily-accessible if dirty energy."
@@ -544,6 +554,9 @@
 
  damaged_power_nexus:0 "Damaged Power Nexus"
  damaged_power_nexus_desc:0 "Recent disasters have resulted in damage to the £blocker£ Central Power Nexus. While failsafes and sub-systems will ensure the machine continues to function, repairs are expected to take some time."
+
+ highway_engineering:0 "Superhighway Engineering"
+ highway_engineering_desc:0 "Recent efforts to the restore this world's superhighway network are progressing apace, and almost every engineer is working to ensure this massive project is completed on time and budget."
 
  ### The Blocker Mod - Event Projects
 

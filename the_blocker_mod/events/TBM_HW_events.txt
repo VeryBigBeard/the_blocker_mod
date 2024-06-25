@@ -73,11 +73,13 @@ planet_event = {
 		name = tbm_hw.6_decommission
 		custom_tooltip = tbm_hw.6_lose_generator
 
-		random_deposit = {
-			limit = {
-				is_deposit_type = d_experimental_geothermal_tap
+		hidden_effect = {	# Hidden because it generates a weird tooltip
+			random_deposit = {
+				limit = {
+					is_deposit_type = d_experimental_geothermal_tap
+				}
+				clear_blocker = yes
 			}
-			clear_blocker = yes
 		}
 
 		ai_chance = {
@@ -444,6 +446,7 @@ planet_event = {
 		years_passed > 15
 		has_deposit = d_homeworld_food_replicators
 		owner = { is_machine_empire = no }
+		NOT = { has_modifier = failing_food_replicator }
 	}
 
 	option = {

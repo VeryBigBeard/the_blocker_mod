@@ -1,0 +1,451 @@
+### The Blocker Mod - Planetary Diversity Homeworld Patch - EXPERIMENTAL
+
+
+namespace = pdengine
+
+
+#Lost Colony PD Rare Fix
+country_event = {
+	id = pdengine.46
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_galaxy_planet = { 
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_salt
+				}
+				random_list = {
+					20 = { change_pc = pc_desert }
+					20 = { change_pc = pc_sandsea }
+					20 = { change_pc = pc_outback }
+					20 = { change_pc = pc_coastal }
+					20 = { change_pc = pc_oasis }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_aquifer
+				}
+				random_list = {
+					20 = { change_pc = pc_desert }
+					20 = { change_pc = pc_sandsea }
+					20 = { change_pc = pc_outback }
+					20 = { change_pc = pc_coastal }
+					20 = { change_pc = pc_oasis }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_superhabitable
+				}
+				random_list = {
+					20 = { change_pc = pc_continental	reroll_planet = yes	}		
+					20 = { change_pc = pc_forest reroll_planet = yes }		
+					20 = { change_pc = pc_retinal reroll_planet = yes }		
+					20 = { change_pc = pc_lake reroll_planet = yes }	
+					20 = { change_pc = pc_tepid reroll_planet = yes }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_geothermal
+				}
+				random_list = {
+					20 = { change_pc = pc_tropical }
+					20 = { change_pc = pc_hajungle }
+					20 = { change_pc = pc_cenote }
+					20 = { change_pc = pc_mangrove }
+					20 = { change_pc = pc_desertislands }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_biolumen
+				}
+				random_list = {
+					20 = { change_pc = pc_tropical }
+					20 = { change_pc = pc_hajungle }
+					20 = { change_pc = pc_cenote }
+					20 = { change_pc = pc_mangrove }
+					20 = { change_pc = pc_desertislands }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_karst
+				}
+				random_list = {
+					20 = { change_pc = pc_ocean }
+					20 = { change_pc = pc_cascadian }
+					20 = { change_pc = pc_wetswamp }
+					20 = { change_pc = pc_fog }
+					20 = { change_pc = pc_subarctic }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_cold_cave
+				}
+				random_list = {
+					20 = { change_pc = pc_alpine }
+					20 = { change_pc = pc_boreal }
+					20 = { change_pc = pc_highland }
+					20 = { change_pc = pc_snow }
+					20 = { change_pc = pc_duneforest }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_dry_cave
+				}
+				random_list = {
+					20 = { change_pc = pc_desert }
+					20 = { change_pc = pc_sandsea }
+					20 = { change_pc = pc_outback }
+					20 = { change_pc = pc_coastal }
+					20 = { change_pc = pc_oasis }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_reef
+				}
+				random_list = {
+					20 = { change_pc = pc_ocean }
+					20 = { change_pc = pc_cascadian }
+					20 = { change_pc = pc_wetswamp }
+					20 = { change_pc = pc_fog }
+					20 = { change_pc = pc_subarctic }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_archipelago
+				}
+				random_list = {
+					20 = { change_pc = pc_ocean }
+					20 = { change_pc = pc_cascadian }
+					20 = { change_pc = pc_wetswamp }
+					20 = { change_pc = pc_fog }
+					20 = { change_pc = pc_subarctic }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_megaflora
+				}
+				random_list = {
+					20 = { change_pc = pc_continental	reroll_planet = yes	}		
+					20 = { change_pc = pc_forest reroll_planet = yes }		
+					20 = { change_pc = pc_retinal reroll_planet = yes }		
+					20 = { change_pc = pc_lake reroll_planet = yes }	
+					20 = { change_pc = pc_tepid reroll_planet = yes }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_petrified
+				}
+				random_list = {
+					20 = { change_pc = pc_continental	reroll_planet = yes	}		
+					20 = { change_pc = pc_forest reroll_planet = yes }		
+					20 = { change_pc = pc_retinal reroll_planet = yes }		
+					20 = { change_pc = pc_lake reroll_planet = yes }	
+					20 = { change_pc = pc_tepid reroll_planet = yes }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_aquatic
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_primal
+				}
+				random_list = {
+					20 = { change_pc = pc_savannah }
+					20 = { change_pc = pc_prairie }
+					20 = { change_pc = pc_veld }
+					20 = { change_pc = pc_steppe }
+					20 = { change_pc = pc_semiarid }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_tidallylocked
+				}
+				random_list = {
+					20 = { change_pc = pc_savannah }
+					20 = { change_pc = pc_prairie }
+					20 = { change_pc = pc_veld }
+					20 = { change_pc = pc_steppe }
+					20 = { change_pc = pc_semiarid }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_wettidallylocked
+				}
+				random_list = {
+					20 = { change_pc = pc_tropical }
+					20 = { change_pc = pc_hajungle }
+					20 = { change_pc = pc_cenote }
+					20 = { change_pc = pc_mangrove }
+					20 = { change_pc = pc_desertislands }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_supercon
+				}
+				random_list = {
+					20 = { change_pc = pc_savannah }
+					20 = { change_pc = pc_prairie }
+					20 = { change_pc = pc_veld }
+					20 = { change_pc = pc_steppe }
+					20 = { change_pc = pc_semiarid }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_sinkhole
+				}
+				random_list = {
+					20 = { change_pc = pc_savannah }
+					20 = { change_pc = pc_prairie }
+					20 = { change_pc = pc_veld }
+					20 = { change_pc = pc_steppe }
+					20 = { change_pc = pc_semiarid }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_coral
+				}
+				random_list = {
+					20 = { change_pc = pc_arid }
+					20 = { change_pc = pc_mesa }
+					20 = { change_pc = pc_badlands }
+					20 = { change_pc = pc_hadesert }
+					20 = { change_pc = pc_med }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_dry_superhab
+				}
+				random_list = {
+					20 = { change_pc = pc_arid }
+					20 = { change_pc = pc_mesa }
+					20 = { change_pc = pc_badlands }
+					20 = { change_pc = pc_hadesert }
+					20 = { change_pc = pc_med }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_storm
+				}
+				random_list = {
+					20 = { change_pc = pc_arctic }
+					20 = { change_pc = pc_antarctic }
+					20 = { change_pc = pc_glacial }
+					20 = { change_pc = pc_frozen_desert }
+					20 = { change_pc = pc_aeolian }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_iceberg
+				}
+				random_list = {
+					20 = { change_pc = pc_arctic }
+					20 = { change_pc = pc_antarctic }
+					20 = { change_pc = pc_glacial }
+					20 = { change_pc = pc_frozen_desert }
+					20 = { change_pc = pc_aeolian }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_cryoflora
+				}
+				random_list = {
+					20 = { change_pc = pc_tundra }
+					20 = { change_pc = pc_mud }
+					20 = { change_pc = pc_basalt }
+					20 = { change_pc = pc_mushroom }
+					20 = { change_pc = pc_swamp }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_cold_superhab
+				}
+				random_list = {
+					20 = { change_pc = pc_tundra }
+					20 = { change_pc = pc_mud }
+					20 = { change_pc = pc_basalt }
+					20 = { change_pc = pc_mushroom }
+					20 = { change_pc = pc_swamp }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_lichen
+				}
+				random_list = {
+					20 = { change_pc = pc_tundra }
+					20 = { change_pc = pc_mud }
+					20 = { change_pc = pc_basalt }
+					20 = { change_pc = pc_mushroom }
+					20 = { change_pc = pc_swamp }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_eyeball
+				}
+				random_list = {
+					20 = { change_pc = pc_arctic }
+					20 = { change_pc = pc_antarctic }
+					20 = { change_pc = pc_glacial }
+					20 = { change_pc = pc_frozen_desert }
+					20 = { change_pc = pc_aeolian }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_glacio
+				}
+				random_list = {
+					20 = { change_pc = pc_alpine }
+					20 = { change_pc = pc_boreal }
+					20 = { change_pc = pc_highland }
+					20 = { change_pc = pc_snow }
+					20 = { change_pc = pc_duneforest }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_lanthanide
+				}
+				random_list = {
+					20 = { change_pc = pc_alpine }
+					20 = { change_pc = pc_boreal }
+					20 = { change_pc = pc_highland }
+					20 = { change_pc = pc_snow }
+					20 = { change_pc = pc_duneforest }
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_ammonia
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_sulfur
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_acid
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_methane
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_pd_hycean
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_irradiated
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+			if = {
+				limit = {
+					has_planet_flag = lost_colony_planet
+					is_planet_class = pc_ash
+				}
+				generate_start_deposits_and_blockers = yes
+			}
+		}
+	}
+}

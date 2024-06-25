@@ -14,6 +14,11 @@ generate_start_deposits_and_blockers = {
 
 	# Clean-up and flag Lost Colony worlds (doing it here avoids compatibility problems)
 	clear_deposits = yes
+
+	### DEBUG
+	#add_deposit = d_terraform_test_1
+	#add_deposit = d_terraform_test_2
+	#add_deposit = d_terraform_test_3
 	
 	if = {
 		limit = {
@@ -481,13 +486,15 @@ generate_start_deposits_and_blockers = {
 		# We don't need any other features
 		clear_deposits = yes
 
-		# Energy - 8 total, -3 districts, 2 blocked	
+		# Energy - 7* total, -3 districts, 3 blocked
+		# * Life-Seeded starts with an energy economy pinch, and you must choose whether to adapt parts of your paradise or find income elsewhere as you grow.
 		add_deposit = d_fertile_delta	# Provies 1 farming as well
 		add_deposit = d_inaugural_spaceport
 		add_deposit = d_high_wire_network
-		add_deposit = d_hot_springs
+		add_deposit = d_hot_springs		# Easy amenities, but cna trade for geothermal energy
+		add_deposit = d_rushing_waterfalls	# Can be a big unity boost but also converts to energy if you need it
 		add_deposit = d_gaia_homeworld_bandit_camp
-		add_deposit = d_sandsea	# Mainly to give two generators, but also gives Aquatics a reason to take Life-Seeded
+		add_deposit = d_sandsea	# Mainly to give a generators, but also gives Aquatics a reason to take Life-Seeded
 		
 		# Mining - 8 total, 1 blocked, -3 districts
 		add_deposit = d_recycling_programs
@@ -703,7 +710,37 @@ generate_start_deposits_and_blockers = {
 		add_deposit = d_surface_spaceport
 	}
 
-
+	### ENVIRONMENTALISTS
+	#	Takes care of an edge-case where Environmentalists could end up with -1 district, causing problems, and adds some environmentally-friendly flavour.
+	if = {
+		limit = {
+			owner = {
+				has_civic = civic_environmentalist
+				has_origin = origin_default
+			}
+		}
+		if = {
+			limit = { owner = { is_gestalt = yes }}
+			remove_deposit = d_tbm_gestalt_strip_mine
+			add_deposit = d_homeworld_tidal_turbines
+		}
+		else = {
+			remove_deposit = d_tbm_strip_mine
+			add_deposit = d_homeworld_tidal_turbines
+		}
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_civic = civic_environmentalist
+				NOT = { has_origin = origin_default }
+			}
+		}
+		remove_deposit = d_homeworld_extreme_weather
+		add_deposit = d_renewable_energy_programs
+	}
+	else = {		
+	}
 }
 
 ### TBM Earth overwrite
@@ -731,7 +768,7 @@ generate_earth_deposits_and_blockers = {
 	add_deposit = d_inaugural_spaceport
 
 	# Mining (3, equal to vanilla)
-	add_deposit = d_stasis_prison
+	add_deposit = d_tbm_strip_mine
 	add_deposit = d_recycling_programs
 	add_deposit = d_homeworld_dustbowl
 

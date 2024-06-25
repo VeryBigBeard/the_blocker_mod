@@ -376,3 +376,8 @@ nanocomposite_shortage = {
 failing_food_replicator = {
 	planet_farmers_food_produces_mult = -0.1
 }
+
+### Collapsed Superhighway
+superhighway_engineering = {
+	planet_jobs_engineering_research_produces_mult = -1.00
+}

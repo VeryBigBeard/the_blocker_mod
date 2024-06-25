@@ -505,7 +505,7 @@ tech_toxic_kelp = {
 	}
 }
 
-### Subterranean Colonization
+### Subterranean Colonization - DISABLED for now
 tech_deep_sinkhole = {
 	cost = @tier1cost2
 	area = society
@@ -513,6 +513,10 @@ tech_deep_sinkhole = {
 	category = { new_worlds }
 	prerequisites = { "tech_colonization_1" }
 	weight = @tier1weight2
+
+	potential = {
+		always = no
+	}
 
 	weight_groups = {
 		deposit_blockers

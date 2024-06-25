@@ -44,6 +44,8 @@ is_rare_feature = {
 	}
 }
 
+### LISTS
+
 # Artificial Feature
 # NOT is_artificial !!!!!!
 is_artificial_feature = {
@@ -128,6 +130,11 @@ gestalt_engineering_feature = {
 		is_deposit_type = d_gas_vents
 	}
 }
+
+### Research
+
+
+
 
 
 ### LOCAL

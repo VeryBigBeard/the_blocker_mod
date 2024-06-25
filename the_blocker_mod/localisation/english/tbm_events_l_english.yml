@@ -136,7 +136,7 @@
  # 51. Poisoned By Kelp
 
  tbm.51.name:0 "Poisoned By Kelp"
- tbm.51.desc:0 "Early scans of [planet.GetName]'s oceans revealed several large regions densely populated by an especially toxic species of kelp. Unfortunately, these have proven to be a much more significant obstacle to marine exploration than anticipated, and several colonists have taken severely ill or died after coming into even the briefest contact with the §Y£blocker£Toxic Kelp§!.\n\nLocal harbormasters have even tried issuing a brightly-colored safety video featuring §CPuffy the Plankton§!, but casualties are still coming in."
+ tbm.51.desc:0 "Early scans of [planet.GetName]'s oceans revealed several large regions densely populated by an especially toxic species of kelp. Unfortunately, these have proven to be a much more significant obstacle to marine exploration than anticipated, and several colonists have taken severely ill or died after coming into even the briefest contact with the §YToxic Kelp§!.\n\nLocal harbormasters have even tried issuing a brightly-colored safety video featuring §CPuffy the Plankton§!, but casualties are still coming in."
  tbm.51.kelp:0 "Kelp Is Dangerous!!!"
 
  # 52. Kelp Insights - A make-up call

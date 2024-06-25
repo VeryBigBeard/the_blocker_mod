@@ -268,7 +268,7 @@ event = {
 
 			every_owned_planet = {
 				limit = {
-					is_same_value = capital_scope
+					is_capital = yes
 				}
 				
 				### Get rid of unwanted fish. For real this time.
@@ -284,7 +284,7 @@ event = {
 
 			every_owned_planet = {
 				limit = {
-					NOT = { is_same_value = capital_scope }
+					NOT = { is_capital = yes }
 				}
 
 				clear_deposits = yes
@@ -1201,7 +1201,7 @@ planet_event = {
 		}
 		num_districts = {
 			type = district_mining
-			value > 0
+			value > 1	# 1 because last_district_changed can check after the district is removed; should avoid situations where a planet removes its last mining district and then gets False Prospects.
 		}
 	}
 
@@ -1502,5 +1502,23 @@ planet_event = {
 				years = 20
 			}
 		}
+	}
+}
+
+
+### 200. Terraforming Handler
+#	Rerolls planet features on terraform. Does not clear anything other than what vanilla clears.
+planet_event = {
+	id = tbm_handler.200
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		years_passed > 0	# Avoids this sometimes getting called at game start for reasons
+	}
+
+	immediate = {
+		reroll_deposits = yes
 	}
 }

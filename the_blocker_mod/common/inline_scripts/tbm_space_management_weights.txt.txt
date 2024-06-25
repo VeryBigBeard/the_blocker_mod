@@ -1,0 +1,6 @@
+### TBM - Space Management Modifiers
+#	AI feature weights as regards pop growth, housing usage.
+#	Called on features that limit space, habitability, or pop growth.
+
+### Housing
+#	AI can sometimes get into a loop where it can't build enough housing, but can't get enough pops on the planet because auto-migration is blocked by the lack of housing. This increases
