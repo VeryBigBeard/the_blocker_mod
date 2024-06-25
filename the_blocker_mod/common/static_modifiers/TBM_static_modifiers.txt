@@ -48,6 +48,22 @@ terra_incognita = {
 	planet_colonist_produces_mult = 0.2
 }
 
+new_branch = {
+	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
+	icon_frame = 1
+	planet_max_buildings_add = 1
+	building_time_mult = -0.25
+	planet_buildings_cost_mult = -0.1
+}
+
+new_function = {
+	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
+	icon_frame = 1
+	planet_max_buildings_add = 1
+	building_time_mult = -0.25
+	planet_buildings_cost_mult = -0.1
+}
+
 subsurface_spaceport_opened = {
 	trade_value_mult = 0.25
 }
@@ -114,7 +130,21 @@ mine_safety_standards = {
 	planet_miners_energy_upkeep_add = 1
 }
 
+breathing_without_the_body = {
+	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
+	planet_jobs_energy_produces_mult = 0.2
+}
 
+overambitious_evolution = {
+	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
+	planet_jobs_energy_produces_mult = -0.2
+}
+
+damaged_power_nexus = {
+	icon = gfx/interface/icons/planet_modifiers/pm_contingency_sabotage.dds
+	district_generator_max = -1
+	planet_jobs_produces_mult = -0.05
+}
 
 ### Impassable Mountain
 
@@ -345,4 +375,9 @@ nanocomposite_shortage = {
 ### Failing Food Replicator
 failing_food_replicator = {
 	planet_farmers_food_produces_mult = -0.1
+}
+
+### Collapsed Superhighway
+superhighway_engineering = {
+	planet_jobs_engineering_research_produces_mult = -1.00
 }

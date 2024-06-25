@@ -14,10 +14,8 @@ building_xeno_synaptic_node = {
 
 	category = research
 
-	empire_limit = 1
-
 	potential = {
-		#is_capital = yes
+		is_starting_planet = no
 		exists = owner
 		owner = { is_gestalt = yes }
 	}
@@ -29,7 +27,10 @@ building_xeno_synaptic_node = {
 
 	destroy_trigger = {
 		exists = owner
-		owner = { is_gestalt = no }
+		OR = {
+			owner = { is_gestalt = no }
+			has_major_upgraded_capital = yes
+		}
 	}
 
 	resources = {
@@ -58,6 +59,25 @@ building_xeno_synaptic_node = {
 	# 	owner = {
 	# 		set_country_flag = xeno_synaptic_node  	# Is this thing on?
 	# 	}
+
+	ai_weight = {
+		weight = 100
+
+		modifier = {
+			factor = 0
+			owner = {
+				resource_income_compare = {
+					resource = energy
+					value < 10
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			owner = { is_gestalt = no }
+		}
+	}
 }
 
 

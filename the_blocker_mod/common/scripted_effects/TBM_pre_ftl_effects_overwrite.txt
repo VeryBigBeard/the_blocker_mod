@@ -138,14 +138,8 @@ achieve_ftl_effect = {
 	}
 
 	capital_scope = {
-		#clear_blockers = yes
 		### TBM OVERWRITE
-		fire_on_action = {
-			on_action = tbm_achieve_ftl
-			scopes = {
-				from = this
-			}
-		}
+		generate_achieve_ftl_homeworld_features = yes	# Add this line here if you are making a patch
 		remove_all_buildings = yes
 		if = {
 			limit = {

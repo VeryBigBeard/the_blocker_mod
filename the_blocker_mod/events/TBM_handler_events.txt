@@ -267,8 +267,12 @@ event = {
 			}
 
 			every_owned_planet = {
+				limit = {
+					is_capital = yes
+				}
+				
 				### Get rid of unwanted fish. For real this time.
-				clear_blockers = yes
+				#clear_blockers = yes
 				#clear_deposits = yes
 				every_deposit = {
 					remove_deposit = yes
@@ -276,6 +280,15 @@ event = {
 
 				generate_start_deposits_and_blockers = yes	# Re-runs basic TBM feature init.
 				fix_advanced_start_empire_features = yes		
+			}
+
+			every_owned_planet = {
+				limit = {
+					NOT = { is_capital = yes }
+				}
+
+				clear_deposits = yes
+				reroll_deposits = yes
 			}
 		}
 	}
@@ -345,7 +358,12 @@ planet_event = {
 		owner = { is_country_type = default }
 		
 		years_passed > 5
-				
+		
+		num_districts = {
+			type = district_city
+			value >= 1
+		}
+
 		# Got to have one each of sprawl and poor conditions
 		OR = {
 			free_amenities < 5
@@ -449,6 +467,10 @@ planet_event = {
 		owner = { is_country_type = default }
 		
 		is_artificial = no
+		num_districts = {
+			type = district_industrial
+			value >= 1
+		}
 		years_passed > 10	# Grace period for homeworlds; we do want them to struggle with these, but there's a lot going on at game start with other features.
 
 		# Got to have one each of sprawl and poor business conditions
@@ -572,10 +594,7 @@ planet_event = {
 			has_building = building_capital
 		}
 		owner = { is_gestalt = no }
-		num_free_districts = {
-			type = any
-			value > 2	# Weed reduction, but also makes it a bit harder to farm these for housing unless you invest in clearing space (or get lucky and have a lot of frontier land).
-		}
+		colony_age < 20
 	}
 
 	immediate = {
@@ -765,6 +784,7 @@ planet_event = {
 	trigger = {
 		years_passed > 5
 		is_starting_planet = no
+		is_artificial = no
 		NOT = { is_same_value = owner.capital_scope }
 		colony_age > 5
 		colony_age < 50
@@ -788,7 +808,7 @@ planet_event = {
 					add = 10
 					num_assigned_jobs = {
 						job = miner
-						value > 4
+						value > 6
 					}
 				}
 				
@@ -1181,7 +1201,7 @@ planet_event = {
 		}
 		num_districts = {
 			type = district_mining
-			value > 0
+			value > 1	# 1 because last_district_changed can check after the district is removed; should avoid situations where a planet removes its last mining district and then gets False Prospects.
 		}
 	}
 
@@ -1221,6 +1241,33 @@ planet_event = {
 	}
 }
 
+### 21. Central Power Nexus Breaks
+#	Fires any time planet devastation is greater than 80
+planet_event = {
+	id = tbm_handler.21
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		planet_devastation > 80
+		has_deposit = d_central_power_nexus
+		owner = { is_machine_empire = yes }	# Don't apply nasty debuff if owner isn'[t a machine.
+	}
+
+	immediate = {
+		add_modifier = {
+			modifier = damaged_power_nexus
+			years = 20
+		}
+	}
+	
+}
+
 
 
 
@@ -1241,6 +1288,9 @@ planet_event = {
 
 	trigger = {
 		NOT = { has_planet_flag = lost_colony_planet }	# Do not spawn this on LC parents or their colonies generated at game start.
+
+		is_artificial = no
+
 		# owner = {
 		# 	num_owned_planets < 6	# Only applied for first few colonies
 		# }
@@ -1254,10 +1304,18 @@ planet_event = {
 	immediate = {
 		log = "Added Pioneering Colonists"
 		this = {
-			planet_event = {
-				id = tbm_handler.101
-				days = 10
-				random = 5
+			if = {
+				limit = {
+					owner = { is_gestalt = yes }
+				}
+				planet_event = {
+					id = tbm_handler.106
+				}
+			}
+			else = {
+				planet_event = {
+					id = tbm_handler.101
+				}
 			}
 		}
 	}
@@ -1392,23 +1450,75 @@ planet_event = {
 #	Handles features for empires achieving FTL. Called from achieve_ftl_effect via on_action tbm_achieve_ftl.
 #	Vanilla Pre-FTLs clear their two Early Space Age blockers on reaching the Space Age via clear_blockers = yes, which wipes out all TBM features. This re-generates a standard starting spread.
 #	Note: from = prev due to custom on_action
-country_event = {
+planet_event = {
 	id = tbm_handler.105
 
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		from = {
-			clear_deposits = yes
-			if = {
-				limit = {
-					has_modifier = cleared_hot_springs
-				}
-				remove_modifier = cleared_hot_springs
+		clear_deposits = yes
+		if = {
+			limit = {
+				has_modifier = cleared_hot_springs
 			}
-			add_planet_devastation = -100
-			generate_start_deposits_and_blockers = yes
+			remove_modifier = cleared_hot_springs
 		}
+		add_planet_devastation = -100
+		generate_start_deposits_and_blockers = yes
+	}
+}
+
+### 106. Gestalt Colonial Buff
+planet_event = {
+	id = tbm_handler.106
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner = { is_hive_empire = yes }
+			}
+
+			add_modifier = {
+				modifier = new_branch
+				years = 25
+			}
+		}
+		else_if = {
+			limit = {
+				owner = { is_machine_empire = yes }
+			}
+			add_modifier = {
+				modifier = new_function
+				years = 25
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = new_frontier
+				years = 20
+			}
+		}
+	}
+}
+
+
+### 200. Terraforming Handler
+#	Rerolls planet features on terraform. Does not clear anything other than what vanilla clears.
+planet_event = {
+	id = tbm_handler.200
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		years_passed > 0	# Avoids this sometimes getting called at game start for reasons
+	}
+
+	immediate = {
+		reroll_deposits = yes
 	}
 }

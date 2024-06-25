@@ -1,0 +1,227 @@
+### The Blocker Mod - On the Shoulders of Giants Initializers Overwrite
+#	Due to the way these planets work (initialized from player-facing events fired after game start) it's very difficult to patch them elsewhere, so these initializers have been overwritten to ensure these planets have deposits.
+#	Only intercepting_history_system_initializer_02 (Benefactor Homeworld) and relentless_pursuit_system_initializer_02 (Relentless Homeworld) are overwritten as only they have scripted worlds.
+#	I'm not aware of any other mods that edit the On the Shoulders origin, or this particular initializer. Mods that merely add or tweak existing origins will be compatible; a mod that overwrites these SPECIFIC planets will not be.
+#	To create a patch in the event of a conflict, simply remove or comment out the parameter deposit_blockers = none under the respective planets.
+#	IMPORTANT!!!: Initialziers are FIOS, so patch needs to load BEFORE The Blocker Mod. Each initializer is overwritten independently (so other federations_initializers should be fine).
+
+
+@distance = 50
+@jumps = 3
+@planet_min_size = 10
+@planet_max_size = 25
+@base_moon_distance = 10
+@moon_min_size = 6
+@moon_max_size = 10
+@homeworld_min_size = 18
+@homeworld_max_size = 21
+
+### On the Shoulders of Giants CONTINUED Origin - Intercepting History Event Chain - Benefactor Homeworld System
+intercepting_history_system_initializer_02 = {
+	class = "rl_standard_stars"
+
+	usage = misc_system_init
+	usage_odds = 0
+	max_instances = 1
+
+	# Star
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	# Inner misc. planets
+	planet = {
+		count = { min = 1 max = 2 }
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	# Benefactor Homeworld planet
+	planet = {
+		class = "pc_continental"
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+		size = 25
+		change_orbit = @base_moon_distance
+		modifiers = none
+		#deposit_blockers = none
+
+		init_effect = {
+			prevent_anomaly = yes
+
+			create_species = {
+				name = "NAME_ThwaaPhyr"
+				plural = "NAME_ThwaaPhyr"
+				class = random_pre_ftl
+				portrait = random
+				homeworld = THIS
+				traits = {
+					trait = "trait_adaptive"
+					trait = "trait_nomadic"
+					trait = "trait_presapient_forcefully_devolved"
+				}
+				effect = {
+ 					#save_global_event_target_as = primitive_benefactor_species
+				}
+			}
+			create_early_pre_ftl_empire = yes
+			setup_pre_ftl_planet = yes
+			last_created_country = {
+				set_country_flag = benefactor_empire
+			}
+			save_global_event_target_as = benefactor_planet
+		}
+	}
+
+	# Outer misc. planets
+	planet = {
+		count = { min = 2 max = 3 }
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	init_effect = {
+		save_global_event_target_as = benefactor_homeworld
+	}
+}
+
+### On the Shoulders of Giants CONTINUED Origin - Relentless Pursuit Event Chain - Relentless Homeworld System
+relentless_pursuit_system_initializer_02 = {
+	class = "rl_standard_stars"
+
+	usage = misc_system_init
+	usage_odds = 0
+	max_instances = 1
+
+	# Star
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+
+	change_orbit = 45
+
+	# Inner misc. planets
+	planet = {
+		count = { min = 1 max = 2 }
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	# The Mind-Wipe Satellite planet
+	planet = {
+		count = 1
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		init_effect = {
+			create_ambient_object = {
+				type = "mysterious_space_station_object"
+				entity_offset = { min = 5 max = 20}
+				entity_offset_height = { min = -5 max = -10 }
+				location = this
+			}
+			last_created_ambient_object = {
+				save_global_event_target_as = mindwipe_cannon
+				set_location = {
+					target = prev
+					distance = 20
+					angle = random
+				}
+			}
+		}
+	}
+
+	# Relentless Homeworld planet
+	planet = {
+		class = "pc_tundra"
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+		size = 25
+		change_orbit = @base_moon_distance
+		modifiers = none
+		#deposit_blockers = none
+
+		init_effect = {
+			prevent_anomaly = yes
+
+			create_species = {
+				name = "NAME_Vemetosha"
+				plural = "NAME_Vemetosha"
+				class = random_pre_ftl
+				portrait = random
+				homeworld = THIS
+				traits = {
+					trait = "trait_adaptive"
+					trait = "trait_nomadic"
+					trait = "trait_presapient_forcefully_devolved"
+				}
+				effect = {
+					save_global_event_target_as = primitive_relentless_species
+				}
+			}
+			create_early_pre_ftl_empire = yes
+			setup_pre_ftl_planet = yes
+			last_created_country = {
+				set_country_flag = relentless_empire
+			}
+			save_global_event_target_as = relentless_planet
+		}
+	}
+
+	# Outer misc. planets
+	planet = {
+		count = { min = 2 max = 3 }
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+
+	init_effect = {
+		save_global_event_target_as = relentless_homeworld
+	}
+}

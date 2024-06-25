@@ -745,7 +745,7 @@ planet_event = {
 			exists = leader
 			has_deposit = d_arid_highlands		# This is mostly just so the loc works
 			has_deposit = d_searing_desert		
-			has_planet_flag = desert_strong		# Make sure we block firing again for the sand-strong, too.
+			NOT = { has_planet_flag = desert_strong }		# Make sure we block firing again for the sand-strong, too.
 			
 			# These are mostly to make sure the effect matter and the scale of the event makes sense.
 			colony_age > 20

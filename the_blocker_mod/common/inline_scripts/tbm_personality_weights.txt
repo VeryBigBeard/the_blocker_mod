@@ -4,7 +4,7 @@
 # Likes a room with a view - Aesthetic types, into romantic poetry about mountains, forests, swamps, whatever really.
 
 modifier = {
-	add = -0.75
+	set = @keep
 	owner = {
 		OR = {
 			has_ai_personality = decadent_hierarchy
@@ -18,7 +18,7 @@ modifier = {
 
 # Paving paradise - Will tend to clear features more.
 modifier = {
-	add = 0.5
+	set = @clear
 	owner = {
 		OR = {
 			has_ai_personality = hegemonic_imperialists
@@ -32,10 +32,22 @@ modifier = {
 
 # Hard-core
 modifier = {
-	add = 1000
+	set = @always_clear
 	owner = {
 		has_ai_personality = metalhead
 		has_ai_personality = exterminators
 		has_ai_personality = became_the_crisis
+	}
+}
+
+# Override for empires aiming for ecus
+modifier = {
+	set = @clear
+	owner = {
+		OR = {
+			has_ascension_perk = ap_arcology_project
+			has_ascension_perk = ap_hive_worlds
+			has_ascension_perk = ap_machine_worlds
+		}
 	}
 }

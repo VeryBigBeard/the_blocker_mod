@@ -32,9 +32,11 @@
 # ai_weight variables
 # Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
 
-@base = 1	# Base ai_weight. AI will clear any feature at weight = 1 *if it needs district space*
+# The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
+
+@base = 1	# Base ai_weight. AI will clear any feature at weight = 1 when it needs district space
 @clear = 2	# AI will clear this feature immediately.
-@keep = 0	# AI will clear this feature only after all other features of higher weight
+@keep = 0	# AI will keep this feature until it needs a district and no other features remain
 @always_clear = 100	# AI will always clear this feature; used mainly for negative features (e.g., rubble)
 @always_keep = -100 # AI will always keep this feature; used mainly for bonus features and some flavor features
 
@@ -177,22 +179,26 @@ d_mountain_range = {
 		weight = @base
 
 		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = 0.5
+			set = @base
 			root = {
 				OR = {
 					colony_type = col_mining
+					num_free_districts = {
+						type = any
+						value > 1
+					}
 				}
 			}
 		}
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = { has_ai_personality = hegemonic_imperialists } # We like imposing scenery.
 		}
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = { 
 				OR = {
 					has_ai_personality = erudite_explorers # Landmarks
@@ -213,8 +219,13 @@ d_active_volcano = {
 
 	time = 720
 
-	prerequisites = {
-		"tech_volcano"
+	# prerequisites = {	# Moved to can_be_cleared to avoid tech-card duplication
+	# 	"tech_volcano"
+	# }
+
+	can_be_cleared = {
+		exists = owner
+		owner = { has_technology = tech_volcano }
 	}
 
 	resources = {
@@ -278,19 +289,30 @@ d_active_volcano = {
 		weight = @clear
 
 		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			owner = {
 				is_machine_empire = yes
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
-				colony_type = col_generator
+				OR = {
+					colony_type = col_generator
+					AND = {
+						colony_type = col_farming
+						num_free_districts = {
+							type = any
+							value > 1
+						}
+						owner = { has_technology = tech_volcano }
+					}
+				}
+				
 			}
 		}
 	}
@@ -408,7 +430,15 @@ d_dangerous_wildlife_blocker = {
 
 	planet_modifier = {
 		planet_researchers_society_research_produces_add = 1
-		job_dangerous_wildlife_hunter_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		modifier = {
+			job_dangerous_wildlife_hunter_add = 1
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -480,10 +510,9 @@ d_dangerous_wildlife_blocker = {
 		weight = @clear
 
 		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = -0.5
+			set = @base
 			owner = {
 				OR = {
 					is_machine_empire = yes
@@ -602,7 +631,7 @@ d_dense_jungle = {
 		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = erudite_explorers
@@ -616,7 +645,7 @@ d_dense_jungle = {
 		}
 
 		modifier = {
-			add = 0.5
+			set = @clear
 			owner = {
 				OR = {
 					has_ai_personality = ruthless_capitalists
@@ -626,32 +655,36 @@ d_dense_jungle = {
 				}
 			}
 		}
-		
-		modifier = {
-			add = -0.6
-			root = {
-				colony_type = col_research
-			}
-		}
 
 		modifier = {
-			add = -0.25
+			set = @base
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = -0.33
+			set = @keep
 			owner_main_species = {
 				has_trait = trait_plantoid_budding
 			}
 		}
 
 		modifier = {
-			add = 0.33
+			set = @clear	# Deal with the competition
 			owner_main_species = {
 				has_trait = trait_plantoid_phototrophic
+			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
 			}
 		}
 	}
@@ -768,15 +801,6 @@ d_toxic_kelp = {
 		weight = @clear
 
 		# No archetypes here; even the Spiritual Seekers don't love Toxic Kelp
-
-		modifier = {
-			add = -0.5
-			root = {
-				any_owned_pop = {
-					has_job = colonist
-				}
-			}
-		}
 	}
 }
 
@@ -880,16 +904,6 @@ d_deep_sinkhole = {
 
 	ai_weight = {
 		weight = @clear	# Most sinkhole bonuses are via event, better for player
-
-		modifier = {
-			add = -0.4
-			root = {
-				OR = {
-					colony_type = col_mining
-					colony_type = col_rural
-				}
-			}
-		}
 	}
 }
 
@@ -994,14 +1008,26 @@ d_quicksand_basin = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -0.4
+			set = @base
 			root = {
 				OR = {
-					colony_type = col_mining
 					colony_type = col_rural
+					colony_type = col_research
 				}
 			}
+		}
+
+		modifier = {
+			set = @keep
+			root = {
+				colony_type = col_mining
+			}
+			owner = { has_technology = tech_noxious_swamp }
 		}
 	}
 }
@@ -1100,17 +1126,23 @@ d_noxious_swamp = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_designation_weights
+
 		modifier = {
-			add = -0.15
+			set = @keep
 			root = {
 				any_owned_pop = {
 					has_job = colonist
+				}
+				num_free_districts = {
+					type = any
+					value > 0
 				}
 			}
 		}
 
 		modifier = {
-			add = -0.4
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
@@ -1229,24 +1261,16 @@ d_massive_glacier = {
 		inline_script = tbm_designation_weights
 		
 		modifier = {
-			add = -0.5	# These are pretty good mining features but they're also space-killers, so AI should still clear
+			set = @base	# These are pretty good mining features but they're also space-killers, so AI should still clear when it needs to
 			root = {
 				colony_type = col_mining
-			}
-		}
-		
-		modifier = {
-			add = -1000
-			owner = {
-				has_civic = civic_environmentalist
 			}
 		}
 	}
 }
 
-# These are cloned and added via generate_start_deposits_and_blockers to avoid some bugs.
-# Main difference is these no longer have blocker_swap_types and so will no longer add random features to block on your homeworld.
-# If you really want 'em back, de-comment blocker_swap_types below, but be aware you may end up with negative starting districts on your homeworld in some cases.
+# These are cloned mainly for event purposes.
+# Main difference is these no longer have blocker_swap_types and so will no longer add random features.
 d_vanilla_failing_infrastructure = {
 	icon = d_metal_boneyard
 	time = 120
@@ -1281,7 +1305,7 @@ d_vanilla_failing_infrastructure = {
 	}
 
 	ai_weight = {
-		weight = @clear		# This should help the AI get rid of these a bit faster. The vanilla clone doesn't actually have any ill effects, but it's still weird to conquer planets that have this still around.
+		weight = @clear
 	}
 }
 
@@ -1340,7 +1364,7 @@ d_radioactive_wasteland = {
 		weight = @clear
 
 		modifier = {
-			add = -0.75		# These get very little other reason to be kept around so should still go.
+			set = @keep	# These get very little other reason to be kept around so should still go.
 			root = {
 				any_owned_pop = {
 					has_job = colonist
@@ -1349,14 +1373,14 @@ d_radioactive_wasteland = {
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
 		}
 
 		modifier = {
-			add = 1		# Except for the crazies; they like basking in the glow, at least for a while.
+			set = @base		# Except for the crazies; they like basking in the glow, at least for a while.
 			owner = {
 				has_ai_personality = exterminators
 				has_ai_personality = metalhead
@@ -1419,7 +1443,7 @@ d_city_ruins = {
 		weight = @clear
 
 		modifier = {
-			add = -1.25
+			factor = 0
 			owner = {
 				OR = {
 					has_ai_personality = spiritual_seekers
@@ -1429,7 +1453,7 @@ d_city_ruins = {
 		}
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
@@ -1459,7 +1483,7 @@ d_bomb_crater = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_mining_max = 1
-		planet_researchers_engineering_research_produces_add = 2
+		planet_researchers_engineering_research_produces_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -1470,7 +1494,7 @@ d_bomb_crater = {
 			}
 		}
 		modifier = {
-			planet_colonist_minerals_produces_add = 5
+			planet_colonist_minerals_produces_add = 2
 		}
 	}
 
@@ -1485,22 +1509,15 @@ d_bomb_crater = {
 			factor = 4	# Mostly to prevent these getting swamped by custom features.
 			is_planet_class = pc_nuked
 		}
-		
-		# Vanilla
-		modifier = {
-			factor = 0
-			num_free_districts = {
-				type = district_city
-				value < 2
-			}
-		}
 	}
 
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				OR = {
 					colony_type = col_research
@@ -1510,7 +1527,7 @@ d_bomb_crater = {
 		}
 
 		modifier = {
-			add = 1		# Except for the crazies; they like basking in the glow, at least for a while.
+			set = @base		# Except for the crazies; they like basking in the glow, at least for a while.
 			owner = {
 				has_ai_personality = exterminators
 				has_ai_personality = metalhead
@@ -1635,23 +1652,24 @@ d_arid_highlands = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			factor = 0
 			root = {
 				colony_type = col_mining
 			}
 		}
 
 		modifier = {
-			add = -2 # Never clear
+			factor = 0
 			owner = {
 				has_country_flag = waters_of_life
 			}
 		}
 
 		modifier = {
-			add = -2
+			factor = 0
 			root = {
 				has_planet_flag = desert_strong
 			}
@@ -1666,6 +1684,10 @@ d_hot_springs = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_geothermal_power_plant
+	}
 
 	time = 90
 
@@ -1688,7 +1710,6 @@ d_hot_springs = {
 				years = 10
 			}
 		}
-		add_deposit = d_geothermal_power_plant
 	}
 
 	planet_modifier = {
@@ -1755,7 +1776,7 @@ d_hot_springs = {
 		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = -2	# Do not clear baths on unity worlds
+			factor = 0	# Do not clear baths on unity worlds
 			root = {
 				OR = {
 					colony_type = col_bureau
@@ -1767,7 +1788,7 @@ d_hot_springs = {
 		}
 
 		modifier = {
-			add = -2
+			factor = 0
 			root = {
 				free_amenities < 10
 			}
@@ -1797,7 +1818,6 @@ d_rushing_waterfalls = {
 	}
 
 	on_cleared = {	
-		#add_deposit = d_hydro_plant
 		hidden_effect = {
 			add_deposit = d_floodplains
 			random_list = {
@@ -1882,7 +1902,7 @@ d_rushing_waterfalls = {
 		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = -1
+			factor = 0
 			owner = {
 				has_ai_personality = spiritual_seekers	# Sacred Water
 				has_ai_personality = hegemonic_imperialists	# We like imposing things.
@@ -1893,7 +1913,7 @@ d_rushing_waterfalls = {
 		}
 		
 		modifier = {
-			add = -2	# Do not clear waterfalls on unity worlds
+			factor = 0	# Do not clear waterfalls on unity worlds
 			root = {
 				OR = {
 					colony_type = col_bureau
@@ -1905,9 +1925,20 @@ d_rushing_waterfalls = {
 		}
 
 		modifier = {
-			add = -0.75
+			factor = 0
 			root = {
 				free_amenities < 5
+			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
 			}
 		}
 	}
@@ -2052,15 +2083,17 @@ d_searing_desert = {
 	ai_weight = {
 		weight = @clear
 
+		# Do not use ai_empire_weights here as the space hit is too significant.
+
 		modifier = {
-			add = -0.25 	# Slight boost, but this is still a space killer, so we want to clear it soon even on generator worlds.
+			set = @base 	# Slight boost, but this is still a space killer, so we want to clear it soon even on generator worlds.
 			root = {
 				colony_type = col_generator
 			}
 		}
 
 		modifier = {
-			add = -2 	# However, keep it if we're on a generator world and we're trying to build more generators
+			set = @keep 	# However, keep it if we're on a generator world and we're trying to build more generators
 			root = {
 				colony_type = col_generator
 				num_free_districts = {
@@ -2106,22 +2139,18 @@ d_frozen_gas_lake = {
 
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			any_owned_pop = {
-				has_job = colonist
-			}
-		}
-		modifier = {
-			planet_colonist_food_produces_add = 2
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
 			always = yes
 		}
 		district_generator_max = 1
 		mult = value:district_amount_mastery_of_nature
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_exotic_gases }
+		}
+		planet_jobs_exotic_gases_upkeep_mult = -0.1
 	}
 
 	drop_weight = {
@@ -2168,16 +2197,20 @@ d_frozen_gas_lake = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 		
 		modifier = {
-			add = -0.5
+			factor = 0
 			root = {
-				colony_type = col_generator
+				OR = {
+					colony_type = col_generator
+					colony_type = col_research
+				}
 			}
 		}
 
 		modifier = {
-			add = 1	# Clear this if we don't have gases, or are running a deficit and will need the +50. Ideally, this should help AIs get a bit mor SRs.
+			set = @clear	# Clear this if we don't have gases, or are running a deficit and will need the +50. Ideally, this should help AIs get a bit mor SRs.
 			owner = {
 				OR = {
 					resource_income_compare = {
@@ -2214,7 +2247,7 @@ d_geothermal_vent = {
 				}
 			}
 			energy = 600
-			engineering_research = 200
+			#engineering_research = 200
 		}
 
 		cost = {
@@ -2290,9 +2323,10 @@ d_geothermal_vent = {
 		
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			factor = 0
 			root = {
 				OR = {
 					colony_type = col_generator
@@ -2426,9 +2460,10 @@ d_underwater_vent = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = 1
+			set = @clear	
 			root = {
 				NOT = { is_homeworld = yes }
 			}
@@ -2436,12 +2471,20 @@ d_underwater_vent = {
 		}
 
 		modifier = {
-			add = -0.5	# Should result in Aquatics treating these as basically normal blockers but only on generator worlds. Otherwise, they want the space.
+			set = @base	# Should result in Aquatics treating these as basically normal blockers but only on generator worlds. Otherwise, they want the space.
 			root = {
 				OR = {
 					colony_type = col_generator
 					colony_type = col_research
 				}
+			}
+		}
+
+		modifier = {
+			set = @keep
+			owner = { has_trait = trait_aquatic }
+			root = {
+				NOT = { colony_type = col_urban }
 			}
 		}
 	}
@@ -2505,7 +2548,7 @@ d_tempestous_mountain = {
 	}
 
 	drop_weight = {
-		weight = @blocker_high
+		weight = @blocker_low
 		modifier = {
 			factor = 2
 			OR = {
@@ -2533,9 +2576,10 @@ d_tempestous_mountain = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			factor = 0
 			root = {
 				OR = {
 					colony_type = col_farming
@@ -2546,14 +2590,7 @@ d_tempestous_mountain = {
 		}
 
 		modifier = {
-			add = -0.5
-			owner = {
-				is_industrialist = yes
-			}
-		}
-
-		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				has_origin = origin_subterranean
 			}
@@ -2656,22 +2693,34 @@ d_veiny_cliffs = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75	# These are upper-end mining features as they don't hit amenities
+			set = @keep
 			root = {
 				colony_type = col_mining
 			}
 		}
 
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = {
 				OR = {
 					is_industrialist = yes
 					has_ai_personality = slaving_despots
 					has_ai_personality = hegemonic_imperialists
 					has_ai_personality = ruthless_capitalists
+				}
+			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
 				}
 			}
 		}
@@ -2773,22 +2822,34 @@ d_mineral_fields = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75	# These are upper-end mining features as they don't hit amenities
+			set = @keep	# These are upper-end mining features as they don't hit amenities
 			root = {
 				colony_type = col_mining
 			}
 		}
 
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = {
 				OR = {
 					is_industrialist = yes
 					has_ai_personality = slaving_despots
 					has_ai_personality = hegemonic_imperialists
 					has_ai_personality = ruthless_capitalists
+				}
+			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
 				}
 			}
 		}
@@ -2803,13 +2864,8 @@ d_prosperous_mesa = {
 
 	should_swap_deposit_on_terraforming = no
 
-	can_be_cleared = {
-		owner = {
-			oR = {
-				has_technology = tech_mountain_range
-				has_technology = tech_terrestrial_sculpting
-			}
-		}
+	prerequisites = {
+		"tech_mountain_range"
 	}
 
 	time = 1800
@@ -2898,9 +2954,10 @@ d_prosperous_mesa = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = {
 				has_ai_personality = spiritual_seekers
 				has_ai_personality = evangelising_zealots	# Preach from the mount.
@@ -2908,9 +2965,13 @@ d_prosperous_mesa = {
 		}
 
 		modifier = {
-			add = -0.25
+			set = @clear
 			owner = {
-				has_ai_personality = hegemonic_imperialists # We just like imposing things.
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
 			}
 		}
 	}
@@ -3003,14 +3064,7 @@ d_ore_rich_caverns = {
 		weight = @keep
 
 		modifier = {
-			add = -0.5
-			owner = {
-				is_industrialist = yes
-			}
-		}
-
-		modifier = {
-			add = -0.5
+			factor = 0	# We live down here.
 			owner = {
 				has_origin = origin_subterranean
 			}
@@ -3027,6 +3081,10 @@ d_rich_mountain = {
 	should_swap_deposit_on_terraforming = no
 
 	time = 720
+
+	prerequisites = {
+		tech_mountain_range
+	}
 	
 	resources = {
 		category = deposit_blockers_natural
@@ -3123,9 +3181,10 @@ d_rich_mountain = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			root = {
 				OR = {
 					colony_type = col_mining
@@ -3135,21 +3194,32 @@ d_rich_mountain = {
 		}
 
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = {
 				has_ai_personality = hegemonic_imperialists # We just like imposing things.
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				is_industrialist = yes
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
 			owner = {
 				has_origin = origin_subterranean
 			}
@@ -3270,13 +3340,15 @@ d_submerged_ore_veins = {
 	ai_weight = {
 		weight = @keep
 
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = 1
+			set = @base
 			owner = { has_trait = trait_aquatic }
 		}
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			root = {
 				colony_type = col_mining
 			}
@@ -3338,7 +3410,7 @@ d_lichen_fields = {
 			owner = { has_trait = trait_lithoid }
 		}
 		modifier = {
-			habitability_ceil_add = -0.1
+			pop_environment_tolerance = -0.05
 		}
 	}
 
@@ -3378,8 +3450,11 @@ d_lichen_fields = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -0.5
+			set = @base
 			owner = {
 				OR = {
 					has_ai_personality = slaving_despots	# You can still live on lichen.
@@ -3391,7 +3466,7 @@ d_lichen_fields = {
 		}
 
 		modifier = {
-			add = -0.25
+			set = @keep
 			root = {
 				colony_type = col_farming
 				is_cold = yes	# Needs to be both, otherwise this feature really isn't worth it
@@ -3399,26 +3474,7 @@ d_lichen_fields = {
 		}
 
 		modifier = {
-			add = -0.5
-			owner = {
-				has_trait = trait_plantoid_budding
-			}
-		}
-
-		modifier = {
-			add = 0.75
-			root = {
-				OR = {
-					colony_type = col_bureau
-					colony_type = col_bureau_hive
-					colony_type = col_bureau_hive
-					colony_type = col_bureau_machine
-				}
-			}
-		}
-
-		modifier = {
-			add = -1000
+			set = @always_clear
 			owner = { has_trait = trait_lithoid }
 		}
 	}
@@ -3445,7 +3501,22 @@ d_bountiful_plains = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
 		pop_happiness = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		planet_crime_mult = -0.1
 	}
 
 	triggered_planet_modifier = {
@@ -3473,7 +3544,7 @@ d_bountiful_plains = {
 	}
 
 	drop_weight = {
-		weight = @low
+		weight = @very_low
 		modifier = {
 			factor = 4
 			is_planet_class = pc_gaia
@@ -3512,14 +3583,14 @@ d_bountiful_plains = {
 		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = -1
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = spiritual_seekers	# Preach, farmer
@@ -3535,8 +3606,19 @@ d_bountiful_plains = {
 		}
 
 		modifier = {
-			add = -1000
+			add = @always_keep
 			owner = { has_civic = civic_agrarian_idyll }
+		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
 		}
 	}
 }
@@ -3672,14 +3754,14 @@ d_rugged_woods = {
 		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				has_ai_personality = spiritual_seekers
 				has_ai_personality = erudite_explorers
@@ -3691,13 +3773,24 @@ d_rugged_woods = {
 		}
 
 		modifier = {
-			add = 0.5
+			set = @clear
 			owner = {
 				OR = {
 					has_ai_personality = ruthless_capitalists
 					has_ai_personality = machine_intelligence
 					has_ai_personality = exterminators
 					has_ai_personality = devouring_swarm
+				}
+			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
 				}
 			}
 		}
@@ -3810,14 +3903,15 @@ d_green_hills = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -1000
+			set = @always_keep
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = spiritual_seekers	# Wandering monks
@@ -3827,6 +3921,17 @@ d_green_hills = {
 					has_ai_personality = migrating_flock	# Easy nesting
 					has_ai_personality = hegemonic_imperialists # We just like imposing things
 					has_ai_personality = xenophobic_isolationists
+				}
+			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
 				}
 			}
 		}
@@ -3841,7 +3946,7 @@ d_forgiving_tundra = {
 
 	should_swap_deposit_on_terraforming = no
 
-	time = 90
+	time = 180
 
 	resources = {
 		category = deposit_blockers_natural
@@ -3918,21 +4023,33 @@ d_forgiving_tundra = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights	
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 		
 		modifier = {
-			add = 1000
+			set = @always_keep
 			owner = { has_ethic = ethic_fanatic_spiritualist }
 		}
 
 		modifier = {
-			add = 1
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			set = @always_keep
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
@@ -4032,8 +4149,12 @@ d_boggy_fens = {
 	ai_weight = {
 		weight = @base
 
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = spiritual_seekers	# Swamp Gods
@@ -4042,14 +4163,25 @@ d_boggy_fens = {
 		}
 
 		modifier = {
-			add = -1
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
 		}
 
 		modifier = {
-			add = 0.5
+			set = @clear
 			root = {
 				free_amenities < -10	# Only if we're in crisis here. AIs don't need any more help having planetary revolts.
 			}
@@ -4078,7 +4210,7 @@ d_nutritious_mudland = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
 		planet_farmers_unity_produces_add = 1
-		biological_pop_happiness = 0.1
+		pop_happiness = -0.1
 	}
 
 	triggered_planet_modifier = {
@@ -4087,7 +4219,7 @@ d_nutritious_mudland = {
 			owner = { has_trait = trait_lithoid }
 		}
 		modifier = {
-			habitability_ceil_add = 0.1
+			lithoid_pop_happiness = 0.1
 		}
 	}
 
@@ -4100,7 +4232,7 @@ d_nutritious_mudland = {
 	}
 
 	drop_weight = {
-		weight = @blocker_low
+		weight = @med
 		modifier = {
 			factor = 2
 			OR = {
@@ -4133,9 +4265,10 @@ d_nutritious_mudland = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights	
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = slaving_despots	# Mudders
@@ -4147,19 +4280,30 @@ d_nutritious_mudland = {
 		}
 
 		modifier = {
-			add = -0.5
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = 1.5
+			set = @keep
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 
 		modifier = {
-			add = 1000
+			add = @always_clear
 			owner = { has_trait = trait_lithoid }
 		}
 	}
@@ -4172,10 +4316,6 @@ d_fungal_caves = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-
-	# prerequisites = {
-	# 	"tech_deep_sinkhole"
-	# }
 
 	# on_cleared = {
 	# 	# Add habitable cave?
@@ -4237,7 +4377,23 @@ d_fungal_caves = {
 	}
 
 	ai_weight = {
-		weight = @keep
+		weight = @keep 	# Cave features are space-free so usually help AI flexibility more than they hurt.
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			owner = { has_origin = origin_subterranean }
+		}
 	}
 }
 
@@ -4353,30 +4509,41 @@ d_lush_jungle = {
 				}
 			}
 		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
 		
 		modifier = {
-			add = -0.6
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
 		}
 
 		modifier = {
-			add = -0.25
+			set = @base
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = -0.33
+			set = @keep
 			owner_species = {
 				has_trait = trait_plantoid_budding
 			}
 		}
 
 		modifier = {
-			add = 0.33
+			set = @clear
 			owner_species = {
 				has_trait = trait_plantoid_phototrophic
 			}
@@ -4467,16 +4634,17 @@ d_fertile_lands = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -1
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = spiritual_seekers	# Preach, farmer
@@ -4492,7 +4660,18 @@ d_fertile_lands = {
 		}
 
 		modifier = {
-			add = -1000
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			add = @always_keep
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
@@ -4571,13 +4750,24 @@ d_great_river = {
 		weight = @keep
 
 		modifier = {
-			add = -1
+			set = @clear
 			owner = {
 				OR = {
 					has_ai_personality = ruthless_capitalists
 					has_ai_personality = metalhead
 					has_ai_personality = exterminators
 					has_ai_personality = machine_intelligence
+				}
+			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
 				}
 			}
 		}
@@ -4654,16 +4844,17 @@ d_black_soil = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights	
 
 		modifier = {
-			add = -1
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = spiritual_seekers	# Preach, farmer
@@ -4679,7 +4870,18 @@ d_black_soil = {
 		}
 
 		modifier = {
-			add = -1000
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
@@ -4814,7 +5016,7 @@ d_teeming_reef = {
 		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = {
 				OR = {
 					has_civic = civic_anglers
@@ -4824,7 +5026,7 @@ d_teeming_reef = {
 		}
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = { has_trait = trait_aquatic	}
 			root = {
 				is_homeworld = yes
@@ -4832,7 +5034,18 @@ d_teeming_reef = {
 		}
 
 		modifier = {
-			add = -0.5
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
@@ -4876,9 +5089,9 @@ d_marvelous_oasis = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -1
-		district_farming_max = 1
 		planet_amenities_mult = 0.05
+		planet_farmers_food_produces_mult = 0.1
+		trade_value_mult = 0.1
 	}
 
 	triggered_planet_modifier = {
@@ -4932,13 +5145,6 @@ d_marvelous_oasis = {
 		
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
-
-		modifier = {
-			add = -0.5
-			root = {
-				colony_type = col_farming
-			}
-		}
 	}
 }
 
@@ -5043,22 +5249,34 @@ d_tropical_island = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -1
+			set = @keep
 			exists = owner
 			owner = { has_trait = trait_aquatic }
 		}
 
 		modifier = {
-			add = -0.5
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @always_keep
 			exists = owner
 			owner = { has_civic = civic_agrarian_idyll }
 		}
@@ -5140,7 +5358,7 @@ d_fungal_forest = {
 		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = erudite_explorers
@@ -5154,7 +5372,7 @@ d_fungal_forest = {
 		}
 
 		modifier = {
-			add = 0.5
+			set = @clear
 			owner = {
 				OR = {
 					has_ai_personality = ruthless_capitalists
@@ -5166,30 +5384,41 @@ d_fungal_forest = {
 		}
 		
 		modifier = {
-			add = -0.6
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
 		}
 
 		modifier = {
-			add = -0.25
-			root = {
-				colony_type = col_farming
-			}
-		}
-
-		modifier = {
-			add = -0.33
+			set = @keep
 			owner_main_species = {
 				has_trait = trait_plantoid_budding
 			}
 		}
 
 		modifier = {
-			add = 0.33
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
+
+		modifier = {
+			set = @clear
 			owner_main_species = {
 				has_trait = trait_plantoid_phototrophic
+			}
+		}
+
+		modifier = {
+			set = @base
+			root = {
+				colony_type = col_farming
 			}
 		}
 	}
@@ -5215,7 +5444,6 @@ d_betharian_deposit = {
 		category = deposit_blockers_natural
 		cost = {
 			energy = 500
-			engineering_research = 1000		#This needs to be tested so it doesn't bug out and cause a deficit situation to pop.
 		}
 	}
 
@@ -5270,7 +5498,18 @@ d_betharian_deposit = {
 	}
 
 	ai_weight = {
-		weight = @keep
+		weight = @always_keep
+
+		modifier = {
+			set = @clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_arcology_project
+					has_ascension_perk = ap_hive_worlds
+					has_ascension_perk = ap_machine_worlds
+				}
+			}
+		}
 	}
 }
 
@@ -5349,27 +5588,21 @@ d_buzzing_plains = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_generator
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
-		}
-
-		modifier = {
-			add = -0.25
-			always = yes
-		}
-
-		
+		}	
 	}
 }
 
@@ -5441,24 +5674,20 @@ d_mineral_striations = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_mining
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
-		}
-
-		modifier = {
-			add = -0.25
-			always = yes
 		}
 	}
 }
@@ -5501,24 +5730,20 @@ d_natural_farmland = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				colony_type = col_research
 			}
-		}
-
-		modifier = {
-			add = -0.25
-			always = yes
 		}
 	}
 }
@@ -5568,6 +5793,8 @@ d_scandinavian_reclamation_sector = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5613,6 +5840,8 @@ d_pacific_algae_tracts = {
 
 	ai_weight = {
 		weight = @always_keep
+		
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5630,14 +5859,15 @@ d_saharan_irrigation_project = {
 	resources = {
 		category = deposit_blockers_natural
 		cost = {
-			energy = 200
-			engineering_research = 100
+			energy = 1000
+			food = 500
+			minerals = 1000
 		}
 	}
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_farmers_consumer_goods_upkeep_add = 1
+		planet_farmers_engineering_research_upkeep_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -5658,6 +5888,8 @@ d_saharan_irrigation_project = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5703,6 +5935,8 @@ d_mesopotamian_urban_corridor = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5749,6 +5983,8 @@ d_delhi_sprawl = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5790,6 +6026,8 @@ d_boswash_metropolitan_axis = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5814,7 +6052,7 @@ d_pearl_river_agglomerate = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		planet_amenities_mult = -0.05
+		planet_jobs_consumer_goods_produces_mult = -0.05
 	}
 
 	triggered_planet_modifier = {
@@ -5835,6 +6073,8 @@ d_pearl_river_agglomerate = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5880,6 +6120,8 @@ d_mauritanian_security_zone = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5925,6 +6167,8 @@ d_great_albertan_crater = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -5962,6 +6206,8 @@ d_great_pacific_garbage_patch = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 

@@ -33,6 +33,10 @@
  
  # Debug
 
+ d_terraform_test_1:0 "Weight 0, Set always_clear"
+ d_terraform_test_2:0 "Variable test, var = 1"
+ d_terraform_test_3:0 "Weight 0.25"
+
  tbm_debug_name:0 "Debug Event"
  tbm_debug_desc:0 "[DEBUG_TEXT]"
  tbm_debug_is_on:0 "Debug Script is running.\n\n"
@@ -52,7 +56,7 @@
  ### The Blocker Mod - Jobs
 
  # TBM Shorthand
- icon_job_colonists:0 "£colonist£ Colonists:"
+ icon_job_colonists:0 "£colonist£ Colonists"
  r_physics_research:0 "§Y£physics_research£ Physics Research§!"
  r_society_research:0 "§Y£society_research£ Society Research§!"
  r_engineering_research:0 "§Y£engineering_research£ Engineering Research§!"
@@ -66,7 +70,7 @@
  tbm_buildings_colonial_infrastructure_tooltip:0 "\n\nColonial infrastructure buildings cannot be built after a planet has consolidated into a single capital region under a §CPlanetary Capital§Y or equivalent. Any existing buildings will fall into disrepair due to being too far from the seat of local power.§!"
 
  building_xeno_synaptic_node:0 "Xeno-Synaptic Node"
- building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£Xeno-Synaptic Node§C requires significant upkeep, but will produce £r_physics_research££r_society_research££r_engineering_reseach£Research for many £blocker£ §YNatural Blockers§! across the empire. They can only be built on the gestalt's capital."
+ building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£ Xeno-Synaptic Node§C requires significant upkeep, but will produce £research£ §CResearch§! for many £blocker£ §YNatural Blockers§! on this world."
 
  building_science_outposts:0 "Science Outposts"
  building_science_outposts_desc:0 "As soon as the colonization effort was announced, researchers were eager to set up laboratories on-site to study the alien world first-hand."
@@ -76,11 +80,11 @@
 
  building_frontier_spaceport:0 "Frontier Spaceport"
  building_frontier_spaceport_desc:0 "Far out on the edges of known civlization, this spaceport handles all manner of cargo and colonists. The noise of half-built dockyards is drowned out by bustling bars and the sound of roading shuttle engines."
- tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §YTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding that will increase its $r_unity$ output.§!"
+ tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §CTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding that will increase its $r_unity$ output.§!"
  tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_synapsse_drone_plural$§C are present on this world.§!"
 
- building_colonial_energy:0 "Colonial Energy Conduits"
- building_colonial_energy_desc:0 "Development of a full, planet-wide energy grid can take decades, and requires large-scale subsurface infrastructure not present on most new colonies. These wire-based transmission cables can be easily stored on a colony ship and are light enough to allow small teams of colonists to install them, powering farther-flung settlements from the ship's converted reactor core."
+ building_colonial_energy_conduits:0 "Colonial Energy Core"
+ building_colonial_energy_conduitsdesc:0 "Development of a full, planet-wide energy grid can take decades, and requires large-scale subsurface infrastructure not present on most new colonies. These wire-based transmission cables can be easily stored on a colony ship and are light enough to allow small teams of colonists to install them, powering farther-flung settlements from the ship's converted reactor core."
 
  # TBM Custom Jobs
 
@@ -107,6 +111,9 @@
  job_dangerous_wildlife_poacher_desc:0 "The poachers are a more extreme solution to the Dangerous Wildlife Problem. While not beloved by the local production, they get the job done and their bounty can feed a major settlement for a month -- at a price, of course."
 
  # TBM Job Modifiers
+ mod_planet_jobs_exotic_gases_upkeep_mult:0 "$r_exotic_gases$ from Jobs"
+ planet_jobs_consumer_goods_produces_mult:0 "$r_consumer_goods$ from Jobs"
+
  mod_planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$" 
 
  mod_planet_colonist_food_produces_add:0 "£food£ Food from £colonist£ Colonists"
@@ -124,7 +131,9 @@
  mod_planet_farmers_alloys_upkeep_add:0 "$r_alloys$ Upkeep for $job_farmer_plural$"
  mod_planet_farmers_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_farmer_plural$"
  mod_planet_farmers_unity_upkeep_add:0 "$r_unity$ Upkeep for $job_farmer_plural$"
+ mod_planet_farmers_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_farmer_plural$"
  
+ mod_planet_miners_food_upkeep_add:0 "$r_food$ Upkeep for $job_miner_plural"
  mod_planet_miners_unity_produces_add:0 "$r_minerals$ from $job_miner_plural$"
  mod_planet_miners_physics_research_produces_add:0 "$r_physics_research$ from $job_miner_plural$"
  mod_planet_miners_society_research_produces_add:0 "$r_society_research$ from $job_miner_plural$"
@@ -144,14 +153,16 @@
 
  mod_planet_pop_assemblers_food_upkeep_mult:0 "Pop Assembly $r_food$ Cost"
  mod_planet_pop_assemblers_alloys_upkeep_mult:0 "Pop Assembly $r_alloys$ Cost"
+ mod_planet_pop_assemblers_energy_upkeep_mult:0 "Pop Assembly $r_energy$ Cost"
+ mod_planet_pop_assemblers_minerals_upkeep_mult:0 "Pop Assembly $r_minerals$ Cost"
 
  mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
  
 
  ### The Blocker Mod - Feature Modifiers
 
- mod_planet_pops_food_upkeep_mult:0 "£pops£Pops $r_food$ Upkeep"
- mod_planet_pops_energy_upkeep_mult:0 "£pops£Pops $r_energy$ Upkeep"
+ mod_planet_pops_food_upkeep_mult:0 "£pops£ Pops $r_food$ Upkeep"
+ mod_planet_pops_energy_upkeep_mult:0 "£pops£ Pops $r_energy$ Upkeep"
  mod_planet_pops_robotics_energy_upkeep_mult:0 "$r_energy$ Upkeep for £pops£ Robots"
 
  mod_planet_colonist_produces_mult:0 "Resources from $icon_job_colonists$"
@@ -290,7 +301,8 @@
  d_coal_bed:0 "Coal Bed"
  d_coal_bed_desc:0 "A rich vein of coal runs deep beneath the surface of this region, long ago compressed and purified by milennia-old alien geology."
 
- d_subterranean_gas_lake:0 "Far below the surface, captured gases bubble and sizzle under the immense pressure of thousands of millions of tons of rock."
+ d_subterranean_gas_lake:0 "Subterranean Gas Lake"
+ d_subterranean_gas_lake_desc:0 "Far below the surface, captured gases bubble and sizzle under the immense pressure of thousands of millions of tons of rock."
 
  d_oil_fields_at_first_light:0 "£blocker£ Oil Fields"
  d_oil_fields_at_first_light_desc:0 "The immediate substrate in this region is laced with oil deposits, making for easily-accessible if dirty energy."
@@ -300,13 +312,13 @@
  d_vanilla_failing_infrastructure:0 "£blocker£ Industrial Wasteland"
  d_vanilla_failing_infrastructure_desc:0 "This region is covered by ruined industrial complexes and toxic soil, detritus from a past age of progress."
 
- d_tbm_slums:0 "£blocker£ Sprawling Slums"
+ d_tbm_slums:0 "Sprawling Slums"
  d_tbm_slums_desc:0 "Poor urban planning has resulted in this expansive region of impoverished dwellings, where denizens live in squalor and are preyed upon by the less savory elements of society."
 
  d_tbm_crater:0 "£blocker£ Crater"
  d_tbm_crater_desc:0 "A massive explosion has decimated this area, leaving a crater miles wide and several hundred feet deep where something used to be."
 
- d_tbm_industrial_wasteland:0 "£blocker£ Industrial Wasteland"
+ d_tbm_industrial_wasteland:0 "Industrial Wasteland"
  d_tbm_industrial_wasteland_desc:0 "Whether due to excessive taxation, the recent economic downturn, or just outrght incompetence, this district has become a ghost-town of shuttered businesses and derelict manufacturing plants. What few legitimate concerns remain are struggling to get by."
 
  d_rubble:0 "£blocker£ Rubble"
@@ -318,7 +330,7 @@
  d_great_river_obstructed:0 "Great River (Obstructed)"
  d_great_river_obstructed_desc:0 "A large dam was built across this colossal river, providing power for much of the planet at the cost of creating floodplains upstream."
 
- d_urban_power_plant:0 "£blocker£ Urban Power Plant"
+ d_urban_power_plant:0 "Urban Power Plant"
  d_urban_power_plant_desc:0 "Not a tourist destination, but certainly essential to keep the lights on in a nearby city. Concern over emissions drowns out the hum of transformers all day and night."
 
  d_geothermal_power_plant:0 "Geothermal Power Plant"
@@ -478,6 +490,12 @@
  terra_incognita:0 "Terra Incognita"
  terra_incognita_desc:0 "For the first time, we have set foot on a brave new world. Colonists are even now exploring the planet and discovering new alien wonders with every step."
 
+ new_branch:0 "New Branch"
+ new_branch_desc:0 "On this world, a brand new branch of the Organism is taking root. This endeavor is not without its risks, and its strain on our unity will be measurable, but the potential rewards are great."
+
+ new_function:0 "New Branch"  # Yes, this is kind of a bad Git joke
+ new_function_desc:0 "After months of testing and refactoring, a new batch of core code has begun running on this faraway planet. Early signs suggest there are some efficiency gains to a more decentralized execution, but failsafe processing power has been set aside in case of any exceptions."
+
  # Event Modifiers
 
  sold_famous_mountain:0 "Sold Famous Mountain"
@@ -527,6 +545,18 @@
 
  nanocomposite_shortage:0 "Nanocomposite Shortage"
  nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker£ $d_experimental_geothermal_tap§! have led to delays in military shipbuiliding requisitions."
+
+ breathing_without_the_body:0 "Breathing Without the Body"
+ breathing_without_the_body_desc:0 "Over the course of milennia, the Organism's evolution encompassed and relied upon the whims and fortunes of its surroundings. These symbiotic lifeforms have been essential to the hive's functioning, but also a liability, uncontrolled by the consciousness of all things. Now, our technological progress has allowed us to replicate such symbioses for ourselves, strengthening and, where necessary, replacing the vulnerabilities of chance, fortune, and survival."
+
+ overambitious_evolution:0 "Overambitious Evolution"
+ overambitious_evolution_desc:0 "Over the course of milennia, the Organism's evolution encompassed and relied upon the whims and fortunes of its surroundings. These symbiotic lifeforms have been essential to the hive's functioning, and we have too quickly tried to replicate and replace their functioning. The mysteries of life itself still elude our consciousness, and even now our voices wither for the loss of this symbiosis."
+
+ damaged_power_nexus:0 "Damaged Power Nexus"
+ damaged_power_nexus_desc:0 "Recent disasters have resulted in damage to the £blocker£ Central Power Nexus. While failsafes and sub-systems will ensure the machine continues to function, repairs are expected to take some time."
+
+ highway_engineering:0 "Superhighway Engineering"
+ highway_engineering_desc:0 "Recent efforts to the restore this world's superhighway network are progressing apace, and almost every engineer is working to ensure this massive project is completed on time and budget."
 
  ### The Blocker Mod - Event Projects
 

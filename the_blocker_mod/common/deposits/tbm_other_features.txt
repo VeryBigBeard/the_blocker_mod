@@ -1,0 +1,86 @@
+@base = 1	# Base ai_weight. AI will clear any feature at weight = 1 when it needs district space
+@clear = 2	# AI will clear this feature immediately.
+@keep = 0	# AI will keep this feature until it needs a district and no other features remain
+@always_clear = 100	# AI will always clear this feature; used mainly for negative features (e.g., rubble)
+@always_keep = -100 # AI will always keep this feature; used mainly for bonus features and some flavor features
+
+
+d_terraform_test_1 = {
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	time = 200
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_max_districts_add = -1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			set = @always_clear
+			always = yes
+		}
+	}
+}
+
+d_terraform_test_2 = {
+	category = deposit_cat_minerals
+	is_for_colonizable = yes
+
+	planet_modifier = {
+		district_mining_max = 1
+		planet_max_districts_add = -1
+	}
+
+	time = 200
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 200
+		}
+	}
+
+	ai_weight = {
+		weight = @base
+	}
+}
+
+d_terraform_test_3 = {
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 200
+		}
+	}
+
+	time = 200
+
+	planet_modifier = {
+		district_farming_max = 1
+		planet_max_districts_add = -1
+	}
+
+	ai_weight = {
+		weight = 1
+
+		
+	}
+}

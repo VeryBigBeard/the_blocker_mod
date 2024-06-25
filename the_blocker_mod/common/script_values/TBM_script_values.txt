@@ -84,18 +84,16 @@ megalith_unity_output = {
 }
 
 highway_engineers_to_change_a_lightbulb = {
-	base = @tier4researchreward
+	base = 12
 	complex_trigger_modifier = {
 		trigger = resource_income_compare
-		trigger_scope = owner
+		trigger_scope = root	#planet
 		parameters = {
 			resource = engineering_research
 		}
-		mode = set
-		mult = 60	# There're a lot of lightbulbs on an ecumenopolis.
+		mode = multiply
 	}
-	min = @tier4researchmin
-	max = @tier4researchmax
+	mult = 10	# There're a lot of lightbulbs on an ecumenopolis.
 }
 
 ### Food Rations Situation

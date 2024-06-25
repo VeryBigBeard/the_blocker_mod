@@ -1165,6 +1165,7 @@ planet_event = {
 planet_event = {
 	id = tbm.85
 
+	hide_window = yes
 	is_triggered_only = yes
 	location = this
 
@@ -1297,27 +1298,32 @@ planet_event = {
 		this = {
 			owner = { set_country_flag = struck_the_motherlode }
 			random_list = {
-				60 = {					
+				75 = {					
 					add_modifier = {
 						modifier = mineral_rich
 					}
 				}
-				30 = {
-					add_modifier = {
-						modifier = ultra_rich
-					}
-				}
-				10 = {
+				25 = {
 					add_modifier = {
 						modifier = ultra_rich
 					}
 					hidden_effect = {
-						planet_event = {
-							id = tbm.88
-							days = 180
-							random = 360
+						random_list = {
+							50 = {}
+							
+							# False Prospects
+							50 = {
+								planet_event = {
+									id = tbm.88
+									days = 180
+									random = 360
+								}
+							}
 						}
 					}
+					
+					
+					
 				}
 			}
 		}

@@ -8,7 +8,10 @@
 
 # ai_weight variables
 # Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
+
 # For homeworld features, AI will tend to keep more of them partly for flexibility and partly for flavor if the player conquers them.
+
+# The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
 
 @base = 1	# Base ai_weight. AI will clear any feature at weight = 1 when it needs district space
 @clear = 2	# AI will clear this feature immediately.
@@ -21,6 +24,8 @@
 @reserves_eaten = 1
 @food_reserves_left = 20 # in years
 
+@highway_engineering = 1
+
 
 ### HOMEWORLD BLOCKERS
 
@@ -32,12 +37,8 @@ d_homeworld_bandit_camp = {
 	should_swap_deposit_on_terraforming = no
 
 	blocker_swap_types = {
-		d_gaia_homeworld_fossil_fuels
 		d_fossil_fuel_reserves
-		d_gestalt_fossil_fuel_reserves
 	}
-	#use_weights_for_blocker_swap_types = yes
-	all_blocker_swap_types = yes
 
 	time = 180
 
@@ -49,23 +50,40 @@ d_homeworld_bandit_camp = {
 		}
 	}
 
-	# on_cleared = {
-	# 	if = {
-	# 		limit = {
-	# 			planet = { is_planet_class = pc_gaia }
-	# 		}
-	# 		add_deposit = d_gaia_homeworld_fossil_fuels
-	# 	}
-	# 	else_if = {
-	# 		limit = {
-	# 			owner = { is_gestalt = yes }
-	# 		}
-	# 		add_deposit = d_gestalt_fossil_fuel_reserves
-	# 	}
-	# 	else = {
-	# 		add_deposit = d_fossil_fuel_reserves
-	# 	}
-	# }
+	planet_modifier = {
+		planet_crime_add = 15
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_gestalt_homeworld_bandit_camp = {
+	category = deposit_cat_blockers
+	icon = d_homeworld_bandit_camp
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_gestalt_fossil_fuel_reserves
+	}
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+			unity = 200
+		}
+	}
 
 	planet_modifier = {
 		planet_crime_add = 15
@@ -77,11 +95,41 @@ d_homeworld_bandit_camp = {
 
 	ai_weight = {
 		weight = @always_clear
+	}
+}
 
-		modifier = {
-			add = 1
-			planet_crime > 20	# These hit Advanced AIs really early due to crime, should be priority to clear it.
+d_gaia_homeworld_bandit_camp = {
+	category = deposit_cat_blockers
+	icon = d_homeworld_bandit_camp
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_gaia_homeworld_fossil_fuels
+	}
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+			unity = 200
 		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = 15
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
 	}
 }
 
@@ -92,11 +140,10 @@ d_impact_memorial = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-	#all_blocker_swap_types = yes
-	#use_weights_for_blocker_swap_types = yes
+
+	use_weights_for_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_major_impact_site
-		d_gestalt_major_impact_site
 	}
 
 	time = 180
@@ -120,15 +167,7 @@ d_impact_memorial = {
 	ai_weight = {
 		weight = @keep
 
-		modifier = {
-			add = 1	# Keep for the unity bonus (useful on homeworlds) unless minerals are getting short.
-			owner = {
-				resource_income_compare = {
-					resource = minerals
-					value < 10
-				}
-			}
-		}
+		inline_script = tbm_ai_empire_weights	# To avoid blocking ecu
 	}
 }
 
@@ -139,7 +178,7 @@ d_homeworld_deep_trench = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-	all_blocker_swap_types = yes
+
 	blocker_swap_types = {
 		d_submerged_ore_veins
 	}
@@ -167,7 +206,7 @@ d_homeworld_deep_trench = {
 		weight = @keep
 
 		modifier = {
-			add = 1000	# Keep as no negative effects but don't block ecu.
+			set = @clear	# Keep as no negative effects but don't block ecu.
 			root = { free_district_slots = 0 }
 			owner = { has_ascension_perk = ap_arcology_project }
 		}
@@ -213,6 +252,8 @@ d_mine_shafts = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -251,6 +292,8 @@ d_mining_enzymes = {
 
 	ai_weight = {
 		weight = @always_keep	# It's a very small amount of food upkeep and keeping the mining will help AI flexibility
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -291,7 +334,7 @@ d_computerized_extraction_sites = {
 		weight = @base
 
 		modifier = {
-			add = 1	# Clear it if a machine is in energy deficit,a s that's bad and it can get minerals later.
+			set = @clear	# Clear it if a machine is in energy deficit, as that's bad and it can get minerals later.
 			owner = {
 				is_machine_empire = yes	# Should always be to start, but if it gets conquered
 				resource_income_compare = {
@@ -300,13 +343,17 @@ d_computerized_extraction_sites = {
 				}
 			}
 		}
+
+		modifier = {
+			set = @clear
+			owner = { has_ascension_perk = ap_machine_worlds }
+		}
 	}
 }
 
 d_tbm_strip_mine = {
 	icon = d_crater
 	category = deposit_cat_blockers
-	custom_tooltip = tbm_deposit_tooltip_test
 
 	use_for_min_max_adjustments = yes
 
@@ -322,6 +369,7 @@ d_tbm_strip_mine = {
 	}
 
 	planet_modifier = {
+		planet_max_districts_add = -1
 		district_mining_max = 1
 		pop_happiness = -0.05
 	}
@@ -334,11 +382,11 @@ d_tbm_strip_mine = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @base
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -374,11 +422,11 @@ d_tbm_gestalt_strip_mine = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @base
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -412,7 +460,18 @@ d_recycling_programs = {
 	}
 
 	ai_weight = {
-		weight = @always_keep	#CG hit isn't that bad and AI needs mining flexibility.
+		weight = @keep
+
+		modifier = {
+			set = @always_clear
+			owner = {
+				is_difficulty >= 3
+				num_owned_planets < 3
+				# Logic here is that low difficulty AIs often get boxed in and end up needing the mining district more than the build speed. But the build speed hit hurts the AI a *lot* early on because it changes stuff around more, so we want it gone if possible.
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights 	# But keep it if you're a vassal
 	}
 }
 
@@ -436,8 +495,34 @@ d_recycling_processes = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_pop_assemblers_food_upkeep_mult = 0.05
 		planet_pop_assemblers_alloys_upkeep_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_lithoid_empire = yes }
+		}
+		planet_pop_assemblers_minerals_upkeep_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_lithoid_empire = no
+				is_hive_empire = yes
+			}
+		}
+		planet_pop_assemblers_food_upkeep_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		planet_pop_assemblers_energy_upkeep_mult = 0.05
 	}
 
 	potential = {
@@ -448,7 +533,7 @@ d_recycling_processes = {
 		weight = @keep
 
 		modifier = {
-			add = 1	# Get rid of this when upgrading the assembly facility or capital to asave alloy upkeep
+			set = @clear	# Get rid of this when upgrading the assembly facility or capital to save alloy upkeep
 			root = {
 				num_assigned_jobs = {
 					job = replicator
@@ -456,6 +541,8 @@ d_recycling_processes = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -483,10 +570,17 @@ d_major_impact_site = {
 	}
 
 	potential = {
-		#always = no
-		exists = owner
-		owner = { is_gestalt = yes }
-		###is_homeworld = yes
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 0
+
+		modifier = {
+			add = 10
+			owner = { is_gestalt = no }
+			has_deposit = d_impact_memorial
+		}
 	}
 
 	ai_weight = {
@@ -515,22 +609,33 @@ d_gestalt_major_impact_site = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_mining_max = 1
-		planet_crime_mult = 0.05
 	}
 
 	potential = {
-		always = no
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 0
+
+		modifier = {
+			add = 10
+			owner = { is_gestalt = yes }
+			has_deposit = d_impact_memorial
+		}
 	}
 
 	ai_weight = {
 		weight = @base
 
 		modifier = {
-			add = 1
+			set = @clear
 			root = {
 				planet_crime > 25
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -565,11 +670,11 @@ d_rare_metals_lab = {
 		weight = @base
 
 		modifier = {
-			add = 1	# Get rid of this as soon as minerals look okay
+			set = @always_clear	# Get rid of this as soon as minerals look okay
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value > 50
 				}
 			}
 		}
@@ -596,19 +701,18 @@ d_gestalt_rare_metals_lab = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_pop_assembly_mult = -0.05
-		pop_happiness = -0.05
+		planet_pop_assembly_mult = -0.05	# No happiness equivalent for gestalts since assembly hits them much harder.
 	}
 
 	ai_weight = {
 		weight = @base
 
 		modifier = {
-			add = 1	# Get rid of this as soon as minerals look okay
+			set = @clear	# Get rid of this as soon as minerals look okay
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value > 50
 				}
 			}
 		}
@@ -622,7 +726,7 @@ d_homeworld_dustbowl = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-	#all_blocker_swap_types = yes
+	
 	blocker_swap_types = {
 		d_reclaimed_land
 	}
@@ -641,9 +745,9 @@ d_homeworld_dustbowl = {
 		}
 	}
 
-	on_cleared = {
-		add_deposit = d_reclaimed_land
-	}
+	# on_cleared = {
+	# 	add_deposit = d_reclaimed_land
+	# }
 
 	planet_modifier = {
 		district_mining_max = 1
@@ -658,26 +762,27 @@ d_homeworld_dustbowl = {
 		weight = @keep
 
 		modifier = {
-			add = 1	# Keep this until food is tight and minerals are OK, as minerals usually more valuable than food.
+			set = @clear	# Keep this until food is tight and minerals are OK, as minerals usually more valuable than food.
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value > 50
 				}
 				resource_income_compare = {
 					resource = food
 					value < 10
 				}
 			}
+			root = { num_free_district = { type = any value > 1 }}	# Do not wreck existing district with it, though
 		}
 
 		modifier = {
-			add = 1000	# Always clear for catalytics
+			set = @always_clear	# Always clear for catalytics
 			owner = { is_catalytic_empire = yes }
 		}
 
 		modifier = {
-			add = -1000	# Don't clear if lithoid or machine
+			set = @always_keep	# Don't clear if lithoid or machine
 			owner = { country_uses_food = no }
 		}
 	}
@@ -724,14 +829,16 @@ d_high_wire_network = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -773,14 +880,16 @@ d_neural_network = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -810,7 +919,7 @@ d_battery_farms = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		planet_pops_robotics_energy_upkeep_mult = 1
+		planet_pops_robotics_energy_upkeep_mult = 0.1
 	}
 
 	triggered_planet_modifier = {
@@ -844,17 +953,17 @@ d_battery_farms = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
 
 		modifier = {
-			add = -1	# Keep purging bonus, but mainly for flavor
+			set = @always_keep	# Keep purging bonus, but mainly for flavor
 			owner = { has_civic = civic_machine_terminator }
 		}
 	}
@@ -948,7 +1057,18 @@ d_experimental_geothermal_tap = {
 	}
 
 	ai_weight = {
-		weight = @always_clear
+		weight = @keep	# Is set to always get rid of this during the event chain, so keep it if the bonus is helpful
+
+		modifier = {
+			set = @clear
+			years_passed > 30
+			root = {
+				num_free_districts = {
+					type = district_generator
+					value > 1
+				}
+			}
+		}
 	}
 }
 
@@ -995,7 +1115,18 @@ d_gestlat_experimental_geothermal_tap = {
 	}
 
 	ai_weight = {
-		weight = @always_clear
+		weight = @keep	# Is set to always get rid of this during the event chain, so keep it if the bonus is helpful
+
+		modifier = {
+			set = @clear
+			years_passed > 30
+			root = {
+				num_free_districts = {
+					type = district_generator
+					value > 1
+				}
+			}
+		}
 	}
 }
 
@@ -1018,7 +1149,7 @@ d_fossil_fuel_reserves = {
 	on_cleared = {
 		owner = {
 			add_resource = {
-				unity = 100	# Not monthly mult, more reward for this if you get off the oil quick.
+				unity = 500	# Not monthly mult, more reward for this if you get off the oil quick.
 			}
 		}
 	}
@@ -1036,14 +1167,26 @@ d_fossil_fuel_reserves = {
 	}
 
 	potential = {
-		#always = no
-		NOT = { is_planet_class = pc_gaia }
-		exists = owner
-		owner = { is_gestalt = no }
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 100
+
+		modifier = {
+			factor = 0
+			NOT = {
+				exists = owner
+				owner = { is_gestalt = yes }
+				has_deposit = d_homeworld_bandit_camp
+			}
+		}
 	}
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1067,7 +1210,7 @@ d_gestalt_fossil_fuel_reserves = {
 	on_cleared = {
 		owner = {
 			add_resource = {
-				unity = 100	# Not monthly mult, more reward for this if you get off the oil quick.
+				unity = 500	# Not monthly mult, more reward for this if you get off the oil quick.
 			}
 		}
 	}
@@ -1093,14 +1236,26 @@ d_gestalt_fossil_fuel_reserves = {
 	}
 
 	potential = {
-		#always = no
-		NOT = { is_planet_class = pc_gaia }
-		exists = owner
-		owner = { is_gestalt = yes }
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 100
+
+		modifier = {
+			factor = 0
+			NOT = {
+				exists = owner
+				owner = { is_gestalt = no }
+				has_deposit = d_homeworld_bandit_camp
+			}
+		}
 	}
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1145,14 +1300,16 @@ d_inaugural_spaceport = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @always_clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 25	# alloy hit hurts a lot, so get rid of this as soon as economic plan on track
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1197,14 +1354,122 @@ d_gestalt_inaugural_spaceport = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @always_clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 100	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 25	# alloy hit hurts a lot, so get rid of this as soon as economic plan on track
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_mitochondria = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1280
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			unity = 200
+		}
+	}
+
+	on_cleared = {
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_ascension_perk = ap_engineered_evolution
+						has_ascension_perk = ap_the_flesh_is_weak
+						# May at some point add some more interesting mechanics here re: how this works, but that's a longer-term thing
+					}
+				}
+			}
+			add_modifier = {
+				modifier = breathing_without_the_body
+				years = 20
+			}
+		}
+		
+		else = {
+			add_modifier = {
+				modifier = overambitious_evolution
+				years = 20
+			}
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_crime_mult = 0.05	# Any higher and it'd be too punishing for a homeworld feature, but the idea is to limit hive blobbing a bit until they begin to ascend.
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+
+		modifier = {
+			set = @always_clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_engineered_evolution
+					has_ascension_perk = ap_the_flesh_is_weak
+				}
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_central_power_nexus = {
+	icon = d_fractal_seed
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1800
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1000
+			alloys = 800
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet_devastation > 40
+		}
+		planet_jobs_energy_produces_mult = -0.5
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear	# Yeah, it's pricey but the AI often has extra alloys and its planets tend to get more devastation--you really don't want this to get damaged.
 	}
 }
 
@@ -1269,7 +1534,7 @@ d_homestead_farms = {
 		weight = @clear
 
 		modifier = {
-			add = -1
+			set = @always_keep
 			owner = {
 				resource_income_compare = {
 					resource = food
@@ -1277,9 +1542,11 @@ d_homestead_farms = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 		
 		modifier = {
-			add = -1000
+			set = @always_keep
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
@@ -1316,14 +1583,16 @@ d_metabolic_processing = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @base
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1346,7 +1615,7 @@ d_nutrient_terminals = {
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_bio_trophies_unity_produces_mult = -0.01
+		planet_bio_trophies_unity_produces_mult = -0.1
 	}
 
 	potential = {
@@ -1357,14 +1626,16 @@ d_nutrient_terminals = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @base
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1397,7 +1668,7 @@ d_factory_slaughterhouses = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @always_clear
 			owner = {
 				resource_income_compare = {
 					resource = food
@@ -1405,6 +1676,8 @@ d_factory_slaughterhouses = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1439,14 +1712,22 @@ d_homeworld_urban_aeroponics = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+				}
+			}
+			root = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1481,14 +1762,22 @@ d_homeworld_gestalt_urban_aeroponics = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+				}
+			}
+			root = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1526,14 +1815,16 @@ d_homeworld_moisture_farming = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1580,14 +1871,16 @@ d_migratory_fishing_fleets = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1624,14 +1917,16 @@ d_food_banks = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1664,18 +1959,18 @@ d_reclaimed_land = {
 		weight = @base
 
 		modifier = {
-			add = -1
+			set = @keep
 			root = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
-			add = 2
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -1705,8 +2000,13 @@ d_megaliths = {
 				owner = { is_lithoid = yes }
 			}
 			unity = 1
-			mult = value:megalith_unity_output
-			
+			mult = trigger:years_passed
+		}
+		produces = {
+			trigger = {
+				years_passed < 1	# This is here so you see the unity icon on the thing at game start.
+			}
+			unity = 1
 		}
 	}
 
@@ -1731,14 +2031,37 @@ d_megaliths = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
+			owner_main_species = {
+				has_trait = trait_slow_breeders
+			}
+		}
+
+		modifier = {
+			set = @keep
 			owner = {
-				resource_income_compare = {
-					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+				is_spiritualist = yes
+			}
+		}
+
+		modifier = {
+			set = @always_keep
+			owner_main_species = {
+				OR = {
+					has_trait = trait_rapid_breeders
+					has_trait = trait_necrophage
 				}
 			}
 		}
+
+		modifier = {
+			set = @always_clear
+			owner_main_species = {
+				NOT = { has_trait = trait_lithoid }
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1758,8 +2081,13 @@ d_crumbling_mountain = {
 			energy = 800
 		}
 		upkeep = {
-			unity = 2
-			mult = trigger:years_passed
+			trigger = {
+				owner_main_species = {
+					has_trait = trait_lithoid
+				}
+			}
+			unity = 0.2
+			mult = value:megalith_unity_output	# Ignore that this is weird. Idea here to balance the Megalith unity income early on
 		}
 	}
 
@@ -1784,14 +2112,16 @@ d_crumbling_mountain = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1815,7 +2145,32 @@ d_crystal_outcrops = {
 	planet_modifier = {
 		district_mining_max = 1
 		planet_miners_minerals_produces_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			country_uses_consumer_goods = yes
+		}
 		planet_miners_consumer_goods_upkeep_add = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			country_uses_consumer_goods = no
+		}
+		planet_miners_food_upkeep_add = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			country_uses_consumer_goods = no
+			owner = { has_trait = trait_lithoid }
+		}
+		planet_miners_food_upkeep_add = -0.1
+		planet_miners_energy_upkeep_add = 0.1
 	}
 
 	potential = {
@@ -1826,14 +2181,16 @@ d_crystal_outcrops = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1859,7 +2216,6 @@ d_crowded_reef = {
 	}
 
 	planet_modifier = {
-		planet_crime_mult = 0.05
 		pop_happiness = -0.05	# Bad vibes.
 	}
 
@@ -1910,14 +2266,16 @@ d_shallow_bay = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1951,14 +2309,16 @@ d_homeworld_tidal_turbines = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 50	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -1999,14 +2359,16 @@ d_flotsam = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -2042,14 +2404,16 @@ d_fish_plants = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -2084,14 +2448,16 @@ d_windy_archipelago = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 50	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -2175,7 +2541,6 @@ d_unclaimed_cave_complex = {	# Mine Shafts (at least there wasn't a gap)
 
 	planet_modifier = {
 		pop_housing_usage_mult = 0.10
-		planet_crime_mult = 0.10
 	}
 
 	potential = {
@@ -2239,8 +2604,8 @@ d_chapel_of_the_fall = {
 			energy = 200
 			unity = 1000
 		}
-		produces = {
-			food = -8
+		upkeep = {
+			food = 8
 		}
 	}
 
@@ -2305,7 +2670,6 @@ d_food_rations = {
 	planet_modifier = {
 		district_farming_max = 1
 		pop_happiness = 0.05
-		planet_crime_add = 5
 	}
 
 	potential = {
@@ -2314,6 +2678,8 @@ d_food_rations = {
 
 	ai_weight = {
 		weight = @always_keep	# Option weights in Food Rations Run Out event
+
+		inline_script = tbm_ai_empire_weights # Temp patch until Food Rations works
 	}
 }
 
@@ -2338,7 +2704,7 @@ d_survival_camps = {
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_crime_mult = 0.2
+		planet_crime_mult = 0.1
 		pop_happiness = -0.2
 	}
 
@@ -2383,9 +2749,9 @@ d_seed_banks = {
 		cost = {
 			energy = 400
 		}
-		produces = {
-			energy = -10
-			engineering_research = -2
+		upkeep = {
+			energy = 10
+			engineering_research = 2
 		}
 	}
 
@@ -2422,14 +2788,16 @@ d_seed_banks = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 50	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -2611,7 +2979,7 @@ d_unexploded_munitions = {
 	}
 
 	ai_weight = {
-		weight = @always_keep	# Alloys are mainly a benefit for rush-builders; AI needs flexibility
+		weight = @always_clear	# Alloys are mainly a benefit for rush-builders; AI needs flexibility
 	}
 }
 
@@ -2686,14 +3054,16 @@ d_hulks = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 10	# If okay for mining, clear this
+					value > 30	# If okay for mining, clear this
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -2729,14 +3099,16 @@ d_tomb_mine_shafts = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 10	# If okay for mining, clear this
+					value > 30	# If okay for mining, clear this
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -2761,7 +3133,7 @@ d_homeworld_black_market = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		planet_crime_add = 35
+		planet_crime_mult = 35
 	}
 
 	potential = {
@@ -2772,13 +3144,15 @@ d_homeworld_black_market = {
 		weight = @clear
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = {
 				has_ai_personality = ruthless_capitalists	# Market economy
 				has_ai_personality = hegemonic_imperialists	# We don't really care
 				has_ai_personality = slaving_despots
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -2828,8 +3202,8 @@ d_homeworld_derelict_reactors = {
 			energy = 400
 			minerals = 200
 		}
-		produces = {
-			unity = -2	# Should be variable based on time used.
+		upkeep = {
+			unity = 2	# Should be variable based on time used.
 		}
 	}
 
@@ -2855,7 +3229,7 @@ d_homeworld_derelict_reactors = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
@@ -2863,6 +3237,8 @@ d_homeworld_derelict_reactors = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -2915,16 +3291,16 @@ d_homeworld_dormant_supervolcano = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = { is_spiritualist = yes }
 		}
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value > 60	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
 		}
@@ -2951,7 +3327,7 @@ d_gaia_homeworld_fossil_fuels = {
 	on_cleared = {
 		owner = {
 			add_resource = {
-				unity = 20	# Not monthly mult, more reward for this if you get off the oil quick.
+				unity = 400	# Not monthly mult, more reward for this if you get off the oil quick.
 			}
 		}
 	}
@@ -2962,12 +3338,26 @@ d_gaia_homeworld_fossil_fuels = {
 	}
 
 	potential = {
-		#always = no
-		is_planet_class = pc_gaia
+		is_starting_planet = yes
+	}
+
+	drop_weight = {
+		weight = 100
+
+		modifier = {
+			factor = 0
+			NOT = {
+				exists = owner
+				owner = { is_gestalt = no }
+				is_planet_class = pc_gaia
+				has_deposit = d_homeworld_bandit_camp
+			}
+			
+		}
 	}
 
 	ai_weight = {
-		weight = @clear
+		weight = @always_clear
 	}
 }
 
@@ -3010,16 +3400,6 @@ d_homeworld_sculpted_mountains = {
 
 	ai_weight = {
 		weight = @keep
-
-		modifier = {
-			add = 1
-			owner = {
-				resource_income_compare = {
-					resource = minerals
-					value > 40	# We generally want these gone as long as we have enough minerals
-				}
-			}
-		}
 	}
 }
 
@@ -3100,7 +3480,7 @@ d_idyllic_pastorale = {
 			trigger = {
 				owner = { has_valid_civic = civic_agrarian_idyll }
 			}
-			consumer_goods = 1	# Arts and crafts sector.
+			consumer_goods = 4	# Arts and crafts sector.
 		}
 	}
 
@@ -3116,16 +3496,6 @@ d_idyllic_pastorale = {
 
 	ai_weight = {
 		weight = @keep
-
-		modifier = {
-			add = 1
-			owner = {
-				resource_income_compare = {
-					resource = food
-					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
-				}
-			}
-		}
 	}
 }
 
@@ -3164,6 +3534,10 @@ d_ancient_forests = {
 
 	potential = {
 		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
 	}
 }
 
@@ -3207,13 +3581,18 @@ d_remnant_dilapidated_reactor = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
 					value > 60	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = { has_technology = tech_housing_2 } # For restoration purposes
 		}
 	}
 }
@@ -3245,7 +3624,7 @@ d_repurposed_power_system = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		planet_technician_energy_produces_mult = -0.5
+		planet_technician_energy_produces_mult = -0.2
 	}
 
 	potential = {
@@ -3253,17 +3632,7 @@ d_repurposed_power_system = {
 	}
 
 	ai_weight = {
-		weight = @keep
-
-		modifier = {
-			add = 1
-			owner = {
-				resource_income_compare = {
-					resource = energy
-					value > 60	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
-				}
-			}
-		}
+		weight = @clear
 	}
 }
 
@@ -3275,13 +3644,34 @@ d_collapsed_superhighway = {
 
 	should_swap_deposit_on_terraforming = no
 
-	time = 1260
+	time = 180	# Laying groundwork, union negotiations
 
 	resources = {
 		category = deposit_blockers
 		cost = {
 			energy = 600
+			alloys = 5000
 		}
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			set_variable = {
+				which = @highway_engineering
+				value = value:highway_engineers_to_change_a_lightbulb
+			}
+		}
+		
+		root = {
+			add_modifier = {
+				modifier = superhighway_engineering
+				days = @highway_engineering	# Script value sets 10 years of this planet's engineering research.
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
 	}
 
 	potential = {
@@ -3321,7 +3711,7 @@ d_homeworld_scrap_mountain = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		job_scrap_miner_add = 2
+		job_scrap_miner_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -3344,19 +3734,24 @@ d_homeworld_scrap_mountain = {
 		weight = @keep
 
 		modifier = {
-			add = -1
+			set = @clear
 			root = {
 				num_assigned_jobs = {
 					job = scrap_miner
-					value < 2
+					value > 2
 				}
 			}
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 40
+					value >= 30
 				}
 			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = { has_technology = tech_housing_2 } # For restoration purposes
 		}
 	}
 }
@@ -3387,10 +3782,9 @@ d_crumbling_tower = {
 	}
 
 	planet_modifier = {
+		planet_max_districts_add = -1
 		district_mining_max = 1
-		planet_housing_mult = 0.1
 		planet_jobs_alloys_produces_mult = 0.05
-		planet_amenities_mult = -0.1
 	}
 
 	potential = {
@@ -3401,7 +3795,7 @@ d_crumbling_tower = {
 		weight = @clear
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = {
 				resource_income_compare = {
 					resource = minerals
@@ -3437,7 +3831,7 @@ d_destroyed_spaceport = {
 					add_random_research_option = {
 						category = "voidcraft"
 						area = engineering
-						tier = 1
+						tier = 2
 						add_progress = 100
 						ignore_prereqs = yes
 						ignore_rare = no
@@ -3470,11 +3864,11 @@ d_destroyed_spaceport = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value >= 30
 				}
 			}
 		}
@@ -3508,6 +3902,7 @@ d_derelict_smelting_facility = {
 
 	planet_modifier = {
 		district_mining_max = 1
+		planet_max_districts_add = -1
 	}
 
 	potential = {
@@ -3518,11 +3913,11 @@ d_derelict_smelting_facility = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = minerals
-					value > 30
+					value >= 30
 				}
 			}
 		}
@@ -3547,6 +3942,7 @@ d_homeworld_food_replicators = {	# Breaks down after a while
 
 	planet_modifier = {
 		district_farming_max = 1
+		planet_amenities_add = 10
 	}
 
 	potential = {
@@ -3555,6 +3951,11 @@ d_homeworld_food_replicators = {	# Breaks down after a while
 
 	ai_weight = {
 		weight = @always_keep
+
+		modifier = {
+			set = @clear
+			owner = { has_technology = tech_housing_2 } # For restoration purposes
+		}
 	}
 }
 
@@ -3588,13 +3989,18 @@ d_industrial_agromachinery = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @base
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 30
+					value >= 20
 				}
 			}
+		}
+
+		modifier = {
+			set = @clear
+			owner = { has_technology = tech_housing_2 } # For restoration purposes
 		}
 	}
 }
@@ -3657,6 +4063,7 @@ d_flooded_city = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
+		planet_amenities_add = 5
 	}
 
 	potential = {
@@ -3688,11 +4095,8 @@ d_crater_city = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = 2
-		planet_jobs_physics_research_produces_mult = 0.10
-		planet_jobs_society_research_produces_mult = 0.10
-		planet_jobs_engineering_research_produces_mult = 0.10
-		planet_amenities_mult = -0.25
+		planet_amenities_mult = -0.15
+		planet_jobs_consumer_goods_upkeep_mult = -0.25
 	}
 
 	potential = {
@@ -3700,7 +4104,14 @@ d_crater_city = {
 	}
 
 	ai_weight = {
-		weight = @always_clear
+		weight = @always_keep
+
+		modifier = {
+			set = @always_clear
+			owner = {
+				has_technology = tech_housing_2
+			}
+		}
 	}
 }
 
@@ -3750,7 +4161,7 @@ d_renewable_energy_programs = {
 		weight = @clear
 
 		modifier = {
-			add = -1
+			set = @always_clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
@@ -3758,6 +4169,8 @@ d_renewable_energy_programs = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -3824,7 +4237,7 @@ d_public_mining_concerns = {
 		weight = @clear
 
 		modifier = {
-			add = -100
+			set = @always_keep
 			owner = {
 				OR = {
 					has_ethic = ethic_egalitarian
@@ -3840,6 +4253,8 @@ d_public_mining_concerns = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -3879,14 +4294,16 @@ d_hive_aquifers = {
 	}
 
 	ai_weight = {
-		weight = @base
+		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				num_owned_leaders > 12
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -3926,14 +4343,16 @@ d_machine_water_reserve = {
 	}
 
 	ai_weight = {
-		weight = @base
+		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				num_owned_leaders > 12
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -3967,14 +4386,23 @@ d_crop_shares = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 30
+					value >= 20
+				}
+			}
+
+			root = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4006,14 +4434,23 @@ d_outdated_food_equipment = {	# Gestalt Prosperous ag district
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = food
-					value > 30
+					value >= 20
+				}
+			}
+
+			root = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4059,7 +4496,7 @@ d_colony_ship_core = {
 		weight = @keep
 
 		modifier = {
-			add = 1
+			set = @clear
 			owner = {
 				resource_income_compare = {
 					resource = energy
@@ -4067,6 +4504,8 @@ d_colony_ship_core = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4099,15 +4538,7 @@ d_lost_colony_impact_memorial = {
 	ai_weight = {
 		weight = @keep
 
-		modifier = {
-			add = 1	# Keep for the unity bonus (useful on homeworlds) unless minerals are getting short.
-			owner = {
-				resource_income_compare = {
-					resource = minerals
-					value < 10
-				}
-			}
-		}
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4136,18 +4567,11 @@ d_exoagricultural_experimentation = {
 	}
 
 	ai_weight = {
-		weight = @keep
+		weight = @always_keep
 
-		modifier = {
-			add = 1
-			owner = {
-				resource_income_compare = {
-					resource = food
-					value > 20
-				}
-			}
-		}
+		inline_script = tbm_ai_empire_weights
 	}
+		
 }
 
 d_homeworld_frontier_farmsteads = {
@@ -4181,10 +4605,10 @@ d_homeworld_frontier_farmsteads = {
 	}
 
 	ai_weight = {
-		weight = @clear
+		weight = @base
 
 		modifier = {
-			add = -100	# Should lead to agrarians having smaller, less developed worlds with lots of farm districts and lots of frontier homesteads for conquerors to pillage
+			set = @always_keep	# Should lead to agrarians having smaller, less developed worlds with lots of farm districts and lots of frontier homesteads for conquerors to pillage
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
@@ -4221,7 +4645,7 @@ d_slush_funds = {
 	}
 
 	ai_weight = {
-		weight = @clear
+		weight = @always_clear
 	}
 }
 
@@ -4340,6 +4764,8 @@ d_undersea_cable_networks = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4388,6 +4814,10 @@ d_the_abyss = {
 
 	should_swap_deposit_on_terraforming = no
 
+	blocker_swap_types = {
+		d_endless_chasm
+	}
+
 	time = 1800
 
 	resources = {
@@ -4409,7 +4839,6 @@ d_the_abyss = {
 				value = 12
 			}
 		}
-		add_deposit = d_endless_chasm
 	}
 
 	potential = {
@@ -4479,7 +4908,7 @@ d_pearl_fields = {
 				}
 			}
 		}
-		planet_anglers_energy_produces_add = 1
+		planet_farmers_energy_upkeep_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -4498,7 +4927,7 @@ d_pearl_fields = {
 		weight = @base
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = {
 				OR = {
 					has_civic = civic_anglers
@@ -4507,6 +4936,8 @@ d_pearl_fields = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4599,7 +5030,7 @@ d_warm_lagoon = {
 		weight = @clear
 
 		modifier = {
-			add = -100
+			set = @always_keep
 			owner = { 
 				OR = {
 					has_civic = civic_agrarian_idyll
@@ -4608,6 +5039,8 @@ d_warm_lagoon = {
 				}
 			}
 		}
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4639,10 +5072,10 @@ d_droid_factory = {
 	}
 
 	ai_weight = {
-		weight = @base
+		weight = @always_keep
 
 		modifier = {
-			add = 1
+			set = @always_clear
 			root = {
 				free_amenities > 10		# AI often struggles with amenity death spirals. Research hit is harsh, but we want to avoid the spiral.
 			}
@@ -4768,6 +5201,8 @@ d_homeworld_arcology = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4787,10 +5222,10 @@ d_experimental_fusion_reactor = {
 		cost = {
 			minerals = 800
 		}
-		produces = {
+		upkeep = {
 			# Advanced Starts will get a little rubber-banding effect for their extra bonus.
-			engineering_research = -1
-			physics_research = -1
+			engineering_research = 1
+			physics_research = 1
 		}
 	}
 
@@ -4822,6 +5257,8 @@ d_experimental_fusion_reactor = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4910,6 +5347,8 @@ d_space_academy = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4942,6 +5381,8 @@ d_flying_party = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -4974,5 +5415,7 @@ d_upgrade_facility = {
 
 	ai_weight = {
 		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
 	}
 }

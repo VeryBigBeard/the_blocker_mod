@@ -387,3 +387,9 @@ generate_imperial_fiefdoms = {
 		}
 	}
 }
+
+generate_achieve_ftl_homeworld_features = {
+	clear_deposits = yes
+
+	generate_start_deposits_and_blockers = yes
+}

@@ -268,7 +268,7 @@ decion_open_zero_point_module = {
 	}
 
 	potential = {
-		owner = { has_technology = tech_antimatter_power }
+		owner = { has_technology = tech_zero_point_power }
 		NOT = { has_deposit = d_zero_point_modules }	# planet - we don't want two, partly balance partly realism
 	}
 

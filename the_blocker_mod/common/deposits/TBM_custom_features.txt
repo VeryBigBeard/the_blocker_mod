@@ -20,6 +20,8 @@
 # ai_weight variables
 # Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
 
+# The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
+
 @base = 1	# Base ai_weight. AI will clear any feature at weight = 1 when it needs district space
 @clear = 2	# AI will clear this feature immediately.
 @keep = 0	# AI will keep this feature until it needs a district and no other features remain
@@ -126,17 +128,18 @@ d_fjordland = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = 0.5
+			set = @base		# These are useful, but they're also space-killers, so get rid of them when we need to
 			root = { colony_type = col_mining }
 		}
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = { has_ai_personality = hegemonic_imperialists } # We like imposing scenery.
 		}
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = { 
 				OR = {
 					has_ai_personality = erudite_explorers # Landmarks
@@ -300,12 +303,12 @@ d_sandstone_spires = {
 		weight = @base
 
 		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = 0.5	# AI always adds 1 in this case, but this feature doesn't provide resource districts and isn't great for resources.
+			set = @keep
 			root = {
-				free_district_slots < 1
+				free_district_slots > 1
 				OR = {
 					colony_type = col_mining
 					colony_type = col_rural
@@ -352,6 +355,7 @@ d_natural_gardens = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -379,7 +383,7 @@ d_steppe_uplands = {
 		pop_category_workers_produces_mult = 0.05
 	}
 
-	prerequisites = { "tech_terrestrial_sculpting" }
+	prerequisites = { "tech_mountain_range" }
 
 	on_cleared = {
 		owner = {
@@ -426,10 +430,22 @@ d_steppe_uplands = {
 	}
 
 	ai_weight = {
-		weight = @keep
+		weight = @base
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
+
+		modifier = {
+			set = @keep
+			root = {
+				OR = {
+					colony_type = col_rural
+					colony_type = col_generator
+					colony_type = col_mining
+				}
+			}
+		}
 	}
 }
 
@@ -501,9 +517,10 @@ d_glacier_lake = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				OR = {
 					colony_type = col_farming
@@ -600,9 +617,10 @@ d_giant_tree  = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75	# Amenities on resource worlds are good!
+			set = @keep	# Amenities on resource worlds are good!
 			root = {
 				OR = {
 					colony_type = col_mining
@@ -613,7 +631,7 @@ d_giant_tree  = {
 		}
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = erudite_explorers	#Science!
@@ -626,7 +644,7 @@ d_giant_tree  = {
 		}
 
 		modifier = {
-			add = 0.75
+			set = @clear
 			owner = {
 				OR = {
 					has_ai_personality = ruthless_capitalists	#Is there profit in this?
@@ -636,7 +654,7 @@ d_giant_tree  = {
 		}
 
 		modifier = {
-			add = -1000
+			factor = 0
 			owner = {
 				is_hive_empire = yes
 			}
@@ -704,7 +722,7 @@ d_sea_monster = {
 			factor = 0.1
 			OR = {
 				is_planet_class = pc_continental
-				#is_planet_class = pc_gaia
+				is_planet_class = pc_gaia
 			}
 		}
 	}
@@ -734,8 +752,7 @@ d_great_lake = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		planet_amenities_add = 5
-		planet_housing_mult = 0.2
+		planet_amenities_add = 10
 		planet_farmers_food_produces_mult = 0.1
 	}
 	
@@ -781,29 +798,25 @@ d_great_lake = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_scrit = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.25
-			always = yes
-		}
-
-		modifier = {
-			add = -1
+			set = @keep
 			root = { colony_type = col_farming }
 		}
 
 		modifier = {
-			add = 0.5	# King of counter-intuitive, but AI will have lots of housing and amenities on urban worlds already.
+			set = @clear		# Kind of counter-intuitive, but AI will have lots of amenities on urban worlds already.
 			root = { colony_type = col_city }
 		}
 
 		modifier = {
-			add = -5
+			set = @always_keep
 			owner = { has_civic = civic_anglers }
 		}
 
 		modifier = {
-			add = 0.5
+			set = @clear
 			owner = {
 				has_ai_personality = hegemonic_imperialists	# Gotta build on that lakefront property
 			}
@@ -873,13 +886,16 @@ d_floodplains = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_ai_empire_weights
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -1.1	# Basically clear these unless it's a big farm world.
+			set = @keep	# Basically clear these unless it's a big farm world.
 			root = { colony_type = col_farming }
 		}
 
 		modifier = {
-			add = 0.1	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
+			set = @base	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
 			root = {
 				num_free_districts = {
 					type = district_farming
@@ -889,7 +905,7 @@ d_floodplains = {
 		}
 
 		modifier = {
-			add = -0.75	# Keep these for Ag. Idyll as they get housing via farms.
+			set = @always_keep	
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
@@ -945,18 +961,20 @@ d_tidal_marshes = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -1.1	# Basically clear these unless it's a big farm or wind world.
+			add = -2	# Basically clear these unless it's a big farm or wind world.
 			root = {
 				OR = {
 					colony_type = col_farming
 					colony_type = col_generator
 				}
-			}
+			}	
 		}
 
 		modifier = {
-			add = 0.1	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
+			add = 1	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
 			root = {
 				OR = {
 					num_free_districts = {
@@ -972,60 +990,18 @@ d_tidal_marshes = {
 		}
 
 		modifier = {
-			add = -0.75	# Keep these for Ag. Idyll as they get housing via farms.
+			set = @always_keep	# Keep these for Ag. Idyll as they get housing via farms.
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 
 		modifier = {
-			add = -0.75	# Gestalts don't mind happiness hit
+			set = @keep # Gestalts don't mind happiness hit
 			owner = {
 				is_gestalt = yes
 			}
 		}
 	}
 }
-
-# Diabled until Phase 2
-# d_sheltered_bay = {
-		
-# 	is_for_colonizable = yes
-# 	should_swap_deposit_on_terraforming = yes
-# 	category = deposit_category_gaia
-
-# 	use_for_min_max_adjustments = yes
-
-# 	planet_modifier = {
-# 		planet_max_districts_add = 1
-# 		district_farming_max = 1
-# 		planet_amenities_mult = 0.05
-# 	}
-
-# 	drop_weight = {
-# 		weight = @blocker_low
-
-# 		modifier = {
-# 			factor = 2
-# 			OR = {
-# 				is_planet_class = pc_continental
-# 				is_planet_class = pc_gaia
-# 				is_planet_class = pc_ocean
-# 			}
-# 		}
-# 		modifier = {
-# 			factor = 0.5
-# 			OR = {
-# 				is_planet_class = pc_tropical
-# 				is_planet_class = pc_alpine
-# 				is_planet_class = pc_tundra
-# 				is_planet_class = pc_nuked
-# 			}
-# 		}
-# 		modifier = {
-# 			factor = 0
-# 			is_dry = yes
-# 		}
-# 	}
-# }
 
 d_basaltic_outcrops = {
 	category = deposit_cat_minerals
@@ -1100,30 +1076,20 @@ d_basaltic_outcrops = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75		# Metallurgist upkeep reduction
+			set = @always_keep		# Metallurgist upkeep reduction
 			root = { colony_type = col_foundry }
 		}
 
 		modifier = {
-			add = -0.5
+			set = @base
 			root = { colony_type = col_mining }
 		}
 
 		modifier = {
-			add = -0.5	# Especially keep these on foundry worlds that have miners as well
-			root = {
-				colony_type = col_foundry
-				num_assigned_jobs = {
-					job = miner
-					value > 2
-				}
-			}
-		}
-
-		modifier = {
-			add = -0.25
+			factor = 0
 			owner = {
 				has_ai_personality = ruthless_capitalists	# Alloys are profitable!
 				has_ai_personality = hegemonic_imperialists	# We like imposing landscape (and mining)
@@ -1235,9 +1201,10 @@ d_volcanic_island = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -5
+			factor = 0
 			owner = { has_trait = trait_aquatic }
 			root = {
 				NOT = { is_planet_class = pc_ocean }
@@ -1299,14 +1266,15 @@ d_volcanic_soil = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -1
+			set = @keep
 			root = { colony_type = col_farming }
 		}
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = spiritual_seekers	# Preach, farmer
@@ -1322,7 +1290,7 @@ d_volcanic_soil = {
 		}
 
 		modifier = {
-			add = -1000
+			factor = 0
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
@@ -1379,18 +1347,7 @@ d_volcanic_ash = {
 	}
 
 	ai_weight = {
-		weight = @clear
-
-		modifier = {
-			add = 100	# Always clear when we don't have colonists
-			root = {
-				num_assigned_jobs = {
-					job = colonist
-					value < 1
-				}
-				NOT = { colony_type = col_default }	# To help avoid situations where colonists get promoted but the colony is still very new
-			}
-		}
+		weight = @always_clear
 	}
 }
 
@@ -1479,9 +1436,10 @@ d_fish_shoals = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = {
 				OR = {
 					has_civic = civic_anglers
@@ -1491,13 +1449,13 @@ d_fish_shoals = {
 		}
 
 		modifier = {
-			add = -1
+			set = @keep
 			owner = { has_trait = trait_aquatic	}
 			root = { is_homeworld = yes }
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = { colony_type = col_research }
 		}
 	}
@@ -1570,14 +1528,15 @@ d_tbm_impact_crater = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			root = { colony_type = col_mining }
 		}
 
 		modifier = {
-			add = -0.5
+			add = @base
 			owner = { has_trait = trait_lithoid }
 		}
 	}
@@ -1671,12 +1630,12 @@ d_frozen_wasteland = {
 		weight = @clear
 
 		modifier = {
-			add = -0.25 	# Slight boost, but this is still a space killer, so we want to clear it soon even on generator worlds.
+			set = @base 	# This is still a space killer, so we want to clear it soon even on generator worlds.
 			root = { colony_type = col_generator }
 		}
 
 		modifier = {
-			add = -2 	# However, keep it if we're on a generator world and we're trying to build more generators
+			add = @keep 	# However, keep it if we're on a generator world and we're trying to build more generators
 			root = { 
 				colony_type = col_generator
 				num_free_districts = {
@@ -1796,8 +1755,11 @@ d_mountain_jungle = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_designation_weights
+		inline_script = tbm_personality_weights
+
 		modifier = {
-			add = 1
+			add = @keep
 			owner = {
 				has_ai_personality = hegemonic_imperialists	# We like imposing landscape
 				has_ai_personality = spiritual_seekers	#Jungle visions
@@ -1808,7 +1770,7 @@ d_mountain_jungle = {
 		}
 
 		modifier = {
-			add = -0.75	# Keep it around for research.
+			set = @keep	# Keep it around for research.
 			root = {
 				any_owned_pop = {
 					has_job = colonist
@@ -1818,7 +1780,7 @@ d_mountain_jungle = {
 		}
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			root = {
 				OR = {
 					colony_type = col_research
@@ -1828,7 +1790,7 @@ d_mountain_jungle = {
 		}
 
 		modifier = {
-			add = -2.5	# These are good for priests
+			add = @keep	# These are good for priests
 			owner = {
 				is_spiritualist = yes
 				num_assigned_jobs = {
@@ -1934,13 +1896,15 @@ d_taiga = {
 	ai_weight = {
 		weight = @clear	# These are space-killers with very marginal benefits.
 
+		inline_script = tbm_personality_weights
+
 		modifier = {
-			add = -1	# Will stick around on farm worlds until space is needed.
+			set = @base	# Will stick around on farm worlds until space is needed.
 			root = { colony_type = col_farming }
 		}
 
 		modifier = {
-			add = -1
+			set = @base
 			root = {
 				any_owned_pop = {
 					has_job = colonist
@@ -1949,12 +1913,12 @@ d_taiga = {
 		}
 
 		modifier = {
-			add = -1
+			set = @base
 			root = { colony_type = col_default }
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				has_ai_personality = migrating_flock
 				has_ai_personality = hegemonic_imperialists	# Dark and brooding
@@ -1962,7 +1926,7 @@ d_taiga = {
 		}
 
 		modifier = {
-			add = -1000
+			factor = 0
 			owner = {
 				has_ai_personality = metalhead	# Space Finland
 			}
@@ -2064,12 +2028,12 @@ d_scrubland = {
 		weight = @clear	# These are space-killers with very marginal benefits.
 
 		modifier = {
-			add = -1	# Will stick around on farm worlds until space is needed.
+			set = @base	# Will stick around on farm worlds until space is needed.
 			root = { colony_type = col_farming }
 		}
 
 		modifier = {
-			add = -1
+			set = @base
 			root = {
 				any_owned_pop = {
 					has_job = colonist
@@ -2078,81 +2042,11 @@ d_scrubland = {
 		}
 
 		modifier = {
-			add = -1
+			set = @base
 			root = { colony_type = col_default }
 		}
 	}
 }
-
-# Disable for Phase 1
-# d_great_valley = {
-		
-# 	is_for_colonizable = yes
-# 	use_for_min_max_adjustments = yes
-
-# 	category = deposit_category_gaia
-
-# 	use_weights_for_terraforming_swap_types = yes
-# 	should_swap_deposit_on_terraforming = yes
-
-# 	icon = d_wide_valley
-
-# 	planet_modifier = {
-# 		district_farming_max = 2
-# 		planet_farmers_food_produces_mult = 0.1
-# 	}
-
-# 	drop_weight = {
-# 		weight = @very_low
-
-# 		modifier = {
-# 			add = 40
-# 			is_planet_class = pc_gaia
-# 		}
-# 	}
-# }
-
-# Disabled for Phase 1
-# d_wide_valley = {
-		
-# 	is_for_colonizable = yes
-# 	use_for_min_max_adjustments = yes
-
-# 	category = deposit_category_gaia
-
-# 	use_weights_for_terraforming_swap_types = yes
-# 	should_swap_deposit_on_terraforming = yes
-
-# 	planet_modifier = {
-# 		district_farming_max = 1
-# 	}
-
-# 	drop_weight = {
-# 		weight = @med
-
-# 		modifier = {
-# 			factor = 0.25
-# 			OR = {
-# 				is_planet_class = pc_arid
-# 				is_planet_class = pc_arctic
-# 				is_planet_class = pc_tropical
-# 				is_planet_class = pc_tundra
-# 			}
-# 		}
-# 		modifier = {
-# 			factor = 0
-# 			OR = {
-# 				is_planet_class = pc_ocean
-# 				is_planet_class = pc_desert
-# 			}
-# 		}
-
-# 		modifier = {
-# 			factor = 2
-# 			has_deposit = d_great_river
-# 		}
-# 	}
-# }
 
 d_barren = {
 	category = deposit_cat_blockers_natural
@@ -2220,7 +2114,6 @@ d_fertile_delta = {
 	}
 
 	on_cleared = {
-		add_deposit = d_great_river_obstructed
 		hidden_effect = {
 			add_deposit = d_tidal_marshes
 			add_deposit = d_floodplains
@@ -2280,9 +2173,10 @@ d_fertile_delta = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = 1		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
+			set = @base		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
 			root = {
 				NOR = {
 					colony_type = col_rural
@@ -2345,10 +2239,10 @@ d_drylands = {
 	}
 
 	ai_weight = {
-		weight = @keep
+		weight = @base
 
 		modifier = {
-			add = 1
+			set = @clear
 			root = {
 				NOR = {
 					colony_type = col_rural
@@ -2356,11 +2250,6 @@ d_drylands = {
 					colony_type = col_farming
 				}
 			}
-		}
-
-		modifier = {
-			add = -0.75
-			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
 }
@@ -2440,10 +2329,9 @@ d_crags = {
 		weight = @keep
 
 		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
 
 		modifier = {
-			add = 1
+			set = @base
 			root = {
 				NOR = {
 					colony_type = col_mining
@@ -2453,7 +2341,7 @@ d_crags = {
 		}
 
 		modifier = {
-			add = -0.75
+			set = @always_keep
 			owner = { has_ai_personality = migrating_flock }
 		}
 	}
@@ -2543,12 +2431,12 @@ d_dunelands = {
 		weight = @clear
 
 		modifier = {
-			add = -1	# Keep until space needed on generator, otherwise not worth the upkeep.
+			set = @base	# Keep until space needed on generator, otherwise not worth the upkeep.
 			root = { colony_type = col_generator }
 		}
 
 		modifier = {
-			add = -1
+			set = @base
 			root = {
 				OR = {
 					any_owned_pop = {
@@ -2631,10 +2519,10 @@ d_highland_lake = {
 		weight = @keep
 
 		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = 1		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
+			set = @base		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
 			root = {
 				OR = {
 					colony_type = col_industrial
@@ -2731,9 +2619,10 @@ d_lakelands = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = 1		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
+			set = @base		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
 			root = {
 				OR = {
 					colony_type = col_industrial
@@ -2749,7 +2638,7 @@ d_lakelands = {
 		}
 
 		modifier = {
-			add = 0.75
+			add = @clear
 			owner = { has_ai_personality = ruthless_capitalists }	# Can we pollute this somehow?
 		}
 	}
@@ -2820,9 +2709,10 @@ d_lowland_hills = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
 				OR = {
 					colony_type = col_farming
@@ -2918,12 +2808,12 @@ d_misty_plains = {
 		weight = @clear
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = { colony_type = col_farming }
 		}
 
 		modifier = {
-			add = -100
+			set = @always_keep
 			root = { is_planet_class = pc_nuked }	# Mostly for flavor, but can also be more useful for the food on tombs
 		}
 	}
@@ -2963,7 +2853,7 @@ d_salt_flats = {
 		planet_max_districts_add = -1
 		district_mining_max = 1
 		planet_miners_minerals_produces_mult = 0.15
-		habitability_ceil_add = -0.1
+		pop_environment_tolerance = -0.1
 	}
 
 	triggered_planet_modifier = {
@@ -2998,13 +2888,15 @@ d_salt_flats = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -1.5
+			set = @keep
 			root = { colony_type = col_mining }
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				has_ai_personality = hegemonic_imperialists	# Minerals matter more
 				has_ai_personality = ruthless_capitalists	# Easy profits
@@ -3013,6 +2905,11 @@ d_salt_flats = {
 				has_ai_personality = spiritual_seekers	# Water from salt
 				has_ai_personality = evangelising_zealots
 			}
+		}
+
+		modifier = {
+			set = @keep
+			owner = { has_trait = trait_lithoid }
 		}
 	}
 }
@@ -3076,17 +2973,18 @@ d_arid_plains = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -1000	# Free district for dry species
-			owner.home_planet = {
-				is_dry = yes
-			}
+			set = @base
+			root = { colony_type = col_generator }
 		}
 
 		modifier = {
-			add = -1
-			root = { colony_type = col_generator }
+			set = always_keep	# Free district for dry species
+			owner.home_planet = {
+				is_dry = yes
+			}
 		}
 	}
 }
@@ -3130,7 +3028,7 @@ d_sandsea = {
 
 	planet_modifier = {
 		planet_max_districts_add = -3
-		district_generator_max = 2
+		district_generator_max = 1
 		planet_jobs_minerals_produces_mult = -0.1
 	}
 
@@ -3170,7 +3068,7 @@ d_sandsea = {
 		weight = @very_low
 
 		modifier = {
-			factor = 4
+			factor = 2
 			is_planet_class = pc_desert
 		}
 		modifier = {
@@ -3187,7 +3085,7 @@ d_sandsea = {
 		weight = @always_clear
 
 		modifier = {
-			add = -1000	# Only if you can live under the sand (I don't think the AI can take this in vanilla, but for custom empires)
+			set = @always_keep	# Only if you can live under the sand
 			owner_main_species = { has_trait = trait_aquatic }
 			owner.home_planet = { is_dry = yes }
 		}
@@ -3250,14 +3148,15 @@ d_sandstone_cliffs = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			root = { colony_type = col_mining }
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			owner = {
 				OR = {
 					has_civic = civic_mining_guilds
@@ -3332,19 +3231,15 @@ d_highlands = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -2.25
+			set = @keep
 			root = { colony_type = col_mining }
 		}
 
 		modifier = {
-			add = 0.25
-			root = { free_district_slots < 2 }
-		}
-
-		modifier = {
-			add = -0.5
+			set = @keep
 			root = { free_amenities < 5 }
 		}
 	}
@@ -3397,8 +3292,10 @@ d_rough_plains = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = 1	# Clear unless you really need the farming space AND have the amenities covered
+			set = @base	# Clear unless you really need the farming space AND have the amenities covered
 			root = {
 				colony_type = col_farming
 				num_districts = {
@@ -3418,6 +3315,7 @@ d_rough_plains = {
 d_seaweed_shoals = {
 	icon = d_boggy_fens
 	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3493,14 +3391,15 @@ d_seaweed_shoals = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = { colony_type = col_farming }
 		}
 
 		modifier = {
-			add = -0.5	# Keep for sure if aquatic farm world.
+			set = @always_keep	# Keep for sure if aquatic farm world.
 			root = { colony_type = col_farming }
 			owner = { has_trait = trait_aquatic }
 		}
@@ -3509,6 +3408,7 @@ d_seaweed_shoals = {
 
 d_gas_vents = {
 	category = deposit_cat_energy
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 	should_swap_deposit_on_terraforming = no
@@ -3563,8 +3463,11 @@ d_gas_vents = {
 	ai_weight = {
 		weight = @keep
 
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = { colony_type = col_generator }
 		}
 	}
@@ -3609,12 +3512,8 @@ d_tbm_slums = {
 
 
 	planet_modifier = {
-		planet_max_districts_add = -1
 		#planet_researchers_society_research_produces_add = 1
 		
-		### Reduces amenities but also amenities usage; you'll get more of these on big worlds with lots of worker pops. At large populations, the percentage will outweigh the flat hit.
-		### Egalitarian empires will struggle with the happiness penalties, but slums may be a useful buff for some ethic types (e.g., Authoritarian).
-		planet_amenities_add = -5
 		pop_amenities_usage_mult = -0.05
 		pop_cat_worker_happiness = -0.05
 		planet_crime_mult = 0.05
@@ -3627,8 +3526,9 @@ d_tbm_slums = {
 	ai_weight = {
 		weight = @clear
 
+		# Will lead to quite a few of these, but should crop up on AI worlds where amenities is a problem; basically realism/flavor
 		modifier = {
-			add = -0.25
+			set = @keep
 			owner = {
 				OR = {
 					has_ai_personality = hegemonic_imperialists
@@ -3638,11 +3538,11 @@ d_tbm_slums = {
 			}
 		}
 
-		modifier = {
-			add = -0.5
-			owner = { is_authoritarian = yes }
-			root = { num_pops > 40 }
-		}
+		# modifier = {
+		# 	set = @keep
+		# 	owner = { is_authoritarian = yes }
+		# 	root = { num_pops > 40 }
+		# }
 	}
 }
 
@@ -3676,7 +3576,14 @@ d_tbm_crater = {
 	}
 
 	ai_weight = {
-		weight = @always_clear
+		weight = @clear
+
+		inline_script = tbm_ai_empire_weights
+
+		modifier = {
+			set = @keep
+			root = { colony_type = col_mining }
+		}
 	}
 }
 
@@ -3716,30 +3623,14 @@ d_tbm_industrial_wasteland = {
 		planet_crime_mult = 0.1
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			any_owned_pop = {
-				has_job = researcher
-			}
-		}
-		modifier = {
-			planet_researchers_engineering_research_produces_add = 1
-		}
-	}
-
 	potential = { always = no }
 
 	ai_weight = {
 		weight = @clear
 
 		modifier = {
-			add = -1	# Keep until a district is needed so long as there's a researcher.
-			root = { 
-				any_owned_pop = {
-					has_job = researcher	
-				}
-			}
+			set = @keep
+			owner = { has_ai_personality = ruthless_capitalists }
 		}
 	}
 }
@@ -3747,6 +3638,7 @@ d_tbm_industrial_wasteland = {
 d_rubble = {
 	icon = d_rubble
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3789,6 +3681,7 @@ d_rubble = {
 d_collapsed_cliffs = {
 	icon = d_veiny_cliffs
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3824,8 +3717,10 @@ d_collapsed_cliffs = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -1.5
+			set = @keep
 			root = { colony_type = col_mining }
 		}
 	}
@@ -3834,6 +3729,7 @@ d_collapsed_cliffs = {
 d_great_river_obstructed = {
 	icon = d_great_river
 	category = deposit_cat_final
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3889,6 +3785,7 @@ d_great_river_obstructed = {
 d_urban_power_plant = {
 	icon = d_reactor
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3904,7 +3801,6 @@ d_urban_power_plant = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -1
 		district_generator_max = 1
 		planet_technician_consumer_goods_upkeep_mult = -0.1 # Convenient commuting
 		planet_amenities_mult = -0.1
@@ -3915,10 +3811,10 @@ d_urban_power_plant = {
 	}
 
 	ai_weight = {
-		weight = @base
+		weight = @clear
 
 		modifier = {
-			add = 5	# Keep, but only on generator worlds where we're actually getting some benefit.
+			set = @keep	# Keep, but only on generator worlds where we're actually getting some benefit.
 			root = {
 				colony_type = col_generator
 				num_assigned_jobs = {
@@ -3929,11 +3825,11 @@ d_urban_power_plant = {
 		}
 
 		modifier = {
-			add = 100	# Keep around if empire needs the energy
+			set = @always_keep	# Keep around if empire needs the energy
 			owner = {
 				resource_income_compare = {
 					resource = energy
-					value < 10
+					value < 30
 				}
 			}
 		}
@@ -3943,6 +3839,7 @@ d_urban_power_plant = {
 d_geothermal_power_plant = {
 	icon = d_bunker_door
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3973,6 +3870,7 @@ d_geothermal_power_plant = {
 d_hydro_plant = {
 	icon = d_ruins_medium
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4003,6 +3901,7 @@ d_hydro_plant = {
 d_dyke = {
 	icon = d_natural_farmland
 	category = deposit_cat_final
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4028,8 +3927,8 @@ d_dyke = {
 }
 
 d_settlement = {
-
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 	
@@ -4041,7 +3940,7 @@ d_settlement = {
 		category = deposit_blockers
 		upkeep = {
 			unity = 1
-			mult = trigger:num_pops
+			mult = value:colonial_strain_infrastructure
 		}
 		cost = {
 			energy = 200
@@ -4058,12 +3957,18 @@ d_settlement = {
 	}
 
 	ai_weight = {
-		weight = @base
+		weight = @clear
+
+		modifier = {
+			set = @keep
+			free_housing <= 3
+		}
 	}
 }
 
 d_frontier_farmstead = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4101,7 +4006,7 @@ d_frontier_farmstead = {
 		weight = @base
 
 		modifier = {
-			add = -1	# Should lead to agrarians having smaller, less developed worlds with lots of farm districts and lots of frontier homesteads for conquerors to pillage
+			set = @always_keep	# Should lead to agrarians having smaller, less developed worlds with lots of farm districts and lots of frontier homesteads for conquerors to pillage
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 	}
@@ -4109,6 +4014,7 @@ d_frontier_farmstead = {
 
 d_dustbowl = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4141,7 +4047,7 @@ d_dustbowl = {
 		weight = @clear
 
 		modifier = {
-			add = -2
+			set = @keep
 			root = {
 				colony_type = col_mining
 				num_free_districts = {
@@ -4150,11 +4056,20 @@ d_dustbowl = {
 				}
 			}
 		}
+
+		modifier = {
+			set = @keep		# Avoid zapping districts in use. Should mean dustbowls stick around on developed worlds, which is the idea flavor-wise
+			num_free_districts = {
+				type = any
+				value < 1
+			}
+		}
 	}
 }
 
 d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld variant right now.
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4187,7 +4102,7 @@ d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld 
 		weight = @keep
 
 		modifier = {
-			add = 1000	# Keep as no negative effects but don't block ecu.
+			set = @always_clear	# Keep as no negative effects but don't block ecu.
 			root = { free_district_slots = 0 }
 			owner = { has_ascension_perk = ap_arcology_project }
 		}
@@ -4195,8 +4110,8 @@ d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld 
 }
 
 d_moisture_farms = {
-
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4223,6 +4138,7 @@ d_moisture_farms = {
 
 d_black_market = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4251,8 +4167,10 @@ d_black_market = {
 	ai_weight = {
 		weight = @clear
 
+		inline_script = tbm_ai_empire_weights
+
 		modifier = {
-			add = -1
+			set = @keep
 			owner = {
 				has_ai_personality = ruthless_capitalists	# Market economy
 				has_ai_personality = hegemonic_imperialists	# We don't really care
@@ -4264,6 +4182,7 @@ d_black_market = {
 
 d_private_mines = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4295,8 +4214,9 @@ d_private_mines = {
 }
 
 d_coal_bed = {
-	category = deposit_cat_blockers_natural
 	icon = d_mining_tunnels
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4340,37 +4260,21 @@ d_coal_bed = {
 	ai_weight = {
 		weight = @clear
 
-		inline_script = "tbm_personality_weights"
-		inline_script = "tbm_designation_weights"
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = { colony_type = col_generator }
 		}
-
-		modifier = {
-			add = 1	# Clear this if we don't have gases, or are running a deficit and will need the +50. Ideally, this should help AIs get a bit mor SRs.
-			owner = {
-				OR = {
-					resource_income_compare = {
-						resource = exotic_gases
-						value < 0
-					}
-					has_country_resource = {
-						type = exotic_gases
-						amount = 0
-					}
-				}
-			}
-		}
 	}
-
-
 }
 
 d_subterranean_gas_lake = {
-	category = deposit_cat_blockers_natural
 	icon = d_magma_lake
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4418,16 +4322,17 @@ d_subterranean_gas_lake = {
 	ai_weight = {
 		weight = @clear
 
-		inline_script = "tbm_personality_weights"
-		inline_script = "tbm_designation_weights"
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = { colony_type = col_generator }
 		}
 
 		modifier = {
-			add = 1	# Clear this if we don't have gases, or are running a deficit and will need the +50. Ideally, this should help AIs get a bit mor SRs.
+			set = @clear	# Clear this if we don't have gases, or are running a deficit and will need the +50. Ideally, this should help AIs get a bit mor SRs.
 			owner = {
 				OR = {
 					resource_income_compare = {
@@ -4446,6 +4351,7 @@ d_subterranean_gas_lake = {
 
 d_oil_fields_at_first_light = {
 	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 	
 	use_for_min_max_adjustments = yes
 
@@ -4495,28 +4401,13 @@ d_oil_fields_at_first_light = {
 	ai_weight = {
 		weight = @base
 
-		inline_script = "tbm_personality_weights"
-		inline_script = "tbm_designation_weights"
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = { colony_type = col_generator }
-		}
-
-		modifier = {
-			add = 1	# Clear this if we don't have gases, or are running a deficit and will need the +50. Ideally, this should help AIs get a bit mor SRs.
-			owner = {
-				OR = {
-					resource_income_compare = {
-						resource = exotic_gases
-						value < 0
-					}
-					has_country_resource = {
-						type = exotic_gases
-						amount = 0
-					}
-				}
-			}
 		}
 	}
 }
@@ -4524,6 +4415,7 @@ d_oil_fields_at_first_light = {
 d_fusion_reactor = {
 	icon = d_reactor
 	category = deposit_cat_energy
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4555,8 +4447,9 @@ d_fusion_reactor = {
 }
 
 d_cold_fusion_pits = {
-	category = deposit_cat_blockers
 	icon = d_quarantine_zone
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4588,8 +4481,9 @@ d_cold_fusion_pits = {
 }
 
 d_antimatter_core = {
-	category = deposit_cat_blockers
 	icon = d_broken_transformer
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4622,6 +4516,7 @@ d_antimatter_core = {
 
 d_zero_point_modules = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4851,6 +4746,7 @@ d_colonist_mountain = {
 d_great_desert = {
 	icon = d_searing_desert
 	category = deposit_cat_artificial
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4874,6 +4770,7 @@ d_great_desert = {
 d_great_city = {
 	icon = d_searing_desert
 	category = deposit_cat_artificial
+	is_for_colonizable = yes
 	
 	use_for_min_max_adjustments = yes
 
@@ -4897,6 +4794,7 @@ d_great_city = {
 d_submerged_zro_seam = {
 	icon = d_submerged_ore_veins
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4971,6 +4869,7 @@ d_submerged_zro_seam = {
 d_prototype_gas_generator = {
 	icon = d_submerged_ore_veins
 	category = deposit_cat_artificial
+	is_for_colonizable = yes
 	
 	use_for_min_max_adjustments = yes
 
@@ -4997,6 +4896,7 @@ d_prototype_gas_generator = {
 d_private_farming_colony = {
 	icon = d_frontier_farmstead
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -5028,21 +4928,22 @@ d_private_farming_colony = {
 
 # Fully-featured volcano that spawns randomly and has blocker swaps. Separated mainly to not interfere with event volcanoes that PDX tends to like to put on scripted worlds in very great number.
 d_tbm_active_volcano = {
-	category = deposit_cat_blockers_natural
 	icon = d_active_volcano
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
 
-	blocker_swap_types = {
-		d_tempestous_mountain
-		d_prosperous_mesa
-		d_rich_mountain
-		d_fjordland
-		d_tropical_island
-	}
+	# blocker_swap_types = {
+	# 	d_tempestous_mountain
+	# 	d_prosperous_mesa
+	# 	d_rich_mountain
+	# 	d_fjordland
+	# 	d_tropical_island
+	# }
 
 	time = 720
 
@@ -5152,19 +5053,30 @@ d_tbm_active_volcano = {
 		weight = @clear
 
 		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -0.75
+			set = @keep
 			owner = {
 				is_machine_empire = yes
 			}
 		}
 
 		modifier = {
-			add = -0.5
+			set = @keep
 			root = {
-				colony_type = col_generator
+				OR = {
+					colony_type = col_generator
+					AND = {
+						colony_type = col_farming
+						num_free_districts = {
+							type = any
+							value > 1
+						}
+						owner = { has_technology = tech_volcano }
+					}
+				}
+				
 			}
 		}
 	}

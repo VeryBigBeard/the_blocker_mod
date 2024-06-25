@@ -7,6 +7,12 @@
  d_homeworld_bandit_camp:0 "Bandit Camp"
  d_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
 
+ d_gestalt_homeworld_bandit_camp:0 "Bandit Camp"
+ d_gestalt_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
+
+ d_gaia_homeworld_bandit_camp:0 "Bandit Camp"
+ d_gaia_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
+
  d_fossil_fuel_reserves:0 "Fossil Fuel Reserves"
  d_fossil_fuel_reserves_desc:0 "The nation-states of the 21st century built up massive strategic energy reserves in anticipation of global conflicts. Still dotted around the globe, these tank fields, battery farms, and generator complexes serve as a reminder of the century's turmoil."
 
@@ -73,7 +79,7 @@
 
  d_homeworld_extreme_weather:0 "Extreme Weather"
  d_homeworld_extreme_weather_desc:0 "A product of unchecked global warming in the early 21st century, this region is regularly wracked by severe seasonal storms. Sturdy communities cling on amid the high-maintenance wind farms."
- d_extreme_weather_tooltip:0 "$r_unity$ §YUnity Upkeep increases for each £building£ Building constructed."
+ d_extreme_weather_tooltip:0 "$r_unity$ Upkeep increases for each £building£ Building constructed.§!"
 
  d_experimental_geothermal_tap:0 "Experimental Geothermal Tap"
  d_experimental_geothermal_tap_desc:0 "Designed in 2107 to combat fossil fuel dependency, this network of experimental subsurface taps never lived up to the promise of the 22nd century, and a recent news exposé has revealed much of the science involved to be based on a hoax."
@@ -86,6 +92,9 @@
 
  d_gestalt_inaugural_spaceport:0 "Inaugural Spaceport"
  d_gestalt_inaugural_spaceport_desc:0 "This futuristic launchpad for interplanetary construction craft was a landmark achievement -- in 2063. After nearly 150 years of continuous use, its cargo docks are falling apart and its maintenance budget has been identified as a strategic liability."
+
+ d_mitochondria:0 "Mitochondria"
+ d_mitochondria_desc:0 "For any organism, to consume food is to generate energy. To sustain an Organism as large as a hive-mind, a vast network of sub-cellular prokaryotes to metabolizes nutrients, converting them into energy. Not all these organisms are necessarily native to the hive itself, but evolved alongside and within its complex web of fibers and filaments."
 
  ### FOOD
 
@@ -120,11 +129,11 @@
 
  d_megaliths:0 "Megaliths"
  d_megaliths_desc:0 "Colossal constructions built by the ancient awoken still dot the landscape, serving as reminders of stones gone to sleep."
- d_megaliths_tooltip:0 "§Y$r_unity$ incfome increases with the number of Lithoid £pops£ §CPops§! living on the world.§!"
+ d_megaliths_tooltip:0 "§Y$r_unity$ incfome increases every year§!"
 
  d_crumbling_mountain:0 "Crumbling Mountain"
  d_crumbling_mountain_desc:0 "This used to be a mountain, but after being voted Tastiest Landscape on a popular show three years running, very little remains, and surrounding communities have raised concerns about landslides and food security."
- d_crumbling_mountain_tooltip:0 "§Y$r_unity$ Upkeep increases every year.§!"
+ d_crumbling_mountain_tooltip:0 "§Y$r_unity$ Upkeep increases with the number of Lithoid £pops£ §CPops§! living on the world.§!"
 
  d_crystal_outcrops:0 "Crystalline Outcrops"
  d_crystal_outcrops_desc:0 "These mysterious and diamond-hard crystals were once thought to be magic, though more recent geocultural study has linked their properties to our own anatomy. Growing them takes millennia and extracting them from the remotest areas of the planet can take months, but their mineral output is among the most nutritious for young lithoids available."
@@ -276,6 +285,9 @@
 
  d_outdated_food_equipment:0 "Large Nutrient Vacuoles"
  d_outdated_food_equipment_desc:0 "These large, easily transported sacs of nutritious fluids have allowed for unusually cohesive drone populations and healthy growth across the entire planet."
+
+ d_central_power_nexus:0 "Central Power Nexus"
+ d_central_power_nexus_desc:0 "While not structurally the center of the Machine, the Central Power Nexus serves as the central power and data distribution condui. Almost every major subroutine is registered and synchronized here, and it is absolutely critical to the system's functioning.\n\n§YThe £blocker£ Central Power Nexus is a very vulnerable part of our infrastructure and it must be protected from any planetary damage. Routing around it is possible, but expensive.§!"
 
  ### LOST COLONY
 

@@ -10,21 +10,11 @@
 # Not called on most negative features as the logic is inverse; these are handled in deposits/.
 # This also contains the vanilla Environmentalist modifier until I decide how to change it.
 
-# Habilitability - do we like planet-appropriate features? (This will help with terraforming down the line)
-modifier = {
-	add = -0.33
-	from = {
-		is_ideal_planet_class = {
-			who = owner_main_species
-			status = yes
-		}
-	}
-}
 
 # Unity, research designations - this: planet
 modifier = {
-	add = -0.55	# Should still clear if we need a district, but not before other stuff!
-	from = {
+	set = 0
+	root = {
 		OR = {
 			colony_type = col_bureau
 			colony_type = col_bureau_hive
@@ -32,13 +22,18 @@ modifier = {
 			colony_type = col_bureau_machine
 			colony_type = col_rural
 			colony_type = col_rural_gestalt
+			colony_type = col_research
+		}
+		num_free_districts = {
+			type = any
+			value < 1
 		}
 	}
 }
 
 # Special types
 modifier = {
-	add = -1
+	set = 0
 	from = {
 		OR = {
 			colony_type = col_penal
@@ -50,8 +45,8 @@ modifier = {
 }
 
 modifier = {
-	add = 0.55
-	from = {
+	set = 1
+	root = {
 		OR = {
 			colony_type = col_industrial
 			colony_type = col_foundry
@@ -60,30 +55,17 @@ modifier = {
 	}
 }
 
-# # Sector focuses
-# # These stack with the colony_type!
-# # root = planet!
-# modifier = {
-# 	add = -1
-# 	fromfrom.sector = {
-# 		has_any_sector_focus = yes # Let's bail out of this as quickly as possible if we're not automating.
-# 		OR = {
-# 			has_sector_focus = basic
-# 			has_sector_focus = research
-# 			has_sector_focus = unity
-# 		}
-# 	}
-# }
-
-# modifier = {
-# 	add = 0.25	# We want industrial sectors to clear features, but still based on other weights, and not go hog clearing all of them right away.
-# 	fromfrom.sector = {
-# 		has_any_sector_focus = yes # Let's bail out of this as quickly as possible if we're not automating.
-# 		OR = {
-# 			has_sector_focus = manufacturing
-# 		}
-# 	}
-# }
+# Override for empires aiming for acus
+modifier = {
+	set = @clear
+	owner = {
+		OR = {
+			has_ascension_perk = ap_arcology_project
+			has_ascension_perk = ap_hive_worlds
+			has_ascension_perk = ap_machine_worlds
+		}
+	}
+}
 
 # Vanilla
 modifier = {
