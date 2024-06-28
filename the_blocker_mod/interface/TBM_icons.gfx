@@ -15,6 +15,11 @@ spriteTypes = {
 		name = "TBM_message_blocker"
 		texturefile = "gfx/interface/icons/message/message_blocker_icon.dds"
 	}
+
+	spriteeType = {
+		name = "TBM_message_blocker_yellow"
+		textureFile = "gfx/interface/icons/message/message/blocker_icon/yellow.dds"
+	}
 }
 
 spriteTypes = {
@@ -35,6 +40,13 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_text_amoeba"
 		textureFile = "gfx/interface/icons/text_icons/mod_amoeba.dds"
+	}
+}
+
+spriteTypes = {
+	spriteType = {
+		name = "GFX_text_blocker_yellow"
+		textureFile = "gfx/interface/icons/text_icons/tile_blocker_yellow"
 	}
 }
 

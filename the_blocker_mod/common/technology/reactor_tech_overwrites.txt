@@ -118,7 +118,7 @@ tech_zero_point_power = {
 		hide_prereq_for_desc = component
 		custom = {
 			title = "TECH_UNLOCK_ZERO_POINT_POWER_TITLE"
-			desc = "TECH_UNLOCK_ZERO_POINT_POWER_DESC"
+			#desc = "TECH_UNLOCK_ZERO_POINT_POWER_DESC"
 		}
 	}
 

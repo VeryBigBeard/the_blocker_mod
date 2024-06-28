@@ -70,7 +70,7 @@
  tbm_buildings_colonial_infrastructure_tooltip:0 "\n\nColonial infrastructure buildings cannot be built after a planet has consolidated into a single capital region under a §CPlanetary Capital§Y or equivalent. Any existing buildings will fall into disrepair due to being too far from the seat of local power.§!"
 
  building_xeno_synaptic_node:0 "Xeno-Synaptic Node"
- building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£ Xeno-Synaptic Node§C requires significant upkeep, but will produce £research£ §CResearch§! for many £blocker£ §YNatural Blockers§! on this world."
+ building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£ Xeno-Synaptic Node§C requires significant upkeep, but will produce £research£ §CResearch§! for many £blocker_yellow£ §YNatural Blockers§! on this world."
 
  building_science_outposts:0 "Science Outposts"
  building_science_outposts_desc:0 "As soon as the colonization effort was announced, researchers were eager to set up laboratories on-site to study the alien world first-hand."
@@ -512,9 +512,9 @@
  recreational_investment:0 "Recreational Investment"
 
  kelp_bioweapons:0 "Kelp Bio-Weapons"
- kelp_bioweapons_tooltip:0 "Our fleets now use explosive warheards containing lethally toxic barbs and aerosols derived from £blocker£ §YToxic Kelp§!.\n\n"
+ kelp_bioweapons_tooltip:0 "Our fleets now use explosive warheards containing lethally toxic barbs and aerosols derived from £blocker_yellow£ §YToxic Kelp§!.\n\n"
  kelp_breakfasts:0 "Kelp For Breakfast"
- kelp_breakfast_tooltip:0 "Once the poisonous barbs are removed, £blocker£ §YToxic Kelp§! makes for a nutritious way to start your day. So far, there have been only a few casualties.\n\n"
+ kelp_breakfast_tooltip:0 "Once the poisonous barbs are removed, £blocker_yellow£ §YToxic Kelp§! makes for a nutritious way to start your day. So far, there have been only a few casualties.\n\n"
 
  bigger_fish:0 "Bigger Fish"
  bigger_fish_desc:0 "There is always a bigger fish."
@@ -544,7 +544,7 @@
  subsurface_spaceport_opened_desc:0 "A new sub-aquatic spaceport has greatly facilitated trade and travel on this planet."
 
  nanocomposite_shortage:0 "Nanocomposite Shortage"
- nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker£ $d_experimental_geothermal_tap§! have led to delays in military shipbuiliding requisitions."
+ nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker_yellow£ $d_experimental_geothermal_tap§! have led to delays in military shipbuiliding requisitions."
 
  breathing_without_the_body:0 "Breathing Without the Body"
  breathing_without_the_body_desc:0 "Over the course of milennia, the Organism's evolution encompassed and relied upon the whims and fortunes of its surroundings. These symbiotic lifeforms have been essential to the hive's functioning, but also a liability, uncontrolled by the consciousness of all things. Now, our technological progress has allowed us to replicate such symbioses for ourselves, strengthening and, where necessary, replacing the vulnerabilities of chance, fortune, and survival."
@@ -553,7 +553,7 @@
  overambitious_evolution_desc:0 "Over the course of milennia, the Organism's evolution encompassed and relied upon the whims and fortunes of its surroundings. These symbiotic lifeforms have been essential to the hive's functioning, and we have too quickly tried to replicate and replace their functioning. The mysteries of life itself still elude our consciousness, and even now our voices wither for the loss of this symbiosis."
 
  damaged_power_nexus:0 "Damaged Power Nexus"
- damaged_power_nexus_desc:0 "Recent disasters have resulted in damage to the £blocker£ Central Power Nexus. While failsafes and sub-systems will ensure the machine continues to function, repairs are expected to take some time."
+ damaged_power_nexus_desc:0 "Recent disasters have resulted in damage to the £blocker_yellow£ Central Power Nexus. While failsafes and sub-systems will ensure the machine continues to function, repairs are expected to take some time."
 
  highway_engineering:0 "Superhighway Engineering"
  highway_engineering_desc:0 "Recent efforts to the restore this world's superhighway network are progressing apace, and almost every engineer is working to ensure this massive project is completed on time and budget."
@@ -587,6 +587,11 @@
  decision_open_antimatter_core_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nAlthough antimatter reactors are smaller than fusion cores, they are several orders of magnitude more finicky, and require extensive support networks to regulate the matter/antimatter flow."
  decion_open_zero_point_module:0 "Install New Zero-Point Module"
  decision_open_zero_point_module:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nA Zero-Point Module itself is tiny, but the power it produces is immense. Most of this land will be set aside for transformers, support cables, and quite honestly a housing suitably ornate for such advanced energy technology."
+
+ TECH_UNLOCK_FUSION_POWER_TITLE:0 "Open New Fusion Reactor"
+ TECH_UNLOCK_COLD_FUSION_POWER_TITLE:0 "Open Cold Fusion Pits"
+ TECH_UNLOCK_ANTIMATTER_POWER_TITLE:0 "Build Antimatter Core"
+ TECH_UNLOCK_ZERO_POINT_POWER_TITLE:0 "Install Zero-Point Module"
 
 
  mine_safety_standards:0 "REPLACE_ME"

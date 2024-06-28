@@ -64,7 +64,7 @@ message_type = {
 
 # Frontier Farmland Generator (tbm_handler.10)
 message_type = {
-	icon = TBM_message_neutral
+	icon = TBM_message_blocker_yellow
 	key = "FRONTIER_FARMLAND"
 	icon_frame = 3
 	sound = alert_negative
@@ -77,7 +77,7 @@ message_type = {
 # Dustbowl Generator
 message_type = {
 	key = "DUSTBOWL_GENERATOR"
-	icon = TBM_message_bad_thing
+	icon = TBM_message_blocker_yellow
 	icon_frame = 1
 	sound = alert_negative
 	auto_opens = none
@@ -92,7 +92,7 @@ message_type = {
 # Sudden Sinkhole
 message_type = {
 	key = "SUDDEN_SINKHOLE"
-	icon = TBM_message_bad_thing
+	icon = TBM_message_blocker
 	icon_frame = 1
 	sound = alert_negative
 	auto_opens = none
