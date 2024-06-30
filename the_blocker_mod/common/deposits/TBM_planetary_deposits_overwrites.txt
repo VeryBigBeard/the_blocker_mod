@@ -1952,31 +1952,27 @@ d_searing_desert = {
 
 	should_swap_deposit_on_terraforming = no
 
+	prerequisites = {
+		"tech_housing_1"
+	}
+
 	can_be_cleared = {
 		hidden_trigger = {
 			fail_text = {
 				text = d_searing_desert_vital
 			}
-			NOR = {
-				owner = {
-					NOR = {
-						has_country_flag = desert_cities
-						has_modifier = waters_of_life
-						has_modifier = great_desert_city
-					}
-				}
-				planet = {
-					OR = {
-						has_modifier = bringing_water
-						has_modifier = dream_city
-					}
+			owner = {
+				NOR = {
+					has_country_flag = desert_cities
+					has_modifier = waters_of_life
+					has_modifier = great_desert_city
 				}
 			}
-		}
-		owner = {
-			OR = {
-				has_technology = tech_housing_1
-				has_technology = tech_terrestrial_sculpting
+			planet = {
+				NOR = {
+					has_modifier = bringing_water
+					has_modifier = dream_city
+				}
 			}
 		}
 	}
@@ -2991,7 +2987,6 @@ d_ore_rich_caverns = {
 		category = deposit_blockers_natural
 		cost = {
 			energy = 600
-			engineering_research = 50
 		}
 	}
 
@@ -3005,7 +3000,7 @@ d_ore_rich_caverns = {
 
 	planet_modifier = {
 		district_mining_max = 2
-		planet_miners_minerals_produces_mult = -0.05
+		planet_miners_engineering_research_upkeep_add = 1
 	}
 
 	triggered_planet_modifier = {

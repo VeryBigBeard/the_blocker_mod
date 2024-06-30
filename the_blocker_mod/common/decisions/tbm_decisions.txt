@@ -37,66 +37,67 @@
 # 	}
 # }
 
-decision_restore_climate = {
-	owned_planets_only = yes
-	enactment_time = 1800
-	resources = {
-		category = decisions
-		cost = {
-			# society_research = 2000
-			energy = 5000
-		}
-	}
-	potential = {
-		exists = owner
-		owner = { has_technology = tech_climate_restoration	}
-	}
+# decision_restore_climate = {
+# 	owned_planets_only = yes
+# 	enactment_time = 1800
+# 	resources = {
+# 		category = decisions
+# 		cost = {
+# 			# society_research = 2000
+# 			energy = 5000
+# 		}
+# 	}
+# 	potential = {
+# 		exists = owner
+# 		owner = { has_technology = tech_climate_restoration	}
+# 		NOT = { is_planet_class = pc_habitat }
+# 	}
 
-	effect = {
-		reroll_deposits = yes
-	}
+# 	effect = {
+# 		reroll_deposits = yes
+# 	}
 
-	ai_weight = {
-		weight = 0
-		modifier = {
-			add = 1
-			OR = {
-				AND = {
-					num_districts = {
-						type = district_mining
-						value < 2
-					}
-					num_free_districts = {
-						type = district_mining
-						value = 0
-					}
-					owner = {
-						has_country_resource = {
-							type = minerals
-							amount < 500
-						}
-					}
-				}
-				AND = {
-					num_districts = {
-						type = district_farming
-						value < 2
-					}
-					num_free_districts = {
-						type = district_farming
-						value = 0
-					}
-					owner = {
-						has_country_resource = {
-							type = food
-							amount < 500
-						}
-					}
-				}
-			}
-		}
-	}
-}
+# 	ai_weight = {
+# 		weight = 0
+# 		modifier = {
+# 			add = 1
+# 			OR = {
+# 				AND = {
+# 					num_districts = {
+# 						type = district_mining
+# 						value < 2
+# 					}
+# 					num_free_districts = {
+# 						type = district_mining
+# 						value = 0
+# 					}
+# 					owner = {
+# 						has_country_resource = {
+# 							type = minerals
+# 							amount < 500
+# 						}
+# 					}
+# 				}
+# 				AND = {
+# 					num_districts = {
+# 						type = district_farming
+# 						value < 2
+# 					}
+# 					num_free_districts = {
+# 						type = district_farming
+# 						value = 0
+# 					}
+# 					owner = {
+# 						has_country_resource = {
+# 							type = food
+# 							amount < 500
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+# }
 
 ### Reactor Decisions
 #	Open a new super-reactor on your planet and reap the benefits. Safer with better tech!
@@ -118,6 +119,7 @@ decision_open_fusion_reactor = {
 		exists = owner
 		owner = { has_technology = tech_fusion_power }
 		NOT = { has_deposit = d_fusion_reactor }	# planet - we don't want two, partly balance partly realism
+		NOT = { is_planet_class = pc_habitat }
 	}
 
 	effect = {
@@ -166,6 +168,7 @@ decion_open_cold_fusion_pit = {
 	potential = {
 		owner = { has_technology = tech_cold_fusion_power }
 		NOT = { has_deposit = d_cold_fusion_pits }	# planet - we don't want two, partly balance partly realism
+		NOT = { is_planet_class = pc_habitat }
 	}
 
 	effect = {
@@ -218,6 +221,7 @@ decion_open_antimatter_core = {
 	potential = {
 		owner = { has_technology = tech_antimatter_power }
 		NOT = { has_deposit = d_antimatter_core }	# planet - we don't want two, partly balance partly realism
+		NOT = { is_planet_class = pc_habitat }
 	}
 
 	effect = {
@@ -270,6 +274,7 @@ decion_open_zero_point_module = {
 	potential = {
 		owner = { has_technology = tech_zero_point_power }
 		NOT = { has_deposit = d_zero_point_modules }	# planet - we don't want two, partly balance partly realism
+		NOT = { is_planet_class = pc_habitat }
 	}
 
 	effect = {

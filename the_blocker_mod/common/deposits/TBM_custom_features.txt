@@ -798,7 +798,7 @@ d_great_lake = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
-		inline_scrit = tbm_ai_empire_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
 			set = @keep
@@ -4510,6 +4510,7 @@ d_antimatter_core = {
 }
 
 d_zero_point_modules = {
+	icon = d_station_reactor
 	category = deposit_cat_blockers
 	is_for_colonizable = yes
 

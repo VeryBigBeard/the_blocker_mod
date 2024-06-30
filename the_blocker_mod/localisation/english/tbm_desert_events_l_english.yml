@@ -10,7 +10,7 @@
  tbm_desert.31.waters.desc:0 "§EThis can only be chosen once.§!\n\nOur people will learn how to farm the dust and desert, but building larger cities here will be impossible."
  tbm_desert.31.city:0 "These dunes will be the greatest city the galaxy has ever known."
  tbm_desert.31.city.desc:0 "§EThis can only be chosen once.§!\n\nCity-building in other deserts will become easier, but dry worlds will not gain any agricultural bonuses."
- tbm_desert.31.neither:0 "The development of what we have must come before what might one day be."
+ tbm_desert.31.neither:0 "The development of what we have comes before what might one day be."
  tbm_desert.31.neither.desc:0 "§EThis can only be chosen once.§!\n\nOur people will learn to live in the deserts as they are, but building larger cities or farming the hostile sand will remain beyond our reach."
 
  # Downsides
@@ -36,7 +36,7 @@
  # Waters of Life
 
  tbm_desert.38.name:0 "The Waters of Life"
- tbm_desert.38.desc:0 "After years of dreaming, design, and finally construction, a vast irrigation network of aquedects, reservoirs, and even a small river system now criss-crosses [planet.GetName]'s §Y£Searing Desert§!, rendering it arable and liveable for those looking for a new start on the frontier. Small farms, some carefully-planned parks, and even a few bio-energy developments have already begun popping up along the corridors and around the new oases.\n\nWhile these endeavors will undoubtedly help [planet.GetName] in the long-term, additional investment to help guide development in the §EThe Great [planet.GetName] Desert§T might yield additional returns."
+ tbm_desert.38.desc:0 "After years of dreaming, design, and finally construction, a vast irrigation network of aquedects, reservoirs, and even a small river system now criss-crosses [planet.GetName]'s §Y£blocker£ Searing Desert§!, rendering it arable and liveable for those looking for a new start on the frontier. Small farms, some carefully-planned parks, and even a few bio-energy developments have already begun popping up along the corridors and around the new oases.\n\nWhile these endeavors will undoubtedly help [planet.GetName] in the long-term, additional investment to help guide development in the §EThe Great [planet.GetName] Desert§T might yield additional returns."
  tbm_desert.38.grants:0 "Issue land grants to pioneering desert farmers."
  tbm_desert.38.biogas:0 "Bio-Energy is the future."
  tbm_desert.38.jewel:0 "We shall cultivate a garden to rival any in the galaxy."

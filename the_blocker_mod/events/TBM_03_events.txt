@@ -362,9 +362,11 @@ planet_event = {
 		# Consequently, only one reactor can have problems per year, but that seems reasonable.
 		random_deposit = {
 			limit = {
-				is_deposit_type = d_fusion_reactor
-				is_deposit_type = d_cold_fusion_pits
-				is_deposit_type = d_antimatter_core
+				OR = {
+					is_deposit_type = d_fusion_reactor
+					is_deposit_type = d_cold_fusion_pits
+					is_deposit_type = d_antimatter_core
+				}
 			}
 			save_event_target_as = reactor
 		}
@@ -825,6 +827,16 @@ planet_event = {
 	}
 	picture = GFX_evt_glitchy_matrix
 	show_sound = event_worrying_signal
+
+	trigger = {
+		NOT = { has_planet_flag = reactor_warning }
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_planet_flag = reactor_warning 	# You only get one warning
+		}
+	}
 
 	option = {
 		name = UNDERSTOOD

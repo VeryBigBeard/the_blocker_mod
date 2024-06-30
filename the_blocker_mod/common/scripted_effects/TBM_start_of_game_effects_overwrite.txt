@@ -762,10 +762,11 @@ generate_earth_deposits_and_blockers = {
 
 	### TBM Homeworld Features
 
-	# Energy (3, equal to vanilla)
+	# Energy (4, +1 from vanilla)
 	add_deposit = d_homeworld_extreme_weather
 	add_deposit = d_homeworld_bandit_camp
 	add_deposit = d_inaugural_spaceport
+	add_deposit = d_experimental_geothermal_tap
 
 	# Mining (3, equal to vanilla)
 	add_deposit = d_tbm_strip_mine

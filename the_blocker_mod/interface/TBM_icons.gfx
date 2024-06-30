@@ -16,9 +16,9 @@ spriteTypes = {
 		texturefile = "gfx/interface/icons/message/message_blocker_icon.dds"
 	}
 
-	spriteeType = {
+	spriteType = {
 		name = "TBM_message_blocker_yellow"
-		textureFile = "gfx/interface/icons/message/message/blocker_icon/yellow.dds"
+		textureFile = "gfx/interface/icons/message/message/message_blocker_yellow_icon.dds"
 	}
 }
 
@@ -26,6 +26,11 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_text_colonist"
 		texturefile = "gfx/interface/icons/text_icons/mod_colonist.dds"
+	}
+
+	spriteType = {
+		name = "GFX_text_blocker_yellow"
+		textureFile = "gfx/interface/icons/text_icons/tile_blocker_yellow.dds"
 	}
 }
 
@@ -43,11 +48,11 @@ spriteTypes = {
 	}
 }
 
-spriteTypes = {
-	spriteType = {
-		name = "GFX_text_blocker_yellow"
-		textureFile = "gfx/interface/icons/text_icons/tile_blocker_yellow"
-	}
-}
+# spriteTypes = {
+# 	spriteType = {
+# 		name = "GFX_text_blocker_yellow"
+# 		textureFile = "gfx/interface/icons/text_icons/tile_blocker_yellow"
+# 	}
+# }
 
 
