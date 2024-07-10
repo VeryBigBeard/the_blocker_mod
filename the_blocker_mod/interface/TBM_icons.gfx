@@ -18,7 +18,7 @@ spriteTypes = {
 
 	spriteType = {
 		name = "TBM_message_blocker_yellow"
-		textureFile = "gfx/interface/icons/message/message/message_blocker_yellow_icon.dds"
+		texturefile = "gfx/interface/icons/message/message_blocker_icon_yellow.dds"
 	}
 }
 

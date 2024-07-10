@@ -21,7 +21,7 @@ planet_event = {
 	}
 
 	trigger = {
-		is_starting_planet = no
+		NOT = { is_starting_planet = yes }
 		owner = {
 			is_gestalt = no
 			NOT = { has_country_flag = desert_cities }
