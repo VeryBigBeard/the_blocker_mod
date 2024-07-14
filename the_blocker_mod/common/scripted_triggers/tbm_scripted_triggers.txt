@@ -12,8 +12,16 @@ is_ecu = {
 # For is_homeworld except encompassing lost colonies and can evaluate to false
 # scope = planet
 is_starting_planet = {
-	is_homeworld = yes
-	is_lost_colony_starting_planet = no
+	OR = {
+		is_homeworld = yes
+		AND = {
+			owner = { has_origin = origin_lost_colony }
+			this = {
+				is_capital = yes
+				is_custom_capital_location = no
+			}
+		}
+	}	
 }
 
 

@@ -16,6 +16,7 @@ building_xeno_synaptic_node = {
 
 	potential = {
 		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
 		exists = owner
 		owner = { is_gestalt = yes }
 	}
@@ -100,6 +101,7 @@ building_science_outposts = {
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
 	}
 
 	destroy_trigger = {
@@ -162,6 +164,7 @@ building_frontier_spaceport = {
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
 	}
 
 	destroy_trigger = {
@@ -254,6 +257,7 @@ building_colonial_energy_conduits = {
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
 	}
 
 	destroy_trigger = {

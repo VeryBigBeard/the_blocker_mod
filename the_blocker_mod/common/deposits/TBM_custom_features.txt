@@ -798,7 +798,7 @@ d_great_lake = {
 
 		inline_script = tbm_personality_weights
 		inline_script = tbm_designation_weights
-		inline_scrit = tbm_ai_empire_weights
+		inline_script = tbm_ai_empire_weights
 
 		modifier = {
 			set = @keep
@@ -3638,7 +3638,6 @@ d_tbm_industrial_wasteland = {
 d_rubble = {
 	icon = d_rubble
 	category = deposit_cat_blockers
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3681,7 +3680,6 @@ d_rubble = {
 d_collapsed_cliffs = {
 	icon = d_veiny_cliffs
 	category = deposit_cat_blockers
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3729,7 +3727,6 @@ d_collapsed_cliffs = {
 d_great_river_obstructed = {
 	icon = d_great_river
 	category = deposit_cat_final
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3785,7 +3782,6 @@ d_great_river_obstructed = {
 d_urban_power_plant = {
 	icon = d_reactor
 	category = deposit_cat_blockers
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3839,7 +3835,6 @@ d_urban_power_plant = {
 d_geothermal_power_plant = {
 	icon = d_bunker_door
 	category = deposit_cat_blockers
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3870,7 +3865,6 @@ d_geothermal_power_plant = {
 d_hydro_plant = {
 	icon = d_ruins_medium
 	category = deposit_cat_blockers
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3901,7 +3895,6 @@ d_hydro_plant = {
 d_dyke = {
 	icon = d_natural_farmland
 	category = deposit_cat_final
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -3928,7 +3921,6 @@ d_dyke = {
 
 d_settlement = {
 	category = deposit_cat_blockers
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 	
@@ -3968,7 +3960,6 @@ d_settlement = {
 
 d_frontier_farmstead = {
 	category = deposit_cat_blockers
-	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
@@ -4000,6 +3991,10 @@ d_frontier_farmstead = {
 
 	potential = {
 		always = no
+	}
+
+	drop_weight = {
+		weight = 0
 	}
 
 	ai_weight = {
@@ -4515,6 +4510,7 @@ d_antimatter_core = {
 }
 
 d_zero_point_modules = {
+	icon = d_station_reactor
 	category = deposit_cat_blockers
 	is_for_colonizable = yes
 

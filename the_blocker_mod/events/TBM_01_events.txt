@@ -847,8 +847,8 @@ planet_event = {
 	trigger = {
 		is_starting_planet = no
 		OR = {
-			is_deposit_type = d_active_volcano
-			is_deposit_type = d_tbm_active_volcano
+			has_deposit = d_active_volcano
+			has_deposit = d_tbm_active_volcano
 		}	
 		owner = { has_technology = tech_volcano }
 	}
@@ -1828,10 +1828,12 @@ planet_event = {
 					}
 		
 					# Broken machine, partial job
-					planet_event = {
-						id = tbm.34
-						days = 30
-						random = 15
+					25 = {
+						planet_event = {
+							id = tbm.34
+							days = 30
+							random = 15
+						}
 					}
 				}
 			}

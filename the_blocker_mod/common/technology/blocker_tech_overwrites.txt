@@ -448,10 +448,6 @@ tech_toxic_kelp = {
 	category = { new_worlds }
 	prerequisites = { "tech_colonization_1" }
 
-	potential = {
-		always = no 	# Tech currently does nothing in TBM Beta 0.6.4, disabled
-	}
-
 	weight = @tier1weight2
 
 	weight_groups = {

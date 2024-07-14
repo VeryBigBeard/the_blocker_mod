@@ -2,6 +2,79 @@
 
 namespace = tbm_desert
 
+
+### 46. Initial Handler
+#	Added to fine-tune spawning a bit, but this will still be a very common event chain
+planet_event = {
+	id = tbm_desert.46
+
+	is_triggered_only = yes
+	hide_window = yes
+	
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		is_ai = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = { is_starting_planet = yes }
+		owner = {
+			is_gestalt = no
+			NOT = { has_country_flag = desert_cities }
+		}
+		planet = {
+			exists = leader
+			has_deposit = d_arid_highlands		# This is mostly just so the loc works
+			has_deposit = d_searing_desert		
+			NOT = { has_planet_flag = desert_strong }		# Make sure we block firing again for the sand-strong, too.
+			
+			# These are mostly to make sure the effect matter and the scale of the event makes sense.
+			colony_age > 20
+			num_pops > 20
+		}
+	}
+
+	# 40% chance every five years if the planet has a Searing Desert
+	# Should make it a common event without making it so reliable you can count down to it.
+	immediate = {
+		random_list = {
+			40 = {
+				# Scope to one particular Searing Desert and the planet's governor
+				hidden_effect = {
+					random_deposit = {
+						limit = {
+							is_deposit_type = d_searing_desert
+						}
+						save_event_target_as = citydesert
+					}
+					this = {
+						save_global_event_target_as = desert_planet
+					}
+					this.leader = {
+						save_event_target_as = desert_governor
+					}
+					owner = {
+						set_country_flag = desert_cities	# Prevents clearing of deserts during (and after) chain, and ensures chain only fires once.
+					}
+				}
+				
+				# Event Chain begins
+				planet_event = {
+					id = tbm_desert.31
+					days = 180
+					random = 90
+				}
+			}
+			60 = {}
+		}
+	}
+}
+
+
 ### 31. A City of the Desert (Empire Unique)
 #	Now called from tbm_desert.46 to help control spawning and clean up logic.
 planet_event = {
@@ -460,12 +533,10 @@ planet_event = {
 	after = {
 
 		# Removes scoped Searing Desert -- technically not necessary but I may add some more content to this chain at some point that uses this feature.
-		random_deposit = {
-			limit = {
-				exists = event_target:citydesert
-			}
-			remove_deposit = yes	# All this work, and we just went and booted it :(
+		event_target:citydesert = {
+			remove_deposit = yes
 		}
+
 		# This is shiny, though. Don't get too attached to it. For time being, it's only used in this branch and adds some food districts.
 		add_deposit = d_great_desert
 
@@ -612,11 +683,8 @@ planet_event = {
 	after = {
 
 		# Removes scoped Searing Desert -- technically not necessary but I may add some more content to this chain at some point that uses this feature.
-		random_deposit = {
-			limit = {
-				exists = event_target:citydesert
-			}
-			remove_deposit = yes	# All this work, and we just went and booted it :(
+		event_target:citydesert = {
+			remove_deposit = yes
 		}
 
 		# This is shiny, though. Don't get too attached to it. For time being, it's only used in this branch and adds some food districts.
@@ -715,76 +783,5 @@ planet_event = {
 
 	option = {
 		name = tbm_desert.45.no
-	}
-}
-
-### 46. Initial Handler
-#	Added to fine-tune spawning a bit, but this will still be a very common event chain
-planet_event = {
-	id = tbm_desert.46
-
-	is_triggered_only = yes
-	hide_window = yes
-	
-	pre_triggers = {
-		has_owner = yes
-		is_homeworld = no
-		is_ai = no
-		original_owner = yes
-		has_ground_combat = no
-		is_occupied_flag = no
-	}
-
-	trigger = {
-		is_starting_planet = no
-		owner = {
-			is_gestalt = no
-			NOT = { has_country_flag = desert_cities }
-		}
-		planet = {
-			exists = leader
-			has_deposit = d_arid_highlands		# This is mostly just so the loc works
-			has_deposit = d_searing_desert		
-			NOT = { has_planet_flag = desert_strong }		# Make sure we block firing again for the sand-strong, too.
-			
-			# These are mostly to make sure the effect matter and the scale of the event makes sense.
-			colony_age > 20
-			num_pops > 20
-		}
-	}
-
-	# 40% chance every five years if the planet has a Searing Desert
-	# Should make it a common event without making it so reliable you can count down to it.
-	immediate = {
-		random_list = {
-			40 = {
-				# Scope to one particular Searing Desert and the planet's governor
-				hidden_effect = {
-					random_deposit = {
-						limit = {
-							is_deposit_type = d_searing_desert
-						}
-						save_event_target_as = citydesert
-					}
-					this = {
-						save_global_event_target_as = desert_planet
-					}
-					this.leader = {
-						save_event_target_as = desert_governor
-					}
-					owner = {
-						set_country_flag = desert_cities	# Prevents clearing of deserts during (and after) chain, and ensures chain only fires once.
-					}
-				}
-				
-				# Event Chain begins
-				planet_event = {
-					id = tbm_desert.31
-					days = 180
-					random = 90
-				}
-			}
-			60 = {}
-		}
 	}
 }
