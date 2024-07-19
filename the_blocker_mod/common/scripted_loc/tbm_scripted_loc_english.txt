@@ -1,36 +1,7 @@
 ### The Blocker Mod - Scripted Localization
 
-# Debug Scripted Loc
-defined_text = {
-	name = DEBUG_TEXT
-	
-	# Nothing running
-	text = {
-		localization_key = tbm_debug_is_on
-	}
-	text = {
-		trigger = {
-			has_global_flag = debug_scripted_running
-		}
-		localization_key = tbm_debug_scripted_planets
-	}
-	text = {
-		trigger = {
-			has_global_flag = debug_advanced_starts_running
-		}
-		localization_key = tbm_debug_advanced_planets
-	}
-	text = {
-		trigger = {
-			has_global_flag = debug_wild_worlds_running
-		}
-		localization_key = tbm_debug_wild_planets
-	}
-}
 
-### TBM - General Scripted Loc
-
-# Colonial Afairs
+# Colonial Affairs
 defined_text = {
 	name = ColonialAffairs
 	text = {

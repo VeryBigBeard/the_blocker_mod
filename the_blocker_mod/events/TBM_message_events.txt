@@ -3,23 +3,6 @@
 
 namespace = tbm
 
-### 1001. Message Test
-planet_event = {
-	id = tbm.1001
-
-	is_triggered_only = yes
-	hide_window = yes
-
-	immediate = {
-		create_message = {
-			type = MESSAGE_TEST
-			localization = TBM_MESSAGE_TEST
-			days = -1
-			target = this
-		}
-	}
-}
-
 
 ### 1010. Sudden Sinkhole (utility)
 planet_event = {

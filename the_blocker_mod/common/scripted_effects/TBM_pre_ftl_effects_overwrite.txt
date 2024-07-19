@@ -1,7 +1,6 @@
 ### The Blocker Mod - Overwrite of Achieve FTL Effect
-
-### This overwrite exists to change one line of script that could have been fired from an on_action but isn't, and so I can't easily fire an event to clean up their features.
-### PATCHING: I don't know of any other mods that overwrite this effect. If they do, and for ease of patching, the only block of script needed is fire_on_action = { on_action = tbm_achieve_ftl }. All TBM handling is called from there.
+#	This overwrite exists to change one line of script that can't otherwise be accessed.
+#	To patch, add the indicated line below to this script, then add to a new mod and load it after TBM and any other mod that affects this script.
 
 achieve_ftl_effect = {
 	country_event = { id = game_start.8 }

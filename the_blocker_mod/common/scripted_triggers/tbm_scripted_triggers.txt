@@ -1,11 +1,12 @@
 
+### The Blocker Mod - Scripted Triggers
+
+
 is_ecu = {
 	OR = {
 		is_planet_class = pc_city
 		is_planet_class = pc_machine
 		is_planet_class = pc_hive
-		
-		# PD Compat
 	}
 }
 
@@ -14,28 +15,10 @@ is_ecu = {
 is_starting_planet = {
 	OR = {
 		is_homeworld = yes
-		AND = {
-			owner = { has_origin = origin_lost_colony }
-			this = {
-				is_capital = yes
-				is_custom_capital_location = no
-			}
-		}
+		has_planet_flag = lost_colony_world
 	}	
 }
 
-
-# Checks Lost Colony starting world.
-# Really hacky and will probably remove, but currently no other way to check LC starting planet?
-is_lost_colony_starting_planet = {
-	AND = {
-		owner = { has_origin = origin_lost_colony }
-		AND = {
-			is_capital = yes
-			is_custom_capital_location = no
-		}
-	}
-}
 
 ### Category Checks
 
@@ -51,6 +34,7 @@ is_rare_feature = {
 		has_deposit_category = deposit_cat_tbm_legendary
 	}
 }
+
 
 ### LISTS
 
@@ -138,11 +122,6 @@ gestalt_engineering_feature = {
 		is_deposit_type = d_gas_vents
 	}
 }
-
-### Research
-
-
-
 
 
 ### LOCAL
@@ -262,8 +241,6 @@ is_farmland_feature = {
 }
 
 
-
-
 has_ruling_class = {
 	exists = owner
 	owner = {
@@ -362,12 +339,6 @@ num_trees = {
 	
 }
 
-# can_collapse = {
-# 	OR = {
-# 		is_deposit_type = d_ore_rich_caverns
-# 		is_deposit_type = d_fungal_caves
-# 	}
-# }
 
 can_flood = {
 	OR = {

@@ -1,14 +1,13 @@
 ### TBM Homeworld Features
 
 ### Nothing in this file overwrites vanilla. This is not an overwrite file, it will not affect compatibility!
-
 #	These features are added on homeworlds and starting planets by the mod via generate_start_deposits_and_blockers
 #	They help to ensure a stable spread of districts at game start and maintain vanilla-ish balance.
 #	They also represent 21st and 22nd century infrastructure that powered the Early Space Age, and add some effects to make early homeworld management a bit more interesting.
 
-# ai_weight variables
-# Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
 
+# AI Weight Variables
+# Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
 # For homeworld features, AI will tend to keep more of them partly for flexibility and partly for flavor if the player conquers them.
 
 # The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
@@ -186,7 +185,7 @@ d_homeworld_deep_trench = {
 	time = 480
 
 	prerequisites = {
-		"tech_toxic_kelp"	# This should be a custom tech, as we're not managing ecology here, but going very very deep into a high-pressure environment (esp on a size 30 planet!)
+		"tech_toxic_kelp"
 	}
 
 	resources = {
@@ -195,8 +194,6 @@ d_homeworld_deep_trench = {
 			energy = 1000
 		}
 	}
-
-	### Should add on_cleared event for exploration.
 
 	potential = {
 		always = no
@@ -745,10 +742,6 @@ d_homeworld_dustbowl = {
 		}
 	}
 
-	# on_cleared = {
-	# 	add_deposit = d_reclaimed_land
-	# }
-
 	planet_modifier = {
 		district_mining_max = 1
 		planet_farmers_food_produces_mult = -0.1
@@ -1025,9 +1018,6 @@ d_experimental_geothermal_tap = {
 		}
 	}
 
-	# Stops working after 20 years.
-	# Blows up after 50.
-
 	on_cleared = {
 		if = {
 			limit = {
@@ -1088,10 +1078,6 @@ d_gestlat_experimental_geothermal_tap = {
 			energy = 800
 		}
 	}
-
-	# Stops working after 20 years.
-	# Blows up after 50.
-	# Event called on_colony_yearly_pulse if exists, MTTH 6 mos
 
 	on_cleared = {
 		if = {
@@ -1391,7 +1377,6 @@ d_mitochondria = {
 					OR = {
 						has_ascension_perk = ap_engineered_evolution
 						has_ascension_perk = ap_the_flesh_is_weak
-						# May at some point add some more interesting mechanics here re: how this works, but that's a longer-term thing
 					}
 				}
 			}
@@ -1787,11 +1772,6 @@ d_homeworld_moisture_farming = {
 
 	use_for_min_max_adjustments = yes
 
-	# should_swap_deposit_on_terraforming = yes
-	# terraforming_swap_types = {
-	# 	d_migratory_fishing_fleets
-	# }
-
 	time = 360
 
 	resources = {
@@ -1833,11 +1813,6 @@ d_migratory_fishing_fleets = {
 	category = deposit_cat_blockers
 
 	use_for_min_max_adjustments = yes
-
-	# should_swap_deposit_on_terraforming = yes
-	# terraforming_swap_types = {
-	# 	d_homeworld_moisture_farming
-	# }
 
 	time = 360
 
@@ -2463,9 +2438,9 @@ d_windy_archipelago = {
 
 ### TOMB / POST-APOC
 #	Most of these don't get used on the homicidal homeworlds
-#	Post-Apoc homeworlds get a different balance equation, and will be somewhat harsher/harder. Their farming districts will be SEVERELY limited and must be rebuilt through terraforming, environmental stewardship, and space exploration.
+#	Post-Apoc homeworlds get a different balance equation, and will be somewhat harsher/harder. Their farming districts will be limited and must be rebuilt through terraforming, environmental stewardship, and space exploration.
 
-d_fallout_zone = {		# To be replaced with Misty Plains, rework into Fallout Zone
+d_fallout_zone = {	
 	icon = d_radioactive_wasteland
 	category = deposit_cat_blockers
 
@@ -2508,7 +2483,7 @@ d_fallout_zone = {		# To be replaced with Misty Plains, rework into Fallout Zone
 	}
 
 	potential = {
-		always = no	# May revisit this and use it occasionally on other tombs, but may also just use it selectively or apply it to primitives that nuke themselves.
+		always = no
 	}
 
 	ai_weight = {
@@ -2667,9 +2642,18 @@ d_food_rations = {
 		}
 	}
 
-	planet_modifier = {
+	triggered_planet_modifier = {
+		potential = {
+			years_passed <= 20
+		}
 		district_farming_max = 1
-		pop_happiness = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			years_passed >= 20
+			pop_happiness = -0.1
+		}
 	}
 
 	potential = {
@@ -2677,9 +2661,9 @@ d_food_rations = {
 	}
 
 	ai_weight = {
-		weight = @always_keep	# Option weights in Food Rations Run Out event
+		weight = @always_keep
 
-		inline_script = tbm_ai_empire_weights # Temp patch until Food Rations works
+		inline_script = tbm_ai_empire_weights
 	}
 }
 
@@ -3644,7 +3628,7 @@ d_collapsed_superhighway = {
 
 	should_swap_deposit_on_terraforming = no
 
-	time = 180	# Laying groundwork, union negotiations
+	time = 1800	# Laying groundwork, union negotiations
 
 	resources = {
 		category = deposit_blockers
@@ -3654,20 +3638,17 @@ d_collapsed_superhighway = {
 		}
 	}
 
-	on_cleared = {
-		hidden_effect = {
-			set_variable = {
-				which = @highway_engineering
-				value = value:highway_engineers_to_change_a_lightbulb
-			}
-		}
-		
+	on_cleared = {	
 		root = {
 			add_modifier = {
 				modifier = superhighway_engineering
-				days = @highway_engineering	# Script value sets 10 years of this planet's engineering research.
+				years = 5
 			}
-		}
+			planet_event = {
+				id = tbm_hw.60
+				days = 1800
+			}
+		}		
 	}
 
 	planet_modifier = {
@@ -3680,6 +3661,24 @@ d_collapsed_superhighway = {
 
 	ai_weight = {
 		weight = @always_clear
+	}
+}
+
+d_planetary_superhighway = {
+	icon = d_homeworld_arcology
+
+	category = deposit_cat_final
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		trade_value_mult = 1
+	}
+
+	potential = {
+		always = no
 	}
 }
 
@@ -4636,7 +4635,7 @@ d_slush_funds = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		trade_value_mult = -0.15	# Need to counter obscene energy of MCs somehow
+		trade_value_mult = -0.15	# Need to counter energy of MCs somehow
 		planet_crime_mult = 0.1
 	}
 
@@ -5084,63 +5083,6 @@ d_droid_factory = {
 }
 
 
-
-d_broken_mag_lev_network = {	# Currently unused, will move to Earth / Unity
-	#icon = "gfx/interface/icons/deposits/d_arcopolis.dds"
-	category = deposit_cat_blockers
-
-	use_for_min_max_adjustments = yes
-
-	should_swap_deposit_on_terraforming = no
-
-	time = 270
-
-	resources = {
-		category = deposit_blockers
-		cost = {
-			energy = 300
-		}
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-		district_generator_max = 1
-		trade_value_mult = -0.05
-	}
-
-	potential = {
-		always = no
-	}
-}
-
-d_inefficient_energy = {	# Currently unused, probably nix.
-	icon = d_metal_boneyard
-	category = deposit_cat_blockers
-
-	use_for_min_max_adjustments = yes
-
-	should_swap_deposit_on_terraforming = no
-
-	time = 270
-
-	resources = {
-		category = deposit_blockers
-		cost = {
-			energy = 300
-		}
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-		district_generator_max = 1
-	}
-
-	potential = {
-		always = no
-	}
-}
-
-
 ### Advanced Start Features - They have to get something special, they're "advanced"!
 #	Mostly, though, these just help make sure their extra pops have enough jobs and they have enough districts, while also giving them a little extra boost (and, potentially, a little extra reward if you conquer one--as such, the AI will tend to keep these around).
 
@@ -5192,7 +5134,6 @@ d_homeworld_arcology = {
 
 	planet_modifier = {
 		planet_max_buildings_add = 1
-		#planet_crime_mult = -0.2
 	}
 
 	potential = {
@@ -5383,6 +5324,71 @@ d_flying_party = {
 		weight = @always_keep
 
 		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_worlds_fair = {
+	# Anno shout-out
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			unity = 200
+			consumer_goods = 800
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_mult = -0.3
+		planet_amenities_add = 10
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_efficient_nodes = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			unity = 200
+			food = 600
+			energy = 800
+			minerals = 1000
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_mult = -0.3
+		planet_amenities_add = 10
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
 	}
 }
 

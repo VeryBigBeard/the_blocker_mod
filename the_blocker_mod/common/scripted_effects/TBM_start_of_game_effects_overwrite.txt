@@ -3,7 +3,8 @@
 #	It does NOT get called on Void Dweller starts or Toxic Knights starts.
 
 ### Any mod that edits this scripted_effect will conflict with The Blocker Mod and will produce bugs on homeworlds.
-###	Planetary Diversity edits this effect, but only to do much the same as TBM. Load TBM after Planetary Diversity or you will have bugs.
+
+### If you use any mod that adds origin features, make sure you load it AFTER The Blocker Mod or else this script will wipe out those features. But check to make sure it does not overwrite the below effect--if it does, the mods are likely incompatible!
 
 
 generate_start_deposits_and_blockers = {
@@ -14,11 +15,6 @@ generate_start_deposits_and_blockers = {
 
 	# Clean-up and flag Lost Colony worlds (doing it here avoids compatibility problems)
 	clear_deposits = yes
-
-	### DEBUG
-	#add_deposit = d_terraform_test_1
-	#add_deposit = d_terraform_test_2
-	#add_deposit = d_terraform_test_3
 	
 	if = {
 		limit = {
@@ -27,6 +23,7 @@ generate_start_deposits_and_blockers = {
 		# Make it easier to denote lost colony starting planets for feature purposes.
 		set_planet_flag = lost_colony_world
 	}
+
 
 	### The Blocker Mod - Overwrite
 
@@ -111,7 +108,7 @@ generate_start_deposits_and_blockers = {
 		# add_deposit = d_failing_infrastructure
 	}
 
-	# Standard Blockers - TBM changes Industrial Wasteland to a clone versions to avoid some bugs and maintain compatibility.
+	# Standard Blockers - TBM removes Industrial Wasteland; see deposits/TBM_homeworld_features.txt
 	else_if = {
 		limit = {
 			owner = {
@@ -224,6 +221,9 @@ generate_start_deposits_and_blockers = {
 		}
 		else = {}
 	}
+
+
+
 	### MACHINES
 	# Exterminators & Servitors get extra districts later.
 	else_if = {
@@ -254,6 +254,7 @@ generate_start_deposits_and_blockers = {
 		add_deposit = d_fertile_delta # +1 generator
 		add_deposit = d_homeworld_dustbowl
 	}
+
 
 	### AQUATICS 
 	#	Will spawn origin-specific features if taken with those instead because all of these clear_deposits
@@ -327,7 +328,6 @@ generate_start_deposits_and_blockers = {
 				limit = { owner = { is_gestalt = yes }}
 				add_deposit = d_homeworld_gestalt_urban_aeroponics
 				add_deposit = d_homeworld_gestalt_urban_aeroponics
-				# Need two more
 			}
 			else = {
 				add_deposit = d_homeworld_urban_aeroponics
@@ -376,6 +376,8 @@ generate_start_deposits_and_blockers = {
 
 	}
 
+
+
 	### --- Special Homeworld feature sets - Can only have one, usually from an origin --- ###
 	#		These clear everything above and re-do.
 
@@ -390,13 +392,9 @@ generate_start_deposits_and_blockers = {
 		# Remove last vestiges of civilization
 		clear_deposits = yes
 
-		# Vanilla Features - TBM includes these for now but may eventually replace them
-		# add_deposit = d_tomb_world_ruins
-		# add_deposit = d_tomb_world_wasteland
-
 		# Special features for Post-Apoc
-		add_deposit = d_library_of_before
-		add_deposit = d_chapel_of_the_fall
+		# add_deposit = d_library_of_before
+		# add_deposit = d_chapel_of_the_fall
 		
 		# Energy - Post-Apoc gets 8 gen (+2 from vanilla), one blocked, one is hybrid
 		add_deposit = d_homeworld_derelict_reactors
@@ -404,7 +402,7 @@ generate_start_deposits_and_blockers = {
 		add_deposit = d_homeworld_derelict_reactors
 		add_deposit = d_homeworld_extreme_weather
 		add_deposit = d_unexploded_munitions	# Also provides mining
-		add_deposit = d_homeworld_black_market	# Consider removing
+		#add_deposit = d_homeworld_black_market
 		add_deposit = d_broken_transformer
 		add_deposit = d_homeworld_bandit_camp
 
@@ -423,9 +421,6 @@ generate_start_deposits_and_blockers = {
 		add_deposit = d_survival_camps
 		add_deposit = d_seed_banks
 	}
-
-	### POST-APOC - Hive (machines currently do not get a special Post-Apoc)
-
 
 
 	### RELICS
@@ -494,7 +489,7 @@ generate_start_deposits_and_blockers = {
 		add_deposit = d_hot_springs		# Easy amenities, but cna trade for geothermal energy
 		add_deposit = d_rushing_waterfalls	# Can be a big unity boost but also converts to energy if you need it
 		add_deposit = d_gaia_homeworld_bandit_camp
-		add_deposit = d_sandsea	# Mainly to give a generators, but also gives Aquatics a reason to take Life-Seeded
+		add_deposit = d_sandsea	# Mainly to give a generator, but also gives Aquatics a reason to take Life-Seeded
 		
 		# Mining - 8 total, 1 blocked, -3 districts
 		add_deposit = d_recycling_programs
@@ -532,7 +527,7 @@ generate_start_deposits_and_blockers = {
 
 		clear_deposits = yes
 
-		# Adds Pioneering Colonists for 20 years
+		# Adds Pioneering Colonists for 5 years
 		add_modifier = {
 			modifier = pioneering_colonists
 			years = 5
@@ -571,12 +566,13 @@ generate_start_deposits_and_blockers = {
 		add_deposit = d_homeworld_urban_aeroponics
 		add_deposit = d_factory_slaughterhouses
 	}
+
 	
 	### --- Extras --- ###
 
 	### LITHOIDS
 	#	Lithoids get 3 extra mining districts to eat.
-	#	Vanilla usually removes 3 farming as well, but this requires a lot of script to do so we'll let 'em do with the vegetables what they will.'
+	#	Vanilla usually removes 3 farming as well, but this requires a lot of script to do so we'll let 'em do with the vegetables what they will.
 	if = {
 		limit = { owner = { is_lithoid_empire = yes }}
 		add_deposit = d_megaliths
@@ -585,14 +581,14 @@ generate_start_deposits_and_blockers = {
 	}
 
 	### CORPORTATE
-	#	For unclear reasons, corporate empires get an extra generator district in vanilla. For the time being, TBM leaves this uncahanged.
+	#	For unclear reasons, corporate empires get an extra generator district in vanilla. For the time being, TBM retains this so they can also have some trademark slush funds.
 	if = {
 		limit = { owner = { has_authority = auth_corporate }}
 		add_deposit = d_slush_funds
 	}
 
 	### MECHANISTS
-	#	Get extra coffeemakers to make up for lack of clerks caused by low pop count
+	#	Get extra coffeemakers to make up for lack of clerks caused by low pop count (this is necessary to avoid some really nasty amenity-related death spirals)
 	if = {
 		limit = {
 			owner = { has_origin = origin_mechanists }
@@ -638,7 +634,8 @@ generate_start_deposits_and_blockers = {
 		 }
 	}
 
-	### DETERMINED EXTERMINATORS - Just add batteries
+	### DETERMINED EXTERMINATORS
+	#	Just add batteries
 	if = {
 		limit = {owner = {has_civic = civic_machine_terminator}}
 		add_deposit = d_battery_farms
@@ -650,7 +647,8 @@ generate_start_deposits_and_blockers = {
 		add_deposit = d_battery_farms
 	}
 
-	### ROGUE SERVITORS - Taking care of you
+	### ROGUE SERVITORS
+	#	Taking care of you
 	if = {
 		limit = { owner = { has_civic = civic_machine_servitor }}
 		add_deposit = d_nutrient_terminals
@@ -691,7 +689,6 @@ generate_start_deposits_and_blockers = {
 		# Farming - 15 total (technically -9 from vanilla but come on, 24 farming?)
 		add_deposit = d_warm_lagoon
 		add_deposit = d_tidal_marshes
-		#add_deposit = d_sheltered_bay - doesn't currentlyd do anything
 
 		# Special, vanilla		
 		add_deposit = d_crystal_reef
@@ -709,6 +706,7 @@ generate_start_deposits_and_blockers = {
 		remove_deposit = d_inaugural_spaceport
 		add_deposit = d_surface_spaceport
 	}
+
 
 	### ENVIRONMENTALISTS
 	#	Takes care of an edge-case where Environmentalists could end up with -1 district, causing problems, and adds some environmentally-friendly flavour.
@@ -742,6 +740,8 @@ generate_start_deposits_and_blockers = {
 	else = {		
 	}
 }
+
+
 
 ### TBM Earth overwrite
 #	Earth gets a split of its special vanilla features and typical TBM homeworld features. The vanilla features remain mostly the same but have a light TBM flavor to allow UNE to be a slightly easier start.
@@ -840,7 +840,6 @@ generate_earth_deposits_and_blockers = {
 
 		set_planet_size = 30
 
-		# This needs to get moved to a scripted_effect
 		clear_deposits = yes
 
 		# Energy - 8 total, -3 districts, 2 blocked	
@@ -885,28 +884,3 @@ generate_earth_deposits_and_blockers = {
 		set_planet_flag = tasty_desert
 	}
 }
-
-# add_district_and_planet_size_if_needed_effect = {
-# 	optimize_memory
-# 	if = {
-# 		limit = {
-# 			free_district_slots >= 1
-# 		}
-# 		add_district = {
-# 			district_type = $district$
-# 			ignore_cap = yes
-# 		}
-# 	}
-# 	else_if = {
-# 		limit = {
-# 			free_district_slots = 0
-# 			#planet_size < 25
-# 		}
-# 		change_planet_size = 1
-# 		add_district = {
-# 			district_type = $district$
-# 			ignore_cap = yes
-# 		}
-# 	}
-# 	#else do nothing
-# }

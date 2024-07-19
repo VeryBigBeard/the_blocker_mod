@@ -88,8 +88,6 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
-	# Scope to one particular Searing Desert and the planet's governor
-
 	# Waters of Life
 	option = {
 		name = tbm_desert.31.waters
@@ -532,12 +530,12 @@ planet_event = {
 
 	after = {
 
-		# Removes scoped Searing Desert -- technically not necessary but I may add some more content to this chain at some point that uses this feature.
+		# Removes scoped Searing Desert
 		event_target:citydesert = {
 			remove_deposit = yes
 		}
 
-		# This is shiny, though. Don't get too attached to it. For time being, it's only used in this branch and adds some food districts.
+		# This is shiny, though.
 		add_deposit = d_great_desert
 
 		hidden_effect = {
@@ -682,12 +680,12 @@ planet_event = {
 
 	after = {
 
-		# Removes scoped Searing Desert -- technically not necessary but I may add some more content to this chain at some point that uses this feature.
+		# Removes scoped Searing Desert
 		event_target:citydesert = {
 			remove_deposit = yes
 		}
 
-		# This is shiny, though. Don't get too attached to it. For time being, it's only used in this branch and adds some food districts.
+		# This is shiny, though.
 		add_deposit = d_great_city
 
 		# Housekeeping, remove all other modifiers

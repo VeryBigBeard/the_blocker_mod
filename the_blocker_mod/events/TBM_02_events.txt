@@ -4,18 +4,30 @@ namespace = tbm
 
 ### INDEX ###
 #
-#	50. Poioned By Kelp
+#	50. Kelp Handler
+#	51. Poisoned By Kelp
 #	52. Kelp Insights
-#	53. Fish Attack
-#	62. Plugging It Up
-#	66. Scraping the Bottom of the Barrell (disabled, WIP)
-#	76. Shifting Sands
-#	81. Sudden Sinkhole
-#	84. Vicious Sandstorm
-#	86. Struck the Motherlode
+#	53. Fish Attack (Handler)
+#	54. Fish Attack
+#	55. Fish Attacks Continue
+#	56. Bigger Fish Attack
+#	57. Xenofish Attraction
+#	58. Xenofish Specialist Eaten By Fish
+#	76. Shifting Sands (Handler)
+#	77. Shifting Sands
+#	78. Project Event (Shifting Sands)
+#	79. Caverns Beneath (Shifting Sands)
+#	81. Sudden Sinkhole (Message + logic
+#	82. Sinkhole Causes
+#	83. Caverns Beneath (Sudden Sinkhole)
+#	84. Vicious Sandstorm (Handler)
+#	85. Vicious Sandstorm (Message)
+#	86. Motherlode Handler
+#	87. Struck the Motherlode
 #	88. False Prospects
-#	89. Mine-shaft Collapse
-#	
+#	89. Mine-shaft Collapse (Handler)
+#	90. Mine-shaft Collapses
+###
 
 ### Variables
 
@@ -73,21 +85,6 @@ planet_event = {
 
 	is_triggered_only = yes
 	location = this
-
-	# pre_triggers = {
-	# 	is_homeworld = no
-	# 	has_owner = yes
-	# }
-
-	# trigger = {
-	# 	is_starting_planet = no
-	# 	has_deposit = d_toxic_kelp
-	# 	any_owned_pop = {
-	# 		has_job = colonist
-	# 	}
-	# 	colony_age > 2	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.
-	# 	NOT = { has_planet_flag = toxic_kelp_encounter }
-	# }
 
 	immediate = {
 		hidden_effect = {
@@ -174,7 +171,7 @@ planet_event = {
 
 }
 
-# 53. Fish Attack (Submerged Ore Veins, possibly others)
+# 53. Fish Attack
 planet_event = {
 	id = tbm.53
 
@@ -221,7 +218,6 @@ planet_event = {
 				modifier = {
 					add = 10
 					OR = {
-						#is_planet_class = pc_pdaquatic
 						has_planet_flag = planet_drenched	# Something unexpected got in there.
 						check_variable = {
 							which = ice_dumping_happened
@@ -361,11 +357,7 @@ planet_event = {
 						factor = 0		# Until I finish writing it
 						always = yes
 					}
-					# planet_event = { 
-					# 	id = tbm.57 
-					# 	days = 3600 
-					# 	random = 720 
-					# }
+					
 				}
 			}
 		}
@@ -409,11 +401,6 @@ planet_event = {
 						factor = 0		# Until I finish writing it
 						always = yes
 					}
-					planet_event = { 
-						id = tbm.57 
-						days = 3600 
-						random = 720 
-					}
 				}
 				40 = {
 					planet_event = { 
@@ -446,7 +433,6 @@ planet_event = {
 			modifier = bigger_fish
 		}
 		# hidden_effect = {
-		# 	planet_event = { id = tbm.57 days = 3600 random = 720 }
 		# }
 	}
 
@@ -524,7 +510,7 @@ planet_event = {
 	# 	hidden_effect = {
 	# 		random_list = {
 	# 			25 = {
-	# 				planet_event = { id = tbm.57 days = 3600 random = 720 }
+	# 	
 	# 			}
 	# 			75 = {}
 	# 		}
@@ -571,7 +557,6 @@ planet_event = {
 		#hidden_effect = {
 		#	random_list = {
 		#		25 = {
-		#			planet_event = { id = tbm.57 days = 3600 random = 720 }
 		#		}
 		#		75 = {}
 		#	}
@@ -588,138 +573,6 @@ planet_event = {
 		}
 	}
 }
-
-### Rumours Spread
-
-### 62. Plugging It Up (Geothermal Vent, Underwater Vent if aquatic only)
-planet_event = {
-	id = tbm.62
-
-	title = tbm.62.name
-	desc = tbm.62.desc
-	picture = GFX_evt_egg_cracked
-	show_sound = event_super_explosion
-
-	is_triggered_only = yes
-
-	pre_triggers = {
-		has_owner = yes
-		is_homeworld = no
-		is_ai = no
-	}
-
-	trigger = {
-		is_starting_planet = no
-		OR = {
-			has_deposit = d_geothermal_vent
-			AND = {
-				has_deposit = d_underwater_vent
-				owner.species = { has_trait = trait_aquatic }
-			}
-		}
-	}
-
-	option = {
-		name = tbm.62.a
-		add_modifier = {
-			modifier = studying_latent_underlying_geothermal_gas_eruption_rhythm
-			years = 4
-		}
-		hidden_effect = {
-			planet_event = { 
-				id = tbm.63 
-				days = 1920 
-			}
-		}
-	}
-
-	option = {
-		name = tbm.62.b
-		if = {
-			limit = { 
-				owner.species = { has_trait = trait_aquatic }
-			}
-			remove_deposit = d_underwater_vent
-		}
-		else = {
-			remove_deposit = d_geothermal_vent
-		}
-	}
-}
-
-### 63. Unsettled Vent Event
-planet_event = {
-	id = tbm.63
-
-	title = tbm.63.name
-	desc = tbm.63.desc
-	picture = GFX_evt_worrying_signal
-	show_sound = event_machinery
-	
-	is_triggered_only = yes
-
-	option = {
-		name = tbm.63.goforit
-		random_list = {
-			33 = {
-				add_modifier = {
-					modifier = settled_system
-				}
-			}
-			33 = {
-				add_deposit = d_prototype_gas_generator
-			}
-			33 = {
-				add_planet_devastation = 10
-			}
-		}
-	}
-
-	option = {
-		name = tbm.63.no
-		owner = {
-			add_research_option = tech_terrestrial_sculpting
-			add_tech_progress = {
-				tech = tech_noxious_swamp
-				progress = 50
-			}
-		}
-	}
-}
-
-### 66. Scraping the Bottom of the Barrell (Moisture Farming) (Deep Sinkhole)
-# planet_event = {
-# 	id = tbm.66
-
-# 	title = tbm.66.name
-# 	desc = tbm.66.desc
-# 	picture = GFX_evt_archaeological_dig
-# 	show_sound = event_dyson_sphere_build_upgrade_frame
-
-# 	is_triggered_only = yes
-
-# 	pre_triggers = {
-# 		has_owner = yes
-# 		is_ai = no
-# 		is_homeworld = no
-# 		is_occupied_flag = no
-# 	}
-
-# 	trigger = {
-# 		has_deposit = d_deep_sinkhole
-# 		planet_resource_compare = {
-# 			resource = food
-# 			value < 6
-# 			type = balance
-# 		}
-# 		NOT = { has_planet_flag = occasional_sinkholes }
-# 	}
-	
-# 	option = {
-# 		name = tbm.66.yes
-		
-# 	}
-# }
 
 ### 76. Shifting Sands (Handler) (Quicksand Basin)
 planet_event = {
@@ -891,81 +744,10 @@ planet_event = {
 	}
 }
 
-### XX. Sand Tides (Shifting Sands)
-# planet_event = {
-# 	id = tbm.80
-
-# 	title = tbm.80.name
-# 	desc = tbm.80.desc
-# 	desc = {
-# 		trigger = {
-# 			owner = { has_technology = tech_noxious_swamp }
-# 		}
-# 		text = tbm.80.desc.swamp
-# 	}
-# 	desc = {
-# 		trigger = {
-# 			owner = {
-# 				OR = {
-# 					has_ethic = ethic_spiritualist
-# 					has_ethic = ethic_fanatic_spiritualist
-# 				}
-# 			}
-# 		}
-# 		text = tbm.80.desc.superstitions
-# 	}
-# 	picture = GFX_evt_landing_ship
-# 	show_sound = event_scanner
-
-# 	is_triggered_only = yes
-
-# 	option = {
-# 		name = tbm.80.climate
-# 		allow = {
-# 			owner = { has_technology = tech_noxious_swamp }
-# 		}
-# 		add_modifier = {
-# 			modifier = shifting_sands
-# 		}
-# 	}
-
-# 	option = {
-# 		name = tbm.80.fascinating
-# 		owner = {
-# 			add_resource = {
-# 				physics_research = @tier4researchreward
-# 				society_research = @tier4researchreward
-# 				engineering_research = @tier4researchreward
-# 			}
-# 		}
-# 	}
-
-# 	option = {
-# 		name = tbm.80.miracle
-# 		custom_tooltip = tbm.80.tooltip
-# 		trigger = {
-# 			owner = {
-# 				OR = {
-# 					has_ethic = ethic_spiritualist
-# 					has_ethic = ethic_fanatic_spiritualist
-# 				}
-# 			}
-# 		}
-# 		set_planet_flag = sand_tides	# Not a trigger flag--adds unity from colonists/clerks to Quicksand Basin.
-# 	}
-# }
-
-### 80.
-
 ### 81. Sudden Sinkhole (Deep Sinkhole)
 #	Triggered from tbm_handler.17 (Sinkhole Spawner)
 planet_event = {
 	id = tbm.81
-
-	# title = tbm.81.name
-	# desc = tbm.81.desc
-	# picture = "GFX_evt_collapsing_roof"
-	# show_sound = event_collapsing_ruins
 
 	is_triggered_only = yes
 	hide_window = yes
@@ -995,28 +777,6 @@ planet_event = {
 			target = this
 		}
 	}
-
-	# option = {
-	# 	name = OK
-	# }
-
-	# after = {
-	# 	hidden_effect = {
-	# 		owner = { set_country_flag = first_sinkhole }
-	# 		random_list = {
-	# 			33 = {
-	# 				save_event_target_as = sinkholes
-	# 				planet_event = {
-	# 					id = tbm.82
-	# 					days = 7200
-	# 					random = 3600
-	# 				}
-	# 				owner = { set_country_flag = sinkhole_causes }
-	# 			}
-	# 			66 = {}
-	# 		}
-	# 	}
-	# }
 }
 
 ### 82. Sinkhole Causes

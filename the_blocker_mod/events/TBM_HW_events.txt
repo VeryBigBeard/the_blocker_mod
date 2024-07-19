@@ -5,13 +5,20 @@ namespace = tbm_hw
 #@post_apoc_population = 0
 @damage = 10
 
-### Index
-#
+### INDEX ###
+# 5. Experimental Geothermal Tap Handler
 # 6. Advanced Geothermal Tap Shutdown
-#
-# 13. Food Riots
-# 14. Malnutrition
-# 15. Privately-Sponsored Colony
+# 7. Advanced Geothermal Tap Explodes
+# 21. Scavenger Bands Decalre War (Handler)
+# 22. Scavenger Bands Declare War
+# 23. Conquest
+# 24. Unifaction
+# 25. Scavenger Lord Assasinated
+# 26. Scrap Shoot-out
+# 51. Food Replicator Breaks Down - Warning
+# 52. Food Replicator Fails
+# 60. Superhighway Handler (background for now)
+###
 
 ### 5. Experimental Geothermal Tap - Handler
 country_event = {
@@ -63,10 +70,6 @@ planet_event = {
 		has_deposit = d_experimental_geothermal_tap
 		NOT = { has_planet_flag = experimental_geothermal_tap }
 		NOT = { has_planet_flag = geothermal_deprecation }
-	}
-
-	immediate = {
-		log = "Called tbm_hw.6 - Geothermal Tap Warning"	# Debug
 	}
 
 	option = {
@@ -165,6 +168,7 @@ planet_event = {
 		name = UNFORTUNATE
 	}
 }
+
 
 ### Event Chain: Scavenger Bands Declare War - Post-Apocalyptic Origin
 ###	 21. Scavenger Bands Declare War - Handler
@@ -500,5 +504,17 @@ planet_event = {
 			}
 		}
 		custom_tooltip = tbm_hw.52_promise
+	}
+}
+
+### 60. Superhighway Built
+planet_event = {
+	id = tbm_hw.60
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		add_deposit = d_planetary_superhighway
 	}
 }

@@ -2,6 +2,20 @@
 
 namespace = tbm
 
+
+### INDEX ###
+#	300. Mining Prospects
+#	301. Fossil Fuel Discovery (Handler)
+#	302. Fossil Fuel Discovery
+#	310. Reactor Explosion Handler
+#	311. Fusion Reaction Goes Critical
+#	312. Cold Fusion Leak
+#	313. Antimatter Core Breach
+#	314. Remove Antimatter Spatial Damage (background)
+#	315. Reactor Warning Signs
+
+### Variables
+
 @carbon_economy = 1
 
 ### 300. Mining Prospects
@@ -62,20 +76,6 @@ planet_event = {
 			factor = 10
 		}
 	}
-
-	# option = {
-	# 	name = tbm.300.preserve_spiritualist
-	# 	custom_tooltip = tbm.300.preserve_spiritualist_tooltip
-	# 	trigger = {
-	# 		owner = {
-	# 			is_spiritualist = yes
-	# 		}
-	# 	}
-
-	# 	last_added_deposit = {
-	# 		remove_deposit = yes
-	# 	}
-	# }
 
 	option = {
 		name = tbm.300.preserve_landscape
@@ -311,7 +311,6 @@ planet_event = {
 			add_deposit = d_subterranean_gas_lake
 		}
 		else = {
-			log = "Failed to add fossil fuel deposit. Carbon Economy set to [this.carbon_economy]."
 		}
 	}
 

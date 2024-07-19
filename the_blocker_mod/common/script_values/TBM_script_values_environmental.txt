@@ -1,5 +1,5 @@
 ### The Blocker Mod - Environmental Values
-#	As of 0.6, these are still a prototype but will likely be expanded to handle dyanmic feature events.
+#	As of the beta version, these are still a prototype but will likely be expanded to handle dyanmic feature events.
 
 
 ### Forestation

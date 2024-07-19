@@ -81,12 +81,8 @@ building_xeno_synaptic_node = {
 	}
 }
 
-
-
 building_science_outposts = {
 	
-	#icon = "gfx/interface/icons/buildings/unused/building_hydroponics_farm_3.dds"
-
 	base_buildtime = @b1_time
 	base_cap_amount = 1
 	can_build = yes
@@ -127,7 +123,7 @@ building_science_outposts = {
 		}
 		modifier = {
 			job_xeno_naturalist_add = 1
-			job_colonist_add = 1	# Somewhat a prototype, may replace with special job (e.g., Explorer?) Depends a bit on gestalt balancing.
+			job_colonist_add = 1
 		}
 	}
 

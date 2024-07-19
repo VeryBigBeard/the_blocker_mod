@@ -6,7 +6,7 @@
  # Handlers & Generators
 
  MESSAGE_SLUM_GENERATOR_TITLE:0 "New £blocker_yellow£ §YSprawling Slums§!"
- SLUM_GENERATOR:0 "Cramped and difficult living conditions on §S[planet.GetName]§! have given rise to new £blocker£ §Y £blocker_yellow£ Sprawling Slums§! around the [planet.GetPlanetMoon]'s cities'.\n\nIf left to fester, these may affect happiness and approval. To avoid future slums, improve local conditions by adding amenities and housing."
+ SLUM_GENERATOR:0 "Cramped and difficult living conditions on §S[planet.GetName]§! have given rise to new§Y £blocker_yellow£ Sprawling Slums§! around the [planet.GetPlanetMoon]'s cities'.\n\nIf left to fester, these may affect happiness and approval. To avoid future slums, improve local conditions by adding amenities and housing."
 
  MESSAGE_INDUSTRIAL_WASTELAND_TITLE:0 "New £blocker_yellow£ §YIndustrial Wasteland§! appeared"
  INDUSTRIAL_WASTELAND:0 "Chased away by declining local conditions and a poor economy, businesses and industries are abandoning §S[planet.GetName]§! in droves, leaving §Y £blocker_yellow£ Industrial Wasteland§! behind.\n\nThese derelict regions are dens of crime and terrible polluters. To avoid future wastelands, improve local conditions by adding amenities and reducing crime."
@@ -31,8 +31,14 @@
 
  MESSAGE_SANDSTORM_TITLE:0 "Vicious Sandstorm"
  message_sandstorm:0 "A wild sandstorm has rolled in over a major city on §Y[planet.GetName]§!, destroying energy infrastructure.\n\n§YSandstorms occur naturally, but will be less frequent when a planet has more trees."
-
  
  tbm_message_mine_shaft_collapse_robot_casaulties:0 "A mine shaft at the §Y£blcoker£ [collapsed_mine]§! on [planet.GetName] has collapsed, trapping several robotic mining units inside. Fortunately, there has been no loss of life, but the mining units will have to be replaced."
+
  tbm_message_mine_shaft_collapse_miners_dead:0 "A mine shaft at the §Y£blcoker£ [collapsed_mine]§! on [planet.GetName] has collapsed, trapping several miners below the surface."
+
+ message_landslide:0 "After a heavy rains, landslides have washed away settlements and resource infrastructure on [from.GetName].\n\nThe collapse may provide mining opportunities once the dust has settled."
+
+ tbm.message.sinkhole:0 "Despite our best efforts, a new §Y£blocker£ Deep Sinkhole§! has appeared on [from.GetName].\n\nThe exact cause of these sinkholes remains unknown and it has so far been impossible to predict the next location to be affected. All we can do is fill them again and hope they stays filled."
+
+ message_dustbowl_generator:0 "What had been prime farmland on [from.GetName] has recently become a dry and lifeless §Y£blocker_yellow£ Dustbowl§!. While there could be any number of causes, over-farming is the likeliest culprit."
 

@@ -3,6 +3,9 @@
 
 namespace = tbm
 
+### INDEX ###
+#	400. Geothermal Instability
+
 
 ### 400. Geothermal Instability (Handler) (Geothermal / Underwater Vents)
 planet_event = {

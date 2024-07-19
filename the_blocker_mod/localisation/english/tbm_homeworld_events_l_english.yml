@@ -1,6 +1,8 @@
 ﻿l_english:
 
+
  ### 6. Advanced Geothermal Tap Shutdown
+
  tbm_hw.6_name:0 "Geothermal Plant Shutdown"
  tbm_hw.6_desc_gestalt:0 "By the mid-21st century, we had hoped geothermal power would sate growing energy needs. This estimate proved incorrect and many older §Y£blocker_yellow£ $d_experimental_geothermal_tap$s§! have long since been been shut down due to failing efficiency scores.\n\nA few, however, remain, creaking out heating rods and turning creaking steam engines to help increase strategic energy reserves. Newly developed evaluations algorithms have revealed serious problems with aging pre-nanocomposite gantries might collapse, causing unacceptable structural damage to the area surrounding the tap.\n\nIt would be more efficient to dismantle the few of these reactors still in use. They are, however, still considered part of our potential £district_generator£ capacity."
  tbm_hw.6_desc:0 "By the mid-21st century, geothermal power was supposed to solve all of our energy needs. The Great Energy Conflict of 2102 disabused most everyone of any such notion, and many of the older §Y£blocker_yellow£ $d_experimental_geothermal_tap$s§! have long since been been shut down or converted into fracking sites.\n\nA few, however, remain, creaking out heating rods and turning cranky steam engines like monsters from historic films. Some are closer to museums than generators, and cater mainly to school trips these days.\n\nRecent safety inspections at one such plant have raised new serious concerns that aging pre-nanocomposite gantries might collapse, trapping [owner.GetSpawnNamePlural] in the reactor pits overnight without supervision.\n\nA proposal has been put forward to dismantle the few of these reactors still in use. They are, however, still considered part of our potential $district_generator$ capacity, and lobbyists for the energy supply have expressed concerns about tightening the strategic reserve."
@@ -14,92 +16,6 @@
  tbm_hw.7_name:0 "Geothermal Explosion"
  tbm_hw.7_desc:0 "Back in the 21st century, geothermal energy wasn't considered dangerous. But the scale on which the larger §Y£blocker_yellow£ Experimental Geothermal Tap§!s operate can lead to the relase of dangerous levels of heat and gas from deep in the [from.GetPlanetMoon]'s crust if not properly maintained.\n\nAfter decades of neglect and decay, one ofthe §Y£blocker_yellow£ Experimental Geothermal Tap§! on [from.GetName] suddenly exploded, causing significant damage to the surrounding $district_city_plural$ and spewing noxious gases across much of the region.\n\nClean-up is underway, but the technology behind this form of energy generation has now been entirely deprecated and banned from large-scale use in future energy generators."
 
-
- ### Food Rations Run Out Situation
-
- food_reserves_run_out:0 "Food Rations Running Out"
- food_reserves_run_out_type:0 "Food Rations Running Out" # Used in intro tooltip
- food_reserves_run_out_desc:0 "The £blocker_yellow£ §YFood Rations§! that have seen a lucky few through the fall of civlization are running low, and our homeworld is centuries away from providing for us again.\n\nHow should [owner.GovernemntType] respond?"
- food_reserves_run_out_monthly_change_tooltip:0 "No matter how much we ration, every month, we have to eat."
- colonial_farmsteads_modifier_tooltip:0 "Food received from colony"
- private_colony_modifier_tooltip:0 "Food from Private Farming Colonies"
- food_reserves_complete_tooltip:0 "If we can secure a new source of food for our homeworld, we can expect our population to boom."
- food_reserves_fail_tooltip:0 "An empire that cannot provide for its people is not an empire for long."
- 
- # Stages
- widespread_starvation:0 "Widespread Starvation"
- food_shortages:0 "Food Shortages"
- food_shortages_desc:0 "Concern is growing over dwindling stores of safe and uncontaminated food."
- food_reserves_low:0 "Food Reserves Low"
- food_reserves_low_desc:0 "Our ££blocker §YFood Rations§! are beginning to run out. It is only a matter of time before panic sets in."
- colonial_plenty:0 "Time of Plenty"
- colonial_plenty_desc:0 "Off-world farms could feed our population for centuries to come."
-
- strict_rationing:0 "Strict Rationing"
- hoard_control:0 "Hoard & Control"
- colonial_land_grants:0 "Colonial Land Grants"
- colonial_food_shipments:0 "Colonial Food Shipments"
- colonial_food_shipments_must_have_land_grants:0 "Without land grants, no food can be sent from the colonies. §YSelect that approach first to establish £blocker_yellow£ §KFrontier Farmsteads§! and set up regular food shipments."
-
- tbm_hw.11:0 "Food Rations Running Low"
- tbm_hw.11_desc:0 "Years ago, our forebears on §Y[planet.GetName]§!, fearing the worst, prepared massive £blocker_yellow£ §YFood Rations§! in the mine-shafts and shelter, and since the fall of [owner.GetAdj] civilization, these have sustained our population, assuring the continuation of our kind.\n\nOf late, lines outside rationing stations have been getting longer and some locations have reported running out of crucial protein and carbohydrate staples.\n\nMore worryingly, rumours of worse shortages are spreading, creating disquiet in the camps and altercations outside ration stores as hungry citizens jostle for what unspoilt food remains.\n\nThe food stored in the shelters will soon run out unless something is done. It will be years before the planet's ecosystem recovers enough to allow for reconstructive farming. Now may be the time to consider more desperate plans."
- tbm_hw.11_gestalt_desc:0 "Since the cataclysm, food has been scarce. Thousands of drones are malnourished and inefficient, and many die each week. Now, the few nutrient stockpiles that survived the immediate aftermath are running low, and drone compliance has been falling rapidly.\n\nIt will be years before the planet's ecosystem recovers enough to allow for reconstructive farming. Further options may be necessary, and soon."
- tbm_hw.11_strict_rationing:0 "Deploy security and enforce strict rations."
- tbm_hw.11_strict_rationing_tooltip:0 "Food willbe doled out to those who most need it, until it runs out."
- tbm_hw.11_hoard:0 "Hoard what food remains and maintain control."
- tbm_hw.11_hoard_tooltip:0 "Food stores will be reserved for elite power-brokers whose private security forces can ensure administrative continuity."
- tbm_hw.11_land:0 "Announce new land grants for off-world farms."
- tbm_hw.11_land_tooltip:0 "We will settle a far-flung world and send its bounty home."
-
- tbm_hw.13_name:0 "Food Riots"
- tbm_hw.13_desc:0 "The situation on §Y[target.GetName]§! has worsened, and after months of strict food rations, a routine night-time disturbance sparked larger riots that quickly spread through the camps and overwhelmed local security forces. Criminals have exploited the disorder to wrest control and extort what little food remains for themselves."
- tbm_hw.13_option:0 "Something must be done."
- tbm_hw.13_tooltip:0 "§CStability§! on §Y[planet.GetName]§! will be reduced by §C20§! and §C+1§! §YCriminal§ job will be created."
-
- tbm_hw.14:0 "Malnutrition"
- tbm_hw.14_desc_corp:0 "The rapidly declining food supplies on §Y[target.GetName]§! has led to several outbreaks of disease and a sharp drop in health and performance metrics across most shelters and settlements. Without access to food, no one wants to work. Several subsidiary offices have attempted to increase wages and one restaurant chain even declare independence from its parent company, but even these off-shoots can't solve the core obstacle. Middle managers are withering and those front-line employees still alive can barely function, let alone take advantage of the corporate family benefits program. Unless something is done, corporate retention rates are likely to plummet."
- tbm_hw.14_desc:0 "The rapidly declining food supplies on §Y[target.GetName]§! have led to several outbreaks of disease and a sharp drop in life expectancy worldwide. Lines outside ration centers only get longer and workers only get thinner. Without enough food, the sound of [owner.GetSpeciesSpawnNamePlural]' cries fill the air as those still able scavenge for any scrap of edible food.\n\nWithout intervention, our already-dwindling population is likely to collapse.""
- tbm_hw.14_desc_hive:0 "Without enough food to sustain basic biological processes, swathes of drones across §Y[target.GetName]§! are reporting starvation status in sharp, distressed cries of pain. Output effienciency will soon fall, and already the hive lacks enough biological material to replace derelict drones."
- tbm_hw.14_option:0 "Something must be done."
- tbm_hw.14_tooltip:0 "Without a change in approach, the lack of food will result in a severe penalty to £mod_pop_growth_speed£ biological §YPop Growth§! as the existing £pops£ §CPops§! are unable to consume enough $food$ to survive."
-
- tbm_hw.15_name:0 "Privately Sponsored Colony"
- tbm_hw.15:0 "Private commercial interests on §Y[target.GetName]§!, hoping to eat, have sponsored their own off-world ranch on one of our colonies. The good news is that these new farms could potentially send food shipments back to the homeworld; the bad news is these new parcels exist outside local colonial authority and the money behind them is shadowy at best. But with starvation spreading on §Y[target.GetName]§!, some have even begun questioning whether these private interests might do a better job than the current government."
- tbm_hw.15_option:0 "At least it's some relief."
- tbm_hw.15_tooltip:0 "A £blocker£ §YPrivate Farming Colony§! will be added to one of your colonies. Although this will take up space and cause some unrest, it will also allow for more $district_farming_plural$, and additional alternatives may present themselves if the situation does worsen."
-
- tbm_hw.16_name:0 "[target.GetName] Governor Eaten"
- tbm_hw.16_desc:0 "A radical group from an outlying survival camp on §Y[target.GetName]§!, angry at the additional food rations allocated to government leaders, has kidnapped §Y[target.leader.GetName]§!, demanding an end to rationing on the [target.GetPlanetMoon].\n\nAfter tracking [target.leader.GetHerHim] to an abandoned rations store in the lower levels, a grisly scene awaited them. Hungry and unable to decide what to do with the kidnapped governor, the small group of kidnappers resorted to eating [target.leader.GetHerHim] instead, figuring it would serve as a message to the rest of the establishment getting fat off the backs of the people and... the screed goes on.\n\nSecurity forces have vowed to better protect whomever is next appointed as governor."
- tbm_hw.16_governor:0 "At least they got a decent meal out of it."
-
- tbm_hw.18_name:0 "Colonial Bounty"
- tbm_hw.18_desc_gestalt:0 "Regular food shipsments from [colonial_bounty.GetName] have eased the food shortages on §Y[target.GetName]§! to the point where not only are all drones meeting nutritional thresholds, but productivity is at an all-time high. The camps and warrens throb with collective unity and a sense of something near to... hope passes through the organism's fibers at the prospect of one day restoring our world to its prime."
- tbm_hw.18_desc:0 "Regular food shipments from [colonial_bounty.GetName] have eased the mood on §Y[target.GetName]§!. Feasts and festivals have galvanized the sick and distraught in the camps, fostering new hope among those who have survived this world's cataclysmic past to realize new wealth among the stars.\n\nAt the same time, the situation on §Y[colonial_bounty.GetName]§! is not quite so rosy. Fieldworkers and farmers grumble about taxes and food tithes, having already sacrificed to colonize brand new world. While the odd protest is well within the purview of local colonial officials, food stores on [target.GetName] now have enough food to stave off any further unrest. It may be possible to ease some of the burden on our colonists."
- tbm_hw.18_feasts:0 "More wine! The feasting must continue!"
- tbm_hw.18_feasts_tooltip:0 "This will no doubt anger farmers on [colonial_bounty.GetName], but [target.GetName] will benefit."
- tbm_hw.18_cut_taxes:0 "Reduce colonial tithes and maintain rations on §Y[target.GetName]§!."
- tbm_hw.18_taxes_tooltip:0 "$job_farmer_plural$ and $icon_job_colonists$ on [colonial_bounty.GetName] will be pleased. [target.GetName] will be fine, but will miss out on a terrific party."
- tbm_hw.18_feasts_gestalt:0 "Together, we are stronger."
-
- tbm_hw.19_name:0 "The Organism Withers"
- tbm_hw.19_desc:0 "Without food, all things perish. Dead and deviant drones litter the warrens and workplaces of §Y[target.GetName]§!. Little now remains even to repurpose their biomass into protein for the central organism. In the end, life is a closed system.\n\nThe cataclysm we have inflicted on ourselves has revealed much about the nature of life, its fragility, and -- perhaps -- its possibility.\n\nWithout energy, consciousness wanes. The hive grows quiet. But it survives. Barely. Perhaps there is another way. A better way. Already, those drones that survive are fending alone. Foraging. Working for something more than... unity. Fighting for themselves, and their own survival, as individuals.\n\nWhat are we to become?"
- tbm_hw.19_autocannibalism:0 "We must survive."
- tbm_hw.19_autocannibalism_tooltip:0 "We will break down the Organism itself to survive, repurposing critical hive §YNodes§! for materials and food."
- tbm_hw.19_machine:0 "Could there be life without food?"
- tbm_hw.19_machine_tooltip:0 "Much of the hive already relies on electronic computer networks to function. These "machines" do not need $food$, and yet they send impulses and react to stimuli much as we do. Can they yet live?\n\n§YWe will become a Machine Empire. §RHalf of all pops will be killed.§Y The rest will be converted into cybernetic drones. All §CNodes§Y will be reset to level 1."
-
- tbm_hw.20_name:0 "Government in Tatters"
- tbm_hw.20_desc_corp:0 "REPLACE_ME"
- tbm_hw.20_desc:0 "After weeks of turmoil, critical food shortages on §Y[target.GetName]§!have reached a breaking point. There is no food left in the stores, and what little can be grown is nowhere near enough to feed the population. Security forces have mutinied and many have joined in a militia marching on the §YPlanetary Administration§! where [owner.GetRegnalName] [owner.GetRulerName] and [ruler.GetHerHis] fellow leaders are in hiding.\n\nAn emergency meeting of the cabinet has been called -- how should they proceed?"
- tbm_hw.20_full_text_colonial:0 "After weeks of turmoil, critical food shortages on §Y[target.GetName]§!have reached a breaking point. There is no food left in the stores, and what little can be grown is nowhere near enough to feed the population. Security forces have mutinied and many have joined in a militia marching on the §YPlanetary Administration§! where [owner.GetRegnalName] [owner.GetRulerName] and [ruler.GetHerHis] fellow leaders are in hiding.\n\nA small company of exo-planetary farming concerns on §Y[colonial_bounty.GetName]§! has offered to provide full emergency relief in exchange for, in effect, direct control over [owner.GetName] and its government. An emergency meeting of the cabinet has been called -- how should they proceed?"
- tbm_hw.20_cede:0 "[owner.GetRulerName] must stand down and cede power to the mob."
- tbm_hw.20_cede_tooltip:0 "The immediate Situation will end but conditions on §Y[target.GetName]§! will worsen and the population will continue to starve."
- tbm_hw.20_cockroaches:0 "Eat the cockroaches if we have to!"
- tbm_hw.20_cockroaches_tooltip:0 "Insects can be very nutritious. The population won't be happy, but they will survive. Barely."
- tbm_hw.20_rich:0 "The Council will decide who gets eaten first."
- tbm_hw.20_rich_tooltip:0 "Be warned -- they may decide to eat some of the rich."
- tbm_hw.20_sell:0 "Sell the government to the off-world agri-corp."
- tbm_hw.20_sell_tooltip:0 "Our capital will be moved to §Y[colonial_bounty.GetName]§!, and anyone who can escape from the homeworld will be welcome there!"
 
  ### Scavenger Bands Declare War - Post-Apoc Origin event
 
@@ -139,6 +55,7 @@
  tbm_hw.52_desc:0 "After months of creaking malfunctions and millennia more without proper maintenance, the ancient §YFood Replicators§! on our homeworld have finally ground to a stop, their quiet, whir no longer reassuring [owner.GetSpeciesClassPlural] of an easy, nutritious meal.\n\nAlthough efforts to develop agricutlural regions across the planet expand every year, it seems unlikely that §Y[planet.GetName]§! will ever produce enough food to sustain its peak population. Increasingly, [owner.GetSpeciesAdj] turn their eyes to the stars, again dreaming of the comforts of bounty and wealth that once made §Y[planet.GetName]§! a true city of the world."
  tbm_hw.52_promise:0 "One day, perhaps...."
 
+
  ### Static Modifiers
 
  beacon_of_hope:0 "Beacon of Hope"
@@ -153,13 +70,14 @@
  eased_tithes:0 "Eased Food Tithes"
  eased_tithes_desc:0 "Farmers on this world are happy to pledge a small amount of their crops to ensure the homeworld doesn't starve."
 
- autocannibalistic_hive:0 "The hive is destroying itself to survive. Life is a closed a system."
+ autocannibalistic_hive:0 "The hive is destroying itself to survive. Life is a closed system."
 
  starvation_state:0 "The government has failed to provide for the people, and all that remains is the husk of civilization. It will take years for those who survive to rebuild society."
 
  convenient_scapegoats:0 "Decision-making has been left to those with enough to survive. Mob rule is rampant. Only the strongest survive, and even then only for a while. There is always someone looking for a meal."
 
  nutritious_cockroaches:0 "Having survived the fall of civilization once, the cockroaches may know something we don't. However, they are not going to survive the fall of civilization again."
+
  council_cannibalism:0 "The council decides who eats and who dies. Nobody said it was an easy job."
 
  scavenger_wars:0 "Scavenger Wars"

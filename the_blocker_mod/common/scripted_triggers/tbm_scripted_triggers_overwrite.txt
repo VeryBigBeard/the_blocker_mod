@@ -1,7 +1,7 @@
 ### The Blocker Mod - Scripted Trigger Overwrite
 
 
-### Currently overwrites only this trigger, which is only used in one leader trait. The overwrite is here in case PDX ever decide to use the trigger more broadly in events.
+### Currently overwrites only this trigger, which is only used in one leader trait. The overwrite is here in case PDX decide to use the trigger more broadly in events.
 #	TBM sets this to always evaluate true, since blockers are always clearable.
 #	The only gameplay effect should be that you can roll the trait Environmental Engineer from game start.
 

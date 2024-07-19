@@ -105,6 +105,7 @@ privatizations = {
 	pop_happiness = -0.1
 }
 
+
 ### Mining-related
 
 miners_strike = {
@@ -130,6 +131,8 @@ mine_safety_standards = {
 	planet_miners_energy_upkeep_add = 1
 }
 
+### Gestalt Homeworld Features
+
 breathing_without_the_body = {
 	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
 	planet_jobs_energy_produces_mult = 0.2
@@ -144,13 +147,6 @@ damaged_power_nexus = {
 	icon = gfx/interface/icons/planet_modifiers/pm_contingency_sabotage.dds
 	district_generator_max = -1
 	planet_jobs_produces_mult = -0.05
-}
-
-### Impassable Mountain
-
-sold_famous_mountain = {
-	#icon = gfx/interface/icons/planet_modifiers/pm_cold_barren
-	pop_happiness_negative = 0.1
 }
 
 
@@ -189,6 +185,7 @@ night_watches = {
 	planet_jobs_upkeep_mult = 0.05
 }
 
+
 ### Proposed Marina
 
 denied_investment = {
@@ -204,6 +201,7 @@ recreational_investment = {
 	trade_value_mult = 0.1
 	pop_cat_ruler_happiness = 0.1
 }
+
 
 ### A City of the Desert
 
@@ -300,6 +298,7 @@ city_of_gardens = {
 	planet_jobs_consumer_goods_upkeep_mult = 0.1
 }
 
+
 ### Flood
 
 recent_flooding = {
@@ -322,6 +321,9 @@ kelp_breakfasts = {
 	planet_pops_food_upkeep_mult = -0.1	# Applied to country in Kelp Insights?
 }
 
+
+### Zrofish
+
 bigger_fish = {
 	icon = gfx/interface/icons/planet_modifiers/pm_carbon_world.dds
 	job_dangerous_wildlife_poacher_add = 2
@@ -337,18 +339,11 @@ xenofish_attacks = {
 
 ### Geothermal Energy and Vents
 
-studying_latent_underlying_geothermal_gas_eruption_rhythm = {
-	custom_tooltip = tbm.slugger.tooltip
-}
-
-settled_system = {
-	planet_technician_energy_produces_add = 1
-}
-
 geothermal_instability = {
 	planet_technician_energy_produces_mult = -0.1
 	pop_cat_specialist_happiness = -0.15
 }
+
 
 ### Shifting Sands
 
