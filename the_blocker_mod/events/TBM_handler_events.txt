@@ -10,7 +10,7 @@ namespace = tbm_handler
 @sinkholes = 0
 
 #1. Scripted Planets Handler
-### Many scripted planets in vanilla call clear_blockers on init, or add vanilla deposits that will either be broken or unbalanced by the mod. This event is fired on_press_begin and checks for specific scripted planets. It may cause a slight lag when the game is first started.
+### Many scripted planets in vanilla call clear_blockers on init, or add vanilla deposits that will either be broken or unbalanced by the mod. This event is fired on_game_start and checks for specific scripted planets. It may cause a slight lag on lower-end machines when the game is first started.
 
 event = {
 	id = tbm_handler.1
@@ -126,67 +126,6 @@ event = {
 					}
 					reroll_deposits = yes
 				}
-
-
-
-
-				# while = {
-				# 	count < trigger:num_owned_planets	# Less than because we want to excluse the capital
-				# 	ordered_owned_planet = {
-				# 		position = 1
-				# 		order_by = x
-				# 		limit = {
-				# 			NOT = { is_same_value = event_target:origin_imperial_homeland }
-				# 		}
-				# 		clear_deposits_without_effects = yes
-				# 		reroll_deposits = yes
-				# 		while = {
-				# 			count = 3
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_city
-				# 			}
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_mining
-				# 			}
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_farming
-				# 			}
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_generator
-				# 			}
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_industrial
-				# 			}
-				# 		}
-				# 	}
-				# 	ordered_owned_planet = {
-				# 		position = 2
-				# 		order_by = x
-				# 		limit = {
-				# 			NOT = { is_same_value = event_target:origin_imperial_homeland }
-				# 		}
-				# 		clear_deposits_without_effects = yes
-				# 		reroll_deposits = yes
-				# 		while = {
-				# 			count = 2
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_city
-				# 			}
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_mining
-				# 			}
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_farming
-				# 			}
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_generator
-				# 			}
-				# 			add_district_and_planet_size_if_needed_effect = {
-				# 				district = district_industrial
-				# 			}
-				# 		}
-				# 	}
-				# }
 			}
 
 			# Vassal 1
@@ -250,7 +189,6 @@ event = {
 
 ### 2. Advanced Start Feature Fixer
 #	Advanced Start empires need to reroll features after vanilla init or else they'll have no features and will be crippled by unemployment.
-#	Now called on_press_begin to avoid sequentiality problems and also to align with tbm_handler.1
 event = {
 	id = tbm_handler.2
 
@@ -272,14 +210,12 @@ event = {
 				}
 				
 				### Get rid of unwanted fish. For real this time.
-				#clear_blockers = yes
-				#clear_deposits = yes
 				every_deposit = {
 					remove_deposit = yes
 				}
 
 				generate_start_deposits_and_blockers = yes	# Re-runs basic TBM feature init.
-				fix_advanced_start_empire_features = yes		
+				fix_advanced_start_empire_features = yes	# Add Advanced features and clean-up
 			}
 
 			every_owned_planet = {
@@ -295,7 +231,7 @@ event = {
 }
 
 ### 3. Aquatic Fix
-#	This is a hack to fix a peristent bug with Aquatic empires where they would get appropriate features not districts due to some unknown problem with generate_start_buildings_and_districts that TBM does not patch. Until I can find it, this should reset their planets properly at the expense of a bit of a performance hit.
+#	This is a hack to fix a peristent bug with Aquatic empires where they would get appropriate features but no districts due to some unknown problem with generate_start_buildings_and_districts that TBM does not patch. Until I can find it, this should reset their planets properly, but may remove other modded features.
 event = {
 	id = tbm_handler.3
 
@@ -411,7 +347,6 @@ planet_event = {
 						}
 					}
 				}
-				log = "[owner.GetName] on [planet.GetName] - Slums Generated."
 				planet_event = {
 					id = tbm_handler.5
 					days = 180
@@ -429,7 +364,6 @@ planet_event = {
 						}
 					}
 				}
-				log = "[owner.GetName] on [planet.GetName] - Slums not generated."
 			}
 		}
 
@@ -530,7 +464,6 @@ planet_event = {
 					planet_crime > 20
 				}
 
-				log = "[owner.GetName] on [planet.GetName] - Industrial Wasteland generated."
 
 				planet_event = {
 					id = tbm_handler.7
@@ -545,7 +478,6 @@ planet_event = {
 					owner = { has_valid_civic = civic_merchant_guilds }
 				}
 
-				log = "[owner.GetName] on [planet.GetName] - No Ind. Wasteland this year."
 			}
 		}
 
@@ -580,7 +512,7 @@ planet_event = {
 
 	pre_triggers = {
 		has_owner = yes
-		is_occupied_flag = no	# Occupying forces not so keen on new settlements as they are on new power plants
+		is_occupied_flag = no	# Occupying forces not as keen on new settlements as they are on new power plants
 	}
 
 	trigger = {
@@ -1079,105 +1011,6 @@ planet_event = {
 # 	}
 # }
 
-# ### 19. Mine-Shaft Collapser
-# planet_event = {
-# 	id = tbm_handler.19
-
-# 	is_triggered_only = yes
-# 	hide_window = yes
-
-# 	immediate = {
-		
-# 		hidden_effect = {
-# 			set_variable_to_random_value = {
-# 				which = @casualty_chance
-# 				min = 1
-# 				max = 100
-# 			}
-# 		}
-
-# 		### Damage
-# 		add_planet_devastation = 10
-# 		event_target:collapsed_mine = {
-# 			remove_deposit = yes
-# 		}
-		
-# 		### Casualties
-# 		if = {
-# 			limit = {
-# 				check_variable = {
-# 					which = @casualty_chance
-# 					value > 50
-# 				}
-# 			}
-# 			if = {
-# 				limit = {
-# 					owner = {
-# 						OR = {
-# 							has_policy_flag = ai_servitude
-# 							is_gestalt = yes
-# 						}
-# 					}
-# 					count_owned_pop = {
-# 						limit = {
-# 							has_job = miner
-# 							is_robotic_species = yes
-# 						}
-# 						count >= 2
-# 					}
-# 				}
-# 				random_owned_pop = {
-# 					limit = {
-# 						has_job = miner
-# 						OR = {
-# 							AND = {
-# 								is_robotic_species = yes
-# 								owner = { is_gestalt = no }
-# 							}
-# 							owner = { is_gestalt = yes }
-# 						}
-# 					}
-# 					kill_pop = yes
-# 					kill_pop = yes
-# 				}
-
-# 				create_message = {
-# 					type = "MINE_SHAFT_COLLAPSE"
-# 					localization = tbm_message_mine_shaft_collapse_robot_casaulties
-# 					days = -1
-# 				}
-# 			}
-# 			else = {
-# 				random_owned_pop = {
-# 					limit = {
-# 						has_job = miner
-# 					}
-# 					kill_pop = yes
-# 					kill_pop = yes
-# 				}
-
-# 				add_modifier = {
-# 					modifier = miners_strike
-# 					days = 720
-# 				}
-
-# 				create_message = {
-# 					type = "MINE_SHAFT_COLLAPSE"
-# 					localization = tbm_message_mine_shaft_collapse_miners_dead
-# 					days = -1
-# 				}
-# 			}
-# 		}
-# 		else = {
-# 			create_message = {
-# 				type = "MINE_SHAFT_COLLAPSE"
-# 				localization = tbm_message_mine_shaft_collapse_no_casaulties
-# 				days = -1
-# 			}
-# 		}
-# 	}
-# }
-
 ### 20. False Prospects Handler (on_district_complete)
 #	For event, see TBM_02_events.txt
 planet_event = {
@@ -1269,10 +1102,6 @@ planet_event = {
 }
 
 
-
-
-### 11. Reroll tomb features on nuking via various events (on-action: )
-
 ### 100. Colonization Handler
 #	on_colonized
 planet_event = {
@@ -1302,7 +1131,6 @@ planet_event = {
 	}
 
 	immediate = {
-		log = "Added Pioneering Colonists"
 		this = {
 			if = {
 				limit = {
@@ -1324,7 +1152,6 @@ planet_event = {
 
 ### 101. Pioneering Colonists
 #	Exists to help with clarity and difficulty when colonizing very inhospitable worlds.
-#	Might be a good idea to make sure you pay those colonists back for their hard work, though....
 planet_event = {
 	id = tbm_handler.101
 
@@ -1368,12 +1195,12 @@ planet_event = {
 	}
 
 	option = {
-		name = tbm_handler.101.option	# This should really be something cooler.
+		name = tbm_handler.101.option
 	}
 }
 
 ### 102. Wild World Generator (on_press_begin)
-#	The long-term plan is that these shouldn't need to exist. Until then, they're added on_press_begin to provid flavor to and help ameliorate particularly nasty feature spawns, with the idea being to avoid planets with large numbers of negative district space because it confuses the UI.
+#	The long-term plan is that these shouldn't need to exist. Until then, they're added on_press_begin to provid flavor to and help ameliorate particularly nasty feature spawns, with the idea being to avoid planets with large numbers of negative district space because it confuses the UX.
 event = {
 	id = tbm_handler.102
 
@@ -1447,9 +1274,8 @@ planet_event = {
 }
 
 ### 105. Pre-FTL Achieve FTL
-#	Handles features for empires achieving FTL. Called from achieve_ftl_effect via on_action tbm_achieve_ftl.
+#	Handles features for empires achieving FTL. Called from achieve_ftl_effect.
 #	Vanilla Pre-FTLs clear their two Early Space Age blockers on reaching the Space Age via clear_blockers = yes, which wipes out all TBM features. This re-generates a standard starting spread.
-#	Note: from = prev due to custom on_action
 planet_event = {
 	id = tbm_handler.105
 

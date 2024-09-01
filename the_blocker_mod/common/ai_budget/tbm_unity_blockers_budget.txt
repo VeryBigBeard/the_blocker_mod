@@ -1,4 +1,5 @@
 ### The Blocker Mod - AI Budgets
+
 #	TBM by and large doesn't touch AI budgets, but a small addition is necessary in order for the AI to know how to clear blockers with non-vanilla costs
 
 unity_expenditure_blockers = {
@@ -16,7 +17,7 @@ unity_expenditure_blockers = {
 	
 
 	weight = {
-		weight = 1000	# TEST
+		weight = 0.2
 
 		modifier = {
 			factor = 5
@@ -44,10 +45,6 @@ unity_expenditure_blockers = {
 			}
 		}
 	}
-
-	# desired_max = {
-	# 	base = 200	# Currently, no TBM features have a unity cost higher than this.
-	# }
 }
 
 minerals_expenditure_blockers = {
@@ -94,6 +91,6 @@ consumer_goods_expenditure_blockers = {
 	}
 
 	weight = {
-		weight = 100	# TEST
+		weight = 0.2
 	}
 }

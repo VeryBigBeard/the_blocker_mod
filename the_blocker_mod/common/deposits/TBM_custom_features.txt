@@ -17,7 +17,10 @@
 @blocker_high = 10
 @blocker_low = 5
 
-# ai_weight variables
+@ranger_small_production = 0.5
+@ranger_large_production = 1
+
+# AI Weight Variables
 # Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
 
 # The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
@@ -269,7 +272,6 @@ d_sandstone_spires = {
 	}
 
 	on_cleared = {
-		#Jawas go here
 		owner = {
 			add_resource = {
 				minerals = 1000
@@ -711,7 +713,6 @@ d_sea_monster = {
 			is_planet_class = pc_continental
 			is_planet_class = pc_arctic
 			is_planet_class = pc_gaia
-			#is_planet_class = pc_pdaquatic
 		}
 	}
 
@@ -964,7 +965,7 @@ d_tidal_marshes = {
 		inline_script = tbm_ai_empire_weights
 
 		modifier = {
-			add = -2	# Basically clear these unless it's a big farm or wind world.
+			set = @keep	# Basically clear these unless it's a big farm or wind world.
 			root = {
 				OR = {
 					colony_type = col_farming
@@ -974,7 +975,7 @@ d_tidal_marshes = {
 		}
 
 		modifier = {
-			add = 1	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
+			set = @base	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
 			root = {
 				OR = {
 					num_free_districts = {
@@ -1635,7 +1636,7 @@ d_frozen_wasteland = {
 		}
 
 		modifier = {
-			add = @keep 	# However, keep it if we're on a generator world and we're trying to build more generators
+			set = @keep 	# However, keep it if we're on a generator world and we're trying to build more generators
 			root = { 
 				colony_type = col_generator
 				num_free_districts = {
@@ -1759,7 +1760,7 @@ d_mountain_jungle = {
 		inline_script = tbm_personality_weights
 
 		modifier = {
-			add = @keep
+			set = @keep
 			owner = {
 				has_ai_personality = hegemonic_imperialists	# We like imposing landscape
 				has_ai_personality = spiritual_seekers	#Jungle visions
@@ -2202,7 +2203,7 @@ d_drylands = {
 	should_swap_deposit_on_terraforming = no
 
 	prerequisites = {
-		"tech_quicksand_basin"	# Placeholder - will likely add hydro tech at some point
+		"tech_quicksand_basin"
 	}
 
 	time = 720
@@ -3341,8 +3342,6 @@ d_seaweed_shoals = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
-		# Let's add some ecological benefits here.
-		# Consider having some pre-sapients living int he seaweed.
 	}
 
 	triggered_planet_modifier = {
@@ -3511,9 +3510,7 @@ d_tbm_slums = {
 	# }
 
 
-	planet_modifier = {
-		#planet_researchers_society_research_produces_add = 1
-		
+	planet_modifier = {		
 		pop_amenities_usage_mult = -0.05
 		pop_cat_worker_happiness = -0.05
 		planet_crime_mult = 0.05
@@ -3537,12 +3534,6 @@ d_tbm_slums = {
 				}
 			}
 		}
-
-		# modifier = {
-		# 	set = @keep
-		# 	owner = { is_authoritarian = yes }
-		# 	root = { num_pops > 40 }
-		# }
 	}
 }
 
@@ -3589,7 +3580,7 @@ d_tbm_crater = {
 
 
 # Failing Infrastructure are generated on homeworlds at game-start
-# Additions from The Blocker Mod, and can be added via event - will not apply on homeworlds.
+# Additions from The Blocker Mod, and can be added via event.
 d_tbm_industrial_wasteland = {
 	icon = d_metal_boneyard
 	category = deposit_cat_blockers
@@ -3617,7 +3608,6 @@ d_tbm_industrial_wasteland = {
 	}
 
 	planet_modifier = {
-		#planet_max_districts_add = -1
 		planet_pops_consumer_goods_upkeep_mult = -0.05	# Cheaper cost of living
 		trade_value_mult = 0.02
 		planet_crime_mult = 0.1
@@ -3732,40 +3722,6 @@ d_great_river_obstructed = {
 
 	should_swap_deposit_on_terraforming = no
 
-	# on_cleared = {
-	# 	add_deposit = d_great_river
-	# 	# Flooding Caused
-	# 	hidden_effect = {
-	# 		random_list = {
-	# 			33 = {
-	# 				planet_event = {
-	# 					id = tbm.27
-	# 					days = 30
-	# 				}
-	# 			}
-	# 			33 = {
-	# 				modifier = {
-	# 					factor = 2
-	# 					num_districts = {
-	# 						type = any
-	# 						value > 9
-	# 					}
-	# 				}
-	# 				planet_event = {
-	# 					id = tbm.28
-	# 					days = 30
-	# 				}
-	# 			}
-	# 			33 = {
-	# 				planet_event = {
-	# 					id = tbm.29
-	# 					days = 30
-	# 				}
-	# 			}
-	# 		}
-	# 	}
-	# }
-
 	planet_modifier = {
 		planet_farmers_food_produces_mult = 0.1
 	}
@@ -3773,10 +3729,6 @@ d_great_river_obstructed = {
 	potential = {
 		always = no
 	}
-
-	# ai_weight = {
-	# 	weight = @always_keep
-	# }
 }
 
 d_urban_power_plant = {
@@ -3900,15 +3852,6 @@ d_dyke = {
 
 	should_swap_deposit_on_terraforming = no
 
-	#time = 180
-	
-	# resources = {
-	# 	category = deposit_blockers_natural
-	# 	cost = {
-	# 		energy = 500
-	# 	}
-	# }
-
 	planet_modifier = {
 		pop_housing_usage_mult = 0.02
 		planet_farmers_food_produces_mult = 0.05
@@ -3953,7 +3896,7 @@ d_settlement = {
 
 		modifier = {
 			set = @keep
-			free_housing <= 3
+			root = { free_housing <= 3 }
 		}
 	}
 }
@@ -4054,9 +3997,11 @@ d_dustbowl = {
 
 		modifier = {
 			set = @keep		# Avoid zapping districts in use. Should mean dustbowls stick around on developed worlds, which is the idea flavor-wise
-			num_free_districts = {
-				type = any
-				value < 1
+			root = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
 			}
 		}
 	}
@@ -4077,7 +4022,7 @@ d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld 
 	time = 480
 
 	prerequisites = {
-		"tech_toxic_kelp"	# This should be a custom tech, as we're not managing ecology here, but going very very deep into a high-pressure environment (esp on a size 30 planet!)
+		"tech_toxic_kelp"
 	}
 
 	resources = {
@@ -4086,8 +4031,6 @@ d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld 
 			energy = 1000
 		}
 	}
-
-	### Should add on_cleared event for exploration.
 
 	potential = {
 		always = no
@@ -4555,190 +4498,6 @@ d_collapsed_tunnel = {
 
 ### TBM Event Features
 
-d_ruler_mountain = {	
-	icon = d_mountain_range
-	category = deposit_cat_blockers
-
-	use_for_min_max_adjustments = yes
-
-	should_swap_deposit_on_terraforming = no
-
-	time = 950
-
-	resources = {
-		category = deposit_blockers
-		cost = { 
-			energy = 2000
-		}
-		produces = {
-			unity = 10
-		}
-	}
-
-	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 2000
-			}
-		}
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = -3
-		district_mining_max = 2
-		planet_miners_minerals_produces_mult = 0.1
-		planet_amenities_add = 2
-	}
-
-	### Note that this flag behaves differently on the special mountains
-	triggered_planet_modifier = {
-		potential = {
-			this = { has_deposit_flag = mineral_rights }
-		}
-		modifier = {
-			district_mining_max = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			this = { has_deposit_flag = mining_prohibited }
-		}
-		modifier = {
-			district_mining_max = -1
-			planet_administrators_unity_produces_mult = 0.05
-		}
-	}
-
-	potential = { always = no }
-
-	ai_weight = {
-		weight = @keep
-	}
-}
-
-d_homeworld_mountain = {
-	icon = d_mountain_range
-	category = deposit_cat_blockers
-
-	use_for_min_max_adjustments = yes
-
-	should_swap_deposit_on_terraforming = no
-
-	time = 950
-
-	resources = {
-		category = deposit_blockers
-		cost = { 
-			energy = 2000
-		}
-		produces = {
-			unity = 10
-		}
-	}
-
-	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 2000
-			}
-		}
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = -3
-		district_mining_max = 2
-		planet_miners_minerals_produces_mult = 0.1
-		planet_amenities_add = 2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			this = { has_deposit_flag = mineral_rights }
-		}
-		modifier = {
-			district_mining_max = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			this = { has_deposit_flag = mining_prohibited }
-		}
-		modifier = {
-			district_mining_max = -1
-			planet_administrators_unity_produces_mult = 0.05
-		}
-	}
-
-	potential = { always = no }
-
-	ai_weight = {
-		weight = @keep
-	}
-}
-
-d_colonist_mountain = {
-	icon = d_mountain_range
-	category = deposit_cat_blockers
-
-	use_for_min_max_adjustments = yes
-
-	should_swap_deposit_on_terraforming = no
-
-	time = 950
-
-	resources = {
-		category = deposit_blockers
-		cost = { 
-			energy = 2000
-		}
-		produces = {
-			unity = 10
-		}
-	}
-
-	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 2000
-			}
-		}
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = -3
-		district_mining_max = 2
-		planet_miners_minerals_produces_mult = 0.1
-		planet_amenities_add = 2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			this = { has_deposit_flag = mineral_rights }
-		}
-		modifier = {
-			district_mining_max = 1
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			this = { has_deposit_flag = mining_prohibited }
-		}
-		modifier = {
-			district_mining_max = -1
-			planet_administrators_unity_produces_mult = 0.05
-		}
-	}
-
-	potential = { always = no }
-
-	ai_weight = {
-		weight = @keep
-	}
-}
-
 d_great_desert = {
 	icon = d_searing_desert
 	category = deposit_cat_artificial
@@ -4932,14 +4691,6 @@ d_tbm_active_volcano = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-
-	# blocker_swap_types = {
-	# 	d_tempestous_mountain
-	# 	d_prosperous_mesa
-	# 	d_rich_mountain
-	# 	d_fjordland
-	# 	d_tropical_island
-	# }
 
 	time = 720
 

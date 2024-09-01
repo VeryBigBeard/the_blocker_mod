@@ -1,11 +1,6 @@
 ### The Blocker Mod - Vanilla Overwrites
 #
-#	Overwrites most keys in 01_blocker_deposits.tx and all keys in 01_planetary_deposits.txt
-#
-#	All terraforming weights are set to should_swap_deposit_on_terraforming = no
-#	Otherwise, you will get some very odd planets and district spreads post-terraform.
-#	Terraforming in this mod is handled mostly by events.
-#
+#	Overwrites most keys in 01_blocker_deposits.txt and all keys in 01_planetary_deposits.txt
 #	AI Weights are set on each feature to allow for greater flexibility.
 #	Vanilla inline_script references have been removed so as not to interfere with this.
 ###
@@ -29,7 +24,7 @@
 @blocker_high = 10
 @blocker_low = 5
 
-# ai_weight variables
+# AI Weight Variables
 # Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
 
 # The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
@@ -102,19 +97,6 @@ d_mountain_range = {
 			planet_stability_add = -5	# Guerillas
 		}
 	}
-	
-	# For Famous Mountain event, currently disabled
-	# triggered_planet_modifier = {
-	# 	potential = {
-	# 		this = {
-	# 			has_deposit_flag = mineral_rights
-	# 		}
-	# 	}
-	# 	modifier = {
-	# 		district_mining_max = 2
-	# 		planet_miners_minerals_produces_mult = 0.05
-	# 	}
-	# }
 
 	potential = {
 		planet_size > 10
@@ -264,7 +246,7 @@ d_active_volcano = {
 		potential = {
 			exists = owner
 			any_deposit = {
-				has_deposit_flag = volcano_erupted	# This has to be applied to a SPECIFIC Active Volcano in the event.
+				has_deposit_flag = volcano_erupted
 			}
 		}
 		modifier = {
@@ -367,10 +349,6 @@ d_dangerous_wildlife_blocker = {
 				}
 			}
 		}
-		
-		
-		# Cull the Herd?
-		#planet_event = { id = tbm.5 }	# Disabled for now.
 		
 		# Chance of Xenofauna Attacks
 		hidden_effect = {
@@ -1271,7 +1249,7 @@ d_massive_glacier = {
 
 # These are cloned mainly for event purposes.
 # Main difference is these no longer have blocker_swap_types and so will no longer add random features.
-d_vanilla_failing_infrastructure = {
+d_failing_infrastructure = {
 	icon = d_metal_boneyard
 	time = 120
 
@@ -1284,19 +1262,6 @@ d_vanilla_failing_infrastructure = {
 		planet_max_districts_add = -1
 	}
 
-	#use_weights_for_blocker_swap_types = yes
-	# blocker_swap_types = {
-	# 	d_rushing_waterfalls
-	# 	d_searing_desert
-	# 	d_frozen_gas_lake
-	# 	d_prosperous_mesa
-	# 	d_ore_rich_caverns
-	# 	d_fungal_caves
-	# 	d_lush_jungle
-	# 	d_fertile_lands
-	# 	d_great_river
-	# }
-
 	resources = {
 		category = deposit_blockers
 		cost = {
@@ -1308,6 +1273,7 @@ d_vanilla_failing_infrastructure = {
 		weight = @clear
 	}
 }
+
 
 ### TOMB
 
@@ -1355,7 +1321,7 @@ d_radioactive_wasteland = {
 	drop_weight = {
 		weight = @blocker_high
 		modifier = {
-			factor = 5	# Not spawning enough on Tomb Worlds with other custom features.
+			factor = 5
 			is_planet_class = pc_nuked
 		}
 	}
@@ -1536,6 +1502,7 @@ d_bomb_crater = {
 	}
 }
 
+
 ###############
 #### ENERGY ###
 ###############
@@ -1715,7 +1682,6 @@ d_hot_springs = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		planet_amenities_add = 10
-		# Should also add spa building or possibly call spa event.
 	}
 
 	triggered_planet_modifier = {
@@ -1908,7 +1874,7 @@ d_rushing_waterfalls = {
 				has_ai_personality = hegemonic_imperialists	# We like imposing things.
 				has_ai_personality = erudite_explorers	# Got things to see.
 				has_ai_personality = harmonious_hierarchy
-				has_ai_personality = fanatic_befrienders	# Nights beneath the waterfall are romantic in most societies
+				has_ai_personality = fanatic_befrienders	# Nights beneath the waterfall are romantic for most species
 			}
 		}
 		
@@ -2243,19 +2209,11 @@ d_geothermal_vent = {
 				}
 			}
 			energy = 600
-			#engineering_research = 200
 		}
 
 		cost = {
 			energy = 600
 			minerals = 200
-		}
-		
-		produces = {
-			trigger = {
-				has_modifier = studying_latent_underlying_geothermal_gas_eruption_rhythm
-			}
-			engineering_research = 2
 		}
 	}
 
@@ -2345,12 +2303,6 @@ d_underwater_vent = {
 
 	resources = {
 		category = deposit_blockers_natural
-		produces = {
-			trigger = {
-				has_modifier = studying_latent_underlying_geothermal_gas_eruption_rhythm
-			}
-			engineering_research = 2
-		}
 		cost = {
 			trigger = {
 				owner = {
@@ -3015,20 +2967,6 @@ d_ore_rich_caverns = {
 		}
 	}
 
-	### Snazzy option to randomly add extra districts for variation, but potential performance hit?
-	#	Also requires further testing.
-	# triggered_planet_modifier = {
-	# 	potential = {
-	# 		check_variable_arithmetic = {
-	# 			which = @random_feature
-	# 			value = value:random_feature_value
-	# 		}
-	# 	}
-	# 	modifier = {
-	# 		district_mining_max = 1
-	# 	}
-	# }
-
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -3051,8 +2989,6 @@ d_ore_rich_caverns = {
 
 	drop_weight = {
 		weight = @high
-
-		# Should be a boost here for other subterranean features but we don't have enough of them yet.
 	}
 
 	ai_weight = {
@@ -3351,9 +3287,11 @@ d_submerged_ore_veins = {
 	}
 }
 
+
 ###################
 ##### FOOD	#####
 ###################
+
 d_lichen_fields = {
 	category = deposit_cat_food
 
@@ -4311,10 +4249,6 @@ d_fungal_caves = {
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
-
-	# on_cleared = {
-	# 	# Add habitable cave?
-	# }
 
 	time = 480
 
@@ -5746,6 +5680,7 @@ d_natural_farmland = {
 
 ### Earth Deposits
 #	AI will generally keep these for flavor
+
 d_scandinavian_reclamation_sector = {
 	is_for_colonizable = yes
 	icon = d_radioactive_wasteland
@@ -5761,7 +5696,6 @@ d_scandinavian_reclamation_sector = {
 		category = deposit_blockers_natural
 		cost = {
 			energy = 500
-			society_research = 100
 		}
 	}
 

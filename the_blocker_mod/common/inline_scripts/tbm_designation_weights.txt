@@ -7,8 +7,8 @@
 # Basic planet designation weighting applied to (almost) every feature.
 # General idea is we want rural, research, and unity planets to keep more bonuses; industrial and urban worlds, less so.
 # Specialized resource districts (i.e., farming) are handled in each feature to avoid over-generalization.
-# Not called on most negative features as the logic is inverse; these are handled in deposits/.
-# This also contains the vanilla Environmentalist modifier until I decide how to change it.
+# Not called on most negative features as the logic is inverse; these are handled in deposits.
+# This also contains the vanilla Environmentalist modifier.
 
 
 # Unity, research designations - this: planet

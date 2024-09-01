@@ -1,5 +1,4 @@
 name="The Blocker Mod - Beta"
-path="mod/the_blocker_mod"
 picture="thumbnail.png"
 tags={
 	"Gameplay"

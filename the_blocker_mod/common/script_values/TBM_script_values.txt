@@ -1,3 +1,6 @@
+### The Blocker Mod - Script Values
+
+
 # Curreently unused, set up mainly for experiment/test/future use.
 random_feature_value = {
 	base = 1
@@ -6,11 +9,10 @@ random_feature_value = {
 	max = 100
 }
 
-### Gestalt Research Values (Feature List)
+### Gestalt Research Values
 #	These replace colonist bonhuses for gestalts, which do not get colonists
 #	This needs to be called in planet-scope
-#	Counts all planets, then adds 1 for each with the scripted_trigger returns true (feature list)
-
+#	Counts all planets, then adds 1 for each which the scripted_trigger returns true
 feature_research_gestalt_phys = {
 	base = 0
 	complex_trigger_modifier = {
@@ -52,6 +54,7 @@ feature_research_gestalt_eng = {
 		mode = add
 	}
 }
+
 
 ### Feature Values
 
@@ -96,27 +99,6 @@ highway_engineers_to_change_a_lightbulb = {
 	mult = 10	# There're a lot of lightbulbs on an ecumenopolis.
 }
 
-### Food Rations Situation
-
-num_private_farms = {
-	base = 0
-	add = trigger:num_private_farms
-	max = 4
-}
-
-# 1 pop worth of a resource -- value:resource_shipment|RESOURCE|<resource key>
-# scope = pop
-resource_shipment = {
-	base = 1
-	complex_trigger_modifier = {
-		trigger = pop_produces_resource
-		trigger_scope = pop
-		parameters = {
-			type = $RESOURCE$
-		}
-		mode = set
-	}
-}
 
 ### Colonial Strain - Infrastructure
 #	Adds upkeep to colonial infrastructure as population on the planet grows, straining national unity
@@ -162,4 +144,20 @@ colonial_cohesion_gestalt = {
 	}
 
 	floor = yes
+}
+
+
+
+# 1 pop worth of a resource -- value:resource_shipment|RESOURCE|<resource key>
+# scope = pop
+resource_shipment = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = pop_produces_resource
+		trigger_scope = pop
+		parameters = {
+			type = $RESOURCE$
+		}
+		mode = set
+	}
 }

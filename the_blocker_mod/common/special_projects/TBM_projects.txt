@@ -119,11 +119,11 @@ special_project = {
 	}
 }
 
-special_project = {
-	key = "DESCENT"
-	event_scope = ship_event
-	on_success = { }
-}
+# special_project = {
+# 	key = "DESCENT"
+# 	event_scope = ship_event
+# 	on_success = { }
+# }
 
 special_project = {
 	key = "SHIFTING_SANDS"
@@ -153,22 +153,6 @@ special_project = {
 				id = tbm.83
 				days = 1
 			}
-		}
-	}
-}
-
-special_project = {
-	key = "MEGASTRUCTURE_TOUR"
-	event_scope = ship_event
-
-	# Needs 3.8
-	# requirements = {
-	# 	leader = ruler
-	# }
-	days_to_research = 90
-	on_success = {
-		owner = {
-			set_leader = Character
 		}
 	}
 }

@@ -3,8 +3,8 @@
 ### Note: Any mod that overwrites these will produce unexpected results when used with The Blocker Mod. Deposits need to be set to blocker = yes for most mod functions to work. For best results, load TBM after any other feature mods.
 
 deposit_cat_tbm_legendary = {
-	blocker = yes # Counts as blockers
-	important = yes	# Shows up as rare deposits in planetview
+	blocker = yes
+	important = yes
 }
 
 deposit_cat_advanced = {
@@ -22,12 +22,12 @@ deposit_cat_minerals = {
 	blocker = yes
 }
 deposit_cat_blockers = {
-	blocker = yes # Counts as blockers
+	blocker = yes
 	# This is used in vanilla to distinguish certain clearance costs (e.g., for leader traits or country modifiers) and TBM mostly respects this. TBM features that are natural are usually set to deposit_cat_blockers_natural; feaqtures that reflect local conditions (but can be cleared) usually go here.
 }
 
 deposit_cat_blockers_natural = {
-	blocker = yes # Counts as blockers
+	blocker = yes
 	# All natural features go here so vanilla checks for certain events, costs, and scripts (such as Park Rangers) work properly. Where TBM adds new landscape features, they get this category.
 }
 
@@ -55,11 +55,11 @@ deposit_cat_energy_rare = {
 }
 
 deposit_cat_rare = {
-	important = yes	# Shows up as rare deposits in planetview
+	important = yes
 }
 deposit_cat_rare_blocker = {
-	blocker = yes # Counts as blockers
-	important = yes	# Shows up as rare deposits in planetview
+	blocker = yes
+	important = yes
 }
 
 # This is only blockers that don't have to be cleared for ecus.

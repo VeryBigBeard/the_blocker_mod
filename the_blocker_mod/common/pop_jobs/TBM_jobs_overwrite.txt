@@ -1,3 +1,8 @@
+### The Blocker Mod - Jobs Overwrite
+#	TBM overwrites the colonist job, setting it to be a specialist and to use the planet_colonist economic category.
+#	If any other mod overwrites colonists, you can patch them by changing the category where indicated below.
+
+
 colonist = {
 	category = specialist
 	condition_string = SPECIALIST_JOB_TRIGGER
@@ -28,7 +33,7 @@ colonist = {
 	}
 
 	resources = {
-		category = planet_colonist
+		category = planet_colonist	# Patch here if necessary
 		produces = {
 			trigger = {
 				is_lithoid = no

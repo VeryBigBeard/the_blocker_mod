@@ -239,6 +239,9 @@
  d_collapsed_superhighway:0 "£blocker£ Collapsed Superhighway"
  d_collapsed_superhighway_desc:0 "In the distant past, when this world was covered by arcologies and sprawling cityscape, these elevated thoroughfares must have moved billions of inhabitants around the planet."
 
+ d_planetary_superhighway:0 "Planetary Superhighway"
+ d_planetary_superhighway_desc:0 "A true feat of engineering. A complex web of air-lanes and ground accesses funnel goods, service vehicles, and pleasure craft across our city-planet at super-speed with few if any delays."
+
  d_homeworld_scrap_mountain:0 "Scrap Mountain"
  d_homeworld_scrap_mountain_desc:0 "Vast regions of rubble still cover the majority of our world, very little of it of any value beyond a slag heap. Clearing it could take another thousand years and bandits have been known to hide out in the canyons of twisted metal and ruin."
 

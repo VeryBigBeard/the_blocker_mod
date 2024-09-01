@@ -12,9 +12,7 @@ namespace = tbm
 #
 ### TBM_01_events
 #
-#	1. Debug Event (changes a lot)
-#	2. A Famous Mountain (disabled) 
-#	5. Cull the Herd (WIP)
+#	1. Init Event
 #	11. Volcanic Eruption
 #	16. Xenofauna Attack
 #	19. Landslide
@@ -23,10 +21,11 @@ namespace = tbm
 #	28. Flooding (damage)
 #	29. Flooding (destruction)
 #	30. Climate Control Network Malfunctions
+#	31. Climate Control - Too Much
+#	32. Climate Control - Overheating
+#	33. Climate Control - Oops, We Missed
+#	34. Climate Control - Machine Breaks Down
 ###
-#
-#
-
 
 
 ### Variables
@@ -46,428 +45,6 @@ country_event = {
 
 		### Init
 		set_global_flag = the_blocker_mod
-	}
-}
-
-### 2. A Famous Mountain (Hanlder)
-#	Disabled indefinitely as it relies on dynamic deposit text, which does not currently exist. If it ever does, this will be re-enabled.
-# planet_event = {
-# 	id = tbm.2
-
-# 	hide_window = yes
-# 	is_triggered_only = yes
-
-# 	pre_triggers = {
-# 		has_owner = yes
-# 		is_homeworld = no
-# 		is_ai = no
-# 		original_owner = yes
-# 		has_ground_combat = no
-# 		is_occupied_flag = no
-# 	}
-
-# 	trigger = {
-# 		any_owned_pop = {
-# 			has_job = colonist
-# 		}
-# 		has_deposit = d_mountain_range
-# 		NOR = {
-# 			has_deposit = d_colonist_mountain
-# 			has_deposit = d_homeworld_mountain
-# 			has_deposit = d_ruler_mountain
-# 		}
-# 	}
-
-# 	immediate = {
-		
-# 		# Get ruler name
-# 		owner.leader = {
-# 			save_global_event_target_as = ruler_at_the_time
-# 		}
-		
-# 		# Get colonist's homeworld; this is technically redundant but helps with an edge case where Mt. Homeworld can get renamed if the planet changes ownership. Which is kind of weirdly appropriate but we're gonna fix it anyway.
-# 		random_owned_pop = {
-# 			limit = {
-# 				has_job = colonist
-# 			}
-# 			species = {
-# 				if = {
-# 					limit = {
-# 						exists = home_planet
-# 					}
-# 					home_planet = {
-# 						save_global_event_target_as = colony_homeworld
-# 					}
-# 				}
-# 				else = {
-# 					# Avoids rare case where secondary species has no homeworld.
-# 					owner.species.home_planet = {
-# 						save_global_event_target_as = colony_homeworld
-# 					}
-# 				}
-# 			}
-# 		}
-
-# 		# Expedition Lead
-# 		owner = {
-# 			create_leader = {
-# 				class = envoy
-# 				species = prevprev
-# 			}
-# 			last_created_leader = {
-# 				save_global_event_target_as = colonist_name
-# 				exile_leader_as = expedition_lead
-# 			}
-# 		}
-
-# 		# Colonists' Special Friend, after whom they are of course going to name this mountain.
-# 		if = {
-# 			limit = {
-# 				event_target:colonist_name = {
-# 					gender = male
-# 				}
-# 			}
-# 			owner = {
-# 				create_leader = {
-# 					class = envoy
-# 					species = owner
-# 					gender = female
-# 				}
-# 			}
-# 		}
-# 		else_if = {
-# 			limit = {
-# 				event_target:colonist_name = {
-# 					gender = female
-# 				}
-# 			}
-# 			owner = {
-# 				create_leader = {
-# 					class = envoy
-# 					species = owner
-# 					gender = male
-# 				}
-# 			}
-# 		}
-# 		else = {
-# 			create_leader = {
-# 				class = envoy
-# 				species = prevprev
-# 				gender = indeterminable
-# 			}
-# 		}
-# 		last_created_leader = {
-# 			save_global_event_target_as = colonist_friend
-# 			exile_leader_as = colonist_special
-# 		}
-
-# 		planet_event = {
-# 			id = tbm.3
-# 			days = 1
-# 		}
-# 	}
-# }
-
-### 3. A Famous Mountain
-# planet_event = {
-# 	id = tbm.3
-# 	title = tbm.3.name
-# 	desc = tbm.3.desc
-# 	picture = GFX_evt_gaia
-
-# 	show_sound = event_finding_loot
-
-# 	is_triggered_only = yes
-
-# 	# Name after ruler
-# 	option = {
-# 		name = tbm.3.ruler
-# 		trigger = {
-# 			owner = {
-# 				OR = {
-# 					has_authority = auth_corporate
-# 					has_authority = auth_oligarchic
-# 					has_authority = auth_dictatorial
-# 					has_authority = auth_imperial
-# 				}
-# 			}
-# 		}
-
-# 		remove_deposit = d_mountain_range
-# 		add_deposit = d_ruler_mountain
-# 	}
-
-# 	# Name after homeworld
-# 	option = {
-# 		name = tbm.3.homeworld
-# 		trigger = {
-# 			owner = {
-# 				OR = {
-# 					has_authority = auth_democratic
-# 					has_authority = auth_hive_mind
-# 					has_authority = auth_machine_intelligence
-# 				}
-# 			}
-# 		}
-# 		remove_deposit = d_mountain_range
-# 		add_deposit = d_homeworld_mountain
-# 		last_added_deposit = {
-# 			save_event_target_as = mountain_name
-# 		}
-# 	}
-
-# 	# Name after colonists (random leader name)
-# 	option = {
-# 		name = tbm.3.expedition
-# 		allow = {
-# 			owner = {
-# 				NOT = { has_authority = auth_imperial }
-# 			}
-# 		}
-
-# 		remove_deposit = d_mountain_range
-# 		add_deposit = d_colonist_mountain
-# 	}
-
-# 	after = {
-# 		hidden_effect = {
-# 			planet_event = {
-# 				id = tbm.4
-# 				days = 1800
-# 				random = 600
-# 			}
-
-# 			random_deposit = {
-# 				limit = {
-# 					OR = {
-# 						is_deposit_type = d_colonist_mountain
-# 						is_deposit_type = d_homeworld_mountain
-# 						is_deposit_type = d_ruler_mountain
-# 					}
-# 				}
-# 				save_event_target_as = named_mountain
-# 			}
-# 		}
-# 	}
-# }
-
-### 4. A Famous Mountain - A Question of Mineral Rights
-# planet_event = {
-# 	id = tbm.4
-# 	title = tbm.4.name
-# 	desc = tbm.4.desc
-# 	picture = GFX_evt_gaia
-
-# 	show_sound = event_finding_loot
-
-# 	is_triggered_only = yes
-
-# 	# Sell the mineral rights
-# 	option = {
-# 		name = tbm.4.sell
-		
-# 		random_deposit = {
-# 			limit = {
-# 				OR = {
-# 					is_deposit_type = d_ruler_mountain
-# 					is_deposit_type = d_homeworld_mountain
-# 					is_deposit_type = d_colonist_mountain
-# 				}
-# 			}
-# 			remove_deposit = yes
-# 		}
-
-# 		this = {
-# 			add_deposit = d_mountain_range
-# 		}
-
-# 		add_modifier = {
-# 			modifier = sold_famous_mountain
-# 			days = 3600
-# 		}
-		
-# 		random_deposit = {
-# 			limit = {
-# 				is_deposit_type = d_mountain_range
-# 			}
-# 			set_deposit_flag = mineral_rights
-# 		}
-# 	}
-
-# 	# Have governor solve it
-# 	option = {
-# 		name = tbm.4.gov
-# 		trigger = {
-# 			is_sector_capital = yes
-# 			planet = {
-# 				exists = leader
-# 			}
-# 		}
-
-# 		random_deposit = {
-# 			limit = {
-# 				OR = {
-# 					is_deposit_type = d_ruler_mountain
-# 					is_deposit_type = d_homeworld_mountain
-# 					is_deposit_type = d_colonist_mountain
-# 				}
-# 			}
-# 			set_deposit_flag = mineral_rights
-# 		}
-
-# 		owner = {
-# 			add_resource = {
-# 				unity = -200
-# 			}
-# 		}
-# 	}
-
-# 	# Protect famopus mountain
-# 	option = {
-# 		name = tbm.4.protect
-# 		random_deposit = {
-# 			limit = {
-# 				OR = {
-# 					is_deposit_type = d_ruler_mountain
-# 					is_deposit_type = d_homeworld_mountain
-# 					is_deposit_type = d_colonist_mountain
-# 				}
-# 			}
-# 			set_deposit_flag = mining_prohibited
-# 		}
-# 		owner = {
-# 			add_resource = {
-# 				unity = 200
-# 			}
-# 		}
-# 	}
-# }
-
-
-### 5. Dangerous Wildlife - Cull the Herd? - currently disabled
-planet_event = {
-	id = tbm.5
-	title = tbm.5.name
-    desc = tbm.5.desc
-    picture = GFX_evt_scanning_remains
-	show_sound = event_finding_loot
-
-	is_triggered_only = yes
-	location = this
-
-	pre_triggers = {
-		has_owner = yes
-		is_homeworld = no
-		is_ai = no
-		has_ground_combat = no
-		is_occupied_flag = no
-	}
-
-	trigger = {
-		is_starting_planet = no
-	}
-
-	#No change
-	option = {
-		name = tbmker.5.a
-	}
-	
-	#Hunt
-	option = {
-		name = tbm.5.b
-		add_modifier = {
-			modifier = dangerous_wildlife_permits
-			days = -1
-		}
-		remove_deposit = d_dangerous_wildlife_blocker
-	}
-
-	#Poach
-	option = {
-		name = tbm.5.c
-		add_modifier = {
-			modifier = dangerous_wildlife_poachers
-			days = -1
-		}
-		remove_deposit = d_dangerous_wildlife_blocker
-		hidden_effect = {
-			random_list = { 
-				10 = {
-					planet_event = {
-						id = tbm.6
-						days = 540
-						random = 180
-					}
-				}
-				90 = {}
-			}
-		}
-	}
-
-	#Remove
-	option = {
-		trigger = {
-			owner = {
-				has_technology = tech_dangerous_wildlife
-			}
-			num_districts = {
-				type = district_farming
-				value > 2
-			}
-		}
-		name = tbm.5.d
-		owner = {
-			add_resource = {
-				energy = -500
-			}
-		}
-		add_modifier = {
-			modifier = dangerous_wildlife_toxin
-			days = 180
-		}
-		remove_deposit = d_dangerous_wildlife_blocker
-		#Consequence triggers
-		hidden_effect = {
-			random_list = {
-				10 = {
-					planet_event = {
-						id = tbm.6
-						days = 540
-						random = 180
-					}
-				}
-				10 = {
-					planet_event = {
-						id = tbm.7
-						days = 540
-						random = 180
-					}
-				}
-				20 = {
-					planet_event = {
-						id = tbm.8
-						days = 540
-						random = 180
-					}
-				}
-				60 = {}
-			}
-		}
-	}
-
-	#Yummy
-	option = {
-		name = tbm.5.e
-		trigger = {
-			owner = {
-				has_civic = civic_hive_devouring_swarm
-			}
-		}
-		owner = { 
-			add_resource = { 
-				food = 200
-			}
-		}
 	}
 }
 
@@ -491,7 +68,6 @@ planet_event = {
 	}
 
 	#Option to genetically modify species with gene tailoring
-	#Not built yet.
 	option = {
 		name = blocker.6.b
 		allow = {
@@ -590,7 +166,7 @@ planet_event = {
 
 	trigger = {
 		exists = owner
-		owner = { is_country_type = default }	# This is here to avoid bugs caused by volcanoes being put on scripted planets; if you use ZoFE, replace with is_zofe_country = yes
+		owner = { is_country_type = default }	# This is here to avoid bugs caused by volcanoes being put on scripted planets; if you use ZoFE, replace with is_zofe_country = yes should you wish your advanced empire to still suffer the odd volcanic event
 		is_starting_planet = no
 		OR = {
 			has_deposit = d_active_volcano
@@ -704,7 +280,7 @@ planet_event = {
 					has_ethic = ethic_fanatic_egalitarian
 				}
 			}
-			# Prevent country that somehow has negative unity income from being able to pull through (or receive negative reward)
+			# Prevent country that has negative unity income from being able to pull through (or receive negative reward)
 			owner = {
 				has_monthly_income = { resource = unity  value < 0 }
 			}
@@ -1215,11 +791,6 @@ planet_event = {
 planet_event = {
 	id = tbm.19
 
-	# title = tbm.19.name
-	# desc = tbm.19.desc
-	# picture = GFX_evt_relic_world_street
-	# show_sound = event_finding_loot
-
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -1292,7 +863,7 @@ planet_event = {
 		}
 		text = tbm.21.desc_superyacht
 	}
-	# Hippy Tree-hugger Version
+	# Hip Tree-hugger Version
 	desc = {
 		trigger = {
 			owner = {
@@ -1313,14 +884,15 @@ planet_event = {
 	location = this
 
 	trigger = {
+		# Must have a coastal city
 		NOT = { has_planet_flag = proposed_marina }	
 		NOT = {
 			is_starting_planet = yes
 		}
 		has_upgraded_capital = yes
-		last_district_changed = district_city	# on_district_complete checks built
+		last_district_changed = district_city
 		has_deposit = d_teeming_reef
-		# Must have a coastal city (long-term, should add check for coastal features + at least one district; for now, just lower req on ocean worlds)
+	
 		if = {
 			limit = {
 				is_planet_class = pc_ocean
@@ -1685,11 +1257,6 @@ planet_event = {
 planet_event = {
 	id = tbm.27
 
-	# title = tbm.27.name
-	# desc = tbm.27.desc
-	# picture = GFX_evt_collapsing_roof
-	# show_sound = aqu_dragon_attack_mouth_deluge
-
 	is_triggered_only = yes
 	hide_window = yes
 
@@ -1710,20 +1277,11 @@ planet_event = {
 			target = this
 		}
 	}
-
-	# option = {
-	# 	name = tbm.27.confirm
-	# }
 }
 
 ### 28. Flooding - Damage
 planet_event = {
 	id = tbm.28
-	
-	# title = tbm.28.name
-	# desc = tbm.28.desc
-	# picture = GFX_evt_collapsing_roof
-	# show_sound = aqu_dragon_attack_mouth_deluge
 
 	is_triggered_only = yes
 	hide_window = yes
@@ -1741,20 +1299,11 @@ planet_event = {
 			target = this
 		}
 	}
-
-	# option = {
-	# 	name = tbm.27.confirm
-	# }
 }
 
 ### 29. Flooding - Destruction
 planet_event = {
 	id = tbm.29
-	
-	# title = tbm.29.name
-	# desc = tbm.29.desc
-	# picture = GFX_evt_collapsing_roof
-	# show_sound = aqu_dragon_attack_mouth_deluge
 
 	is_triggered_only = yes
 	hide_window = yes
@@ -1772,10 +1321,6 @@ planet_event = {
 			target = this
 		}
 	}
-
-	# option = {
-	# 	name = tbm.27.confirm
-	# }
 }
 
 ### 30. Climate Control Network Malfunctions

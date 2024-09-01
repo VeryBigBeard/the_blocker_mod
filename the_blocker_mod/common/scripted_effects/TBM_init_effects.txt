@@ -1,6 +1,5 @@
 ### TBM Advanced Start Fixer-Upper
-#	Advanced Starts wipe all blockers in game_start.20. In vanilla, this is good. in TBM, this is very very bad, and causes advanced empires do de-advance rather quickly. This effect is called from an event on_action_initialize_advanced_colony and wipes out everything above in order to re-seeds all features on those starts after everything else is done.
-
+#	Advanced Starts wipe all blockers in game_start.20. In vanilla, this is good. In TBM, this is very very bad, and causes advanced empires do de-advance rather quickly. This effect is called from an event on_action_initialize_advanced_colony and wipes out everything above in order to re-seeds all features on those starts after everything else is done.
 fix_advanced_start_empire_features = {
 
 	log = "TBM - Advanced Starts"
@@ -30,8 +29,8 @@ fix_advanced_start_empire_features = {
 		limit = {
 			owner = { is_machine_empire = yes  }
 		}
-		add_deposit = d_battery_farms			# Replace
-		add_deposit = d_fossil_fuel_reserves	# Replace
+		add_deposit = d_battery_farms
+		add_deposit = d_fossil_fuel_reserves
 		add_deposit = d_mine_shafts
 		
 	}
@@ -68,36 +67,25 @@ fix_advanced_start_empire_features = {
 			owner = { is_gestalt = yes }
 		}
 		add_deposit = d_upgrade_facility
+		add_deposit = d_efficient_nodes
 	}
 	else = {
 		add_deposit = d_flying_party
+		add_deposit = d_worlds_fair
 	}
 
 	### Bonus
 	remove_modifier = privatizations	# Was getting added due to clearing deposits
-
-
-	
-	### Regular Advanced Empire *COLONIES* - these are called in game_start.22 after colonies are initialzied
-	# Vanilla: +1 city, +1 energy, +1 mining, +1 farming
-	#Vanilla Industrial: 
-	# Vanilla Machine: +1 nexus, +2 energy
-	# Vanilla Hive: +1 hive, +1 farming
-	# Vanilal Anglers: +1 farming
 }
 
+
+### Scripted Planet Fix
+#	If I have missed you favourite scripted planet and now it's a featureless hellscape, please leave a bug report on the Steam Workshop page.
 scripted_planet_reroll = {
 	
 	optimize_memory
 
 	log = "TBM - Scripted Planets"
-	
-	### ancient_relics_initializers
-
-		# Armistice relic
-		# Grunur
-		# Mechanocalibrator
-		# Rubricator
 
 	### distant_stars_initializers
 
@@ -143,6 +131,16 @@ scripted_planet_reroll = {
 			reroll_deposits = yes
 		}
 
+		# Time-Loop World
+		every_galaxy_planet = {
+			limit = {
+				has_planet_flag = is_time_loop_world
+			}
+			clear_deposits = yes
+			reroll_deposits = yes
+			add_deposit = d_dust_desert
+		}
+
 	### federations_initializers / On the Shoulders of Giants
 	#	These are initialized separately so will be dealt with elsewhere.
 
@@ -170,9 +168,11 @@ scripted_planet_reroll = {
 		}
 }
 
+### Fallen Empire Fix
+#	Manages FE world features; see tbm_handler.1
+#	Somewhat of a hacky fix for now, due to difficulty of independently accessing the specific planets.
+#	For the core worlds where they have large numbers of pops & districts, we're creating them as vapourware.
 fix_fallen_empire_worlds = {
-	#	Somewhat of a hacky fix for now, due to difficulty of independently accessing the specific planets.
-	#	For the core worlds where they have large numbers of pops & districts, we're creating them as vapourware.
 
 	log = "TBM - Fallen Empire Worlds"
 
@@ -283,7 +283,6 @@ fix_fallen_empire_worlds = {
 		}
 	}
 
-	# (no changes for now below; handled by the mod compat reroll)
 	### Materialist
 	every_country = {
 		limit = {
@@ -300,6 +299,7 @@ fix_fallen_empire_worlds = {
 		}
 	}
 
+	# (no changes for now below; handled by the mod compat reroll)
 	# # Xenophile
 	# every_country = {
 	# 	limit = {
@@ -327,6 +327,8 @@ fix_fallen_empire_worlds = {
 	# }
 }
 
+### Imperial Fiefdom Manager
+#	This is very much a beta-version
 generate_imperial_fiefdoms = {
 	
 	# Overlord
@@ -388,6 +390,7 @@ generate_imperial_fiefdoms = {
 	}
 }
 
+### Fix for pre-FTL empires reaching Space Age
 generate_achieve_ftl_homeworld_features = {
 	clear_deposits = yes
 

@@ -1,7 +1,5 @@
 ### The Blocker Mod - Blocker Tech Overwrites / Removal
-#	TBM changes the effects of these techs on various deposits.
-#	This script mainly adds information to the tech cards displayed in the UI.
-#	It also adjusts some of the AI weights and, during TBM's beta-phase, some of these techs are disabled. However, this feature is optional and this file can be safely removed from the mod if a compatibility issue arises--just don't research techs that do nothing!
+#	This script adjusts some of the AI weights and, during TBM's beta-phase, some of these techs are disabled. However, this feature is optional and this file can be safely removed from the mod if a compatibility issue arises--just don't research techs that do nothing!
 
 
 ### Planetary Resurfacing
@@ -440,7 +438,7 @@ tech_massive_glacier = {
 	}
 }
 
-### Toxic Kelp Removal - DISABLED
+### Toxic Kelp Removal
 tech_toxic_kelp = {
 	cost = @tier1cost2
 	area = society

@@ -1,18 +1,7 @@
-
-# LOC STRINGS AND ICONS
-# -----------------------
-# Newly created modifiers will need localization keys, which always start with mod_.
-# Example:
-#		mod_planet_metallurgists_produces_mult:1 "£job_foundry£ [GetAlloyProducer] Output"
-#		mod_planet_metallurgists_alloys_produces_mult:1 "£alloys£ $alloys$ from £job_foundry£ [GetAlloyProducerPlural]"
-#		mod_planet_metallurgists_alloys_produces_add:0 "$mod_planet_metallurgists_alloys_produces_mult$"
-#		mod_planet_metallurgists_energy_upkeep_add:0 "£energy£ $energy$ Upkeep of £job_foundry£ [GetAlloyProducerPlural]"
+### The Blocker Mod - Economic Categories
 #
-# To set an icon for a modifier, add an icon with the same name to gfx/interface/icons/modifiers.
-
-
-
-### TBM: Overwrites
+#	TBM overwrites planet_colonists to allow them to play a larger role.
+#	If you use another mod that overwrites this, you can patch them by simply adding generate_add_modifiers and generate_mult_modifiers below.
 
 planet_colonist = {
 	parent = planet_jobs
@@ -27,19 +16,7 @@ planet_colonist = {
 	modifier_category = pop	
 }
 
-# planet_researchers = {
-# 	icon = "job_researcher"
-# 	parent = planet_jobs_productive
-# 	generate_mult_modifiers = {
-# 		produces
-# 		upkeep
-# 	}
-# 	generate_add_modifiers = {
-# 		produces
-# 		upkeep
-# 	}
-# 	modifier_category = pop
-# }
+
 
 ### TBM: Custom
 

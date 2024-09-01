@@ -48,11 +48,4 @@ spriteTypes = {
 	}
 }
 
-# spriteTypes = {
-# 	spriteType = {
-# 		name = "GFX_text_blocker_yellow"
-# 		textureFile = "gfx/interface/icons/text_icons/tile_blocker_yellow"
-# 	}
-# }
-
 

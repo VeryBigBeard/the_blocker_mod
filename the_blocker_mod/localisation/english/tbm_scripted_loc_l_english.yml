@@ -33,20 +33,9 @@
  tbm_waters_of_life_project_name:0 "Waters of Life"
  tbm_city_desert_project_name:0 "A City of the Desert"
 
- tbm_shiny_rock_ecumenopolis:0 "Ecumenopolis"
- tbm_shiny_rock_federation:0 "Federation"
- tbm_shiny_rock_dyson_sphere:0 "Dyson Sphere"
- tbm_shiny_rock_starbase:0 "Star Fortress"
- tbm_shiny_rock_lithoids_mineral_fields:0 "§YMineral Fields§!"
- tbm_shiny_rock_lithois_basaltic_outcroups:0 "§YBasaltic Outcrops§!"
-
  tbm_colonist_boyfriend:0 "boyfriend"
  tbm_colonist_girlfriend:0 "girlfriend"
  tbm_colonist_special_friend:0 "special friend"
-
-#  tbm_mt_colonist:0 "Mt. [planet.owner.colonist_friend.GetSecondName]"
-#  tbm_mt_homeworld:0 "Mt. [planet.owner.colony_homeworld.GetName]"
-#  tbm_mt_ruler:0 "Mt. [planet.owner.ruler_at_the_time.GetFirstName]"
 
  tbm_unruly_peasants:0 "unruly peasants"
  tbm_organized_environmentalists:0 "organized environmentalists"

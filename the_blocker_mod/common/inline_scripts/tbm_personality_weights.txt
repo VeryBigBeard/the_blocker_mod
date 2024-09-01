@@ -2,9 +2,8 @@
 # Not all AIs are represented here--some will just follow the base. This is for those who need shift in their general approach.
 
 # Likes a room with a view - Aesthetic types, into romantic poetry about mountains, forests, swamps, whatever really.
-
 modifier = {
-	set = @keep
+	set = 0
 	owner = {
 		OR = {
 			has_ai_personality = decadent_hierarchy
@@ -18,7 +17,7 @@ modifier = {
 
 # Paving paradise - Will tend to clear features more.
 modifier = {
-	set = @clear
+	set = 2
 	owner = {
 		OR = {
 			has_ai_personality = hegemonic_imperialists
@@ -32,7 +31,7 @@ modifier = {
 
 # Hard-core
 modifier = {
-	set = @always_clear
+	set = 1000
 	owner = {
 		has_ai_personality = metalhead
 		has_ai_personality = exterminators
@@ -42,7 +41,7 @@ modifier = {
 
 # Override for empires aiming for ecus
 modifier = {
-	set = @clear
+	set = 2
 	owner = {
 		OR = {
 			has_ascension_perk = ap_arcology_project
