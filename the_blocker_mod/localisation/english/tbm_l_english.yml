@@ -120,8 +120,12 @@
 
  # TBM Job Modifiers
 
+ mod_pop_category_workers_produces_mult:0 "Resources from $pop_cat_worker_plural$"
+
+ mod_planet_jobs_workers_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_worker_plural$"
+ mod_planet_jobs_specialist_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
  mod_planet_jobs_exotic_gases_upkeep_mult:0 "$r_exotic_gases$ from Jobs"
- planet_jobs_consumer_goods_produces_mult:0 "$r_consumer_goods$ from Jobs"
+ mod_planet_jobs_consumer_goods_produces_mult:0 "$r_consumer_goods$ from Jobs"
 
  mod_planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$" 
 
@@ -142,12 +146,14 @@
  mod_planet_farmers_unity_upkeep_add:0 "$r_unity$ Upkeep for $job_farmer_plural$"
  mod_planet_farmers_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_farmer_plural$"
  
+ mod_planet_miners_energy_upkeep_mult:0 "$r_energy$ Upkeep for $job_miner_plural$"
  mod_planet_miners_food_upkeep_add:0 "$r_food$ Upkeep for $job_miner_plural"
  mod_planet_miners_unity_produces_add:0 "$r_minerals$ from $job_miner_plural$"
  mod_planet_miners_physics_research_produces_add:0 "$r_physics_research$ from $job_miner_plural$"
  mod_planet_miners_society_research_produces_add:0 "$r_society_research$ from $job_miner_plural$"
  mod_planet_miners_engineering_research_produces_add:0 "$r_engineering_research$ from $job_miner_plural$"
- planet_miners_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_miner_plural$"
+ mod_planet_miners_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_miner_plural$"
+ mod_planet_miners_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_miner_plural$"
  mod_planet_miners_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_miner_plural$"
 
  mod_planet_technician_food_produces_add:0 "£food£ from $job_technician_plural$:"
@@ -405,6 +411,9 @@
  d_deep_trench_desc:0 "Fathomless and unexplored, this underwater trench obstructs further seabed development in the region."
 
  d_worlds_fair:0 "Worlds' Fair"
+
+ d_efficient_nodes:0 "Efficient Nodes"
+ d_efficient_nodes_desc:0 "Recent developments in resource distribution on a planetary scale have allowed this society to reduce deviancy and increase drone efficiency."
  
 
  # The Block Mod - Event Features - English
@@ -470,7 +479,7 @@
  dangerous_wildlife_toxin:0 "Dangerous Wildlife Toxin"
  dangerous_wildlife_contamination:0 "Dangerous Wildlife Toxin Contamination"
  dangerous_wildlife_contamination_desc:0 "Toxins used to control wildlife populations on this world have seeped into the colony's water supply, causing illnesses and leading to significant criticism of the local administration."
- dangerous_wildlife_food_changes:0 "Dangerous Wildlife\:\ Food Chain Changes"
+ dangerous_wildlife_food_changes:0 "Dangerous Wildlife - Food Chain Changes"
  dangerous_wildlife_food_changes_desc:0 "Changes in the apex predator population on this planet have led to an explosion of pests and vermin on the world, decimating crops and annoying the colonists."
 
  denied_investment:0 "Denied Investment"
@@ -528,7 +537,7 @@
  XENOFISH_STUDY_DESC:0 "A leading xeno-marine biologist has been dispatched from [owner_main_species.GetHomeworldName] to get to the bottom of the fish unpleasantness on [from.GetName]."
 
  SOMETHING_IN_THE_PIPES:0 "Sinkhole Investigations"   # Temporary title; something MUCH more interesting coming here in due time....
- SOMETHING_IN_THE_PIPES_DESC;0 "An expedition is planned beneath the surface of [from.GetName] to determine the true cause of the sudden sinkholes."
+ SOMETHING_IN_THE_PIPES_DESC:0 "An expedition is planned beneath the surface of [from.GetName] to determine the true cause of the sudden sinkholes."
 
  PREDATOR_MODIFICATION_PROJECT:0 "Predator Modification Project"
 
@@ -543,11 +552,11 @@
 
  decision_open_fusion_reactor:0 "Create New Fusion Reactor"
  decision_open_fusion_reactor_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nLand is set aside for a large fusion containment center, as well as for safety boundaries, failsafe zones, and hazard areas surrounding the core reactor."
- decion_open_cold_fusion_pit:0 "Open New Cold Fusion Pits"
+ decision_open_cold_fusion_pit:0 "Open New Cold Fusion Pits"
  decision_open_cold_fusion_pits_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nNobody is going to pretend these deep insulation pits and coolant crevasses are eye-catching, except in terms of the scale of power production they can support."
- decion_open_antimatter_core:0 "Develop New Antimatter Core"
+ decision_open_antimatter_core:0 "Develop New Antimatter Core"
  decision_open_antimatter_core_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nAlthough antimatter reactors are smaller than fusion cores, they are several orders of magnitude more finicky, and require extensive support networks to regulate the matter/antimatter flow."
- decion_open_zero_point_module:0 "Install New Zero-Point Module"
+ decision_open_zero_point_module:0 "Install New Zero-Point Module"
  decision_open_zero_point_module:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nA Zero-Point Module itself is tiny, but the power it produces is immense. Most of this land will be set aside for transformers, support cables, and quite honestly a housing suitably ornate for such advanced energy technology."
 
  geothermal_instability:0 "Geothermal Instability"

@@ -766,7 +766,7 @@ d_homeworld_dustbowl = {
 					value < 10
 				}
 			}
-			root = { num_free_district = { type = any value > 1 }}	# Do not wreck existing district with it, though
+			num_free_district = { type = any value > 1 }}	# Do not wreck existing district with it, though
 		}
 
 		modifier = {
@@ -2133,7 +2133,9 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			country_uses_consumer_goods = no
+			owner  = {
+				country_uses_consumer_goods = no
+			}
 		}
 		planet_miners_food_upkeep_add = 0.1
 	}
@@ -2141,8 +2143,10 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { country_uses_consumer_goods = no }
-			owner = { has_trait = trait_lithoid }
+			OR = {
+				owner = { country_uses_consumer_goods = no }
+				owner = { has_trait = trait_lithoid }
+			}
 		}
 		planet_miners_food_upkeep_add = -0.1
 		planet_miners_energy_upkeep_add = 0.1
@@ -2652,7 +2656,9 @@ d_food_rations = {
 	triggered_planet_modifier = {
 		potential = {
 			years_passed >= 20
-			pop_happiness = -0.1
+			any_owned_pop = {
+				pop_happiness = -0.1
+			}
 		}
 	}
 

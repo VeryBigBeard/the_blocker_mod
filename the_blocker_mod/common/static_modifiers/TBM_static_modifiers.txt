@@ -348,7 +348,7 @@ geothermal_instability = {
 ### Shifting Sands
 
 shifting_sands = {
-	habitability_ceil_add = 0.10
+	pop_environment_tolerance = 0.10
 	pop_happiness = 0.10
 }
 
@@ -375,4 +375,9 @@ failing_food_replicator = {
 ### Collapsed Superhighway
 superhighway_engineering = {
 	planet_jobs_engineering_research_produces_mult = -1.00
+}
+
+### Scavenger Wars
+scavenger_wars = {
+	planet_stability_add = -20
 }

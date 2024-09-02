@@ -641,10 +641,9 @@ planet_event = {
 
 	option = {
 		name = tbm.77.survive
-	}
-
-	after = {
-		add_deposit = d_quicksand_basin
+		hidden_effect = {
+			add_deposit = d_quicksand_basin
+		}
 	}
 }
 
@@ -656,6 +655,10 @@ ship_event = {
 	hide_window = yes
 
 	immediate = {
+		leader = {
+			save_event_target_as = first_contact_officer	# Need this name in 80.
+		}
+		
 		event_target:sand_planet = {
 			planet_event = {
 				id = tbm.79
@@ -678,20 +681,25 @@ planet_event = {
 
 	option = {
 		name = tbm.79.expedition
-		random_list = {
-			10 = {
-				modifier = {
-					factor = 0	# Fun stuff in the future.
-					always = yes
-				}
-			}
-			90 = {
-				planet_event = {
-					id = tbm.80
-					days = 20
-				}
-			}
+		planet_event = {
+			id = tbm.80
+			days = 20
 		}
+		
+		# random_list = {
+		# 	10 = {
+		# 		modifier = {
+		# 			factor = 0	# Fun stuff in the future.
+		# 			always = yes
+		# 		}
+		# 	}
+		# 	90 = {
+		# 		planet_event = {
+		# 			id = tbm.80
+		# 			days = 20
+		# 		}
+		# 	}
+		# }
 	}
 
 	option = {
@@ -727,6 +735,12 @@ planet_event = {
 				}
 			}	
 		}
+
+		planet_event = {
+			id = tbm.80
+			days = 20 		
+		}
+
 		# random_list = {
 		# 	10 = {
 		# 		modifier = {
@@ -743,6 +757,71 @@ planet_event = {
 		# }
 	}
 }
+
+### 80. Sand Tides (Shifting Sands)
+planet_event = {
+	id = tbm.80
+
+	title = tbm.80.name
+	desc = tbm.80.desc
+	desc = {
+		trigger = {
+			owner = { has_technology = tech_noxious_swamp }
+		}
+		text = tbm.80.desc.swamp
+	}
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+		text = tbm.80.desc.superstitions
+	}
+	picture = GFX_evt_landing_ship
+	show_sound = event_scanner
+
+	is_triggered_only = yes
+
+	option = {
+		name = tbm.80.climate
+		allow = {
+			owner = { has_technology = tech_noxious_swamp }
+		}
+		add_modifier = {
+			modifier = shifting_sands
+		}
+	}
+
+	option = {
+		name = tbm.80.fascinating
+		owner = {
+			add_resource = {
+				physics_research = @tier4researchreward
+				society_research = @tier4researchreward
+				engineering_research = @tier4researchreward
+			}
+		}
+	}
+
+	option = {
+		name = tbm.80.miracle
+		custom_tooltip = tbm.80.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+		set_planet_flag = sand_tides	# Not a trigger flag--adds unity from colonists/clerks to Quicksand Basin.
+	}
+}
+
 
 ### 81. Sudden Sinkhole (Deep Sinkhole)
 #	Triggered from tbm_handler.17 (Sinkhole Spawner)

@@ -545,7 +545,7 @@ generate_start_deposits_and_blockers = {
 		# Energy
 		add_deposit = d_drylands
 		add_deposit = d_colony_ship_core
-		add_deposit = d_alien_gas_deposit
+		add_deposit = d_frozen_gas_lake
 		add_deposit = d_urban_power_plant
 		add_deposit = d_high_wire_network
 		add_deposit = d_inaugural_spaceport

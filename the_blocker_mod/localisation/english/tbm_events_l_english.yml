@@ -12,19 +12,33 @@
  tbm_handler.101.option:0 "Good luck, brave colonists."
 
 
- # A Famous Mountain (disabled)
+ # 5. Dangerous Wildlife - Population Management
 
- tbm.3.name:0 "A Famous Mountain"
- tbm.3.desc:0 "A number of colonists exploring [planet.GetName] have discovered a resplendent mountain in a distant range. Its peak dwarfs anything else on the planet and even challenges the most storied mountains on our homeworld for immensity and majesty.\n\nWhen the [SunType] [SunsetDependentPlural], it looks truly resplendent.The expedition's lead has petitioned [owner.GetLeaderName] for permission to name it after [colonist_name.GetHerHis] [ColonistSpecialFriend] back on [owner.capital_scope.GetName]. Our [ColonialAffairs] office refers to the mountain as 3X21-Southwest, but the topographical corps acknowledges this isn't a very good name and a better one might bring more attention to the colonization effort."
- tbm.3.homeworld:0 "It should be named for [owner.GetHomeWorldName]."
- tbm.3.ruler:0 "It shall be named after [owner.GetLeaderName]!"
- tbm.3.expedition:0 "Let the expedition name it."
+ tbm.5_name:0 "Dangerous Wildlife Out of Control"
+ tbm.5_desc:0 "After several months in the wilds of [planet.GetName], $job_dangerous_wildlife_hunter_plural$ have managed to track and kill a large number of the beasts. However, the creatures' numbers are growing faster than local hunters can keep up with.\n\nSeveral xenobiologists on [owner_main_species.GetHomeworldName] claim to have developed an experimental genetically-tailored toxin that will slowly eradicate the vicious wildlife, allegedly without any impact on the surrounding ecosystem.\n\nAlternatively, local poachers on [planet.GetName] believe they can bring the §YDangerous Wildlife§! population down without affecting the herd's utility as a food source."
+ tbm.5_nothing:0 "We cannot interfere with the native ecosystem."
+ tbm.5_nothing_tooltip:0 "Nothing will be done and the £blocker£ Dangerous Wildlife will not be removed."
+ tbm.5_hunting:0 "Create more hunting permits to keep them in check."
+ tbm.5_hunting_tooltip:0 "While the £blocker£ Dangeorus Wildlife will remain, actively hunting them should reduce any chance of xenofauna attacks."
+ tbm.5_poaching:0 "Allow poachers to eliminate the £blocker£ Dangerous Wildlife."
+ tbm.5_poaching_tooltip:0 "Removes £blocker£ Dangerous Wildlife"
+ tbm.5_toxin:0 "Introduce the toxin."
+ tbm.5_toxin_tooltip:0 "If the project proves successful, the £blocker£ Dangerous Wildlife will be removed."
+
+ tbm.6_name:0 "Planetary Food System Collapses"
+ tbm.6_desc:0 "After a successful release of the genetic toxin on §Y[planet.GetName], the planet's natural food chain has lost a critical apex predator, and minor species of alien animalia are out of control, causing outbreaks of disease and infestation in regions around several settlements.\n\nLocal ecologists believe the [planet.GetPlanetMoon]'s ecosystem will eventually recover, but it could be a years-long process."
+ tbm.6_a:0 "That's unfortunate."
+ tbm.6_b:0 "Is it possible to further rebalance the ecosystem?"
  
- tbm.4.name:0 "A Question of Mineral Rights"
- tbm.4.desc:0 "As development on [planet.GetName] continues, local mining concerns have repeatedly inquired about excavating part of [MountainName] in order to access rich veins of ore beneath it. The mountain, however, has become a symbol of pride among new settlers, who are opposed to excavations. The former expedition lead, meanwhile, is now a local politician and has claimed the mineral veins belong to [owner.colonist_name.GetHisHer]."
- tbm.4.sell:0 "We need those minerals."
- tbm.4.gov:0 "Have our governor handle this."
- tbm.4.protect:0 "Surely there are other mountains with ore?"
+ tbm.7.name:0 "Toxin Seeps Into Water System"
+ tbm.7.desc:0 "The experimental toxin used to cull the £blocker£ Dangerous Wildlife on [planet.GetName] has started turning up in water samples across the colony. Although the chemical used was supposed to break down within days after its host was dead, it seems to have been more resilient than expected, and colonists in several settlements have reported becoming ill."
+ tbm.7.a:0 "Get the clean-up started."
+
+ tbm.8.name:0 "Enhanced Biodiversity"
+ tbm.8.desc:0 "The eradication of the £blocker£ Dangerous Wildlife on [planet.GetName] has had a better-than-expected positive effect on the planet's biodiversity and natural food chain. Several species of useful livestock have benefitted from the removal of overpopulated predators, and enterprising colonists have been able to clear new, fertile land for agriculture.\n\nAdditionally, several scientists are eager to study the alien ecosystem to better understand its resilience and adaptability."
+ tbm.8.a:0 "Well done, lads."
+
+ #tbm.9.a:0 "REPLACE_ME"
 
 
  # 11. Volcanic Eruption
@@ -143,12 +157,12 @@
  tbm.55.strike:0 "Ignore them. Miners mine, no matter the fish."
 
  tbm.56.name:0 "Bigger Fish Attack"
- tbm.56.desc:0 "While navigating a particularly animated shoal of xenofish on [planet.GetName], a logistics vessel was witness to a truly terrifying marvel\:\ an even more massive, teeth-filled, and tendentious fish feasting on the local shoals.\n\nSailors were spilled over the sides and many were lost, presumed consumed in the thrashing blood-filled water when the beast attacked. As soon as it had come, the great monster disappeared back down into the murky depths.\n\nGrainy vid-feeds are already flying around local news and several extreme thrill-seekers have landed hoping to sight -- or kill -- the monster, which is said to be the size of a small settlement and live near the §Y£blocker_yellow£ Submerged Ore Veins§!\n\nSo far, none have returned."
+ tbm.56.desc:0 "While navigating a particularly animated shoal of xenofish on [planet.GetName], a logistics vessel was witness to a truly terrifying marvel - an even more massive, teeth-filled, and tendentious fish feasting on the local shoals.\n\nSailors were spilled over the sides and many were lost, presumed consumed in the thrashing blood-filled water when the beast attacked. As soon as it had come, the great monster disappeared back down into the murky depths.\n\nGrainy vid-feeds are already flying around local news and several extreme thrill-seekers have landed hoping to sight - or kill - the monster, which is said to be the size of a small settlement and live near the §Y£blocker_yellow£ Submerged Ore Veins§!\n\nSo far, none have returned."
 
  tbm.57.name:0 "Xenofish Attraction"
- tbm.57.begin:0 "In an interview with local news channel, [xenofish_specialist.GetName] confessed [leader.GetSheHe]'d never contemplated anything like it\:\ the hordes of alien fish on [planet.GetName] appear to have a telekinetic relationship with the ore mined in the [planet.GetPlanetMoon]'s' §Y£blocker_yellow£ Submerged Ore Veins§!, or rather, a particular seam running through the broader vein.\n\nWhen sampled and purified, this ore behaved like nothing previously encountered. In solid form, it is particulate and easily inhaled -- though doing so typically produces hallucinations in [owner.GetSpeciesNamePlural]. It seems that, when ingested by the xenofish, they gain limited hive-like telepathy -- and a strong addiction to the substance, causing them to attack any of our submersibles that comes into contact with it.\n\nNow that prospectors have identified the £r_zro£ seams, it should be possible to avoid mining them -- and avoid attracting the wrong sort of attention."
- tbm.57.zro:0 "In an interview with local news channel, [xenofish_specialist.GetName] confessed [leader.GetSheHe]'d never contemplated anything like it\:\ the hordes of alien fish on [planet.GetName] appear to have a telekinetic relationship with the ore mined in the [planet.GetPlanetMoon]'s' §Y£blocker_yellow£ Submerged Ore Veins§!, or rather, a particular seam running through the broader vein.\n\nWhen sampled and purified, this ore behaved like nothing previously encountered. In solid form, it is particulate and easily inhaled -- though doing so typically produces hallucinations in [owner.GetSpeciesNamePlural]. It seems that, when ingested by the xenofish, they gain limited hive-like telepathy -- and a strong addiction to the substance, causing them to attack any of our submersibles that comes into contact with it.\n\nNow that prospectors have identified the £r_zro£ seams, it should be possible to avoid mining them -- and avoid attracting the wrong sort of attention."
- tbm.57.psionic:0 "In an interview with local news channel, [xenofish_specialist.GetName] confessed [xenofish_specialist.GetSheHe]'d never contemplated anything like it\:\ the hordes of alien fish on [planet.GetName] appear to have a telekinetic relationship with the ore mined in the [planet.GetPlanetMoon]'s' §Y£blocker_yellow£ Submerged Ore Veins§!, or rather, a particular seam running through the broader vein.\n\nWhen sampled and purified on [owner.capital_scope.GetName], the ore veins in the §Y£blocker_yellow£ Submerged Ore Veins§! on [planet.GetName] were confirmed to contain a derivative of £r_zro£. While this will prove very lucraive for the local economy, it also seems that, when ingested by the xenofish, they gain limited hive-like telepathy -- and a strong addiction to the substance, causing them to attack any of our submersibles that comes into contact with it.\n\n[xenofish_specialist.GetName] has devised a means of disguising our submersibles to avoid the xenofish, but the technology involved is military-grade and procurement may be costly. Alternatively, now that prospectors have identified the $r_zro$ seams, it should be possible to avoid mining it--and avoid attracting the wrong sort of attention."
+ tbm.57.begin:0 "In an interview with local news channel, [xenofish_specialist.GetName] confessed [leader.GetSheHe]'d never contemplated anything like it. The hordes of alien fish on [planet.GetName] appear to have a telekinetic relationship with the ore mined in the [planet.GetPlanetMoon]'s' §Y£blocker_yellow£ Submerged Ore Veins§!, or rather, a particular seam running through the broader vein.\n\nWhen sampled and purified, this ore behaved like nothing previously encountered. In solid form, it is particulate and easily inhaled -- though doing so typically produces hallucinations in [owner.GetSpeciesNamePlural]. It seems that, when ingested by the xenofish, they gain limited hive-like telepathy -- and a strong addiction to the substance, causing them to attack any of our submersibles that comes into contact with it.\n\nNow that prospectors have identified the £r_zro£ seams, it should be possible to avoid mining them - and avoid attracting the wrong sort of attention."
+ tbm.57.zro:0 "In an interview with local news channel, [xenofish_specialist.GetName] confessed [leader.GetSheHe]'d never contemplated anything like it. The hordes of alien fish on [planet.GetName] appear to have a telekinetic relationship with the ore mined in the [planet.GetPlanetMoon]'s' §Y£blocker_yellow£ Submerged Ore Veins§!, or rather, a particular seam running through the broader vein.\n\nWhen sampled and purified, this ore behaved like nothing previously encountered. In solid form, it is particulate and easily inhaled - though doing so typically produces hallucinations in [owner.GetSpeciesNamePlural]. It seems that, when ingested by the xenofish, they gain limited hive-like telepathy - and a strong addiction to the substance, causing them to attack any of our submersibles that comes into contact with it.\n\nNow that prospectors have identified the £r_zro£ seams, it should be possible to avoid mining them - and avoid attracting the wrong sort of attention."
+ tbm.57.psionic:0 "In an interview with local news channel, [xenofish_specialist.GetName] confessed [xenofish_specialist.GetSheHe]'d never contemplated anything like it. The hordes of alien fish on [planet.GetName] appear to have a telekinetic relationship with the ore mined in the [planet.GetPlanetMoon]'s' §Y£blocker_yellow£ Submerged Ore Veins§!, or rather, a particular seam running through the broader vein.\n\nWhen sampled and purified on [owner.capital_scope.GetName], the ore veins in the §Y£blocker_yellow£ Submerged Ore Veins§! on [planet.GetName] were confirmed to contain a derivative of £r_zro£. While this will prove very lucraive for the local economy, it also seems that, when ingested by the xenofish, they gain limited hive-like telepathy - and a strong addiction to the substance, causing them to attack any of our submersibles that comes into contact with it.\n\n[xenofish_specialist.GetName] has devised a means of disguising our submersibles to avoid the xenofish, but the technology involved is military-grade and procurement may be costly. Alternatively, now that prospectors have identified the $r_zro$ seams, it should be possible to avoid mining it--and avoid attracting the wrong sort of attention."
  tbm.57.fix:0 "We need our fix, fish be damned!"
  tbm.57.study:0 "Study the seam, no matter the fish!"
  tbm.57.c:0 "Make sure the seam is sealed off."
@@ -157,6 +171,35 @@
  tbm.58.name:0 "Xenofish Specialist Eaten by Fish"
  tbm.58.desc:0 "The investigation of the strangely aggressive alien fish on §Y[planet.GetName]§! failed spectacularly when [xenofish_specialist.GetName] ventured too close to a xenofish only to discover a much bigger fish stalking the bed from the depths beyond the ocean shelf.\n\nThis fish ate the other fish, [xenofish_specialist.GetName]'s submersible, and now no one wants anything to do with the fish on the [planet.GetPlanetMoon], not even to know how or why they're so ill-tempered. Mining operations have come to a standstill while local officials promise anything and everything that has a chance of getting rid of the fish.\n\nSeveral expensive seafood restaurants have already relocated to the [planet.GetPlanetMoon] hoping to take advantage of the feeding frenzy."
 
+ 
+ # 77. Shifting Sands
+ 
+ tbm.77.name:0 "Shifting Sands"
+ tbm.77.desc:0 "Large seas of quicksand cover several regions of [planet.GetName], and since colonization, scientists and engineers on the [planet.GetPlanetMoon] have been searching for the source of the liquifaction, given the world is otherwise dry most of the year.\n\nSo far, all attempts to infill the [from.GetName] have failed. Local engineers have requested off-world help to resolve the situation."
+ tbm.77.ship:0 "Send a Science Ship to investigate."
+ 
+ tbm.77.rock:0 "Just keep pouring in rock."
+ tbm.77.survive:0 "The colkony will survive, surely."
+
+ tbm.79.name:0 "Caverns Beneath"
+ tbm.79.desc:0 "Deep Substrate Analysis of the $d_quicksand_basin$ on [planet.GetName] has revealed previously undetected tunnels and caverns below the sands. That these didn't show up on initial orbital surveys suggest the network may be artificial or even inhabited.\n\nDiplomats and envoys have rushed to [planet.GetName], expecting potential contact with a subterranean alien society, though as yet, no specimens have been found."
+ tbm.79.expedition:0 "Launch an expedition into the tunnels."
+ tbm.79.clear:0 "Just get rid of the £blocker£ Quicksand Basin."
+ tbm.79.subterraneans:0 "Not another one, surely."
+
+ tbm.80.name:0 "Sand Tides"
+ tbm.80.desc:0 "Trailing a small army of xenolinguists, diplomatic attachés, and first-contact specialists,[first_contact_officer.GetName] leads the expedition down into the subterranean tunnel network below [planet.GetName].\n\n[first_contact_officer.GetSheHe] finds nothing.\n\nNot even a trace of alien life. No generators, no mines, nothing.\n\nInstead, [planet.GetPlanetMoon] itself is shifting, creating a pattern of complex but natural tunnels that cause sand and water to swill around the [planet.GetPlanetMoon]'s lithosphere roughly in accordance with its seasons.\n\nIndeed, these "tides" are likely what make the planet more than a barren rock in space, since the gases and heat generated by the process are trapped in the atmosphere, allowing for the rise of life."
+ tbm.80.desc.swamp:0 "\n\nThe engineers on the expedition even believe it may be possible to manipulate the Xeno-Hydraulics involved in theses tides to slightly alter the planet's climate, should we wish to do so."
+ tbm.80.desc.superstitions:0 "Some of the more superstitious members of the expedition feel this one-in-a-billion natural phenomenon is a sure sign that we were meant to colonize [planet.GetName] and, despite the hardships encountered here, colonists are sure to find purpose on this world."
+ tbm.80.climate:0 "Make the planet slightly more comfortable."
+ tbm.80.fascinating:0 "Fascinating."
+ tbm.80.miracle:0 "A miracle of nature, indeed."
+ tbm.80.tooltip:0 "The $d_quicksand_basin$ will not be cleared, but $job_clerks_plural$ and $job_colonist_plural$ on this world will not produce $r_unity$."
+
+ SHIFTING_SANDS:0 "Shifting Sands"
+ SHIFTING_SANDS_DESC:0 "The £blocker£ Quicksand Basin on [sand_planet.GetName] isn't behaving as we would expect quicksand to behave. We can dispatch a Science Ship to investigate the cause form orbit."
+
+ 
 
  # 82. Sinkholes
 
@@ -200,6 +243,8 @@
  tbm.90_desc_robotic_deaths:0 ""A mine shaft at the §Y£blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed, trapping several mining units inside. Fortunately, there has been no loss of life, but the mining units will have to be replaced."
  tbm.90_desc_miner_deaths:0 ""A mine shaft at the §Y£blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed, trapping several miners inside. Local miners' cooperatives are outraged at what they perceive as lax safety standards and a poorly-coordinated rescue effort, and have announced a strike until conditions improve."
  tbm.90_desc_no_deaths:0 ""A mine shaft at the §Y£blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed. Fortunately, there has been no loss of life, but the mine has been destroyed.""
+
+ mine_safety_standards:0 "Mine Safety Standards"
 
 
  # 300. New Prospects

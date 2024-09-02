@@ -335,75 +335,81 @@ d_dangerous_wildlife_blocker = {
 		}
 	}
 
-	on_cleared = {
-		if = {
-			limit = {
-				any_owned_pop = {
-					has_job = dangerous_wildlife_hunter
-				}
-				NOT = { owner = { has_technology = tech_dangerous_wildlife }}
+	can_be_cleared = {
+		OR = {
+			any_owned_pop = {
+				has_job = dangerous_wildlife_hunter
 			}
-			owner = {
-				add_resource = {
-					food = 200
+			owner = { has_technology = tech_dangerous_wildlife }
+		}
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			random_list = {
+				50 = {
+					planet_event = {
+						id = tbm.5
+					}
 				}
+				50 = {}
 			}
 		}
 		
 		# Chance of Xenofauna Attacks
-		hidden_effect = {
-			planet = {
-				set_timed_planet_flag = {
-					flag = settlement_attacked
-					years = 1
-				}
-			}
-			random_list = {
-				50 = {
-					modifier = {
-						subtract = 25
-						owner = { has_technology = tech_dangerous_wildlife }
-					}
+		# hidden_effect = {
+		# 	planet = {
+		# 		set_timed_planet_flag = {
+		# 			flag = settlement_attacked
+		# 			years = 1
+		# 		}
+		# 	}
+		# 	random_list = {
+		# 		50 = {
+		# 			modifier = {
+		# 				subtract = 25
+		# 				owner = { has_technology = tech_dangerous_wildlife }
+		# 			}
 
-					modifier = {
-						subtract = 10
-						any_owned_pop = {
-							has_job = dangerous_wildlife_hunter
-						}
-					}
-					modifier = {
-						subtract = 10
-						any_owned_pop = {
-							has_job = dangerous_wildlife_poacher
-						}
-					}
-					planet_event = {
-						id = tbm.17
-						days = 30	# Delay is partly for conditional loc, partly because those hunters need some time to report back.
-						random = 10
-					}
-				}
-				50 = {
-					modifier = {
-						add = 25
-						owner = { has_technology = tech_dangerous_wildlife }
-					}
+		# 			modifier = {
+		# 				subtract = 10
+		# 				any_owned_pop = {
+		# 					has_job = dangerous_wildlife_hunter
+		# 				}
+		# 			}
+		# 			modifier = {
+		# 				subtract = 10
+		# 				any_owned_pop = {
+		# 					has_job = dangerous_wildlife_poacher
+		# 				}
+		# 			}
+		# 			planet_event = {
+		# 				id = tbm.17
+		# 				days = 30	# Delay is partly for conditional loc, partly because those hunters need some time to report back.
+		# 				random = 10
+		# 			}
+		# 		}
+		# 		50 = {
+		# 			modifier = {
+		# 				add = 25
+		# 				owner = { has_technology = tech_dangerous_wildlife }
+		# 			}
 
-					modifier = {
-						add = 10
-						any_owned_pop = {
-							has_job = dangerous_wildlife_hunter
-						}
-					}
-					modifier = {
-						add = 10
-						any_owned_pop = {
-							has_job = dangerous_wildlife_poacher
-						}
-					}
-				}
-			}
-		}
+		# 			modifier = {
+		# 				add = 10
+		# 				any_owned_pop = {
+		# 					has_job = dangerous_wildlife_hunter
+		# 				}
+		# 			}
+		# 			modifier = {
+		# 				add = 10
+		# 				any_owned_pop = {
+		# 					has_job = dangerous_wildlife_poacher
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# }
 	}
 
 	planet_modifier = {
@@ -910,6 +916,18 @@ d_quicksand_basin = {
 				minerals = 500
 			}
 		}
+		hidden_effect = {
+			random_list = {
+				20 = {
+					planet_event = {
+						id = tbm.77
+						days = 1
+					}
+				}
+
+				80 = {}
+			}
+		}
 	}
 
 	planet_modifier = {
@@ -946,6 +964,14 @@ d_quicksand_basin = {
 			owner = { has_civic = civic_environmentalist }
 		}
 		planet_rangers_minerals_produces_add = @ranger_small_production
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = sand_tides
+		}
+		planet_clerks_unity_produces_add = 1
+		planet_colonist_unity_produces_add = 2
 	}
 
 	drop_weight = {
@@ -2432,7 +2458,7 @@ d_underwater_vent = {
 			set = @keep
 			owner = { has_trait = trait_aquatic }
 			root = {
-				NOT = { colony_type = col_urban }
+				NOT = { colony_type = col_city }
 			}
 		}
 	}
