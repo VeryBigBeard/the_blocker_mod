@@ -530,11 +530,22 @@
  superhighway_engineering:0 "Superhighway Engineering"
  superhighway_engineering_desc:0 "Recent efforts to the restore this world's superhighway network are progressing apace, and almost every engineer is working to ensure this massive project is completed on time and budget."
 
+ # Terraforming Features
+
+ d_energy_banks:0 "£blocker£ Energy Banks"
+ d_energy_banks_desc:0 "Dropped from high orbit, these nigh-indestructible towers house massive batteries capable of fueling a colony's growth for several years."
+
+ d_mineral_stockpiles:0 "Mineral Stockpiles"
+ d_mineral_stockpiles_desc:0 "A by-product of orbital excavations during an extensive terraforming process, these large heaps may be unsightly but will accelerate building and quarrying efforts by months."
+
+ d_food_silos:0 "Food Silos"
+ d_food_silos_desc:0 "Large amounts of natural food crops were displaced during a long terraforming process, and have since been vacuum-sealed and frozen in refridgerated silos to sustain early colonists."
+
 
  ### The Blocker Mod - Event Projects
 
  XENOFISH_STUDY:0 "Xenofish Study"
- XENOFISH_STUDY_DESC:0 "A leading xeno-marine biologist has been dispatched from [owner_main_species.GetHomeworldName] to get to the bottom of the fish unpleasantness on [from.GetName]."
+ XENOFISH_STUDY_DESC:0 "A leading xeno-marine biologist has been dispatched from [owner_main_species.GetHomeWorldName] to get to the bottom of the fish unpleasantness on [from.GetName]."
 
  SOMETHING_IN_THE_PIPES:0 "Sinkhole Investigations"   # Temporary title; something MUCH more interesting coming here in due time....
  SOMETHING_IN_THE_PIPES_DESC:0 "An expedition is planned beneath the surface of [from.GetName] to determine the true cause of the sudden sinkholes."

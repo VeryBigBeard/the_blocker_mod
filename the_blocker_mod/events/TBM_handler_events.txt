@@ -1040,18 +1040,18 @@ planet_event = {
 
 	immediate = {
 		random_list = {
-			20 = {
+			5 = {
 				
 				# More likely on planets with lots of miners, all trying to strike it gold
 				modifier = {
-					factor = 1.5
+					factor = 2
 					num_assigned_jobs = {
 						job = miner
 						value > 2
 					}
 				}
 				modifier = {
-					factor = 1.5
+					factor = 2
 					num_assigned_jobs = {
 						job = miner
 						value > 4

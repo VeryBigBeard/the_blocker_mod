@@ -574,7 +574,8 @@ planet_event = {
 	}
 }
 
-### 76. Shifting Sands (Handler) (Quicksand Basin)
+### 76. Shifting Sands (Handler) (Quicksand Basin) (currently unused)
+#	Unused, but sticking around in case I change my mind about how to trigger it
 planet_event = {
 	id = tbm.76
 
@@ -594,15 +595,8 @@ planet_event = {
 	}
 
 	immediate = {
-		random_list = {
-			10 = {
-				planet_event = { id = tbm.77 }
-			}
-			10 = {
-				planet_event = { id = tbm.79 }
-			}
-			80 = {}
-		}
+		this = { save_event_target_as = sand_planet }
+		planet_event = { id = tbm.77 days = 180 random = 180}
 	}
 }
 
@@ -631,6 +625,14 @@ planet_event = {
 
 	option = {
 		name = tbm.77.rock
+		allow = {
+			owner = {
+				has_resource = {
+					type = minerals
+					amount >= 1000
+				}
+			}
+		}
 		remove_deposit = d_quicksand_basin
 		owner = {
 			add_resource = {
@@ -681,9 +683,11 @@ planet_event = {
 
 	option = {
 		name = tbm.79.expedition
-		planet_event = {
-			id = tbm.80
-			days = 20
+		hidden_effect = {
+			planet_event = {
+				id = tbm.80
+				days = 20
+			}
 		}
 		
 		# random_list = {
@@ -704,13 +708,21 @@ planet_event = {
 
 	option = {
 		name = tbm.79.clear
-		remove_deposit = d_quicksand_basin
 		owner = {
-			add_resource = {
-				society_research = 2000
-				physics_research = 1000
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
 			}
 		}
+		remove_deposit = d_quicksand_basin
 	}
 
 	option = {
@@ -726,6 +738,9 @@ planet_event = {
 							has_deposit = d_underground_farm_dead
 						}
 					}
+				}
+				owner = {
+					has_country_flag = not_another_subterranean_civilization
 				}
 				
 				owner = {
@@ -755,6 +770,12 @@ planet_event = {
 		# 		}
 		# 	}
 		# }
+	}
+
+	after = {
+		owner = {
+			set_country_flag = not_another_subterranean_civilization # In case you get this event twice. This technically counts as an encounter.
+		}
 	}
 }
 
@@ -799,10 +820,24 @@ planet_event = {
 	option = {
 		name = tbm.80.fascinating
 		owner = {
-			add_resource = {
-				physics_research = @tier4researchreward
-				society_research = @tier4researchreward
-				engineering_research = @tier4researchreward
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
 			}
 		}
 	}
@@ -1104,7 +1139,7 @@ planet_event = {
 				set_planet_flag = motherlode
 			}
 			# Failed Prospects
-			9 = {
+			4 = {
 				modifier = {
 					add = @miners
 				}
@@ -1115,7 +1150,7 @@ planet_event = {
 				}
 			}
 			# Standard mining district, normal output
-			90 = {}
+			95 = {}
 		}
 	}
 }

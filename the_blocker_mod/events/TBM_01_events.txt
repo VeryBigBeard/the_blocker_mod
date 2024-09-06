@@ -166,7 +166,7 @@ planet_event = {
 		remove_modifier = dangerous_wildlife_food_changes
 		owner = {
 			add_resource = {
-				society_research = @tier1researchreward
+				society_research = @tier2researchreward
 			}
 		}
 		add_deposit = d_fertile_lands

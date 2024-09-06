@@ -4681,6 +4681,119 @@ d_private_farming_colony = {
 	}
 }
 
+### Terraforming Features
+#	Currently just replaces some features from vanilla Excess to Success event
+d_energy_banks = {
+	icon = d_battery_farms
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			minerals = 200
+		}
+		produces = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_colonist_energy_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			set = @always_clear
+			num_free_districts = {
+				type = any
+				value < 1
+			}
+		}
+	}
+}
+
+d_mineral_stockpiles = {
+	icon = d_veiny_cliffs
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			minerals = 200
+		}
+		produces = {
+			minerals = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_colonist_minerals_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			set = @always_clear
+			num_free_districts = {
+				type = any
+				value < 1
+			}
+		}
+	}
+}
+
+d_food_silos = {
+	icon = d_reactor
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			minerals = 200
+		}
+		produces = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_colonist_food_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			set = @always_clear
+			num_free_districts = {
+				type = any
+				value < 1
+			}
+		}
+	}
+}
+
 # Fully-featured volcano that spawns randomly and has blocker swaps. Separated mainly to not interfere with event volcanoes that PDX tends to like to put on scripted worlds in very great number.
 d_tbm_active_volcano = {
 	icon = d_active_volcano
