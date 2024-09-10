@@ -125,7 +125,7 @@ tech_volcano = {
 	}
 }
 
-# Dangerous Widlife Remval - DISABLED
+# Dangerous Widlife Remval
 tech_dangerous_wildlife = {
 	cost = @tier2cost2
 	area = society
@@ -133,9 +133,9 @@ tech_dangerous_wildlife = {
 	category = { new_worlds }
 	prerequisites = { "tech_colonization_1" }
 
-	potential = {
-		always = no 	# Tech currently does nothing in TBM Beta 0.6.4, disabled
-	}
+	# potential = {
+	# 	always = no
+	# }
 
 
 	weight = @tier2weight2

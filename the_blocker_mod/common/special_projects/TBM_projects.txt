@@ -7,13 +7,29 @@ special_project = {
 	cost = 0
 	days_to_research = 180
 	tech_department = society_technology
-	picture = GFX_evt_landing_ship
+	picture = GFX_evt_alien_wildlife
 
 	event_scope = planet_event
 	location = yes
 
 	on_success = {
-		planet_event = { id = tbm.9 }
+		remove_deposit = d_dangerous_wildlife_blocker
+		hidden_effect = {
+			random_list = {
+				10 = {
+					planet_event = {
+						id = tbm.6
+						days = 1
+					}
+				}
+				20 = {
+					planet_event = {
+						id = tbm.9
+						days = 1
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -127,8 +143,13 @@ special_project = {
 
 special_project = {
 	key = "SHIFTING_SANDS"
-	event_scope = ship_event
+	event_scope = ship_event	# So we can get a leader and guarantee a scope.
 	location = yes
+
+	requirements = {
+		leader = scientist
+	}
+
 	on_success = { 
 		event_target:sand_planet = {
 			planet_event = { id = tbm.79 }

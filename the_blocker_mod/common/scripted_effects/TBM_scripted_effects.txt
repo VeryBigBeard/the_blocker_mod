@@ -1,5 +1,24 @@
 # ### THe Blocker Mod - Scripted Effects
 
+# Removes all deposits on a world, then removes any custom modifiers or effects that TBM triggers via on_cleared (e.g. Cleared Hot Springs). As a result, this should only be called at or near galaxy-generation to avoid interfering with dynamic gameplay.
+clear_deposits_without_effects = {
+	this = {
+		every_deposit = {
+			remove_deposit = yes
+		}
+
+		if = {
+			limit = {
+				OR = {
+					has_modifier = cleared_hot_springs
+					has_modifier = privatizations
+				}
+			}
+			remove_modifier = cleared_hot_springs
+			remove_modifier = privatizations
+		}
+	}
+}
 
 # Should usually be hidden.
 add_from_barren = {

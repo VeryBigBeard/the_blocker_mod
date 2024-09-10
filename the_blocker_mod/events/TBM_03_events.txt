@@ -338,6 +338,7 @@ planet_event = {
 }
 
 ### 310. Reactor Explosion Handler (boom!) (on_colony_year_pulse)
+#	5% chance every year if the planet has a reactor. Cannot occur after ZPMs researched.
 planet_event = {
 	id = tbm.310
 
@@ -372,11 +373,11 @@ planet_event = {
 
 		random_list = {
 			# No problems this year
-			75 = {
+			80 = {
 				
 				# Safety is considerably better when we understand the next level of power up.
 				modifier = {
-					factor = -0.5
+					factor = 2
 					owner = {
 						has_technology = tech_cold_fusion_power
 					}
@@ -385,7 +386,7 @@ planet_event = {
 					}
 				}
 				modifier = {
-					factor = 0.5
+					factor = 2
 					owner = {
 						has_technology = tech_antimatter_power
 					}
@@ -403,6 +404,15 @@ planet_event = {
 			
 			# Warning signs event
 			15 = {
+				
+				# Having Zero-Point Power eliminates possibility of explosions.
+				modifier = {
+					factor = 0
+					owner = {
+						has_technology = tech_zero_point_power
+					}
+				}
+				
 				planet_event = {
 					id = tbm.315
 					days = 360
@@ -421,6 +431,14 @@ planet_event = {
 				modifier = {
 					factor = 2
 					is_occupied_flag = yes
+				}
+
+				# Having Zero-Point Power eliminates possibility of explosions.
+				modifier = {
+					factor = 0
+					owner = {
+						has_technology = tech_zero_point_power
+					}
 				}
 				
 				if = {
@@ -827,14 +845,18 @@ planet_event = {
 	picture = GFX_evt_glitchy_matrix
 	show_sound = event_worrying_signal
 
-	trigger = {
-		NOT = { has_planet_flag = reactor_warning }
-	}
+	# trigger = {
+	# 	NOT = { has_planet_flag = reactor_warning }
+	# }
 
 	immediate = {
-		hidden_effect = {
-			set_planet_flag = reactor_warning 	# You only get one warning
+		if = {
+			limit = { NOT = { has_planet_flag = reactor_warning }}
+			hidden_effect = {
+				set_planet_flag = reactor_warning 	# You only get one warning
+			}
 		}
+		else = {}
 	}
 
 	option = {

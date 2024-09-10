@@ -574,7 +574,8 @@ planet_event = {
 	}
 }
 
-### 76. Shifting Sands (Handler) (Quicksand Basin)
+### 76. Shifting Sands (Handler) (Quicksand Basin) (currently unused)
+#	Unused, but sticking around in case I change my mind about how to trigger it
 planet_event = {
 	id = tbm.76
 
@@ -594,15 +595,8 @@ planet_event = {
 	}
 
 	immediate = {
-		random_list = {
-			10 = {
-				planet_event = { id = tbm.77 }
-			}
-			10 = {
-				planet_event = { id = tbm.79 }
-			}
-			80 = {}
-		}
+		this = { save_event_target_as = sand_planet }
+		planet_event = { id = tbm.77 days = 180 random = 180}
 	}
 }
 
@@ -631,6 +625,14 @@ planet_event = {
 
 	option = {
 		name = tbm.77.rock
+		allow = {
+			owner = {
+				has_resource = {
+					type = minerals
+					amount >= 1000
+				}
+			}
+		}
 		remove_deposit = d_quicksand_basin
 		owner = {
 			add_resource = {
@@ -641,10 +643,9 @@ planet_event = {
 
 	option = {
 		name = tbm.77.survive
-	}
-
-	after = {
-		add_deposit = d_quicksand_basin
+		hidden_effect = {
+			add_deposit = d_quicksand_basin
+		}
 	}
 }
 
@@ -656,6 +657,10 @@ ship_event = {
 	hide_window = yes
 
 	immediate = {
+		leader = {
+			save_event_target_as = first_contact_officer	# Need this name in 80.
+		}
+		
 		event_target:sand_planet = {
 			planet_event = {
 				id = tbm.79
@@ -678,31 +683,46 @@ planet_event = {
 
 	option = {
 		name = tbm.79.expedition
-		random_list = {
-			10 = {
-				modifier = {
-					factor = 0	# Fun stuff in the future.
-					always = yes
-				}
-			}
-			90 = {
-				planet_event = {
-					id = tbm.80
-					days = 20
-				}
+		hidden_effect = {
+			planet_event = {
+				id = tbm.80
+				days = 20
 			}
 		}
+		
+		# random_list = {
+		# 	10 = {
+		# 		modifier = {
+		# 			factor = 0	# Fun stuff in the future.
+		# 			always = yes
+		# 		}
+		# 	}
+		# 	90 = {
+		# 		planet_event = {
+		# 			id = tbm.80
+		# 			days = 20
+		# 		}
+		# 	}
+		# }
 	}
 
 	option = {
 		name = tbm.79.clear
-		remove_deposit = d_quicksand_basin
 		owner = {
-			add_resource = {
-				society_research = 2000
-				physics_research = 1000
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
 			}
 		}
+		remove_deposit = d_quicksand_basin
 	}
 
 	option = {
@@ -719,6 +739,9 @@ planet_event = {
 						}
 					}
 				}
+				owner = {
+					has_country_flag = not_another_subterranean_civilization
+				}
 				
 				owner = {
 					any_relation = {
@@ -727,6 +750,12 @@ planet_event = {
 				}
 			}	
 		}
+
+		planet_event = {
+			id = tbm.80
+			days = 20 		
+		}
+
 		# random_list = {
 		# 	10 = {
 		# 		modifier = {
@@ -742,7 +771,92 @@ planet_event = {
 		# 	}
 		# }
 	}
+
+	after = {
+		owner = {
+			set_country_flag = not_another_subterranean_civilization # In case you get this event twice. This technically counts as an encounter.
+		}
+	}
 }
+
+### 80. Sand Tides (Shifting Sands)
+planet_event = {
+	id = tbm.80
+
+	title = tbm.80.name
+	desc = tbm.80.desc
+	desc = {
+		trigger = {
+			owner = { has_technology = tech_noxious_swamp }
+		}
+		text = tbm.80.desc.swamp
+	}
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+		text = tbm.80.desc.superstitions
+	}
+	picture = GFX_evt_landing_ship
+	show_sound = event_scanner
+
+	is_triggered_only = yes
+
+	option = {
+		name = tbm.80.climate
+		allow = {
+			owner = { has_technology = tech_noxious_swamp }
+		}
+		add_modifier = {
+			modifier = shifting_sands
+		}
+	}
+
+	option = {
+		name = tbm.80.fascinating
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	option = {
+		name = tbm.80.miracle
+		custom_tooltip = tbm.80.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+		set_planet_flag = sand_tides	# Not a trigger flag--adds unity from colonists/clerks to Quicksand Basin.
+	}
+}
+
 
 ### 81. Sudden Sinkhole (Deep Sinkhole)
 #	Triggered from tbm_handler.17 (Sinkhole Spawner)
@@ -1025,7 +1139,7 @@ planet_event = {
 				set_planet_flag = motherlode
 			}
 			# Failed Prospects
-			9 = {
+			4 = {
 				modifier = {
 					add = @miners
 				}
@@ -1036,7 +1150,7 @@ planet_event = {
 				}
 			}
 			# Standard mining district, normal output
-			90 = {}
+			95 = {}
 		}
 	}
 }
