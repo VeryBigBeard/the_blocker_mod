@@ -1,9 +1,7 @@
-### The Blocker Mod - Known Issues - Version 0.6 - Pre-Beta
+### The Blocker Mod - Known Issues - Version 0.8 - Beta
 
-1. The Post-Apocalyptic origin should be playable but is still WIP. Hives and Machines with the origin will operate normally, however.
+1. Support for vanilla Mastery of Nature and Environmentalist is limited to vanilla features until I decide how to handle those mechanics in the mod.
 
-2. Support for vanilla Mastery of Nature and Environmentalist is limited to vanilla features until I decide how to handle those mechanics in the mod.
+2. The Imperial Fiefdom origin hasn't been extensively tested yet as I haven't had enough games with Overlord to get a feel for its balance yet.
 
-3. The Imperial Fiefdom origin hasn't been extensively tested yet as I haven't had enough games with Overlord to get a feel for its balance yet.
-
-4. Some scripted systems may still spawn planets without features. If your favourite unique planet is now a featureless hellscape, please leave a bug report (ideally with the initializer name if you know it). To fix any planet like this in-game, select the planet, open the console, and type the following: effect reroll_deposits = yes
+3. Some scripted systems may still spawn planets without features. If your favourite unique planet is now a featureless hellscape, please leave a bug report (ideally with the initializer name if you know it). To fix any planet like this in-game, select the planet, open the console, and type the following: effect reroll_deposits = yes

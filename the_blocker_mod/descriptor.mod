@@ -5,5 +5,5 @@ tags={
 	"Events"
 	"Galaxy Generation"
 }
-version="0.7"
-supported_version="3.12.*"
+version="0.8"
+supported_version="3.13.*"
