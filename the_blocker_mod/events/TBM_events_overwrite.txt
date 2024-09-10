@@ -1,7 +1,7 @@
 ### The Blocker Mod - Overwritten Events
 #	As of TBM 0.7.1, only a couple of relatively minor terraforming events are overwritten to ensure the mod doesn't unduly affect vanilla balance.
 
-
+namespace = terra
 
 ### terraforming_events - Excess to Success
 #	Reworked to give you a happy, useful resource stockpile

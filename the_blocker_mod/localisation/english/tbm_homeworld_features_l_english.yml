@@ -175,8 +175,12 @@
  d_chapel_of_the_fall:0 "The Chapel of the Fall"
  d_chapel_of_the_fall_desc:0 "Nuclear fire destroyed whatever faiths had once bound our species together. In the aftermath, those few who survived found solace and companionship here, and began to look for paths anew -- paths that would eschew the mistakes of the past and find a new way to light. Not all lead out of the dark."
 
+ d_the_site:0 "The Site"
+ d_the_site_desc:0 "Referred to coloquially as The Place Where It Happened, thus is all that remains at the epicenter of civilization's demise. No one is even sure what, exactly, occurred here to trigger such total disaster, but a massive crater serves as a grim reminder of the task ahead."
+
  d_food_rations:0 "Food Rations"
  d_food_rations_desc:0 "Some of the bunkers across our planet survived its fiery fall thanks to rations of canned or dried food. As we begin the long road to rebuilding our society, what remains of these rations have been pooled and placed under strict guard, with allocations doled out based on need. It is rarely enough, and there are constant rumors of reserves running low."
+ d_food_rations_tooltip:0 "§YRations§! are expected to run out in 2220§!."
 
  d_survival_camps:0 "£blocker£ Survival Camps"
  d_survival_camps_desc:0 "Those not fortunate enough to be able to reach a shelter mostly congregated in meager camps in whatever hospitable regions they could find. Since then, these communities have become somewhat self-sufficient, but life in them is an ordeal, with most of the camps run more by criminals and anarchic tyrants."

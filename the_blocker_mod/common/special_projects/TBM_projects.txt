@@ -152,7 +152,7 @@ special_project = {
 
 	on_success = { 
 		event_target:sand_planet = {
-			planet_event = { id = tbm.78 }
+			planet_event = { id = tbm.79 }
 		}
 	 }
 }

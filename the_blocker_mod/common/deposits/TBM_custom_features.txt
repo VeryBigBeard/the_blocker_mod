@@ -4712,9 +4712,11 @@ d_energy_banks = {
 
 		modifier = {
 			set = @always_clear
-			num_free_districts = {
-				type = any
-				value < 1
+			root = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
 			}
 		}
 	}
@@ -4749,9 +4751,11 @@ d_mineral_stockpiles = {
 
 		modifier = {
 			set = @always_clear
-			num_free_districts = {
-				type = any
-				value < 1
+			root = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
 			}
 		}
 	}
@@ -4786,9 +4790,11 @@ d_food_silos = {
 
 		modifier = {
 			set = @always_clear
-			num_free_districts = {
-				type = any
-				value < 1
+			root = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
 			}
 		}
 	}

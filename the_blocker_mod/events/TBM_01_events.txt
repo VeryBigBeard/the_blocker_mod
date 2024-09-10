@@ -221,24 +221,24 @@ planet_event = {
 }
 
 ### 9. Dangerous Wildlife - Predator Modification Project
-# planet_event = {
-# 	id = tbm.9
+planet_event = {
+	id = tbm.9
 
-# 	title = tbm.9.name
-#     desc = tbm.9.desc
-#     picture = GFX_evt_scanning_remains
-# 	show_sound = event_finding_loot
+	title = tbm.9.name
+    desc = tbm.9.desc
+    picture = GFX_evt_scanning_remains
+	show_sound = event_finding_loot
 
-# 	is_triggered_only = yes
-# 	location = this
+	is_triggered_only = yes
+	location = this
 
-# 	#Well done, lads
-# 	option = {
-# 		name = tbm.9.a
-# 		remove_modifier = dangerous_wildlife_food_changes
-# 		add_deposit = d_fertile_lands
-# 	}
-# }
+	#Well done, lads
+	option = {
+		name = tbm.9.a
+		remove_modifier = dangerous_wildlife_food_changes
+		add_deposit = d_fertile_lands
+	}
+}
 
 ### 10. Volcanic Eruption (Handler)
 planet_event = {
