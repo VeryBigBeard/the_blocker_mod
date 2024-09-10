@@ -48,39 +48,128 @@ country_event = {
 	}
 }
 
-### 6. Dangerous Wildlife - Planetary Food System Collapses
+### 5. Dangerous Wildlife - Population Management
 planet_event = {
-	id = tbm.6
+	id = tbm.5
 
-	title = tbm.6.name
-    desc = tbm.6.desc
+	title = tbm.5_name
+    desc = tbm.5_desc
     picture = GFX_evt_scanning_remains
-	show_sound = event_finding_loot
+	show_sound = event_dangerous_animals
 
 	is_triggered_only = yes
 	location = this
 
 	option = {
-		name = tbm.6.a
+		name = tbm.5_nothing
+		custom_tooltip = tbm.5_nothing_tooltip
+		hidden_effect = {
+			add_deposit = d_dangerous_wildlife_blocker
+		}
+	}
+
+	option = {
+		name = tbm.5_hunting
+		custom_tooltip = tbm.5_hunting_tooltip
+		hidden_effect = {
+			add_deposit = d_dangerous_wildlife_blocker
+		}
 		add_modifier = {
-			modifier = dangerous_wildlife_food_changes
+			modifier = dangerous_wildlife_permits
+		}
+	}
+
+	option = {
+		name = tbm.5_poaching
+		custom_tooltip = tbm.5_poaching_tooltip
+		allow = {
+			owner = {
+				NOT = { has_policy_flag = pre_sapients_protect }
+			}
+		}		
+		add_modifier = {
+			modifier = dangerous_wildlife_poachers
+			years = 2
+		}
+		hidden_effect = {
+			random_list = {
+				90 = {}
+
+				10 = {					
+					planet_event = {
+						id = tbm.6
+						days = 7200
+					}
+				}
+			}
 		}
 	}
 
 	#Option to genetically modify species with gene tailoring
 	option = {
-		name = blocker.6.b
+		name = tbm.5_toxin
+		custom_tooltip = tbm.5_toxin_tooltip
 		allow = {
 			owner = {
 				has_technology = tech_gene_tailoring
+				NOT = { has_policy_flag = pre_sapients_protect }
 			}
 			planet = {
 				has_building = building_clinic
 			}
 		}
+
+		owner = {
+			add_resource = {
+				food = -500
+			}
+		}
+
 		enable_special_project = {
 			name = "PREDATOR_MODIFICATION_PROJECT"
 		}
+	}
+}
+
+### 6. Dangerous Wildlife - Planetary Food System Collapses
+planet_event = {
+	id = tbm.6
+
+	title = tbm.6_name
+	desc = tbm.6_desc
+	picture = GFX_evt_scanning_remains
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		add_modifier = {
+			modifier = dangerous_wildlife_food_changes
+		}
+	}
+
+	option = {
+		name = tbm.6_a
+	}
+
+	option = {
+		name = tbm.6_b
+		allow = {
+			owner = {
+				has_technology = tech_gene_tailoring
+			}
+			planet = {
+				has_building = building_hospital
+			}
+		}
+		remove_modifier = dangerous_wildlife_food_changes
+		owner = {
+			add_resource = {
+				society_research = @tier2researchreward
+			}
+		}
+		add_deposit = d_fertile_lands
 	}
 }
 
@@ -88,16 +177,16 @@ planet_event = {
 planet_event = {
 	id = tbm.7
 
-	title = tbm.7.name
-    desc = tbm.7.desc
+	title = tbm.7_name
+    desc = tbm.7_desc
     picture = GFX_evt_scanning_remains
-	show_sound = event_finding_loot
+	show_sound = event_first_contact_machine
 
 	is_triggered_only = yes
 	location = this
 
 	option = {
-		name = tbm.7.a
+		name = tbm.7_a
 		add_modifier = {
 			modifier = dangerous_wildlife_contamination
 			days = 1800
@@ -135,8 +224,8 @@ planet_event = {
 planet_event = {
 	id = tbm.9
 
-	title = tbm.8.name
-    desc = tbm.8.desc
+	title = tbm.9.name
+    desc = tbm.9.desc
     picture = GFX_evt_scanning_remains
 	show_sound = event_finding_loot
 

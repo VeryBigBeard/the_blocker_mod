@@ -65,7 +65,6 @@ extreme_weather_strain = {
 		trigger_scope = planet
 		parameters = {
 			type = any
-			in_construction = any
 		}
 		mode = add
 	}
@@ -138,7 +137,7 @@ colonial_cohesion_gestalt = {
 	complex_trigger_modifier = {
 		trigger = num_assigned_jobs
 		parameters = {
-			job = job_synapse_drone
+			job = coordinator
 		}
 		mode = add
 	}

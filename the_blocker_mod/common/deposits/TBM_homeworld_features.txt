@@ -766,7 +766,14 @@ d_homeworld_dustbowl = {
 					value < 10
 				}
 			}
-			root = { num_free_district = { type = any value > 1 }}	# Do not wreck existing district with it, though
+			
+			# Do not wreck existing district with it, though
+			planet = {
+				num_free_districts = {
+					type = any
+					value > 1
+				}
+			}	
 		}
 
 		modifier = {
@@ -2125,7 +2132,7 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			country_uses_consumer_goods = yes
+			owner = { country_uses_consumer_goods = yes }
 		}
 		planet_miners_consumer_goods_upkeep_add = 0.1
 	}
@@ -2133,7 +2140,9 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			country_uses_consumer_goods = no
+			owner  = {
+				country_uses_consumer_goods = no
+			}
 		}
 		planet_miners_food_upkeep_add = 0.1
 	}
@@ -2141,8 +2150,10 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { country_uses_consumer_goods = no }
-			owner = { has_trait = trait_lithoid }
+			OR = {
+				owner = { country_uses_consumer_goods = no }
+				owner = { has_trait = trait_lithoid }
+			}
 		}
 		planet_miners_food_upkeep_add = -0.1
 		planet_miners_energy_upkeep_add = 0.1
@@ -2542,8 +2553,8 @@ d_library_of_before = {
 			energy = 200
 			unity = 1000
 		}
-		produces = {
-			unity = -8
+		upkeep = {
+			unity = 8
 		}
 	}
 
@@ -2599,10 +2610,78 @@ d_chapel_of_the_fall = {
 	}
 }
 
+d_the_site = {
+	icon = d_crater
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			alloys = 800
+			minerals = 2500		# It's a very big crater.
+		}
+	}
+
+	can_be_cleared = {
+		OR = {
+			
+			# Tech option
+			owner = {		
+				AND = {
+					has_technology = tech_cold_fusion_power
+					has_technology = tech_space_science_2
+				}
+			}
+
+			# Progress option
+			planet = {
+				AND = {
+					num_assigned_jobs = {
+						job = researcher
+						value > 12
+					}
+	
+					planet_resource_compare = {
+						resource = unity
+						value > 100
+					}
+				}
+			}
+
+			# Adaptability option
+			planet = {
+				AND = {
+					any_owned_species = {
+						NOT = { is_same_value = owner_main_species }
+					}
+					planet = {
+						NOT = { is_planet_class = pc_nuked }
+					}
+				}
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -3
+		pop_government_ethic_attraction = -1
+		pop_amenities_usage_mult = -0.25
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
 # Food ration will run out in 20 years, until then it's helpful, and you can liquidate it.
 d_food_rations = {
 	icon = d_food_banks
 	category = deposit_cat_food
+	custom_tooltip = d_food_rations_tooltip
 
 	use_for_min_max_adjustments = yes
 
@@ -2652,8 +2731,8 @@ d_food_rations = {
 	triggered_planet_modifier = {
 		potential = {
 			years_passed >= 20
-			pop_happiness = -0.1
 		}
+		pop_happiness = -0.1
 	}
 
 	potential = {
@@ -2689,7 +2768,6 @@ d_survival_camps = {
 	planet_modifier = {
 		district_farming_max = 1
 		planet_crime_mult = 0.1
-		pop_happiness = -0.2
 	}
 
 	triggered_planet_modifier = {
@@ -2735,7 +2813,7 @@ d_seed_banks = {
 		}
 		upkeep = {
 			energy = 10
-			engineering_research = 2
+			society_research = 2
 		}
 	}
 
@@ -2820,7 +2898,6 @@ d_scavenger_bands = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_crime_add = 5
 		planet_crime_mult = 0.10
 	}
 
@@ -3052,7 +3129,7 @@ d_hulks = {
 }
 
 d_tomb_mine_shafts = {
-	icon = d_mining_tunnels
+	icon = d_station_junk
 	category = deposit_cat_blockers
 
 	use_for_min_max_adjustments = yes
@@ -3116,8 +3193,9 @@ d_homeworld_black_market = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
-		planet_crime_mult = 35
+		trade_value_mult = 0.2
+		#trade_value_add = 10
+		planet_crime_mult = 0.1
 	}
 
 	potential = {
@@ -3147,6 +3225,10 @@ d_broken_transformer = {
 
 	should_swap_deposit_on_terraforming = no
 
+	blocker_swap_types = {
+		d_high_wire_network
+	}
+
 	time = 270
 
 	resources = {
@@ -3159,10 +3241,6 @@ d_broken_transformer = {
 
 	potential = {
 		always = no
-	}
-
-	on_cleared = {
-		add_deposit = d_high_wire_network
 	}
 
 	ai_weight = {
@@ -3202,7 +3280,6 @@ d_homeworld_derelict_reactors = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		pop_happiness = -0.05
 	}
 
 	potential = {

@@ -9,16 +9,19 @@ namespace = tbm_hw
 # 5. Experimental Geothermal Tap Handler
 # 6. Advanced Geothermal Tap Shutdown
 # 7. Advanced Geothermal Tap Explodes
+
 # 21. Scavenger Bands Decalre War (Handler)
 # 22. Scavenger Bands Declare War
 # 23. Conquest
 # 24. Unifaction
 # 25. Scavenger Lord Assasinated
 # 26. Scrap Shoot-out
+
 # 51. Food Replicator Breaks Down - Warning
 # 52. Food Replicator Fails
 # 60. Superhighway Handler (background for now)
 ###
+
 
 ### 5. Experimental Geothermal Tap - Handler
 country_event = {

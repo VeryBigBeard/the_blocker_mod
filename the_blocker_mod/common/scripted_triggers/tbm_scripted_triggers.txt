@@ -126,7 +126,7 @@ gestalt_engineering_feature = {
 
 ### LOCAL
 has_gaseous_system = {
-	from.solar_system = {
+	solar_system = {
 		any_system_planet = {
 			OR = {
 				has_deposit = d_exotic_gases_1
@@ -148,15 +148,13 @@ has_volcanic_activity = {
 }
 
 has_hill_feature = {
-	from = {
-		OR = {
+	OR = {
 			has_deposit = d_alien_pets_deposit
 			has_deposit = d_arid_highlands	
 			has_deposit = d_fjordland
 			has_deposit = d_highlands
 			has_deposit = d_highland_lake
 			has_deposit = d_arid_highlands
-		}
 	}
 }
 
