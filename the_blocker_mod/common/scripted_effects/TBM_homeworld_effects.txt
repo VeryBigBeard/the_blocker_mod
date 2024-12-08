@@ -388,6 +388,46 @@ tbm_homeworld_origin_spreads = {
 		add_deposit = d_seed_banks
 	}
 
+	### POST-APOC - HIVE
+	else_if = {
+		limit = {
+			owner = { has_origin = origin_post_apocalyptic}
+			owner = { is_gestalt = no }
+		}
+		
+		# Remove last vestiges of civilization
+		clear_deposits = yes
+
+		# Special features for Post-Apoc (gestalt compatible for now)
+		add_deposit = d_library_of_before
+		add_deposit = d_chapel_of_the_fall
+		add_deposit = d_the_site
+		
+		# Energy - Post-Apoc gets 8 gen (+2 from vanilla), one blocked, one is hybrid
+		add_deposit = d_homeworld_derelict_reactors
+		add_deposit = d_homeworld_extreme_weather
+		add_deposit = d_unexploded_munitions	# Also provides mining
+		add_deposit = d_unexploded_munitions
+		add_deposit = d_unexploded_munitions
+		add_deposit = d_deviant_impulses
+		add_deposit = d_diseased_node
+		add_deposit = d_gestalt_homeworld_bandit_camp	# Blocked
+
+		# Mining - Post-Apoc get 8 mining (+2 from vanilla), one blocked, one hybrid (above)
+		add_deposit = d_hive_scavengers
+		add_deposit = d_hive_scavengers
+		add_deposit = d_hulks
+		add_deposit = d_hulks
+		add_deposit = d_slag_heap
+		add_deposit = d_gestalt_rare_metals_lab
+		add_deposit = d_underground_warren
+
+		# Farming - Post-apoc get very little farming: 3 (-3 from vanilla)
+		add_deposit = d_nutrient_rations
+		add_deposit = d_lost_warrens
+		add_deposit = d_seed_banks
+	}
+
 
 	### RELICS
 	else_if = {
