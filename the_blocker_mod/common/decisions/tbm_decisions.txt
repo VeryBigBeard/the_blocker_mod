@@ -1,5 +1,56 @@
 ### The Blocker Mod - Decisions
 
+
+### Planet-related Decisions
+decision_construct_megaliths = {
+	owned_planets_only = yes
+	sound = lithoid_amb_starbase_citadel_01
+	icon = decision_city_ruins
+
+	enactment_time = 1800
+
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 5000
+		}
+	}
+
+	potential = {
+		NOT = { is_artificial = yes }
+		exists = owner
+	}
+
+	effect = {
+		add_deposit = d_megaliths
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 100
+			OR = {
+				# Either AI needs the mining district
+				AND = {
+					num_free_districts = {
+						type = district_mining
+						value < 1
+					}
+					owner = {
+						resource_income_compare = {
+							resource = minerals
+							value < 20
+						}
+					}
+				}
+
+				# Or is a hive-mind and can offset the pop-growth hit
+				owner = { is_hive_empire = yes }
+			}
+		}
+	}
+}
+
 ### Reactor Decisions
 #	Open a new super-reactor on your planet and reap the benefits. Safer with better tech!
 decision_open_fusion_reactor = {
