@@ -1,0 +1,461 @@
+### The Blocker Mod - Post-Apocalyptic Homeworld Events
+
+
+namespace = tbm_hw
+
+
+### Environmental Remediation Event Chain
+### 101. Handler - on_colony_five_yearly_pulse
+planet_event = {
+	id = tbm_hw.101
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+		is_ai = no
+		is_homeworld = yes
+	}
+
+	trigger = {
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = environmental_remediation_post_apoc }
+			num_ascension_perks > 0
+			has_technology = tech_terrestrial_sculpting
+		}
+		is_same_value = owner_main_species.home_planet
+	}
+
+	immediate = {
+		random_list = {
+			50 = {
+				owner = { set_country_flag = environmental_remediation_post_apoc }
+			}
+			50 = {}
+		}
+	}
+}
+
+### 102. Environmental Remediation - Restoring a Fallen World
+planet_event = {
+	id = tbm_hw.102
+
+	is_triggered_only = yes
+
+	title = tbm_hw.102_title
+	desc = tbm_hw.102_desc
+	show_sound = amb_terraforming_station_active
+	picture = GFX_terraforming_candidate
+
+	immediate = {
+		
+		# Set up score variables - these track progress in different areas
+		set_variable = {
+			which = post_apoc_industrialization_score
+			value = 1
+		}
+		set_variable = {
+			which = post_apoc_ecology_score
+			value = 1
+		}
+		set_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	option = {
+		name = tbm_hw.102_embrace_hope
+		allow = {
+			this = { has_deposit = d_library_of_before }
+		}
+		custom_tooltip = tbm_hw.102_boost_library
+		set_planet_flag = post_apoc_embrace_hope
+	}
+
+	option = {
+		name = tbm_hw.102_respect_reality
+		allow = {
+			this = { has_deposit = d_chapel_of_the_fall }
+		}
+		custom_tooltip = tbm_hw.102_boost_chapel
+		set_planet_flag = post_apoc_respect_reality
+	}
+
+	option = {
+		name = tbm_hw.102_society_decides
+	}
+
+	# Triggers follow-up events
+	after = {
+		set_timed_planet_flag = {	# Chain times out after 50 years.
+			flag = environmental_remediation_timer
+			years = 50
+		}
+		set_planet_flag = environmental_remediation_scoring # Controls scoring system
+		owner = { set_country_flag = post_apoc_first_choice }	# Disables changes to special features if you lose control of planet.
+	}
+}
+
+### 103. Environmental Remediation - Yearly Score Handler
+### on_colony_yearly_pulse
+planet_event = {
+	id = tbm_hw.103
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_ai = no
+		original_owner = yes
+	}
+
+	trigger = {
+		owner = { has_planet_flag = environmental_remediation_scoring }
+	}
+
+	immediate = {
+		
+		# Increment/decrement scores
+		inline_script = tbm_post_apoc_industrialization
+		inline_script = tbm_post_apoc_ecology
+		inline_script = tbm_post_apoc_culture
+	}
+}
+
+### 104. Environmental Remediation - Resolution Check
+### on_colony_yearly_pulse
+planet_event = {
+	id = tbm_hw.104
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+		is_ai = no
+		is_homeworld = yes
+	}
+
+	trigger = {
+		NOT = { has_planet_flag = environmental_remediation_timer }
+		exists = owner
+		owner = {
+			NOT = { has_country_flag = environmental_remediation_post_apoc }
+			num_ascension_perks >= 6
+			has_technology = tech_terrestrial_sculpting
+		}
+		is_same_value = owner_main_species.home_planet
+	}
+
+	immediate = {
+		
+		# Disable scoring system; we want to freeze this a bit before the resolution so it's not so game-y
+		remove_planet_flag = environmental_remediation_scoring
+		
+		random_list = {
+			10 = {
+				# Calls Outcome events, on 5-10 year delay
+			}
+			90 = {}
+		}
+	}
+}
+
+### 105. Environmental Remediation - Removes effects on ownership transfer
+planet_event = {
+	id = tbm_hw.105
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_planet_flag = environmental_remediation_timer
+			has_planet_flag = post_apoc_embrace_hope
+			has_planet_flag = post_apoc_respect_reality
+		}
+	}
+
+	immediate = {
+		every_deposit = {
+			limit = {
+				OR = {
+					is_deposit_type = d_chapel_of_the_fall
+					is_deposit_type = d_library_of_before
+				}
+			}
+			remove_deposit = yes
+		}
+	}
+}
+
+
+### 104. Environmental Remediation - Outcome: Industry
+
+### 105. Environmental Remediation - Outcome: Ecology
+
+### 106. Environmental Remediation - Outcome: Culture
+
+### 107. Environmental Remediation - Event Handler: Ascension Events
+
+### XXX. Environmental Remediation - Event Handler: Ascension Events
+
+
+### Event Chain: Scavenger Bands Declare War - Post-Apocalyptic Origin
+###	 211. Scavenger Bands Declare War - Handler
+planet_event = {
+	id = tbm_hw.211
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		this = {
+			count_deposits = {
+				type = d_scavenger_bands
+				count >= 2
+			}
+		}
+	}
+	
+	immediate = {
+		# 10% chance of war, increased by colony_age * 2
+		random_list = {
+			90 = {
+				modifier = {
+					subtract = trigger:colony_age
+				}
+			}
+			10 = {
+				modifier = {
+					add = trigger:colony_age
+				}
+				planet_event = {
+					id = tbm_hw.212
+					days = 14
+					random = 7
+				}
+			}
+		}
+	}
+}
+
+### 212. Scavenger Bands Declare War
+planet_event = {
+	id = tbm_hw.212
+
+	title = tbm_hw.212_name
+	desc = tbm_hw.212_desc
+	picture = GFX_evt_archaeologists_escaping
+	show_sound = event_super_explosion
+
+	is_triggered_only = yes
+
+	immediate = {
+		this = {
+			add_modifier = {
+				modifier = scavenger_wars
+			}
+		}
+	}
+
+	# Higher bounties, buy them off
+	option = {
+		name = tbm_hw.212_bounties
+		custom_tooltip = tbm_hw.212_bounties_tooltip
+		owner = {
+			add_resource = {
+				energy = -1500
+			}
+		}
+		this = {
+			remove_modifier = scavenger_wars
+			add_modifier = {
+				modifier = scavenger_bounties
+			}
+		}
+	}
+
+	# Eliminate one of the leaders (can accidentally be your own leader)
+	option = {
+		name = tbm_hw.212_elimination
+		custom_tooltip = tbm_hw.212_elimination_tooltip
+		hidden_effect = {
+			random_list = {
+				50 = {
+					# Scavenger Lord Successfully Asassinated
+					planet_event = {
+						id = tbm_hw.215
+						days = 90
+					}
+				}
+				50 = {
+					# Scrap Shoot-out - Turns out to be one of your leaders
+					planet_event = {
+						id = tbm_hw.216
+						days = 90
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		custom_tooltip = tbm_hw.212_clearance
+		hidden_effect = {
+			set_planet_flag = scavenger_war
+		}
+	}
+
+	# Place security on alert
+	option = {
+		name = tbm_hw.212_security
+		random_list = {
+			70 = {
+				# Conquest - one gang takes over the other
+				custom_tooltip = tbm_hw.212_conquest_tooltip
+				hidden_effect = {
+					planet_event = {
+						id = tbm_hw.213
+						days = 90
+					}
+				}
+			}
+			30 = {
+				# Unification - gangs unify and declare war on government
+				custom_tooltip = tbm_hw.212_unification_tooltip
+				hidden_effect = {
+					planet_event = {
+						id = tbm_hw.214
+						days = 90
+					}
+				}
+			}
+		}
+	}
+}
+
+### 213. Conquest
+planet_event = {
+	id = tbm_hw.213
+
+	title = tbm_hw.213_name
+	desc = tbm_hw.213_desc
+	picture = GFX_evt_surrender
+	show_sound = event_ground_battle
+
+	is_triggered_only = yes
+
+	option = {
+		name = tbm_hw.213_dust_settled
+		custom_tooltip = tbm_hw.213_conquest_tooltip	# +1 mining to remaining scavenger band but union dues....
+		remove_modifier = scavenger_wars
+		remove_deposit = d_scavenger_bands
+		hidden_effect = {
+			remove_planet_flag = scavenger_war
+			set_planet_flag = scavenger_conquest
+		}
+	}
+}
+
+### 214. Unification
+planet_event = {
+	id = tbm_hw.214
+
+	title = tbm_hw.214_name
+	desc = tbm_hw.214_desc
+	picture = GFX_evt_board_meeting
+	show_sound = event_criminal_activity
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_variable = {
+				which = damage
+				value = trigger:colony_age
+			}
+			multiply_variable = {
+				which = damage
+				value = 2
+			}
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+		add_planet_devastation = damage
+		every_owned_pop = {
+			limit = {
+				has_job = enforcer
+			}
+			while = {
+				count = 2
+				kill_pop = yes
+			}
+		}
+		ruin_building = random_no_capital
+		remove_modifier = scavenger_wars
+	}
+}
+
+### 215 Scavenger Lord Assassinated
+planet_event = {
+	id = tbm_hw.215
+
+	title = tbm_hw.215_name
+	desc = tbm_hw.215_desc
+	picture = GFX_evt_derelict_interior
+	show_sound = event_comms_cutoff
+
+	is_triggered_only = yes
+
+	option = {
+		name = GOOD
+		remove_modifier = scavenger_wars
+		remove_deposit = d_scavenger_bands
+	}
+}
+
+### 216. Scrap Shoot-out (leader killed)
+planet_event = {
+	id = tbm_hw.216
+
+	title = tbm_hw.216_name
+	desc = tbm_hw.216_desc
+	picture = GFX_evt_black_market
+	show_sound = event_ground_battle
+
+	is_triggered_only = yes
+
+	option = {
+		name = UNFORTUNATE
+		owner = {
+			random_owned_leader = {
+				limit = { NOT = { is_ruler = yes }}
+				kill_leader = {
+					show_notification = yes
+				}
+			}
+		}
+		remove_modifier = scavenger_wars
+		remove_deposit = d_scavenger_bands
+	}
+}

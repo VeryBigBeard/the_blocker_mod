@@ -160,3 +160,18 @@ resource_shipment = {
 		mode = set
 	}
 }
+
+
+specialist_ratio = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = count_owned_pop
+		parameters = {
+			is_pop_category = specialist
+		}
+		mode = add
+	}
+	modifier = {
+		divide = trigger:num_pops
+	}	
+}
