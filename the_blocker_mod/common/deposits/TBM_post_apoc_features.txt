@@ -144,9 +144,26 @@ d_library_of_before = {
 			is_original_owner = owner
 			owner = { is_gestalt = no }
 		}
-		planet_amenities_mult = 0.20
+		planet_researchers_food_upkeep_add = 2
 	}
-	
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { has_country_flag = post_apoc_environmental_restoration }
+		}
+		planet_researchers_food_upkeep_add = -2		# Malus gets cnacelled on completion of event chain
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { has_country_flag = cultural_restoration }
+		}
+		planet_researchers_produces_mult = 0.05		# Intended partly to balance with Remnant and replicate ecu effect so you aren't incentivized to immediately ecu your nice restored environment.
+	}
 
 	potential = {
 		always = no
@@ -179,7 +196,6 @@ d_chapel_of_the_fall = {
 	}
 
 	planet_modifier = {
-		planet_amenities_mult = -0.1
 		planet_jobs_unity_produces_mult = 0.2
 	}
 
@@ -189,6 +205,7 @@ d_chapel_of_the_fall = {
 			is_original_owner = owner
 			owner = { is_gestalt = no }
 		}
+		planet_amenities_mult = -0.1
 		pop_ethic_spiritualist_attraction_mult = 0.5
 	}
 
@@ -199,6 +216,25 @@ d_chapel_of_the_fall = {
 			owner = { is_hive_empire = yes }
 		}
 		planet_crime_mult = -0.20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { has_country_flag = cultural_restoration }
+		}
+		planet_amenities_mult = 0.1		# Malus gets cancelled at completion of event chain
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { has_country_flag = cultural_restoration }
+		}
+		planet_amenities_mult = 0.1
+		planet_jobs_unity_produces_mult = 0.05		# Intended partly to balance with Remnant and replicate ecu effect so you aren't incentivized to immediately ecu your nice restored environment.
 	}
 
 	potential = {
@@ -1175,5 +1211,212 @@ d_homeworld_derelict_reactors = {
 		}
 
 		inline_script = tbm_ai_empire_weights
+	}
+}
+
+
+### Post-Apocalyptic: Environmental Remediation Features
+
+d_scrap_bazaar = {
+	icon = d_homeworld_black_market
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		job_scrap_miner_add = 4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_post_apocalyptic }
+		}
+		planet_researchers_engineering_research_produces_mult = 0.15
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_allocation_clinic = {
+	icon = d_station_junk
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+		produces = {
+			food = 10
+		}
+	}
+
+	country_modifier = {
+		trade_value_mult = 0.10
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.20
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_memorial_apocalypse = {
+	icon = d_monument
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		building_museum_apocalypse_max_add = 1
+		building_laboratory_apocalypse_max_add = 1
+		building_cathedral_apocalype_add = 1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_abyssal_manufactorium = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		district_mining_max = 1
+		district_generator_max = 1
+		planet_jobs_specialist_produces_mult = 0.20
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_hegemons_of_industry = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_miners_produces_mult = 0.20
+		planet_metallurgists_produces_mult = 0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_purgatory_apocalypse = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		pop_amenities_usage_mult = -0.40	# Your pops are essentially brain-dead, see
+	}
+}
+
+d_last_bastion = {
+	category = deposit_cat_artificial
+	custom_tooltip = last_bastion_tooltip_armies
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		district_farming_max = 1
+		planet_crime_mult = -0.20
+		armies_energy_upkeep_mult = -1
 	}
 }

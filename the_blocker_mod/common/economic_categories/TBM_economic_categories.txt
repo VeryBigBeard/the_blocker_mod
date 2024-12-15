@@ -20,6 +20,19 @@ planet_colonist = {
 
 ### TBM: Custom
 
+planet_scrap_miners = {
+	parent = planet_miners
+	generate_add_modifiers = {
+		produces
+		upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+}
+
 planet_poachers = {
 	parent = planet_jobs_productive
 }
+

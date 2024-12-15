@@ -6,4 +6,4 @@ tags={
 	"Galaxy Generation"
 }
 version="0.8"
-supported_version="3.13.*"
+supported_version="3.14.*"

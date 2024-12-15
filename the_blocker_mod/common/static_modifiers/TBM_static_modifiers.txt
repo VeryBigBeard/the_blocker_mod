@@ -381,3 +381,38 @@ superhighway_engineering = {
 scavenger_wars = {
 	planet_stability_add = -20
 }
+
+### Post-Apoc Remediation Cultural Outcomes
+environmental_remediation = {
+	# Does nothing - just lets player know it's ongoing.
+}
+
+mutant_soldiers = {
+	country_naval_cap_add = 4	# Pop modifier - added to soldiers on homeworld
+}
+
+advancing_from_ruins = {
+	planet_scrap_miners_alloys_produces_add = 2
+	planet_soldiers_alloys_produces_add = 1
+	planet_metallurgists_unity_produces_add = 2
+}
+
+revived_civilization = {
+	pop_category_rulers_unity_produces_add = 1
+	pop_category_specialists_unity_produces_add = 1
+	pop_category_workers_unity_produces_add = 1
+	country_base_influence_produces_add = 1		# Does this work in planet scope?
+}
+
+cultural_reconstruction = {
+	country_base_influence_produces_add = 1
+}
+
+cultural_restoration_planet = {
+	planet_jobs_specialist_produces_mult = 0.40
+}
+
+cultural_restoration = {
+	country_base_influence_produces_add = 2
+	envoys_add = 2
+}

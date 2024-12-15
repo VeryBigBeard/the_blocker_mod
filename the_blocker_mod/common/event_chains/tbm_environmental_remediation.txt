@@ -1,0 +1,4 @@
+tbm_environmental_remediation = {
+	picture = GFX_evt_animal_wildlife
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+}

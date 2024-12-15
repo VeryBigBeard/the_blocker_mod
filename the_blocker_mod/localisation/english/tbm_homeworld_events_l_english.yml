@@ -16,6 +16,37 @@
  tbm_hw.7_name:0 "Geothermal Explosion"
  tbm_hw.7_desc:0 "Back in the 21st century, geothermal energy wasn't considered dangerous. But the scale on which the larger §Y£blocker_yellow£ Experimental Geothermal Tap§!s operate can lead to the relase of dangerous levels of heat and gas from deep in the [from.GetPlanetMoon]'s crust if not properly maintained.\n\nAfter decades of neglect and decay, one ofthe §Y£blocker_yellow£ Experimental Geothermal Tap§! on [from.GetName] suddenly exploded, causing significant damage to the surrounding $district_city_plural$ and spewing noxious gases across much of the region.\n\nClean-up is underway, but the technology behind this form of energy generation has now been entirely deprecated and banned from large-scale use in future energy generators."
 
+ ### Post-Apocalyptic - Environmental Remediation Event Chain
+ 
+ tbm_environmental_remediation:0 "Post-Apocalyptic — Environmental Restoration"
+ tbm_environmental_remediation_desc:0 "Long years ago, civilization vanished overnight in a cloud of ash and debris. Since then, every undertaking has been oriented towards one critical goal: restoring the homeworld, rebuilding what once was and, perhaps, exceeding it — if the mistakes of the past can indeed be avoided.\n\nOur population, leaders, and governments have begin work on various projects to pull the seemingly disparate philosophies that have defined these centuries of survival together into a renewed foundation for our planet and society.\n\nIt is expected to take time before these efforts — or our planet — will bear fruit. But we have waited this long.\n\n\n\n§EEOver the next several decades, our undertakings will forever shape the face and future of our homeworld — decisions governing districts, population, industry, and the environment will all determine the outcome of our efforts to rebuild our civilization.\n\nRestoration will occur in three areas:\n - §LIndustrialization§E - A measure of civilization's wealth, productivity, and ability to return to the levels of plentitude required to sustain a true stellar empire. Are we resilient and frugal? Or opulent and utopian?\n - §GEcology§E - Restoring a planetary-scale environment from utter devastation is a mammoth charge. Do we embrace the burnt-out world we've made or rebuild whole rivers and oceans?\n - §YCulture§E - Do we seek to spread fire or influence? Do we seek ruin, or redemption?\n\n§YNo decision is final. Should circumstances change, we can change our decisions and alter the final outcome.§!"
+
+ tbm_hw.102_title:0 "A Glimpse of Our Future"
+ tbm_hw.102_desc:0 "It has long been supposed that some [owner.GetSpeciesNamePlural] must have sat upon the burnt shores of our homeworld and wondered what was to come, knowing nothing of the armageddon their future held in wait. For many years, such stories have been an indulgent speculation upon better times — perhaps — while we languish under the shelters, tunnels, and scrap heaps our forebears left behind.\n\nBut now, there is something more tangible to them. For the first time, our people possess the technology — and, more important, the knowledge and understanding — to ask the same, reimagine our world as it once might have been — or yet could be.\n\nMuch of that knowledge has been gleaned from the stars, from worlds so different from our own as to beggar any belief that we could yet repeat the failures of our ancestors.\n\nWe have now another choice — in how we build, in how we rebuild, and in how we remake ourselves into what might have been. Or what might yet come."
+ tbm_hw.102_desc_hive:0 "Long years ago, in the annals of the Consciousness that is now less than what it once was, is a memory of a time when we did not possess the knowledge of the armageddon that would befall our world. For many years, such memories have been not so much inaccessible as impractical, forgotten for fear we might yet falter again.\n\nBut now, there is something more tangible to them. For the first time, we possess the technology — and, more important, the knowledge and understanding — to reimagine our world as it once might have been — or yet could be.\n\nMuch of that knowledge has been gleaned from the stars, from worlds so different from our own as to beggar any belief that we could yet repeat such failures.\n\nWe have now another choice — in how we build, in how we rebuild, and in how we remake ourselves into what might have been. Or what might yet come."
+ tbm_hw.102_embrace_hope:0 "Embrace the hope of a better future."
+ tbm_hw.102_boost_library:0 "§EWe will rely on the knowledge and technology kept in §Y£blocker_yellow£ The Library of Before§E to guide us in restoring our world to its former glory.§!"
+ tbm_hw.102_respect_reality:0 "Adapt forever to our new reality."
+ tbm_hw.102_boost_chapel:0 "§ESuch reckless dreaming is the surest way to risk all that we have built, as our §Y£blocker_yellow£ Chapel of the Fall§E reminds us.§!"
+ tbm_hw.102_society_decides:0 "§EWe will let society take its own corse, come what may.§!"
+ tbm_hw.102_follow_instinct:0 "§EWe will follow our instincts in the moment to determine the best course.§!"
+ 
+ tbm_hw.106_title:0 "Post-Apocalyptic — Environmental Restoration - Industry"
+ tbm_hw.106_industrialization_low:0 "And so, after so many years and so much effort, the great project has taken shape around us. Once an apocalyptic barren, [owner_main_species.GetHomeWorldName] has undergone tremendous change.\n\nWe have become, in time, resourceful and resilient. We have now truly adapted to life among the ruins of civilization, repurposing, reclaiming, and restoring, if not the glory, than certainly the power of what we once were.\n\nThat same guile will allow us to truly compete with other nations across the stars, no matter our past, no matter our mistakes.\n\nThe hum of the£blocker_yellow£Scrap Bazaars" contrasts the quiet hum of £blocker_yellow£§YAllocation Clinics§!, where essential needs can finally be fulfilled thanks to newfound interstellar wealth.\n\nWhat once we were may not be restored, but we will persevere. We will rise again.\n\nAnd yet...."
+ tbm_hw.106_industrialization_mid:0 "And so, after so many years and so much effort, the great project has taken shape around us. Once an apocalyptic barren, [owner_main_species.GetHomeWorldName] has undergone tremendous change.\n\nThe trauma of civilizational collapse has muted to a grey-green reality of upstart ecologies and careful contemplation of the mistakes of the past. From that knowledge, our new wealth emerges. A "£blocker_yellow£§YMemorial of the Apocalypse§! keeps our understanding of the past intact while a shining £blocker_yellow£§YAbyssal Manufactorium§! repurposes the relics of the past for a brighter tomorrow.\n\nTogether, these new developments ensure we retain our past as part of ourselves while joining the true empires amongst the stars.\n\nAnd yet...""
+ tbm_hw.106_industrialization_high:0 "And so, after so many years and so much effort, the great project has taken shape around us. Once an apocalyptic barren, [owner_main_species.GetHomeWorldName] has undergone tremendous change.\n\nFrom the ashes, we have built great beacons of prosperity and renewal, and we now prosper in the wealth and power forged from our past failures. £blocker_yellow£§YHegemons of Industry§! ensure our world will become a true industrial titan while in £blocker_yellow£§YPurgatory§! our people can find their every need fulfilled by great holo-projectors built from the rubble of yesteryear. Once a civilization of scarce survival, we are now plentiful.\n\nAnd yet..."
+ 
+ tbm_hw.107_title:0 "Environmental Restoration - Ecology"
+ tbm_hw.107_ecology_low:0 "Ash and metal choke our homeworld of [owner_main_species.GetHomeWorldName]. Where nothing lives, nothing may thrive. Now, we have the technology to adapt.\n\nThere can be no return to sunlit shores and gentle hills — ecology is a one-way path. Even if we could restore a more typical planetary atmosphere, it is no longer a given our immune systems could live on it.\n\nInstead, we must embrace what [owner_main_species.GetHomeWorldName] and [owner.GetSpeciesNamePlural] have become. It may be called a §YTomb World§! but we yet live, and upon its dusty, death-scarred landscape, we have made our empire.\n\nFor now, however..."
+ tbm_hw.107_ecology_mid:0 "Where ash and metal once choked our homeworld of [owner_main_species.GetHomeWorldName], new life takes root. Shoots of trees now poke through the dust and grime and [owner.GetSpeciesNamePlural] can once more walk outside without masks.\n\nLife will still be difficult here — in some ways, even more difficult than before as our immune systems and infrastructure must be adjusted to a rapidly-changing climate and nascent environment. But what cannot be denied is that this is [owner_main_species.GetHomeWorldName], this is our world, and we have made it anew.\n\nFor now, however..."
+ tbm_hw.107_ecology_high:0 "Where once our homeworld was a fallen testament to failures past, now [owner_main_species.GetHomeWorldName] stands anew, restored through careful stewardship and the wonders of advanced technology to much of what it must once have been!\n\nIt is much as the oldest stories say — for [owner.GetSpeciesNamePlural], [owner_main_species.GetHomeWorldName] is as close to a paradise as those from the colonies have ever seen. Gentle shores and calm plains once cradled life, here, and now we must ensure they do so again.\n\nFor now, however...."
+ tbm_hw.107_ecology_very_high:0 "Where once our homeworld was a fallen testament to failures past, now [owner_main_species.GetHomeWorldName] stands as one of the true jewels of the galaxy! Every inch of it has been perfected — grime is now garden, ash is now arable soil, and even the dusty plains of a now-bygone age have become pleasant plains stirred by a gentle breeze that is never more than comfortable. All signs of fire and fallout have been so thoroughly scrubbed that it now shines as brightly as each [owner.GetSpeciesMouthName]."\n\nFor now, however...""
+ 
+ tbm_hw.108_title:0 "Environmental Restoration - Culture"
+ tbm_hw.108_culture_low:0 "Our attention now turns to the stars. We have learned hard that [owner_main_species.GetHomeWorldName] cannot provide for us. The stars, however, can — even as their darkness hideas future threats, so we are now a society capable of facing them, and besting them.\n\nHideous mutations have strengthened our soldiers and our scrap traders pull frightful weapons systems from the rubble of our past, turning them to our future security and success. We do not need what has gone before — [owner.GetName] will forge a new tomorrow.\n\nSo stands [owner_main_species.GetHomeWorldName], in all its glory. All it ever needed to be. Its fall is now complete, its restoration shaped by our needs and purposes to be fittingly called our new homeworld."
+ tbm_hw.108_culture_mid:0 "Our restoration of [owner_main_species.GetHomeWorldName] has been matched by renewed vigor amongst our people. The collective effort has led to greater togetherness and pride in our accomplishment, as even the older civilizations of the galaxy have taken notice. Through our hardship, they can learn much, just as we have learned, and together, we can lead the galaxy to true greatness.\n\nSo stands [owner_main_species.GetHomeWorldName], in all its glory. All it ever needed to be. Its fall is now complete, its restoration shaped by our needs and purposes to be fittingly called our new homeworld."
+ tbm_hw.108_culture_high:0 "Our homeworld now serves as a pathway for all war-torn worlds and their inhabitants to rebuild their homes into bountiful utopias. Tourists flock to [owner_main_species.GetHomeWorldName] from across the stars to marvel at the achievements of our culture and our collective unity of purpose and passion. Without these, [owner.GetName] would be clining to survival in every moment; instead, we stride out as champions of the galaxy, beacons of what can be accomplished if we leave behind mistakes of the past.\n\nSo stands [owner_main_species.GetHomeWorldName], in all its glory. All it ever needed to be. Its fall is now complete, its restoration shaped by our needs and purposes to be fittingly called our new homeworld."
+
 
  ### Scavenger Bands Declare War - Post-Apoc Origin event
 
@@ -55,6 +86,8 @@
  tbm_hw.52_desc:0 "After months of creaking malfunctions and millennia more without proper maintenance, the ancient §YFood Replicators§! on our homeworld have finally ground to a stop, their quiet, whir no longer reassuring [owner.GetSpeciesClassPlural] of an easy, nutritious meal.\n\nAlthough efforts to develop agricutlural regions across the planet expand every year, it seems unlikely that §Y[planet.GetName]§! will ever produce enough food to sustain its peak population. Increasingly, [owner.GetSpeciesAdj] turn their eyes to the stars, again dreaming of the comforts of bounty and wealth that once made §Y[planet.GetName]§! a true city of the world."
  tbm_hw.52_promise:0 "One day, perhaps...."
 
+ 
+
 
  ### Static Modifiers
 
@@ -88,3 +121,36 @@
 
  failing_food_replicator:0 "Failing Food Replicator"
  failing_food_replicator_desc:0 "The Food Replicators that have long sustained our homeworld's population are starting to fail."
+
+
+ environmental_remediation:0 "REPLACE_ME"
+ tbm_environmental_remediation_title:0 "REPLACE_ME"
+
+ pc_nuked_tbm:0 "REPLACE_ME"
+ pc_nuked_tbm_desc:0 "REPLACE_ME"
+ pc_nuked_tbm_adj:0 "REPLACE_ME"
+ mod_pc_nuked_tbm_habitability:0 "REPLACE_ME"
+
+ advancing_from_ruins:0 "Advancing from Ruin"
+ advancing_from_ruin_desc:0 "This civilization has embraced the resilience and resourcefulness needed to survive the fall of its homeworld and has emerged from the Apocalypse stronger and more sure of its galactic footing."
+
+ revived_civilization:0 "Revived Civilization"
+ revived_civilization:0 "This civilization has restored much of what was lost in the Apocalypse, reclaiming the knowledge and technology of times gone before."
+
+ cultural_reconstruction:0 "Cultural Reconstruction"
+ 
+ cultural_restoration_planet:0 "Cultural Restoration"
+ cultural_restoration_planet_desc:0 "This civilization has forged a shining culture from seeds kept sheltered through the Apocalypse, emerging as a great galactic power humbled but not haunted by its past." 
+
+ cultural_restoration:0 "Cultural Restoration"
+
+ mutant_soldiers:0 "Mutant Soldiers"
+
+ building_museum_apocalypse:0 "Museum of the Apocalypse"
+ building_museum_apocalypse_desc:0 "This institution cradles all the most important knowledge of what once befell this planet in an effort to ensure such disaster never strikes again."
+
+ building_laboratory_apocalypse:0 "Laboratory of Survival"
+ building_laboratory_apocalypse_desc:0 "Survivalism should be seen less as ideology and more as an art, one merged perfectly with science to ensure the best possible chance for all those born on this broken world."
+
+ building_cathedral_apocalypse:0 "Cathedral of the Fall"
+ building_cathedral_apocalypse_desc:0 "A true testamednt to the peril of grand designs, a grim reminder that all civilization teeters on the brink of disaster."

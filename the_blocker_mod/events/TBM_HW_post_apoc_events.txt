@@ -23,7 +23,9 @@ planet_event = {
 	trigger = {
 		exists = owner
 		owner = {
+			has_origin = origin_post_apocalyptic
 			NOT = { has_country_flag = environmental_remediation_post_apoc }
+			NOT = { is_machine_empire = yes }
 			num_ascension_perks > 0
 			has_technology = tech_terrestrial_sculpting
 		}
@@ -50,6 +52,20 @@ planet_event = {
 	desc = tbm_hw.102_desc
 	show_sound = amb_terraforming_station_active
 	picture = GFX_terraforming_candidate
+	location = this
+
+	desc = {
+		trigger = {
+			owner = { is_hive_empire = yes }
+		}
+		text = tbm_hw.102_desc_hive
+	}
+	desc = {
+		trigger = {
+			owner = { is_hive_empire = no }
+		}
+		desc = tbm_hw.102_desc
+	}
 
 	immediate = {
 		
@@ -66,6 +82,13 @@ planet_event = {
 			which = post_apoc_culture_score
 			value = 1
 		}
+
+		add_modifier = {
+			modifier = environmental_remediation
+		}
+		begin_event_chain = {
+			event_chain = tbm_environmental_remediation
+		}
 	}
 
 	option = {
@@ -75,6 +98,11 @@ planet_event = {
 		}
 		custom_tooltip = tbm_hw.102_boost_library
 		set_planet_flag = post_apoc_embrace_hope
+		
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 50
+		}
 	}
 
 	option = {
@@ -84,10 +112,25 @@ planet_event = {
 		}
 		custom_tooltip = tbm_hw.102_boost_chapel
 		set_planet_flag = post_apoc_respect_reality
+
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -50
+		}
 	}
 
 	option = {
 		name = tbm_hw.102_society_decides
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+
+	option = {
+		name = tbm_hw.102_follow_instinct
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
 	}
 
 	# Triggers follow-up events
@@ -163,6 +206,11 @@ planet_event = {
 		random_list = {
 			10 = {
 				# Calls Outcome events, on 5-10 year delay
+				planet_event = {
+					id = tbm_hw.105
+					days = 1800
+					random = 1800
+				}
 			}
 			90 = {}
 		}
@@ -170,6 +218,7 @@ planet_event = {
 }
 
 ### 105. Environmental Remediation - Removes effects on ownership transfer
+#	on_planet_transfer
 planet_event = {
 	id = tbm_hw.105
 
@@ -181,6 +230,7 @@ planet_event = {
 			has_planet_flag = environmental_remediation_timer
 			has_planet_flag = post_apoc_embrace_hope
 			has_planet_flag = post_apoc_respect_reality
+			has_planet_flag = post_apoc_environmental_restoration
 		}
 	}
 
@@ -194,19 +244,473 @@ planet_event = {
 			}
 			remove_deposit = yes
 		}
+
+		if = {
+			limit = {
+				this = { is_planet_class = pc_nuked_tbm
+			}
+			change_pc = pc_nuked 	# No stealing the good Tomb World. (This also avoids a bunch of unpleasantness with habitability and species trait compatibility.
+		}
 	}
 }
 
 
-### 104. Environmental Remediation - Outcome: Industry
+### 106. Environmental Remediation - Outcome: Industry
+planet_event = {
+	id = tbm_hw.106
 
-### 105. Environmental Remediation - Outcome: Ecology
+	is_triggered_only = yes
 
-### 106. Environmental Remediation - Outcome: Culture
+	title = tbm_hw.106_title
+	picture = GFX_evt_black_market
+	show_sound = event_ringworld_build_start
+	location = this
 
-### 107. Environmental Remediation - Event Handler: Ascension Events
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_industrialization_score
+				value <= 50
+			}
+		}
+		text = tbm_hw.106_industrialization_low
+	}
+	desc = {
+		trigger = {
+			AND = {
+				check_variable = {
+					which = post_apoc_industrialization_score
+					value > 50
+				}
+				check_variable = {
+					which = post_apoc_industrialization_score
+					value <= 150
+				}
+			}
+		}
+		text = tbm_hw.106_industrialization_mid
+	}
+	
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_industrialization_score
+				value > 150
+			}
+		}
+		text = tbm_hw.106_industrialization_high
+	}
 
-### XXX. Environmental Remediation - Event Handler: Ascension Events
+	immediate = {
+		remove_modifier = environmental_remediation
+	}
+
+	option = {
+		name = OK
+		if = {
+			limit = {
+				check_variable = {
+					which = post_apoc_industrialization_score
+					value <= 50
+				}
+			}
+			add_deposit = d_scrap_bazaar
+			add_deposit = d_allocation_clinic
+		}
+		
+		if = {
+			limit = {
+				AND = {
+					check_variable = {
+						which = post_apoc_industrialization_score
+						value > 50
+					}
+					check_variable = {
+						which = post_apoc_industrialization_score
+						value <= 150
+					}
+				}
+			}
+			add_deposit = d_memorial_apocalypse
+			add_deposit = d_abyssal_manufactorium
+		}
+
+		if = {
+			limit = {
+				check_variable = {
+					which = post_apoc_industrialization_score
+					value > 150
+				}
+			}
+			add_deposit = d_hegemons_of_industry
+			add_deposit = d_purgatory_apocalypse
+		}
+	}
+
+	after = {
+		planet_event = {
+			id = tbm_hw.107
+			days = 1
+		}
+	}
+}
+
+### 107. Environmental Remediation - Outcome: Ecology
+planet_event = {
+	id = tbm_hw.107
+
+	is_triggered_only = yes
+
+	title = tbm_hw.107_title
+	picture = GFX_evt_alien_nature
+	show_sound = event_alien_nature
+	location = this
+
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_ecology_score
+				value <= 50
+			}
+		}
+		text = tbm_hw.107_ecology_low
+	}
+	desc = {
+		trigger = {
+			AND = {
+				check_variable = {
+					which = post_apoc_ecology_score
+					value > 50
+				}
+				check_variable = {
+					which = post_apoc_ecology_score
+					value <= 150
+				}
+			}
+		}
+		text = tbm_hw.107_ecology_mid
+	}
+	desc = {
+		trigger = {
+			AND = {
+				check_variable = {
+					which = post_apoc_ecology_score
+					value > 150
+				}
+				check_variable = {
+					which = post_apoc_ecology_score
+					value < 200
+				}
+			}
+		}
+		text = tbm_hw.107_ecology_high
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_ecology_score
+				value >= 200
+			}
+		}
+		text = tbm_hw.107_ecology_very_high
+	}
+
+	option = {
+		name = OK
+		
+		if = {
+			limit = {
+				check_variable = {
+					which = post_apoc_ecology_score
+					value <= 50
+				}
+			}
+			add_deposit = d_last_bastion
+			hidden_effect = {
+				change_pc = pc_nuked_tbm	# This is done to avoid having to remove terraforming links. Effectively "locks" the planet as a Tomb World, though you can still ecu it.
+			}
+		}
+		
+		if = {
+			limit = {
+				AND = {
+					check_variable = {
+						which = post_apoc_ecology_score
+						value > 50
+					}
+					check_variable = {
+						which = post_apoc_ecology_score
+						value <= 150
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					owner_main_species = {
+						ideal_planet_is_dry = yes
+					}
+				}
+				change_pc = pc_tundra
+			}
+			else = {
+				change_pc = pc_arid
+			}
+		}
+
+		if = {
+			limit = {
+				AND = {
+					check_variable = {
+						which = post_apoc_ecology_score
+						value > 150
+					}
+					check_variable = {
+						which = post_apoc_ecology_score
+						value < 200
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					owner_main_species = { ideal_planet_is_wet = yes }
+				}
+				if = {
+					limit = {
+						owner_main_species = { 
+							has_trait = trait_pc_continental_preference
+						 }
+					}
+					change_pc = pc_tropical
+				}
+				else = {
+					change_pc = pc_continental
+				}
+			}
+
+			else_if = {
+				limit = {
+					owner_main_species = { ideal_planet_is_dry = yes }
+				}
+				if = {
+					limit = {
+						owner_main_species = { 
+							has_trait = trait_pc_savannah_preference
+						 }
+					}
+					change_pc = pc_arid
+				}
+				else = {
+					change_pc = pc_savannah
+				}
+			}
+
+			else_if = {
+				limit = {
+					owner_main_species = { ideal_planet_is_cold = yes }
+				}
+				if = {
+					limit = {
+						owner_main_species = { 
+							has_trait = trait_pc_tundra_preference
+						 }
+					}
+					change_pc = pc_alpine
+				}
+				else = {
+					change_pc = pc_tundra
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				check_variable = {
+					which = post_apoc_ecology_score
+					value >= 200
+				}
+			}
+			change_pc = pc_gaia
+		}
+	}
+
+	after = {
+		
+		### Adds food features until you run out of district space
+		while = {
+			limit = {
+				check_variable = {
+					which = post_apoc_ecology_score
+					value > 0
+				}
+				num_free_districts = {
+					type = district_city
+					value > 0
+				}
+			}
+			random_list = {
+				10 = {
+					add_deposit = d_lichen_fields
+				}
+				10 = {
+					add_deposit = d_bountiful_plains
+				}
+				10 = {
+					add_deposit = d_green_hills
+					modifier = {
+						factor = 0
+						num_free_districts = {
+							type = district_city
+							value > 1
+						}
+					}
+				}
+				10 = {
+					add_deposit = d_forgiving_tundra
+				}
+				10 = {
+					add_deposit = d_nutritious_mudland
+				}
+				10 = {
+					add_deposit = d_fungal_caves
+				}
+				10 = {
+					add_deposit = d_fertile_lands
+				}
+				10 = {
+					add_deposit = d_black_soil
+				}
+			}
+		}
+
+		planet_event = {
+			id = tbm_hw.108
+			days = 1
+		}
+	}
+}
+
+### 108. Environmental Remediation - Outcome: Culture
+planet_event = {
+	id = tbm_hw.108
+
+	is_triggered_only = yes
+
+	title = tbm_hw.108_title
+	picture = GFX_evt_alien_propaganda
+	show_sound = event_galactic_community
+
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_culture_score
+				value <= 50
+			}
+		}
+		text = tbm_hw.108_culture_low
+	}
+	desc = {
+		trigger = {
+			AND = {
+				check_variable = {
+					which = post_apoc_culture_score
+					value > 50
+				}
+				check_variable = {
+					which = post_apoc_culture_score
+					value <= 150
+				}
+			}
+		}
+		text = tbm_hw.108_culture_mid
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_culture_score
+				value > 150
+			}
+		}
+		text = tbm_hw.108_culture_high
+	}
+
+	option = {
+		name = OK
+		if = {
+			limit = {
+				check_variable = {
+					which = post_apoc_culture_score
+					value <= 50
+				}
+			}
+			add_modifier = {
+				modifier = advancing_from_ruins
+				days = -1
+			}
+			remove_deposit = d_library_of_before
+			remove_deposit = d_chapel_of_the_fall
+		}
+		
+		if = {
+			limit = {
+				AND = {
+					check_variable = {
+						which = post_apoc_culture_score
+						value > 50
+					}
+					check_variable = {
+						which = post_apoc_culture_score
+						value <= 150
+					}
+				}
+			}
+			add_modifier = {
+				modifier = revived_civilization
+				days = -1
+			}
+			owner = {
+				add_modifier = {
+					modifier = cultural_reconstruction
+					days = -1
+				}
+			}
+			
+		}
+
+		if = {
+			limit = {
+				AND = {
+					check_variable = {
+						which = post_apoc_culture_score
+						value > 150
+					}
+				}
+			}
+			set_country_flag = cultural_restoration
+			add_modifier = {
+				modifier = cultural_restoration_planet
+				days = -1
+			}
+			owner = {
+				add_modifier = {
+					modifier = cultural_restoration
+					days = -1
+				}
+			}
+		}
+	}
+
+	### Main clean-up handled here
+	after = {
+		end_event_chain = tbm_environmental_remediation
+		set_planet_flag = post_apoc_environmental_restoration
+	}
+}
+
+### 100. Environmental Remediation - Event Handler: Ascension Events
+
+### 110. Environmental Remediation - Event Handler: 
 
 
 ### Event Chain: Scavenger Bands Declare War - Post-Apocalyptic Origin
