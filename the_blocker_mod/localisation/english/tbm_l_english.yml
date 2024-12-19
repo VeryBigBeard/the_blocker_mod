@@ -421,6 +421,9 @@
  d_private_farming_colony:0 "£blocker£ Private Farming Colony"
  d_private_farming_colony_desc:0 "Hungry workers on our homeworld have flocked to the wealthy benefactors behind these remote farmsteads on the colonies."
 
+ d_subsistence_farm:0 "Subsistence Farm"
+ d_subsistence_farm_desc:0 "Using germinators from alien worlds has allowed some limited agriculture among the shelters and burned-out remnants of this world, though its yields are frugal."
+
  d_private_mines:0 "Private Mines"
  d_private_mines_desc:0 "Independent mining concerns have established large-scale mining operations in this area, and pay tax in exchange for the licenses to operate in the region."
 

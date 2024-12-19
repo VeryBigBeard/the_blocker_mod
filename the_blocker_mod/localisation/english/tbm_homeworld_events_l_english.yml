@@ -47,6 +47,128 @@
  tbm_hw.108_culture_mid:0 "Our restoration of [owner_main_species.GetHomeWorldName] has been matched by renewed vigor amongst our people. The collective effort has led to greater togetherness and pride in our accomplishment, as even the older civilizations of the galaxy have taken notice. Through our hardship, they can learn much, just as we have learned, and together, we can lead the galaxy to true greatness.\n\nSo stands [owner_main_species.GetHomeWorldName], in all its glory. All it ever needed to be. Its fall is now complete, its restoration shaped by our needs and purposes to be fittingly called our new homeworld."
  tbm_hw.108_culture_high:0 "Our homeworld now serves as a pathway for all war-torn worlds and their inhabitants to rebuild their homes into bountiful utopias. Tourists flock to [owner_main_species.GetHomeWorldName] from across the stars to marvel at the achievements of our culture and our collective unity of purpose and passion. Without these, [owner.GetName] would be clining to survival in every moment; instead, we stride out as champions of the galaxy, beacons of what can be accomplished if we leave behind mistakes of the past.\n\nSo stands [owner_main_species.GetHomeWorldName], in all its glory. All it ever needed to be. Its fall is now complete, its restoration shaped by our needs and purposes to be fittingly called our new homeworld."
 
+ ### Post-Apocalyptic - New Horizons (Food Shipments Situation)
+
+ post_apocalyptic_new_horizons:0 "Post-Apocalyptic — Colonial Horizons"
+ post_apocalyptic_new_horizons_type:0 "Post-Apocalyptic — Colonial Horizons" 
+ post_apocalyptic_new_horizons_desc:0 "As our colony on §Y[post_apoc_colony.GetName]§! gets up and running, farmers on the new world can begin to ease food shortages and rationing on §T[post_apoc_homeworld.GetName]§!."
+ post_apocalyptic_new_horizons_monthly_change_tooltip:0 "Every month, we have to eat."
+ food_reserves_complete_tooltip:0 "If we can secure a steady source of food for our homeworld, we can expect our population to boom."
+ food_reserves_fail_tooltip:0 "An empire that cannot provide for its people is not an empire for long."
+
+ sending_food:0 "£food£ Food sent to §Y[post_apoc_homeworld.GetName]§!:"
+ strict_rations:0 "£food£ Food saved by rationing regine:"
+ cracking_down:0 "£food£ Food collected from §Y[post_apoc_colony.GetName]§!:"
+ colonial_farm_coops:0 "£food£ Food sent by farmers' co-ops on §Y[post_apoc_colony.GetName]§!"
+
+ send_food:0 "Send Food Shipments"
+ send_food_desc:0 "Have the colony of §Y[post_apoc_colony.GetName] send much of its harvest to [post_apoc_homeworld.GetName]§!."
+ crackdown:0 "Crack Down on Farmers"
+ crackdown_desc:0 "Colonial rabble on [post_apoc_colony.GetName] cannot be allowed to threaten the greater glory of §Y[post_apoc_homeworld.GetName]§!."
+ withhold_food:0 "Withhold Food Shipments"
+ withhold_food_desc:0 "The situation [post_apoc_homeworld.GetName] is severe, but we cannot allow past mistakes to hold back our interstellar future."
+
+ send_food_no_farms:0 "Cannot send £food£ Food shipments due to lack of $district_farming$ on §Y[post_apoc_colony.GetName]."
+ send_food_locked:0 "Unrest on §Y[post_apoc_colony.GetName] is preventing £food£ Food shipments."
+ cracked_down_tooltip:0 "Colonial security on §Y[post_apoc_colony.GetName] are cracking down on local farmers."
+ 
+ # Events
+
+ tbm_hw.311_title:0 "Post-Apocalyptic — New Norizons"
+ tbm_hw.311_desc:0 "For generations, our homeworld has been choked by the toxic ash leftover from the great cataclysm that doomed our civilization. For nearly as long, [owner.GetSpeciesNamePlural] on [owner_main_species.GetHomeWorldName] have subsisted on thin rations, living in constant fear of monthly food quotas. Malnutrition and disease have become constants with little hope the planet would provide for us again.\n\nUntil now. As the first landing pods touched down on [target.GetName], astronauts and hopeful colonists alike were greeted with an astonishing sight — sunlight, illuminating an alien sky, potential farmland as far as could be seen, healthy flora and fauna abundant across every plain.\n\nAid agencies estimate food shipments could be delivered from our new colony nearly as soon as the first crops are harvested. All it will take is building some $district_farming_plural$.\n\nA new Situation has been created so we can oversee the process."
+ tbm_hw.311_gestalt_desc:0 ""For generations, our homeworld has been choked by the toxic ash leftover from the great cataclysm that doomed our civilization. For nearly as long, [owner.GetSpeciesNamePlural] on [owner_main_species.GetHomeWorldName] have subsisted on thin rations, living in constant fear of monthly food quotas. Malnutrition and disease have become constants with little hope the planet would provide for us again.\n\nUntil now. As the first landing pods touched down on [target.GetName], our senses were greeted with an astonishing sight — sunlight, illuminating an alien sky, potential farmland as far as could be seen, healthy flora and fauna abundant across every plain.\n\nWe estimate food shipments could be delivered from our new colony nearly as soon as the first crops are harvested. All it will take is building some $district_farming_plural$.\n\nA new Situation has been created so we can oversee the process.""
+ 
+ tbm_hw.312_title:0 "Colonial Unrest"
+ tbm_hw.312_desc_gestalt:0 "Although development of agricultural infrastructure on [target.GetName] has gone according to plan, the population on the colony have grown less compliant, and some are now refusing to meet monthly food tithes. Distance from the closer collective of survivors on [post_apoc_homeworld.GetName] has lessened cordyceptic thought continuance and, with the situation on [post_apoc_homeworld.GetName] increasingly dire, it may be difficult to prevent wider deviance among drones.\n\nAt the same time, nutritional indicators and performance quoats on [post_apoc_homeworld.GetName] are falling rapidly, with far more drones than expected needing additional sup0plements imported from [post_apoc_colony.GetName]."
+ tbm_hw.312_desc:0 "Although development of agricultural infrastructure on [target.GetName] has gone according to plan, many of the colonists selected for this mission had dreamed for years of escaping [post_apoc_homeworld.GetName] and resent being asked to send much of their hard-earned bounty back to a world they increasingly see as derelict and ruined. Some are refusing to meet monthly food tithes and there have been rumblings of growing dissatisfaction with authorities back in the camps and shelters on [post_apoc_homeworld.GetName].\n\nMeanwhile, the situation on the homeworld grows worse by the day. It has become clear that previous rations estimates were wildly off, and that we wildly underestimated the number of survivors living in the further-flung camps, all now expecting a feast to arrive from [post_apoc_colony.GetName]. Although used to disappointment, the mood on [post_apoc_homeworld.GetName] is worsening, as are health and nutrition indicators.\n\nA major corporate concern has offered to establish addition, extra-legal farms on §Y[post_apoc_colony.GetName]§! to get around red tape. We could also have scientists use alien seed samples to kick-start subsistence agriculture projects on §Y[post_apoc_homeworld.GetName]§!. Either way, something must be done — and soon."
+ 
+ tbm_hw.312_subsistence_farms:0 "Create new farms on §Y[post_apoc_homeworld.GetName]§!."
+ tbm_hw.312_private_farms:0 "Pay to open new farms on §[post_apoc_colony.GetName]§!"
+ tbm_hw.312_nothing:0 "In fact, nothing at all need be done."
+
+ tbm_hw.313_title:0 "Food Riots"
+ tbm_hw.313_desc:0 ""The situation on §Y[post_apoc_homeworld.GetName] has worsened, and after months of strict food rationing, a routine night-time disturbance sparked larger riots that quickly spread through the camps and overwhelmed local security forces. Criminals have exploited the disorder to wrest control and extort what little food remains for themselves."
+ tbm_hw.313_gestalt_desc:0 "The situation on §Y[post_apoc_homeworld.GetName] has worsened, and after months of strict food rationing, drone deviance and performance on the homeworld has reached critical levels. Soon, essential organic operations may fail completely, either for lack of compliance or simply lack of food."
+ tbm_hw.313_option:0 "Something must be done."
+ 
+ tbm_hw.314:0 "Malnutrition"
+ tbm_hw.314_desc_corp:0 "The rapidly declining food supplies on §Y[post_apoc_homeworld.GetName]§! has led to several outbreaks of disease and a sharp drop in health and performance metrics across most shelters and settlements. Without access to food, no one wants to work. Several subsidiary offices have attempted to increase wages and one restaurant chain even declare independence from its parent company, but even these off-shoots can't solve the core obstacle. Middle managers are withering and those front-line employees still alive can barely function, let alone take advantage of the corporate family benefits program. Unless something is done, corporate retention rates are likely to plummet."
+ tbm_hw.314_desc:0 "The rapidly declining food supplies on §Y[post_apoc_homeworld.GetName]§! have led to several outbreaks of disease and a sharp drop in life expectancy worldwide. Lines outside ration centers only get longer and workers only get thinner. Without enough food, the sound of [owner.GetSpeciesSpawnNamePlural]' cries fill the air as those still able scavenge for any scrap of edible food.\n\nWithout intervention, our already-dwindling population is likely to collapse."
+ tbm_hw.314_desc_hive:0 "Without enough food to sustain basic biological processes, swathes of drones across §Y[post_apoc_homeworld.GetName]§! are reporting starvation status in sharp, distressed cries of pain. Output effienciency will soon fall, and already the hive lacks enough biological material to replace derelict drones."
+ tbm_hw.314_option:0 "Something must be done."
+ 
+ tbm_hw.315_title:0 "Crops Burned"
+ tbm_hw.318_desc:0 "$job_farmer_plural$ on §Y[target.GetName], in protest against food quotes and tites, have set fire to their crops, destroying a wide range of food destined for §Y[post_apoc_homeworld.GetName]§!. Representatives have demanded better living conditions, greater colonial autonomy, and a larger share of their crops to help feed growing families on the new world." 
+ tbm_hw.318_desc_gestalt:0 "A large group of $job_farmer_plural$ on §Y[target.GetName]§! has acted directly against the Consciousness by setting fire to a wide range of food crops destined fro §Y[post_apoc_homeworld.GetName]§!. Although deviance of this kind used to be quite uncommon, it may now be necessary to grant the colony's $job_farmer_plural$ greater autonomy in order to retain basic functioning of the food programs."
+ tbm_hw.315_redress_concerns:0 "Address the $job_farmer_plural$' concerns."
+ tbm_hw.315_redress_concerns_gestalt:0 "Allow limited autonomy for $job_farmer_plural$ on §Y[post_apoc_colony.GetName]§!."
+ tbm_hw.315_crackdown:0 "Ensure the $job_farmer_plural$ meet their quotes."
+
+ tbm_hw.316_name:0 "Homeworld Governor Eaten"
+ tbm_hw.316_desc:0 "A radical group from an outlying survival camp on §Y[post_apoc_homeworld.GetName]§!, angry at additional food rations allocated to government leaders, has kidnapped §Y[homeworld_governor.GetName]§!, demanding an end to rationing.\n\nAfter tracking [homeworld_governor.GetHerHim] to an abandoned rations store in the lower levels, a grisly scene played out. Hungry and unable to decide what to do with their hostage, the small group of rebels resorted to eating [homeworld_governor.GetHerHim] instead, figuring it would serve as a message to the rest of the establishment getting fat off the backs of the people and... the screed goes on.\n\nSecurity forces have vowed to better protect whomever is next appointed as governor."
+ tbm_hw.16_governor:0 "At least they got a decent meal out of it."
+ 
+ tbm_hw.317_title:0 "Colonial Spaceport Shut Down"
+ tbm_hw.317_desc:0 "Increasingly dissatisfied with colonial food tithes, $job_farmer_plural$ on [post_apoc_colony.GetName] have launched a coordinated attack on the §Y[post_apoc_colony.GetPlanetMoon]§!'s spaceport, quicly overwhelming local security forces and grounding all ships scheduled to depart with food for §Y[post_apoc_homeworld.GetName]§!.\n\nNews reports from the colony have quoted rebel leaders announcing the food seized is being given back to the $job_farmer_plural$ who grew it in order to grow their families and secure a strong, independent future for [post_apoc_colony.GetName]§!."
+ tbm_hw.317_desc_gestalt:0 "Increasingly organized, deviant $job_farmer_plural$ on §Y[post_apoc_colony.GetName] have seized control of the [post_apoc_colony.GetPlanetMoon]§!'s spaceport, quickly overwhelming local security-response systems. Food shipments to [post_apoc_homeworld.GetName] have been grounded to ensure collective security and the rebel drones are gorging themselves upon the food meant to sustain the Organism itself, demanding more autonomy."
+ tbm_hw.317_it_will_blow_over:0 "Give the protests time to die down."
+ tbm_hw.317_additional_security:0 "Send in additional security to take the spaceport."
+
+ tbm_hw.318_name:0 "Colonial Bounty"
+ tbm_hw.318_desc_gestalt:0 "Regular food shipsments from §Y[post_apoc_colony.GetName]§! have eased the food shortages on §Y[post_apoc_homeworld.GetName]§! to the point where not only are all drones meeting nutritional standards, but productivity is at an all-time high. The camps and warrens throb with collective unity and a sense of something near to hope passes through the Organism's fibers at the prospect of one day restoring our world to its prime."
+ tbm_hw.318_desc:0 "Regular food shipments from §Y[post_apoc_colony.GetName]§! have eased the mood on §Y[target.GetName]§!. Feasts and festivals have galvanized the sick and distraught in the camps, fostering new hope among those who have survived this world's cataclysmic past to realize new wealth among the stars.\n\nAt the same time, the situation on §Y[post_apoc_colony.GetName]§! is not quite so rosy. Fieldworkers and farmers grumble about taxes and food tithes, having already sacrificed to colonize this brand new frontier. While the odd protest is well within the purview of local colonial officials, food stores on [post_apoc_homeworld.GetName] now have enough food to stave off any further unrest. It may be possible to ease some of the burden on our colonists."
+ tbm_hw.318_feasts:0 "More wine! The feasting must continue!"
+ tbm_hw.318_feasts_tooltip:0 "This will no doubt anger farmers on §Y[post_apoc_colony.GetName]§!, but [post_apoc_homeworld.GetName] will benefit."
+ tbm_hw.318_cut_taxes:0 "Reduce colonial tithes and maintain rations on §Y[post_apoc_homeworld.GetName]§!."
+ tbm_hw.18_taxes_tooltip:0 "$job_farmer_plural$ and $icon_job_colonists$ on §Y[post_apoc_colony.GetName]§! will be pleased. §Y[post_apoc_homeworld.GetName]§! will be fine, but will miss out on a terrific party."
+ tbm_hw.318_feasts_gestalt:0 "Together, we are stronger."
+
+ tbm_hw.319_name:0 "The Organism Withers"
+ tbm_hw.319_desc:0 "Without food, all things perish. Dead and deviant drones litter the warrens and workplaces of §Y[post_apoc_homeworld.GetName]§!. Little now remains even to repurpose their biomass into protein for the whole. In the end, life is a closed system.\n\nThe cataclysm we have inflicted on ourselves has revealed much about the nature of life, its fragility, and — perhaps — its broader possibilities.\n\nWithout energy, consciousness wanes. The mind grows quiet. But it survives. Barely. Perhaps there is another way. A better way. Already, those drones that survive are syanding alone. Foraging. Working for something more than unity. Fighting for themselves, and their own survival, as individuals.\n\nIs this what are we to become?"
+ tbm_hw.319_autocannibalism:0 "We must survive."
+ tbm_hw.319_autocannibalism_tooltip:0 "We will break down the Organism itself to survive, repurposing critical hive §YNodes§! for materials and food."
+ tbm_hw.319_machine:0 "Could there be life without food?"
+ tbm_hw.319_machine_tooltip:0 "Much of the hive already relies on electronic computer networks to function. These "machines" do not need £food£ Food, and yet they send impulses and react to stimuli much as we do. Can they yet live?\n\n§YWe will become a Machine Empire. §RHalf of all pops will be killed.§Y The rest will be converted into cybernetic drones. All §CNodes§Y will be reset to level 1."
+
+tbm_hw.320_name:0 "Government in Tatters"
+ tbm_hw.320_desc_corp:0 "Aftwe weeks of poor morale and departmental underperformance, critical food shortages on §Y[post_apoc_homeworld.GetName]§! have reached a breaking point. After a fraught meeting with senior leadership, an impromptu militia made up of corporate security and marketing professionals voted to depose the board and locked the [owner.GetRegnalName], [owner.GetRulerName], in [owner.GetRulerHerHis] office until a democratically-chosen workers' council can decide what to do. How should they proceed?"
+ tbm_hw.320_desc:0 "After weeks of turmoil, critical food shortages on §Y[post_apoc_homeworld.GetName]§!have reached a breaking point. There is no food left in the stores, and what little can be grown is nowhere near enough to feed the population. Security forces have mutinied and many have joined in a militia marching on the §YPlanetary Administration§! where [owner.GetRegnalName] [owner.GetRulerName] and [owner.GetRulerHerHis] fellow leaders are in hiding.\n\nAn emergency meeting of the cabinet has been called — how should they proceed?"
+ tbm_hw.320_full_text_colonial:0 "After weeks of turmoil, critical food shortages on §Y[post_apoc_homeworld.GetName]§!have reached a breaking point. There is no food left in the stores, and what little can be grown is nowhere near enough to feed the population. Security forces have mutinied and many have joined in a militia marching on the §YPlanetary Administration§! where [owner.GetRegnalName] [owner.GetRulerName] and [owner.GetRulerHerHis] fellow leaders are in hiding.\n\nA small company of exo-planetary farming concerns on §Y[post_apoc_colony.GetName]§! has offered to provide full emergency relief in exchange for, in effect, direct control over [owner.GetName] and its government. An emergency meeting of the cabinet has been called — how should they proceed?"
+ tbm_hw.320_cede:0 "[owner.GetRulerName] must stand down and cede power to the mob."
+ tbm_hw.320_cede_tooltip:0 "The immediate §YSituation§! will end but conditions on §Y[post_apoc_homeworld.GetName]§! will worsen and the population will continue to starve."
+ tbm_hw.320_cockroaches:0 "Eat the cockroaches if we have to!"
+ tbm_hw.320_cockroaches_tooltip:0 "Insects can be very nutritious. The population won't be happy, but they will survive. Barely."
+ tbm_hw.320_rich:0 "The Council will decide who gets eaten first."
+ tbm_hw.320_rich_tooltip:0 "Be warned -- they may decide to eat some of the rich."
+ tbm_hw.320_sell:0 "Sell the government to the off-world agri-corp."
+ tbm_hw.320_sell_tooltip:0 "Our capital will be moved to §Y[post_apoc_colony].GetName]§!, and anyone who can escape from the homeworld will be welcome there!"
+
+ colonial_farm_coops:0 "Colonial Farm Co-ops"
+ gestalt_farm_autonomy:0 "Agri-Drone Autonomy"
+
+ post_apoc_food_riots:0 "Food Riots"
+ malnutrition:0 "Malnutrition"
+ colonial_blockade:0 "Colonial Spaceport Shutdown"
+ gestalt_blockade:0 "Colonial Spaceport Shutdown"
+
+ colonial_bounty:0 "Colonial Bounty"
+ colonial_bounty_desc:0 "Regular food shipments from off-world have lifted the mood on our homeworld."
+
+ colonial_tithes:0 "Colonial Food Tithes"
+ colonial_tithes_desc:0 "Farmers on this world must pledge some of their crops to support the homeworld."
+
+ eased_tithes:0 "Eased Food Tithes"
+ eased_tithes_desc:0 "Farmers on this world are happy to pledge a small amount of their crops to ensure the homeworld doesn't starve."
+
+ autocannibalistic_hive:0 "The hive is destroying itself to survive. Life is a closed a system."
+
+ starvation_state:0 "The government has failed to provide for the people, and all that remains is the husk of civilization. It will take years for those who survive to rebuild society."
+
+ convenient_scapegoats:0 "Decision-making has been left to those with enough to survive. Mob rule is rampant. Only the strongest survive, and even then only for a while. There is always someone looking for a meal."
+
+ nutritious_cockroaches:0 "Having survived the fall of civilization once, the cockroaches may know something we don't. However, they are not going to survive the fall of civilization again."
+
+ council_cannibalism:0 "The council decides who eats and who dies. Nobody said it was an easy job."
 
  ### Scavenger Bands Declare War - Post-Apoc Origin event
 

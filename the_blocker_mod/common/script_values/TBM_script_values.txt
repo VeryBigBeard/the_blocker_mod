@@ -175,3 +175,28 @@ specialist_ratio = {
 		divide = trigger:num_pops
 	}	
 }
+
+
+colonial_food_shipment = {
+	base = 2
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_farming
+		}
+		mode = multiply
+	}
+	add = 1		# This is to compensate for the base situation progress being -1 (you eat 1 food; you send 3, for +2 total, multiplied by each farm district so each farm district sends 2 food after the first).
+}
+
+coop_food_shipment = {
+	base = 3
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_farming
+		}
+		mode = multiply
+	}
+	add = 2		# See above, except the co-ops are more effective producers
+}
