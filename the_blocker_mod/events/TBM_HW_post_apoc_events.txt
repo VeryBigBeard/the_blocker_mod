@@ -1278,7 +1278,7 @@ situation_event = {
 	option = {
 		name = tbm_hw.315_crackdown
 		add_situation_progress = -10
-		set_situation_approach = crackdown
+		set_situation_approach = crackdown_farmers
 	}
 	
 	option = {

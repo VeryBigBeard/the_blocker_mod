@@ -55,23 +55,33 @@
  post_apocalyptic_new_horizons_monthly_change_tooltip:0 "Every month, we have to eat."
  food_reserves_complete_tooltip:0 "If we can secure a steady source of food for our homeworld, we can expect our population to boom."
  food_reserves_fail_tooltip:0 "An empire that cannot provide for its people is not an empire for long."
-
+ 
+ # Monthly Changes
  sending_food:0 "£food£ Food sent to §Y[post_apoc_homeworld.GetName]§!:"
  strict_rations:0 "£food£ Food saved by rationing regine:"
  cracking_down:0 "£food£ Food collected from §Y[post_apoc_colony.GetName]§!:"
  colonial_farm_coops:0 "£food£ Food sent by farmers' co-ops on §Y[post_apoc_colony.GetName]§!"
 
+ # Stages
+ widespread_starvation:0 "Widespread Starvation"
+ food_shortages:0 "Food Shortages"
+ food_reserves_low:0 "Food Reserves Low"
+ colonial_plenty:0 "Colonial Plenty"
+
+ # Approaches
  send_food:0 "Send Food Shipments"
  send_food_desc:0 "Have the colony of §Y[post_apoc_colony.GetName] send much of its harvest to [post_apoc_homeworld.GetName]§!."
- crackdown:0 "Crack Down on Farmers"
- crackdown_desc:0 "Colonial rabble on [post_apoc_colony.GetName] cannot be allowed to threaten the greater glory of §Y[post_apoc_homeworld.GetName]§!."
+ crackdown_farmers:0 "Crack Down on Farmers"
+ crackdown_farmers_desc:0 "Colonial rabble on [post_apoc_colony.GetName] cannot be allowed to threaten the greater glory of §Y[post_apoc_homeworld.GetName]§!."
  withhold_food:0 "Withhold Food Shipments"
  withhold_food_desc:0 "The situation [post_apoc_homeworld.GetName] is severe, but we cannot allow past mistakes to hold back our interstellar future."
+ strict_rationing:0 "Strict Rationing"
 
  send_food_no_farms:0 "Cannot send £food£ Food shipments due to lack of $district_farming$ on §Y[post_apoc_colony.GetName]."
  send_food_locked:0 "Unrest on §Y[post_apoc_colony.GetName] is preventing £food£ Food shipments."
  cracked_down_tooltip:0 "Colonial security on §Y[post_apoc_colony.GetName] are cracking down on local farmers."
- 
+
+
  # Events
 
  tbm_hw.311_title:0 "Post-Apocalyptic — New Norizons"

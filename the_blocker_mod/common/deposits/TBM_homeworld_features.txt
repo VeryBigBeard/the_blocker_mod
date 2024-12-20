@@ -2150,12 +2150,8 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			OR = {
-				owner = { country_uses_consumer_goods = no }
-				owner = { has_trait = trait_lithoid }
-			}
+			owner = { has_trait = trait_lithoid }
 		}
-		planet_miners_food_upkeep_add = -0.1
 		planet_miners_energy_upkeep_add = 0.1
 	}
 

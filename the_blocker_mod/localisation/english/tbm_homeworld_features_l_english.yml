@@ -182,8 +182,14 @@
  d_food_rations_desc:0 "Some of the bunkers across our planet survived its fiery fall thanks to rations of canned or dried food. As we begin the long road to rebuilding our society, what remains of these rations have been pooled and placed under strict guard, with allocations doled out based on need. It is rarely enough, and there are constant rumors of reserves running low."
  d_food_rations_tooltip:0 "§YRations§! are expected to run out in 2220§!."
 
+ d_nutrient_rations:0 "Nutrient Rations"
+ d_nutrient_rations_desc:0 "In better times, reserves were set aside in case any cataclsym should befall our homeworld. Now that the worst has happened, these dwindling rations are the only reliable source of nutrition on the planet."
+
  d_survival_camps:0 "£blocker£ Survival Camps"
  d_survival_camps_desc:0 "Those not fortunate enough to be able to reach a shelter mostly congregated in meager camps in whatever hospitable regions they could find. Since then, these communities have become somewhat self-sufficient, but life in them is an ordeal, with most of the camps run more by criminals and anarchic tyrants."
+
+ d_lost_warren:0 "Lost Warren"
+ d_lost_warren_desc:0 "Out in the radioactive wastes that cover much of our world exist various splinter hives, driven half to madness by the loss of voices and unity. Although existence in these regions barely compares to collective unity, these drones are able to forage enough food to survive."
 
  d_seed_banks:0 "Seed Banks"
  d_seed_banks_desc:0 "Before the fall, scientists scrambled to create secure stores of our world's crops and plant-life. What little remains is patchwork, but holds the blueprints to rebuild civilization. Unfortunately, much of the material requires the maintenance of expensive cryo-systems and serviceable parts are constantly in short supply."

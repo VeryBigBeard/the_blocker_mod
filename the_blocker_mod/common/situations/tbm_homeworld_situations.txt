@@ -54,7 +54,9 @@ post_apocalyptic_new_horizons = {
 		custom_tooltip = food_reserves_fail_tooltip
 		hidden_effect = {
 			if = {
-				limit = { owner = { is_hive_empire = yes }}
+				limit = { 
+					owner = { is_hive_empire = yes }
+				}
 				situation_event = {
 					id = tbm_hw.319
 				}
@@ -67,13 +69,13 @@ post_apocalyptic_new_horizons = {
 		}
 	}
 
-	start_value = 0
+	start_value = 100
 	progress_direction = bidirectional
 	complete_category = positive
 	fail_category = negative
 
 	monthly_progress = {
-		base = 0
+		base = -1
 
 		# modifier = {
 		# 	desc = monthly_consumption
@@ -88,7 +90,7 @@ post_apocalyptic_new_horizons = {
 
 		modifier = {
 			desc = cracking_down
-			current_situation_approach = crackdown
+			current_situation_approach = crackdown_farmers
 			add = 5
 		}
 
@@ -105,13 +107,12 @@ post_apocalyptic_new_horizons = {
 		}
 	}
 
-	stages = {
-		
+	stages = {	
 		# Widespread Starvation
 		widespread_starvation = {
 			icon = GFX_situation_stage_1
 			icon_background = GFX_situation_stage_frame_red
-			end = -100
+			end = 20
 
 			on_first_enter = {
 				event_target:post_apoc_homeworld = {
@@ -128,7 +129,7 @@ post_apocalyptic_new_horizons = {
 		food_shortages = {
 			icon = GFX_situation_stage_2
 			icon_background = GFX_situation_stage_frame_red
-			end = -1
+			end = 80
 
 			on_first_enter = {
 				event_target:post_apoc_homeworld = {
@@ -143,14 +144,14 @@ post_apocalyptic_new_horizons = {
 		food_reserves_low = {
 			icon = GFX_situation_stage_3
 			icon_background = GFX_situation_stage_frame_blue
-			end = 80
+			end = 160
 		}
 
 		# Colonial Plenty
 		colonial_plenty = {
 			icon = GFX_situation_stage_4
 			icon_background = GFX_situation_stage_frame_green
-			end = 100
+			end = 200
 		}
 	}
 
@@ -169,8 +170,8 @@ post_apocalyptic_new_horizons = {
 			}
 		}
 		target_modifier = {
-			job_enforcer_add = 2
-			planet_crime_add = 10
+			# job_enforcer_add = 2
+			# planet_crime_add = 10
 			pop_ethic_egalitarian_attraction_mult = 0.25
 		}
 	}
@@ -224,7 +225,7 @@ post_apocalyptic_new_horizons = {
 
 	# Crack Down on Farmers
 	approach = {
-		name = crackdown
+		name = crackdown_farmers
 		icon = GFX_situation_approach_fist
 		icon_background = GFX_situation_approach_bg_red
 
