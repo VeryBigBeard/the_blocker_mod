@@ -1,0 +1,44 @@
+leader_trait_autocannibalistic_gestalt = {
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = GFX_trait_delicious
+		RARITY = common
+		COUNCIL = yes
+		TIER = negative
+	}
+
+	negative = yes
+	randomized = no
+
+	notify_on_gained = no
+	force_councilor_trait = yes
+
+	leader_class = all
+
+	trade_acceptance_weight = 0		# obvious
+}
+
+leader_trait_autocannibalistic = {
+
+	inline_script = {
+		script = trait/icon
+		CLASS = leader
+		ICON = GFX_trait_delicious
+		RARITY = common
+		COUNCIL = yes
+		TIER = negative
+	}
+
+	negative = yes
+	randomized = no
+
+	notify_on_gained = no
+	force_councilor_trait = yes
+
+	leader_class = all
+
+	trade_acceptance_weight = 0		# obvious
+
+}

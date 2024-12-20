@@ -564,6 +564,9 @@
 
  ### Decisions
 
+ decision_construct_megaliths:0 "Construct New Megalith"
+ decision_construct_megaliths_desc:0 "Material and time will be set aside to enhance the natrual lithosphere of this planet, enshrining our unique culture and population on the very stone and rock.\n\n§CA new £blocker_yellow£ Megalith will be added, granting a $district_mining$ and boosts to $r_unity$ in exchange for a $MOD_POP_GROWTH_SPEED_REDUCTION$."
+
  decision_open_fusion_reactor:0 "Create New Fusion Reactor"
  decision_open_fusion_reactor_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nLand is set aside for a large fusion containment center, as well as for safety boundaries, failsafe zones, and hazard areas surrounding the core reactor."
  decision_open_cold_fusion_pit:0 "Open New Cold Fusion Pits"

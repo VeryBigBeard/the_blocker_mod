@@ -143,6 +143,12 @@ tbm_hw.320_name:0 "Government in Tatters"
  tbm_hw.320_sell:0 "Sell the government to the off-world agri-corp."
  tbm_hw.320_sell_tooltip:0 "Our capital will be moved to §Y[post_apoc_colony].GetName]§!, and anyone who can escape from the homeworld will be welcome there!"
 
+ leader_trait_autocannibalistic_gestalt:0 "Autocannibalistic Node"
+ leader_trait_autocannibalistic_gestalt_desc:0 "This node slowly consumes itself to survive."
+ 
+ leader_trait_autocannibalistic:0 "Cannibalistic Councillor"
+ leader_trait_autocannibalistic_desc:0 "Needs must, I'm afraid."
+
  colonial_farm_coops:0 "Colonial Farm Co-ops"
  gestalt_farm_autonomy:0 "Agri-Drone Autonomy"
 

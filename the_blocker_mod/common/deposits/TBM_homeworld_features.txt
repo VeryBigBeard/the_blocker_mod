@@ -3370,7 +3370,7 @@ d_renewable_energy_programs = {
 			}
 		}
 		pop_category_workers_food_upkeep_add = -0.25
-		pop_category_drones_energy_upkeep_add = 0.25
+		pop_category_simple_drones_energy_upkeep_add = 0.25
 	}
 
 	potential = {

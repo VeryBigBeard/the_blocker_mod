@@ -206,11 +206,23 @@
  d_tomb_mine_shafts:0 "Mine Shaft Shelters"
  d_tomb_mine_shafts_desc:0 "These long-abandoned mine shafts were identified as a key strategic asset at the outbreak of nuclear war, and select survivors were quickly counted and shepherded inside to preserve long-term population numbers. Most perished anyway, along with any hope of winning the war. A few of these shafts were later opened to those in search of any shelter they could fine."
 
+ d_underground_warren:0 "Underground Warrens"
+ d_underground_warren_desc:0 "At the time of the cataclysm, much of the Organism was lost. Far beneath the planet's burning surface,. however, some warrens survived, eking out a meagre existence far from sunlight. Our voice is faint, here, but life persists."
+
  d_homeworld_black_market:0 "Black Market"
  d_homeworld_black_market_desc:0 "What little government remained after society's collapse was quickly forced to deal with the crime lords and brokers running black markets in various refugee camps and ruined cities across the world. Over time, these markets evolved into a de-factor banking system, selling power cores, food, and supplies to anyone who can pay."
 
+ d_deviant_impulses:0 "Deviant Impulses"
+ d_deviant_impulses_desc:0 "The cataclysm broke many of the neural pathways essential for collective communication across the hive-mind. Although productive, drone malignancies continue to occur, undermining unity and efficiency."
+
  d_broken_transformer:0 "Broken Transformer Station"
  d_broken_transformer_desc:0 "Miraculously, much of our world's global power system survived its makers' armageddon. Larger facilities, unfortunately, did not, but survival planners have long identified this key sub-station as the missing piece required to get the beginnings of a global energy system back online."
+
+ d_diseased_node:0 "Diseased Node"
+ d_diseased_node_desc:0 "Damaged by prolonged exposure to the harsh climate of our world, this node handles many essential functions for the Organism. Without it, we wither."
+
+ d_protein_restabilizer:0 "Protein Restabilizer"
+ d_protein_restabilizer_desc:0 "By enhancing essential functionary nodes to withstand the radiation and toxins of the world's surface, the hive can spread its collective across more of the planet's surface."
 
  d_homeworld_derelict_reactors:0 "Derelict Reactors"
  d_homeworld_derelict_reactors_desc:0 "These dark towers loom over the blasted landscape, their furnaces having fuelled the heady days leading up to the fall. Not all are brave enough to see the old reactors fired up once more, no matter how urgent the need for power sources becomes. That way, death and madness lie."
