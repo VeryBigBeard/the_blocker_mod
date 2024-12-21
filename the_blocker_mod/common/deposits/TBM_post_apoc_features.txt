@@ -212,7 +212,16 @@ d_chapel_of_the_fall = {
 			unity = 1000
 		}
 		upkeep = {
+			trigger = {
+				NOT = { owner = { is_lithoid = yes }}
+			}
 			food = 8
+		}
+		upkeep = {
+			trigger = {
+				owner = { is_lithoid = yes }
+			}
+			minerals = 8
 		}
 	}
 
@@ -540,7 +549,7 @@ d_survival_camps = {
 	}
 }
 
-d_lost_warrens = {
+d_lost_warren = {
 	icon = d_unsupervised_settlement
 	category = deposit_cat_blockers
 
@@ -1325,7 +1334,7 @@ d_allocation_clinic = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { country_uses_consumer_goods = no }
+			owner = {  = no }
 		}
 		trade_value_mult = -0.20
 		planet_amenities_mult = 0.20

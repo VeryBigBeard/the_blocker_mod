@@ -2132,7 +2132,7 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { country_uses_consumer_goods = yes }
+			owner = { is_gestalt = no }
 		}
 		planet_miners_consumer_goods_upkeep_add = 0.1
 	}
@@ -2140,8 +2140,9 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner  = {
-				country_uses_consumer_goods = no
+			owner  = { 
+				is_gestalt = yes
+				is_lithoid = no
 			}
 		}
 		planet_miners_food_upkeep_add = 0.1
@@ -2150,7 +2151,10 @@ d_crystal_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { has_trait = trait_lithoid }
+			owner = {
+				is_gestalt = yes 
+				is_lithoid = yes
+			}
 		}
 		planet_miners_energy_upkeep_add = 0.1
 	}
@@ -3362,10 +3366,23 @@ d_renewable_energy_programs = {
 		potential = {
 			exists = owner
 			owner = {
-				country_uses_consumer_goods = no
+				is_gestalt = yes
+				is_lithoid = no
 			}
 		}
 		pop_category_workers_food_upkeep_add = -0.25
+		pop_category_simple_drones_energy_upkeep_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_lithoid = yes
+			}
+		}
+		pop_category_workers_minerals_upkeep_add = -0.25
 		pop_category_simple_drones_energy_upkeep_add = 0.25
 	}
 

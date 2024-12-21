@@ -191,34 +191,28 @@ post_apocalyptic_new_horizons = {
 		}
 	}
 
-	# Send Food
+	# Send Food CRASHING THE GAME
 	approach = {
 		name = send_food
 		icon = GFX_situation_approach_gift
 		icon_background = GFX_situation_approach_bg_green
 		allow = {
 			custom_tooltip = {
-				fail_text = {
-					text = send_food_no_farms
-					target = {
-						num_districts = {
-							type = district_farming
-							value > 0
-						}
+				fail_text = send_food_no_farms
+				target = {
+					num_districts = {
+						type = district_farming
+						value > 0
 					}
 				}
 			}
 			custom_tooltip = {
-				fail_text = {
-					text = send_food_locked
-				}
-				NOT = { has_situation_flag = recently_changed_approach }
+				fail_text = send_food_locked
+				root = { NOT = { has_situation_flag = recently_changed_approach } }
 			}
 			custom_tooltip = {
-				fail_text = {
-					text = cracked_down_tooltip
-				}
-				NOT = { has_situation_flag = blockade_crackdown }
+				fail_text = cracked_down_tooltip
+				root = { NOT = { has_situation_flag = blockade_crackdown } }
 			}
 		}
 	}

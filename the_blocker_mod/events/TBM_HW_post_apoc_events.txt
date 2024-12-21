@@ -37,6 +37,11 @@ planet_event = {
 		random_list = {
 			50 = {
 				owner = { set_country_flag = environmental_remediation_post_apoc }
+				planet_event = {
+					id = tbm_hw.102
+					days = 360
+					random = 360
+				}
 			}
 			50 = {}
 		}
@@ -51,8 +56,8 @@ planet_event = {
 
 	title = tbm_hw.102_title
 	desc = tbm_hw.102_desc
-	show_sound = amb_terraforming_station_active
-	picture = GFX_terraforming_candidate
+	show_sound = event_wind_ruins
+	picture = GFX_evt_gray_gooed_planet
 	location = this
 
 	desc = {
@@ -114,14 +119,17 @@ planet_event = {
 		custom_tooltip = tbm_hw.102_boost_chapel
 		set_planet_flag = post_apoc_respect_reality
 
-		change_variable = {
-			which = post_apoc_culture_score
-			value = -50
+		hidden_effect = {
+			change_variable = {
+				which = post_apoc_culture_score
+				value = -50
+			}
 		}
 	}
 
 	option = {
 		name = tbm_hw.102_society_decides
+		custom_tooltip = tbm_hw.102_society_decides_tooltip
 		trigger = {
 			owner = { is_gestalt = no }
 		}
@@ -129,6 +137,7 @@ planet_event = {
 
 	option = {
 		name = tbm_hw.102_follow_instinct
+		custom_tooltip = tbm_hw.102_society_decides_tooltip
 		trigger = {
 			owner = { is_gestalt = yes }
 		}
@@ -1390,7 +1399,7 @@ situation_event = {
 	
 	option = {
 		name = tbm_hw.317_additional_security
-		set_situation_approach = crackdown
+		set_situation_approach = crackdown_farmers
 		set_timed_situation_flag = {
 			flag = blockade_crackdown
 			months = 6
