@@ -151,9 +151,30 @@ d_library_of_before = {
 		potential = {
 			exists = owner
 			is_original_owner = owner
+			owner = { is_lithoid = yes }
+		}
+		planet_researchers_food_upkeep_add = -2
+		planet_researchers_minerals_upkeep_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
 			owner = { has_country_flag = post_apoc_environmental_restoration }
 		}
 		planet_researchers_food_upkeep_add = -2		# Malus gets cnacelled on completion of event chain
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { has_country_flag = post_apoc_environmental_restoration }
+			owner = { is_lithoid = yes }
+		}
+		planet_researchers_food_upkeep_add = 2		# Malus gets cnacelled on completion of event chain
+		planet_researchers_minerals_upkeep_add = -2
 	}
 
 	triggered_planet_modifier = {
@@ -486,6 +507,15 @@ d_survival_camps = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
+			owner = { is_lithoid = yes }
+		}
+		district_farming_max = -1
+		district_mining_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
 			owner = {
 				NOT = { is_spiritualist = yes }
 			}
@@ -533,6 +563,15 @@ d_lost_warrens = {
 		district_farming_max = 1
 		planet_crime_mult = 0.1
 		planet_stability_mult = -0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_lithoid = yes }
+		}
+		district_farming_max = -1
+		district_mining_max = 1
 	}
 
 	potential = {
@@ -1093,7 +1132,7 @@ d_diseased_node = {
 	should_swap_deposit_on_terraforming = no
 
 	blocker_swap_types = {
-		d_high_wire_network
+		d_protein_restabilizer
 	}
 
 	time = 270
@@ -1283,6 +1322,15 @@ d_allocation_clinic = {
 		trade_value_mult = 0.20
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { country_uses_consumer_goods = no }
+		}
+		trade_value_mult = -0.20
+		planet_amenities_mult = 0.20
+	}
+
 	potential = {
 		always = no
 	}
@@ -1418,5 +1466,14 @@ d_last_bastion = {
 		district_farming_max = 1
 		planet_crime_mult = -0.20
 		armies_energy_upkeep_mult = -1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_lithoid = yes }
+		}
+		district_farming_max = -1
+		district_mining_max = 1
 	}
 }
