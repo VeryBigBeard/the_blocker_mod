@@ -392,7 +392,7 @@ tbm_homeworld_origin_spreads = {
 	else_if = {
 		limit = {
 			owner = { has_origin = origin_post_apocalyptic}
-			owner = { is_gestalt = no }
+			owner = { is_gestalt = yes }
 		}
 		
 		# Remove last vestiges of civilization
@@ -717,7 +717,6 @@ tbm_homeworld_extras = {
 		remove_deposit = d_inaugural_spaceport
 		add_deposit = d_surface_spaceport
 	}
-
 
 	### ENVIRONMENTALISTS
 	#	Takes care of an edge-case where Environmentalists could end up with -1 district, causing problems, and adds some environmentally-friendly flavour.
