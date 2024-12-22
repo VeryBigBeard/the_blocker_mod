@@ -385,6 +385,7 @@ scavenger_wars = {
 ### Post-Apoc Remediation Cultural Outcomes
 environmental_remediation = {
 	# Does nothing - just lets player know it's ongoing.
+	icon = gfx/interface/icons/planet_modifiers/capital.dds
 }
 
 mutant_soldiers = {

@@ -261,14 +261,16 @@ tbm_hw.320_name:0 "Government in Tatters"
  failing_food_replicator:0 "Failing Food Replicator"
  failing_food_replicator_desc:0 "The Food Replicators that have long sustained our homeworld's population are starting to fail."
 
+ environmental_remediation:0 "Environmental Remediation Project"
+ environmental_remediation_desc:0 "Work is underway to slowly restore this planet to some glimmer of what it was."
 
- environmental_remediation:0 "REPLACE_ME"
- tbm_environmental_remediation_title:0 "REPLACE_ME"
+ tbm_environmental_remediation_title:0 "Environmental Remediation Project"
+ tbm_environmental_remediation_desc:0 "Long ago, our homeworld's natural ecosystem was obliterated by fire and madness. It may never be possible to completely re-create it, but we now have both technology and ambition to attempt to restore it — or, perhaps, fashion it anew."
 
- pc_nuked_tbm:0 "REPLACE_ME"
- pc_nuked_tbm_desc:0 "REPLACE_ME"
- pc_nuked_tbm_adj:0 "REPLACE_ME"
- mod_pc_nuked_tbm_habitability:0 "REPLACE_ME"
+ pc_nuked_tbm:0 "Tomb World"
+ pc_nuked_tbm_desc:0 "A rocky world with a nitrogen-oxygen atmosphere. It is currently experiencing a nuclear winter, with dense layers of sooty aerosols in the atmosphere. High levels of surface radiation. Minimal signs of life."
+ pc_nuked_tbm_adj:0 "desolate"
+ mod_pc_nuked_tbm_habitability:0 "Tomb World Habitability"
 
  advancing_from_ruins:0 "Advancing from Ruin"
  advancing_from_ruin_desc:0 "This civilization has embraced the resilience and resourcefulness needed to survive the fall of its homeworld and has emerged from the Apocalypse stronger and more sure of its galactic footing."

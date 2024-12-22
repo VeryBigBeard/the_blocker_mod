@@ -1164,7 +1164,7 @@ d_diseased_node = {
 }
 
 d_protein_restabilizer = {
-	icon = d_remnant_dilapidated_reactor
+	icon = d_station_reactor
 	category = deposit_cat_blockers
 
 	use_for_min_max_adjustments = yes
