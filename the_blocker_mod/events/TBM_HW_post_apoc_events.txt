@@ -26,7 +26,7 @@ planet_event = {
 			has_origin = origin_post_apocalyptic
 			NOT = { has_country_flag = environmental_remediation_post_apoc }
 			NOT = { is_machine_empire = yes }
-			NOT = { is_lithoid = yes }	# Mainly balance, but some lithoids do like their planets well-done.
+			NOT = { is_lithoid = yes }	# Mainly balance, as they're largely unaffected by the Tome Worlds,  and many lithoids do like their minerals well-done.
 			num_ascension_perks > 0
 			has_technology = tech_terrestrial_sculpting
 		}

@@ -313,6 +313,8 @@ building_museum_apocalypse = {
 
 	category = unity
 
+	is_capped_by_modifier = yes
+
 	potential = {
 		NOT = { is_planet_class = pc_habitat }
 		exists = owner
@@ -354,7 +356,9 @@ building_laboratory_apocalypse = {
 
 	position_priority = 2
 
-	category = unity
+	category = research
+
+	is_capped_by_modifier = yes
 
 	potential = {
 		NOT = { is_planet_class = pc_habitat }
@@ -396,6 +400,8 @@ building_cathedral_apocalypse = {
 	can_be_disabled = yes
 
 	position_priority = 2
+
+	is_capped_by_modifier = yes
 
 	category = unity
 

@@ -586,9 +586,19 @@ tbm_homeworld_extras = {
 	#	Vanilla usually removes 3 farming as well, but this requires a lot of script to do so we'll let 'em do with the vegetables what they will.
 	if = {
 		limit = { owner = { is_lithoid_empire = yes }}
+
+		remove_deposit = d_homeworld_extreme_weather	# Too much stacking unity hit with Crumbling Mountain
+
 		add_deposit = d_megaliths
-		add_deposit = d_crumbling_mountain
 		add_deposit = d_crystal_outcrops
+
+		if = {
+			limit = {
+				owner = { is_gestalt = yes }
+			}
+			remove_deposit = d_crumbling_mountain	# But flip it again for gestalts because a.) the loc for Crumbling Mountain doesn't really work for them, and b.) they tend to be high-pop-count empires and so will get punished more by the mountain anyway.
+			add_deposit = d_homeworld_extreme_weather
+		}
 	}
 
 	### CORPORTATE

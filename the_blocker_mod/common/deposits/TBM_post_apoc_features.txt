@@ -163,7 +163,7 @@ d_library_of_before = {
 			is_original_owner = owner
 			owner = { has_country_flag = post_apoc_environmental_restoration }
 		}
-		planet_researchers_food_upkeep_add = -2		# Malus gets cnacelled on completion of event chain
+		planet_researchers_food_upkeep_add = -1		# Malus gets cnacelled on completion of event chain
 	}
 
 	triggered_planet_modifier = {
@@ -173,8 +173,8 @@ d_library_of_before = {
 			owner = { has_country_flag = post_apoc_environmental_restoration }
 			owner = { is_lithoid = yes }
 		}
-		planet_researchers_food_upkeep_add = 2		# Malus gets cnacelled on completion of event chain
-		planet_researchers_minerals_upkeep_add = -2
+		planet_researchers_food_upkeep_add = 1		# Malus gets cnacelled on completion of event chain
+		planet_researchers_minerals_upkeep_add = -1
 	}
 
 	triggered_planet_modifier = {
@@ -868,6 +868,15 @@ d_slag_heap = {
 		job_scrap_miner_add = 3
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_scrap_miner_add = -3
+		job_scrap_miner_drone_add = 3
+	}
+
 	potential = {
 		always = no
 	}
@@ -1266,7 +1275,7 @@ d_homeworld_derelict_reactors = {
 ### Post-Apocalyptic: Environmental Remediation Features
 
 d_scrap_bazaar = {
-	icon = d_homeworld_black_market
+	icon = d_black_market
 	category = deposit_cat_blockers
 
 	use_for_min_max_adjustments = yes
@@ -1284,6 +1293,15 @@ d_scrap_bazaar = {
 
 	planet_modifier = {
 		job_scrap_miner_add = 4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_scrap_miner_add = -4
+		job_scrap_miner_drone_add = 4
 	}
 
 	triggered_planet_modifier = {
@@ -1334,7 +1352,7 @@ d_allocation_clinic = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = {  = no }
+			owner = { is_gestalt = yes }
 		}
 		trade_value_mult = -0.20
 		planet_amenities_mult = 0.20

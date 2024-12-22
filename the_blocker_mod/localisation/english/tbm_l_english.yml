@@ -164,6 +164,7 @@
  mod_planet_technician_consumer_goods_produces_add:0 "$r_consumer_goods$ from $job_technician_plural$"
 
  mod_planet_researchers_food_upkeep_add:0 "$r_food$ Upkeep for $job_researcher_plural$"
+ mod_planet_researchers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $job_researcher_plural$"
  
  mod_planet_priests_unity_produces_mult:0 "$r_unity$ from $job_priest_plural$"
 
