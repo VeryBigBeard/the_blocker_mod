@@ -182,8 +182,14 @@
  d_food_rations_desc:0 "Some of the bunkers across our planet survived its fiery fall thanks to rations of canned or dried food. As we begin the long road to rebuilding our society, what remains of these rations have been pooled and placed under strict guard, with allocations doled out based on need. It is rarely enough, and there are constant rumors of reserves running low."
  d_food_rations_tooltip:0 "§YRations§! are expected to run out in 2220§!."
 
+ d_nutrient_rations:0 "Nutrient Rations"
+ d_nutrient_rations_desc:0 "In better times, reserves were set aside in case any cataclsym should befall our homeworld. Now that the worst has happened, these dwindling rations are the only reliable source of nutrition on the planet."
+
  d_survival_camps:0 "£blocker£ Survival Camps"
  d_survival_camps_desc:0 "Those not fortunate enough to be able to reach a shelter mostly congregated in meager camps in whatever hospitable regions they could find. Since then, these communities have become somewhat self-sufficient, but life in them is an ordeal, with most of the camps run more by criminals and anarchic tyrants."
+
+ d_lost_warren:0 "Lost Warren"
+ d_lost_warren_desc:0 "Out in the radioactive wastes that cover much of our world exist various splinter hives, driven half to madness by the loss of voices and unity. Although existence in these regions barely compares to collective unity, these drones are able to forage enough food to survive."
 
  d_seed_banks:0 "Seed Banks"
  d_seed_banks_desc:0 "Before the fall, scientists scrambled to create secure stores of our world's crops and plant-life. What little remains is patchwork, but holds the blueprints to rebuild civilization. Unfortunately, much of the material requires the maintenance of expensive cryo-systems and serviceable parts are constantly in short supply."
@@ -206,14 +212,47 @@
  d_tomb_mine_shafts:0 "Mine Shaft Shelters"
  d_tomb_mine_shafts_desc:0 "These long-abandoned mine shafts were identified as a key strategic asset at the outbreak of nuclear war, and select survivors were quickly counted and shepherded inside to preserve long-term population numbers. Most perished anyway, along with any hope of winning the war. A few of these shafts were later opened to those in search of any shelter they could fine."
 
+ d_underground_warren:0 "Underground Warrens"
+ d_underground_warren_desc:0 "At the time of the cataclysm, much of the Organism was lost. Far beneath the planet's burning surface,. however, some warrens survived, eking out a meagre existence far from sunlight. Our voice is faint, here, but life persists."
+
  d_homeworld_black_market:0 "Black Market"
  d_homeworld_black_market_desc:0 "What little government remained after society's collapse was quickly forced to deal with the crime lords and brokers running black markets in various refugee camps and ruined cities across the world. Over time, these markets evolved into a de-factor banking system, selling power cores, food, and supplies to anyone who can pay."
+
+ d_deviant_impulses:0 "Deviant Impulses"
+ d_deviant_impulses_desc:0 "The cataclysm broke many of the neural pathways essential for collective communication across the hive-mind. Although productive, drone malignancies continue to occur, undermining unity and efficiency."
 
  d_broken_transformer:0 "Broken Transformer Station"
  d_broken_transformer_desc:0 "Miraculously, much of our world's global power system survived its makers' armageddon. Larger facilities, unfortunately, did not, but survival planners have long identified this key sub-station as the missing piece required to get the beginnings of a global energy system back online."
 
+ d_diseased_node:0 "Diseased Node"
+ d_diseased_node_desc:0 "Damaged by prolonged exposure to the harsh climate of our world, this node handles many essential functions for the Organism. Without it, we wither."
+
+ d_protein_restabilizer:0 "Protein Restabilizer"
+ d_protein_restabilizer_desc:0 "By enhancing essential functionary nodes to withstand the radiation and toxins of the world's surface, the hive can spread its collective across more of the planet's surface."
+
  d_homeworld_derelict_reactors:0 "Derelict Reactors"
  d_homeworld_derelict_reactors_desc:0 "These dark towers loom over the blasted landscape, their furnaces having fuelled the heady days leading up to the fall. Not all are brave enough to see the old reactors fired up once more, no matter how urgent the need for power sources becomes. That way, death and madness lie."
+
+ d_scrap_bazaar:0 "Scrap Bazaars"
+ d_scrap_bazaar_desc:0 "So much rubble has now been salvaged from bygone times that it forms a great market of sorts, attracting traders from all over the galaxy."
+
+ d_allocation_clinic:0 "Allocation Clinics"
+ d_allocation_clinic_desc:0 "In a landscape dominated by the need to survive, these clinics serve as bastions of the state, doling out what is needed -- and no more -- to each and his own."
+
+ d_memorial_apocalypse:0 "Memorial of the Apocalypse"
+ d_memorial_apocalypse_desc:0 "A grim reminder of the fragility of life, these memorials now dot across our homeworld, with the largest in the capital, where tokens are left to the memory of those long lost."
+
+ d_abyssal_manufactorium:0 "Abyssal Manufactorium"
+ d_abyssal_manufactorium:0 "Here, relics of the past are broken down and repurposed for a brither tomorrow."
+
+ d_hegemons_of_industry:0 "Hegemons of Industry"
+ d_hegemons_of_industry_desc:0 "It takes great skill to forge success amongst the rubble of civilization, and these new interstellar corporations have ensured our world remains relevant in galactic markets."
+
+ d_purgatory_apocalypse:0 "Purgatory"
+ d_purgatory_apocalypse_desc:0 "A paved, enclosed sensorium experience in which everyone can find sunlit meadows, frothing oceans, and crystalline peaks -- anything a holo-projector can bring to life in the vast theaters beneath this behemoth facility powered by the ruins of yesteryear."
+
+ d_last_bastion:0 "The Last Bastion"
+ d_last_bastion_desc:0 "Slowly, as civilization crumbled, those smart and savvy enough to survive congregated here and formed a new bloc of power that now stands as the most influential organ of society.""
 
  ### LIFE-SEEDED
 

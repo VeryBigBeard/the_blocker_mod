@@ -164,6 +164,7 @@
  mod_planet_technician_consumer_goods_produces_add:0 "$r_consumer_goods$ from $job_technician_plural$"
 
  mod_planet_researchers_food_upkeep_add:0 "$r_food$ Upkeep for $job_researcher_plural$"
+ mod_planet_researchers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $job_researcher_plural$"
  
  mod_planet_priests_unity_produces_mult:0 "$r_unity$ from $job_priest_plural$"
 
@@ -421,6 +422,9 @@
  d_private_farming_colony:0 "£blocker£ Private Farming Colony"
  d_private_farming_colony_desc:0 "Hungry workers on our homeworld have flocked to the wealthy benefactors behind these remote farmsteads on the colonies."
 
+ d_subsistence_farm:0 "Subsistence Farm"
+ d_subsistence_farm_desc:0 "Using germinators from alien worlds has allowed some limited agriculture among the shelters and burned-out remnants of this world, though its yields are frugal."
+
  d_private_mines:0 "Private Mines"
  d_private_mines_desc:0 "Independent mining concerns have established large-scale mining operations in this area, and pay tax in exchange for the licenses to operate in the region."
 
@@ -560,6 +564,9 @@
 
 
  ### Decisions
+
+ decision_construct_megaliths:0 "Construct New Megalith"
+ decision_construct_megaliths_desc:0 "Material and time will be set aside to enhance the natrual lithosphere of this planet, enshrining our unique culture and population on the very stone and rock.\n\n§CA new £blocker_yellow£ Megalith will be added, granting a $district_mining$ and boosts to $r_unity$ in exchange for a $MOD_POP_GROWTH_SPEED_REDUCTION$."
 
  decision_open_fusion_reactor:0 "Create New Fusion Reactor"
  decision_open_fusion_reactor_desc:0 "§YAdds +1 §C£district£ Generator Districts§! to [from.GetName].\n\nLand is set aside for a large fusion containment center, as well as for safety boundaries, failsafe zones, and hazard areas surrounding the core reactor."

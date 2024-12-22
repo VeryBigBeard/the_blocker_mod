@@ -1,0 +1,6 @@
+opinion_farmers_revolt = {
+	opinion = {
+		base = -200
+	}
+	unique = yes
+}

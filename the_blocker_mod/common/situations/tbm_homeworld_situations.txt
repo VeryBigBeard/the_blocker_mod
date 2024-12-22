@@ -1,0 +1,252 @@
+### The Blocker Mod - Homeworld Situations
+
+@colonial_farmsteads = 0
+
+
+# 01. Food Reserves Running Out - Triggers 15 years after start if Food Rations exists
+post_apocalyptic_new_horizons = {
+
+	picture = GFX_evt_deficit
+
+	category = neutral
+
+	complete_icon = GFX_situation_outcome_positive
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	fail_icon = GFX_situation_outcome_revolt
+	fail_icon_frame = GFX_situation_outcome_frame_red
+
+	on_start = {
+		hidden_effect = {
+			set_timed_situation_flag = {
+				flag = post_apoc_new_horizons_delay
+				years = 2	# Delays event firing for one year
+			}
+			target.owner = {
+				owner_main_species.home_planet = {
+					save_global_event_target_as = post_apoc_homeworld
+				}
+			}
+			target = {
+				save_global_event_target_as = post_apoc_colony
+			}
+			this = {
+				save_event_target_as = food_reserves_situation
+			}
+		}
+	}
+
+	# 100 = Colonial Bounty (Homewolrd Superiority)
+	on_progress_complete = {
+		custom_tooltip = food_reserves_complete_tooltip
+		hidden_effect = {
+			### Clean-up flags (event_targets are used in follow-up events and cleared there)
+			remove_situation_flag = post_apoc_new_horizons_delay
+			remove_situation_flag = post_apoc_new_horizons_events
+			
+			situation_event = {
+				id = tbm_hw.318
+			}	
+		}
+	}
+
+	# -100 = Widespread Starvation (Colonial Superiority)
+	on_fail = {
+		custom_tooltip = food_reserves_fail_tooltip
+		hidden_effect = {
+			if = {
+				limit = { 
+					owner = { is_hive_empire = yes }
+				}
+				situation_event = {
+					id = tbm_hw.319
+				}
+			}
+			else = {
+				situation_event = {
+					id = tbm_hw.320
+				}
+			}
+		}
+	}
+
+	start_value = 100
+	progress_direction = bidirectional
+	complete_category = positive
+	fail_category = negative
+
+	monthly_progress = {
+		base = -1
+
+		# modifier = {
+		# 	desc = monthly_consumption
+		# 	add = -1
+		# }
+
+		modifier = {
+			desc = sending_food
+			current_situation_approach = send_food
+			add = value:colonial_cohesion_gestalt
+		}
+
+		modifier = {
+			desc = cracking_down
+			current_situation_approach = crackdown_farmers
+			add = 5
+		}
+
+		modifier = {
+			desc = strict_rations
+			current_situation_approach = strict_rationing
+			add = 1
+		}
+
+		modifier = {
+			desc = colonial_food_coops
+			target = { has_modifier = colonial_farm_coops }
+			add = value:coop_food_shipment
+		}
+	}
+
+	stages = {	
+		# Widespread Starvation
+		widespread_starvation = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 20
+
+			on_first_enter = {
+				event_target:post_apoc_homeworld = {
+					remove_modifier = food_shortages
+					add_modifier = {
+						modifier = widespread_starvation
+					}
+				}
+			}
+		}
+		
+		
+		# Food Shortages
+		food_shortages = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 80
+
+			on_first_enter = {
+				event_target:post_apoc_homeworld = {
+					add_modifier = {
+						modifier = food_shortages
+					}
+				}
+			}
+		}
+		
+		# Food Reserevs Low - Starting Stage
+		food_reserves_low = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 160
+		}
+
+		# Colonial Plenty
+		colonial_plenty = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_green
+			end = 200
+		}
+	}
+
+	# Strict Rationing - DEFAULT, disables after you've built a farm and becomes WIthhold, rationing's masochistic cousin
+	approach = {
+		name = strict_rationing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		potential = {
+			target = {
+				num_districts = {
+					type = district_farming
+					value < 1
+				}
+			}
+		}
+		target_modifier = {
+			# job_enforcer_add = 2
+			# planet_crime_add = 10
+			pop_ethic_egalitarian_attraction_mult = 0.25
+		}
+	}
+
+	# Withhold Food Shipments
+	approach = {
+		name = withhold_food
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		potential = {
+			target = {
+				num_districts = {
+					type = district_farming
+					value > 0
+				}
+			}
+		}
+	}
+
+	# Send Food CRASHING THE GAME
+	approach = {
+		name = send_food
+		icon = GFX_situation_approach_gift
+		icon_background = GFX_situation_approach_bg_green
+		allow = {
+			custom_tooltip = {
+				fail_text = send_food_no_farms
+				target = {
+					num_districts = {
+						type = district_farming
+						value > 0
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = send_food_locked
+				root = { NOT = { has_situation_flag = recently_changed_approach } }
+			}
+			custom_tooltip = {
+				fail_text = cracked_down_tooltip
+				root = { NOT = { has_situation_flag = blockade_crackdown } }
+			}
+		}
+	}
+
+	# Crack Down on Farmers
+	approach = {
+		name = crackdown_farmers
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_red
+
+		target_modifier = {
+			planet_stability_add = -30
+		}
+
+		on_select = {
+			target = { remove_modifier = colonial_farm_coops }
+		}
+	}
+
+
+	### Events
+	on_monthly = {
+		
+		events = {
+			tbm_hw.312		# Colonial Unrest; fires after situation
+		}
+
+		random_events = {
+			960 = 0		# Should work out to a 10% chance each month, which is easier than setting them to only fire yearly
+			20 = tbm_hw.313	# Food Riots
+			20 = tbm_hw.314	# Malnutrition
+			20 = tbm_hw.315 # Crops Burned
+			10 = tbm_hw.316	# Governor Disappears (presumed eaten)
+			10 = tbm_hw.317 # Colonial Spaceport Shut Down
+		}
+	}
+}

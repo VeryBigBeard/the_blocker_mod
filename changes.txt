@@ -1,33 +1,31 @@
-The Blocker Mod - v0.8.0 Beta
+The Blocker Mod - v0.8.1 Beta
 
-Update and patch for game version 3.13.*
-Post-Apoc rework, various fixes
+Update and patch for Stellaris version 3.14.*
+Post-Apocalyptic Hive support, updates and fixes
 
 ### Major Features
 
-- Reworked and rebalanced Post-Apocalyptic origin to be fully playable for both AI and human, although it remains a deliberately more challenging origin. Note there is still not unique treatment for gestalts and some narrative is not yet complete.
+- Added hive support for the Post-Apocalyptic origin. Machines will not get a special origin treament in TBM.
 
 ### Events
 
-- Added support for vanilla terraforming events, including new "stockpile" features.
-- Added Dangerous Wildlife event chain
-- Added Sand Tides event chain for Quicksand Basins
-- Tweaked frequency of False Prospects / Struck the Motherlode event to make it slightly less common, though it will still tend to fire more frequently on worlds with a lot of mining.
+- Added framework for two major event chains for Post-Apocalyptic. Unfortunately, the cannibalistic councillors failed testing again and so must wait until the 0.9 version of the mod.
 
 ### Fixes
 
-- Lithoids should no longer get a food upkeep on miners from one of their lithoid-specific homeworld features.
-- Fixed broken job reference that was likely breaking gestalt bonuses from features. Extra Coordinators should now provide additional feature bonuses on colonies.
-- Fixed a bug causing reactor explosions to increase in likelihood as you teched up, rather than decrease. Also slightly reduced the likelihood of an explosion, but they're still a risky way to get more energy.
-- Fixed a bug causing the special Post-Apoc features to not spawn
-- Fixed problem with Extreme Weather per-building unity cost
-- Various fixes to Food Rations deposits, and it now tells you it'll run out
-- Fixed a problem with Homeworld Dustbowls that may have prevented AI from clearing them
-- Lost Colonies now start with the correct number of energy districts
-- Added missing loc for Efficient Nodes (Advanced Starts) and Unclaimed Cave Complex (Post-Apoc)
-- Added missing modifier loc for a few features that got tweaked late before 0.7 release
+- Fixed some Post-Apocalyptic features not spawning correctly
+- Fixed various problems with lithoid features and triggers; they should now hopefully no longer get inappropriate food upkeep or production.
+- Numerous fixes to the special Post-Apoc features
+- Fixed several problems stemming from a broken trigger causing gestalts to get consumer goods upkeep
+- Fixed gestalts getting the wrong Scrap Miners from Slag Heaps.
+- Changed the deposit icon for the transformer features to look more like a transformer mast. 
+- Great Pacific Garbage Patch now gets the correct blocker icon
+- Removed a rogue event in the Sand Tides event chain
+- Various minor loc tweaks and fixes
+
 
 ### Extras
 
-- Added initial branch structure for the mod's overwriting of generate_start_deposits_and_blockers that will hopefully make future compatibility easier
-- Restored TBM's custom clear_deposits_without_effects scripted effect to get rid of all deposits and all effects created by clearing those deposits
+- Lithoids now have access to a decision to construct new Megaliths on colonies, sacrificing more pop growth speed for greater unity bonuses.
+- Split scrap miners into their own economic category. As a result, TBM now overwrites the scrap_miner job file.
+- Moved Post-Apoc features to their own file and added numerous event features in preparation for a couple of event chains in 0.9.

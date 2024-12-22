@@ -388,6 +388,46 @@ tbm_homeworld_origin_spreads = {
 		add_deposit = d_seed_banks
 	}
 
+	### POST-APOC - HIVE
+	else_if = {
+		limit = {
+			owner = { has_origin = origin_post_apocalyptic}
+			owner = { is_gestalt = yes }
+		}
+		
+		# Remove last vestiges of civilization
+		clear_deposits = yes
+
+		# Special features for Post-Apoc (gestalt compatible for now)
+		add_deposit = d_library_of_before
+		add_deposit = d_chapel_of_the_fall
+		add_deposit = d_the_site
+		
+		# Energy - Post-Apoc gets 8 gen (+2 from vanilla), one blocked, one is hybrid
+		add_deposit = d_homeworld_derelict_reactors
+		add_deposit = d_homeworld_extreme_weather
+		add_deposit = d_unexploded_munitions	# Also provides mining
+		add_deposit = d_unexploded_munitions
+		add_deposit = d_unexploded_munitions
+		add_deposit = d_deviant_impulses
+		add_deposit = d_diseased_node
+		add_deposit = d_gestalt_homeworld_bandit_camp	# Blocked
+
+		# Mining - Post-Apoc get 8 mining (+2 from vanilla), one blocked, one hybrid (above)
+		add_deposit = d_hive_scavengers
+		add_deposit = d_hive_scavengers
+		add_deposit = d_hulks
+		add_deposit = d_hulks
+		add_deposit = d_slag_heap
+		add_deposit = d_gestalt_rare_metals_lab
+		add_deposit = d_underground_warren
+
+		# Farming - Post-apoc get very little farming: 3 (-3 from vanilla)
+		add_deposit = d_nutrient_rations
+		add_deposit = d_lost_warrens
+		add_deposit = d_seed_banks
+	}
+
 
 	### RELICS
 	else_if = {
@@ -546,9 +586,19 @@ tbm_homeworld_extras = {
 	#	Vanilla usually removes 3 farming as well, but this requires a lot of script to do so we'll let 'em do with the vegetables what they will.
 	if = {
 		limit = { owner = { is_lithoid_empire = yes }}
+
+		remove_deposit = d_homeworld_extreme_weather	# Too much stacking unity hit with Crumbling Mountain
+
 		add_deposit = d_megaliths
-		add_deposit = d_crumbling_mountain
 		add_deposit = d_crystal_outcrops
+
+		if = {
+			limit = {
+				owner = { is_gestalt = yes }
+			}
+			remove_deposit = d_crumbling_mountain	# But flip it again for gestalts because a.) the loc for Crumbling Mountain doesn't really work for them, and b.) they tend to be high-pop-count empires and so will get punished more by the mountain anyway.
+			add_deposit = d_homeworld_extreme_weather
+		}
 	}
 
 	### CORPORTATE
@@ -678,7 +728,6 @@ tbm_homeworld_extras = {
 		add_deposit = d_surface_spaceport
 	}
 
-
 	### ENVIRONMENTALISTS
 	#	Takes care of an edge-case where Environmentalists could end up with -1 district, causing problems, and adds some environmentally-friendly flavour.
 	if = {
@@ -754,99 +803,9 @@ tbm_homeworld_earth = {
 	
 	### SPECIAL STUFF
 	
-	if = {
-		limit = {
-			owner = { is_machine_empire = yes }
-		}
-		add_deposit = d_battery_farms
-	}
+	tbm_homeworld_origin_spreads = yes	# Handle Earth with specific origins
 
-	if = {
-		limit = {
-			owner = { has_valid_civic = civic_machine_servitor }
-		}
-		add_deposit = d_nutrient_terminals
-		#add_deposit = d_strip_mine
-		add_deposit = d_unsupervised_settlement
-	}
-	else = {
-		add_deposit = d_decrepit_dwellings
-	}
-
-	if = {
-		limit = {
-			owner = {
-				is_lithoid_empire = yes
-				NOT = { has_valid_civic = civic_hive_devouring_swarm }
-			}
-		}
-		while = {
-			count = 4
-			add_deposit = d_hibernating_lithoids
-		}
-		add_deposit = d_crumbling_mountain
-		add_deposit = d_megaliths
-		add_deposit = d_crystal_outcrops
-	}
-
-	if = {
-		limit = {
-			owner = {
-				is_lithoid_empire = yes
-				has_valid_civic = civic_hive_devouring_swarm
-			}
-		}
-		while = {
-			count = 2
-			add_deposit = d_hibernating_lithoids
-		}
-	}
-
-	if = {
-		limit = {
-			owner = {
-				has_origin = origin_life_seeded
-			}
-		}
-
-		set_planet_size = 30
-
-		clear_deposits = yes
-
-		# Energy - 8 total, -3 districts, 2 blocked	
-		add_deposit = d_fertile_delta	# Provies 1 farming as well
-		add_deposit = d_inaugural_spaceport
-		add_deposit = d_high_wire_network
-		add_deposit = d_hot_springs
-		add_deposit = d_homeworld_bandit_camp
-		add_deposit = d_sandsea	# Mainly to give two generators, but also gives Aquatics a reason to take Life-Seeded
-		
-		# Mining - 8 total, 1 blocked, -3 districts
-		add_deposit = d_recycling_programs
-		add_deposit = d_mine_shafts
-		add_deposit = d_mine_shafts
-		add_deposit = d_homeworld_deep_trench
-		add_deposit = d_rare_metals_lab
-		add_deposit = d_mineral_striations
-		add_deposit = d_betharian_deposit
-		add_deposit = d_homeworld_sculpted_mountains
-
-		# Farming - 8 total, 1 blocked, -7 districts (have to maintain that utopian landscape)
-		add_deposit = d_lakelands
-		add_deposit = d_lush_jungle
-		add_deposit = d_black_soil
-		add_deposit = d_fish_shoals
-		add_deposit = d_homestead_farms
-		add_deposit = d_homestead_farms
-		add_deposit = d_homeworld_utopian_hills
-		add_deposit = d_idyllic_pastorale
-		add_deposit = d_ancient_forests
-
-		# Special (same as vanilla)
-		add_deposit = d_bubbling_swamp
-		add_deposit = d_crystalline_caverns
-		add_deposit = d_dust_caverns
-	}
+	tbm_homeworld_extras = yes	# Handle Earth extras (corporate, prosperous, etc.)
 
 	if = {
 		limit = {
