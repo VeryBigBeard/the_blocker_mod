@@ -3262,6 +3262,7 @@ d_submerged_ore_veins = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_origin = origin_ocean_paradise }
 			is_homeworld = yes
 		}
@@ -4892,6 +4893,7 @@ d_teeming_reef = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_origin = origin_ocean_paradise }
 			is_homeworld = yes
 		}

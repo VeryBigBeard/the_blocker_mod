@@ -70,7 +70,7 @@ planet_event = {
 		trigger = {
 			owner = { is_hive_empire = no }
 		}
-		desc = tbm_hw.102_desc
+		text = tbm_hw.102_desc
 	}
 
 	immediate = {
@@ -169,7 +169,7 @@ planet_event = {
 	}
 
 	trigger = {
-		owner = { has_planet_flag = environmental_remediation_scoring }
+		has_planet_flag = environmental_remediation_scoring
 	}
 
 	immediate = {
@@ -697,7 +697,7 @@ planet_event = {
 					}
 				}
 			}
-			set_country_flag = cultural_restoration
+			owner = { set_country_flag = cultural_restoration }
 			add_modifier = {
 				modifier = cultural_restoration_planet
 				days = -1
@@ -713,7 +713,7 @@ planet_event = {
 
 	### Main clean-up handled here
 	after = {
-		end_event_chain = tbm_environmental_remediation
+		owner = { end_event_chain = tbm_environmental_remediation }
 		set_planet_flag = post_apoc_environmental_restoration
 	}
 }
@@ -1186,7 +1186,7 @@ situation_event = {
 			owner = { is_machine_empire = yes }
 			event_target:post_apoc_homeworld = {
 				NOT = {
-					has_modiifer = malnutrition
+					has_modifier = malnutrition
 				}
 			}
 		}

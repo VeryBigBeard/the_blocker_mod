@@ -884,7 +884,8 @@ planet_event = {
 	immediate = {
 		if = {
 			limit = {
-				NOT = { has_planet_flag = sinkhole_causes } # Prevents firing the event to give the project when you already have it.
+				has_planet_flag = sinkhole_causes # Prevents firing the event to give the project when you already have it.
+				NOT = { has_planet_flag = sinkhole_investigated }
 				
 				# And only fire Sinkhole Causes after we've seen a couple sinkholes
 				check_variable = {
@@ -919,6 +920,10 @@ planet_event = {
 					modifier = {
 						factor = 0.5 	# Less common if you've chosen to live with them; I have a heart
 						has_planet_flag = occasional_sinkholes
+					}
+					modifier = {
+						factor = 0
+						has_planet_flag = sinkhole_investigated
 					}
 					
 					planet_event = {

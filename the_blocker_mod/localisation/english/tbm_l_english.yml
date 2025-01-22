@@ -72,8 +72,8 @@
 
  mod_planet_building_cost_mult:0 "§Y£building£ Building Cost§!"
  
- tbm_unity_colonial_building_scale:0 "\n\n§YAs colonial population grows, frontier infrastructure will exert more and more strain on national cohesion, increasing its $r_unity$ Upkeep.§!"
- tbm_buildings_colonial_infrastructure_tooltip:0 "\n\nColonial infrastructure buildings cannot be built after a planet has consolidated into a single capital region under a §CPlanetary Capital§Y or equivalent. Any existing buildings will fall into disrepair due to being too far from the seat of local power.§!"
+ tbm_unity_colonial_building_scale:0 "\n§YAs colonial population grows, frontier infrastructure will exert more and more strain on national cohesion, increasing its $r_unity$ Upkeep.§!"
+ tbm_buildings_colonial_infrastructure_tooltip:0 "\nColonial infrastructure buildings cannot be built after a planet has consolidated into a single capital region under a §CPlanetary Capital§Y or equivalent. Any existing buildings will fall into disrepair due to being too far from the seat of local power.§!"
 
  building_xeno_synaptic_node:0 "Xeno-Synaptic Node"
  building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£ Xeno-Synaptic Node§C requires significant upkeep, but will produce £research£ §CResearch§! for many £blocker_yellow£ §YNatural Blockers§! on this world."
@@ -121,6 +121,8 @@
  # TBM Job Modifiers
 
  mod_pop_category_workers_produces_mult:0 "Resources from $pop_cat_worker_plural$"
+ mod_pop_category_workers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for £pop_cat_worker£ $pop_cat_worker_plural$"
+ 
 
  mod_planet_jobs_workers_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_worker_plural$"
  mod_planet_jobs_specialist_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
@@ -129,9 +131,12 @@
 
  mod_planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$" 
 
- mod_planet_colonist_food_produces_add:0 "£food£ Food from £colonist£ Colonists"
+ mod_planet_colonist_food_produces_add:0 "$r_food$ from $icon_job_colonists$"
+ mod_planet_colonist_food_produces_mult:0 "$r_food$ from $icon_job_colonists$"
  mod_planet_colonist_minerals_produces_add:0 "$r_minerals$ from $icon_job_colonists$"
+ mod_planet_colonist_minerals_produces_mult:0 "$r_minerals$ from $icon_job_colonists$"
  mod_planet_colonist_energy_produces_add:0 "$r_energy$ from $icon_job_colonists$"
+ mod_planet_colonist_energy_produces_mult:0 "$r_energy$ from $icon_job_colonists$"
  mod_planet_colonist_physics_research_produces_add:0 "$r_physics_research$ from $icon_job_colonists$"
  mod_planet_colonist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$"
  mod_planet_colonist_engineering_research_produces_add:0 "$r_engineering_research$ from $icon_job_colonists$"
@@ -163,6 +168,8 @@
  mod_planet_technician_alloys_upkeep_add:0 "$r_alloys$ Upkeep for $job_technician_plural$"
  mod_planet_technician_consumer_goods_produces_add:0 "$r_consumer_goods$ from $job_technician_plural$"
 
+ mod_planet_scrap_miners_alloys_produces_add:0 "r_alloys$ from Scrap Miners"
+
  mod_planet_researchers_food_upkeep_add:0 "$r_food$ Upkeep for $job_researcher_plural$"
  mod_planet_researchers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $job_researcher_plural$"
  
@@ -172,6 +179,8 @@
  mod_planet_pop_assemblers_alloys_upkeep_mult:0 "Pop Assembly $r_alloys$ Cost"
  mod_planet_pop_assemblers_energy_upkeep_mult:0 "Pop Assembly $r_energy$ Cost"
  mod_planet_pop_assemblers_minerals_upkeep_mult:0 "Pop Assembly $r_minerals$ Cost"
+
+ mod_planet_metallurgists_unity_produces_add:0 "$r_unity$ from $job_metallurgist_plural$"
 
  mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
  

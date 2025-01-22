@@ -85,7 +85,7 @@ post_apocalyptic_new_horizons = {
 		modifier = {
 			desc = sending_food
 			current_situation_approach = send_food
-			add = value:colonial_cohesion_gestalt
+			add = value:colonial_food_shipment
 		}
 
 		modifier = {

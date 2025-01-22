@@ -681,6 +681,7 @@ d_sea_monster = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_trait = trait_aquatic	}
 		}
 		modifier = {
@@ -690,6 +691,7 @@ d_sea_monster = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_civic = civic_anglers }
 		}
 		modifier = {
@@ -759,6 +761,7 @@ d_great_lake = {
 	
 	triggered_planet_modifier = {
 		potential = { 
+			exists = owner
 			owner = { 
 				has_civic = civic_anglers 
 			}
@@ -1092,13 +1095,15 @@ d_basaltic_outcrops = {
 		modifier = {
 			factor = 0
 			owner = {
-				has_ai_personality = ruthless_capitalists	# Alloys are profitable!
-				has_ai_personality = hegemonic_imperialists	# We like imposing landscape (and mining)
-				has_civic = civic_mining_guilds
-				has_civic = civic_crafters
-				has_civic = civic_corporate_crafters
-				has_civic = civic_shared_burden
-				has_origin = origin_subterranean
+				OR = {
+					has_ai_personality = ruthless_capitalists	# Alloys are profitable!
+					has_ai_personality = hegemonic_imperialists	# We like imposing landscape (and mining)
+					has_civic = civic_mining_guilds
+					has_civic = civic_crafters
+					has_civic = civic_corporate_crafters
+					has_civic = civic_shared_burden
+					has_origin = origin_subterranean
+				}
 			}
 		}
 	}
@@ -2940,6 +2945,7 @@ d_arid_plains = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner.home_planet = {
 				is_dry = yes
 			}

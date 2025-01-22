@@ -424,7 +424,7 @@ tbm_homeworld_origin_spreads = {
 
 		# Farming - Post-apoc get very little farming: 3 (-3 from vanilla)
 		add_deposit = d_nutrient_rations
-		add_deposit = d_lost_warrens
+		add_deposit = d_lost_warren
 		add_deposit = d_seed_banks
 	}
 
