@@ -67,6 +67,9 @@
  r_engineering_research:0 "§Y£engineering_research£ Engineering Research§!"
  r_unity:0 "§Y£unity£ Unity§!"
 
+ planet_colonist:0 "Colonists"
+ planet_scrap_miners:0 "Scrap Miners"
+
 
  # TBM Buildings
 
@@ -123,7 +126,6 @@
  mod_pop_category_workers_produces_mult:0 "Resources from $pop_cat_worker_plural$"
  mod_pop_category_workers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for £pop_cat_worker£ $pop_cat_worker_plural$"
  
-
  mod_planet_jobs_workers_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_worker_plural$"
  mod_planet_jobs_specialist_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
  mod_planet_jobs_exotic_gases_upkeep_mult:0 "$r_exotic_gases$ from Jobs"
