@@ -314,7 +314,7 @@ building_museum_apocalypse = {
 	category = unity
 
 	is_capped_by_modifier = yes
-	base_cap_amount = 0
+	#base_cap_amount = 0
 
 	potential = {
 		NOT = { is_planet_class = pc_habitat }

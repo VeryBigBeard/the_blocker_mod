@@ -182,7 +182,7 @@
  mod_planet_pop_assemblers_energy_upkeep_mult:0 "Pop Assembly $r_energy$ Cost"
  mod_planet_pop_assemblers_minerals_upkeep_mult:0 "Pop Assembly $r_minerals$ Cost"
 
- mod_planet_metallurgists_unity_produces_add:0 "$r_unity$ from $job_metallurgist_plural$"
+ mod_planet_metallurgists_unity_produces_add:0 "$r_unity$ from $job_foundry_plural$"
 
  mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
  
@@ -201,6 +201,10 @@
  mod_job_dangerous_wildlife_poacher_add:0 "$job_dangerous_wildlife_poacher$ Jobs"
 
  mod_edicts_unity_upkeep_mult:0 "Edict £unity£ Upkeep"
+
+ mod_building_museum_apocalypse_max:0 "Museum of the Apocalypse"
+ mod_building_laboratory_apocalypse_max:0 "Laboratory of Survival"
+ mod_building_cathedral_apocalypse_max:0 "Cathedral of the Fall"
 
  ###
 
