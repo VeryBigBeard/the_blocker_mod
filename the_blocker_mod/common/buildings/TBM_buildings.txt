@@ -314,13 +314,12 @@ building_museum_apocalypse = {
 	category = unity
 
 	is_capped_by_modifier = yes
+	#base_cap_amount = 0
 
 	potential = {
 		NOT = { is_planet_class = pc_habitat }
 		exists = owner
 	}
-
-	base_cap_amount = 1
 
 	resources = {
 		category = planet_buildings
@@ -359,13 +358,12 @@ building_laboratory_apocalypse = {
 	category = research
 
 	is_capped_by_modifier = yes
+	base_cap_amount = 0
 
 	potential = {
 		NOT = { is_planet_class = pc_habitat }
 		exists = owner
 	}
-
-	base_cap_amount = 1
 
 	resources = {
 		category = planet_buildings
@@ -410,7 +408,7 @@ building_cathedral_apocalypse = {
 		exists = owner
 	}
 
-	base_cap_amount = 1
+	base_cap_amount = 0
 
 	resources = {
 		category = planet_buildings

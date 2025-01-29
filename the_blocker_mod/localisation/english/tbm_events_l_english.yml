@@ -8,7 +8,7 @@
  # Pioneering Colonists
 
  tbm_handler.101.name:0 "Pioneering Colonists"
- tbm_handler.101.desc:0 "The colonists who landed on [planet.GetName] have been greeted with a strange and  wonderful alien landscape. Though the new world offers much bounty, even more work lies ahead to prepare land for the cities and industry that will one day make [planet.GetName] a crucial part of the [planet.GetOwnerName].\n\nFortunately, our colonists were hand-picked for their hardiness, ingenuity, and courage in the face of the challenge ahead. They have spent the past months on-world setting up camps, charting the [olanet.GetPlanetMoon] geography, and documenting alien life in detail.\n\nAll that remains is to allocate resources and equipment to begin clearing land to make [planet.GetName] into a new home."
+ tbm_handler.101.desc:0 "The colonists who landed on §Y[planet.GetName]§! have been greeted with a strange and  wonderful alien landscape. Though the new world offers much bounty, even more work lies ahead to prepare land for the cities and industry that will one day make [planet.GetName] a crucial part of the [planet.GetOwnerName].\n\nFortunately, our colonists were hand-picked for their hardiness, ingenuity, and courage in the face of the challenge ahead. They have spent the past months on-world setting up camps, charting the [olanet.GetPlanetMoon] geography, and documenting alien life in detail.\n\nAll that remains is to allocate resources and equipment to begin clearing land to make [planet.GetName] into a new home."
  tbm_handler.101.option:0 "Good luck, brave colonists."
 
 

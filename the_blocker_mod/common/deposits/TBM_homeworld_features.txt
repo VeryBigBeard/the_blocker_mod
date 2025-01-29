@@ -204,7 +204,7 @@ d_homeworld_deep_trench = {
 
 		modifier = {
 			set = @clear	# Keep as no negative effects but don't block ecu.
-			root = { free_district_slots = 0 }
+			from = { free_district_slots = 0 }
 			owner = { has_ascension_perk = ap_arcology_project }
 		}
 	}
@@ -531,7 +531,7 @@ d_recycling_processes = {
 
 		modifier = {
 			set = @clear	# Get rid of this when upgrading the assembly facility or capital to save alloy upkeep
-			root = {
+			from = {
 				num_assigned_jobs = {
 					job = replicator
 					value >= 3
@@ -627,7 +627,7 @@ d_gestalt_major_impact_site = {
 
 		modifier = {
 			set = @clear
-			root = {
+			from = {
 				planet_crime > 25
 			}
 		}
@@ -768,7 +768,7 @@ d_homeworld_dustbowl = {
 			}
 			
 			# Do not wreck existing district with it, though
-			planet = {
+			from = {
 				num_free_districts = {
 					type = any
 					value > 1
@@ -1059,7 +1059,7 @@ d_experimental_geothermal_tap = {
 		modifier = {
 			set = @clear
 			years_passed > 30
-			root = {
+			from = {
 				num_free_districts = {
 					type = district_generator
 					value > 1
@@ -1113,7 +1113,7 @@ d_gestlat_experimental_geothermal_tap = {
 		modifier = {
 			set = @clear
 			years_passed > 30
-			root = {
+			from = {
 				num_free_districts = {
 					type = district_generator
 					value > 1
@@ -1711,7 +1711,7 @@ d_homeworld_urban_aeroponics = {
 					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
-			root = {
+			from = {
 				num_assigned_jobs = {
 					job = farmer
 					value > 10
@@ -1761,7 +1761,7 @@ d_homeworld_gestalt_urban_aeroponics = {
 					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
 				}
 			}
-			root = {
+			from = {
 				num_assigned_jobs = {
 					job = farmer
 					value > 10
@@ -1942,7 +1942,7 @@ d_reclaimed_land = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -2860,7 +2860,7 @@ d_collapsed_superhighway = {
 	}
 
 	on_cleared = {	
-		root = {
+		from = {
 			add_modifier = {
 				modifier = superhighway_engineering
 				years = 5
@@ -2955,7 +2955,7 @@ d_homeworld_scrap_mountain = {
 
 		modifier = {
 			set = @clear
-			root = {
+			from = {
 				num_assigned_jobs = {
 					job = scrap_miner
 					value > 2
@@ -3627,7 +3627,7 @@ d_crop_shares = {
 				}
 			}
 
-			root = {
+			from = {
 				num_assigned_jobs = {
 					job = farmer
 					value > 10
@@ -3675,7 +3675,7 @@ d_outdated_food_equipment = {	# Gestalt Prosperous ag district
 				}
 			}
 
-			root = {
+			from = {
 				num_assigned_jobs = {
 					job = farmer
 					value > 10
@@ -4309,7 +4309,7 @@ d_droid_factory = {
 
 		modifier = {
 			set = @always_clear
-			root = {
+			from = {
 				free_amenities > 10		# AI often struggles with amenity death spirals. Research hit is harsh, but we want to avoid the spiral.
 			}
 		}

@@ -1385,9 +1385,9 @@ d_memorial_apocalypse = {
 	}
 
 	planet_modifier = {
-		building_museum_apocalypse_max_add = 1
-		building_laboratory_apocalypse_max_add = 1
-		building_cathedral_apocalype_add = 1
+		building_museum_apocalypse_max = 1
+		building_laboratory_apocalypse_max = 1
+		building_cathedral_apocalypse_max = 1
 	}
 
 	potential = {

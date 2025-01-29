@@ -92,7 +92,7 @@
 		if = {
 			limit = {
 				count_owned_pop = {
-					limit = { has_job = unemployed }
+					limit = { is_unemployed = yes }
 					count > 4
 				}
 			}

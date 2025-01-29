@@ -931,7 +931,7 @@ planet_event = {
 				location = this
 			}
 		}
-		set_planet_flag = sinkhole_causes
+		set_planet_flag = sinkhole_investigated
 	}
 	
 	option = {
@@ -981,6 +981,7 @@ planet_event = {
 			owner = { is_gestalt = no }
 		}
 		set_planet_flag = occasional_sinkholes
+		remove_planet_flag = sinkhole_investigated
 		add_modifier = {
 			modifier = subterranean_river_cruises
 		}

@@ -166,6 +166,7 @@ specialist_ratio = {
 	base = 1
 	complex_trigger_modifier = {
 		trigger = count_owned_pop
+		trigger_scope = planet
 		parameters = {
 			is_pop_category = specialist
 		}
@@ -181,6 +182,7 @@ colonial_food_shipment = {
 	base = 2
 	complex_trigger_modifier = {
 		trigger = num_districts
+		trigger_scope = target		# Situation: POst-Apoc -- New Horizons target = colony
 		parameters = {
 			type = district_farming
 		}
@@ -193,6 +195,7 @@ coop_food_shipment = {
 	base = 3
 	complex_trigger_modifier = {
 		trigger = num_districts
+		trigger_scope = target		# Used in Situation: Post-Apoc: New Horizons; target = colony
 		parameters = {
 			type = district_farming
 		}

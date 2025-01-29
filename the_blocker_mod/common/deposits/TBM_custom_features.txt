@@ -135,7 +135,7 @@ d_fjordland = {
 
 		modifier = {
 			set = @base		# These are useful, but they're also space-killers, so get rid of them when we need to
-			root = { colony_type = col_mining }
+			from = { colony_type = col_mining }
 		}
 		modifier = {
 			set = @keep
@@ -309,7 +309,7 @@ d_sandstone_spires = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				free_district_slots > 1
 				OR = {
 					colony_type = col_mining
@@ -440,7 +440,7 @@ d_steppe_uplands = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				OR = {
 					colony_type = col_rural
 					colony_type = col_generator
@@ -523,7 +523,7 @@ d_glacier_lake = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				OR = {
 					colony_type = col_farming
 					free_amenities < 5
@@ -623,7 +623,7 @@ d_giant_tree  = {
 
 		modifier = {
 			set = @keep	# Amenities on resource worlds are good!
-			root = {
+			from = {
 				OR = {
 					colony_type = col_mining
 					colony_type = col_farming
@@ -681,6 +681,7 @@ d_sea_monster = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_trait = trait_aquatic	}
 		}
 		modifier = {
@@ -690,6 +691,7 @@ d_sea_monster = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_civic = civic_anglers }
 		}
 		modifier = {
@@ -759,6 +761,7 @@ d_great_lake = {
 	
 	triggered_planet_modifier = {
 		potential = { 
+			exists = owner
 			owner = { 
 				has_civic = civic_anglers 
 			}
@@ -803,12 +806,12 @@ d_great_lake = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_farming }
+			from = { colony_type = col_farming }
 		}
 
 		modifier = {
 			set = @clear		# Kind of counter-intuitive, but AI will have lots of amenities on urban worlds already.
-			root = { colony_type = col_city }
+			from = { colony_type = col_city }
 		}
 
 		modifier = {
@@ -892,12 +895,12 @@ d_floodplains = {
 
 		modifier = {
 			set = @keep	# Basically clear these unless it's a big farm world.
-			root = { colony_type = col_farming }
+			from = { colony_type = col_farming }
 		}
 
 		modifier = {
 			set = @base	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
-			root = {
+			from = {
 				num_free_districts = {
 					type = district_farming
 					value > 0
@@ -966,7 +969,7 @@ d_tidal_marshes = {
 
 		modifier = {
 			set = @keep	# Basically clear these unless it's a big farm or wind world.
-			root = {
+			from = {
 				OR = {
 					colony_type = col_farming
 					colony_type = col_generator
@@ -976,7 +979,7 @@ d_tidal_marshes = {
 
 		modifier = {
 			set = @base	# Unless we need a district AND we have other farming slots available, because these aren't that good and we might need housing, etc.
-			root = {
+			from = {
 				OR = {
 					num_free_districts = {
 						type = district_farming
@@ -1081,24 +1084,26 @@ d_basaltic_outcrops = {
 
 		modifier = {
 			set = @always_keep		# Metallurgist upkeep reduction
-			root = { colony_type = col_foundry }
+			from = { colony_type = col_foundry }
 		}
 
 		modifier = {
 			set = @base
-			root = { colony_type = col_mining }
+			from = { colony_type = col_mining }
 		}
 
 		modifier = {
 			factor = 0
 			owner = {
-				has_ai_personality = ruthless_capitalists	# Alloys are profitable!
-				has_ai_personality = hegemonic_imperialists	# We like imposing landscape (and mining)
-				has_civic = civic_mining_guilds
-				has_civic = civic_crafters
-				has_civic = civic_corporate_crafters
-				has_civic = civic_shared_burden
-				has_origin = origin_subterranean
+				OR = {
+					has_ai_personality = ruthless_capitalists	# Alloys are profitable!
+					has_ai_personality = hegemonic_imperialists	# We like imposing landscape (and mining)
+					has_civic = civic_mining_guilds
+					has_civic = civic_crafters
+					has_civic = civic_corporate_crafters
+					has_civic = civic_shared_burden
+					has_origin = origin_subterranean
+				}
 			}
 		}
 	}
@@ -1207,7 +1212,7 @@ d_volcanic_island = {
 		modifier = {
 			factor = 0
 			owner = { has_trait = trait_aquatic }
-			root = {
+			from = {
 				NOT = { is_planet_class = pc_ocean }
 			}
 		}
@@ -1271,7 +1276,7 @@ d_volcanic_soil = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_farming }
+			from = { colony_type = col_farming }
 		}
 
 		modifier = {
@@ -1452,12 +1457,12 @@ d_fish_shoals = {
 		modifier = {
 			set = @keep
 			owner = { has_trait = trait_aquatic	}
-			root = { is_homeworld = yes }
+			from = { is_homeworld = yes }
 		}
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_research }
+			from = { colony_type = col_research }
 		}
 	}
 }
@@ -1533,7 +1538,7 @@ d_tbm_impact_crater = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_mining }
+			from = { colony_type = col_mining }
 		}
 
 		modifier = {
@@ -1632,12 +1637,12 @@ d_frozen_wasteland = {
 
 		modifier = {
 			set = @base 	# This is still a space killer, so we want to clear it soon even on generator worlds.
-			root = { colony_type = col_generator }
+			from = { colony_type = col_generator }
 		}
 
 		modifier = {
 			set = @keep 	# However, keep it if we're on a generator world and we're trying to build more generators
-			root = { 
+			from = { 
 				colony_type = col_generator
 				num_free_districts = {
 					type = district_generator
@@ -1772,7 +1777,7 @@ d_mountain_jungle = {
 
 		modifier = {
 			set = @keep	# Keep it around for research.
-			root = {
+			from = {
 				any_owned_pop = {
 					has_job = colonist
 				}
@@ -1782,7 +1787,7 @@ d_mountain_jungle = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				OR = {
 					colony_type = col_research
 					colony_type = col_bureau_spiritualist
@@ -1901,12 +1906,12 @@ d_taiga = {
 
 		modifier = {
 			set = @base	# Will stick around on farm worlds until space is needed.
-			root = { colony_type = col_farming }
+			from = { colony_type = col_farming }
 		}
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				any_owned_pop = {
 					has_job = colonist
 				}
@@ -1915,7 +1920,7 @@ d_taiga = {
 
 		modifier = {
 			set = @base
-			root = { colony_type = col_default }
+			from = { colony_type = col_default }
 		}
 
 		modifier = {
@@ -2030,12 +2035,12 @@ d_scrubland = {
 
 		modifier = {
 			set = @base	# Will stick around on farm worlds until space is needed.
-			root = { colony_type = col_farming }
+			from = { colony_type = col_farming }
 		}
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				any_owned_pop = {
 					has_job = colonist
 				}
@@ -2044,7 +2049,7 @@ d_scrubland = {
 
 		modifier = {
 			set = @base
-			root = { colony_type = col_default }
+			from = { colony_type = col_default }
 		}
 	}
 }
@@ -2178,7 +2183,7 @@ d_fertile_delta = {
 
 		modifier = {
 			set = @base		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
-			root = {
+			from = {
 				NOR = {
 					colony_type = col_rural
 					colony_type = col_farming
@@ -2244,7 +2249,7 @@ d_drylands = {
 
 		modifier = {
 			set = @clear
-			root = {
+			from = {
 				NOR = {
 					colony_type = col_rural
 					colony_type = col_generator
@@ -2333,7 +2338,7 @@ d_crags = {
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				NOR = {
 					colony_type = col_mining
 					free_amenities < 5
@@ -2433,12 +2438,12 @@ d_dunelands = {
 
 		modifier = {
 			set = @base	# Keep until space needed on generator, otherwise not worth the upkeep.
-			root = { colony_type = col_generator }
+			from = { colony_type = col_generator }
 		}
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				OR = {
 					any_owned_pop = {
 						has_job = colonist
@@ -2524,7 +2529,7 @@ d_highland_lake = {
 
 		modifier = {
 			set = @base		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
-			root = {
+			from = {
 				OR = {
 					colony_type = col_industrial
 					colony_type = col_foundry
@@ -2624,7 +2629,7 @@ d_lakelands = {
 
 		modifier = {
 			set = @base		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
-			root = {
+			from = {
 				OR = {
 					colony_type = col_industrial
 					colony_type = col_foundry
@@ -2714,7 +2719,7 @@ d_lowland_hills = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				OR = {
 					colony_type = col_farming
 					colony_type = col_mining
@@ -2810,12 +2815,12 @@ d_misty_plains = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_farming }
+			from = { colony_type = col_farming }
 		}
 
 		modifier = {
 			set = @always_keep
-			root = { is_planet_class = pc_nuked }	# Mostly for flavor, but can also be more useful for the food on tombs
+			from = { is_planet_class = pc_nuked }	# Mostly for flavor, but can also be more useful for the food on tombs
 		}
 	}
 }
@@ -2893,7 +2898,7 @@ d_salt_flats = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_mining }
+			from = { colony_type = col_mining }
 		}
 
 		modifier = {
@@ -2940,7 +2945,8 @@ d_arid_plains = {
 
 	triggered_planet_modifier = {
 		potential = {
-			owner.home_planet = {
+			exists = owner
+			owner_species.home_planet = {
 				is_dry = yes
 			}
 		}
@@ -2978,7 +2984,7 @@ d_arid_plains = {
 
 		modifier = {
 			set = @base
-			root = { colony_type = col_generator }
+			from = { colony_type = col_generator }
 		}
 
 		modifier = {
@@ -3153,7 +3159,7 @@ d_sandstone_cliffs = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_mining }
+			from = { colony_type = col_mining }
 		}
 
 		modifier = {
@@ -3236,12 +3242,12 @@ d_highlands = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_mining }
+			from = { colony_type = col_mining }
 		}
 
 		modifier = {
 			set = @keep
-			root = { free_amenities < 5 }
+			from = { free_amenities < 5 }
 		}
 	}
 }
@@ -3297,7 +3303,7 @@ d_rough_plains = {
 
 		modifier = {
 			set = @base	# Clear unless you really need the farming space AND have the amenities covered
-			root = {
+			from = {
 				colony_type = col_farming
 				num_districts = {
 					type = district_farming
@@ -3357,8 +3363,8 @@ d_seaweed_shoals = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
-				exists = owner
 				any_owned_pop = {
 					has_job = colonist
 				}
@@ -3394,12 +3400,12 @@ d_seaweed_shoals = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_farming }
+			from = { colony_type = col_farming }
 		}
 
 		modifier = {
 			set = @always_keep	# Keep for sure if aquatic farm world.
-			root = { colony_type = col_farming }
+			from = { colony_type = col_farming }
 			owner = { has_trait = trait_aquatic }
 		}
 	}
@@ -3467,7 +3473,7 @@ d_gas_vents = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_generator }
+			from = { colony_type = col_generator }
 		}
 	}
 }
@@ -3573,7 +3579,7 @@ d_tbm_crater = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_mining }
+			from = { colony_type = col_mining }
 		}
 	}
 }
@@ -3709,7 +3715,7 @@ d_collapsed_cliffs = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_mining }
+			from = { colony_type = col_mining }
 		}
 	}
 }
@@ -3763,7 +3769,7 @@ d_urban_power_plant = {
 
 		modifier = {
 			set = @keep	# Keep, but only on generator worlds where we're actually getting some benefit.
-			root = {
+			from = {
 				colony_type = col_generator
 				num_assigned_jobs = {
 					job = technician
@@ -3896,7 +3902,7 @@ d_settlement = {
 
 		modifier = {
 			set = @keep
-			root = { free_housing <= 3 }
+			from = { free_housing <= 3 }
 		}
 	}
 }
@@ -3986,7 +3992,7 @@ d_dustbowl = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_mining
 				num_free_districts = {
 					type = district_mining
@@ -3997,7 +4003,7 @@ d_dustbowl = {
 
 		modifier = {
 			set = @keep		# Avoid zapping districts in use. Should mean dustbowls stick around on developed worlds, which is the idea flavor-wise
-			root = {
+			from = {
 				num_free_districts = {
 					type = any
 					value < 1
@@ -4041,7 +4047,7 @@ d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld 
 
 		modifier = {
 			set = @always_clear	# Keep as no negative effects but don't block ecu.
-			root = { free_district_slots = 0 }
+			from = { free_district_slots = 0 }
 			owner = { has_ascension_perk = ap_arcology_project }
 		}
 	}
@@ -4204,7 +4210,7 @@ d_coal_bed = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_generator }
+			from = { colony_type = col_generator }
 		}
 	}
 }
@@ -4266,7 +4272,7 @@ d_subterranean_gas_lake = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_generator }
+			from = { colony_type = col_generator }
 		}
 
 		modifier = {
@@ -4345,7 +4351,7 @@ d_oil_fields_at_first_light = {
 
 		modifier = {
 			set = @keep
-			root = { colony_type = col_generator }
+			from = { colony_type = col_generator }
 		}
 	}
 }
@@ -4736,7 +4742,7 @@ d_energy_banks = {
 
 		modifier = {
 			set = @always_clear
-			root = {
+			from = {
 				num_free_districts = {
 					type = any
 					value < 1
@@ -4775,7 +4781,7 @@ d_mineral_stockpiles = {
 
 		modifier = {
 			set = @always_clear
-			root = {
+			from = {
 				num_free_districts = {
 					type = any
 					value < 1
@@ -4814,7 +4820,7 @@ d_food_silos = {
 
 		modifier = {
 			set = @always_clear
-			root = {
+			from = {
 				num_free_districts = {
 					type = any
 					value < 1
@@ -4954,7 +4960,7 @@ d_tbm_active_volcano = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				OR = {
 					colony_type = col_generator
 					AND = {

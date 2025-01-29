@@ -1,7 +1,6 @@
 # TBM - AI Planet Designation Archetypes
 
-### this = deposit ###
-### from = planet ###
+### this/root = deposit ###
 ### owner = country ###
 
 # Basic planet designation weighting applied to (almost) every feature.
@@ -14,7 +13,7 @@
 # Unity, research designations - this: planet
 modifier = {
 	set = 0
-	root = {
+	from = {
 		OR = {
 			colony_type = col_bureau
 			colony_type = col_bureau_hive
@@ -46,7 +45,7 @@ modifier = {
 
 modifier = {
 	set = 1
-	root = {
+	from = {
 		OR = {
 			colony_type = col_industrial
 			colony_type = col_foundry

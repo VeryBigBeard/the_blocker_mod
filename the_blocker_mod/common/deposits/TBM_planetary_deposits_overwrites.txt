@@ -165,7 +165,7 @@ d_mountain_range = {
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				OR = {
 					colony_type = col_mining
 					num_free_districts = {
@@ -282,7 +282,7 @@ d_active_volcano = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				OR = {
 					colony_type = col_generator
 					AND = {
@@ -358,7 +358,7 @@ d_dangerous_wildlife_blocker = {
 		
 		# Chance of Xenofauna Attacks
 		# hidden_effect = {
-		# 	planet = {
+		# 	from = {
 		# 		set_timed_planet_flag = {
 		# 			flag = settlement_attacked
 		# 			years = 1
@@ -642,7 +642,7 @@ d_dense_jungle = {
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -1018,7 +1018,7 @@ d_quicksand_basin = {
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				OR = {
 					colony_type = col_rural
 					colony_type = col_research
@@ -1028,7 +1028,7 @@ d_quicksand_basin = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_mining
 			}
 			owner = { has_technology = tech_noxious_swamp }
@@ -1134,7 +1134,7 @@ d_noxious_swamp = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				any_owned_pop = {
 					has_job = colonist
 				}
@@ -1147,7 +1147,7 @@ d_noxious_swamp = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
@@ -1266,7 +1266,7 @@ d_massive_glacier = {
 		
 		modifier = {
 			set = @base	# These are pretty good mining features but they're also space-killers, so AI should still clear when it needs to
-			root = {
+			from = {
 				colony_type = col_mining
 			}
 		}
@@ -1357,7 +1357,7 @@ d_radioactive_wasteland = {
 
 		modifier = {
 			set = @keep	# These get very little other reason to be kept around so should still go.
-			root = {
+			from = {
 				any_owned_pop = {
 					has_job = colonist
 				}
@@ -1366,7 +1366,7 @@ d_radioactive_wasteland = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
@@ -1446,7 +1446,7 @@ d_city_ruins = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
@@ -1510,7 +1510,7 @@ d_bomb_crater = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				OR = {
 					colony_type = col_research
 					colony_type = col_mining
@@ -1589,7 +1589,7 @@ d_arid_highlands = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 	
 	# From A City of the Desert Chain
@@ -1649,7 +1649,7 @@ d_arid_highlands = {
 
 		modifier = {
 			factor = 0
-			root = {
+			from = {
 				colony_type = col_mining
 			}
 		}
@@ -1663,7 +1663,7 @@ d_arid_highlands = {
 
 		modifier = {
 			factor = 0
-			root = {
+			from = {
 				has_planet_flag = desert_strong
 			}
 		}
@@ -1727,7 +1727,7 @@ d_hot_springs = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -1769,7 +1769,7 @@ d_hot_springs = {
 
 		modifier = {
 			factor = 0	# Do not clear baths on unity worlds
-			root = {
+			from = {
 				OR = {
 					colony_type = col_bureau
 					colony_type = col_bureau_hive
@@ -1781,7 +1781,7 @@ d_hot_springs = {
 
 		modifier = {
 			factor = 0
-			root = {
+			from = {
 				free_amenities < 10
 			}
 		}
@@ -1844,7 +1844,7 @@ d_rushing_waterfalls = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -1906,7 +1906,7 @@ d_rushing_waterfalls = {
 		
 		modifier = {
 			factor = 0	# Do not clear waterfalls on unity worlds
-			root = {
+			from = {
 				OR = {
 					colony_type = col_bureau
 					colony_type = col_bureau_hive
@@ -1918,7 +1918,7 @@ d_rushing_waterfalls = {
 
 		modifier = {
 			factor = 0
-			root = {
+			from = {
 				free_amenities < 5
 			}
 		}
@@ -1996,7 +1996,7 @@ d_searing_desert = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	# From A City of the Desert Chain
@@ -2075,14 +2075,14 @@ d_searing_desert = {
 
 		modifier = {
 			set = @base 	# Slight boost, but this is still a space killer, so we want to clear it soon even on generator worlds.
-			root = {
+			from = {
 				colony_type = col_generator
 			}
 		}
 
 		modifier = {
 			set = @keep 	# However, keep it if we're on a generator world and we're trying to build more generators
-			root = {
+			from = {
 				colony_type = col_generator
 				num_free_districts = {
 					type = district_generator
@@ -2130,7 +2130,7 @@ d_frozen_gas_lake = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -2189,7 +2189,7 @@ d_frozen_gas_lake = {
 		
 		modifier = {
 			factor = 0
-			root = {
+			from = {
 				OR = {
 					colony_type = col_generator
 					colony_type = col_research
@@ -2267,7 +2267,7 @@ d_geothermal_vent = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -2307,7 +2307,7 @@ d_geothermal_vent = {
 
 		modifier = {
 			factor = 0
-			root = {
+			from = {
 				OR = {
 					colony_type = col_generator
 					colony_type = col_research
@@ -2358,7 +2358,7 @@ d_underwater_vent = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -2438,7 +2438,7 @@ d_underwater_vent = {
 
 		modifier = {
 			set = @clear	
-			root = {
+			from = {
 				NOT = { is_homeworld = yes }
 			}
 			owner = { has_trait = trait_aquatic }
@@ -2446,7 +2446,7 @@ d_underwater_vent = {
 
 		modifier = {
 			set = @base	# Should result in Aquatics treating these as basically normal blockers but only on generator worlds. Otherwise, they want the space.
-			root = {
+			from = {
 				OR = {
 					colony_type = col_generator
 					colony_type = col_research
@@ -2457,7 +2457,7 @@ d_underwater_vent = {
 		modifier = {
 			set = @keep
 			owner = { has_trait = trait_aquatic }
-			root = {
+			from = {
 				NOT = { colony_type = col_city }
 			}
 		}
@@ -2506,7 +2506,7 @@ d_tempestous_mountain = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -2554,7 +2554,7 @@ d_tempestous_mountain = {
 
 		modifier = {
 			factor = 0
-			root = {
+			from = {
 				OR = {
 					colony_type = col_farming
 					colony_type = col_mining
@@ -2626,7 +2626,7 @@ d_veiny_cliffs = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -2671,7 +2671,7 @@ d_veiny_cliffs = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_mining
 			}
 		}
@@ -2748,7 +2748,7 @@ d_mineral_fields = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -2800,7 +2800,7 @@ d_mineral_fields = {
 
 		modifier = {
 			set = @keep	# These are upper-end mining features as they don't hit amenities
-			root = {
+			from = {
 				colony_type = col_mining
 			}
 		}
@@ -2885,7 +2885,7 @@ d_prosperous_mesa = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -3010,7 +3010,7 @@ d_ore_rich_caverns = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -3081,7 +3081,7 @@ d_rich_mountain = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -3142,7 +3142,7 @@ d_rich_mountain = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				OR = {
 					colony_type = col_mining
 					colony_type = col_farming
@@ -3262,6 +3262,7 @@ d_submerged_ore_veins = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_origin = origin_ocean_paradise }
 			is_homeworld = yes
 		}
@@ -3275,7 +3276,7 @@ d_submerged_ore_veins = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -3306,7 +3307,7 @@ d_submerged_ore_veins = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_mining
 			}
 		}
@@ -3347,7 +3348,7 @@ d_lichen_fields = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -3426,7 +3427,7 @@ d_lichen_fields = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 				is_cold = yes	# Needs to be both, otherwise this feature really isn't worth it
 			}
@@ -3495,7 +3496,7 @@ d_bountiful_plains = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 	
 	potential = {
@@ -3543,7 +3544,7 @@ d_bountiful_plains = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -3637,7 +3638,7 @@ d_rugged_woods = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -3714,7 +3715,7 @@ d_rugged_woods = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -3799,7 +3800,7 @@ d_green_hills = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 	
 	triggered_planet_modifier = {
@@ -3925,7 +3926,7 @@ d_forgiving_tundra = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 	
 	triggered_planet_modifier = {
@@ -3986,7 +3987,7 @@ d_forgiving_tundra = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -4059,7 +4060,7 @@ d_boggy_fens = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -4134,14 +4135,14 @@ d_boggy_fens = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
 
 		modifier = {
 			set = @clear
-			root = {
+			from = {
 				free_amenities < -10	# Only if we're in crisis here. AIs don't need any more help having planetary revolts.
 			}
 		}
@@ -4187,7 +4188,7 @@ d_nutritious_mudland = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -4251,7 +4252,7 @@ d_nutritious_mudland = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -4308,7 +4309,7 @@ d_fungal_caves = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -4478,14 +4479,14 @@ d_lush_jungle = {
 		
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -4546,7 +4547,7 @@ d_fertile_lands = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -4593,7 +4594,7 @@ d_fertile_lands = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -4765,7 +4766,7 @@ d_black_soil = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -4803,7 +4804,7 @@ d_black_soil = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -4892,11 +4893,12 @@ d_teeming_reef = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_origin = origin_ocean_paradise }
 			is_homeworld = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 
 	}
 
@@ -4983,7 +4985,7 @@ d_teeming_reef = {
 		modifier = {
 			set = @keep
 			owner = { has_trait = trait_aquatic	}
-			root = {
+			from = {
 				is_homeworld = yes
 			}
 		}
@@ -5001,7 +5003,7 @@ d_teeming_reef = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
@@ -5054,7 +5056,7 @@ d_marvelous_oasis = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -5141,7 +5143,7 @@ d_tropical_island = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -5225,7 +5227,7 @@ d_tropical_island = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -5340,7 +5342,7 @@ d_fungal_forest = {
 		
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
@@ -5372,7 +5374,7 @@ d_fungal_forest = {
 
 		modifier = {
 			set = @base
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
@@ -5500,7 +5502,7 @@ d_buzzing_plains = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -5547,14 +5549,14 @@ d_buzzing_plains = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_generator
 			}
 		}
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}	
@@ -5600,7 +5602,7 @@ d_mineral_striations = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	triggered_planet_modifier = {
@@ -5609,7 +5611,7 @@ d_mineral_striations = {
 			owner = { has_trait = trait_aquatic }
 		}
 		district_mining_max = -1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -5633,14 +5635,14 @@ d_mineral_striations = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_mining
 			}
 		}
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
@@ -5669,7 +5671,7 @@ d_natural_farmland = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -5689,14 +5691,14 @@ d_natural_farmland = {
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_farming
 			}
 		}
 
 		modifier = {
 			set = @keep
-			root = {
+			from = {
 				colony_type = col_research
 			}
 		}
@@ -5735,7 +5737,7 @@ d_scandinavian_reclamation_sector = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -5782,7 +5784,7 @@ d_pacific_algae_tracts = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -5830,7 +5832,7 @@ d_saharan_irrigation_project = {
 			always = yes
 		}
 		district_farming_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -5877,7 +5879,7 @@ d_mesopotamian_urban_corridor = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -5925,7 +5927,7 @@ d_delhi_sprawl = {
 			always = yes
 		}
 		district_generator_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -5968,7 +5970,7 @@ d_boswash_metropolitan_axis = {
 			always = yes
 		}
 		district_generator_max = 3
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -6015,7 +6017,7 @@ d_pearl_river_agglomerate = {
 			always = yes
 		}
 		district_generator_max = 3
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -6062,7 +6064,7 @@ d_mauritanian_security_zone = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -6109,7 +6111,7 @@ d_great_albertan_crater = {
 			always = yes
 		}
 		district_mining_max = 1
-		mult = value:district_amount_mastery_of_nature
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
