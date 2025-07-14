@@ -104,16 +104,37 @@ colonial_strain_infrastructure = {
 }
 
 ### Colonial Spaceport Cohesion
-#	Checks local trade value, and boosts unity output of Frontier Spaceport if it's being used a lot.
+#	Checks local trade, and boosts unity output of Frontier Spaceport if it's being used a lot.
 #	Basically, you can exceed the unity upkeep penalty if you have a bustling colonial spaceport.
 colonial_spaceport_cohesion = {
 	base = 1
 	complex_trigger_modifier = {
-		trigger = has_collected_system_trade_value
+		trigger = count_system_colony
+		parameters = {
+			limit = {				
+				num_assigned_jobs = {
+					job = civilian
+					value > 200
+				}
+			}
+		}
 		trigger_scope = from.root.solar_system
-		mode = set
+		mode = mult
 	}
-	
+
+	complex_trigger_modifier = {
+		trigger = count_neighbor_system
+		trigger_scope = from.solar_system
+		parameters = {
+			limit = {
+				count_system_colony = {
+					count > 0
+				}
+			}
+		}
+		mode = mult
+	}
+
 	floor = yes
 }
 

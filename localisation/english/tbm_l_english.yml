@@ -89,8 +89,8 @@
 
  building_frontier_spaceport:0 "Frontier Spaceport"
  building_frontier_spaceport_desc:0 "Far out on the edges of known civlization, this spaceport handles all manner of cargo and colonists. The noise of half-built dockyards is drowned out by bustling bars and the sound of roading shuttle engines."
- tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §CTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding that will increase its $r_unity$ output.§!"
- tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_unity_drone_plural$§C are present on this world.§!"
+ tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It also allows $job_civilian_plural$ to export local goods and attract visitors from nearby systems, boosting the colonial economy and increasing its $r_unity$ output.§!"
+ tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It also serves as a hub for the local system, attracting local traders and exporting resources, boosting the colonial economy."
 
  building_colonial_energy_conduits:0 "Colonial Energy Core"
  building_colonial_energy_conduits_desc:0 "Development of a full, planet-wide energy grid can take decades, and requires large-scale subsurface infrastructure not present on most new colonies. These wire-based transmission cables can be easily stored on a colony ship and are light enough to allow small teams of colonists to install them, powering farther-flung settlements from the ship's converted reactor core."

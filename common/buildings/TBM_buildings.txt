@@ -13,20 +13,36 @@ building_xeno_synaptic_node = {
 
 	category = research
 
-	# building_sets = {
-	# 	research
-	# }
+	building_sets = {
+		research
+	}
 
 	potential = {
 		is_starting_planet = no
 		NOT = { is_planet_class = pc_habitat }
 		exists = owner
-		owner = { is_gestalt = yes }
+		owner = { 
+			is_gestalt = yes
+			is_fallen_empire = no
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = slave_colony
+			uses_district_set = cosmogenesis_world
+		}
 	}
 
 	abort_trigger = {
 		exists = owner
-		owner = { is_gestalt = no }
+		OR = {
+			has_major_upgraded_capital = yes
+			owner = { 
+				OR = {
+					is_gestalt = no
+					is_fallen_empire = no
+				}
+			}
+		}
 	}
 
 	destroy_trigger = {
@@ -73,14 +89,22 @@ building_science_outposts = {
 
 	category = resource
 
-	# building_sets = {
-	# 	research
-	# }
+	building_sets = {
+		research
+	}
 
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
 		NOT = { is_planet_class = pc_habitat }
+	}
+
+	abort_trigger = {
+		has_major_upgraded_capital = yes
+		exists = owner
+		owner = {
+			is_fallen_empire = yes
+		}
 	}
 
 	destroy_trigger = {
@@ -105,8 +129,8 @@ building_science_outposts = {
 			owner = { is_regular_empire = yes }
 		}
 		modifier = {
-			job_xeno_naturalist_add = 1
-			job_colonist_add = 1
+			job_xeno_naturalist_add = 100
+			job_colonist_add = 100
 		}
 	}
 
@@ -116,7 +140,7 @@ building_science_outposts = {
 			owner = { is_gestalt = yes }
 		}
 		modifier = {
-			job_xeno_analysis_drone_add = 2
+			job_xeno_analysis_drone_add = 200
 		}
 	}
 	
@@ -140,19 +164,31 @@ building_survey_stations = {
 
 	category = resource
 
-	# building_sets = {
-	# 	mining
-	# }
+	building_sets = {
+		mining
+		urban	# So it shows on default colony zone
+	}
 
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
 		is_artificial = no
 		NOT = { is_planet_class = pc_habitat }
+		exists = owner
+		owner = {
+			is_fallen_empire = no	
+		}
 	}
 
 	destroy_trigger = {
 		has_major_upgraded_capital = yes
+		exists = owner
+		owner = { is_fallen_empire = yes }
+	}
+
+	abort_trigger = {
+		exists = owner
+		owner = { is_fallen_empire = yes }
 	}
 
 	resources = {
@@ -173,8 +209,8 @@ building_survey_stations = {
 			owner = { is_regular_empire = yes }
 		}
 		modifier = {
-			job_colonial_prospector_add = 1
-			job_colonist_add = 1
+			job_colonial_prospector_add = 100
+			job_colonist_add = 100
 		}
 	}
 
@@ -184,8 +220,8 @@ building_survey_stations = {
 			owner = { is_gestalt = yes }
 		}
 		modifier = {
-			job_mining_drone_add = 1
-			job_prospecting_drone_add = 1
+			job_mining_drone_add = 100
+			job_prospecting_drone_add = 100
 		}
 	}
 	
@@ -209,19 +245,32 @@ building_frontier_spaceport = {
 
 	category = resource
 
-	# building_sets = {
-	# 	trade
-	# 	unity
-	# }
+	building_sets = {
+		trade
+		unity
+	}
 
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
 		NOT = { is_planet_class = pc_habitat }
+		exists = owner
+		owner = {
+			is_fallen_empire = no
+		}
 	}
 
 	destroy_trigger = {
 		has_major_upgraded_capital = yes
+		exists = owner
+		owner = {
+			is_fallen_empire = yes
+		}
+	}
+
+	abort_trigger = {
+		exists = owner
+		owner = { is_fallen_empire = yes }
 	}
 
 	resources = {
@@ -259,8 +308,9 @@ building_frontier_spaceport = {
 			exists = owner
 			owner = { is_gestalt = no }
 		}
-		trade_value_mult = 0.1
-		job_colonist_add = 2
+		planet_civilians_trade_produces_add = 0.5
+		planet_colonist_trade_produces_add = 0.25
+		job_colonist_add = 200
 	}
 
 	triggered_planet_modifier = {
@@ -268,7 +318,7 @@ building_frontier_spaceport = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		planet_jobs_unity_produces_mult = 0.1
+		planet_jobs_trade_produces_mult = 0.25
 	}
 
 	triggered_desc = {
@@ -307,9 +357,10 @@ building_colonial_energy_conduits = {
 
 	category = resource
 
-	# building_sets = {
-	# 	generator
-	# }
+	building_sets = {
+		generator
+		urban	# So it shows in default zone
+	}
 
 	potential = {
 		has_major_upgraded_capital = no
@@ -319,6 +370,13 @@ building_colonial_energy_conduits = {
 
 	destroy_trigger = {
 		has_major_upgraded_capital = yes
+		exists = owner
+		owner = { is_fallen_empire = yes }
+	}
+	
+	abort_trigger = {
+		exists = owner
+		owner = { is_fallen_empire = yes }
 	}
 
 	resources = {
@@ -339,7 +397,7 @@ building_colonial_energy_conduits = {
 			owner = { is_regular_empire = yes }
 		}
 		modifier = {
-			job_colonist_add = 1
+			job_colonist_add = 100
 			planet_colonist_energy_produces_add = 4
 		}
 	}
@@ -350,7 +408,7 @@ building_colonial_energy_conduits = {
 			owner = { is_gestalt = yes }
 		}
 		modifier = {
-			job_technician_drone_add = 1
+			job_technician_drone_add = 100
 			planet_technician_energy_produces_add = 1
 		}
 	}
@@ -377,25 +435,35 @@ building_land_grants = {
 
 	category = resource
 
-	# building_sets = {
-	# 	farming
-	# }
+	building_sets = {
+		farming
+		urban	# So it shows on default colony zone
+	}
 
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
 		is_artificial = no
 		NOT = { is_planet_class = pc_habitat }
+		exists = owner
 		owner = {
 			is_gestalt = no
+			is_fallen_empire = no
 		}
 	}
 
 	destroy_trigger = {
 		has_major_upgraded_capital = yes
+		exists = owner
 		owner = {
 			is_gestalt = yes
+			is_fallen_empire = no
 		}
+	}
+
+	abort_trigger = {
+		exists = owner
+		owner = { is_fallen_empire = yes }
 	}
 
 	resources = {
@@ -416,7 +484,7 @@ building_land_grants = {
 			owner = { is_regular_empire = yes }
 		}
 		modifier = {
-			job_colonial_pioneer_add = 2
+			job_colonial_pioneer_add = 200
 		}
 	}
 	
@@ -442,9 +510,10 @@ building_farming_commune = {
 
 	category = resource
 
-	# building_sets = {
-	# 	farming
-	# }
+	building_sets = {
+		farming
+		urban 	# So it shows on default zone
+	}
 
 	potential = {
 		has_major_upgraded_capital = no
@@ -454,6 +523,7 @@ building_farming_commune = {
 			is_planet_class = pc_habitat
 			has_building = building_land_grants
 		}
+		exists = owner
 		owner = {
 			is_gestalt = no
 			OR = {
@@ -465,12 +535,18 @@ building_farming_commune = {
 
 	destroy_trigger = {
 		has_major_upgraded_capital = yes
+		exists = owner
 		owner = {
 			OR = {
 				is_gestalt = yes
 				NOT = { has_valid_civic = civic_agrarian_idyll }
 			}
 		}
+	}
+
+	abort_trigger = {
+		exists = owner
+		owner = { is_fallen_empire = yes }
 	}
 
 	resources = {
@@ -491,8 +567,8 @@ building_farming_commune = {
 			owner = { is_regular_empire = yes }
 		}
 		modifier = {
-			job_colonial_pioneer_add = 2
-			job_farmer_add = 2
+			job_colonial_pioneer_add = 200
+			job_farmer_add = 200
 		}
 	}
 	
@@ -508,7 +584,7 @@ building_colonial_outpost = {
 	icon = building_primitive_factory
 	
 	base_buildtime = @b1_time
-	base_cap_amount = 1
+	planet_limit = 1
 	can_build = yes
 	can_demolish = yes
 	can_be_ruined = yes
@@ -518,19 +594,29 @@ building_colonial_outpost = {
 
 	category = resource
 
-	# building_sets = {
-	# 	trade
-	# 	resource
-	# }
+	building_sets = {
+		trade
+		government
+	}
 
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
 		NOT = { is_planet_class = pc_habitat }
+		exists = owner
+		owner = { is_fallen_empire = no }
 	}
 
 	destroy_trigger = {
 		has_major_upgraded_capital = yes
+		exists = owner
+		owner = { is_fallen_empire = yes }
+	}
+
+	abort_trigger = {
+		has_major_upgraded_capital = yes
+		exists = owner
+		owner = { is_fallen_empire = yes }
 	}
 
 	resources = {
@@ -552,19 +638,19 @@ building_colonial_outpost = {
 			exists = owner
 			owner = { is_gestalt = no }
 		}
-		trade_value_mult = 0.1
-		job_colonist_add = 1
-		job_colonial_deputy_add = 1
+		planet_civilians_trade_produces_add = 0.5
+		job_colonist_add = 100
+		job_colonial_deputy_add = 100
 	}
 
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_gestalt = yes }
-		}
+		}		
 		planet_jobs_unity_produces_mult = 0.1
-		job_prospecting_drone_add = 1
-		job_agri_drone_add = 1
+		job_prospecting_drone_add = 100
+		job_agri_drone_add = 100
 	}
 
 	triggered_planet_modifier = {
@@ -575,8 +661,8 @@ building_colonial_outpost = {
 				is_lithoid = yes
 			}
 		}
-		job_agri_drone_add = -1
-		job_mining_drone_add = 1
+		job_agri_drone_add = -100
+		job_mining_drone_add = 100
 	}
 
 	triggered_desc = {
@@ -604,19 +690,28 @@ building_planetary_outpost = {
 
 	category = resource
 
-	# building_sets = {
-	# 	trade
-	# 	resource
-	# }
+	building_sets = {
+		trade
+		government
+	}
 
 	potential = {
 		has_major_upgraded_capital = no
 		is_starting_planet = no
 		NOT = { is_planet_class = pc_habitat }
+		exists = owner
+		owner = { is_fallen_empire =  no }
+	}
+
+	abort_trigger = {
+		exists = owner
+		owner = { is_fallen_empire =  yes }
 	}
 
 	destroy_trigger = {
 		has_major_upgraded_capital = yes
+		exists = owner
+		owner = { is_fallen_empire =  yes }
 	}
 
 	resources = {
@@ -638,9 +733,9 @@ building_planetary_outpost = {
 			exists = owner
 			owner = { is_gestalt = no }
 		}
-		trade_value_mult = 0.1
-		job_colonist_add = 2
-		job_colonial_deputy_add = 2
+		planet_civilians_trade_produces_add = 0.5
+		job_colonist_add = 200
+		job_colonial_deputy_add = 200
 	}
 
 	triggered_planet_modifier = {
@@ -649,8 +744,8 @@ building_planetary_outpost = {
 			owner = { is_gestalt = yes }
 		}
 		planet_jobs_unity_produces_mult = 0.1
-		job_prospecting_drone_add = 2
-		job_agri_drone_add = 4
+		job_prospecting_drone_add = 200
+		job_agri_drone_add = 400
 	}
 
 	triggered_planet_modifier = {
@@ -661,8 +756,8 @@ building_planetary_outpost = {
 				is_lithoid = yes
 			}
 		}
-		job_agri_drone_add = -4
-		job_mining_drone_add = 4
+		job_agri_drone_add = -400
+		job_mining_drone_add = 400
 	}
 
 	triggered_desc = {
@@ -685,15 +780,26 @@ building_museum_apocalypse = {
 
 	category = unity
 
-	# building_sets = {
-	# 	origin
-	# }
+	building_sets = {
+		origin
+	}
 
 	is_capped_by_modifier = yes
 
 	potential = {
 		NOT = { is_planet_class = pc_habitat }
 		exists = owner
+		owner = { is_fallen_empire = no }
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = { is_fallen_empire = no }
+	}
+
+	abort_trigger = {
+		exists = owner
+		owner = { is_fallen_empire = no }
 	}
 
 	resources = {
@@ -707,7 +813,7 @@ building_museum_apocalypse = {
 	}
 	
 	planet_modifier = {
-		job_culture_worker_per_pop = 0.05
+		planet_civilians_unity_produces_add = 0.5
 	}
 
 	ai_weight = {
@@ -732,16 +838,16 @@ building_laboratory_apocalypse = {
 
 	category = research
 
-	# building_sets = {
-	# 	origin
-	# }
+	building_sets = {
+		origin
+	}
 
 	is_capped_by_modifier = yes
-	base_cap_amount = 0
 
 	potential = {
 		NOT = { is_planet_class = pc_habitat }
 		exists = owner
+		owner = { is_fallen_empire = no }
 	}
 
 	resources = {
@@ -755,7 +861,7 @@ building_laboratory_apocalypse = {
 	}
 	
 	planet_modifier = {
-		job_researcher_per_pop = 0.05
+		pop_researcher_bonus_workforce_mult = 0.25
 	}
 
 	ai_weight = {
@@ -782,16 +888,17 @@ building_cathedral_apocalypse = {
 
 	category = unity
 
-	# building_sets = {
-	# 	origin
-	# }
+	building_sets = {
+		origin
+	}
 
 	potential = {
 		NOT = { is_planet_class = pc_habitat }
 		exists = owner
+		owner = { is_fallen_empire = no }
 	}
 
-	base_cap_amount = 0
+	is_capped_by_modifier = yes
 
 	resources = {
 		category = planet_buildings
@@ -804,7 +911,7 @@ building_cathedral_apocalypse = {
 	}
 	
 	planet_modifier = {
-		job_priest_per_pop = 0.05
+		pop_bureaucrat_bonus_workforce_mult = 0.05
 	}
 
 	ai_weight = {
