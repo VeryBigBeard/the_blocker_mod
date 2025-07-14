@@ -1,0 +1,795 @@
+### TBM Event Features
+
+# Spawning Variables
+
+@high = 16
+@med = 8
+@low = 4
+@very_low = 2	# Added by TBM to help with some spawning
+@none = 0.01	# Needs small amount of weight or will cause problems.
+
+@high_rare = 0.5
+@mid_rare = 0.25
+@low_rare = 0.1
+
+@planet_type_bonus = 1.5
+
+@blocker_high = 10
+@blocker_low = 5
+
+@ranger_small_production = 0.5
+@ranger_large_production = 1
+
+# AI Weight Variables
+# Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
+
+# The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
+
+@base = 1	# Base ai_weight. AI will clear any feature at weight = 1 when it needs district space
+@clear = 2	# AI will clear this feature immediately.
+@keep = 0	# AI will keep this feature until it needs a district and no other features remain
+@always_clear = 100	# AI will always clear this feature; used mainly for negative features (e.g., rubble)
+@always_keep = -100 # AI will always keep this feature; used mainly for bonus features and some flavor features
+
+d_great_desert = {
+	icon = d_searing_desert
+	category = deposit_cat_final
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+	
+	planet_modifier = {
+		planet_max_districts_add = -2
+		district_farming_max = 3
+		district_generator_max = 1
+		planet_jobs_unity_produces_mult = 0.10
+		planet_jobs_energy_produces_mult = 0.05
+	}
+
+	potential = { always = no }
+}
+
+d_great_city = {
+	icon = d_searing_desert
+	category = deposit_cat_artificial
+	is_for_colonizable = yes
+	
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		pop_job_amenities_mult = 0.2
+		pop_housing_usage_mult = -0.1
+		planet_jobs_upkeep_mult = -0.1
+		planet_jobs_energy_produces_mult = 0.05
+		district_generator_max = 1
+	}
+
+	potential = { always = no }
+
+	ai_weight = {
+		weight = @keep
+	}
+}
+
+d_submerged_zro_seam = {
+	icon = d_submerged_ore_veins
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 4800
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1800
+		}
+		produces = {
+			trigger = {
+				NOT = { has_planet_flag = inaccessible_zro }
+			}
+			sr_zro = 2
+		}
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = inaccessible_zro
+				}
+				random_list = {
+					50 = {
+						owner = {
+							add_resource = {
+								sr_zro = 500
+							}
+						}
+					}
+					50 = {}
+				}
+			}
+		}
+	}
+
+	planet_modifier = {
+		district_mining_max = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			any_owned_pop = {
+				has_job = colonist
+			}
+		}
+		modifier = {
+			planet_colonist_society_research_produces_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = zro_fish
+		}
+		modifier = {
+			planet_miners_minerals_produces_mult = -0.2
+		}
+	}
+
+	potential = { always = no }
+
+	ai_weight = {
+		weight = @keep
+	}	
+}
+
+d_prototype_gas_generator = {
+	icon = d_submerged_ore_veins
+	category = deposit_cat_artificial
+	is_for_colonizable = yes
+	
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		produces = {
+			energy = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = -5
+	}
+
+	potential = { always = no }
+
+	ai_weight = {
+		weight = @keep
+	}
+}
+
+d_private_farming_colony = {
+	icon = d_frontier_farmstead
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		produces = {
+			energy = 2
+		}
+		cost = {
+			energy = 800
+			consumer_goods = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_subsistence_farm = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 90
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			food = 500
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_farming_max = 1
+		planet_farmers_food_produces_mult = -0.1
+	}
+}
+
+d_subterranean_colony = {
+	category = deposit_cat_blockers
+	icon = d_subterranean_excavation
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+			minerals = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = 1
+		planet_crime_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @clear
+			from = { planet_crime > 25 } # Get rid of these before we start the crime death spiral
+		}
+	}
+}
+
+d_subterranean_excavation = {
+	category = deposit_cat_blockers
+	
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 90
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+			minerals = 200
+		}
+	}
+
+	planet_modifier = {
+		district_mining_max = 1
+		planet_amenities_add = -2	# Ne'er does the sun shine.
+		pop_cat_worker_happiness = -0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @clear
+			from = { free_amenities < 0 }
+		}
+	}
+}
+
+d_urban_aeroponics = {
+	category = deposit_cat_blockers
+	icon = d_homeworld_urban_aeroponics
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			alloys = 100
+		}
+	}
+
+	planet_modifier = {
+		district_farming_max = 1
+		planet_farmers_energy_upkeep_add = 1
+		planet_farmers_consumer_goods_upkeep_add = 0.1	# Mostly to avoid overwriting the farmer job for compat, is slightly less harsh than +1 but will hurt more if you have a lot of city-farming going on, rent is pricey these days.
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @clear
+			from = {
+				num_assigned_jobs = {
+					job = farmer
+					value > 10
+				}
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_homestead_farms = {
+	icon = d_frontier_farmstead
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			unity = 100
+		}
+		cost = {
+			trigger = {
+				owner = { has_civic = civic_agrarian_idyll }
+			}
+			unity = 400
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_farming_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				OR = {
+					is_gestalt = no
+					has_civic = civic_machine_servitor
+				}
+			}
+		}
+		pop_government_ethic_attraction = -0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_agrarian_idyll }
+		}
+		modifier = {
+			planet_amenities_add = 1
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		modifier = {
+			set = @always_keep
+			from = { colony_type = col_farming }
+		}
+
+		inline_script = tbm_ai_empire_weights
+		
+		modifier = {
+			set = @always_keep
+			owner = { has_civic = civic_agrarian_idyll }
+		}
+	}
+}
+
+
+### Terraforming Features
+#	Currently just replaces some features from vanilla Excess to Success event
+d_energy_banks = {
+	icon = d_battery_farms
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			minerals = 200
+		}
+		produces = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_colonist_energy_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			set = @always_clear
+			from = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
+			}
+		}
+	}
+}
+
+d_mineral_stockpiles = {
+	icon = d_veiny_cliffs
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			minerals = 200
+		}
+		produces = {
+			minerals = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_colonist_minerals_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			set = @always_clear
+			from = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
+			}
+		}
+	}
+}
+
+d_food_silos = {
+	icon = d_reactor
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			minerals = 200
+		}
+		produces = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_colonist_food_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			set = @always_clear
+			from = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
+			}
+		}
+	}
+}
+
+d_private_mines = {
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1800
+		}
+		produces = {
+			energy = 4
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = -5
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep	# AI should generally not value selecting this option in the event very often.
+	}
+}
+
+d_fusion_reactor = {
+	icon = d_reactor
+	category = deposit_cat_energy
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1200
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1200
+			alloys = 500
+			minerals = 400
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_technician_energy_produces_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+
+d_cold_fusion_pits = {
+	icon = d_quarantine_zone
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1500
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1800
+			alloys = 1000
+			minerals = 800
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_technician_energy_produces_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_antimatter_core = {
+	icon = d_broken_transformer
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1800
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 2500
+			alloys = 1500
+			minerals = 2000
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_technician_energy_produces_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_zero_point_modules = {
+	icon = d_station_reactor
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 900
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 5000
+			alloys = 2000
+			minerals = 2500
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_technician_energy_produces_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+
+d_collapsed_tunnel = {
+	category = deposit_cat_blockers
+
+	potential = {
+		always = no
+	}
+}
+
+d_acidic_residue = {
+	icon = d_black_soil
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1200
+			minerals = 600
+			alloys = 400
+		}
+	}
+
+	planet_modifier = {
+		planet_researchers_society_research_produces_mult = -0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		inline_script = tbm_personality_weights
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_cesspool = {
+	icon = d_boggy_fens
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+	
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1200
+			minerals = 600
+			alloys = 400
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = -0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		inline_script = tbm_personality_weights
+		inline_script = tbm_ai_empire_weights
+	}
+}

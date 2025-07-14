@@ -1,0 +1,1631 @@
+### The Blocker Mod - Handler Events
+#
+# This file handles adding and removing non-natural features during gameplay.
+
+namespace = tbm_handler
+
+### Variables
+@miners = 0
+@mines = 0
+@sinkholes = 0
+
+### INDEX ###
+#	-- Init Fixes --
+#	1. Scripted Planets Handler
+#	2. Advanced Start Feature Fixer
+#	3. Aquatics Fix
+#
+#	-- Generators --
+#	4. Sprawling Slum
+#	6. Industrial Wasteland
+#	8. Colonial Settlement
+#	10. Frontier Farmland
+#	12. New Mining Prospects
+#	15. Dustbowls
+#	17. Sinkholes
+
+#	-- Event Listeners --
+#	20. False Prospects / Quality Find
+#	21. Central Power Nexus Breaks
+#
+#	-- Additional Generators --
+#	24. Farmland / Moisture Farming
+#
+#	-- Colony Listeners --
+#	99. Bombardment Listener (adds Tomb features)
+#	100. Pioneering Colonists
+#	103. Wild Worlds
+#	105. Pre-FTLs Achieve FTL
+#	106. Gestalt Pioneering Colonists
+#	200. Terraforming Handler
+#	301. Wenkwort Handler
+
+#1. Scripted Planets Handler
+### Many scripted planets in vanilla call clear_blockers on init, or add vanilla deposits that will either be broken or unbalanced by the mod. This event is fired on_game_start and checks for specific scripted planets. It may cause a slight lag on lower-end machines when the game is first started.
+
+event = {
+	id = tbm_handler.1
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		
+		log = "tbm_handler.1 - Scipted Planets"
+		
+		### Reroll scripted planets
+		scripted_planet_reroll = yes
+		
+		### FALLEN EMPIRE WORLDS
+		fix_fallen_empire_worlds = yes
+
+		### IMPERIAL FIEFDOM FIX (overlord_system_x_init)
+		if = {
+			limit = {
+				any_country = { has_origin = origin_imperial_vassal }
+			}
+			
+			# IF Overlord
+			event_target:origin_imperial_homeland_country = {
+				
+				# Empire Capital
+				event_target:origin_imperial_homeland = {
+					clear_deposits = yes
+					clear_blockers = yes
+
+					generate_start_deposits_and_blockers = yes
+					fix_advanced_start_empire_features = yes
+					while = {
+						count = 6
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
+					
+					# IF Overlord features
+				}
+				
+				# Overlord Colonies
+				set_variable = {
+					which = x
+					value = trigger:num_owned_planets
+				}
+
+				ordered_owned_planet = {
+					position = 1
+					order_by = x
+					limit = {
+						NOT = { is_same_value = event_target:origin_imperial_homeland }
+					}
+					clear_deposits_without_effects = yes
+					while = {
+						count = 3
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
+					reroll_deposits = yes
+				}
+				ordered_owned_planet = {
+					position = 2
+					order_by = x
+					limit = {
+						NOT = { is_same_value = event_target:origin_imperial_homeland }
+					}
+					clear_deposits_without_effects = yes
+					while = {
+						count = 2
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_city
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_mining
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_farming
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_generator
+						}
+						add_district_and_planet_size_if_needed_effect = {
+							district = district_industrial
+						}
+					}
+					reroll_deposits = yes
+				}
+			}
+
+			# Vassal 1
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_2
+				}
+				event_target:origin_imperial_homeland_country_2 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+
+			# Vassal 2
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_3
+				}
+				event_target:origin_imperial_homeland_country_3 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+
+			# Vassal 3
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_4
+				}
+				event_target:origin_imperial_homeland_country_4 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+
+			# Vassal 4
+			if = {
+				limit = {
+					exists = event_target:origin_imperial_homeland_country_5
+				}
+				event_target:origin_imperial_homeland_country_5 = {
+					every_owned_planet = {
+						clear_deposits = yes
+						clear_blockers = yes
+						generate_start_deposits_and_blockers = yes
+					}
+				}
+			}
+		}		
+	}
+}
+
+### 2. Advanced Start Feature Fixer
+#	Advanced Start empires need to reroll features after vanilla init or else they'll have no features and will be crippled by unemployment.
+event = {
+	id = tbm_handler.2
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		
+		log = "tbm_handler.2 - Advanced Starts"
+		
+		every_country = {
+			limit = {
+				has_country_flag = is_advanced_start_AI
+			}
+
+			every_owned_planet = {
+				limit = {
+					is_capital = yes
+				}
+				
+				### Get rid of unwanted fish. For real this time.
+				every_deposit = {
+					remove_deposit = yes
+				}
+
+				generate_start_deposits_and_blockers = yes	# Re-runs basic TBM feature init.
+				fix_advanced_start_empire_features = yes	# Add Advanced features and clean-up
+			}
+
+			every_owned_planet = {
+				limit = {
+					NOT = { is_capital = yes }
+				}
+
+				clear_deposits = yes
+				reroll_deposits = yes
+			}
+		}
+	}
+}
+
+### 3. Aquatic Fix
+#	This is a hack to fix a peristent bug with Aquatic empires where they would get appropriate features but no districts due to some unknown problem with generate_start_buildings_and_districts that TBM does not patch. Until I can find it, this should reset their planets properly, but may remove other modded features.
+event = {
+	id = tbm_handler.3
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				OR = {
+					is_anglers_empire = yes
+					has_trait = trait_aquatic
+				}
+			}
+
+			every_owned_planet = {
+				remove_all_buildings = yes
+				generate_start_buildings_and_districts = yes
+			}
+
+			if = {
+				limit = { has_country_flag = is_advanced_start_AI }
+				capital_scope = {
+					planet_event = {
+						id = game_start.22	# Re-do the advanced building spawn
+					}
+				}
+			}
+		}
+
+		### Little clean-up due to problem with remove_deposit = yes - you can only get this if we clear Public Mining Concerns; sometimes this happens if a Prosperous Unification empire is also Aquatic or an Advanced Start
+		every_country = {
+			every_owned_planet = {
+				if = {
+					limit = {
+						has_modifier = privatizations
+					}
+					remove_modifier = privatizations
+				}
+			}
+		}
+	}
+}
+
+
+### 4. Slum Handler (on_colony_yearly_pulse)
+planet_event = {
+	id = tbm_handler.4
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	# Several pre-reqs here that basically amount to crummy urban living; should be less common in late-game post-scarcity economies but a challenge as you grow quickly.
+	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
+		years_passed > 5
+		
+		num_districts = {
+			type = district_city
+			value >= 1
+		}
+
+		# Got to have one each of sprawl and poor conditions
+		OR = {
+			free_amenities < 5
+			num_unemployed > 4
+		}
+		OR = {
+			free_district_slots < 1
+			num_districts = {
+				type = district_city
+				value > 3
+			}
+		}	
+	}
+
+	immediate = {
+		
+		random_list = {
+			# Slums generated, more likely if conditions are already bad.
+			15 = {
+				modifier = {
+					factor = 2.5
+					any_owned_pop = {
+						has_low_living_standard_type = yes
+					}
+				}
+				modifier = {
+					factor = 1.25
+					owner = {
+						has_deficit = consumer_goods
+					}
+				}
+				modifier = {	# Incentivize local food!
+					factor = 1.25
+					planet_resource_compare = {
+						resource = food
+						value < 0
+					}
+				}
+				modifier = {
+					factor = 1.25
+					owner = {
+						OR = {
+							has_authority = auth_corporate
+							has_authority = auth_oligarchic
+						}
+					}
+				}
+				planet_event = {
+					id = tbm_handler.5
+					days = 180
+					random = 90
+				}
+			}
+			# No slums this time.
+			85 = {
+				modifier = {
+					factor = 2
+					owner = {
+						OR = {
+							has_civic = civic_idealistic_foundation
+							has_civic = civic_beacon_of_liberty
+						}
+					}
+				}
+			}
+		}
+
+	}
+}
+
+### 5. Slum Generator
+planet_event = {
+	id = tbm_handler.5
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_deposit = d_tbm_slums	# Gestalts need to get custom slums eventually.
+		create_message = {
+			type = "SLUM_GENERATOR"
+			localization = SLUM_GENERATOR
+			days = 30
+			target = this
+		}
+	}
+	
+}
+
+### 6. Industrial Wasteland Handler (on_colony_yearly_pulse)
+planet_event = {
+	id = tbm_handler.6
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
+		is_artificial = no
+		num_districts = {
+			type = district_industrial
+			value >= 1
+		}
+		years_passed > 10	# Grace period for homeworlds; we do want them to struggle with these, but there's a lot going on at game start with other features.
+
+		# Got to have one each of sprawl and poor business conditions
+		OR = {
+			free_amenities < 8
+			planet_crime > 10
+		}
+
+		# Partly to punish highly-specialized planets of any kind, but okay as long as you don't stuff it.
+		AND = {
+			free_district_slots < 2
+			OR = {
+				num_districts = {
+					type = district_industrial
+					value > 3
+				}
+				num_districts = {
+					type = district_mining
+					value > 3
+				}
+				num_districts = {
+					type = district_generator
+					value > 3
+				}
+			}
+		}
+	}
+
+	immediate = {
+		
+		random_list = {
+			# Wastelands generated, more likely with some other factors.
+			15 = {
+				modifier = {
+					factor = 2
+					owner = {
+						OR = {
+							has_authority = auth_corporate
+							has_authority = auth_oligarchic
+							has_authority = auth_dictatorial
+						}
+					}
+				}
+				modifier = {
+					factor = 2
+					owner = {
+						OR = {
+							has_deficit = consumer_goods
+							has_deficit = minerals
+							has_deficit = energy
+							has_deficit = alloys
+						}
+					}
+				}
+				modifier = {
+					factor = 2
+					planet_crime > 20
+				}
+
+
+				planet_event = {
+					id = tbm_handler.7
+					days = 180
+					random = 180
+				}
+			}
+			# No wasteland this time.
+			85 = {
+				modifier = {
+					factor = 1.5
+					owner = { has_valid_civic = civic_merchant_guilds }
+				}
+
+			}
+		}
+
+	}
+}
+
+### 7. Industrial Wasteland Generator
+planet_event = {
+	id = tbm_handler.7
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_deposit = d_tbm_industrial_wasteland
+		create_message = {
+			type = "INDUSTRIAL_WASTELAND"
+			localization = INDUSTRIAL_WASTELAND
+			days = 30
+			target = this
+		}
+	}
+}
+
+### 8. Colonial Settlement Handler (on_colony_yearly_pulse, colony_age < 20)
+planet_event = {
+	id = tbm_handler.8
+
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_occupied_flag = no	# Occupying forces not as keen on new settlements as they are on new power plants
+	}
+
+	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
+		is_artificial = no
+		is_starting_planet = no
+		OR = {
+			has_building = building_colony_shelter
+			has_building = building_capital
+		}
+		owner = { is_gestalt = no }
+		colony_age < 20
+	}
+
+	immediate = {
+		random_list = {
+			# Colonial Settlement - adds feature, housing, and colonist jobs.
+			5 = {
+				modifier = {
+					factor = 2
+					num_pops > 8	# Should result in a few more settlements at that tight spot right before you get Planetary Admin.
+				}
+
+				modifier = {
+					factor = 4
+					any_owned_pop = {
+						has_job = colonial_deputy
+					}
+				}
+
+				# Reduce likelihood if we have settlements already, we don't want these getting weedy.
+				modifier = {
+					multiply = 0.5
+					count_deposits = {
+						type = d_settlement
+						count >= 2
+					}
+				}
+
+				modifier = {
+					multiply = 0.5
+					num_pops > 12
+				}
+
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_settlement
+						count >= 4
+					}
+				}
+
+				 planet_event = {
+				 	id = tbm_handler.9
+				 	days = 180
+					random = 90
+				}
+			}
+			90 = {} 	# No settlement this year, busy having babies.
+		}
+	}
+}
+
+### 9. Colonial Settlement Generator
+planet_event = {
+	id = tbm_handler.9
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		add_deposit = d_settlement
+		create_message = {
+			type = "COLONIAL_SETTLEMENT"
+			localization = COLONIAL_SETTLEMENT
+			days = 30
+			target = this
+		}
+	}
+}
+
+### 10. Frontier Farmland Handler (on_colony_yearly_pulse)
+planet_event = {
+	id = tbm_handler.10
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked
+		}
+		is_starting_planet = no
+		owner = { is_gestalt = no }
+		num_free_districts = {
+			type = district_city
+			value > 3	# These are meant to be mostly good, and get very annoying if they spawn whyen you're trying to clear space for something else, like actual farms.
+		}
+		num_free_districts = {
+			type = district_farming
+			value > 1
+		}
+		count_deposits = {
+			type = d_frontier_farmstead
+			count < 4
+		}
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				modifier = {
+					add = 5
+					num_free_districts = {
+						type = any
+						value > 7
+					}
+				}
+				modifier = {
+					add = 5
+					# Planets where the ranchin' is good
+					OR = {
+						is_dry = yes
+						is_planet_class = pc_gaia
+					}
+				}
+
+				modifier = {
+					add = 10
+					any_owned_pop = {
+						has_job = colonial_pioneer
+					}
+				}
+
+				modifier = {
+					add = 10
+					owner = { has_valid_civic = civic_agrarian_idyll }
+				}
+				
+				# Don't spawn rural farmsteads on worlds that are getting denser or already have a lot of farmsteads.
+				modifier = {
+					factor = 0.5
+					count_deposits = {
+						type = d_frontier_farmstead
+						count >= 2
+					}
+				}
+				modifier = {
+					factor = 0.5
+					num_pops > 20
+				}
+				modifier = {
+					factor = 0
+					OR = {
+						has_building = building_major_capital
+						num_pops > 40
+					}
+				}
+
+				planet_event = {
+					id = tbm_handler.11
+					days = 180
+					random = 90
+				}
+			}
+			
+			90 = {}
+		}
+	}
+}
+
+### 11. Frontier Farmland Generator
+planet_event = {
+	id = tbm_handler.11
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		add_deposit = d_frontier_farmstead
+		create_message = {
+			type = "FRONTIER_FARMLAND"
+			localization = "FRONTIER_FARMLAND"
+			days = 30
+			target = this
+		}
+	}
+	
+}
+
+### 12. Mining Prospects Handler (on_colony_yearly_pulse)
+planet_event = {
+	id = tbm_handler.12
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+		is_homeworld = no
+	}
+
+	trigger = {
+		years_passed > 5
+		is_starting_planet = no
+		is_artificial = no
+		NOT = { is_same_value = owner.capital_scope }
+		colony_age > 5
+		colony_age < 50
+		check_variable = {
+			which = @prospecting_chance
+			value < 3
+		}
+		NOT = { has_planet_flag = prospecting_cooldown } 	# Ignore error, is in different namespace.
+	}
+
+	immediate = {
+		random_list = {
+			# Quite rare, but higher on mining worlds and new colonies to account for natural exploration.
+			5 = {
+				modifier = {
+					add = 5
+					colony_age < 20
+				}
+
+				modifier = {
+					add = 10
+					num_assigned_jobs = {
+						job = miner
+						value > 6
+					}
+				}
+				
+				planet_event = {
+					id = tbm.300
+					days = 180
+					random = 180
+				}
+			}
+
+			95 = {}
+		}
+	}
+
+}
+
+### 15. Dustbowl Handler (Overfarming Prototype) (on_colony_ten_year_pulse)
+planet_event = {
+	id = tbm_handler.15
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		
+		years_passed > 50	# Partly because you're unlikely to have Soil Remediation that quickly and without it, Dustbowls can choke your ag colonies rather quickly before any more complex economy is set up. The intent of these is more to target breadbasket worlds in a larger empire.
+
+		colony_age > 40
+		OR = {
+			num_districts = {
+				type = district_farming
+				value > 6
+			}
+			num_districts = {
+				type = any
+				value > 12
+			}
+		}
+		any_deposit = {
+			is_farmland_feature = yes
+			can_be_exhausted = yes
+		}
+		
+		# If we're just maintaining land but not actually growing on it, give some amnesty; this also helps alleviate situations where Anglers are getting Dustbowls
+		num_assigned_jobs = {
+			job = farmer
+			value > 4
+		}
+
+		NOT = { has_planet_flag = soil_remediation }
+	}
+
+	immediate = {	
+		random_list = {
+			10 = {
+				planet_event = {
+					id = tbm_handler.16
+					days = 180
+					random = 180
+				}
+			}
+			90 = {
+				# Much less chance for lower-density agrarians to exhaust their planets
+				modifier = {
+					factor = 4
+					owner = { has_valid_civic = civic_agrarian_idyll }
+				}
+			}
+		}
+	}
+}
+
+### 16. Dustbowl Generator
+planet_event = {
+	id = tbm_handler.16
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				num_districts = {
+					type = district_farming
+					value > 0
+				}
+			}
+			remove_district = district_farming
+		}
+		else = {
+			# Do nothing, let the feature removal take care of it.
+		}
+
+		random_deposit = {
+			limit = {
+				is_farmland_feature = yes
+				can_be_exhausted = yes
+			}
+			remove_deposit = yes
+		}
+
+		add_deposit = d_dustbowl
+		
+		create_message = {
+			type = "DUSTBOWL_GENERATOR"
+			localization = message_dustbowl_generator
+			days = 30
+			target = this
+		}
+	}
+}
+
+### 17. Sinkhole Spawner
+planet_event = {
+	id = tbm_handler.17
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		OR = {		
+			# Sinkholes make more sinkholes
+			has_deposit = d_deep_sinkhole
+
+			# But can also be called after you clear them.
+			has_planet_flag = occasional_sinkholes
+		}
+		NOT = { owner = { has_country_flag = safe_from_sinkholes } }
+		NOT = {
+			count_deposits = {
+				count = 3	# Failsafe for this creating too many sinkholes, in case the event chain bugs out for any reason.
+				type = d_deep_sinkhole
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_planet_flag = sinkhole_causes # Prevents firing the event to give the project when you already have it.
+				NOT = { has_planet_flag = sinkhole_investigated }
+				
+				# And only fire Sinkhole Causes after we've seen a couple sinkholes
+				check_variable = {
+					which = @sinkholes
+					value > 3
+				}
+			}
+			
+			# Sinkhole Cause Investigation
+			planet_event = {
+				id = tbm.82
+				days = 360
+				random = 180
+			}
+		}
+
+		# 20% chance for Sudden Sinkhole this year
+		else = {
+			random_list = {
+				20 = {
+					modifier = {
+						factor = 1.5
+						has_deposit = d_deep_sinkhole
+					}
+					modifier = {
+						factor = 1.5
+						count_deposits = {
+							count > 1
+							type = d_deep_sinkhole
+						}
+					}
+					modifier = {
+						factor = 0.5 	# Less common if you've chosen to live with them; I have a heart
+						has_planet_flag = occasional_sinkholes
+					}
+					modifier = {
+						factor = 0
+						has_planet_flag = sinkhole_investigated
+					}
+					
+					planet_event = {
+						id = tbm.81
+						days = 360
+						random = 180
+					}
+
+					change_variable = {
+						which = @sinkholes
+						value = 1
+					}
+				}
+				80 = {}
+			}
+		}
+	}
+
+	after = {
+		random_list = {
+			40 = {
+				set_planet_flag = sinkhole_causes 	# Getting tired of sinkholes, can investigate next time.
+			}
+			60 = {}
+		}
+	}
+}
+
+
+### 20. False Prospects Handler (on_district_complete)
+#	For event, see TBM_02_events.txt
+planet_event = {
+	id = tbm_handler.20
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		is_artificial = no
+		NOT = { has_planet_flag = mining_bust } 	# Helps avoid over-firing when constructing a lot of districts.
+		last_district_changed = district_mining
+		any_deposit = {
+			has_mineral_seam = yes
+		}
+		num_districts = {
+			type = district_mining
+			value > 1	# 1 because last_district_changed can check after the district is removed; should avoid situations where a planet removes its last mining district and then gets False Prospects.
+		}
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				
+				# More likely on planets with lots of miners, all trying to strike it gold
+				modifier = {
+					factor = 2
+					num_assigned_jobs = {
+						job = miner
+						value > 2
+					}
+				}
+				modifier = {
+					factor = 2
+					num_assigned_jobs = {
+						job = miner
+						value > 4
+					}
+				}
+
+				planet_event = {
+					id = tbm.88
+					days = 720
+					random = 180
+				}
+		
+				set_timed_planet_flag = {
+					flag = mining_bust
+					years = 10	# Takes a good while for people to forget
+				}
+			}
+			80 = {}
+		}
+	}
+}
+
+### 21. Central Power Nexus Breaks
+#	Fires any time planet devastation is greater than 80
+planet_event = {
+	id = tbm_handler.21
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		planet_devastation > 80
+		has_deposit = d_central_power_nexus
+		owner = { is_machine_empire = yes }	# Don't apply nasty debuff if owner isn'[t a machine.
+	}
+
+	immediate = {
+		add_modifier = {
+			modifier = damaged_power_nexus
+			years = 20
+		}
+	}
+	
+}
+
+
+### 24. Farming Handler
+planet_event = {
+	id = tbm_handler.24
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+		is_homeworld = no
+	}
+
+	trigger = {
+		is_artificial = no
+		NOR = {
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked
+		}
+		is_starting_planet = no
+	}
+
+	immediate = {
+		random_list = {
+			33 = {
+				modifier = {
+					factor = 2
+					OR = {
+						any_deposit = {
+							is_farmland_feature = yes
+						}
+					}
+				}
+				
+				planet_event = {
+					id = tbm_handler.25
+					days = 180
+					random = 180
+				}
+			}
+
+			66 = {
+
+			}
+		}
+	}
+}
+
+### 25. Farming Generator
+planet_event = {
+	id = tbm_handler.25
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					owner = { has_valid_civic = civic_agrarian_idyll }
+					colony_type = col_rural
+					colony_type = col_farming
+					num_free_districts = {
+						type = district_city
+						value > 3
+					}
+					NOT = { owner = { has_technology = tech_gene_crops }}
+				}
+			}
+
+			random_list = {
+				5 = {
+					if = {
+						limit = {
+							OR = {
+								is_planet_class = pc_desert
+								is_planet_class = pc_arid
+							}
+						}
+						random_list = {
+							50 = {
+								add_deposit = d_homestead_farms
+
+								create_message = {
+									type = "FARMING_RURAL"
+									localization = message_farming_rural
+									days = 30
+									target = this
+								}
+							}
+
+							50 = {
+								add_deposit = d_moisture_farms
+
+								create_message = {
+									type = "FARMING_RURAL"
+									localization = message_farming_moisture
+									days = 30
+									target = this
+								}
+							}
+						}
+					}
+					else = {
+						add_deposit = d_homestead_farms
+
+						create_message = {
+							type = "FARMING_RURAL"
+							localization = message_farming_rural
+							days = 30
+							target = this
+						}
+					}
+				}
+
+				95 = {}
+			}
+		}
+
+		else = {
+			random_list = {
+				5 = {
+					modifier = {
+						factor = 0
+						count_deposits = {
+							count = 2
+							type = d_urban_aeroponics
+						}
+					}
+					
+					add_deposit = d_urban_aeroponics
+
+					create_message = {
+						type = "FARMING_URBAN"
+						localization = message_farming_urban
+						days = 30
+						target = this
+					}
+				}
+
+				95 = {}
+			}
+		}
+	}
+}
+
+### 99. Bombardment Listener
+#	Tracks planets being bombarded so that, if switched to Tomb Worlds, they get features appropriate for them.
+#	Sets flag on_planet_bombarded because on_planet_class_changed is called in too many other places, including game start.
+
+planet_event = {
+	id = tbm_handler.99
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = owner
+		planet_devastation >= 100
+		has_orbital_bombardment_stance = armageddon
+	}
+
+	immediate = {
+		planet_event = {
+			id = tbm_handler.110
+			days = 2	# To delay after the planet class change so we can just reroll deposits and let the drop_weights give us some variety.
+		}
+	}
+}
+
+### 100. Colonization Handler
+#	on_colonized
+planet_event = {
+	id = tbm_handler.100
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		is_homeworld = no
+		is_capital = no
+	}
+
+	trigger = {
+		NOT = { has_planet_flag = lost_colony_planet }	# Do not spawn this on LC parents or their colonies generated at game start.
+
+		is_artificial = no
+
+		# owner = {
+		# 	num_owned_planets < 6	# Only applied for first few colonies
+		# }
+		
+		num_free_districts = {
+			type = district_city
+			value <= 0
+		}
+	}
+
+	immediate = {
+		this = {
+			if = {
+				limit = {
+					owner = { is_gestalt = yes }
+				}
+				planet_event = {
+					id = tbm_handler.106
+				}
+			}
+			else = {
+				planet_event = {
+					id = tbm_handler.101
+				}
+			}
+		}
+	}
+
+}
+
+### 101. Pioneering Colonists
+#	Exists to help with clarity and difficulty when colonizing very inhospitable worlds.
+planet_event = {
+	id = tbm_handler.101
+
+	title = tbm_handler.101.name
+	desc = tbm_handler.101.desc
+	picture = GFX_evt_alien_planet
+	show_sound = event_default
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		add_modifier = {
+			modifier = pioneering_colonists
+			years = 20
+		}
+		
+		if = {
+			limit = {
+				owner = {
+					num_owned_planets < 3	# 3 because this is called after you own the colony. No luck for habitat starts, you already know a thing or two about colonization.
+				}
+			}
+			add_modifier = {
+				modifier = terra_incognita
+				years = 20
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = new_frontier
+				years = 20
+			}
+		}
+
+		# Currently, this does nothing. But one day.... (it will help with balance, too).
+		set_timed_planet_flag = {
+			flag = pioneer_planet
+			years = 50
+		}
+	}
+
+	option = {
+		name = tbm_handler.101.option
+	}
+}
+
+### 102. Wild World Generator (on_press_begin)
+#	The long-term plan is that these shouldn't need to exist. Until then, they're added on_press_begin to provid flavor to and help ameliorate particularly nasty feature spawns, with the idea being to avoid planets with large numbers of negative district space because it confuses the UX.
+event = {
+	id = tbm_handler.102
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		log = "tbm_handler.102 - Wild World Generator"
+		
+		every_galaxy_planet = {
+			limit = {
+				NOT = { exists = owner }
+				habitable_planet = yes
+				num_free_districts = {
+					type = district_city
+					value < -3
+				}
+			}
+			add_modifier = {
+				modifier = wild_world
+			}
+		}
+	}
+}
+
+### 103. Wild World Remover (on_yearly_pulse)
+#	Removes the Wild World modifier when the planet has developed enough not to be one anymore.
+planet_event = {
+	id = tbm_handler.103
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		has_modifier = wild_world
+		colony_age > 20
+		num_free_districts = {
+			type = district_city
+			value >= 0
+		}
+	}
+
+	immediate = {
+		remove_modifier = wild_world
+	}
+}
+
+### 104. Gestalt Wild World Adapter
+#	on_colonizzation_started and on_planet_transfer
+planet_event = {
+	id = tbm_handler.104
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_modifier = wild_world
+		owner = { is_gestalt = yes }
+	}
+
+	immediate = {
+		remove_modifier = wild_world
+		add_modifier = {
+			modifier = wild_world_gestalt
+		}
+	}
+}
+
+### 105. Pre-FTL Achieve FTL
+#	Handles features for empires achieving FTL. Called from achieve_ftl_effect.
+#	Vanilla Pre-FTLs clear their two Early Space Age blockers on reaching the Space Age via clear_blockers = yes, which wipes out all TBM features. This re-generates a standard starting spread.
+planet_event = {
+	id = tbm_handler.105
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		clear_deposits = yes
+		if = {
+			limit = {
+				has_modifier = cleared_hot_springs
+			}
+			remove_modifier = cleared_hot_springs
+		}
+		add_planet_devastation = -100
+		generate_start_deposits_and_blockers = yes
+	}
+}
+
+### 106. Gestalt Colonial Buff
+planet_event = {
+	id = tbm_handler.106
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner = { is_hive_empire = yes }
+			}
+
+			add_modifier = {
+				modifier = new_branch
+				years = 25
+			}
+		}
+		else_if = {
+			limit = {
+				owner = { is_machine_empire = yes }
+			}
+			add_modifier = {
+				modifier = new_function
+				years = 25
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = new_frontier
+				years = 20
+			}
+		}
+	}
+}
+
+### 110. Tomb World Features
+#	Adds tomb world features when a planet is bombarded or otherwise converted into a Tomb World. Called from a couple of places, which is why it's separate.
+planet_event = {
+	id = tbm_handler.110
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		reroll_deposits = yes	#
+	}
+}
+
+
+### 200. Terraforming Handler
+#	Rerolls planet features on terraform. Does not clear anything other than what vanilla clears.
+planet_event = {
+	id = tbm_handler.200
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		years_passed > 0	# Avoids this sometimes getting called at game start for reasons
+	}
+
+	immediate = {
+		reroll_deposits = yes
+	}
+}
+
+### 301. Wenkwort Handler
+#	on_colonization_started and on_blocker_cleared (which is in planet scope)
+planet_event = {
+	id = tbm_handler.301
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		exists = owner
+		owner = { is_ai = no } # For now, anyway. Suspect AI probably won't do that well with the shifting nature of this event, plus they usually pave the place in vanilla anyway.
+		this = {
+			is_same_value = event_target:wenkwort_artem 	# global_event_target
+		}
+	}
+
+	immediate = {
+		every_deposit = {
+			limit = {
+				NOT = { has_deposit_flag = wenkwort_deposit }
+			}
+			set_deposit_flag = wenkwort_deposit
+		}
+
+		# on_blocker_cleared handling (from == deposit )
+		if = {
+			limit = {
+				# Confirmed, I think, that from == deposit in synth.311, under machine_age_events, where any_deposit checks is_same_value = from
+				AND = {
+					from = { is_scope_type = deposit }
+					from = { has_deposit_flag = wenkwort_deposit }
+				}
+				num_pops >= 5	# Don't fire negative events until colony is up and running
+			}
+
+			change_variable = {
+				which = wenkwort_custodianship
+				value = -1
+			}
+
+			random_list = {
+				33 = {
+					modifier = {
+						factor = 0
+						has_modifier = pm_wenkwort_disease_outbreak
+					}
+					
+					planet_event = {
+						id = tbm.505
+						days = 60
+						random = 30
+					}
+				}
+				
+				33 = {
+					modifier = {
+						factor = 0
+						has_modifier = pm_wenkwort_invasive_species
+					}
+					
+					planet_event = {
+						id = tbm.506
+						days = 60
+						random = 30
+					}
+				}
+
+				33 = {
+					modifier = {
+						factor = 0
+						has_modifier = pm_wenkwort_predatory_biology
+					}
+					
+					planet_event = {
+						id = tbm.507
+						days = 60
+						random = 30
+					}
+				}
+			}
+		}
+
+		# Replaces vanilla Wenkwort Custodian once it's colonized
+		if = {
+			limit = {
+				exists = owner
+				NOT = { has_planet_flag = fixed_wenkwort_modifiers }
+				has_modifier = "pm_wenkwort_custodian"
+			}
+			planet_event = {
+				id = tbm.508
+				days = 3 # Need to egt it out of the way of the other Wenkwort events, which are heavily chained so need a little delay
+			}
+		}
+	}
+}

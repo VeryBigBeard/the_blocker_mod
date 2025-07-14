@@ -1,0 +1,391 @@
+### The Blocker Mod - Events 5
+#	Mainly special planet events
+###
+
+namespace = tbm
+
+### INDEX ###
+#	500. Wenkwort Custodianship
+###
+
+### 500. Wenkwort Set-up
+#	Called on_press_begin, resets Wenkworts features
+event = {
+	id = tbm.500
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+	
+		event_target:wenkwort_artem = {
+
+			remove_modifier = "pm_wenkwort_gardens"
+			add_modifier = {
+				modifier = pm_wenkwort_gardens_overwrite
+			}
+			
+			clear_deposits_except_special = yes
+
+			add_deposit = d_idyllic_pastorale
+			add_deposit = d_utopian_hills
+			add_deposit = d_lakelands
+			add_deposit = d_mineral_striations
+			while = {
+				count = 4
+				add_deposit = d_natural_gardens
+			}
+			while = {
+				count = 4
+				add_deposit = d_rushing_waterfalls
+			}
+			while = {
+				count = 2
+				add_deposit = d_lush_jungle
+			}
+			while = {
+				count = 2
+				add_deposit = d_sandstone_spires
+			}
+			add_deposit = d_natural_farmland
+			add_deposit = d_colossal_spires
+			add_deposit = d_floating_gardens
+			add_deposit = d_snow_palace
+			add_deposit = d_betharian_deposit
+			while = {
+				count = 3
+				add_deposit = d_gentle_plains
+			}
+		}
+	}
+}
+
+### 501. Wenkwort Custodianship
+#	Called on_colony_yearly_pulse, increments custodianship variable
+planet_event = {
+	id = tbm.501
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		is_same_value = event_target:wenkwort_artem		# global
+		owner = { is_ai = no }
+		OR = {
+			has_modifier = pm_wenkwort_custodian	#3
+			has_modifier = pm_wenkwort_custodian_1
+			has_modifier = pm_wenkwort_custodian_3
+			has_modifier = pm_wenkwort_custodian_2
+			has_modifier = pm_wenkwort_custodian_4
+			has_modifier = pm_wenkwort_custodian_5
+		}
+	}
+
+	immediate = {
+		
+		# 50% chance you got a bit better at gardening this year
+		random_list = {
+			50 = {
+				change_variable = {
+					which = wenkwort_custodianship
+					value = 1
+				}
+			}
+			50 = {
+				change_variable = {
+					which = wenkwort_custodianship
+					value = -1
+				}
+				
+				modifier = {
+					factor = 2
+					OR = {
+						has_modifier = pm_wenkwort_disease_outbreak
+						has_modifier = pm_wenkwort_invasive_species
+						has_modifier = pm_wenkwort_predatory_biology
+					}
+				}
+
+				modifier = {
+					factor = 2
+					OR = {
+						num_districts = {
+							type = district_mining
+							value > 1
+						}
+						num_districts = {
+							type = district_industrial
+							value > 1
+						}
+						num_districts = {
+							type = district_generator
+							value > 1
+						}
+						num_districts = {
+							type = district_farming
+							value > 3
+						}
+					}
+				}
+
+				modifier = {
+					factor = 2
+					OR = {
+						has_deposit = d_sprawling_landfill_blocker
+						has_deposit = d_tbm_slums
+						has_deposit = d_tbm_industrial_wasteland
+						has_deposit = d_crater
+						has_deposit = d_tbm_strip_mine
+						has_deposit = d_strip_mine
+					}
+				}
+			}	
+		}
+
+		### Bad stuff
+		if = {
+			limit = {
+				check_variable = {
+					which = wenkwort_custodianship
+					value <= 1
+				}
+			}
+			
+			switch = {
+				trigger = has_modifier
+
+				pm_wenkwort_custodian_1 = {
+					random_list = {
+						10 = {
+							planet_event = {
+								id = federations3.131	# This is the vanilla event; loc might be a bit weird, but it's smoother not to overwrite it and it also adds the option to surrender and reset Custodian 3 (default), which is a good option.
+							}
+						}
+		
+						90 = {
+							change_variable = {
+								which = wenkwort_custodianship
+								value = 1	# Set the variable back to 1 so we don't end up going way into custodianship debt
+							}
+						}
+					}
+				}
+
+				pm_wenkwort_custodian_2 = {
+					remove_modifier = pm_wenkwort_custodian_2
+					add_modifier = {
+						modifier = pm_wenkwort_custodian_1
+					}
+				}
+
+				pm_wenkwort_custodian_3 = {
+					remove_modifier = pm_wenkwort_custodian
+					add_modifier = {
+						modifier = pm_wenkwort_custodian_2
+					}
+				}
+
+				pm_wenkwort_custodian_4 = {
+					remove_modifier = pm_wenkwort_custodian_4
+					add_modifier = {
+						modifier = pm_wenkwort_custodian_3
+					}
+				}
+
+				pm_wenkwort_custodian_5 = {
+					remove_modifier = pm_wenkwort_custodian_5
+					add_modifier = {
+						modifier = pm_wenkwort_custodian_4
+					}
+				}
+			}
+			
+			
+		}
+
+		### Increased Custodian modifier if you've been a good little star empire this year
+		if = {
+			limit = {
+				check_variable = {
+					which = wenkwort_custodianship
+					value >= 5
+				}
+			}
+
+			# Modifier management
+			switch = {
+				trigger = has_modifier
+
+				pm_wenkwort_custodian_1 = {
+					remove_modifier = pm_wenkwort_custodian_1
+					add_modifier = {
+						modifier = pm_wenkwort_custodian_2
+					}
+				}
+
+				pm_wenkwort_custodian_2 = {
+					remove_modifier = pm_wenkwort_custodian_2
+					add_modifier = {
+						modifier = pm_wenkwort_custodian_3
+					}
+				}
+
+				pm_wenkwort_custodian_3 = {
+					remove_modifier = pm_wenkwort_custodian_3
+					add_modifier = {
+						modifier = pm_wenkwort_custodian_4
+					}
+				}
+
+				pm_wenkwort_custodian_4 = {
+					remove_modifier = pm_wenkwort_custodian_4
+					add_modifier = {
+						modifier = pm_wenkwort_custodian_5
+					}
+				}
+
+				pm_wenkwort_custodian_5 = {
+					planet_event = {
+						id = tbm.502
+					}
+				}
+			}
+
+			# Reset variable to 1 for next level
+			# Only resets if we're at 5, so we don't get the modifier changing every year
+			set_variable = {
+				which = wenkwort_custodianship
+				value = 1
+			}
+		}
+	}
+}
+
+### 502. Wenkwort Custodianship Locked In
+#	Fired when the custodianship hits 5 and can't be lowered
+planet_event = {
+	id = tbm.502
+
+	is_triggered_only = yes
+	location = event_target:wenkwort_artem
+
+	title = tbm.502_wenkwort_locked
+	desc = tbm.502_desc_wenkwort_locked
+	picture = GFX_evt_alien_nature
+	show_sound = event_alien_nature
+
+	option = {
+		name = TBM_WONDERFUL
+		remove_modifier = pm_wenkwort_custodian_5
+		add_modifier = {
+			modifier = pm_wenkwort_custodian_locked
+		}		
+	}
+}
+
+### 505. Wenkwort Fraying - Disease
+#	Called from tbm.501 if not gardening well
+planet_event = {
+	id = tbm.505
+
+	is_triggered_only = yes
+	location = event_target:wenkwort_artem
+
+	title = tbm.505_wenkwort_disease
+	desc = tbm.505_wenkwort_disease_desc
+	picture = GFX_evt_aggressive_flora
+	show_sound = event_alien_nature
+
+	option = {
+		name = UNFORTUNATE
+		random_deposit = {
+			limit = { has_deposit_flag = wenkwort_deposit }
+			remove_deposit = yes
+		}
+		add_modifier = {
+			modifier = pm_wenkwort_disease_outbreak
+			days = 360
+		}
+	}
+}
+
+### 506. Wenkwort Fraying - Invasive Species
+#	Called from tbm.501 if not gardening well
+planet_event = {
+	id = tbm.506
+
+	is_triggered_only = yes
+	location = event_target:wenkwort_artem
+
+	title = tbm.506_wenkwort_invasive
+	desc = tbm.506_wenkwort_invasive_desc
+	picture = GFX_evt_overgrown_city
+	show_sound = event_evolution_mastery
+
+	option = {
+		name = UNFORTUNATE
+		add_modifier = {
+			modifier = pm_wenkwort_invasive_species
+		}
+		hidden_effect = {
+			change_variable = {
+				which = wenkwort_custodianship
+				value = -5
+			}
+		}
+	}
+}
+
+### 507. Wenkwort Fraying - Predators
+#	Called from tbm.501 if not gardening well
+planet_event = {
+	id = tbm.507
+
+	is_triggered_only = yes
+	location = event_target:wenkwort_artem
+
+	title = tbm.507_wenkwort_predators
+	desc = tbm.507_wenkwort_predators_desc
+	picture = GFX_evt_zro_1
+	show_sound = event_first_contact_necroid
+
+	option = {
+		name = UNFORTUNATE
+		add_modifier = {
+			modifier = pm_wenkwort_predatory_biology
+		}
+		while = {
+			count = 2
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+}
+
+### 508. Wenkwort Modifier Fixer
+#	Called from tbm_handler.301, see flag; replaces vanilla Wenkwort modifiers, which are added 
+planet_event = {
+	id = tbm.508
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		NOT = { has_planet_flag = fixed_wenkwort_modifiers }
+	}
+
+	immediate = {
+
+		remove_modifier = "pm_wenkwort_custodian"
+		add_modifier = {
+			modifier = pm_wenkwort_custodian_3	# Yeah, this looks weird. But the game interprets the quote marks as a separate modifier and applies the vanilla one
+		}
+			
+		set_planet_flag = fixed_wenkwort_modifiers
+	}
+}

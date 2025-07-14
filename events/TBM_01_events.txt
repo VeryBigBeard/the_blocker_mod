@@ -1,0 +1,1609 @@
+### The Blocker Mod - Events
+
+namespace = tbm
+
+
+###
+### INDEX
+###
+#
+#	To disable events, please use tbm_on_actions.txt and remove the number(s) desired.
+#	Numbers not shown are chains for the preceding.
+#
+### TBM_01_events
+#
+#	1. Init Event
+#	11. Volcanic Eruption
+#	16. Xenofauna Attack
+#	19. Landslide
+#	21. Proposed Marina
+#	27. Flooding (Evacuations)
+#	28. Flooding (damage)
+#	29. Flooding (destruction)
+#	30. Climate Control Network Malfunctions
+#	31. Climate Control - Too Much
+#	32. Climate Control - Overheating
+#	33. Climate Control - Oops, We Missed
+#	34. Climate Control - Machine Breaks Down
+###
+
+
+### Variables
+
+@volcanic_devastation = 20
+
+### 1. Init Event
+#	Sets up mod flag and any debugging currently active
+country_event = {
+	id = tbm.1
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		log = "The Blocker Mod is active."
+
+		### Init
+		set_global_flag = the_blocker_mod
+	}
+}
+
+### 5. Dangerous Wildlife - Population Management
+planet_event = {
+	id = tbm.5
+
+	title = tbm.5_name
+    desc = tbm.5_desc
+    picture = GFX_evt_scanning_remains
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm.5_nothing
+		custom_tooltip = tbm.5_nothing_tooltip
+		hidden_effect = {
+			add_deposit = d_dangerous_wildlife_blocker
+		}
+	}
+
+	option = {
+		name = tbm.5_hunting
+		custom_tooltip = tbm.5_hunting_tooltip
+		hidden_effect = {
+			add_deposit = d_dangerous_wildlife_blocker
+		}
+		add_modifier = {
+			modifier = dangerous_wildlife_permits
+		}
+	}
+
+	option = {
+		name = tbm.5_poaching
+		custom_tooltip = tbm.5_poaching_tooltip
+		allow = {
+			owner = {
+				NOT = { has_policy_flag = pre_sapients_protect }
+			}
+		}		
+		add_modifier = {
+			modifier = dangerous_wildlife_poachers
+			years = 2
+		}
+		hidden_effect = {
+			random_list = {
+				90 = {}
+
+				10 = {					
+					planet_event = {
+						id = tbm.6
+						days = 7200
+					}
+				}
+			}
+		}
+	}
+
+	#Option to genetically modify species with gene tailoring
+	option = {
+		name = tbm.5_toxin
+		custom_tooltip = tbm.5_toxin_tooltip
+		allow = {
+			owner = {
+				has_technology = tech_gene_tailoring
+				NOT = { has_policy_flag = pre_sapients_protect }
+			}
+			planet = {
+				has_building = building_clinic
+			}
+		}
+
+		owner = {
+			add_resource = {
+				food = -500
+			}
+		}
+
+		enable_special_project = {
+			name = "PREDATOR_MODIFICATION_PROJECT"
+		}
+	}
+}
+
+### 6. Dangerous Wildlife - Planetary Food System Collapses
+planet_event = {
+	id = tbm.6
+
+	title = tbm.6_name
+	desc = tbm.6_desc
+	picture = GFX_evt_scanning_remains
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		add_modifier = {
+			modifier = dangerous_wildlife_food_changes
+		}
+	}
+
+	option = {
+		name = tbm.6_a
+	}
+
+	option = {
+		name = tbm.6_b
+		allow = {
+			owner = {
+				has_technology = tech_gene_tailoring
+			}
+			planet = {
+				has_building = building_hospital
+			}
+		}
+		remove_modifier = dangerous_wildlife_food_changes
+		owner = {
+			add_resource = {
+				society_research = @tier2researchreward
+			}
+		}
+		add_deposit = d_fertile_lands
+	}
+}
+
+### 7. Dangerous Wildlife - Toxin Seeps Into Water System
+planet_event = {
+	id = tbm.7
+
+	title = tbm.7_name
+    desc = tbm.7_desc
+    picture = GFX_evt_scanning_remains
+	show_sound = event_first_contact_machine
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm.7_a
+		add_modifier = {
+			modifier = dangerous_wildlife_contamination
+			days = 1800
+		}
+	}
+}
+
+### 8. Dangerous Wildlife - Enhanced Biodiversity
+planet_event = {
+	id = tbm.8
+
+	title = tbm.8.name
+    desc = tbm.8.desc
+    picture = GFX_evt_scanning_remains
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm.8.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		add_deposit = d_fertile_lands
+	}
+}
+
+# ### 9. Dangerous Wildlife - Predator Modification Project
+# planet_event = {
+# 	id = tbm.9
+
+# 	title = tbm.9.name
+#     desc = tbm.9.desc
+#     picture = GFX_evt_scanning_remains
+# 	show_sound = event_finding_loot
+
+# 	is_triggered_only = yes
+# 	location = this
+
+# 	#Well done, lads
+# 	option = {
+# 		name = tbm.9.a
+# 		remove_modifier = dangerous_wildlife_food_changes
+# 		add_deposit = d_fertile_lands
+# 	}
+# }
+
+### 10. Volcanic Eruption (Handler)
+planet_event = {
+	id = tbm.10
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+	}
+
+	trigger = {
+		exists = owner
+		owner = { 
+			is_country_type = default # This is here to avoid bugs caused by volcanoes being put on scripted planets; if you use ZoFE, replace with is_zofe_country = yes should you wish your advanced empire to still suffer the odd volcanic event
+		}	
+		is_starting_planet = no
+		OR = {
+			has_deposit = d_active_volcano
+			has_deposit = d_tbm_active_volcano
+		}
+	}
+
+	immediate = {
+		
+		random_list = {
+			10 = {	
+				# Get Head of Research
+				if = {
+					limit = {
+						owner = {
+							any_owned_leader = {
+								is_councilor_type = councilor_research
+							}
+						}
+					}
+					owner = {
+						random_owned_leader = {
+							limit = {
+								is_councilor_type = councilor_research
+							}
+							save_global_event_target_as = head_of_research	
+						}
+					}
+				}
+				else = {
+					owner = {
+						random_owned_leader = {
+							limit = {
+								is_ruler = yes
+							}
+							save_global_event_target_as = head_of_research
+						}
+					}
+				}
+
+				### Call events based on tech
+				if = {
+					limit = {
+						owner = { has_technology = tech_volcano }
+					}
+					this = {
+						planet_event = {
+							id = tbm.12
+							days = 1800
+							random = 180
+						}
+					}
+				}
+				else = {
+					this = {
+						planet_event = {
+							id = tbm.11
+							days = 1800
+							random = 180
+						}
+					}
+				}
+			}
+			90 = {}			
+		}
+	}
+}
+
+### 11. Volcanic Eruption
+planet_event = {
+	id = tbm.11
+	title = tbm.11.name
+	desc = tbm.11.desc
+	picture = GFX_evt_molten
+
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+	}
+
+	trigger = {
+		exists = owner
+		is_starting_planet = no
+		any_deposit = {
+			OR = {
+				is_deposit_type = d_active_volcano
+				is_deposit_type = d_tbm_active_volcano
+			}
+			NOT = { has_deposit_flag = volcano_erupted }
+		}
+	}
+
+	immediate = {
+		set_variable_to_random_value = { which = @volcanic_devastation min = 20 max = 40  }
+	}
+
+	option = {
+		name = tbm.11.a
+	}
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_authority = auth_democratic
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_egalitarian
+				}
+			}
+			# Prevent country that has negative unity income from being able to pull through (or receive negative reward)
+			owner = {
+				has_monthly_income = { resource = unity  value < 0 }
+			}
+		}
+		name = tbm.11.b
+
+		owner = {
+			add_resource = {
+				food = -500
+				energy = -500
+			}
+			
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 24
+			}
+		}
+
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+	after = {
+		
+		add_planet_devastation = @volcanic_devastation
+		
+		### 20% chance for volcano to deactivate and leave behind a feature
+		random_list = {
+			10 = {
+				random_deposit = {
+					limit = {
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
+					}
+					remove_deposit = yes
+				}
+				add_deposit = d_tempestous_mountain
+			}
+			10 = {
+				random_deposit = {
+					limit = {
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
+					}
+					remove_deposit = yes
+				}
+				add_deposit = d_veiny_cliffs
+			}
+			80 = {
+				random_deposit = {
+					limit = {
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
+					}
+					set_timed_deposit_flag = {
+						flag = volcano_erupted
+						years = 40
+					}
+				}
+				add_deposit = d_veiny_cliffs
+			}
+		}
+
+		### Always add Mineral Fields & Volcanic Ash
+		random_list = {
+			60 = {
+				add_deposit = d_mineral_fields
+			}
+			20 = {
+				add_deposit = d_basaltic_outcrops
+			}
+			10 = {
+				add_deposit = d_mineral_fields
+				add_deposit = d_mineral_fields
+			}
+			10 = {
+				add_deposit = d_mineral_fields
+				add_deposit = d_basaltic_outcrops
+			}
+		}
+		random_list = {
+			60 = {
+				add_deposit = d_volcanic_ash
+			}
+			40 = {
+				add_deposit = d_volcanic_ash
+				add_deposit = d_volcanic_ash
+			}
+		}
+		
+		### Always adds either Volcanic Soil or a Volcanic Island
+		#	1% chance to send planet into volcanic winter
+		random_list = {
+			99 = {
+				### Disabled - this should be a separate event for new volcanoes
+				# random_list = {
+				# 	80 = {
+				# 		add_deposit = d_volcanic_soil
+				# 	}
+				# 	20 = {
+				# 		add_deposit = d_volcanic_island
+				# 	}
+				# }
+			}
+			1 = {
+				planet_event = {
+					id = tbm.13
+					days = 720
+					random = 360
+				}
+			}
+		}
+
+		clear_global_event_target = head_of_research
+	}
+}
+
+### 12. Volcanic Instability - Warning Signs
+planet_event = {
+	id = tbm.12
+
+	title = tbm.12.name
+	desc = tbm.12.desc
+	picture = GFX_evt_molten
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+		#is_homeworld = no
+	}
+
+	# Even volcanoes that are on cooldown can trigger warnings.
+	trigger = {
+		is_starting_planet = no
+		OR = {
+			has_deposit = d_active_volcano
+			has_deposit = d_tbm_active_volcano
+		}	
+		owner = { has_technology = tech_volcano }
+	}
+
+	immediate = {
+		
+		### Some logic to avoid volcanoes on cooldown actually erupting
+		random_deposit = {
+			limit = {
+				OR = {
+					is_deposit_type = d_active_volcano
+					is_deposit_type = d_tbm_active_volcano
+				}
+				NOT = { has_deposit_flag = volcano_erupted }
+			}
+			save_event_target_as = volcano_warning
+		}
+	}
+
+	option = {
+		name = tbm.12.a
+	}
+
+	after = {
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = event_target:volcano_warning
+				}
+				random_list = {
+					40 = {
+						planet_event = {
+							id = tbm.14
+							days = 90
+							random = 60
+						}
+					}
+					60 = {}
+				}
+			}
+		}
+	}
+}
+
+### 13. Volcanic Ash Chokes Atmosphere
+planet_event = {
+	id = tbm.13
+	title = tbm.13.name
+	desc = tbm.13.desc
+	picture = GFX_evt_molten
+
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+	}
+
+	trigger = {
+		is_starting_planet = no
+	}
+
+	immediate = {
+	}
+
+	option = {
+		name = OK
+	}
+
+	after = {
+		owner = {
+			add_tech_progress = {
+				tech = tech_terrestrial_sculpting
+				progress = 0.2
+			}
+		}
+
+		change_pc = pc_nuked
+		
+		clear_global_event_target = head_of_research
+	}
+}
+
+### 14. Mitigated Volcanic Eruption
+planet_event = {
+	id = tbm.14
+	title = tbm.14.name
+	desc = tbm.14.desc
+	picture = GFX_evt_molten
+
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+	}
+
+	trigger = {
+		is_starting_planet = no
+	}
+
+	immediate = {
+		set_variable_to_random_value = { which = @volcanic_devastation min = 20 max = 40  }
+	}
+
+	option = {
+		name = tbm.11.a
+	}
+
+	after = {
+		add_planet_devastation = @volcanic_devastation
+		
+		### 20% chance for volcano to deactivate and leave behind a feature
+		random_list = {
+			10 = {
+				random_deposit = {
+					limit = {
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
+					}
+					remove_deposit = yes
+				}
+				add_deposit = d_tempestous_mountain
+			}
+			10 = {
+				random_deposit = {
+					limit = {
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
+					}
+					remove_deposit = yes
+				}
+				add_deposit = d_veiny_cliffs
+			}
+			80 = {
+				random_deposit = {
+					limit = {
+						OR = {
+							is_deposit_type = d_active_volcano
+							is_deposit_type = d_tbm_active_volcano
+						}
+					}
+					set_timed_deposit_flag = {
+						flag = volcano_erupted
+						years = 40
+					}
+				}
+				add_deposit = d_veiny_cliffs
+			}
+		}
+
+		### Always add Mineral Fields & Volcanic Ash
+		random_list = {
+			60 = {
+				add_deposit = d_mineral_fields
+			}
+			20 = {
+				add_deposit = d_basaltic_outcrops
+			}
+			10 = {
+				add_deposit = d_mineral_fields
+				add_deposit = d_mineral_fields
+			}
+			10 = {
+				add_deposit = d_mineral_fields
+				add_deposit = d_basaltic_outcrops
+			}
+		}
+		random_list = {
+			60 = {
+				add_deposit = d_volcanic_ash
+			}
+			40 = {
+				add_deposit = d_volcanic_ash
+				add_deposit = d_volcanic_ash
+			}
+		}
+		
+		clear_global_event_target = head_of_research
+	}
+}
+
+### 16. Xenofauna Attack (Handler)
+planet_event = {
+	id = tbm.16
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+		original_owner = yes
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		any_owned_pop = {
+			has_job = enforcer # To avoid colony abandonment and make the desc work; admittedly it's kind of appropriate but it causes UX problems
+		}
+		is_starting_planet = no
+		NOR = {
+			has_planet_flag = night_watches_xenofauna
+			has_planet_flag = settlement_attacked
+			AND = {
+				any_deposit = {
+					tree_feature = yes
+				}
+				has_planet_flag = xenofauna_attack	
+			}
+		}
+		any_deposit = {
+			tree_feature = yes
+		}
+	}
+
+	immediate = {
+		set_timed_planet_flag = {
+			flag = xenofauna_attack
+			years = 5
+		}
+
+		random_deposit = {
+			limit = { tree_feature = yes }
+			save_event_target_as = wildlife_lair
+		}
+		
+		random_list = {
+			5 = {
+				this = {
+					planet_event = {
+						id = tbm.17
+						days = 120
+						random = 60
+					}
+				}
+			}
+			80 = {}
+		}
+	}
+}
+
+### 17. Xenofauna Attacks Settlement
+planet_event = {
+	id = tbm.17
+	title = tbm.17.name
+    desc = {
+		exclusive_trigger = {
+			has_planet_flag = settlement_attacked
+		}
+		text = tbm.17.desc_clearance
+	}
+	desc = tbm.17.desc_exists
+	picture = GFX_evt_baol_ruins
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+	location = this
+
+	# Send in the military
+	option = {
+		trigger = {
+			has_deposit = d_dangerous_wildlife_blocker
+		}
+		name = tbm.17.military
+		#this = { save_event_target_as = wildlife_planet }
+		enable_special_project = {
+			name = EXTERMINATE_XENOFAUNA
+		}
+	}
+	
+	# Allocate Additional Security
+	option = {
+		trigger = {
+			has_deposit = d_dangerous_wildlife_blocker
+		}
+		name = tbm.17.security
+		add_modifier = {
+			modifier = night_watches
+			years = 10
+		}
+		set_timed_planet_flag = {
+			flag = night_watches_xenofauna
+			years = 10
+		}
+	}
+
+	# Public Service Announcements
+	option = {
+		trigger = {
+			has_deposit = d_dangerous_wildlife_blocker
+		}
+		name = tbm.17.announcements
+		custom_tooltip = tbm.17.announcements.tooltip
+	}
+
+	option = {
+		name = UNFORTUNATE
+	}
+
+	after = {
+		random_owned_pop = {
+			limit = {
+				OR = {
+					has_job = dangerous_wildlife_hunter
+					has_job = colonist
+				}
+			}
+			kill_pop = yes
+		}
+	}
+}
+
+### 18. Landslide (Handler)
+planet_event = {
+	id = tbm.18
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+	}
+
+	trigger = {
+		exists = owner
+		owner = { 
+			is_ai = no
+			is_country_type = default
+		}
+		is_starting_planet = no
+		NOT = { has_planet_flag = landslide }
+		any_deposit = {
+			landmass_collapsable = yes
+		}
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				planet_event = {
+					id = tbm.19
+					days = 180
+					random = 90
+				}
+			}
+			95 = {}
+		}
+	}
+}
+
+### 19. Landslide
+planet_event = {
+	id = tbm.19
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_timed_planet_flag = {
+			flag = landsldie
+			years = 5
+		}
+		add_planet_devastation = 10	
+		
+		create_message = {
+			type = "LANDSLIDE"
+			localization = message_landslide
+			days = 30
+			target = this
+		}
+
+		# 40% chance to change feature that caused landslide
+		random_list = {
+			40 = {
+				random_deposit = {
+					limit = {
+						landmass_collapsable = yes
+					}
+					if = {
+						limit = {
+							this = {
+								mountain_feature = yes
+							}
+							prevprev = {
+								num_pops > 10
+							}
+						}
+						remove_deposit = yes
+						prevprev = {
+							add_deposit = d_veiny_cliffs
+							add_blocker = {
+								type = d_rubble
+								blocked_deposit = last_added_deposit
+							}
+						}
+					}
+					else = {
+						remove_deposit = yes
+						root = { add_deposit = d_collapsed_cliffs }
+					}
+				}
+			}
+			60 = {}
+		}
+	}
+}
+
+### 21. Proposed Marina
+#	on_district_complete
+planet_event = {
+	id = tbm.21
+	title = tbm.21.name
+	# Superyacht Version
+	desc = {
+		trigger = {
+			has_ruling_class = yes
+			owner = {
+				NOR = {
+					has_authority = auth_democratic
+					has_civic = civic_environmentalist
+					has_civic = civic_beacon_of_liberty
+				}
+			}
+		}
+		text = tbm.21.desc_superyacht
+	}
+	# Hip Tree-hugger Version
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_authority = auth_democratic
+					has_civic = civic_environmentalist
+					has_civic = civic_beacon_of_liberty
+				}
+			}
+			NOT = { has_ruling_class = yes }
+		}
+		text = tbm.21.desc_treehuggers
+	}
+	picture = GFX_evt_acquire_asset
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	trigger = {
+		# Must have a coastal city
+		NOT = { has_planet_flag = proposed_marina }	
+		NOT = {
+			is_starting_planet = yes
+		}
+		has_upgraded_capital = yes
+		last_district_changed = district_city
+		has_deposit = d_teeming_reef
+	
+		if = {
+			limit = {
+				is_planet_class = pc_ocean
+			}
+			num_districts = {
+				type = district_city
+				value > 0
+			}
+		}
+		else = {
+			num_districts = {
+				type = district_city
+				value > 2
+			}
+		}
+	}
+
+	immediate = {
+		set_planet_flag = proposed_marina
+	}
+
+	# Approve
+	option = {
+		name = tbm.21.approve
+		trigger = {
+			has_ruling_class = yes
+			owner = {
+				NOR = {
+					has_authority = auth_democratic
+					has_civic = civic_environmentalist
+					has_civic = civic_beacon_of_liberty
+				}
+			}
+		}
+
+		add_modifier = {
+			modifier = recreational_investment
+			years = 10
+		}
+		random_list = {
+			67 = {
+				custom_tooltip = tbm.21.possible_protests
+				hidden_effect = {
+					planet_event = { id = tbm.23 days = 60 }
+				}
+			}
+			33 = {
+				custom_tooltip = tbm.21.no_protests
+			}
+		}
+	}
+
+	# Deny
+	option = {
+		name = tbm.21.deny
+
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						has_authority = auth_democratic
+						has_civic = civic_environmentalist
+						has_civic = civic_beacon_of_liberty
+					}
+				}
+				NOT = { has_ruling_class = yes }
+			}
+			owner = {
+				add_monthly_resource_mult = {
+					resource = unity
+					value = 2
+				}
+			}
+		}
+
+		add_modifier = {
+			modifier = denied_investment
+			years = 20
+		}
+	}
+
+	# Preserve Reef
+	option = {
+		name = tbm.21.preserve
+		custom_tooltip = tbm.21.preserve.tooltip	# Important! Reefs can no longer be cleared.
+		trigger = {
+			owner = { has_civic = civic_environmentalist }
+		}
+		set_planet_flag = reef_eco_preserve
+	}
+
+	# Crack Down
+	option = {
+		name = tbm.21.crackdown
+		allow = {
+			NOR = {
+				owner = { 
+					has_civic = civic_environmentalist 
+					has_civic = civic_beacon_of_liberty
+				}
+			}
+		}
+		exclusive_trigger = {
+			owner = { has_civic = civic_police_state }
+		}
+
+		add_modifier = {
+			modifier = recreational_investment
+			years = 10
+		}
+		hidden_effect = {
+			random_list = {
+				67 = {
+					custom_tooltip = tbm.21.possible_protests
+					hidden_effect = {
+						planet_event = { id = tbm.23 days = 60 }
+					}
+				}
+				33 = {
+					custom_tooltip = tbm.21.no_protests
+				}
+			}
+		}
+	}
+
+	# Do Nothing
+	option = {
+		name = tbm.21.nothing
+		set_planet_flag = reef_exploited
+		random_list = {
+			67 = {
+				custom_tooltip = tbm.21.possible_protests
+				planet_event = { id = tbm.23 days = 60 }
+			}
+			33 = {
+				custom_tooltip = tbm.21.no_protests
+			}
+		}
+	}
+}
+
+### 23. Proposed Marina - Mass Protests	
+planet_event = {
+	id = tbm.23
+
+	title = tbm.23.name
+	desc = tbm.23.desc	
+	picture = GFX_evt_civil_action
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	# Send in military
+	option = {
+		trigger = {
+			any_owned_pop = {
+				OR = {
+					has_job = enforcer
+					has_job = soldier
+				}
+			}
+		}
+		name = tbm.23.military
+
+		add_modifier = {
+			modifier = mass_protest
+			days = 360
+		}
+		random_list = {
+			30 = {
+				custom_tooltip = tbm.23.casualties.random_tooltip
+				random_owned_pop = {
+					limit = { 
+						OR = {
+							has_job = enforcer
+							has_job = soldier
+						}
+					}
+					kill_pop = yes
+				}
+			}
+			70 = {
+				custom_tooltip = tbm.23.nothing.random_tooltip
+			}
+		}
+	}
+
+	# Hold Governor Accountable
+	option = {
+		allow = {
+			NOT = {
+				owner = {
+					has_authority = auth_democratic
+				}
+			}
+		}
+		trigger = {
+			planet = {		
+				exists = leader
+			}
+		}
+		name = tbm.23.governor
+		custom_tooltip = tbm.21.preserve.tooltip # Important: Teeming Reefs can no longer be cleared
+
+		owner = {
+			add_modifier = {
+				modifier = denied_investment
+				years = 20
+			}
+		}
+		kill_leader = {
+			fire = yes
+		}
+		set_planet_flag = reef_eco_preserve
+	}
+
+	# Address Concerns
+	option = {
+		name = tbm.23.address
+		custom_tooltip = tbm.21.preserve.tooltip
+		allow = {
+			owner = {
+				OR = {
+					has_ethic = ethic_fanatic_egalitarian
+					has_civic = civic_environmentalist
+				}
+			}
+		}
+
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 12
+			}
+		}
+		set_planet_flag = reef_eco_preserve
+	}
+
+	# Clear the Reef
+	option = {
+		trigger = {
+			NOT = {
+				owner = { has_civic = civic_environmentalist }
+			}
+		}
+		name = tbm.23.bulldoze
+		custom_tooltip = tbm.23.bulldoze_tooltip
+
+		add_modifier = {
+			modifier = mass_protest
+			years = 2
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = 6
+			}
+			add_resource = {
+				food = 500
+			}
+		}
+	}
+
+	# Let Governor handle it
+	option = {
+		trigger = {
+			planet = {		
+				exists = leader
+			}
+		}
+		name = tbm.23.leave
+
+		add_modifier = {
+			modifier = mass_protest
+			years = 2
+		}
+	}
+
+	# Fallback Option
+	option = {
+		name = tbm.23.terrible		#That's terrible....
+		custom_tooltip = tbm.23.protests.tooltip
+		add_modifier = {
+			modifier = mass_protest
+			years = 5
+		}
+	}
+}
+
+### 26. Flooding (Handler)
+planet_event = {
+	id = tbm.26
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		any_deposit = {
+			can_flood = yes
+		}
+	}
+
+	immediate = {
+		random_deposit = {
+			limit = { can_flood = yes }
+			save_event_target_as = flooded_region
+		}
+		
+		random_list = {
+			10 = {
+				
+				random_list = {
+					25 = {
+						planet_event = {
+							id = tbm.27 # Evacuations
+							days = 180
+							random = 90
+						}
+					}
+					25 = {
+						# modifier = {
+						# 	factor = 2
+						# 	# Greater chance if fewer marshes or poor water system.
+						# }
+						planet_event = {
+							id = tbm.28 # Damage
+							days = 180
+							random = 90
+						}
+					}
+					25 = {
+						# modifier = {
+						# 	factor = 2
+						# 	# Greater chance if fewer marshes or poor water system.
+						# }
+						planet_event = {
+							id = tbm.29 # Destruction
+							days = 180
+							random = 90
+						}
+					}
+					25 = {
+						# Nothing, give thanks to the flood-gods
+					}
+				}
+			}
+
+			90 = {}
+		}
+	}
+}
+
+### 27. Flooding - Evacuations
+planet_event = {
+	id = tbm.27
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = recent_flooding
+			days = 360
+		}
+		add_modifier = {
+			modifier = evacuations
+			days = 180
+		}
+
+		create_message = {
+			type = "FLOODING_DAMAGE"
+			localization = tbm.27.desc
+			days = 30
+			target = this
+		}
+	}
+}
+
+### 28. Flooding - Damage
+planet_event = {
+	id = tbm.28
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = recent_flooding
+			days = 360
+		}
+		remove_last_built_district = yes
+		create_message = {
+			type = "FLOODING_DAMAGE"
+			localization = tbm.28.desc
+			days = 30
+			target = this
+		}
+	}
+}
+
+### 29. Flooding - Destruction
+planet_event = {
+	id = tbm.29
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		add_modifier = {
+			modifier = recent_flooding
+			days = 360
+		}
+		add_planet_devastation = 30
+		create_message = {
+			type = "FLOODING_DAMAGE"
+			localization = tbm.29.desc
+			days = 30
+			target = this
+		}
+	}
+}
+
+### 30. Climate Control Network Malfunctions
+planet_event = {
+	id = tbm.30
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		NOT = { owner = { has_ascension_perk = ap_mastery_of_nature	}}
+	}
+
+	immediate = {
+		
+		# Do not overwrite melted_deposit here, it is already set in climate_control_network_activate
+
+		random_list = {
+			20 = {
+				random_list = {
+					# Too much water results in flooding
+					25 = {
+						planet_event = {
+							id = tbm.31
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Overheating, made a desert
+					25 = {
+						planet_event = {
+							id = tbm.32
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Oops, we missed, got wrong feature
+					25 = {
+						planet_event = {
+							id = tbm.33
+							days = 30
+							random = 15
+						}
+					}
+		
+					# Broken machine, partial job
+					25 = {
+						planet_event = {
+							id = tbm.34
+							days = 30
+							random = 15
+						}
+					}
+				}
+			}
+
+			80 = {}
+		}
+	}
+}
+
+### 31. Climate Control - Too Much Water
+planet_event = {
+	id = tbm.31
+	
+	title = tbm.31.name
+	desc = tbm.31.desc
+	picture = GFX_evt_ocean
+	show_sound = event_administrative_work
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		random_list = {
+			50 = {
+				hidden_effect = {
+					random_list = {
+						33 = {
+							add_modifier = {
+								modifier = recent_flooding
+								days = 360
+							}
+							add_modifier = {
+								modifier = evacuations
+								days = 180
+							}
+						}
+						33 = {
+							add_modifier = {
+								modifier = recent_flooding
+								days = 360
+							}
+							remove_last_built_district = yes
+						}
+						33 = {
+							add_modifier = {
+								modifier = recent_flooding
+								days = 360
+							}
+							add_planet_devastation = 30
+						}
+					}
+				}
+				
+			}
+			50 = {
+				modifier = {
+					factor = 2
+					owner = {
+						has_technology = tech_terrestrial_sculpting
+					}
+				}
+				modifier = {
+					factor = 2
+					owner = {
+						has_technology = tech_ecological_adaptation
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+### 32. Climate Control - Overheating
+planet_event = {
+	id = tbm.32
+	
+	title = tbm.32.name
+	desc = tbm.32.desc
+	picture = GFX_evt_desert
+	show_sound = event_administrative_work
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = UNFORTUNATE
+		add_deposit = d_searing_desert
+	}
+}
+
+### 33. Climate Control - Oops, Missed
+planet_event = {
+	id = tbm.33
+
+	title = tbm.33_name
+	desc = tbm.33_desc
+	picture = GFX_evt_ship_in_orbit_3
+	show_sound = titan_laser_fire_02
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = OOPS
+		random_deposit = {
+			limit = {
+				# Do not melt population centers or features the player particularly likes.
+				NOR = { 
+					is_rare_feature = yes
+					is_artificial_feature = yes
+					mountain_feature = yes
+				}
+			}
+			remove_deposit = yes
+		}
+	}
+}
+
+### 34. Climate Control - Breakdown
+planet_event = {
+	id = tbm.34
+
+	is_triggered_only = yes
+	location = this
+
+	title = tbm.34_name
+	desc = tbm.34_desc
+	picture = GFX_evt_alien_nature
+	show_sound = event_alien_nature
+
+	option = {
+		name = UNDECIDED
+		melt_something = yes
+	}
+}

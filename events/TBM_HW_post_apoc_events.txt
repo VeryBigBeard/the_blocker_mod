@@ -1,0 +1,1940 @@
+### The Blocker Mod - Post-Apocalyptic Homeworld Events
+
+
+namespace = tbm_hw
+
+
+### Environmental Remediation Event Chain
+### 101. Handler - on_colony_five_yearly_pulse
+planet_event = {
+	id = tbm_hw.101
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+		is_homeworld = yes
+	}
+
+	trigger = {
+		exists = owner
+		owner = {
+			is_ai = no	# Variety of reasons for this. Partly due to the way AI handles blockers, which would mess up the scoring. Partly to avoid having extra worlds springing up; you want a Post-Apoc AI to feel Post-Apoc when you engage with them.
+			has_origin = origin_post_apocalyptic
+			NOT = { has_country_flag = environmental_remediation_post_apoc }
+			NOT = { is_machine_empire = yes }
+			NOT = { is_lithoid = yes }	# Mainly balance, as they're largely unaffected by the Tome Worlds,  and many lithoids do like their minerals well-done.
+			num_ascension_perks > 0
+			has_technology = tech_terrestrial_sculpting
+		}
+		this = { is_same_value = owner_main_species.home_planet }
+	}
+
+	immediate = {
+		random_list = {
+			50 = {
+				owner = { set_country_flag = environmental_remediation_post_apoc }
+				planet_event = {
+					id = tbm_hw.102
+					days = 360
+					random = 360
+				}
+			}
+			50 = {}
+		}
+	}
+}
+
+### 102. Environmental Remediation - Restoring a Fallen World
+planet_event = {
+	id = tbm_hw.102
+
+	is_triggered_only = yes
+
+	title = tbm_hw.102_title
+	desc = tbm_hw.102_desc
+	show_sound = event_wind_ruins
+	picture = GFX_evt_gray_gooed_planet
+	location = this
+
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.102_desc_hive
+	}
+
+	immediate = {
+		
+		# Set up score variables - these track progress in different areas
+		set_variable = {
+			which = post_apoc_industrialization_score
+			value = 0
+		}
+		set_variable = {
+			which = post_apoc_ecology_score
+			value = 0
+		}
+		set_variable = {
+			which = post_apoc_culture_score
+			value = 0
+		}
+
+		### Event loc
+		root = { save_event_target_as = restoration_homeworld }
+
+		add_modifier = {
+			modifier = environmental_remediation
+		}
+		begin_event_chain = {
+			event_chain = tbm_environmental_remediation
+			target = this
+		}
+	}
+
+	option = {
+		name = tbm_hw.102_embrace_hope
+		allow = {
+			this = { has_deposit = d_library_of_before }
+		}
+		custom_tooltip = tbm_hw.102_boost_library
+		set_planet_flag = post_apoc_embrace_hope
+		
+		hidden_effect = {
+			change_variable = {
+				which = post_apoc_culture_score
+				value = 50
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.102_respect_reality
+		allow = {
+			this = { has_deposit = d_chapel_of_the_fall }
+		}
+		custom_tooltip = tbm_hw.102_boost_chapel
+		set_planet_flag = post_apoc_respect_reality
+
+		hidden_effect = {
+			change_variable = {
+				which = post_apoc_culture_score
+				value = -50
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.102_society_decides
+		custom_tooltip = tbm_hw.102_society_decides_tooltip
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+
+	option = {
+		name = tbm_hw.102_follow_instinct
+		custom_tooltip = tbm_hw.102_society_decides_tooltip
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+
+	# Triggers follow-up events
+	after = {
+				
+		set_timed_planet_flag = {	# Chain times out after 50 years. Must have had 50 years pass plus the conditions in tbm_hw.104 met. tbm_hw.104 will check every year after the flag times out.
+			flag = environmental_remediation_timer
+			years = 50
+		}
+		set_planet_flag = environmental_remediation_scoring # Controls scoring system
+	}
+}
+
+### 103. Environmental Remediation - Yearly Score Handler
+### on_colony_yearly_pulse
+planet_event = {
+	id = tbm_hw.103
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		original_owner = yes
+	}
+
+	trigger = {
+		exists = owner
+		owner = { is_ai = no }
+		has_planet_flag = environmental_remediation_scoring
+	}
+
+	immediate = {
+		
+		# Increment/decrement scores
+		inline_script = tbm_post_apoc_industrialization
+		inline_script = tbm_post_apoc_ecology
+		inline_script = tbm_post_apoc_culture
+	}
+}
+
+### 104. Environmental Remediation - Resolution Check
+### on_colony_yearly_pulse
+planet_event = {
+	id = tbm_hw.104
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+		is_homeworld = yes
+	}
+
+	trigger = {
+		NOT = { has_planet_flag = environmental_remediation_timer }
+		exists = owner
+		owner = {
+			is_ai = no
+			NOT = { has_country_flag = environmental_remediation_post_apoc }
+			num_ascension_perks >= 6
+			has_technology = tech_terrestrial_sculpting
+		}
+		this = { is_same_value = owner_main_species.home_planet }
+	}
+
+	immediate = {
+		
+		# Disable scoring system; we want to freeze this a bit before the resolution so it's not so game-y
+		remove_planet_flag = environmental_remediation_scoring
+		
+		random_list = {
+			10 = {
+				# Calls Outcome events, on 5-10 year delay
+				planet_event = {
+					id = tbm_hw.105
+					days = 1800
+					random = 1800
+				}
+			}
+			90 = {}
+		}
+	}
+}
+
+### 105. Environmental Remediation - Removes effects on ownership transfer
+#	on_planet_transfer
+planet_event = {
+	id = tbm_hw.105
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_planet_flag = environmental_remediation_timer
+			has_planet_flag = post_apoc_embrace_hope
+			has_planet_flag = post_apoc_respect_reality
+			has_planet_flag = post_apoc_environmental_restoration
+		}
+	}
+
+	immediate = {
+		every_deposit = {
+			limit = {
+				OR = {
+					is_deposit_type = d_chapel_of_the_fall
+					is_deposit_type = d_library_of_before
+				}
+			}
+			remove_deposit = yes
+		}
+
+		if = {
+			limit = {
+				this = { is_planet_class = pc_nuked_tbm }
+			}
+			change_pc = pc_nuked 	# No stealing the good Tomb World. (This also avoids a bunch of unpleasantness with habitability and species trait compatibility.)
+		}
+
+		remove_planet_flag = environmental_remediation_timer
+		remove_planet_flag = post_apoc_embrace_hope
+		remove_planet_flag = post_apoc_respect_reality
+		remove_planet_flag = post_apoc_environmental_restoration
+	}
+}
+
+
+### 106. Environmental Remediation - Outcome: Industry
+planet_event = {
+	id = tbm_hw.106
+
+	is_triggered_only = yes
+
+	title = tbm_hw.106_title
+	picture = GFX_evt_black_market
+	show_sound = event_ringworld_build_start
+	location = this
+
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_industrialization_score
+				value <= 50
+			}
+		}
+		text = tbm_hw.106_industrialization_low
+	}
+	desc = {
+		trigger = {
+			AND = {
+				check_variable = {
+					which = post_apoc_industrialization_score
+					value > 50
+				}
+				check_variable = {
+					which = post_apoc_industrialization_score
+					value <= 150
+				}
+			}
+		}
+		text = tbm_hw.106_industrialization_mid
+	}
+	
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_industrialization_score
+				value > 150
+			}
+		}
+		text = tbm_hw.106_industrialization_high
+	}
+
+	immediate = {
+		remove_modifier = environmental_remediation
+
+		root = { save_event_target_as = restoration_homeworld }
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_industrialization_score
+				value <= 50
+			}
+		}
+
+		add_deposit = d_scrap_bazaar
+		add_deposit = d_allocation_clinic
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_industrialization_score
+				value > 50
+			}
+			check_variable = {
+				which = post_apoc_industrialization_score
+				value <= 150
+			}
+		}
+
+		add_deposit = d_memorial_apocalypse
+		add_deposit = d_abyssal_manufactorium
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_industrialization_score
+				value > 150
+			}
+		}
+		
+		add_deposit = d_hegemons_of_industry
+		add_deposit = d_purgatory_apocalypse
+	}
+
+	after = {
+		planet_event = {
+			id = tbm_hw.107
+		}
+	}
+}
+
+### 107. Environmental Remediation - Outcome: Ecology
+planet_event = {
+	id = tbm_hw.107
+
+	is_triggered_only = yes
+
+	title = tbm_hw.107_title
+	picture = GFX_evt_alien_nature
+	#show_sound = event_alien_nature
+	location = this
+
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_ecology_score
+				value <= 50
+			}
+		}
+		text = tbm_hw.107_ecology_low
+	}
+	desc = {
+		trigger = {
+			AND = {
+				check_variable = {
+					which = post_apoc_ecology_score
+					value > 50
+				}
+				check_variable = {
+					which = post_apoc_ecology_score
+					value <= 150
+				}
+			}
+		}
+		text = tbm_hw.107_ecology_mid
+	}
+	desc = {
+		trigger = {
+			AND = {
+				check_variable = {
+					which = post_apoc_ecology_score
+					value > 150
+				}
+				check_variable = {
+					which = post_apoc_ecology_score
+					value < 200
+				}
+			}
+		}
+		text = tbm_hw.107_ecology_high
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_ecology_score
+				value >= 200
+			}
+		}
+		text = tbm_hw.107_ecology_very_high
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_ecology_score
+				value <= 50
+			}
+		}
+
+		add_deposit = d_last_bastion
+		hidden_effect = {
+			change_pc = pc_nuked_tbm	# This is done to avoid having to remove terraforming links. Effectively "locks" the planet as a Tomb World, though you can still ecu it.
+		}
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_ecology_score
+				value > 50
+			}
+			check_variable = {
+				which = post_apoc_ecology_score
+				value <= 150
+			}
+		}
+
+		if = {
+			limit = {
+				owner_main_species = {
+					ideal_planet_is_dry = yes
+				}
+			}
+			change_pc = pc_tundra
+		}
+		else = {
+			change_pc = pc_arid
+		}
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_ecology_score
+				value > 150
+			}
+			check_variable = {
+				which = post_apoc_ecology_score
+				value < 200
+			}
+		}
+		
+		if = {
+			limit = {
+				owner_main_species = { ideal_planet_is_wet = yes }
+			}
+			if = {
+				limit = {
+					owner_main_species = { 
+						has_trait = trait_pc_continental_preference
+					 }
+				}
+				change_pc = pc_tropical
+			}
+			else = {
+				change_pc = pc_continental
+			}
+		}
+
+		else_if = {
+			limit = {
+				owner_main_species = { ideal_planet_is_dry = yes }
+			}
+			if = {
+				limit = {
+					owner_main_species = { 
+						has_trait = trait_pc_savannah_preference
+					 }
+				}
+				change_pc = pc_arid
+			}
+			else = {
+				change_pc = pc_savannah
+			}
+		}
+
+		else_if = {
+			limit = {
+				owner_main_species = { ideal_planet_is_cold = yes }
+			}
+			if = {
+				limit = {
+					owner_main_species = { 
+						has_trait = trait_pc_tundra_preference
+					 }
+				}
+				change_pc = pc_alpine
+			}
+			else = {
+				change_pc = pc_tundra
+			}
+		}
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_ecology_score
+				value >= 200
+			}
+		}
+
+		change_pc = pc_gaia
+	}
+	
+
+	after = {
+		
+		### Adds food features until you run out of district space
+		while = {
+			limit = {
+				check_variable = {
+					which = post_apoc_ecology_score
+					value > 0
+				}
+				num_free_districts = {
+					type = district_city
+					value > 0
+				}
+			}
+			random_list = {
+				10 = {
+					add_deposit = d_lichen_fields
+				}
+				10 = {
+					add_deposit = d_bountiful_plains
+				}
+				10 = {
+					add_deposit = d_green_hills
+					modifier = {
+						factor = 0
+						num_free_districts = {
+							type = district_city
+							value > 1
+						}
+					}
+				}
+				10 = {
+					add_deposit = d_forgiving_tundra
+				}
+				10 = {
+					add_deposit = d_nutritious_mudland
+				}
+				10 = {
+					add_deposit = d_fungal_caves
+				}
+				10 = {
+					add_deposit = d_fertile_lands
+				}
+				10 = {
+					add_deposit = d_black_soil
+				}
+				10 = {
+					add_deposit = d_basin
+				}
+			}
+		}
+
+		planet_event = {
+			id = tbm_hw.108
+		}
+	}
+}
+
+### 108. Environmental Remediation - Outcome: Culture
+planet_event = {
+	id = tbm_hw.108
+
+	is_triggered_only = yes
+
+	title = tbm_hw.108_title
+	picture = GFX_evt_alien_propaganda
+	#show_sound = event_galactic_community
+
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_culture_score
+				value <= 50
+			}
+		}
+		text = tbm_hw.108_culture_low
+	}
+	desc = {
+		trigger = {
+			AND = {
+				check_variable = {
+					which = post_apoc_culture_score
+					value > 50
+				}
+				check_variable = {
+					which = post_apoc_culture_score
+					value <= 150
+				}
+			}
+		}
+		text = tbm_hw.108_culture_mid
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = post_apoc_culture_score
+				value > 150
+			}
+		}
+		text = tbm_hw.108_culture_high
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_culture_score
+				value <= 50
+			}
+		}
+
+		add_modifier = {
+			modifier = advancing_from_ruins
+			days = -1
+		}
+		remove_deposit = d_library_of_before
+		remove_deposit = d_chapel_of_the_fall
+	}
+
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_culture_score
+				value > 50
+			}
+			check_variable = {
+				which = post_apoc_culture_score
+				value <= 150
+			}
+		}
+
+		if = {
+			limit = { owner = { is_gestalt = yes }}
+			add_modifier = {
+				modifier = revived_civilization_gestalt
+				days = -1
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = revived_civilization
+				days = -1
+			}
+		}
+
+
+		owner = {
+			add_modifier = {
+				modifier = cultural_reconstruction
+				days = -1
+			}
+		}
+	}
+	
+	option = {
+		name = OK
+		trigger = {
+			check_variable = {
+				which = post_apoc_culture_score
+				value > 150
+			}
+		}
+		
+		owner = { set_country_flag = cultural_restoration }
+			add_modifier = {
+				modifier = cultural_restoration_planet
+				days = -1
+			}
+		owner = {
+			add_modifier = {
+			modifier = cultural_restoration
+				days = -1
+			}
+		}
+	}
+
+	### Main clean-up handled here
+	after = {
+		owner = { end_event_chain = tbm_environmental_remediation }
+		set_planet_flag = post_apoc_environmental_restoration
+	}
+}
+
+
+### Event Chain: Scavenger Bands Declare War - Post-Apocalyptic Origin
+###	 211. Scavenger Bands Declare War - Handler
+planet_event = {
+	id = tbm_hw.211
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		this = {
+			count_deposits = {
+				type = d_scavenger_bands
+				count >= 2
+			}
+		}
+	}
+	
+	immediate = {
+		# 10% chance of war, increased by colony_age * 2
+		random_list = {
+			90 = {
+				modifier = {
+					subtract = trigger:colony_age
+				}
+			}
+			10 = {
+				modifier = {
+					add = trigger:colony_age
+				}
+				planet_event = {
+					id = tbm_hw.212
+					days = 14
+					random = 7
+				}
+			}
+		}
+	}
+}
+
+### 212. Scavenger Bands Declare War
+planet_event = {
+	id = tbm_hw.212
+
+	title = tbm_hw.212_name
+	desc = tbm_hw.212_desc
+	picture = GFX_evt_archaeologists_escaping
+	show_sound = event_super_explosion
+
+	is_triggered_only = yes
+
+	immediate = {
+		this = {
+			add_modifier = {
+				modifier = scavenger_wars
+			}
+		}
+	}
+
+	# Higher bounties, buy them off
+	option = {
+		name = tbm_hw.212_bounties
+		custom_tooltip = tbm_hw.212_bounties_tooltip
+		owner = {
+			add_resource = {
+				energy = -1500
+			}
+		}
+		this = {
+			remove_modifier = scavenger_wars
+			add_modifier = {
+				modifier = scavenger_bounties
+			}
+		}
+	}
+
+	# Eliminate one of the leaders (can accidentally be your own leader)
+	option = {
+		name = tbm_hw.212_elimination
+		custom_tooltip = tbm_hw.212_elimination_tooltip
+		hidden_effect = {
+			random_list = {
+				50 = {
+					# Scavenger Lord Successfully Asassinated
+					planet_event = {
+						id = tbm_hw.215
+						days = 90
+					}
+				}
+				50 = {
+					# Scrap Shoot-out - Turns out to be one of your leaders
+					planet_event = {
+						id = tbm_hw.216
+						days = 90
+					}
+				}
+			}
+		}
+	}
+
+	after = {
+		custom_tooltip = tbm_hw.212_clearance
+		hidden_effect = {
+			set_planet_flag = scavenger_war
+		}
+	}
+
+	# Place security on alert
+	option = {
+		name = tbm_hw.212_security
+		random_list = {
+			70 = {
+				# Conquest - one gang takes over the other
+				custom_tooltip = tbm_hw.212_conquest_tooltip
+				hidden_effect = {
+					planet_event = {
+						id = tbm_hw.213
+						days = 90
+					}
+				}
+			}
+			30 = {
+				# Unification - gangs unify and declare war on government
+				custom_tooltip = tbm_hw.212_unification_tooltip
+				hidden_effect = {
+					planet_event = {
+						id = tbm_hw.214
+						days = 90
+					}
+				}
+			}
+		}
+	}
+}
+
+### 213. Conquest
+planet_event = {
+	id = tbm_hw.213
+
+	title = tbm_hw.213_name
+	desc = tbm_hw.213_desc
+	picture = GFX_evt_surrender
+	show_sound = event_ground_battle
+
+	is_triggered_only = yes
+
+	option = {
+		name = tbm_hw.213_dust_settled
+		custom_tooltip = tbm_hw.213_conquest_tooltip	# +1 mining to remaining scavenger band but union dues....
+		remove_modifier = scavenger_wars
+		remove_deposit = d_scavenger_bands
+		hidden_effect = {
+			remove_planet_flag = scavenger_war
+			set_planet_flag = scavenger_conquest
+		}
+	}
+}
+
+### 214. Unification
+planet_event = {
+	id = tbm_hw.214
+
+	title = tbm_hw.214_name
+	desc = tbm_hw.214_desc
+	picture = GFX_evt_board_meeting
+	show_sound = event_criminal_activity
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_variable = {
+				which = damage
+				value = trigger:colony_age
+			}
+			multiply_variable = {
+				which = damage
+				value = 2
+			}
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+		add_planet_devastation = damage
+		every_owned_pop = {
+			limit = {
+				has_job = enforcer
+			}
+			while = {
+				count = 2
+				kill_pop = yes
+			}
+		}
+		ruin_building = random_no_capital
+		remove_modifier = scavenger_wars
+	}
+}
+
+### 215 Scavenger Lord Assassinated
+planet_event = {
+	id = tbm_hw.215
+
+	title = tbm_hw.215_name
+	desc = tbm_hw.215_desc
+	picture = GFX_evt_derelict_interior
+	show_sound = event_comms_cutoff
+
+	is_triggered_only = yes
+
+	option = {
+		name = GOOD
+		remove_modifier = scavenger_wars
+		remove_deposit = d_scavenger_bands
+	}
+}
+
+### 216. Scrap Shoot-out (leader killed)
+planet_event = {
+	id = tbm_hw.216
+
+	title = tbm_hw.216_name
+	desc = tbm_hw.216_desc
+	picture = GFX_evt_black_market
+	show_sound = event_ground_battle
+
+	is_triggered_only = yes
+
+	option = {
+		name = UNFORTUNATE
+		owner = {
+			random_owned_leader = {
+				limit = { NOT = { is_ruler = yes }}
+				kill_leader = {
+					show_notification = yes
+				}
+			}
+		}
+		remove_modifier = scavenger_wars
+		remove_deposit = d_scavenger_bands
+	}
+}
+
+
+### Post-Apocalyptic - New Horizons (Food Situation)
+
+### 300. Situation Handler
+#	on_colonization_begin
+planet_event = {
+	id = tbm_hw.300
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+
+	trigger = {		
+				
+		owner = {
+			is_ai = no 		# AI is unlikely to handle well,plus allows use of event target hack.
+			is_multiplayer = no		# Disabled to avoid edge case situations with event targets, as well as balance.
+			has_origin = origin_post_apocalyptic
+			count_owned_planet = {
+				count > 1
+			}
+		}
+		
+		is_original_owner = owner
+
+		NOT = {
+			any_targeting_situation = {
+				is_situation_type = post_apocalyptic_new_horizons
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			home_planet = {
+				save_event_target_as = post_apoc_homeworld
+			}
+		}
+
+		root = {
+			save_event_target_as = post_apoc_colony
+		}
+
+		planet_event = {
+			id = tbm_hw.311
+		}
+	}
+}
+
+### 301. Situation Variables
+situation_event = {
+	id = tbm_hw.301
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# Get food produced on colony
+		event_target:post_apoc_colony = {
+			set_variable = {
+				which = food_shipment_colony
+				value = value:colonial_food_shipment
+			}
+			set_variable = {
+				which = food_upkeep_colony
+				value = value:colonial_food_upkeep
+			}
+
+			# Set food_shipment
+			root = {
+				set_variable = {
+					which = food_shipment
+					value = prev.food_shipment_colony
+				}
+
+				set_variable = {
+					which = food_upkeep		# Doesn't actually get applied--this is just for tooltips. Reduction is done via the static_modifier for better visibility to the player
+					value = prev.food_upkeep_colony
+				}
+			}
+		}
+	}
+}
+
+### 310. Situation Event
+planet_event = {
+	id = tbm_hw.310
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+
+		if = {
+			limit = {
+				has_modifier = colonial_food_coops
+			}
+			set_variable = {
+				which = food_shipment
+				value = value:coop_food_shipment
+			}
+		}
+		
+		else = {
+			set_variable = {
+				which = food_shipment
+				value = value:colonial_food_shipment
+			}
+		}
+	}
+}
+
+### 311. Situation Trigger
+#	on_colonized
+planet_event = {
+	id = tbm_hw.311
+
+	is_triggered_only = yes
+
+	title = tbm_hw.311_title
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm_hw.311_desc
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.311_gestalt_desc
+	}
+	picture = GFX_evt_deficit
+	show_sound = event_alien_nature
+	location = this
+
+	option = {
+		name = TBM_WONDERFUL
+		owner = {
+			start_situation = {
+				type = post_apocalyptic_new_horizons
+				target = owner.home_planet
+			}			
+		}
+
+		# Hack to get loc and event targets. It ain't pretty, but the situation deletes these again before next tick, so should be okay except in the exceedingly unlikely event two human players both fire this on the same tick.
+		root = {
+			save_global_event_target_as = post_apoc_colony
+		}
+		owner = {
+			home_planet = {
+				save_global_event_target_as = post_apoc_homeworld
+			}
+		}
+	}
+}
+
+### 312. Colonial Unrest
+situation_event = {
+	id = tbm_hw.312
+
+	is_triggered_only = yes
+
+	title = tbm_hw.312_title
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.312_desc_gestalt
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm_hw.312_desc
+	}
+	picture = GFX_evt_open_revolt
+	show_sound = event_public_unrest
+	location = event_target:post_apoc_colony
+
+	trigger = {
+		event_target:post_apoc_colony = {
+			NOR = {
+				has_planet_flag = crops_burned
+				has_planet_flag = colonial_blockade
+			}
+			num_districts = {
+				type = district_farming
+				value > 1
+			}
+		}
+		NOT = { has_situation_flag = post_apoc_new_horizons_delay }
+	}
+
+	immediate = {
+		set_situation_flag = post_apoc_new_horizons_events
+	}
+
+	option = {
+		name = tbm_hw.312_private_farms
+		trigger = {
+			target.owner = {
+				is_gestalt = no
+			}
+		}
+		add_situation_progress = -25
+		set_situation_flag = private_colony
+		event_target:post_apoc_cdlony = {
+			add_deposit = d_private_farming_colony
+		}
+	}
+
+	option = {
+		name = tbm_hw.312_subsistence_farms
+		add_situation_progress = -25
+		event_target:post_apoc_homeworld = {
+			add_deposit = d_subsistence_farm
+		}
+	}
+
+	option = {
+		name = tbm_hw.312_nothing
+		add_situation_progress = -25
+		set_timed_situation_flag = {
+			flag = recently_changed_approach
+			days = 360
+		}
+	}
+}
+
+### 313. Food Riots
+situation_event = {
+	id = tbm_hw.313
+
+	is_triggered_only = yes
+	
+	title = tbm_hw.313_title
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm_hw.313_desc
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.313_gestalt_desc
+	}
+	picture = GFX_evt_surrender
+	show_sound = event_public_unrest
+	location = target
+
+	trigger = {
+		root = {
+			OR = {
+				current_situation_approach = strict_rationing
+				current_stage = food_shortages
+				current_stage = widespread_starvation
+			}
+		}
+		has_situation_flag = post_apoc_new_horizons_events
+	}
+
+	option = {
+		name = tbm_hw.313_option
+		target = {
+			add_modifier = {
+				modifier = post_apoc_food_riots
+				months = 6
+			}
+		}
+	}
+
+}
+
+### 314. Malnutrition
+situation_event = {
+	id = tbm_hw.314
+
+	title = tbm_hw.314
+	desc = {
+		trigger = {
+			owner = { 
+				is_gestalt = no
+				has_authority = auth_corporate
+			}
+			text = tbm_hw.314_desc_corp
+		}
+	}
+	desc = {
+		trigger = {
+			owner = { 
+				is_gestalt = no
+				NOT = { has_authority = auth_corporate }
+			}
+			text = tbm_hw.314_desc
+		}
+	}
+	desc = {
+		trigger = {
+			owner = { 
+				is_hive_empire = yes
+			}
+			text = tbm_hw.314_desc_hive
+		}
+	}
+	picture = GFX_evt_zro_5
+	show_sound = event_life_support_fail
+	location = event_target:post_apoc_homeworld
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOR = {
+			owner = { is_machine_empire = yes }
+			target = {
+				NOT = {
+					has_modifier = malnutrition
+				}
+			}
+		}
+		OR = {
+			current_situation_approach = strict_rationing
+			current_stage = food_shortages
+			current_stage = widespread_starvation
+		}
+		has_situation_flag = post_apoc_new_horizons_events
+	}
+
+	# immediate = {
+		
+	# }
+
+	option = {
+		name = tbm_hw.314_option
+		target = {
+			add_modifier = {
+				modifier = malnutrition
+				months = 24
+			}
+		}
+	}
+}
+
+### 315. Crops Burned
+situation_event = {
+	id = tbm_hw.315
+
+	is_triggered_only = yes
+
+	title = tbm_hw.315_title
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.315_desc_gestalt
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm_hw.315_desc
+	}
+	picture = GFX_evt_night_raid
+	show_sound = event_burning_city
+
+	trigger = {
+		event_target:post_apoc_colony = {
+			num_districts = {
+				type = district_farming
+				value > 0
+			}
+		}
+		NOT = {
+			target = {
+				has_modifier = colonial_food_coops
+			}
+		}
+		has_situation_flag = post_apoc_new_horizons_events
+	}
+
+	immediate = {
+		event_target:post_apoc_colony = { set_planet_flag = crops_burned }
+		set_situation_flag = crackdown_enabled
+	}
+
+	option = {
+		name = tbm_hw.315_redress_concerns
+		trigger = {
+			target.owner = { is_gestalt = no }
+		}
+		add_situation_progress = 10
+		event_target:post_apoc_colony = {
+			add_modifier = {
+				modifier = colonial_food_coops
+				years = 10
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.315_redress_concerns_gestalt
+		trigger = {
+			target.owner = { is_gestalt = yes }
+		}
+		add_situation_progress = 10
+		event_target:post_apoc_colony = {
+			add_modifier = {
+				modifier = gestalt_farm_autonomy
+				years = 10
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.315_crackdown
+		add_situation_progress = -10
+		set_situation_approach = crackdown_farmers
+	}
+	
+	option = {
+		name = UNFORTUNATE
+		add_situation_progress = -10
+		event_target:post_apoc_colony = { remove_district = district_farming }
+	}
+}
+
+### 316. Homeworld Governor Eaten
+situation_event = {
+	id = tbm_hw.316
+
+	title = tbm_hw.316_name
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm_hw.316_desc
+	}
+	picture = GFX_evt_worrying_signal
+	show_sound = event_wind_ruins
+	location = event_target:post_apoc_homeworld
+
+	is_triggered_only = yes
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = 0.25	# Security does at least a slightly better job the second time.	
+			has_situation_flag = ate_governor
+		}
+	}
+	trigger = {
+				
+		target = {
+			exists = leader
+			owner = { is_gestalt = no }		# Enjoyable as this event is, it just doesn't mesh well with the new gestalt nodes.
+		}
+		has_situation_flag = post_apoc_new_horizons_events
+	}
+
+	immediate = {
+		target = {
+			leader = {
+				save_event_target_as = homeworld_governor
+				kill_leader = {
+					show_notification = yes
+				}	
+			}
+		}
+		hidden_effect = {
+			root = {
+				set_situation_flag = ate_governor
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.16_governor
+	}
+
+	after = {
+		add_situation_progress = 10	# Hey, at least we got a decent meal out of it.
+	}
+}
+
+### 317. Spaceport Blockaded
+situation_event = {
+	id = tbm_hw.317
+
+	is_triggered_only = yes
+
+	title = tbm_hw.317_title
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.317_desc_gestalt
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm_hw.317_desc
+	}
+	picture = GFX_evt_space_hangar
+	show_sound = event_ship_bridge
+
+	trigger = {
+		NOT = {
+			event_target:post_apoc_colony = {
+				has_modifier = colonial_food_coops
+			}
+		}
+		has_situation_flag = post_apoc_new_horizons_events
+	}
+
+	immediate = {
+		event_target:post_apoc_colony = { set_planet_flag = colonial_blockade }
+	}
+
+	option = {
+		name = tbm_hw.317_it_will_blow_over
+		event_target:post_apoc_colony = {
+			add_modifier = {
+				modifier = colonial_blockade
+				months = 6
+			}
+		}
+	}
+	
+	option = {
+		name = tbm_hw.317_additional_security
+		set_situation_approach = crackdown_farmers
+		set_timed_situation_flag = {
+			flag = blockade_crackdown
+			months = 6
+		}
+	}
+}
+
+### 318. Colonial Bounty (Homeworld Superiority)
+situation_event = {
+	id = tbm_hw.318
+
+	title = tbm_hw.318_name
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.318_desc_gestalt
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm_hw.318_desc
+	}
+	picture = GFX_evt_alien_propaganda
+	show_sound = event_celebration
+	location = event_target:post_apoc_homeworld
+
+	is_triggered_only = yes
+
+	option = {
+		name = tbm_hw.318_feasts
+		custom_tooltip = tbm_hw.318_feasts_tooltip
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		event_target:post_apoc_homeworld = {
+			add_modifier = {
+				modifier = colonial_bounty
+				years = 20
+			}
+		}
+		event_target:post_apoc_colony = {
+			add_modifier = {
+				modifier = colonial_tithes
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.318_feasts_gestalt
+		exclusive_trigger = {
+			owner = { is_gestalt = yes }
+		}
+		event_target:post_apoc_homeworld = {
+			add_modifier = {
+				modifier = colonial_bounty
+				years = 20
+			}
+
+			# Unlikely to have these, but in case there's a sudden turnaround
+			hidden_effect = {
+				remove_modifier = malnutrition
+				remove_modifier = post_apoc_food_riots
+				remove_modifier = widespread_starvation
+				remove_modifier = starvation_state
+				remove_modifier = convenient_scapegoats
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.318_cut_taxes
+		custom_tooltip = tbm_hw.18_taxes_tooltip
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		event_target:post_apoc_colony = {
+			add_modifier = {
+				modifier = eased_tithes
+				years = 10
+			}
+		}
+	}
+
+	# Clean up situation event targets
+	after = {
+		# Clean-up
+		hidden_effect = {
+			event_target:post_apoc_homeworld = {
+				remove_modifier = widespread_starvation
+				remove_modifier = food_shortages
+			}
+		}
+		destroy_situation = this
+	}
+
+
+}
+
+### 319. Organism Withers (Colonial Superiority, Gestalt)
+situation_event = {
+	id = tbm_hw.319
+
+	title = tbm_hw.319_name
+	desc = tbm_hw.319_desc
+	picture = GFX_evt_aggressive_flora
+	show_sound = event_planetary_riot
+	location = event_target:post_apoc_homeworld
+
+	is_triggered_only = yes
+
+	trigger = { 
+		owner = { is_gestalt = yes }
+	}
+
+	immediate = {
+		target = {
+			set_variable = {
+				which = half_drones
+				value = trigger:num_pops
+			}
+			divide_variable = {
+				which = half_drones
+				value = 2
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.319_autocannibalism
+		custom_tooltip = tbm_hw.319_autocannibalism_tooltip
+		owner = {
+			add_modifier = {
+				modifier = autocannibalistic_hive
+			}
+			every_owned_leader = {
+				limit = {
+					OR = {
+						is_councilor_type = councilor_gestalt_cognitive
+						is_councilor_type = councilor_gestalt_growth
+						is_councilor_type = councilor_gestalt_legion
+						is_councilor_type = councilor_gestalt_regulatory
+					}
+				}
+				add_trait = leader_trait_autocannibalistic
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.319_machine
+		custom_tooltip = tbm_hw.319_machine_tooltip
+		trigger = {
+			host_has_dlc = "Synthetic Dawn Story Pack"
+		}
+		target = {
+			hidden_effect = {
+				while = {
+					count = half_drones
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}
+		}
+		
+		owner = {
+
+			hidden_effect = {
+
+				set_country_type = global_event		# Placeholder so we avoid a weird first contact issue; whole thing gets destroyed in a minute.
+				save_event_target_as = old_hive
+			
+				create_species = {
+					name = root.owner.owner_main_species
+					class = MACHINE
+					portrait = random	# Would be nice to keep phenotype but that's a lot of code and you're doing this under duress, no luxuries
+					homeworld = owner_main_species
+					traits = {
+						trait = trait_machine_unit
+						trait = trait_robot_efficient_processors
+						trait = trait_robot_harvesters
+					}
+					clear_parent_species_link = yes
+					name_list = owner_main_species
+					effect = {					
+						save_event_target_as = new_organism
+						
+						create_country = {
+							name = root.owner
+							adjective = root.owner
+						
+							ignore_initial_colony_error = yes
+
+							type = default
+							
+							name_list = root.owner
+							ship_prefix = root.owner
+							flag = root.owner
+							set_capital_from_species = yes
+							
+							ethos = {
+								ethic = ethic_gestalt_consciousness
+							}
+							authority = auth_machine_intelligence
+							civics = {
+								civic = civic_machine_introspective
+								civic = civic_machine_zero_waste_protocols
+							}
+							origin = origin_post_apocalyptic
+
+							species = event_target:new_organism
+
+							effect = {
+								save_event_target_as = new_hive
+
+								root.owner = {
+									home_planet = {
+										set_owner = event_target:new_hive
+									}
+									every_owned_starbase = {
+										set_owner = event_target:new_hive
+									}
+									every_owned_fleet = {
+										set_owner = event_target:new_hive
+									}
+									every_owned_pop = {
+										kill_pop = yes
+									}
+									every_owned_leader = {
+										kill_leader = {
+											show_notification = no	
+										}
+									}
+								}
+
+								capital_scope = {
+									while = {
+										count = half_drones
+										create_pop = {
+											species = event_target:new_organism
+										}
+									}	
+								}
+								
+								event_target:new_hive = {
+									set_player = event_target:old_hive 	# Target player takes SCOPE, not vice-versa like you'd expect
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			this = {
+				destroy_country = yes
+			}
+		}
+	}
+
+
+	# Clean up situation event targets
+	after = {
+		# Clean-up
+		hidden_effect = {
+			event_target:post_apoc_homeworld = {
+				remove_modifier = widespread_starvation
+				remove_modifier = food_shortages
+			}
+		}
+		destroy_situation = this
+	}
+}
+
+### 320. Government in Tatters (Colonial Superiority, Regular)
+situation_event = {
+	id = tbm_hw.320
+
+	title = tbm_hw.320_name
+	desc = {
+		trigger = {
+			owner = { has_authority = auth_corporate }
+		}
+		text = tbm_hw.320_desc_corp
+	}
+	desc = {
+		trigger = {
+			owner = { NOT = { has_authority = auth_corporate }}
+		}
+		text = tbm_hw.320_desc
+	}
+	desc = {
+		trigger = {
+			has_situation_flag = private_colony
+		}
+		text = tbm_hw.320_full_text_colonial
+	}
+	picture = GFX_evt_undertaker
+	show_sound = event_planetary_riot
+	location = event_target:post_apoc_homeworld
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { is_gestalt = no }
+	}
+
+	# Ruler cedes power to the mob
+	option = {
+		name = tbm_hw.320_cede
+		custom_tooltip = tbm_hw.320_cede_tooltip
+
+		event_target:post_apoc_homeworld = {
+			leader = {
+				kill_leader = {
+					show_notification = yes
+					fire = yes
+				}
+			}
+			add_modifier = {
+				modifier = starvation_state
+			}
+			add_modifier = {
+				modifier = convenient_scapegoats
+				years = 10
+			}
+		}
+	}
+
+	# Eat the cockroaches
+	option = {
+		name = tbm_hw.320_cockroaches
+		custom_tooltip = tbm_hw.320_cockroaches_tooltip
+
+		target = {
+			add_modifier = {
+				modifier = starvation_state
+			}
+			add_modifier = {
+				modifier = nutritious_cockroaches
+			}
+		}
+	}
+
+	# Eat the rich
+	option = {
+		name = tbm_hw.320_rich
+		custom_tooltip = tbm_hw.320_rich_tooltip
+
+		target = {
+			add_modifier = {
+				modifier = council_cannibalism
+			}
+		}
+
+		owner = {
+			every_owned_leader = {
+				limit = {
+					is_councilor = yes
+				}
+				add_trait = leader_trait_cannibal_councilor
+			}
+			shift_ethic = ethic_fanatic_egalitarian
+			force_remove_civic = 2
+			force_add_civic = civic_shared_burden
+		}
+	}
+
+	# Sell the government to off-world farming companies
+	option = {
+		name = tbm_hw.320_sell
+		custom_tooltip = tbm_hw.320_sell_tooltip
+
+		trigger = {
+			has_situation_flag = private_colony
+			owner = {
+				any_owned_planet = {
+					has_deposit = d_private_farming_colony	# Can't have cleared it.
+				}
+			}
+		}
+
+		owner = {
+			event_target:post_apoc_cdlony = {
+				set_capital = yes
+			}
+			owner = {
+				change_government = {
+					authority = auth_corporate
+					civics = {
+						civic = civic_private_prospectors
+						civic = random
+					}
+					remove_invalid_civics = yes
+				}
+			}
+		}
+	}
+
+	# Clean up situation event targets
+	after = {
+		# Clean-up
+		hidden_effect = {
+			event_target:post_apoc_homeworld = {
+				remove_modifier = widespread_starvation
+				remove_modifier = food_shortages
+			}
+		}
+		destroy_situation = this
+	}
+}

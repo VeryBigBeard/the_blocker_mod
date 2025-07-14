@@ -1,0 +1,1547 @@
+### TOMB / POST-APOC
+#	Most of these don't get used on the homicidal homeworlds
+
+### Nothing in this file overwrites vanilla. This is not an overwrite file, it will not affect compatibility!
+
+### For homeworld features, AI will tend to keep more of them partly for flexibility and partly for flavor if the player conquers them.
+# The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
+@base = 1	# Base ai_weight. AI will clear any feature at weight = 1 when it needs district space
+@clear = 2	# AI will clear this feature immediately.
+@keep = 0	# AI will keep this feature until it needs a district and no other features remain
+@always_clear = 100	# AI will always clear this feature; used mainly for negative features (e.g., rubble)
+@always_keep = -100 # AI will always keep this feature; used mainly for bonus features and some flavor features
+
+
+d_fallout_zone = {	
+	icon = d_radioactive_wasteland
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	use_weights_for_blocker_swap_types = yes
+	blocker_swap_types = {
+		d_fertile_lands
+		d_black_soil
+		d_nutritious_mudland
+		d_lichen_fields
+	}
+
+	time = 1800	# Fallout is not nice.
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			minerals = 200
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			# But it means a lot when you clear it.
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 6
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_amenities_mult = -0.10
+		pop_growth_speed = -0.10
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_unclaimed_cave_complex = {	# Mine Shafts (at least there wasn't a gap)
+	icon = d_ore_rich_caverns
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_mine_shafts
+	}
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+			alloys = 400
+			unity = 400
+		}
+	}
+
+	planet_modifier = {
+		pop_housing_usage_mult = 0.10
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_library_of_before = {
+	category = deposit_cat_tbm_legendary
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			unity = 1000
+		}
+		upkeep = {
+			unity = 8
+		}
+	}
+
+	planet_modifier = {
+		planet_researchers_produces_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { is_gestalt = no }
+		}
+		pop_ethic_materialist_attraction_mult = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { is_gestalt = no }
+		}
+		planet_researchers_food_upkeep_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { is_lithoid = yes }
+		}
+		planet_researchers_food_upkeep_add = -2
+		planet_researchers_minerals_upkeep_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			has_planet_flag = post_apoc_environmental_restoration
+		}
+		planet_researchers_food_upkeep_add = -1		# Malus gets cnacelled on completion of event chain
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			has_planet_flag = post_apoc_environmental_restoration
+			owner = { is_lithoid = yes }
+		}
+		planet_researchers_food_upkeep_add = 1		# Malus gets cnacelled on completion of event chain
+		planet_researchers_minerals_upkeep_add = -1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { has_country_flag = cultural_restoration }
+		}
+		planet_researchers_produces_mult = 0.05		# Intended partly to balance with Remnant and replicate ecu effect so you aren't incentivized to immediately ecu your nice restored environment.
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep	# Flavor
+	}
+}
+
+d_chapel_of_the_fall = {
+	category = deposit_cat_tbm_legendary
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+	
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			unity = 1000
+		}
+		upkeep = {
+			trigger = {
+				NOT = { owner = { is_lithoid = yes }}
+			}
+			food = 8
+		}
+		upkeep = {
+			trigger = {
+				owner = { is_lithoid = yes }
+			}
+			minerals = 8
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { is_gestalt = no }
+		}
+		planet_amenities_mult = -0.1
+		pop_ethic_spiritualist_attraction_mult = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { is_hive_empire = yes }
+		}
+		planet_crime_mult = -0.20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { has_country_flag = cultural_restoration }
+		}
+		planet_amenities_mult = 0.1		# Malus gets cancelled at completion of event chain
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			is_original_owner = owner
+			owner = { has_country_flag = cultural_restoration }
+		}
+		planet_amenities_mult = 0.1
+		planet_jobs_unity_produces_mult = 0.05		# Intended partly to balance with Remnant and replicate ecu effect so you aren't incentivized to immediately ecu your nice restored environment.
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_the_site = {
+	icon = d_crater
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			alloys = 800
+			minerals = 2500		# It's a very big crater.
+		}
+	}
+
+	can_be_cleared = {
+		OR = {
+			
+			# Tech option
+			owner = {		
+				AND = {
+					has_technology = tech_cold_fusion_power
+					has_technology = tech_space_science_2
+				}
+			}
+
+			# Progress option
+			planet = {
+				AND = {
+					num_assigned_jobs = {
+						job = researcher
+						value > 12
+					}
+	
+					planet_resource_compare = {
+						resource = unity
+						value > 100
+					}
+				}
+			}
+
+			# Adaptability option
+			planet = {
+				AND = {
+					any_owned_species = {
+						NOT = { is_same_value = owner_main_species }
+					}
+					planet = {
+						NOT = { is_planet_class = pc_nuked }
+					}
+				}
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -3
+		pop_government_ethic_attraction = -0.1
+		pop_amenities_usage_mult = -0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		pop_government_ethic_attraction = 0.1
+		planet_stability_mult = -0.1
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+# Food ration will run out in 20 years, until then it's helpful, and you can liquidate it.
+d_food_rations = {
+	icon = d_food_banks
+	category = deposit_cat_food
+	custom_tooltip = d_food_rations_tooltip
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 90
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 100
+			unity = 400
+		}
+	}
+
+	on_cleared = {		
+		hidden_effect = {
+			set_variable = {
+				which = food_reserves_left
+				value = 240
+			}
+			set_variable = {
+				which = reserves_eaten
+				value = 0
+			}
+			multiply_variable = {
+				which = reserves_eaten
+				value = trigger:years_passed
+			}
+			subtract_variable = {
+				which = food_reserves_left
+				value = reserves_eaten
+			}
+		}
+		
+		if = {
+			limit = {
+				hidden_trigger = {
+					check_variable = {
+						which = food_reserves_left
+						value > 0
+					}
+				}
+			}
+
+			owner = {
+				add_resource = {
+					food = 1
+					mult = food_reserves_left
+				}
+			}
+			add_modifier = {
+				modifier = mass_protest
+				months = 12
+			}
+
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			years_passed <= 20
+		}
+		district_farming_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			years_passed >= 20
+		}
+		pop_happiness = -0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_nutrient_rations = {
+	icon = d_food_banks
+	category = deposit_cat_food
+	#custom_tooltip = d_food_rations_tooltip
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 90
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 100
+			unity = 400
+		}
+	}
+
+	on_cleared = {		
+		hidden_effect = {
+			set_variable = {
+				which = food_reserves_left
+				value = 240
+			}
+			set_variable = {
+				which = reserves_eaten
+				value = 0
+			}
+			multiply_variable = {
+				which = reserves_eaten
+				value = trigger:years_passed
+			}
+			subtract_variable = {
+				which = food_reserves_left
+				value = reserves_eaten
+			}
+		}
+		
+		if = {
+			limit = {
+				hidden_trigger = {
+					check_variable = {
+						which = food_reserves_left
+						value > 0
+					}
+				}
+			}
+
+			owner = {
+				add_resource = {
+					food = 1
+					mult = food_reserves_left
+				}
+			}
+			add_modifier = {
+				modifier = mass_protest
+				months = 12
+			}
+
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			years_passed <= 20
+		}
+		district_farming_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			years_passed >= 20
+		}
+		pop_happiness = -0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+# Survival Camps provide food at significant happiness malus and can spawn other events (some good, some bad)
+d_survival_camps = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+			consumer_goods = 100
+			unity = 100
+		}
+	}
+
+	planet_modifier = {
+		district_farming_max = 1
+		planet_crime_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_lithoid = yes }
+		}
+		district_farming_max = -1
+		district_mining_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				NOT = { is_spiritualist = yes }
+			}
+		}
+		pop_ethic_spiritualist_attraction_mult = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_spiritualist = yes }
+		}
+		pop_ethic_spiritualist_attraction_mult = -0.2
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_lost_warren = {
+	icon = d_ore_rich_caverns
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+			food = 200
+			unity = 100
+		}
+	}
+
+	planet_modifier = {
+		district_farming_max = 1
+		planet_crime_mult = 0.1
+		planet_stability_mult = -0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_lithoid = yes }
+		}
+		district_farming_max = -1
+		district_mining_max = 1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_seed_banks = {
+	category = deposit_cat_food
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+		}
+		upkeep = {
+			energy = 10
+			society_research = 2
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_monthly_resource_mult = {
+				resource = energy
+				value = 12
+			}
+		}
+	}
+
+	planet_modifier = {
+		district_farming_max = 1
+		planet_farmers_alloys_upkeep_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_civic = civic_machine_servitor
+			}
+		}
+		pop_cat_bio_trophy_happiness = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @clear
+			owner = {
+				resource_income_compare = {
+					resource = food
+					value > 50	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+				}
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_scavenger_bands = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 270
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+			food = 400
+		}
+		# Additional cost during Scavenger War
+		cost = {
+			trigger = {
+				has_planet_flag = scavenger_war
+			}
+			energy = 1500
+			alloys = 200
+		}
+		upkeep = {
+			trigger = {
+				planet = { has_modifier = scavenger_bounties }
+			}
+			energy = 2
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				alloys = 100
+			}
+		}
+	}
+
+	planet_modifier = {
+		district_mining_max = 1
+		planet_crime_mult = 0.10
+	}
+
+
+	# Scavenger Bands Declare War modifiers
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = scavenger_conquest
+		}
+		modifier = {
+			district_mining_max = 1
+			planet_miners_energy_upkeep_add = 1
+			planet_crime_add = 10
+		}
+	}
+
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear	# Easier to buy them off now than in the event.
+	}
+}
+
+d_hive_scavengers = {
+	icon = d_scavenger_bands
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 270
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 250
+			food = 400
+			unity = 50
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				alloys = 100
+			}
+		}
+	}
+
+	planet_modifier = {
+		district_mining_max = 1
+		planet_crime_mult = 0.20
+		planet_jobs_unity_produces_mult = -0.10
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_unexploded_munitions = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+	blocker_swap_types = {
+		d_black_soil
+		d_fertile_lands
+		d_fertile_delta
+		d_geothermal_vent
+		d_nutritious_mudland
+		d_ore_rich_caverns
+		d_basaltic_outcrops
+		d_boggy_fens
+		d_bountiful_plains
+		d_buzzing_plains
+		d_fungal_caves
+		d_drylands
+		d_dunelands
+		d_forgiving_tundra
+		d_frozen_gas_lake
+		d_fungal_forest
+		d_glacier_lake
+		d_green_hills
+		d_highlands
+		d_highland_lake
+		d_lichen_fields
+		d_lakelands
+		d_mineral_fields
+		d_mineral_striations
+		d_rich_mountain
+		d_prosperous_mesa
+		d_rugged_woods
+		d_salt_flats
+		d_sandstone_cliffs
+		d_scrubland
+		d_hot_springs
+		d_taiga
+		d_tempestous_mountain
+		d_tidal_marshes
+		d_dunelands
+	}
+	use_weights_for_blocker_swap_types = yes
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+		produces = {
+			alloys = 2
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				energy = 1000
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear	# Alloys are mainly a benefit for rush-builders; AI needs flexibility
+	}
+}
+
+d_slag_heap = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				minerals = 400
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		job_scrap_miner_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_scrap_miner_add = -3
+		job_scrap_miner_drone_add = 3
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+	}
+}
+
+d_hulks = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 600
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				alloys = 200
+			}
+		}
+	}
+
+	planet_modifier = {
+		district_mining_max = 1
+		planet_jobs_engineering_research_produces_mult = -0.05
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @clear
+			owner = {
+				resource_income_compare = {
+					resource = minerals
+					value > 30	# If okay for mining, clear this
+				}
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_tomb_mine_shafts = {
+	icon = d_station_junk
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_mine_shafts
+	}
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+			alloys = 400
+			unity = 400
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		planet_crime_mult = 0.05
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @clear
+			owner = {
+				resource_income_compare = {
+					resource = minerals
+					value > 30	# If okay for mining, clear this
+				}
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_underground_warren = {
+	icon = d_station_junk
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_mining_enzymes
+	}
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+			alloys = 400
+			unity = 400
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		planet_crime_mult = 0.05
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @clear
+			owner = {
+				resource_income_compare = {
+					resource = minerals
+					value > 30	# If okay for mining, clear this
+				}
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_homeworld_black_market = {
+	icon = d_black_market
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			food = 200
+			unity = 100
+		}
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.2
+		#trade_value_add = 10
+		planet_crime_mult = 0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		modifier = {
+			set = @keep
+			owner = {
+				has_ai_personality = ruthless_capitalists	# Market economy
+				has_ai_personality = hegemonic_imperialists	# We don't really care
+				has_ai_personality = slaving_despots
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_deviant_impulses = {
+	icon = d_black_market
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			food = 200
+			unity = 100
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_mult = 0.1
+		planet_crime_mult = 0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		modifier = {
+			set = @keep
+			owner = {
+				has_ai_personality = ruthless_capitalists	# Market economy
+				has_ai_personality = hegemonic_imperialists	# We don't really care
+				has_ai_personality = slaving_despots
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_broken_transformer = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_high_wire_network
+	}
+
+	time = 270
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+			minerals = 100
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_diseased_node = {
+	icon = d_organic_landfill
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_protein_restabilizer
+	}
+
+	time = 270
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+			minerals = 100
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}
+
+d_protein_restabilizer = {
+	icon = d_station_reactor
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1280
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			unity = 200
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_crime_mult = 0.05	# Any higher and it'd be too punishing for a homeworld feature, but the idea is to limit hive blobbing a bit until they begin to ascend.
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+
+		modifier = {
+			set = @always_clear
+			owner = {
+				OR = {
+					has_ascension_perk = ap_engineered_evolution
+					has_ascension_perk = ap_the_flesh_is_weak
+				}
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_homeworld_derelict_reactors = {
+	icon = d_factory_slaughterhouses
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no	
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			minerals = 200
+		}
+		upkeep = {
+			unity = 2	# Should be variable based on time used.
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 24
+			}
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @clear
+			owner = {
+				resource_income_compare = {
+					resource = energy
+					value > 60	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+				}
+			}
+		}
+
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+
+### Post-Apocalyptic: Environmental Remediation Features
+
+d_scrap_bazaar = {
+	icon = d_black_market
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		job_scrap_miner_add = 4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_scrap_miner_add = -4
+		job_scrap_miner_drone_add = 4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_origin = origin_post_apocalyptic }
+		}
+		planet_researchers_engineering_research_produces_mult = 0.15
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_allocation_clinic = {
+	icon = d_station_junk
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+		produces = {
+			food = 10
+		}
+	}
+
+	country_modifier = {
+		trade_value_mult = 0.10
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.20
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		trade_value_mult = -0.20
+		planet_amenities_mult = 0.20
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_memorial_apocalypse = {
+	icon = d_monument
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		building_museum_apocalypse_max = 1
+		building_laboratory_apocalypse_max = 1
+		building_cathedral_apocalypse_max = 1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_abyssal_manufactorium = {
+	category = deposit_cat_blockers
+	icon = d_rare_metals_lab
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		district_mining_max = 1
+		district_generator_max = 1
+		planet_jobs_specialist_produces_mult = 0.20
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_hegemons_of_industry = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_miners_produces_mult = 0.20
+		planet_metallurgists_produces_mult = 0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_purgatory_apocalypse = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+		}
+	}
+
+	planet_modifier = {
+		pop_amenities_usage_mult = -0.40	# Your pops are essentially brain-dead, see
+	}
+}
+
+d_last_bastion = {
+	category = deposit_cat_artificial
+	#custom_tooltip = last_bastion_tooltip_armies	# Does not display well in tooltips when feature is added
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		district_farming_max = 1
+		planet_crime_mult = -0.20
+		armies_energy_upkeep_mult = -1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_lithoid = yes }
+		}
+		district_farming_max = -1
+		district_mining_max = 1
+	}
+}

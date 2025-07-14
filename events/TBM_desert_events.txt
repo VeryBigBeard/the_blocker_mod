@@ -1,0 +1,785 @@
+### The Blocker Mod - Desert City Event Chain
+
+namespace = tbm_desert
+
+
+### 46. Initial Handler
+#	Added to fine-tune spawning a bit, but this will still be a very common event chain
+planet_event = {
+	id = tbm_desert.46
+
+	is_triggered_only = yes
+	hide_window = yes
+	
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = { is_starting_planet = yes }
+		exists = owner
+		owner = {
+			is_ai = no
+			is_gestalt = no
+			NOT = { has_country_flag = desert_cities }
+		}
+		planet = {
+			exists = leader
+			has_deposit = d_arid_highlands		# This is mostly just so the loc works
+			has_deposit = d_searing_desert		
+			NOT = { has_planet_flag = desert_strong }		# Make sure we block firing again for the sand-strong, too.
+			
+			# These are mostly to make sure the effect matter and the scale of the event makes sense.
+			colony_age > 20
+			num_pops > 20
+		}
+	}
+
+	# 40% chance every five years if the planet has a Searing Desert
+	# Should make it a common event without making it so reliable you can count down to it.
+	immediate = {
+		random_list = {
+			40 = {
+				# Scope to one particular Searing Desert and the planet's governor
+				hidden_effect = {
+					random_deposit = {
+						limit = {
+							is_deposit_type = d_searing_desert
+						}
+						save_event_target_as = citydesert
+					}
+					this = {
+						save_global_event_target_as = desert_planet
+					}
+					this.leader = {
+						save_event_target_as = desert_governor
+					}
+					owner = {
+						set_country_flag = desert_cities	# Prevents clearing of deserts during (and after) chain, and ensures chain only fires once.
+					}
+				}
+				
+				# Event Chain begins
+				planet_event = {
+					id = tbm_desert.31
+					days = 180
+					random = 90
+				}
+			}
+			60 = {}
+		}
+	}
+}
+
+
+### 31. A City of the Desert (Empire Unique)
+#	Now called from tbm_desert.46 to help control spawning and clean up logic.
+planet_event = {
+	id = tbm_desert.31
+
+	title = tbm_desert.31.name
+	desc = tbm_desert.31.desc
+	picture = GFX_evt_desert
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	# Waters of Life
+	option = {
+		name = tbm_desert.31.waters
+		custom_tooltip = tbm_desert.31.waters.desc	# This can only be chosen once. Our people will learn how to farm the dust and desert, but building large cities in them will never be possible.
+		enable_special_project = {	
+			name = "WATERS_OF_LIFE"
+		}
+		add_modifier = {
+			modifier = bringing_water
+		}
+	}
+
+	# City of Dreams
+	option = {
+		name = tbm_desert.31.city
+		custom_tooltip = tbm_desert.31.city.desc	# This can only be chosen once. Building cities in deserts will become easier, but dry worlds will not gain any agriculture.
+		enable_special_project = {
+			name = "CITY_OF_THE_DESERT"
+		}
+		add_modifier = {
+			modifier = dream_city
+		}
+	}
+
+	# Neither (boring)
+	option = {
+		name = tbm_desert.31.neither
+		custom_tooltip = tbm_desert.31.neither.desc	# The Searing Desert will not be cleared, but we will learn how to live as one with it.
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = 12
+			}
+		}
+		set_planet_flag = desert_strong
+		add_modifier = {
+			modifier = standing_against_dust
+			years = 20
+		}
+		owner = {
+			add_research_option = tech_housing_2	# Weather-Control Network
+			remove_country_flag = desert_cities		# Restores ability to clear deserts long-term.
+		}
+	}
+}
+
+### 32. A City of the Desert - Downside Handler
+#	on_yearly_pulse
+planet_event = {
+	id = tbm_desert.32
+	
+	hide_window = yes
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+	}
+
+	trigger = {
+		exists = owner
+		owner = { is_ai = no }
+		is_starting_planet = no
+		OR = {
+			has_modifier = dream_city
+			has_modifier = bringing_water	
+		}
+	}
+
+	immediate = {
+		random_list = {
+			
+			# Overcrowding
+			20 = {
+				modifier = {
+					factor = 2
+					num_pops > 10
+						free_housing > 3					
+				}
+				planet_event = { id = tbm_desert.33 days = 60 random = 30 }
+			}
+
+			# Materials Stolen
+			20 = {
+				modifier = {
+					factor = 2
+					planet_crime > 10
+				}
+				planet_event = { id = tbm_desert.34 days = 60 random = 30 }
+			}
+
+			# Workers Die
+			20 = {
+				modifier = {
+					factor = 2
+					owner = {
+						is_autocracy = yes
+					}
+				}
+				modifier = {
+					factor = 0
+					has_modifier = worker_deaths
+				}
+				planet_event = { id = tbm_desert.35 days = 60 random = 30 }
+			}
+
+			# Supply Ship Crashes
+			20 = {
+				modifier = {
+					factor = 2
+					NOT = { has_building = building_capital }
+				}
+				planet_event = { id = tbm_desert.36 days = 60 random = 30 }
+			}
+
+			# Vicious Sandstorms
+			20 = {
+				modifier = {
+					factor = 2
+					OR = {
+						num_districts = {
+							type = any
+							value < 6
+						}
+						count_deposits = {
+							type = d_searing_desert
+							count > 3
+						}
+					}
+				}
+				planet_event = { id = tbm_desert.37 days = 60 random = 30 }
+			}
+			100 = {}
+		}
+	}
+}
+
+### 33. A City of the Desert - Overpopulation
+planet_event = {
+	id = tbm_desert.33
+	title = tbm_desert.33.overpopulation
+	desc = tbm_desert.33.desc
+	picture = GFX_evt_civil_action
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	trigger = {
+		has_modifier = dream_city
+	}
+
+	immediate = {
+		add_blocker = {
+			type = d_tbm_slums
+		}
+		add_blocker = {
+			type = d_tbm_slums
+		}
+		add_blocker = {
+			type = d_tbm_slums
+		}
+		add_modifier = {
+			modifier = overpopulated
+		}
+	}
+	
+	option = {
+		name = OK
+	}
+}
+
+### 34. A City of the Desert - Critical Materials Stolen
+planet_event = {
+	id = tbm_desert.34
+
+	title = tbm_desert.34.stolen
+	desc = tbm_desert.34.desc
+	picture = GFX_evt_black_market
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		is_homeworld = no
+	}
+
+	trigger = {
+		is_starting_planet = no
+		OR = {
+			has_modifier = bringing_water
+			has_modifier = dream_city
+		}
+	}
+
+	immediate = {
+		add_modifier = {
+			modifier = stolen_materials
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+### 35. A City of the Desert - Workers Die From Heat
+planet_event = {
+	id = tbm_desert.35
+
+	title = tbm_desert.35.workers
+	desc = tbm_desert.35.desc
+	picture = GFX_evt_zro_5
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		is_homeworld = no
+	}
+
+	trigger = {
+		is_starting_planet = no
+	}
+
+	immediate = {
+		random_list = {
+			10 = {
+				modifier = {
+					factor = 0
+					NOT = { exists = leader }
+				}
+				leader = {
+					add_trait = leader_trait_corrupt
+				}
+			}
+			90 = {}
+		}
+	}
+
+	option = {
+		name = tbm_desert.35.apologize
+		custom_tooltip = tbm_desert.35.apologize.tooltip	# The Progressive Faction isn't pleased.
+		random_owned_pop = {
+			limit = {
+				has_job_category = worker
+			}
+			kill_pop = yes
+		}
+		owner = {
+			add_resource = {
+				unity = -1000
+			}
+		}
+		planet = {
+			add_modifier = {
+				modifier = worker_deaths
+			}
+		}
+		hidden_effect = {
+			owner = {
+				# every_pop_faction = {
+				# 	limit = {
+				# 		has_ethic = ethic_egalitarian
+				# 	}
+				# 	add_modifier = {
+				# 		modifier = worker_deaths_empire
+				# 	}
+				# }
+				
+				every_owned_pop = {
+					limit = {
+						OR = {
+							has_ethic = ethic_egalitarian
+							has_ethic = ethic_fanatic_egalitarian
+						}
+					}
+					add_modifier = {
+						modifier = worker_deaths_empire
+						years = 10
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = tbm_desert.35.sacrifice
+		if = {
+			limit = {
+				any_owned_pop = {
+					is_enslaved = yes
+				}
+				count_enslaved_species = {
+					count > 4
+				}
+			}
+			random_owned_pop = {
+				limit = {
+					has_job_category = slave
+				}
+				kill_pop = yes
+				kill_pop = yes
+				kill_pop = yes
+				kill_pop = yes
+			}
+		}
+		else = {
+			random_owned_pop = {
+				limit = {
+					has_job_category = worker
+				}
+				kill_pop = yes
+				kill_pop = yes
+				kill_pop = yes
+			}
+
+			planet = {
+				add_modifier = {
+					modifier = worker_deaths
+				}
+			}
+			owner = {
+				every_owned_pop = {
+					limit = {
+						has_ethic = ethic_egalitarian
+					}
+					add_modifier = {
+						modifier = worker_deaths_empire
+					}
+				}
+			}
+		}
+	}
+}
+
+### 36. A City of the Desert - Supply Ship Crashes
+planet_event = {
+	id = tbm_desert.36
+
+	title = tbm_desert.36.crash
+	desc = tbm_desert.36
+	picture = GFX_evt_archaeological_dig
+	show_sound = ship_explosion
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		add_planet_devastation = 25
+		owner = {
+			add_resource = {
+				unity = -500
+			}
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+### 37. A City of the Desert - Vicious Sandstorms
+planet_event = {
+	id = tbm_desert.37
+
+	title = tbm_desert.37.sandstorms
+	desc = tbm_desert.37.desc
+	picture = GFX_evt_atmospheric_flight
+	show_sound = sfx_amb_psi_storm_1
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		owner = {
+			add_resource = {
+				energy = -1000
+			}
+		}
+		add_modifier = {
+			modifier = sandstorms
+			months = 12
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+### 38. A City of the Desert - The Waters of Life
+planet_event = {
+	id = tbm_desert.38
+
+	title = tbm_desert.38.name
+	desc = tbm_desert.38.desc
+	picture = GFX_evt_overgrown_city
+	show_sound = event_finding_loot
+
+	is_triggered_only = yes
+	location = this
+
+	# Adds empire modifier and disables event chain.
+	immediate = {
+		owner = {
+			add_modifier = {
+				modifier = waters_of_life
+			}
+			set_country_flag = waters_of_life
+		}	
+	}
+
+	# Land Grants
+	option = {
+		name = tbm_desert.38.grants
+		planet_event = { id = tbm_desert.39 days = 90 }
+	}
+
+	# Bio-Solar Energy
+	option = {
+		name = tbm_desert.38.biogas
+		planet_event = { id = tbm_desert.40 days = 90 }
+	}
+
+	# Desert Garden
+	option = {
+		name = tbm_desert.38.jewel
+		planet_event = { id = tbm_desert.41 days = 90 }
+	}
+
+	option = {
+		name = tbm_desert.38.nothing
+	}
+
+	after = {
+
+		# Removes scoped Searing Desert
+		event_target:citydesert = {
+			remove_deposit = yes
+		}
+
+		# This is shiny, though.
+		add_deposit = d_great_desert
+
+		hidden_effect = {
+
+			# Housekeeping, remove all other modifiers
+			while = {
+				limit = {
+					planet = {
+						OR = {
+							has_modifier = bringing_water
+							has_modifier = dream_city
+							has_modifier = overpopulated
+							has_modifier = stolen_materials
+							has_modifier = sandstorms
+						}
+					}
+				}
+				remove_modifier = bringing_water
+				remove_modifier = dream_city
+				remove_modifier = overpopulated
+				remove_modifier = stolen_materials
+				remove_modifier = sandstorms
+			}
+		}
+	}
+}
+
+### 39. A City of the Desert - Desert Farming
+planet_event = {
+	id = tbm_desert.39
+
+	title = tbm_desert.39.farming
+	desc = tbm_desert.39.desc
+	picture = GFX_evt_failed_observation
+	show_sound = fungoid_colossus_closing
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm_desert.39.yes
+		add_modifier = {
+			modifier = great_desert_farms
+		}
+	}
+
+	option = {
+		name = tbm_desert.39.no
+	}
+}
+
+### 40. A City of the Desert - Bio-Solar Power
+planet_event = {
+	id = tbm_desert.40
+
+	title = tbm_desert.40.biosolar
+	desc = tbm_desert.40.desc
+	picture = GFX_evt_generator_powerup
+	show_sound = event_energy_field
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm_desert.40.yes
+		add_modifier = {
+			modifier = bio_solar_network
+		}
+	}
+
+	option = {
+		name = tbm_desert.40.no
+	}	
+}
+
+### 41. A City of the Desert - A Jewel of the Desert
+planet_event = {
+	id = tbm_desert.41
+
+	title = tbm_desert.41.jewel
+	desc = tbm_desert.41.desc
+	picture = GFX_evt_overgrown_city
+	show_sound = event_first_contact_plantoid
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm_desert.41.yes
+		add_modifier = {
+			modifier = desert_jewel
+		}
+	}
+
+	option = {
+		name = tbm_desert.41.no
+	}
+}
+
+### 42. A City of the Desert - A City of the Desert
+planet_event = {
+	id = tbm_desert.42
+
+	title = tbm_desert.42.city
+	desc = tbm_desert.42.desc
+	picture = GFX_evt_metropolis
+	show_sound = event_galactic_market
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		owner = {
+			add_modifier = {
+				modifier = great_desert_city
+			}
+			set_country_flag = waters_of_life
+		}
+	}
+
+	# Trade Capital
+	option = {
+		name = tbm_desert.42.trade
+		planet_event = { id = tbm_desert.43 days = 00 }
+	}
+
+	# Scientific Mecca
+	option = {
+		name = tbm_desert.42.science
+		planet_event = { id = tbm_desert.44 days = 90 }
+	}
+
+	# Garden
+	option = {
+		name = tbm_desert.42.garden
+		planet_event = { id = tbm_desert.45 days = 90 }
+	}
+
+	option = {
+		name = tbm_desert.38.nothing
+	}
+
+	after = {
+
+		# Removes scoped Searing Desert
+		event_target:citydesert = {
+			remove_deposit = yes
+		}
+
+		# This is shiny, though.
+		add_deposit = d_great_city
+
+		# Housekeeping, remove all other modifiers
+		hidden_effect = {
+			while = {
+				limit = {
+					planet = {
+						OR = {
+							has_modifier = bringing_water
+							has_modifier = dream_city
+							has_modifier = overpopulated
+							has_modifier = stolen_materials
+							has_modifier = sandstorms
+						}
+					}
+				}
+				remove_modifier = bringing_water
+				remove_modifier = dream_city
+				remove_modifier = overpopulated
+				remove_modifier = stolen_materials
+				remove_modifier = sandstorms
+			}
+		}
+	}
+}
+
+### 43. A City of the Desert - Trade Capital
+planet_event = {
+	id = tbm_desert.43
+
+	title = tbm_desert.43.traders
+	desc = tbm_desert.43.desc
+	picture = GFX_evt_enclave_overlord
+	show_sound = event_slot_machine
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm_desert.43.yes
+		add_modifier = {
+			modifier = trade_city
+		}
+	}
+
+	option = {
+		name = tbm_desert.43.no
+	}
+}
+
+### 44. A City of the Desert - Scientific Mecca
+planet_event = {
+	id = tbm_desert.44
+
+	title = tbm_desert.44.science
+	desc = tbm_desert.44.desc
+	picture = GFX_evt_resource_cache
+	show_sound = event_engineered_evolution
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm_desert.44.yes
+		add_modifier = {
+			modifier = scientific_mecca
+		}
+	}
+
+	option = {
+		name = tbm_desert.44.no
+	}
+}
+
+### 45. A City of the Desert - Garden City
+planet_event = {
+	id = tbm_desert.45
+	
+	title = tbm_desert.45.fountains
+	desc = tbm_desert.45.desc
+	picture = GFX_evt_grand_speech
+	show_sound = event_first_contact_aquatic
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm_desert.45.yes
+		add_modifier = {
+			modifier = city_of_gardens
+		}
+	}
+
+	option = {
+		name = tbm_desert.45.no
+	}
+}

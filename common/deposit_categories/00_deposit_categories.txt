@@ -1,0 +1,84 @@
+### The Blocker Mod - Deposit Categories
+
+### Note: Any mod that overwrites these will produce unexpected results when used with The Blocker Mod. Deposits need to be set to blocker = yes for most mod functions to work. For best results, load TBM after any other feature mods.
+
+
+### Mainline economy features
+#	Most district-granting features are here, and TBM retains most vanilla feature categories. Planet generation takes these into account. TBM features that add significant economic bonuses also tend to have these categories.
+deposit_cat_food = { 
+	blocker = yes
+}
+deposit_cat_energy = {
+	blocker = yes
+}
+deposit_cat_minerals = {
+	blocker = yes
+}
+
+# Rare economic features. Used only occasionally to grant the important UI highlighting to certain features.
+deposit_cat_food_rare = {
+	blocker = yes
+	important = yes
+}
+
+deposit_cat_minerals_rare = {
+	blocker = yes
+	important = yes
+}
+
+deposit_cat_energy_rare = {
+	blocker = yes
+	important = yes
+}
+
+# Needed for some vanilla event features, not used by TBM.
+deposit_cat_rare_resource = {
+	important = yes	# Shows up as rare deposits in planetview
+}
+
+deposit_cat_rare = {
+	important = yes
+}
+deposit_cat_rare_blocker = {
+	blocker = yes
+	important = yes
+}
+
+
+### Blocker Deposits
+# Used in vanilla to distinguish certain clearance costs (e.g., for leader traits or country modifiers) and TBM mostly respects this. This category is also used for various TBM artificial features to exempt them from the Environmental Engineer trait.
+deposit_cat_blockers = {
+	blocker = yes
+}
+
+# Most vanilla blockers go here so vanilla checks for certain events, costs, and scripts (such as Park Rangers) work properly. Some TBM custom features also use this category when they need to be excepted from standard economy weighting or effects (has_deposit_category trigger).
+deposit_cat_blockers_natural = {
+	blocker = yes
+}
+
+
+### Artificial Features
+# This category is used by TBM for event and other features created by play choice that cannot be cleared.
+deposit_cat_artificial = {
+	blocker = yes
+}
+
+# Used for some Gaia-world features that can't be cleared.
+deposit_cat_gaia = {	
+}
+
+# This is only blockers that don't have to be cleared for ecus.
+deposit_cat_final = {
+	
+}
+
+# Used for special one-of-a-kind features
+deposit_cat_tbm_legendary = {
+	blocker = yes
+	important = yes
+}
+
+deposit_cat_advanced = {
+	blocker = yes
+	important = yes
+}

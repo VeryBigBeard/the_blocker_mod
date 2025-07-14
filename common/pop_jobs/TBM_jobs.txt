@@ -1,0 +1,555 @@
+### The Blocker Mod - Custon Jobs
+#	No vanilla files are changed here.
+
+
+dangerous_wildlife_hunter = {
+	category = worker
+	building_icon = building_food_processing_facility
+	clothes_texture_index = 2
+	icon = farmer
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+	}
+
+	
+	resources = {
+		category = planet_farmers
+		produces = {
+			food = 4
+			unity = 1
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+	
+	overlord_resources = {
+		category = planet_requisitioned_food
+		produces = {
+			trigger = {
+				planet = {
+					has_planet_flag = has_produce_requisitorium
+				}
+			}
+			food = @requisitorium_food_overlord
+		}
+	}
+
+	weight = {
+		weight = @worker_job_weight
+		
+		# low income modifier
+		modifier = {
+			factor = 1.2
+			exists = planet
+			planet = {
+				has_available_jobs = farmer
+			}
+			exists = owner
+			owner = {
+				is_ai = yes
+				has_monthly_income = {
+					resource = food
+					value < 10
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0.5
+			has_trait = trait_lithoid
+
+			owner = {
+				is_lithoid_empire = yes
+				has_monthly_income = {
+					resource = food
+					value >= 0
+				}
+			}
+		}
+	}
+}
+
+dangerous_wildlife_poacher = {
+	category = specialist
+	building_icon = building_food_processing_facility
+	clothes_texture_index = 3
+	icon = livestock
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+		has_citizenship_rights = yes
+	}
+
+	resources = {
+		category = planet_poachers
+		produces = {
+			food = 6
+		}
+		upkeep = {
+			energy = 1
+			unity = 1
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+
+		modifier = {
+			factor = 10
+			planet = { planet_crime > 15}
+			NOT = { has_job = enforcer }
+		}
+
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 0.50
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+	}
+}
+
+xeno_naturalist = {
+	category = specialist
+	building_icon = building_science_outposts
+	clothes_texture_index = 3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+		has_citizenship_rights = yes
+	}
+
+	resources = {
+		category = planet_colonist
+		produces = {
+			society_research = 3
+		}
+		upkeep = {
+			energy = 1
+		}
+		produces = {
+			trigger = {
+				is_lithoid = no
+			}
+			food = 1
+		}
+		produces = {
+			trigger = {
+				is_lithoid = yes
+			}
+			minerals = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+
+		modifier = {
+			factor = 10
+			planet = { planet_crime > 15}
+			NOT = { has_job = enforcer }
+		}
+
+		modifier = {
+			factor = 2
+			has_trait = trait_natural_sociologists
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_intelligent
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+	}
+}
+
+xeno_analysis_drone = {
+	category = complex_drone
+	building_icon = building_science_outposts
+	clothes_texture_index = 3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = yes }
+		has_citizenship_rights = yes
+	}
+
+	resources = {
+		category = planet_colonist
+		produces = {
+			society_research = 2
+		}
+		upkeep = {
+			energy = 1
+		}
+		produces = {
+			trigger = {
+				is_lithoid = no
+			}
+			food = 1
+		}
+		produces = {
+			trigger = {
+				is_lithoid = yes
+			}
+			minerals = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+
+		modifier = {
+			factor = 10
+			planet = { planet_crime > 15 }
+			NOT = { has_job = enforcer }
+		}
+
+		modifier = {
+			factor = 2
+			has_trait = trait_natural_sociologists
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_intelligent
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_erudite
+		}
+	}
+}
+
+colonial_prospector = {
+	category = specialist
+	building_icon = building_survey_stations
+	clothes_texture_index = 3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+		has_citizenship_rights = yes
+	}
+
+	resources = {
+		category = planet_colonist
+		produces = {
+			engineering_research = 1
+		}
+		upkeep = {
+			energy = 1
+		}
+		produces = {
+			trigger = {
+				is_lithoid = no
+			}
+			food = 1
+		}
+		produces = {
+			trigger = {
+				is_lithoid = yes
+			}
+			minerals = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+
+		modifier = {
+			factor = 10
+			planet = { planet_crime > 15}
+			NOT = { has_job = enforcer }
+		}
+
+		modifier = {
+			factor = 2
+			has_trait = trait_natural_engineers
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_intelligent
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+	}
+}
+
+prospecting_drone = {
+	category = complex_drone
+	building_icon = building_survey_stations
+	clothes_texture_index = 3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = yes }
+		has_citizenship_rights = yes
+	}
+
+	resources = {
+		category = planet_colonist
+		produces = {
+			trigger = {
+				is_lithoid = no
+			}
+			food = 1
+		}
+		produces = {
+			trigger = {
+				is_lithoid = yes
+			}
+			minerals = 1
+		}
+		upkeep = {
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	planet_modifier = {
+		planet_clear_blocker_speed_mult = 0.1
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+
+		modifier = {
+			factor = 10
+			planet = { planet_crime > 15}
+			NOT = { has_job = enforcer }
+		}
+
+		modifier = {
+			factor = 2
+			has_trait = trait_intelligent
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+	}
+}
+
+colonial_pioneer = {
+	category = worker
+	building_icon = building_land_grants
+	clothes_texture_index = 1
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+		has_citizenship_rights = yes
+	}
+
+	resources = {
+		category = planet_colonist
+		upkeep = {
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	planet_modifier = {
+		planet_clear_blocker_speed_mult = 0.1
+	}
+
+	weight = {
+		weight = @worker_job_weight
+
+		modifier = {
+			factor = 10
+			planet = { planet_crime > 15}
+			NOT = { has_job = enforcer }
+		}
+		
+		modifier = {
+			factor = 0.5
+			has_trait = trait_erudite
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+	}
+}
+
+colonial_deputy = {
+	category = specialist
+	building_icon = building_survey_stations
+	clothes_texture_index = 3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_gestalt = no }
+		has_citizenship_rights = yes
+	}
+
+	resources = {
+		category = planet_colonist
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	pop_modifier = {
+		pop_defense_armies_add = 3
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+
+	planet_modifier = {
+		planet_crime_mult = -0.2
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+
+		modifier = {
+			factor = 10
+			planet = { planet_crime > 15}
+			NOT = { has_job = enforcer }
+		}
+
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+	}
+}

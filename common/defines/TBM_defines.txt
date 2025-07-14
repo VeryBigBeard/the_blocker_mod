@@ -1,0 +1,11 @@
+### Defines used for deposit spawning.
+    
+    NGameplay = {
+
+		MIN_UNBLOCKED_DEPOSITS = 0	#3		# Always try to have this many non-blocker deposits on planets when generating the galaxy
+
+		DEPOSIT_USED_CATEGORY_WEIGHT = 0.5 # The higher this is, the more randomization will tend to diversify planet deposit types
+
+		COLONY_DEPOSITS_FIXED_FROM_SIZE = 0.3	#0.2		# ( planet size * this ) is added to min number of deposits on colonizable planets
+		COLONY_DEPOSITS_RANDOM_FROM_SIZE = 0.2		# ( planet size * this ) is added to random deposit chances on colonizable planets
+	}   

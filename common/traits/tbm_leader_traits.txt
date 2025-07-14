@@ -1,0 +1,111 @@
+### The Blocker Mod - Traits
+#	Mostly used for events. No overwrites.
+
+# A Shiny Rock event trait
+leader_trait_whiz_kid = {
+	
+	initial = no
+	randomized = no
+
+	inline_script = {
+		script = trait/icon
+		ICON = GFX_leader_trait_inspired
+		COUNCIL = no
+		TIER = none
+		RARITY = common
+	}
+
+	notify_on_gained = no
+
+	leader_class = all
+
+	modifier = {
+		country_physics_tech_research_speed = 0.15
+		ship_anomaly_fail_risk = -0.1
+		ship_accuracy_mult = 0.1
+		ship_archaeological_site_clues_add = 2
+	}
+
+	leader_potential_add = { always = no }
+}
+
+leader_trait_memories = {
+
+	initial = no
+	randomized = no
+
+	inline_script = {
+		script = trait/icon
+		ICON = GFX_leader_trait_nomadic
+		COUNCIL = no
+		RARITY = common
+		TIER = none
+	}
+
+	notify_on_gained = no
+
+	leader_class = all
+
+	modifier = {
+		ship_archaeological_site_clues_add = 3
+		ship_archaeological_site_excavation_speed_mult = 0.20
+		ship_anomaly_fail_risk = -0.1
+		country_unity_produces_mult = 0.25
+		edicts_unity_upkeep_mult = -0.1		# This is really good but doesn't fit the lore. Should tweak based on new trait modifiers in 3.8.
+	}
+
+	leader_potential_add = { always = no }
+}
+
+# Food Reserves Run Out event trait
+leader_trait_cannibal_councilor = {
+	# icon = {
+	# 	layer = {
+	# 		icon = "GFX_leader_trait_politician"
+	# 		color = "red"
+	# 	}
+	# }
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = GFX_leader_trait_politician
+		COUNCIL = yes
+		RARITY = common
+		TIER = none
+	}
+
+	councilor_modifier = {
+		council_agenda_progress_speed = -0.25	# Proxy for Council Legitimacy, which is not open to modifiers
+		planet_stability_add = -10
+	}
+	leader_potential_add = {
+		always = no
+	}
+	leader_class = { commander scientist official }
+}
+
+leader_trait_autocannibalistic = {
+	# icon = {
+	# 	layer = {
+	# 		icon = "GFX_leader_trait_politician"
+	# 		color = "red"
+	# 	}
+	# }
+
+	inline_script = {
+		script = trait/icon_negative
+		ICON = GFX_leader_trait_politician
+		COUNCIL = yes
+		RARITY = common
+		TIER = none
+	}
+
+	councilor_modifier = {
+		council_agenda_progress_speed = -0.25	# Proxy for Council Legitimacy, which is not open to modifiers
+		planet_stability_add = -10
+	}
+	leader_potential_add = {
+		always = no
+	}
+	leader_class = all
+}

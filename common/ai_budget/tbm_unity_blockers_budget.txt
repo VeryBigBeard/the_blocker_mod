@@ -1,0 +1,96 @@
+### The Blocker Mod - AI Budgets
+
+#	TBM by and large doesn't touch AI budgets, but a small addition is necessary in order for the AI to know how to clear blockers with non-vanilla costs
+
+unity_expenditure_blockers = {
+	resource = unity
+	type = expenditure
+	category = deposit_blockers
+
+	potential = {
+		# any_owned_planet = {
+		# 	num_uncleared_blockers > 0
+		# }
+		always = yes
+	}
+
+	
+
+	weight = {
+		weight = 0.2
+
+		modifier = {
+			factor = 5
+
+			# if we have any planet that is currently completely blocked
+			# TBM: As of 0.6.4, this should not actually happen but just in case
+			any_owned_planet = {
+				num_uncleared_blockers > 0
+				num_free_districts = { 
+					type = any
+					value < 1
+				}
+			}
+		}
+
+		modifier = {
+			factor = 5	# Get rid of extra settlements if we're running out of unity income.
+			
+			resource_income_compare = {
+				resource = unity
+				value < 40
+			}
+			any_owned_planet = {
+				has_deposit = d_settlement
+			}
+		}
+	}
+}
+
+minerals_expenditure_blockers = {
+	resource = minerals
+	type = expenditure
+	category = deposit_blockers
+
+	potential = {
+		any_owned_planet = {
+			num_uncleared_blockers > 0
+		}
+	}
+
+	weight = {
+		weight = 0.2
+	}
+}
+
+alloys_expenditure_blockers = {
+	resource = alloys
+	type = expenditure
+	category = deposit_blockers
+
+	potential = {
+		any_owned_planet = {
+			num_uncleared_blockers > 0
+		}
+	}
+
+	weight = {
+		weight = 0.1
+	}
+}
+
+consumer_goods_expenditure_blockers = {
+	resource = consumer_goods
+	type = expenditure
+	category = deposit_blockers
+
+	potential = {
+		any_owned_planet = {
+			num_uncleared_blockers > 0
+		}
+	}
+
+	weight = {
+		weight = 0.2
+	}
+}

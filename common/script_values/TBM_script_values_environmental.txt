@@ -1,0 +1,16 @@
+### The Blocker Mod - Environmental Values
+
+
+### Forestation
+#	Measures number of tree features
+forestation = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_deposit
+		trigger_scope = planet
+		parameters = {
+			limit = { tree_feature = yes }
+		}
+		mode = set
+	}
+}

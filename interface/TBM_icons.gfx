@@ -1,0 +1,51 @@
+
+
+spriteTypes = {
+	spriteType = {
+		name = "TBM_message_bad_thing"
+		texturefile = "gfx/interface/icons/message/message_denounced.dds"	
+	}
+
+	spriteType = {
+		name = "TBM_message_neutral"
+		texturefile = "gfx/interface/icons/message/message_denounced_yellow.dds"
+	}
+
+	spriteType = {
+		name = "TBM_message_blocker"
+		texturefile = "gfx/interface/icons/message/message_blocker_icon.dds"
+	}
+
+	spriteType = {
+		name = "TBM_message_blocker_yellow"
+		texturefile = "gfx/interface/icons/message/message_blocker_icon_yellow.dds"
+	}
+}
+
+spriteTypes = {
+	spriteType = {
+		name = "GFX_text_colonist"
+		texturefile = "gfx/interface/icons/text_icons/mod_colonist.dds"
+	}
+
+	spriteType = {
+		name = "GFX_text_blocker_yellow"
+		textureFile = "gfx/interface/icons/text_icons/tile_blocker_yellow.dds"
+	}
+}
+
+spriteTypes = {		
+	spriteType = {
+		name = "GFX_text_starbase"
+		textureFile = "gfx/interface/icons/text_icons/mod_starbase.dds"
+	}
+}
+		
+spriteTypes = {
+	spriteType = {
+		name = "GFX_text_amoeba"
+		textureFile = "gfx/interface/icons/text_icons/mod_amoeba.dds"
+	}
+}
+
+

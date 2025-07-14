@@ -1,0 +1,271 @@
+### The Blocker Mod - Homeworld Feature Events
+
+namespace = tbm_hw
+
+#@post_apoc_population = 0
+@damage = 10
+
+### INDEX ###
+# 5. Experimental Geothermal Tap Handler
+# 6. Advanced Geothermal Tap Shutdown
+# 7. Advanced Geothermal Tap Explodes
+
+# 21. Scavenger Bands Decalre War (Handler)
+# 22. Scavenger Bands Declare War
+# 23. Conquest
+# 24. Unifaction
+# 25. Scavenger Lord Assasinated
+# 26. Scrap Shoot-out
+
+# 51. Food Replicator Breaks Down - Warning
+# 52. Food Replicator Fails
+# 60. Superhighway Handler (background for now)
+###
+
+
+### 5. Experimental Geothermal Tap - Handler
+country_event = {
+	id = tbm_hw.5
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope = {
+			set_timed_planet_flag = {
+				flag = experimental_geothermal_tap
+				years = 25
+			}
+		}
+	}
+}
+
+### 6. Advanced Geothermal Tap - Shutdown
+#	on_colony_five_yearly_pulse (on_colony_25_years_old does not work on starting planets)
+planet_event = {
+	id = tbm_hw.6
+
+	title = tbm_hw.6_name
+	desc = {
+		text = tbm_hw.6_desc_gestalt
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+	desc = {
+		text = tbm_hw.6_desc
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+	picture = GFX_evt_city_ruins
+	show_sound = event_machinery
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		years_passed = 25
+		has_deposit = d_experimental_geothermal_tap
+		NOT = { has_planet_flag = experimental_geothermal_tap }
+		NOT = { has_planet_flag = geothermal_deprecation }
+	}
+
+	option = {
+		name = tbm_hw.6_decommission
+		custom_tooltip = tbm_hw.6_lose_generator
+
+		hidden_effect = {	# Hidden because it generates a weird tooltip
+			random_deposit = {
+				limit = {
+					is_deposit_type = d_experimental_geothermal_tap
+				}
+				clear_blocker = yes	# Does add on_cleared, WAD as it's based on tech level
+			}
+		}
+
+		ai_chance = {
+			factor = 100
+		}
+	}
+	
+	option = {
+		name = tbm_hw.6_maintain
+		custom_tooltip = tbm_hw.6_nanocomppsite_shortage
+
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 800
+				}
+			}
+		}
+
+		owner = {
+			add_resource = {
+				energy = -800
+			}
+			add_modifier = {
+				modifier = nanocomposite_shortage
+				years = 2
+			}
+		}
+	}
+
+	option = {
+		name = tbm_hw.6_ignore
+		custom_tooltip = tbm_hw.6_ignore_tooltip
+		
+		set_planet_flag = geothermal_deprecation
+		hidden_effect = {
+			planet_event = {
+				id = tbm_hw.7
+				days = 9000
+				random = 180
+			}
+		}
+	}
+
+	after = {
+		remove_planet_flag = experimental_geothermal_tap
+	}
+}
+
+### 7. Advanced Geothermal Tap Explodes
+planet_event = {
+	id = tbm_hw.7
+
+	title = tbm_hw.7_name
+	desc = tbm_hw.7_desc
+	picture = GFX_evt_large_explosion
+	show_sound = event_super_explosion
+
+	is_triggered_only = yes
+	location = this
+
+	trigger = {
+		has_planet_flag = geothermal_deprecation
+		has_deposit = d_experimental_geothermal_tap
+	}
+
+	immediate = {
+		set_variable_to_random_value = {
+			which = @damage
+			min = 10
+			max = 40
+		}
+		add_planet_devastation = @damage
+		remove_district = district_generator
+		remove_city_if_poss_and_other_if_not_regular = yes
+		remove_random_district = yes
+		remove_deposit = d_experimental_geothermal_tap
+		remove_planet_flag = geothermal_deprecation
+	}
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+
+### 51. Food Replicator Breaks Down - Warning (Remnant Origin)
+#	(on_colony_five_yearly_pulse, 15 years have to have pased, only called on homeworlds)
+planet_event = {
+	id = tbm_hw.51
+
+	title = tbm_hw.51_name
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.51_gestalt_desc
+	}
+	desc = tbm_hw.51_desc
+	picture = GFX_evt_overt_indoctrination
+	show_sound = event_machinery
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = yes
+	}
+
+	trigger = {
+		years_passed > 15
+		has_deposit = d_homeworld_food_replicators
+		owner = { is_machine_empire = no }
+		NOT = { has_modifier = failing_food_replicator }
+	}
+
+	option = {
+		name = WORRYING
+	}
+	
+	after = {
+		add_modifier = {
+			modifier = failing_food_replicator
+		}
+		hidden_effect = {
+			planet_event = {
+				id = tbm_hw.52
+				days = 1800
+				random = 720
+			}
+		}
+	}
+}
+
+### 52. Food Replicatgor Fails
+planet_event = {
+	id = tbm_hw.52
+
+	title = tbm_hw.52_name
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_hw.52_desc_gestalt
+	}
+	desc = tbm_hw.52_desc
+	picture = GFX_evt_sapient_AI
+	show_sound = event_life_support_fail
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_modifier = failing_food_replicator
+		remove_deposit = d_homeworld_food_replicators
+	}
+
+	option = {
+		name = UNDERSTOOD
+	}
+	
+	after = {
+		hidden_effect = {
+			owner = {
+				set_country_flag = replicator_bounty
+			}
+		}
+		custom_tooltip = tbm_hw.52_promise
+	}
+}
+
+### 60. Superhighway Built
+planet_event = {
+	id = tbm_hw.60
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		add_deposit = d_planetary_superhighway
+	}
+}

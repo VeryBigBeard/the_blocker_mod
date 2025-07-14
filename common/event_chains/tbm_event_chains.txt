@@ -1,0 +1,9 @@
+tbm_environmental_remediation = {
+	picture = GFX_evt_animal_wildlife
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+}
+
+tbm_shiny_rock = {
+	picture = GFX_evt_crystal_mining
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+}

@@ -1,0 +1,159 @@
+### Post-Apocalyptic Environmental Remediation - Ecology Scoring
+
+	# A point is added:
+	every_deposit = {
+		limit = {
+			tree_feature = yes
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = 1
+		}
+	}
+	
+	every_deposit = {
+		limit = {
+			is_deposit_type = d_great_river
+		}
+		planet = {
+			change_variable = {
+				which = post_apoc_ecology_score
+				value = 1
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			num_districts = {
+				type = district_farming
+				value >= 3
+			}
+		}
+
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			free_amenities >= 20
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			num_districts = {
+				type = district_industrial
+				value < 6
+			}
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			num_districts = {
+				type = district_city
+				value > 6
+			}
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			has_deposit = d_seed_banks
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = 1
+		}
+	}
+
+
+	# A point is deducted:
+	every_deposit = {
+		limit = {
+			OR = {
+				is_deposit_type = d_fallout_zone
+				is_deposit_type = d_radioactive_wasteland
+				is_deposit_type = d_bomb_crater
+				is_deposit_type = d_city_ruins
+			}
+		}
+		planet = {
+			change_variable = {
+				which = post_apoc_ecology_score
+				value = -1
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			planet_resource_compare = {
+				resource = food
+				value < 0
+			}
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			happiness_planet < 0.7
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			num_districts = {
+				type = district_industrial
+				value >=6
+			}
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			has_deposit = d_survival_camps
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			num_pops > 50
+		}
+		change_variable = {
+			which = post_apoc_ecology_score
+			value = -1
+		}
+	}

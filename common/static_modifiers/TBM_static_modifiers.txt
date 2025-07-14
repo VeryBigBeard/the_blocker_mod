@@ -1,0 +1,638 @@
+### The Blocker Mod - Modifiers ###
+
+### General
+
+wild_world = {
+	icon = gfx/interface/icons/planet_modifiers/pm_overgrowth.dds
+	icon_frame = 2
+	planet_max_districts_add = 2
+	job_colonist_add = 2
+	planet_colonist_unity_produces_add = 2
+	planet_researchers_physics_research_produces_mult = 0.2
+	planet_researchers_society_research_produces_mult = 0.2
+	planet_researchers_engineering_research_produces_mult = 0.2
+	planet_jobs_upkeep_mult = 0.05
+}
+
+wild_world_gestalt = {
+	icon = gfx/interface/icons/planet_modifiers/pm_overgrowth.dds
+	icon_frame = 2
+	planet_max_districts_add = 2
+	job_researcher_add = 2
+	planet_researchers_physics_research_produces_mult = 0.2
+	planet_researchers_society_research_produces_mult = 0.2
+	planet_researchers_engineering_research_produces_mult = 0.2
+	planet_jobs_upkeep_mult = 0.05
+}
+
+pioneering_colonists = {
+	icon = gfx/interface/icons/planet_modifiers/pm_archaeology.dds
+	icon_frame = 1
+	deposit_blockers_cost_mult = -0.2
+	planet_clear_blocker_speed_mult = 0.2
+	job_colonist_add = 2
+	planet_colonist_produces_mult = 0.1
+}
+
+new_frontier = {
+	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
+	icon_frame = 1
+	planet_max_buildings_add = 1
+	building_time_mult = -0.25
+	planet_buildings_cost_mult = -0.1
+}
+
+terra_incognita = {
+	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
+	icon_frame = 1
+	planet_colonist_produces_mult = 0.2
+}
+
+new_branch = {
+	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
+	icon_frame = 1
+	planet_max_buildings_add = 1
+	building_time_mult = -0.25
+	planet_buildings_cost_mult = -0.1
+}
+
+new_function = {
+	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
+	icon_frame = 1
+	planet_max_buildings_add = 1
+	building_time_mult = -0.25
+	planet_buildings_cost_mult = -0.1
+}
+
+subsurface_spaceport_opened = {
+	trade_value_mult = 0.25
+}
+
+mass_protest = {
+	icon = gfx/interface/icons/planet_modifiers/pm_nationalist_corruption.dds
+	trade_value_mult = -0.2
+	planet_stability_add = -10
+	icon_frame = 3
+}
+
+worker_deaths = {
+	icon = gfx/interface/icons/planet_modifiers/pm_expel_population.dds
+	pop_cat_worker_happiness = -0.4
+}
+
+worker_deaths_empire = {
+	#icon = gfx/interface/icons/faction_icons/faction_icon_progressives.dds
+	pop_happiness = -0.2
+}
+
+cleared_hot_springs = {
+	icon = gfx/interface/icons/planet_modifiers/pm_ocean_paradise.dds
+	icon_frame = 2
+	custom_tooltip = cleared_hot_springs_desc
+	show_only_custom_tooltip = no
+	pop_happiness = -0.1
+}
+
+evacuations = {
+	#icon = gfx/interface/icons/planet_modifiers/pm_unity.dds
+	icon_frame = 3
+	planet_jobs_unity_produces_mult = -0.1
+	pop_happiness = -0.1
+}
+
+privatizations = {
+	pop_ethic_egalitarian_attraction_mult = 0.25
+	pop_happiness = -0.1
+}
+
+
+### Mining-related
+
+miners_strike = {
+	icon = gfx/interface/icons/planet_modifiers/pm_nationalist_corruption.dds
+	icon_frame = 3
+	planet_miners_minerals_produces_mult = -1
+}
+
+false_prospects = {
+	planet_miners_minerals_produces_mult = -0.35
+	trade_value_mult = 0.1
+}
+
+false_prospects_gestalt = {
+	planet_miners_minerals_produces_mult = -0.35
+	planet_jobs_upkeep_mult = -0.05
+}
+
+mine_safety_standards = {
+	icon = gfx/interface/icons/planet_modifiers/pm_glitchy_matrix.dds
+	planet_miners_minerals_produces_mult = -0.1
+	planet_miners_unity_produces_add = 1
+	planet_miners_energy_upkeep_add = 1
+}
+
+### Gestalt Homeworld Features
+
+breathing_without_the_body = {
+	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
+	planet_jobs_energy_produces_mult = 0.2
+}
+
+overambitious_evolution = {
+	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
+	planet_jobs_energy_produces_mult = -0.2
+}
+
+damaged_power_nexus = {
+	icon = gfx/interface/icons/planet_modifiers/pm_contingency_sabotage.dds
+	district_generator_max = -1
+	planet_jobs_produces_mult = -0.05
+}
+
+
+### Dangerous Wildlife
+dangerous_wildlife_permits = {
+	job_dangerous_wildlife_hunter_add = 2
+	icon = gfx/interface/icons/planet_modifiers/pm_lush.dds
+	icon_frame = 2
+}
+
+dangerous_wildlife_poachers = {
+	job_dangerous_wildlife_poacher_add = 2
+	icon = gfx/interface/icons/planet_modifiers/pm_derelict_interior.dds
+	icon_frame = 2
+}
+
+dangerous_wildlife_toxin = {
+	icon = gfx/interface/icons/planet_modifiers/pm_expel_population.dds
+	district_farming_max = -1
+}
+
+dangerous_wildlife_contamination = {
+	icon = gfx/interface/icons/planet_modifiers/pm_seismological_disturbances.dds
+	pop_happiness = -0.1
+	planet_jobs_unity_produces_mult = -0.1
+}
+
+dangerous_wildlife_food_changes = {
+	planet_jobs_food_produces_mult = 0.05
+	pop_happiness = -0.1
+}
+
+night_watches = {
+	icon = gfx/interface/icons/planet_modifiers/pm_colony_settlement.dds
+	job_enforcer_add = 2
+	planet_jobs_upkeep_mult = 0.05
+}
+
+
+### Proposed Marina
+
+denied_investment = {
+	icon = gfx/interface/icons/planet_modifiers/pm_resources_2.dds
+	trade_value_mult = -0.1
+	pop_cat_worker_happiness = 0.05
+	pop_cat_specialist_happiness = 0.05
+	pop_cat_ruler_happiness = -0.1
+}
+
+recreational_investment = {
+	icon = gfx/interface/icons/planet_modifiers/pm_ocean_paradise.dds
+	trade_value_mult = 0.1
+	pop_cat_ruler_happiness = 0.1
+}
+
+
+### A City of the Desert
+
+bringing_water = {
+	icon = gfx/interface/icons/planet_modifiers/pm_arid_planet.dds
+	pop_happiness = 0.1
+	pop_housing_usage_mult = -0.25
+	planet_jobs_produces_mult = -0.1
+}
+
+dream_city = {
+	icon = gfx/interface/icons/planet_modifiers/pm_atmospheric_hallucinogen.dds
+	planet_jobs_unity_produces_mult = 0.2
+	planet_jobs_produces_mult = -0.1
+	planet_jobs_worker_produces_mult = -0.05
+}
+
+standing_against_dust = {
+	icon = gfx/interface/icons/planet_modifiers/pm_wasteland.dds
+	pop_happiness = 0.10
+	planet_jobs_unity_produces_mult = 0.2
+}
+
+overpopulated = {
+	icon = gfx/interface/icons/planet_modifiers/pm_expel_population.dds
+	trade_value_mult = -0.1
+	planet_jobs_worker_produces_mult = 0.05
+	planet_crime_add = 15
+}
+
+stolen_materials = {
+	icon = gfx/interface/icons/planet_modifiers/pm_drilling_for_gas.dds
+	planet_crime_add = 10
+}
+
+sandstorms = {
+	icon = gfx/interface/icons/planet_modifiers/pm_landing_ship.dds
+	planet_jobs_energy_produces_mult = -0.1
+}
+
+waters_of_life = {
+	icon = gfx/interface/icons/planet_modifiers/pm_atmospheric_aphrodisiac.dds
+	planet_jobs_food_produces_mult = 0.05
+}
+
+great_desert_city = {
+	icon = gfx/interface/icons/planet_modifiers/pm_archaeological_dig.dds
+	pop_housing_usage_mult = -0.05
+	trade_value_mult = 0.20
+	pop_job_amenities_mult = 0.8
+}
+
+great_desert_farms = {
+	planet_jobs_food_produces_mult = 0.1
+	planet_farmers_energy_produces_add = 2
+	trade_value_mult = -0.1
+	planet_max_districts_add = -2
+}
+
+bio_solar_network = {
+	planet_jobs_energy_upkeep_mult = -0.2
+	planet_technician_food_produces_add = 2
+	pop_housing_usage_mult = -0.1
+}
+
+desert_jewel = {
+	icon = gfx/interface/icons/planet_modifiers/pm_natural_beauty.dds
+	pop_happiness = 0.2		# If pop modifiers for diplomatic weight get implemented, that would work better here
+	planet_jobs_unity_produces_mult = 0.1
+	planet_jobs_energy_upkeep_mult = 0.1
+}
+
+trade_city = {
+	icon = gfx/interface/icons/planet_modifiers/capital.dds
+	trade_value_mult = 0.20
+	job_merchant_add = 2
+	planet_crime_mult = 0.1
+}
+
+scientific_mecca = {
+	icon = gfx/interface/icons/planet_modifiers/pm_city_ruins.dds
+	planet_jobs_physics_research_produces_mult = 0.1
+	planet_jobs_society_research_produces_mult = 0.1
+	planet_jobs_engineering_research_produces_mult = 0.1
+	job_head_researcher_add = 2
+	planet_researchers_energy_upkeep_add = 4
+}
+
+city_of_gardens = {
+	icon = gfx/interface/icons/planet_modifiers/pm_natural_beauty.dds
+	planet_jobs_unity_produces_mult = 0.2
+	planet_amenities_add = 5
+	planet_jobs_consumer_goods_upkeep_mult = 0.1
+}
+
+
+### Flood
+
+recent_flooding = {
+	icon = gfx/interface/icons/planet_modifiers/pm_wasteland.dds
+	trade_value_mult = -0.1
+	planet_farmers_food_produces_mult = -0.1
+}
+
+### Kelp Modifiers
+kelp_bioweapons = {
+	icon = gfx/interface/icons/combat_stats/combat_stat_damage_explosive.dds
+	custom_tooltip = kelp_bioweapons_tooltip
+	weapon_type_explosive_weapon_damage_mult = 0.1
+	#torpedo_weapon_damage_mult = 0.1
+}
+
+kelp_breakfasts = {
+	icon = gfx/interface/icons/modifiers/mod_food_produces_mult.dds
+	custom_tooltip = kelp_breakfast_tooltip
+	planet_pops_food_upkeep_mult = -0.1	# Applied to country in Kelp Insights
+}
+
+
+### Zrofish
+
+bigger_fish = {
+	icon = gfx/interface/icons/planet_modifiers/pm_carbon_world.dds
+	job_dangerous_wildlife_poacher_add = 2
+	planet_miners_minerals_produces_mult = -0.1
+}
+
+xenofish_attacks = {
+	icon = gfx/interface/icons/planet_modifiers/pm_slave_riots.dds
+	custom_tooltip = xenofish.attacks	# This modifier is just a tooltip.
+}
+
+
+
+### Geothermal Energy and Vents
+
+geothermal_instability = {
+	planet_technician_energy_produces_mult = -0.1
+	pop_cat_specialist_happiness = -0.15
+}
+
+
+### Shifting Sands
+
+sand_tides = {
+	pop_environment_tolerance = -0.10
+	pop_happiness = 0.10
+}
+
+### Suden Sinkhole
+
+subterranean_river_cruises = {
+	icon = gfx/interface/icons/planet_modifiers/pm_hollow_planet.dds
+	trade_value_mult = 0.1
+	planet_amenities_mult = 0.1
+}
+
+### Experimental Geothermal Tap
+
+nanocomposite_shortage = {
+	icon = gfx/interface/icons/planet_modifiers/pm_resources.dds
+	shipclass_military_build_speed_mult = -0.5
+}
+
+### Failing Food Replicator
+failing_food_replicator = {
+	planet_farmers_food_produces_mult = -0.1
+}
+
+### Collapsed Superhighway
+superhighway_engineering = {
+	planet_jobs_engineering_research_produces_mult = -1.00
+}
+
+### Scavenger Wars
+scavenger_wars = {
+	planet_stability_add = -20
+}
+
+scavenger_bounties = {}	# Triggers changes to Scavenger Bands feature.
+
+### Post-Apoc Remediation Cultural Outcomes
+environmental_remediation = {
+	# Does nothing - just lets player know it's ongoing.
+	icon = gfx/interface/icons/planet_modifiers/capital.dds
+}
+
+mutant_soldiers = {
+	country_naval_cap_add = 4	# Pop modifier - added to soldiers on homeworld
+}
+
+advancing_from_ruins = {
+	planet_scrap_miners_alloys_produces_add = 2
+	planet_soldiers_alloys_produces_add = 1
+	planet_metallurgists_unity_produces_add = 2
+}
+
+revived_civilization = {
+	pop_category_rulers_unity_produces_add = 1
+	pop_category_specialists_unity_produces_add = 1
+	pop_category_workers_unity_produces_add = 1
+}
+
+revived_civilization_gestalt = {
+	pop_category_specialists_unity_produces_add = 1
+	pop_category_workers_unity_produces_add = 1
+}
+
+cultural_reconstruction = {
+	country_base_influence_produces_add = 1
+}
+
+cultural_restoration_planet = {
+	planet_jobs_specialist_produces_mult = 0.40
+}
+
+cultural_restoration = {
+	country_base_influence_produces_add = 2
+	envoys_add = 2
+}
+
+# Post-Apoc Origin - Food Reserves Run Out
+
+beacon_of_hope = {
+	planet_farmers_food_produces_add = 1
+	planet_immigration_pull_add = 100
+	pop_growth_from_immigration = 0.25
+}
+
+malnutrition = {
+	BIOLOGICAL_pop_growth_speed = -0.5
+	planet_pops_food_upkeep_mult = -0.5
+}
+
+food_shortages = {
+	planet_crime_add = 25
+	biological_pop_happiness = -0.25
+	BIOLOGICAL_pop_growth_speed = -0.25
+}
+
+widespread_starvation = {
+	planet_stability_add = -30
+	planet_crime_add = 50
+}
+
+starvation_state = {
+	biological_pop_happiness = -0.5
+	BIOLOGICAL_pop_growth_speed = -0.75
+}
+
+convenient_scapegoats = {
+	biological_pop_happiness = 0.25
+	job_criminal_add = 4
+}
+
+post_apoc_food_riots = {
+	planet_stability_add = -20
+	job_criminal_add = 3
+}
+
+nutritious_cockroaches = {
+	BIOLOGICAL_pop_growth_speed = 0.25
+	biological_pop_happiness = -0.25
+}
+
+council_cannibalism = {
+	pop_cat_ruler_happiness = -0.8
+	pop_cat_worker_happiness = 0.8
+}
+
+autocannibalistic_hive = {
+	country_unity_produces_mult = 0.10
+	country_food_produces_mult = 0.20
+	country_edict_fund_add = -50
+}
+
+# starting_anew = {
+# 	planet_immigration_pull_add = 250
+# 	biological_pop_happiness = 0.25
+# }
+
+colonial_bounty = {
+	planet_jobs_unity_produces_mult = 0.20
+	pop_government_ethic_attraction = 0.25
+}
+
+colonial_tithes = {
+	pop_cat_worker_happiness = -0.25
+}
+
+eased_tithes = {
+	pop_cat_worker_happiness = 0.10
+}
+
+colonial_food_coops = {
+	pop_cat_worker_happiness = 0.10
+	pop_amenities_usage_add = 1
+	planet_farmers_food_produces_mult = 0.10
+}
+
+colonial_farm_crackdowns = {
+	planet_stability_add = -25
+}
+
+colonial_food_upkeep = {
+	planet_farmers_food_produces_mult = -0.5	# Doesn't affect food shipped to homeworld, that's a flat rate
+}
+
+gestalt_farm_autonomy = {
+	pop_amenities_usage_add = 1
+	planet_farmers_food_produces_mult = 0.1
+}
+
+colonial_blockade = {
+	trade_value_mult = -1
+	planet_jobs_produces_mult = -0.5
+}
+
+gestalt_blockade = {
+	pop_amenities_usage_mult = 0.20
+	planet_farmers_produces_mult = -1
+}
+
+# Wenkwort Modifiers
+
+pm_wenkwort_gardens_overwrite = {		# Is a static modifier despite what it would seem
+	icon = "gfx/interface/icons/planet_modifiers/pm_natural_beauty.dds"
+	icon_frame = 1
+
+	planet_researchers_produces_mult = 0.1
+	planet_jobs_unity_produces_mult = 0.1
+	planet_jobs_worker_produces_mult = 0.1
+}
+
+pm_wenkwort_custodian_3 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_atmospheric_aphrodisiac.dds"
+	icon_frame = 2
+	
+	planet_researchers_produces_mult = 0.2
+	planet_jobs_unity_produces_mult = 0.4
+	planet_jobs_worker_produces_mult = 0.2
+	planet_metallurgists_produces_mult = -0.7
+	planet_miners_produces_mult = -0.6
+	planet_refiners_exotic_gases_produces_mult = -0.7
+	planet_chemists_volatile_motes_produces_mult = -0.7
+	planet_translucers_rare_crystals_produces_mult = -0.2
+}
+
+pm_wenkwort_custodian_2 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_atmospheric_aphrodisiac.dds"
+	icon_frame = 2
+	
+	planet_researchers_produces_mult = 0.1
+	planet_jobs_unity_produces_mult = 0.2
+	planet_jobs_worker_produces_mult = 0.1
+	planet_metallurgists_produces_mult = -0.4
+	planet_miners_produces_mult = -0.25
+	planet_refiners_exotic_gases_produces_mult = -0.4
+	planet_chemists_volatile_motes_produces_mult = -0.4
+	planet_translucers_rare_crystals_produces_mult = 0.1
+}
+
+pm_wenkwort_custodian_1 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_atmospheric_aphrodisiac.dds"
+	icon_frame = 3
+	
+	planet_researchers_produces_mult = 0.05
+	planet_jobs_unity_produces_mult = 0.1
+	planet_jobs_worker_produces_mult = 0.05
+	planet_metallurgists_produces_mult = -0.2
+	planet_miners_produces_mult = -0.1
+	planet_refiners_exotic_gases_produces_mult = -0.25
+	planet_chemists_volatile_motes_produces_mult = -0.25
+	planet_translucers_rare_crystals_produces_mult = 0.05
+}
+
+pm_wenkwort_custodian_4 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_atmospheric_aphrodisiac.dds"
+	icon_frame = 2
+	
+	planet_researchers_produces_mult = 0.25
+	planet_jobs_unity_produces_mult = 0.5
+	planet_jobs_worker_produces_mult = 0.25
+	planet_metallurgists_produces_mult = -0.85
+	planet_miners_produces_mult = -0.75
+	planet_refiners_exotic_gases_produces_mult = -0.85
+	planet_chemists_volatile_motes_produces_mult = -0.85
+	planet_translucers_rare_crystals_produces_mult = 0.25
+}
+
+pm_wenkwort_custodian_5 = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_atmospheric_aphrodisiac.dds"
+	icon_frame = 1
+	
+	planet_researchers_produces_mult = 0.35
+	planet_jobs_unity_produces_mult = 1.00
+	planet_jobs_worker_produces_mult = 0.5
+	planet_metallurgists_produces_mult = -1.00
+	planet_miners_produces_mult = -1.00
+	planet_refiners_exotic_gases_produces_mult = -1.00
+	planet_chemists_volatile_motes_produces_mult = -1.00
+	planet_translucers_rare_crystals_produces_mult = 0.5
+}
+
+pm_wenkwort_custodian_locked = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_atmospheric_aphrodisiac.dds"
+	icon_frame = 1
+	
+	planet_researchers_produces_mult = 0.5
+	planet_jobs_unity_produces_mult = 1.00
+	planet_jobs_worker_produces_mult = 0.5
+	planet_metallurgists_produces_mult = -1.00
+	planet_miners_produces_mult = -1.00
+	planet_refiners_exotic_gases_produces_mult = -1.00
+	planet_chemists_volatile_motes_produces_mult = -1.00
+	planet_translucers_rare_crystals_produces_mult = 0.5
+}
+
+pm_wenkwort_disease_outbreak = {
+	planet_researchers_produces_mult = -1.00
+}
+
+pm_wenkwort_invasive_species = {
+	planet_jobs_unity_produces_mult = -1.00
+}
+
+pm_wenkwort_predatory_biology = {
+	planet_jobs_worker_produces_mult = -0.5
+}
+
+soil_remediation = {
+	planet_farmers_food_produces_mult = -0.1
+	planet_farmers_consumer_goods_upkeep_add = 1
+}

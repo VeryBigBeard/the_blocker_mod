@@ -1,0 +1,554 @@
+### The Blocker Mod - Events, Three
+
+namespace = tbm_rock
+
+### 101. A Shiny Rock (Gatekeeper) (Minerals Fields)
+planet_event = {
+	id = tbm_rock.1
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_homeworld = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		OR = {
+			has_deposit = d_mineral_fields
+			has_deposit = d_basaltic_outcrops
+		}
+		any_owned_pop = {
+			is_robot_pop = no	# This avoids the situation where our colonist kid is a bot.
+		}
+		owner = { 
+			is_gestalt = no
+			is_lithoid = no	
+		}
+		NOT = { 
+			owner = { has_country_flag = a_shiny_rock }
+		}
+		owner = {
+			OR = {
+				AND = {
+					has_federation = yes
+					any_federation_ally = {
+						is_federation_leader = yes
+					}
+				}
+				any_owned_megastructure = {
+					is_dyson_sphere = yes
+				}
+				any_owned_planet = {
+					is_planet_class = pc_city
+				}
+			}
+
+			# Fallback; also helps ensure it's a mid/late-game event chain, which is more appropriate
+			any_owned_starbase = {
+				OR = {
+					has_starbase_size = starbase_citadel
+					has_starbase_size = starbase_starfortress
+				}
+			}
+		}
+	}
+
+	immediate = {
+		
+		random_owned_pop = {
+			limit = {
+				has_job = colonist
+			}
+
+			species = {
+				save_event_target_as = colonizer
+			}
+		}
+
+		# Create lithoid species (check paramaters)
+		create_species = {
+			name = random
+			class = LITHOID
+			portrait = lith2
+			traits = random
+			sapient = yes
+			can_be_modified = yes
+			namelist = random_class
+			effect = {
+				save_global_event_target_as = golem_species
+			}
+		}
+
+		owner = {
+			create_leader = {
+				name = random
+				class = scientist
+				species = event_target:golem_species
+				set_age = 24
+				traits = {
+					trait = leader_trait_memories
+				}
+			}
+			last_created_leader = {
+				save_event_target_as = Lithy
+				exile_leader_as = Lithy
+			}
+		}
+
+		# Creating a bunch of spoof leaders
+		owner = {
+
+			# Rival
+			create_leader = {
+				name = random
+				class = scientist
+				species = event_target:colonizer
+			}
+			last_created_leader = {
+				save_event_target_as = Rival
+				exile_leader_as = Rival
+			}
+
+			# Protagonist (can be used later in some cases)
+			create_leader = {
+				name = random
+				class = scientist
+				species = event_target:colonizer
+				set_age = 11
+				traits = {
+					trait = leader_trait_whiz_kid
+				}
+			}
+			last_created_leader = {
+				recruitable = no
+				save_event_target_as = Character
+				exile_leader_as = Character
+			}
+		}
+		
+		# Now creating some setting
+		planet = {		# Yeah, this is rendundant but you'd be surprised how long it was trying to pull this deposit from owner
+			# Local Lithoids
+			random_deposit = {
+				limit = {
+					OR = {
+						is_deposit_type = d_mineral_fields
+						is_deposit_type = d_basaltic_outcrops
+					}
+				}
+				save_event_target_as = lithoid_deposit
+			}
+
+			root = {
+				save_event_target_as = lithoid_planet
+			}
+		}
+		
+		owner = {
+			
+			# Not-So-Imaginary Structure
+			random_list = {
+				
+				# Ecumenopolis
+				25 = {
+					modifier = {
+						factor = 0
+						NOT = {
+							owner = {
+								any_owned_planet = {
+									is_planet_class = pc_city
+								}
+							}
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							is_planet_class = pc_city
+						}
+						save_event_target_as = ecumenopolis
+						save_event_target_as = structure
+					}
+				}
+
+				# Federation (must not be leader of it, that would be boring)
+				25 = {
+					modifier = {
+						factor = 0
+						OR = {
+							has_federation = no
+							is_federation_leader = yes
+						}
+					}
+					
+					random_federation = {
+						limit = {
+							any_member = {
+								is_same_value = prevprev
+							}
+						}
+
+						federation_leader = {
+							capital_scope = {
+								save_event_target_as = seat_of_power
+								save_event_target_as = structure		
+							}
+						}
+					}
+				}
+
+				# Dyson Sphere
+				25 = {
+					modifier = {
+						factor = 0
+						NOT = {
+							owner = {
+								any_owned_megastructure = {
+									is_dyson_sphere = yes
+								}
+							}
+						}
+					}					
+					random_system_megastructure = {
+						limit = {
+							is_dyson_sphere = yes
+						}
+						save_event_target_as = structure
+						save_event_target_as = sphere
+					}
+				}
+				
+				#Fallback = Starbase
+				25 = {
+					modifier = {
+						factor = 0
+						owner = {
+							# Don't use this if we have something more exciting
+							OR = {
+								any_owned_megastructure = {
+									is_dyson_sphere = yes
+								}
+								OR = {
+									is_federation_leader = yes
+									has_federation = no
+								}
+								any_owned_planet = { is_planet_class = pc_city }
+							}
+						}
+					}
+
+					random_owned_starbase = {
+						limit = {
+							OR = {
+								has_starbase_size = starbase_starfortress
+								has_starbase_size = starbase_citadel
+							}
+						}
+						
+						save_event_target_as = fortress
+						save_event_target_as = structure
+					}
+				}
+			}
+		}
+
+		this = {
+			planet_event = {
+				id = tbm_rock.2
+			}
+		}
+	}
+}
+
+### 102. A Shiny Rock
+planet_event = {
+	id = tbm_rock.2
+
+	title = tbm_rock.2_title
+	desc = tbm_rock.2_desc
+	picture = GFX_evt_crystal_mining
+	show_sound = event_machinery
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		hidden_effect = {
+			owner = {
+				set_country_flag = a_shiny_rock
+			}
+		}
+	}
+
+	option = {
+		name = tbm_rock.2_search
+
+		owner = {
+			add_resource = {
+				energy = -2500
+			}
+		}
+
+		begin_event_chain = {
+			event_chain = tbm_shiny_rock
+		}
+		hidden_effect = {
+			planet_event = {
+				id = tbm_rock.3
+				days = 60
+			}
+		}
+	}
+
+	option = {
+		name = tbm_rock.2_magic
+		custom_tooltip = tbm_rock.2_tooltip_main
+		random_list = {
+			50 = {
+				custom_tooltip = tbm_rock.2_tooltip_magic
+				owner = {
+					add_resource = {
+						unity = 500
+					}
+				}
+			}
+			50 = {
+				custom_tooltip = tbm_rock.2_tooltip_science
+				owner = {
+					add_resource = {
+						physics_research = 1000
+						society_research = 1000
+						engineering_research = 1000
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = tbm_rock.2_travel
+		trigger = {
+			hidden_trigger = {
+				OR = {
+					exists = event_target:ecumenopolis
+					exists = event_target:seat_of_power
+					exists = event_target:sphere
+					exists = event_target:fortress
+				}
+			}
+		}
+
+		event_target:structure = {
+			enable_special_project = {
+				name = "MEGASTRUCTURE_TOUR"
+			}
+		}
+	}
+}
+
+### 103. Search for the Shiny Rock
+planet_event = {
+	id = tbm_rock.3
+
+	title = tbm_rock.3_title
+	desc = tbm_rock.3_desc
+	picture = GFX_evt_physics_cache
+	show_sound = event_scanner
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		owner = {
+			add_resource = {
+				energy = -1000
+			}
+		}
+	}
+
+	option = {
+		name = tbm_rock.3_lithoid
+
+		owner = {
+			add_resource = {
+				energy = -500
+				consumer_goods = -500
+			}
+		}
+
+		hidden_effect = {
+			planet_event = {
+				id = tbm_rock.4
+				days = 60
+			}
+		}
+	}
+
+	option = {
+		name = tbm_rock.3_amoeba	# I got an empire to rule here, kid.
+		owner = {
+			add_resource = {
+				unity = -100
+				society_research = 1000
+			}
+		}
+	}
+}
+
+### 104. Pet Rock
+planet_event = {
+	id = tbm_rock.4
+
+	title = tbm_rock.4_title
+	desc = tbm_rock.4_desc
+	picture = GFX_evt_disease_outbreak
+	show_sound = lithoid_colossus_idle
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		owner = {
+			add_resource = {
+				physics_research = 500
+				society_research = 500
+				engineering_research = 500
+			}
+		}
+	}
+
+	option = {
+		name = OK
+
+		owner = {
+			add_resource = {
+				minerals = -600
+				consumer_goods = -100
+			}
+		}
+	}
+
+	after = {
+		hidden_effect = {
+			planet_event = {
+				id = tbm_rock.5
+				days = 180
+				random = 180
+			}
+		}
+	}
+}
+
+### 105. Rock Garden
+planet_event = {
+	id = tbm_rock.5
+
+	title = tbm_rock.5_title
+	desc = tbm_rock.5_desc
+	picture = GFX_evt_huge_monument
+	show_sound = lithoid_colossus_idle
+
+	is_triggered_only = yes
+	location = this
+
+	# Get some lithoids
+	option = {
+		name = tbm_rock.105.colonists
+		remove_deposit = d_mineral_fields
+		create_pop = {
+			species = event_target:golem_species
+		}
+		create_pop = {
+			species = event_target:golem_species
+		}
+	}
+
+	### Event Chain: Direction of Impact - Create Your Own Rock Golems (and produce MANY of them)
+	option = {
+		name = tbm_rock.5_golems
+		trigger = {
+			always = no
+		}
+	}
+
+	# An excellent mining opportunity
+	option = {
+		name = tbm_rock.5_mining
+		exclusive_trigger = {
+			owner = {
+				has_civic = civic_fanatic_purifiers
+			}
+		}
+		add_modifier = {
+			modifier = mineral_rich
+		}
+	}
+
+	option = {
+		name = tbm_rock.5_mining
+		trigger = {
+			owner = {
+				has_ethic = ethic_fanatic_xenophobe
+			}
+		}
+		add_modifier = {
+			modifier = mineral_rich
+		}
+	}
+
+	after = {
+		owner = {
+			set_country_flag = a_shiny_rock
+		}
+	}
+}
+
+### 6. Tour Completed
+ship_event = {
+	id = tbm_rock.6
+
+	is_triggered_only = yes
+
+	title = tbm_rock.6_title
+	desc = tbm_rock.6_desc
+	picture = GFX_evt_city_planet
+	show_sound = event_ship_thrusters
+
+	option = {
+		name = OK
+		custom_tooltip = tbm_rock.6_whiz_kid
+
+		hidden_effect = {
+			root = {
+				fleet = {
+					leader = {
+						unassign_leader = this
+						save_event_target_as = captain
+					}
+
+					set_leader = Character
+
+					leader = {
+						unassign_leader = this
+					}
+
+					set_leader = event_target:captain
+				}
+			
+			
+			}
+			
+		}
+	}
+
+	after = {
+		owner = {
+			set_country_flag = a_shiny_rock
+		}
+	}
+}
+
+

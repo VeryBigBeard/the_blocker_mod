@@ -1,0 +1,31 @@
+### TBM - AI Empire Weights
+#	Manages AI approach based on empire archetype. Subjects need to behave differently to make tax.
+#	Mainly applied to resource features
+
+# Do not clear features if subject since we may need the resources
+modifier = {
+	factor = 0
+	owner = {
+		is_subject = yes
+		#has_active_specialization = specialist_prospectorium
+	}
+}
+
+# Clear features if trying to make an ecu, usually used alongside features that would otherwise be kept
+modifier = {
+	set = 2
+	owner = {
+		OR = {
+			has_ascension_perk = ap_arcology_project
+			has_ascension_perk = ap_hive_worlds
+			has_ascension_perk = ap_machine_worlds
+		}
+	}
+	from = {
+		num_pops > 40
+		num_districts = {
+			type = district_industrial
+			value >= 6
+		}
+	}
+}

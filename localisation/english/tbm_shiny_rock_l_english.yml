@@ -1,0 +1,43 @@
+﻿l_english:
+
+ ### The Blocker Mod - A Shiny Rock Event Localization - 101 - 105 - English
+
+ tbm_shiny_rock_title:0 "A Shiny Rock"
+ tbm_shiny_rock_desc:0 "A mysterious rock requires further investigation, and quick!"
+
+ tbm_rock.2_title:0 "A Shiny Rock"
+ tbm_rock.2_desc:0 "[planet.GetName] is covered by several barren [GetLithoidCradle], and when these rock-fields are not being prospected for future mining operations, they become secret playgrounds for some of the colony's more adventurous children.\n\nJust the other day, §P[Rival.GetName]§! built an imaginary §Y£starbase£ Star Citadel§! on one of the biggest outcrops, a spot already claimed by §B[Character.GetName]§!, forcing [Character.GetHerHim] to find another spot all of [Character.GetHerHis] own to establish a §Y[GetStructureName]§! of [Character.GetHerHis] own.\n\nAfter spending part of a morning brooding, §B[Character.GetFirstName]§! found the §Gbest§! spot. Not only is this rock bigger than §P[Rival.GetFirstName]§!'s, it glows! And rumbles sometimes!\n\nBut when §B[Character.GetFirstName]§! went to find the shiny rock today, it had vanished completely, along with [Character.GetHerHis] [GetStructureName]."
+
+ tbm_rock.2_search:0 "Well, let's mount a search and find it!"
+ tbm_rock.2_magic:0 "It must have been magic."
+ tbm_rock.2_tooltip_main:0 "What happens next will depend on [Character.GetFirstName]'s personality.\n\n"
+ tbm_rock.2_tooltip_magic:0 "[Character.GetFirstName] believes in magic.\n\n"
+ tbm_rock.2_tooltip_science:0 "[Character.GetFirstName] is top of [Character.GetHerHis]] class at the [owner.capital_scope.GetName] Science Academy, and doesn't believe in magic, anyway."
+ tbm_rock.2_travel:0 "Come on, §B[Character.GetFirstName]§!, we'll visit the real [GetStructureName] instead!"
+
+ tbm_rock.3_title:0 "Finding [Character.GetFirstName]'s Special Rock"
+ tbm_rock.3_desc:0 "It takes much of the colony several weeks to track down exactly which shiny rock is so special to §B[Character.GetFirstName]§!. After [Character.GetSheHe] dismissed several odd and even quite spectacular rocks as not §G[Character.GetHerHis]§! rock, it became clear that, in fact, several of the rocks in the [GetLithoidCradle] might be "special".\n\nAt long last, the right rock was located, but its magical, pulsing light has ebbed to just a star-like twinkle. It brightened when [Character.GetFirstName] approached, and even began to move!\n\nSlowly, and with the help of a sub-orbital excavator flown in at tremendous expense, the rock shed its mineral-coated exterior, revealing a lithoid organism trapped inside.\n\n\"See,\" said [Character.GetFirstName], \"I told you it was special. Can we keep it?""
+ tbm_rock.3_lithoid:0 "Okay, but you have to take care of it."
+ tbm_rock.3_amoeba:0 "How about a £amoeba£ §GSpace Amoeba§!, instead?"
+
+ tbm_rock.4_title:0 "Pet Rock"
+ tbm_rock.4_desc:0 "The lithoid §B[Character.GetName]§! recovered from the [GetLithoidCradle] on §Y[planet.GetName]§! is a young being of its kind, and appears to be afflicted by some kind of illness. Lichens and other fungi have been growing on its outcroppings and accumulations, and its glow has faded even further since it was excavated.\n\n§B[Character.GetFirstName]§! has been dutifully caring for it each and every day, and the lithoid appears to recognize [Character.GetHerHim], brightening when [Character.GetSheHe] enters. Slowly, it appears to be healing, and §B[Character.GetFirstName]§! has been trying to teach it our language.\n\nMeanwhile, scans of the [GetLithoidCradle] suggest there are other lithoids scattered across [planet.GetName], though their exact nature, origin, and condition remains a mystery."
+
+ tbm_rock.5_title:0 "Rock Garden"
+ tbm_rock.5_desc:0 "With §B[Character.GetName]§!'s help, the lithoid on §Y[planet.GetName]§! has been nursed back to health, and is even beginning to understand our language, though it still prefers to communicate through §B[Character.GetFirstName]§!. [Character.GetSheHeCap] says its name is §r[Lithy.GetFirstName]§!.\n\nIt is, indeed, a child, at least in lithoid terms. Many of the other lithoids, semi-animate and scattered across the [planet.GetPlanetMoon], are hundreds of years old, but carbon-dating suggests they are all around the same age as §r[Lithy.GetFirstName]§!. Analysis of the geologic make-up of the [GetLithoidCradle] reveals high concentrations of §GHigh-Quality Minerals§! in surrounding veins. Our working theory is that the lithoids were seeded here as infants, though there is no sign of any parent or creator who might be responsible for them. Given how old they already are even, it is likely §r[Lithy.GetFirstName]! will never know [Lithy.GetHerHis] forebears.\n\nLocal administrators now need to decide what exactly to do with a large number of adolescent lithoids, some in need of medical attention. §B[Character.GetName]§!says that §r[Lithy.GetFirstName]§! dreams of searching the stars for [Lithy.GetHerHis] parents, but both of them know that not every adventure ends as we hope."
+ tbm_rock.105.colonists:0 "The lithoids will grow up as colonists alongside §B[Character.GetName]§!."
+ tbm_rock.5_golems:0 "We should seek to find who or whatever made these beings."
+ tbm_rock.5_mining:0 "This sounds like an excellent mining opportunity."
+
+ tbm_rock.6_title:0 "Adventure of a Lifetime"
+ tbm_rock.6_desc:0 "Once aboard and bound for §Y[structure.GetName]§!, §B[Character.GetName]§! forgot all about [Character.GetHisHer] troubles on [lithoid_planet.GetName] and quickly made friends with the crew of the §Y[root.GetName]§.\n\nOn the way home, [root.leader.GetName] even let §B[Character.GetFirstName]§! take the helm, and now [Character.GetSheHe] is set on becoming an ace pilot and scientist for the §Y[root.owner.GetName]§!.\n\nAlready an top student at the Academy, §B[Character.GetFirstName]§! has shown enough promise on the §Y[root.GetName]§! to be given a provisional posting with the science corps."
+ tbm_rock.6_whiz_kid:0 "§B[Character.GetName]§! will surely become a leader in the §Y[root.owner.GetName]§!."
+
+ MEGASTRUCTURE_TOUR:0 "Adventure of a Lifetime"
+ MEGASTRUCTURE_TOUR_DESC:0 "Rather than mope around on a remote colony, why not take §B[Character.GetFirstName]§! on a tour of the stars?"
+
+ leader_trait_whiz_kid:0 "Whiz Kid"
+ leader_trait_whiz_kid_desc:0 "Top of the class at the Science Academy. Has already solved several advanced quantum-mathematical disputes and is eager to make an impression in our star fleet."
+
+ leader_trait_memories:0 "Star-borne Memories"
+ leader_trait_memories_desc:0 "Birthed across galaxies and cradled by the void, yearing to discover the secrets of the cosmos, and perhaps one day find their true home."

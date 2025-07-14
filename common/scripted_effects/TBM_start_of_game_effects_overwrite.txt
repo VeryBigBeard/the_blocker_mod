@@ -1,0 +1,53 @@
+### The Blocker Mod - Start of Game Effects Overwrite
+#	This effect is called from game_start.12 for empire init.
+#	It does NOT get called on Void Dweller starts or Toxic Knights starts.
+
+### Any mod that edits this scripted effect will conflict with The Blocker Mod and will produce bugs on homeworlds.
+
+### If you use any mod that adds origin features, make sure you load it AFTER The Blocker Mod or else this script will wipe out those features. But check to make sure it does not overwrite the below effect--if it does, the mods are likely incompatible!
+
+
+generate_start_deposits_and_blockers = {
+
+	optimize_memory
+
+	# Clean-up and flag Lost Colony worlds (doing it here avoids compatibility problems)
+	clear_deposits = yes	
+	if = {
+		limit = {
+			owner = { has_origin = origin_lost_colony }
+		}
+		# Make it easier to denote lost colony starting planets for feature purposes.
+		set_planet_flag = lost_colony_world
+	}
+
+
+	### --- The Blocker Mod - Overwrite --- #####
+
+	### Basic Blockers
+	tbm_homeworld_basic_blockers = yes	
+
+	### Regular Spreads
+	#	All planet classes are handled identically to help preserve mod compatibility
+	#	Order of effects is very important here!	
+	tbm_homeworld_regular_empires = yes
+
+	### --- Special Homeworld feature sets - Can only have one, usually from an origin --- ###
+	#		These clear everything above and re-do.
+	tbm_homeworld_origin_spreads = yes
+
+	
+	### --- Extras --- ###
+	tbm_homeworld_extras = yes
+}
+
+
+
+### TBM Earth overwrite
+#	Earth gets a split of its special vanilla features and typical TBM homeworld features. The vanilla features remain mostly the same but have a light TBM flavor to allow UNE to be a slightly easier start.
+generate_earth_deposits_and_blockers = {
+	
+	optimize_memory
+
+	tbm_homeworld_earth = yes
+}

@@ -1,0 +1,962 @@
+### The Blocker Mod - Buildings
+
+
+### Colonial Buildings
+building_xeno_synaptic_node = {
+	
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = research
+
+	# building_sets = {
+	# 	research
+	# }
+
+	potential = {
+		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
+		exists = owner
+		owner = { is_gestalt = yes }
+	}
+
+	abort_trigger = {
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_gestalt = no }
+			has_major_upgraded_capital = yes
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 10		# Who said thinking hard was easy?
+		}
+		cost = {
+			minerals = 600
+		}
+		produces = {		
+			physics_research = 1
+			multiplier = value:feature_research_gestalt_phys
+		}
+		produces = {
+			society_research = 1
+			multiplier = value:feature_research_gestalt_soc
+		}
+		produces = {
+			engineering_research = 1
+			multiplier = value:feature_research_gestalt_eng
+		}
+	}
+}
+
+building_science_outposts = {
+	
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	# building_sets = {
+	# 	research
+	# }
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_xeno_naturalist_add = 1
+			job_colonist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_xeno_analysis_drone_add = 2
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_survey_stations = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	# building_sets = {
+	# 	mining
+	# }
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		is_artificial = no
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_colonial_prospector_add = 1
+			job_colonist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 1
+			job_prospecting_drone_add = 1
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_frontier_spaceport = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	# building_sets = {
+	# 	trade
+	# 	unity
+	# }
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 6
+		}
+		upkeep = {
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = no }
+			}
+			unity = 1
+			mult = value:colonial_spaceport_cohesion
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { is_gestalt = yes }
+			}
+			unity = 1
+			mult = value:colonial_cohesion_gestalt
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		trade_value_mult = 0.1
+		job_colonist_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		planet_jobs_unity_produces_mult = 0.1
+	}
+
+	triggered_desc = {
+		text = tbm_frontier_spaceport_desc
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+	}
+
+	triggered_desc = {
+		text = tbm_frontier_spaceport_gestalt_desc
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+	}
+
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_colonial_energy_conduits = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	# building_sets = {
+	# 	generator
+	# }
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 1
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_colonist_add = 1
+			planet_colonist_energy_produces_add = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 1
+			planet_technician_energy_produces_add = 1
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_land_grants = {
+	icon = building_primitive_farm
+	
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	# building_sets = {
+	# 	farming
+	# }
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		is_artificial = no
+		NOT = { is_planet_class = pc_habitat }
+		owner = {
+			is_gestalt = no
+		}
+	}
+
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
+		owner = {
+			is_gestalt = yes
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_colonial_pioneer_add = 2
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_farming_commune = {
+	icon = building_primitive_farm
+	
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	# building_sets = {
+	# 	farming
+	# }
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		is_artificial = no
+		NOR = { 
+			is_planet_class = pc_habitat
+			has_building = building_land_grants
+		}
+		owner = {
+			is_gestalt = no
+			OR = {
+				has_valid_civic = civic_agrarian_idyll
+				has_valid_civic = civic_environmentalist
+			}
+		}
+	}
+
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
+		owner = {
+			OR = {
+				is_gestalt = yes
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_colonial_pioneer_add = 2
+			job_farmer_add = 2
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_colonial_outpost = {
+	icon = building_primitive_factory
+	
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	# building_sets = {
+	# 	trade
+	# 	resource
+	# }
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 6
+		}
+		upkeep = {
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		trade_value_mult = 0.1
+		job_colonist_add = 1
+		job_colonial_deputy_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		planet_jobs_unity_produces_mult = 0.1
+		job_prospecting_drone_add = 1
+		job_agri_drone_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				is_lithoid = yes
+			}
+		}
+		job_agri_drone_add = -1
+		job_mining_drone_add = 1
+	}
+
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+
+	upgrades = {
+		"building_planetary_outpost"
+	}
+}
+
+building_planetary_outpost = {
+	icon = building_residence
+	
+	base_buildtime = @b2_time
+	can_build = no
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	# building_sets = {
+	# 	trade
+	# 	resource
+	# }
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	destroy_trigger = {
+		has_major_upgraded_capital = yes
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b2_minerals
+		}
+		upkeep = {
+			energy = 8
+		}
+		upkeep = {
+			unity = 2
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		trade_value_mult = 0.1
+		job_colonist_add = 2
+		job_colonial_deputy_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		planet_jobs_unity_produces_mult = 0.1
+		job_prospecting_drone_add = 2
+		job_agri_drone_add = 4
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = yes
+				is_lithoid = yes
+			}
+		}
+		job_agri_drone_add = -4
+		job_mining_drone_add = 4
+	}
+
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+
+### Post-Apocalyptic Special Buildings
+building_museum_apocalypse = {
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = unity
+
+	# building_sets = {
+	# 	origin
+	# }
+
+	is_capped_by_modifier = yes
+
+	potential = {
+		NOT = { is_planet_class = pc_habitat }
+		exists = owner
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 4
+		}
+		cost = {
+			minerals = 600
+		}
+	}
+	
+	planet_modifier = {
+		job_culture_worker_per_pop = 0.05
+	}
+
+	ai_weight = {
+		weight = 100
+
+		modifier = {
+			factor = 0
+			owner = {
+				NOT = { has_origin = origin_post_apocalyptic }
+			}
+		}
+	}
+}
+
+building_laboratory_apocalypse = {
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = research
+
+	# building_sets = {
+	# 	origin
+	# }
+
+	is_capped_by_modifier = yes
+	base_cap_amount = 0
+
+	potential = {
+		NOT = { is_planet_class = pc_habitat }
+		exists = owner
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 4
+		}
+		cost = {
+			minerals = 600
+		}
+	}
+	
+	planet_modifier = {
+		job_researcher_per_pop = 0.05
+	}
+
+	ai_weight = {
+		weight = 100
+
+		modifier = {
+			factor = 0
+			owner = {
+				NOT = { has_origin = origin_post_apocalyptic }
+			}
+		}
+	}
+}
+
+building_cathedral_apocalypse = {
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	is_capped_by_modifier = yes
+
+	category = unity
+
+	# building_sets = {
+	# 	origin
+	# }
+
+	potential = {
+		NOT = { is_planet_class = pc_habitat }
+		exists = owner
+	}
+
+	base_cap_amount = 0
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = 4
+		}
+		cost = {
+			minerals = 600
+		}
+	}
+	
+	planet_modifier = {
+		job_priest_per_pop = 0.05
+	}
+
+	ai_weight = {
+		weight = 100
+
+		modifier = {
+			factor = 0
+			owner = {
+				NOT = { has_origin = origin_post_apocalyptic }
+			}
+		}
+	}
+}
+
+
+### Vanilla if we need them (for now, jobs are added directly via deposit in keeping with vanilla)
+# building_mote_harvesters = {
+# 	base_buildtime = @b1_time
+# 	icon = building_mote_harvesting_traps
+
+# 	is_capped_by_modifier = yes
+
+# 	category = resource
+
+# 	potential = {
+# 		always = no
+# 	}
+
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_mote_harvester_add = 1
+# 		}
+# 	}
+
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		modifier = {
+# 			job_mote_harvesting_drone_add = 1
+# 		}
+# 	}
+
+# 	resources = {
+# 		category = planet_buildings
+# 		cost = {
+# 			minerals = 200
+# 		}
+# 		upkeep = {
+# 			energy = 1
+# 		}
+# 	}
+
+# 	#prerequisites = {
+# 	#	"tech_mine_volatile_motes"
+# 	#}
+# }
+
+# building_gas_extractors = {
+# 	base_buildtime = @b1_time
+# 	icon = building_gas_extractors
+
+# 	is_capped_by_modifier = yes
+
+# 	category = resource
+
+# 	potential = {
+# 		always = no
+# 	}
+
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_gas_extractor_add = 1
+# 		}
+# 	}
+
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		modifier = {
+# 			job_gas_extraction_drone_add = 1
+# 		}
+# 	}
+
+# 	resources = {
+# 		category = planet_buildings
+# 		cost = {
+# 			minerals = 200
+# 		}
+# 		upkeep = {
+# 			energy = 1
+# 		}
+# 	}
+
+# 	# prerequisites = {
+# 	# 	"tech_mine_exotic_gases"
+# 	# }
+# }
+
+# building_crystal_mines = {
+# 	base_buildtime = @b1_time
+
+# 	is_capped_by_modifier = yes
+
+# 	category = resource
+
+# 	potential = {
+# 		always = no
+# 	}
+
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_crystal_miner_add = 1
+# 		}
+# 	}
+
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		modifier = {
+# 			job_crystal_mining_drone_add = 1
+# 		}
+# 	}
+
+# 	resources = {
+# 		category = planet_buildings
+# 		cost = {
+# 			minerals = 200
+# 		}
+# 		upkeep = {
+# 			energy = 1
+# 		}
+# 	}
+
+# 	# prerequisites = {
+# 	# 	"tech_mine_rare_crystals"
+# 	# }
+# }

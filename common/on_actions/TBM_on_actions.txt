@@ -1,0 +1,137 @@
+### The Blocker Mod - on_actions
+
+#	Most TBM events fire on_colony_yearly_pulse, as it's in planet_scope and doesn't check that many vanilla events.
+#	This also helps avoid too many things happening on January 1st.
+#	Most TBM events have handlers that handle randomness and/or add more more limited triggers.
+
+### Init Events
+on_game_start = {
+	events = {
+		tbm_handler.1	# Scripted Planets Handler; Fallen Empire Fix; Imperial Fiefdom
+		tbm_handler.2	# Advanced Start Feature Fixer
+		tbm_handler.3 	# Hack to fix Aquatics bug
+	}
+}
+
+on_press_begin = {
+	events = {
+		tbm_handler.102 # Add Wild World to planets that need it
+		tbm_hw.5	# Experimental Geothermal Tap Handler
+		tbm.500 	# Wenkwort Special Deposits
+		tbm.508		# Wenkwort Gardens modifier fix
+	}
+}
+
+### Pulse Events
+on_yearly_pulse = {
+	events = {
+		tbm_handler.103		# Wild World Remover (removes Wild World when planets develop)
+	}
+}
+
+
+### Main Feature Events
+on_colonization_started = {
+	events = {
+		tbm_handler.104 	# Wild World Adapter for gestalts
+		tbm_handler.301 	# Sets flag on all Wenkwort deposits, swaps Custodian modifer if it exists
+	}
+}
+
+on_colonization_started = {
+	events = {
+		tbm_handler.301		# Wenkwort Handler - sets variables and deposit flags
+		tbm_hw.300 	# Post-Apoc: New Horizons - Colonial Food Situation
+	}
+}
+
+on_colonized = {
+	events = {
+		tbm_handler.100	# Pioneering Colonists
+	}
+}
+
+on_colony_yearly_pulse = {
+	events = {
+		tbm_hw.6 	# Experimental Geothermal Tap Event (not eh same as handler!)
+		
+		tbm.16 	# Xenofauna Attack
+		tbm.50 # Toxic Kelp
+		tbm.84 	# Vicious Sandstorm
+		
+		### Handler Events
+		tbm_handler.4 	# Slum Generator
+		tbm_handler.6	# Industrial Wasteland Generator
+		tbm_handler.8 	# Colonial Settlement Generator
+		tbm_handler.10	# Frontier Farmland Generator
+		tbm_handler.12	# Mining Prospects
+		tbm_handler.15	# Dustbowl Generator
+		tbm_handler.17	# Sinkhole Spawner
+		tbm.310		# Reactor Explosion Handler
+
+		tbm_desert.32 	# Desert Chain - Setbacks
+		tbm.501		# Wenkwort Custodianship Event Chain Scoring
+		tbm_rock.1 	# A Shiny Rock Event Chain
+	}
+}
+
+on_colony_5_yearly_pulse = {
+	events = {
+		tbm.18 	# Landslide
+		tbm.301 # Fossil Fuel Discovery
+		tbm_hw.101 	# Post-Apoc: Environmental Remediation
+	}
+}
+
+on_colony_10_yearly_pulse = {
+	events = {
+		tbm.10	# Volcanic Eruption
+	}
+}
+
+on_colony_5_year_pulse = {
+	events = {
+		tbm.301 # Fossil Fuel Discovery
+		
+		tbm_desert.46	# A City of the Desert
+		tbm_hw.51 	# Food Replicators Malfunction
+		
+	}
+}
+
+on_blocker_cleared = {
+	events = {
+		tbm_handler.301		# Wenkwort Deposit Listener
+	}
+}
+
+on_district_complete = {
+	events = {
+		tbm.86	# Struck the Motherlode
+		tbm_handler.20	# False Prospects
+	}
+	
+	random_events = {
+		50 = 0
+		50 = tbm.21 # Proposed Marina
+	
+	}
+}
+
+on_planet_trasnfer = {
+	events = {
+		tbm_handler.104 	# Wild World Adapter for gestlats
+	}
+}
+
+on_planet_bombarded = {
+	events = {
+		tbm_handler.21 	# Central Power Nexus Damaged
+	}
+}
+
+on_terraforming_complete = {
+	events = {
+		tbm_handler.200		# Rerolls features on terraform.
+	}
+}

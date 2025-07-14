@@ -1,0 +1,775 @@
+﻿l_english: 
+
+ ### The Blocker Mod - Main - English
+ 
+ ### INDEX ###
+ #
+ ### Debug
+
+ ### JOBS
+ #   TBM Shorthand
+ #   TBM Custom Jobs
+ #   TBM Buildings
+ #   TBM Job Modifiers
+ #   TBM Feature Modifiers
+ ###
+
+ ### FEATURES
+ #   Custom Features
+ #   Artificial Features
+ #   Event Features
+ ###
+
+ ### A CITY OF THE DESERT
+ #   Features
+ #   Modifiers
+ #   Projects
+ ###
+
+ ### Planet / Static Modifiers
+ #   General
+ #   Pioneering Colonists
+ #   Event Modifiers
+ ###
+
+ ### TBM SPECIAL PROJECTS
+ #   Event Projects
+ ###
+
+ ### Decisions
+ 
+
+ ############
+
+ ### Debug
+
+
+ tbm_debug_name:0 "Debug Event"
+ tbm_debug_desc:0 "[DEBUG_TEXT]"
+ tbm_debug_is_on:0 "Debug Script is running.\n\n"
+ tbm_debug_scripted_planets:0 "Debug - Scripted Planets event is running.\n\n"
+ tbm_debug_advanced_planets:0 "Debug - Advanced Planets event is running.\n\n"
+ tbm_debug_wild_worlds:0 "Debug - Wild Worlds event is running.\n\n"
+
+ tbm_message_sudden_sinkhole:0 "A new §Y£blocker£Deep Sinkhole§! has appeared on [planet.GetName]. There may be any number of causes, and no immediate solution presents itself save filling it back in."
+ tbm_message_mine_shaft_collapse:0 "A critical mine shaft in one of our £district_mining_plural£ on §Y[planet.GetName]§! has collapsed, trapping several £job_miner_plural£ underground."
+
+ tbm_deposit_tooltip_test:0 "Test tooltip. Owner is [owner.GetName]."
+
+
+ ### The Blocker Mod - Jobs
+
+ # TBM Shorthand
+
+ icon_job_colonists:0 "£colonist£ Colonists"
+ r_physics_research:0 "§Y£physics_research£ Physics Research§!"
+ r_society_research:0 "§Y£society_research£ Society Research§!"
+ r_engineering_research:0 "§Y£engineering_research£ Engineering Research§!"
+ r_unity:0 "§Y£unity£ Unity§!"
+
+ planet_colonist:0 "Colonists"
+ planet_scrap_miners:0 "Scrap Miners"
+
+
+ # TBM Buildings
+
+ mod_planet_building_cost_mult:0 "§Y£building£ Building Cost§!"
+ 
+ tbm_unity_colonial_building_scale:0 "\n§YAs colonial population grows, frontier infrastructure will exert more and more strain on national cohesion, increasing its $r_unity$ Upkeep.§!"
+ tbm_buildings_colonial_infrastructure_tooltip:0 "\nColonial infrastructure buildings cannot be built after a planet has consolidated into a single capital region under a §CPlanetary Capital§Y or equivalent. Any existing buildings will fall into disrepair due to being too far from the seat of local power.§!"
+
+ building_xeno_synaptic_node:0 "Xeno-Synaptic Node"
+ building_xeno_synaptic_node_desc:0 "Directly connected to the Consciousness, this node receives, transmits, and analyzes signals from off-world drones and sensory infrastructure to adjust the gestalt's research and development of new colonization technology.\n\n§CThe complex technology underpinning a functioning §Y£building£ Xeno-Synaptic Node§C requires significant upkeep, but will produce £research£ §CResearch§! for many £blocker_yellow£ §YNatural Blockers§! on this world."
+
+ building_science_outposts:0 "Science Outposts"
+ building_science_outposts_desc:0 "As soon as the colonization effort was announced, researchers were eager to set up laboratories on-site to study the alien world first-hand."
+
+ mod_job_xeno_naturalist_add:0 "$job_xeno_naturalist$ Jobs"
+ mod_job_xeno_analysis_drone_add:0 "$job_xeno_analysis_drone$ Jobs"
+
+ building_frontier_spaceport:0 "Frontier Spaceport"
+ building_frontier_spaceport_desc:0 "Far out on the edges of known civlization, this spaceport handles all manner of cargo and colonists. The noise of half-built dockyards is drowned out by bustling bars and the sound of roading shuttle engines."
+ tbm_frontier_spaceport_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. The more §CTrade Value§C moves through a system, the more this spaceport will attract traders, spacefarers, and visitors from across the nation, creating opportunities for colonial unification and understanding that will increase its $r_unity$ output.§!"
+ tbm_frontier_spaceport_gestalt_desc:0 "§YA §C£building£ Frontier Spaceport§Y helps alleviate strain on $r_unity$ caused by colonial infrastructure. It will produce more £unity£ $r_unity$ if more §Y$job_unity_drone_plural$§C are present on this world.§!"
+
+ building_colonial_energy_conduits:0 "Colonial Energy Core"
+ building_colonial_energy_conduits_desc:0 "Development of a full, planet-wide energy grid can take decades, and requires large-scale subsurface infrastructure not present on most new colonies. These wire-based transmission cables can be easily stored on a colony ship and are light enough to allow small teams of colonists to install them, powering farther-flung settlements from the ship's converted reactor core."
+
+ building_survey_stations:0 "Survey Stations"
+ building_survey_stations_desc:0 "Remote stations across the frontier serve as depots and outposts for colonial expeditions and mineral surveys."
+
+ building_land_grants:0 "Land Grants"
+ building_land_grants_desc:0 "A system allocating significant parcels of grazing land attracts enterprising colonists to set up farms and communities across this alien world."
+
+ building_farming_commune:0 "Farming Communes"
+ building_farming_commune_desc:0 "The promise of vast, undisturbed land on the frontier of civilization has attracted numerous enterprising farmers seeking a new life and better fortunes on an alien world."
+
+ building_colonial_outpost:0 "Colonial Outpost"
+ building_colonial_outpost_desc:0 "Far from the primary landing sites, this frontier town serves as a vital outpost for explorers, farmers, and colonial activity."
+
+ building_planetary_outpost:0 "Planetary Outpost"
+ building_planetary_outpost_desc:0 "A regional center of trade and commerce, this long-standing community helps connect frontier farmers and colonists to interstellar shipping routes and central governance."
+
+
+ # TBM Custom Jobs
+
+ planet_colonist:0 "Colonist Jobs"  # Economic Category
+ planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$"
+
+ planet_poachers:0" Poacher Jobs"
+ planet_poachers_produces_mult:0 "Resources from"
+
+ job_xeno_naturalist:0 "Xeno-Naturalist"
+ job_xeno_naturalist_plural:0 "Xeno-Naturalists"
+ job_xeno_naturalist_desc:0 "Expert in all things alien with teeth, these intrepid researchers combine the roles of scientist and colonist, naming new flora and fauna as fast as they can be injured by the same."
+
+ job_xeno_analysis_drone:0 "Xeno-Analysis Drone"
+ job_xeno_analysis_drone_plural:0 "Xeno-Analysis Drones"
+ job_xeno_analysis_drone_desc:0 "Not everything can be analyzed by centralized infrastructure. New colonies in particular require specialized drones to gather local data and conduct on-site experiments to further the collective knowledge of alien worlds."
+ 
+ job_dangerous_wildlife_hunter:0 "Dangerous Wildlife Hunter"
+ job_dangerous_wildlife_hunter_plural:0 "Dangerous Wildlife Hunters"
+ job_dangerous_wildlife_hunter_desc:0 "Dangerous Wildlife Hunters specialize in tracking and trapping extremely lethal predatory animalia. They mostly work as independent contractors and pay a portion of their bounty in exchange for hunting licenses."
+
+ job_dangerous_wildlife_poacher:0 "Dangerous Wildlife Poacher"
+ job_dangerous_wildlife_poacher_plural:0 "Dangerous Wildlife Paochers"
+ job_dangerous_wildlife_poacher_desc:0 "The poachers are a more extreme solution to the Dangerous Wildlife Problem. While not beloved by the local production, they get the job done and their bounty can feed a major settlement for a month -- at a price, of course."
+
+ job_colonial_prospector:0 "Prospector"
+ job_colonial_prospector_plural:0 "Prospectors"
+ job_colonial_prospector_desc:0 "Experienced survivors, these tough and tumble colonists, often recruited from space-faring crews, are sent forth into the wilderness of alien planets to find and survey potential locations for development to governments and mining concerns on the core worlds."
+ mod_job_colonial_prospector_add:0 "$job_colonial_prospector_plural$ Jobs"
+ 
+ job_prospecting_drone:0 "Prospecting Drone"
+ job_prospecting_drone_plural:0 "Prospecting Drones"
+ job_prospecting_drone_desc:0 "Highly trained to survive far from the collective consciousness, these specialized units, often repurposed from space-faring units, are sent into the alien wilderness to help prepare land for further development."
+ mod_job_prospecting_drone_add:0 "$job_prospecting_drone_plural$ Jobs"
+
+ job_colonial_pioneer:0 "Pioneer"
+ job_colonial_pioneer_plural:0 "Pioneers"
+ job_colonial_pioneer_desc:0 "Among the most eager colonists, some are willing to sign up for living arrangements on the very frontiers of alien worlds, seeking excitement or escape. In turn for land, they help prepare critical colonial infrastructure and agriculture."
+ mod_job_colonial_pioneer_add:0 "$job_colonial_pioneer_plural$ Jobs"
+
+ job_colonial_deputy:0 "Deputy"
+ job_colonial_deputy_plural:0 "Deputies"
+ job_colonial_deputy_desc:0 "Life on the frontier of alien worlds can be rough and tumble, with little recourse or personal security. Deputized by authorities on the central worlds, these sheriffs often serve as the only real protection colonists get."
+ mod_job_colonial_deputy_add:0 "$job_colonial_deputy$ Jobs"
+
+
+ # TBM Job Modifiers
+
+ mod_pop_category_workers_produces_mult:0 "Resources from $pop_cat_worker_plural$"
+ mod_pop_category_workers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $pop_cat_worker_plural$"
+ mod_pop_category_specialists_food_upkeep_add:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
+ 
+ mod_planet_jobs_workers_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_worker_plural$"
+ mod_planet_jobs_specialist_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
+ mod_planet_jobs_exotic_gases_upkeep_mult:0 "$r_exotic_gases$ from Jobs"
+ mod_planet_jobs_consumer_goods_produces_mult:0 "$r_consumer_goods$ from Jobs"
+
+ mod_planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$" 
+
+ mod_planet_colonist_food_produces_add:0 "$r_food$ from $icon_job_colonists$"
+ mod_planet_colonist_food_produces_mult:0 "$r_food$ from $icon_job_colonists$"
+ mod_planet_colonist_minerals_produces_add:0 "$r_minerals$ from $icon_job_colonists$"
+ mod_planet_colonist_minerals_produces_mult:0 "$r_minerals$ from $icon_job_colonists$"
+ mod_planet_colonist_energy_produces_add:0 "$r_energy$ from $icon_job_colonists$"
+ mod_planet_colonist_energy_produces_mult:0 "$r_energy$ from $icon_job_colonists$"
+ mod_planet_colonist_physics_research_produces_add:0 "$r_physics_research$ from $icon_job_colonists$"
+ mod_planet_colonist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$"
+ mod_planet_colonist_engineering_research_produces_add:0 "$r_engineering_research$ from $icon_job_colonists$"
+ mod_planet_colonist_unity_produces_add:0 "$r_unity$ from $icon_job_colonists$"
+ mod_planet_colonist_exotic_gases_produces_add:0 "$r_exotic_gases$ from $icon_job_colonists$"
+ mod_planet_colonist_rare_crystals_produces_add:0 "$r_rare_crystals$ from $icon_job_colonists$"
+ mod_planet_colonist_volatile_motes_produces_add:0 "$r_volatile_motes$ from $icon_job_colonists$"
+
+ mod_planet_xeno_naturalist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$ $job_xeno_naturalist_plural$"
+ mod_planet_xeno_naturalist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$ $job_xeno_analysis_drone_plural$"
+
+ mod_planet_farmers_energy_produces_add:0 "$r_food$ from $job_farmer_plural$"
+ mod_planet_farmers_alloys_upkeep_add:0 "$r_alloys$ Upkeep for $job_farmer_plural$"
+ mod_planet_farmers_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_farmer_plural$"
+ mod_planet_farmers_unity_upkeep_add:0 "$r_unity$ Upkeep for $job_farmer_plural$"
+ mod_planet_farmers_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_farmer_plural$"
+ 
+ mod_planet_miners_energy_upkeep_mult:0 "$r_energy$ Upkeep for $job_miner_plural$"
+ mod_planet_miners_food_upkeep_add:0 "$r_food$ Upkeep for $job_miner_plural"
+ mod_planet_miners_unity_produces_add:0 "$r_minerals$ from $job_miner_plural$"
+ mod_planet_miners_physics_research_produces_add:0 "$r_physics_research$ from $job_miner_plural$"
+ mod_planet_miners_society_research_produces_add:0 "$r_society_research$ from $job_miner_plural$"
+ mod_planet_miners_engineering_research_produces_add:0 "$r_engineering_research$ from $job_miner_plural$"
+ mod_planet_miners_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_miner_plural$"
+ mod_planet_miners_engineering_research_upkeep_add:0 "$r_engineering_research$ Upkeep for $job_miner_plural$"
+ mod_planet_miners_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_miner_plural$"
+
+ mod_planet_technician_food_produces_add:0 "£food£ from $job_technician_plural$:"
+ mod_planet_technician_minerals_produces_add:0 "$r_minerals$ from $job_technician_plural$"
+ mod_planet_technician_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $job_technician_plural$"
+ mod_planet_technician_alloys_produces_add:0 "$r_alloys$ from $job_technician_plural$"
+ mod_planet_technician_alloys_upkeep_add:0 "$r_alloys$ Upkeep for $job_technician_plural$"
+ mod_planet_technician_consumer_goods_produces_add:0 "$r_consumer_goods$ from $job_technician_plural$"
+ mod_planet_technician_consumer_goods_upkeep_add:0 "$r_consumer_goods$ Upkeep for $job_technician_plural$"
+
+ mod_planet_jobs_simple_drone_energy_produces_mult:0 "$r_energy$ from Simple Drones"
+
+ mod_planet_scrap_miners_alloys_produces_add:0 "$r_alloys$ from $job_scrap_miner_plural$"
+
+ mod_planet_researchers_food_upkeep_add:0 "$r_food$ Upkeep for $job_researcher_plural$"
+ mod_planet_researchers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $job_researcher_plural$"
+ 
+ mod_planet_priests_unity_produces_mult:0 "$r_unity$ from $job_priest_plural$"
+
+ mod_planet_pop_assemblers_food_upkeep_mult:0 "Pop Assembly $r_food$ Cost"
+ mod_planet_pop_assemblers_alloys_upkeep_mult:0 "Pop Assembly $r_alloys$ Cost"
+ mod_planet_pop_assemblers_energy_upkeep_mult:0 "Pop Assembly $r_energy$ Cost"
+ mod_planet_pop_assemblers_minerals_upkeep_mult:0 "Pop Assembly $r_minerals$ Cost"
+
+ mod_planet_metallurgists_unity_produces_add:0 "$r_unity$ from $job_foundry_plural$"
+
+ mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
+
+ mod_armies_energy_upkeep_mult:0 "Upkeep for Armies (this world only)"
+ 
+
+ # The Blocker Mod - Feature Modifiers
+
+ mod_planet_pops_food_upkeep_mult:0 "£pops£ Pops $r_food$ Upkeep"
+ mod_planet_pops_energy_upkeep_mult:0 "£pops£ Pops $r_energy$ Upkeep"
+ mod_planet_pops_robotics_energy_upkeep_mult:0 "$r_energy$ Upkeep for £pops£ Robots"
+
+ mod_planet_colonist_produces_mult:0 "Resources from $icon_job_colonists$"
+ mod_pop_category_workers_food_upkeep_add:0 "$r_food$ Upkeep for Workers"
+ mod_pop_category_specialists_energy_upkeep_add:0 "$r_energy$ Upkeep for Specialists"
+
+ mod_job_dangerous_wildlife_hunter_add:0 "$job_dangerous_wildlife_hunter$ Jobs"
+ mod_job_dangerous_wildlife_poacher_add:0 "$job_dangerous_wildlife_poacher$ Jobs"
+
+ mod_edicts_unity_upkeep_mult:0 "Edict £unity£ Upkeep"
+
+ mod_building_museum_apocalypse_max:0 "Museum of the Apocalypse"
+ mod_building_laboratory_apocalypse_max:0 "Laboratory of Survival"
+ mod_building_cathedral_apocalypse_max:0 "Cathedral of the Fall"
+
+ ###
+
+
+
+ ### The Blocker Mod - Custom Features - English
+
+ d_tbm_active_volcano:0 "£blocker£ Active Volcano"
+ d_tbm_active_volcano_desc:0 "There is an active volcano in this region, spewing forth lava and volcanic gases."
+ 
+ d_fjordland:0 "£blocker£ Fjordland"
+ d_fjordland_desc:0 "Sharp cliffs plunge straight into deep and misty bays, providing stunning vistas. The crinkly terrain is visible even from space but the ridges are impassavble, makes large-scale development impossible."
+
+ d_mire:0 "£blocker£ Mire"
+ d_mire_desc:0 "Wet soil, shrunken trees, and thick mosses choke this murky quagmire, which is home to all manner of alien flora, fauna, and especially insect life."
+
+ d_highlands:0 "£blocker£ Highlands"
+ d_highlands_desc:0 "Windy mountains and steep valleys criss-cross this region, with wide barrens stretching for miles across the highlands. The region is rich in various useful ores, but any large-scale development would require a terraforming project as daunting as the hills themselves."
+
+ d_steppe_uplands:0 "£blocker£ Steppe Uplands"
+ d_steppe_uplands_desc:0 "This region of rugged ills, ravines, and swamp is unsuitable for all but the hardiest colonists who dare to scrape out a living working in the fields and mines."
+
+ d_taiga:0 "£blocker£ Taiga"
+ d_taiga_desc:0 "Still as a tomb, these silent, snowy woodlands sweep across vast plains of sub-polar regions. As peaceful as they seem from orbit, the conifer forests hide murky bogs and miles of swampland."
+
+ d_sandstone_spires:0 "£blocker£ Sandstone Spires"
+ d_sandstone_spires_desc:0 "Towers of fragile stone teeter on the open plains of this world, harboring nooks, crannies, and caves carved by wind and who knows what else inside."
+
+ d_gas_vents:0 "£blocker£ Alien Gas Vents"
+ d_gas_vents_desc:0 "Deep chasms slicing through the crust occasionally erupt in plumes of never-before-seen gases. When purified and refined, several of these byproducts have proven very useful in energy generation."
+
+ d_natural_gardens:0 "Natural Gardens"
+ d_natural_gardens_desc:0 "Whether by design or chance, this region is covered by meticulously crafted ornate gardens. Behind flowers and rare trees are beds of vegetables and fungi for the benefit--intended or otherwise--of our colonists."
+
+ d_glacier_lake:0 "£blocker£ Glacier Lake"
+ d_glacier_lake_desc:0 "At the foot of a large glacier, this crystal-clear lake provides a chilly but welcome oasis amongst the icy mountains."
+
+ d_giant_tree:0 "£blocker£ Giant Tree"
+ d_giant_tree_desc:0 "The canopy of a truly massive deciduous tree provides its own ecosystem in the shade beneath its gigantic leaves and its miles-long roots expose valuable mineral seams for easy extraction."
+
+ d_sea_monster:0 "Sea Monster"
+ d_sea_monster_desc:0 "Seen only occasionally, rumors of a great moster's existence have spread among colonists, who now fear to explore the deeper seas and oceans of this world."
+
+ d_great_lake:0 "£blocker£ Great Lake"
+ d_great_lake_desc:0 "Initially mistaken for an inland sea from orbit, this vast freshwater lake offers rugged but valuable farmland at its shore."
+
+ d_floodplains:0 "£blocker£ Floodplains"
+ d_floodplains_desc:0 "Although ideal farmland, these wide and grassy plains flood after heavy rainfalls when nearby rivers and wetlands spill their banks."
+
+ d_tidal_marshes:0 "£blocker£ Tidal Marshes"
+ d_tidal_marshes_desc:0 "The smell of salt water pervades these flat, sandy grasslands. While the flooding is predictable based on tidal cycles, the ground is too loose to build foundations. They are, however, excellent locations for livestock grazing and hay farming."
+
+ d_fertile_delta:0 "£blocker£ Fertile Delta"
+ d_fertile_delta_desc:0 "A major river delta covers this region like a many-fingered hand. Between the sand-spits and marshes are swathes of excellent farmland and the deep tidal estuaries could house tidal generator stations to fuel nearby cities."
+
+ d_basaltic_outcrops:0 "£blocker£ Basaltic Outcrops"
+ d_basaltic_outcrops_desc:0 "Volcanic activity and a thin crust have caused the extrusion of large croppings of igneous rock. These minerals, usually much more difficult to access, are extremely valuable in alloy production."
+
+ d_volcanic_island:0 "£blocker£ Volcanic Island"
+ d_volcanic_island_desc:0 "Far off the coast, this mountainous island regularly spews forth ash from a simmering volcano at its peak."
+
+ d_volcanic_soil:0 "Volcanic Soil"
+ d_volcanic_soil_desc:0 "Centuries of volcanic activity in the region has left the soil here infused with rich nutrients ideal for the growing of crops."
+
+ d_volcanic_ash:0 "£blocker£ Volcanic Ash"
+ d_volcanic_ash_desc:0 "Nearby volcanic activity regularly spews superheated ash across this region, leaving it barren and lifeless, though it is possible to clear it at some expense."
+
+ d_fish_shoals:0 "Fish Shoals"
+ d_fish_shoals_desc:0 "After launching ocean survey vessels here, sailors immediately ran aground--not on rock, but on fish! The shoals are so thick that a child could catch supper here."
+
+ d_tbm_impact_crater:0 "£blocker£ Impact Crater"
+ d_tbm_impact_crater_desc:0 "Frequent asteroid collisions from the nearby belt have pockmarked this region with deep craters. Exposed seams of valuable metals make for easy mining opportunities."
+
+ d_frozen_wasteland:0 "£blocker£ Frozen Wasteland"
+ d_frozen_wasteland_desc:0 "Dry, windswept, and icy, this region is utterly inhospitable to all but the most prepared explorers and hardiest solar panel arrays."
+
+ d_mountain_jungle:0 "£blocker£ High-Altitude Jungle"
+ d_mountain_jungle_desc:0 "Clinging to the peaks and crags of these mountains and wet with cloud vapor, forests of strange and vibrant alien flora thrive in the cool, damp air. The regions are difficult to access, but scientific and xenological marvels beckon."
+
+ d_scrubland:0 "£blocker£ Scrubland"
+ d_scrubland_desc:0 "Not much grows in these dry wasteland regions, but pockets of moisture left in rock-pools and sand-beds allows some more resilient small trees to grow through the sandy soil. The region is remote but provides ample space for farming and small settlements for those who likewise thrive in these wide savannahs."
+
+ d_barren:0 "£blocker£ Barren"
+ d_barren_desc:0 "Bereft of any value, this land is too dry, rocky, and poor to farm. During rains, soil quickly vanishes and floods soon follow. Even birds avoid this place and trees can find no purchase on the slate, which is riddled with impurities that make it useless in our alloy forges. Extensive work is required here to remediate the soil and water table before life can flourish here."
+ tooltip_clear_barren:0 "Remediating the soil in this §Y£blocker£ Barren§! will take time, but lead to the creation of a more useful §CFeature§! when our terraformation specialists are done."
+
+ d_drylands:0 "£blocker£ Drylands"
+ d_drylands_desc:0 "Parched and dusty, these rough lowlands stretch across whole regions and make for poor farmland. However, easy accessibility and a relatively stable climate make them ideal for solar farms and larger surface mining operations."
+
+ d_crags:0 "£blocker£ Crags"
+ d_crags_desc:0 "Much of this region is covered in short, sharp ridges and rocky outcrops hide treacherous cliffs behind their sward grasses and wildflowers. Seabirds flock overhead and salt spray washes across the exposed land from passing seas and storms."
+
+ d_dunelands:0 "£blocker£ Dunelands"
+ d_dunelands_desc:0 "Rolling dunes cover every conceivable surface of this region in fine-grained sand that fouls any machinery it comes into contact with. Wind and solar farms can be built here, but crops grown anywhere nearby wither as soon as the wind picks up."
+
+ d_highland_lake:0 "£blocker£ Highland Lake"
+ d_highland_lake_desc:0 "Tucked between grassy hills and shale mountains, this lake provides a sheltered region to grow sturdier crops. If the lakebed were drained and filled, it might be possible to build a small city here."
+
+ d_lakelands:0 "£blocker£ Lakelands"
+ d_lakelands_desc:0 "Spread across this steep region are innumerable small lakes and tarns. The steep shores and exposed crags leave little room to build, but herd animals can range freely here with farmers living in picturesque villages nearby."
+
+ d_lowland_hills:0 "£blocker£ Lowland Hills"
+ d_lowland_hills_desc:0 "Rolling hills and enclosed valleys cover much of this region. Though too swampy to be considered for larger building projects, these lowlands make ideal grazing land and abundant and accessible coal and iron might make for lucrative local mining."
+
+ d_misty_plains:0 "Misty Plains"
+ d_misty_plains_desc:0 "Humid and nearly always foggy, these damp plains are covered in deep bogs and peat moss punctuated by outcrops of rock and pine trees. Though verdant, the constant mist gives the region a gloomy, ghostly feel."
+
+ d_salt_flats:0 "£blocker£ Salt Flats"
+ d_salt_flats_desc:0 "This wide plain likely used to be a sea-bed and exposed salt glitters white and red in the parching sunlight while sulfur and phosphorus waft through the air."
+
+ d_arid_plains:0 "Arid Plains"
+ d_arid_plains_desc:0 "Dry and riddled with rock, these rugged plains make construction and maintenance difficult. A lack of neaby fresh water makes the region a low priority for settlement, but leaves ample space for large-scale energy facilities."
+
+ d_sandsea:0 "£blocker£ Sandsea"
+ d_sandsea_desc:0 "A curious phenomenon, salt water and loose sand from nearby desert regions have mixed to form a roiling sea of quicksand and sand foam that flows with this world's tides."
+
+ d_sandstone_cliffs:0 "£blocker£ Sandstone Cliffs"
+ d_sandstone_cliffs_desc:0 "Towers cliffs loom over this region. The crumbling sandstone is too fragile to support any larger foundation but allows miners easy access to useful minerals."
+
+ d_rough_plains:0 "£blocker£ Rough Plainsland"
+ d_rough_plains_desc:0 "There is nothing especially remarkable about this region, but its combination of razor-sharp rock, swift-flowing rivers, and unsavory weather leave it low on just about every ranking of potential settlements."
+
+ d_seaweed_shoals:0 "£blocker£ eaweed Shoals"
+ d_seaweed_shoals_desc:0 "Vast forests of seaweed choke this coastal region, but nutritional analysis indicates the alien aquaflora is filled with nutrients."
+
+ d_magma_lake:0 "£blocker£ Magma Lake"
+ d_magma_lake_desc:0 "In certain regions of this world, surface temperatures are so hot that exposed magma doesn't fully cool. These treacherous places are nevertheless bountiful sources of deep-crust minerals and metals."
+
+ d_coal_bed:0 "Coal Bed"
+ d_coal_bed_desc:0 "A rich vein of coal runs deep beneath the surface of this region, long ago compressed and purified by milennia-old alien geology."
+
+ d_subterranean_gas_lake:0 "Subterranean Gas Lake"
+ d_subterranean_gas_lake_desc:0 "Far below the surface, captured gases bubble and sizzle under the immense pressure of thousands of millions of tons of rock."
+
+ d_oil_fields_at_first_light:0 "£blocker£ Oil Field"
+ d_oil_fields_at_first_light_desc:0 "The immediate substrate in this region is laced with oil deposits, making for easily-accessible if dirty energy."
+
+ d_particle_storm:0 "£blocker_yellow£ Particle Storm"
+ d_particle_storm_desc:0 "Magnetic disturbances in the atmosphere regularly whip up vicious particle storms that play havoc with resource processing and colonial facilities. Leading physicists, however, are eager to harvest these particles and apply them to various practical uses."
+
+ d_dust_flats:0 "£blocker£ Dust Flats"
+ d_dust_flats_desc:0 "Vast expanses of nothing much cover this region, allowing high winds to whip up clouds of thick dust that tumbles across the plains. Maintenance will be difficult here, but the power generation potential is significant"
+
+ d_canyon:0 "£blocker£ Canyon"
+ d_canyon_desc:0 "A deep canyon cuts through this region, making development difficult but offering easy mining opportunities. The primary river network could also be dammed to create hydroelectric power."
+
+ d_chasm:0 "£blocker£ Chasm"
+ d_chasm_desc:0 "Sudden, sharp faults riddle these lands, making them difficult to traverse and impossible to develop. Centuries of erosion have exposed compressed strata of exceptionally valuable ores and metals at the bottoms of the crevasses."
+
+ d_deep_tundra:0 "£blocker_yellow£ Deep Tundra"
+ d_deep_tundra_desc:0 "Little but shrub flora and mosses grows in this frozen and rugged region. Beneath the permafrost, geothermal activity nearer the lithosphere could be tapped to provide power."
+
+ d_fells:0 "£blocker£ Fells"
+ d_fells_desc:0 "Cliffs rise sharply from the sea here, puntured by narrow, tree-lined inlets. Surveying the region on foot will be difficult but the scenery is tremendous."
+
+ d_sand_wastes:0 "£blocker£ Sand Wastes"
+ d_sand_wastes_desc:0 "A region covered in lifeless dunes and dust, it presents ample opportunity for wind and solar farming despite the heat and dust."
+
+ d_cloud_vale:0 "£blocker£ Cloud Valley"
+ d_cloud_vale_desc:0 "Tucked away high in the mountains, this fertile valley is criss-crossed by fast-running streams, marshy flora, and glacial boulders, providing an ideal hideaway for frontier living and small-scale agriculture."
+
+ d_snowscape:0 "£blocker£ Snowscape"
+ d_snowscape_desc:0 "Glittering ice and drifting snow sweep across this region regularly, providing chilly but stunning vistas."
+
+ d_icy_bay:0 "£blocker£ Ice Bay"
+ d_icy_bay_desc:0 "Although frozen over for much of the year, a variety of fish and cold-water flora thrive in the dark but shallow water."
+
+ d_rugged_coast:0 "£blocker£ Rugged Coastline"
+ d_rugged_coast_desc:0 "Rocks, shoals, and treacherous tides make any trade or coastal development of this region tricky at best, but mineral surveys have been promising on the headlands above secluded beaches."
+
+ d_basin:0 "£blocker£ Basin"
+ d_basin_desc:0 "Near the mouth of a major river system, these fertile drylands accumulate nutrient-rich sediment and minerals with each annuel flooding."
+
+ d_white_mountains:0 "£blocker£ White Mountains"
+ d_white_mountains_desc:0 "Snow-capped year-round, these imposing peaks hide crystalline structures below ground, and early mining surveys of the region merit further study."
+
+ d_ridge:0 "£blocker£ Ridge"
+ d_ridge_desc:0 "Steep and heavily forested, this region is generally unremarkable but provides a good outcrop for wind turbines and geothermal energy facilities far away from denser developments."
+
+ d_rocky_hills:0 "£blocker£ Rocky Hills"
+ d_rocky_hills_desc:0 "Rugged but passable, these foothills lack easy access to large-scale water and land for development, but are rich in basic carbonous minerals and grazing land."
+
+ d_spore_forest:0 "£blocker£ Spore Forest"
+ d_spore_forest_desc:0 "This moist, misty region is dominated by towering fungal life, much of it interlacing both above and below ground to form massive mycelial networks that fertilize nearby regions."
+
+ d_idyllic_pastorale:0 "£blocker_yellow£ Idyllic Pastorale"
+ d_idyllic_pastorale_desc:0 ""Equines canter across these gentle swards. Birds fish along tree-lined riverbanks and the soil is practically springing with life."
+
+ d_utopian_hills:0 "£blocker£ Utopian Hills"
+ d_utopian_hills_desc:0 "These sweeping valleys provide free-flowing water, idyllic farmland, and pristine vistas, making them an ideal location to found a flourishing colony."
+
+ d_gentle_plains:0 "£blocker_yellow£ Gentle Plains"
+ d_gentle_plains_desc:0 "These lands feature ample running water and reasonably flat terrain, making for especially easy development of colonial infrastructure."
+
+ d_colossal_spires:0 "£blocker£ Colossal Spires"
+ d_colossal_spires_desc:0 "Ornate monoliths of sandstone, jade, and exotic metals create humming spires adorned with fountains and surrounded by fruit-bearing trees."
+
+ d_floating_gardens:0 "£blocker£ Floating Gardens"
+ d_floating_gardens_desc:0 "A hovering menagerie of every alien planet life ever encountered and then some, all balancing each other in perfect harmony. Pollinators help repel disease and nutrients are systematically recycled so the garden is always in bloom."
+
+ d_snow_palace:0 "£blocker£ Snow Palaces"
+ d_snow_palace_desc:0 "Figurines and intricate arches made entirely of snow, kept at perfectly controlled temperatures so they will never melt or completely freeze. Exquisite diamond dust coats every surface and synthetic winds smooth the snow into sppealing patterns even after it is disturbed."
+
+ d_tomb_city:0 "£blocker£ Tomb City"
+ d_tomb_city_desc:0 "Once, this would have been a thriving urban center of trade and society. In some great cataclysm it was wiped away, and all that remains are the towering ruins in which life was frozen in an instant."
+
+ d_dark_plains:0 "£blocker_yellow£ Dark Plains"
+ d_dark_plains_desc:0 "Some great tragedy unfolded here, leaving little trace now save for an abiding sense of unease surrounding what must have been."
+
+ d_mistlands:0 "£blocker_yellow£ Mistlands"
+ d_mistlands_desc:0 "Shrouded in thick fog that feels only partially natural, this region is somewhat insulated from the worst of the world's radiation, and may hold secrets as to what happened here."
+
+
+ # The Blocker Mod - Artificial Features - English
+
+ d_vanilla_failing_infrastructure:0 "£blocker£ Industrial Wasteland"
+ d_vanilla_failing_infrastructure_desc:0 "This region is covered by ruined industrial complexes and toxic soil, detritus from a past age of progress."
+
+ d_tbm_slums:0 "Sprawling Slums"
+ d_tbm_slums_desc:0 "Poor urban planning has resulted in this expansive region of impoverished dwellings, where denizens live in squalor and are preyed upon by the less savory elements of society."
+
+ d_tbm_crater:0 "£blocker£ Crater"
+ d_tbm_crater_desc:0 "A massive explosion has decimated this area, leaving a crater miles wide and several hundred feet deep where something used to be."
+
+ d_tbm_industrial_wasteland:0 "Industrial Wasteland"
+ d_tbm_industrial_wasteland_desc:0 "Whether due to excessive taxation, the recent economic downturn, or just outrght incompetence, this district has become a ghost-town of shuttered businesses and derelict manufacturing plants. What few legitimate concerns remain are struggling to get by."
+
+ d_rubble:0 "£blocker£ Rubble"
+ d_rubble_desc:0 "Whatever this was, it now isn't. Slabs of pre-fabricated silicate, ragged foundations, and plasteel beams form a horrific jigsaw across the remnants of a district."
+
+ d_collapsed_cliffs:0 "£blocker£ Collapsed Cliffs"
+ d_collapsed_cliffs_desc:0 "Over-extraction of minerals caused these cliffs to collapse, covering much of the region below in unsightly slag and wastewater."
+
+ d_great_river_obstructed:0 "Great River (Obstructed)"
+ d_great_river_obstructed_desc:0 "A large dam was built across this colossal river, providing power for much of the planet at the cost of creating floodplains upstream."
+
+ d_urban_power_plant:0 "Urban Power Plant"
+ d_urban_power_plant_desc:0 "Not a tourist destination, but certainly essential to keep the lights on in a nearby city. Concern over emissions drowns out the hum of transformers all day and night."
+
+ d_geothermal_power_plant:0 "Geothermal Power Plant"
+ d_geothermal_power_plant_desc:0 "A prototype facility extracts immense amounts of £energy£ Energy Credits from the planet's mantle."
+
+ d_hydro_plant:0 "Hydro Power Plant"
+ d_hydro_plant_desc:0 "These £blocker£ Rushing Waterfalls have been diverted to power a nearby city."
+
+ d_dyke:0 "Dyke"
+ d_dyke_desc:0 "Tall mounds of earth hold back the tides on this world and protect nearby cities from flooding."
+
+ d_submerged_zro_seam:0 "Submerged Zro Seam"
+ d_submerged_zro_seam_desc:0 "A vein of pure Zro is buried at the bottom of a deep-sea trench where the pressure has densified it to never-before-seen concentrations."
+
+ d_prototype_gas_generator:0 "Prototype Gas Generator"
+ d_prototype_gas_generator_desc:0 "Experimental processes are used to harvest alien thermal gases here. The resulting power fuels much of the colony, though residents have raised concerns about its safety."
+
+ d_settlement:0 "Pioneer Settlement"
+ d_settlement_desc:0 "A frontier settlement on this world attracts £colonist£ §CColonists§! and new settlers of all kinds to this world, as well as a handful of scurrilous types who enjoy being free of centralized authority.\n\n§YPioneer Settlements can be very helpful early in a colony's life, but will begin to strain $r_unity$ as the population grows.§!"
+
+ d_frontier_farmstead:0 "£blocker£ Frontier Farmsteads"
+ d_frontier_farmstead_desc:0 "New land grants on this world have drawn settlers seeking a new life on the frontier, where they can raze livestock and grow crops on sprawling ranches and estates."
+
+ d_dustbowl:0 "Dustbowl"
+ d_dustbowl_desc:0 "Industrial development or overfarming has led to the development of a dustbowl effect in this region, leaving the land desiccated and dry, useless for any agriculture."
+
+ d_moisture_farms:0 "Moisture Farms"
+ d_moisture_farms_desc:0 "Though little grows in these dusty, sandy wastelands, local farmers manage to trap ground water to irrigate small hydroponic bays or maintain hardy livestock herds."
+
+ d_black_market:0 "Black Market"
+ d_black_market_desc:0 "An underworld market has developed across this world, trading in all manner of illicit goods, substances, and even people."
+
+ d_collapsed_tunnel:0 "Collapsed Tunnel"
+ d_collapsed_tunnel_desc:0 "A tunnel has collapsed here." # Don't know what this is?
+
+ d_dormant_supervolcano:0 "Dormant Supervolcano"
+ d_dormant_supervolcano_desc:0 "Stretching across much of a continent's plainsland, a thin planetary crust in this region allows easy energy extraction. If it were to erupt, however, it could easily destroy much of the planet."
+
+ d_experimental_fusion_reactor:0 "Experimental Fusion Reactor"
+ d_experimental_fusion_reactor_desc:0 "Said to be way ahead of its time, this facility has managed to maintain a stable fusion reaction for several hours at a time, massively increasing power generation potential for the inhabitants of this world."
+
+ d_space_academy:0 "Space Academy"
+ d_space_academy_desc:0 "With space travel now widespread in this society, young cadets eagerly sign up to serve on ships far and wide across the stars."
+
+ d_homeworld_cleared_land:0 "Cleared Land"
+ d_homeworld_cleared_land_desc:0 "This land has been carefully prepared for new development projects. Groundwater testing, weather analysis, and tectonic safety protocols all suggest this is a good location for a new district."
+
+ d_homeworld_arcology:0 "Arcology"
+ d_homeworld_arcology_desc:0 "To mark the beginning of the 23rd century, this region was designated the world's first Arcology. An expansive, climate-controlled dome covers the cityscape inside, regulating pollution, light, and weather. Infrastructure inside can be carefully planned and optimized, and its residential towers are some of the best available."
+
+ d_flying_party:0 "Atmospheric Terraces"
+ d_flying_party_desc:0 "The elite of this world live and work on vast sub-orbital sky terraces drifting slowly above the pollution and crime on the surface below. These flying pavilions boast some of the finest attractions and amenities 23rd century money can buy, and all the parties for the discerning crowd. The rabble, naturally, are not invited."
+
+ d_upgrade_facility:0 "Upgrade Facility"
+ d_upgrade_facility_desc:0 "Drones on this world are regularly fitted with expensive enhancements and augmentations to ensure they work more efficiently and break down less frequently."
+
+ d_deep_trench:0 "Deep Trench"
+ d_deep_trench_desc:0 "Fathomless and unexplored, this underwater trench obstructs further seabed development in the region."
+
+ d_worlds_fair:0 "Worlds' Fair"
+ d_worlds_fair_desc:0 "This society has completed the long and difficult process of true planetary unification and is reaping its many rewards."
+
+ d_efficient_nodes:0 "Efficient Nodes"
+ d_efficient_nodes_desc:0 "Recent developments in resource distribution on a planetary scale have allowed this society to reduce deviancy and increase drone efficiency."
+ 
+
+ # The Block Mod - Event Features - English
+
+ d_private_farming_colony:0 "£blocker£ Private Farming Colony"
+ d_private_farming_colony_desc:0 "Hungry workers on our homeworld have flocked to the wealthy benefactors behind these remote farmsteads on the colonies."
+
+ d_subsistence_farm:0 "Subsistence Farm"
+ d_subsistence_farm_desc:0 "Using germinators from alien worlds has allowed some limited agriculture among the shelters and burned-out remnants of this world, though its yields are frugal."
+
+ d_private_mines:0 "Private Mines"
+ d_private_mines_desc:0 "Independent mining concerns have established large-scale mining operations in this area, and pay tax in exchange for the licenses to operate in the region."
+
+ d_fusion_reactor:0 "Fusion Reactor Complex"
+ d_fusion_reactor_desc:0 "This massive reactor houses, at its center, a series of small fusion cores each capable of powering several mega-cities."
+
+ d_cold_fusion_pits:0 "Cold Fusion Pits"
+ d_cold_fusion_pits_desc:0 "The exact process of cold fusion, debated for centuries before it was actually achieved, is complex, but the main consideration is what to do with the immense excess heat and radiation generated by large-scale fusion reactions. Deep, sprawling pits cover this complex, allowing for the necessary coolants and waste products involved to be stored readily and accessibly. Even entering the complex requires protective wear."
+
+ d_antimatter_core:0 "Antimatter Core"
+ d_antimatter_core_desc:0 "Smaller than an air-car at its core, the rest of this immense facility is ddicated to controlling the incredibly destructive reaction taking place deep inside. A single rupture could trigger a chain reaction capable of annihilating much of the planet."
+
+ d_zero_point_modules:0 "Zero Point Module"
+ d_zero_point_modules_desc:0 "Inside a crystalline casing is a mix of matter capable of powering anything from a lightbulb to a laser battlecruiser. Although the actual reactor is tiny, an ever-expanding complex around it is required to provide support power for the technology required to manage the reaction's output, as well provide nourishment for the many engineers involved in managing it."
+
+ d_subterranean_colony:0 "Subterranean Colony"
+ d_subterranean_colony_desc:0 "Although our civilization has always dwelt below ground, recent advances in litho-structural engineering have allowed for the creation of still deeper mega-cities. Walkways and galleries criss-cross each other for miles and in the most advanced areas, simulated sunlight is provided on a regular daily cycle."
+
+ d_subterranean_excavation:0 "Subterranean Excavation"
+ d_subterranean_excavation_desc:0 "Advances in litho-structural engineering have allowed for the creation of long-term dwellings far beneath the surface of this world. Denizens of these cities will rarely see the sun, but can have there every other need met below ground."
+
+ d_urban_aeroponics:0 "Urban Aeroponics"
+ d_urban_aeroponics_desc:0 "Among the residential and commercial towers of the mega-cities are entire arcologies dedicated to the growing of plant crops. Although necessarily space-efficient, advances in hydroponics have allowed even the most complex cultivars to be quickly processed to provide local food sources for the population upstairs."
+
+ d_homestead_farms:0 "£blocker£ Homestead Farms"
+ d_homestead_farms_desc:0 "Many colonists on this world have chosen to set up small farmsteads with their families. It's a hard life, but they play a crucial part in exploring and developing this world."
+
+ d_acidic_residue:0 "Acidic Residue"
+ d_acidic_residue_desc:0 "Trace chemicals leftover from industrial processes have drifted through the atmosphere and coated much of the plant life in this region."
+
+ d_cesspool:0 "Cesspool"
+ d_cesspool_desc:0 "Nobody is exactly sure what caused this mess, but everyone can agree it's not great for the neighborhood."
+
+ ###
+
+  ### The Blocker Mod - Planet / Static Modifiers
+ 
+ # General
+
+ mass_protest:0 "Mass Protest"
+ night_watches:0 "Night Watches"
+ privatizations:0 "Privatization"
+
+ wild_world:0 "Wild World"
+ wild_world_desc:0 "Teeming with thousands of species of alien flora and fauna, this planet represents a significant colonization challenge, and a tantalizing scientific project."
+ wild_world_gestalt:0 "Wild World"
+ wild_world_gestalt_desc:0 "Teeming with thousands of species of alien flora and fauna, this planet represents a significant colonization challenge, and a tantalizing scientific project."
+
+
+ # Pioneering Colonists
+
+ pioneering_colonists:0 "Pioneering Colonists"
+ pioneering_colonists_desc:0 "The colonists on this planet are ready to face the harsh unknown that awaits, and will work to fashion this untamed world into a new home.\n\n"
+
+ new_frontier:0 "New Frontier"
+ new_frontier_desc:0 "This is a brave new world waiting for us to enjoy its bounty.\n\n"
+
+ terra_incognita:0 "Terra Incognita"
+ terra_incognita_desc:0 "For the first time, we have set foot on a brave new world. Colonists are even now exploring the planet and discovering new alien wonders with every step."
+
+ new_branch:0 "New Branch"
+ new_branch_desc:0 "On this world, a brand new branch of the Organism is taking root. This endeavor is not without its risks, and its strain on our unity will be measurable, but the potential rewards are great."
+
+ new_function:0 "New Branch"
+ new_function_desc:0 "After months of testing and refactoring, a new batch of core code has begun running on this faraway planet. Early signs suggest there are some efficiency gains to a more decentralized execution, but failsafe processing power has been set aside in case of any exceptions."
+
+
+ # Event Modifiers
+
+ sold_famous_mountain:0 "Sold Famous Mountain"
+
+ dangerous_wildlife_permits:0 "Dangerous Wildlife Hunting Permits"
+ dangerous_wildlife_poachers:0 "Dangerous Wildlife Poacher Rewards"
+ dangerous_wildlife_toxin:0 "Dangerous Wildlife Toxin"
+ dangerous_wildlife_contamination:0 "Dangerous Wildlife Toxin Contamination"
+ dangerous_wildlife_contamination_desc:0 "Toxins used to control wildlife populations on this world have seeped into the colony's water supply, causing illnesses and leading to significant criticism of the local administration."
+ dangerous_wildlife_food_changes:0 "Dangerous Wildlife - Food Chain Changes"
+ dangerous_wildlife_food_changes_desc:0 "Changes in the apex predator population on this planet have led to an explosion of pests and vermin on the world, decimating crops and annoying the colonists."
+
+ denied_investment:0 "Denied Investment"
+ recreational_investment:0 "Recreational Investment"
+
+ kelp_bioweapons:0 "Kelp Bio-Weapons"
+ kelp_bioweapons_tooltip:0 "Our fleets now use explosive warheards containing lethally toxic barbs and aerosols derived from £blocker_yellow£ §YToxic Kelp§!.\n\n"
+ kelp_breakfasts:0 "Kelp For Breakfast"
+ kelp_breakfast_tooltip:0 "Once the poisonous barbs are removed, £blocker_yellow£ §YToxic Kelp§! makes for a nutritious way to start your day. So far, there have been only a few casualties.\n\n"
+
+ bigger_fish:0 "Bigger Fish"
+ bigger_fish_desc:0 "There is always a bigger fish."
+
+ xenofish_attacks:0 "Xenofish Attack"
+ xenofish.attacks:0 "Monstrous alien fish have been spotted off-shore of a major mega-city where they have been feasting on marine infrastructure, trading vessels, and tourists."
+
+ evacuations:0 "Evacuations"
+ evacuations_desc:0 "Flooding has forced large-scale evacuations downstream of a major watershed, impacting planetary trade and production."
+
+ recent_flooding:0 "Recent Flooding"
+ recent_flooding_desc:0 "Flooding in several regions has washed away key planetary infrastructure, impacting economic development and population productivity while repairs are undertaken."
+ 
+ cleared_hot_springs:0 "Cleared Hot Springs"
+ cleared_hot_springs_desc:0 "Though remote, the $d_hot_springs$ were a popular feature for outdoors-minded colonists and space tourists. While progress marches onwards, there is some grumbling about what is lost.\n\n"
+
+ miners_strike:0 "Miners' Strike"
+
+ false_prospects:0 "False Prospects"
+ false_prospects_gestalt:0 "False Prospects"
+ false_prospects_desc:0 "Newly-constructed $district_mining_plural$ are yielding much fewer minerals than expected."
+ false_prospects_gestalt_desc:0 "Newly-constructed $district_mining_plural$ are yielding much fewer minerals than expected."
+
+ subsurface_spaceport_opened:0 "Subsurface Spaceport Opened"
+ subsurface_spaceport_opened_desc:0 "A new sub-aquatic spaceport has greatly facilitated trade and travel on this planet."
+
+ nanocomposite_shortage:0 "Nanocomposite Shortage"
+ nanocomposite_shortage_desc:0 "Overruns on the expected nanocomposites needed to repair our §Y£blocker_yellow£ $d_experimental_geothermal_tap§! have led to delays in military shipbuiliding requisitions."
+
+ breathing_without_the_body:0 "Breathing Without the Body"
+ breathing_without_the_body_desc:0 "Over the course of milennia, the Organism's evolution encompassed and relied upon the whims and fortunes of its surroundings. These symbiotic lifeforms have been essential to the hive's functioning, but also a liability, uncontrolled by the consciousness of all things. Now, our technological progress has allowed us to replicate such symbioses for ourselves, strengthening and, where necessary, replacing the vulnerabilities of chance, fortune, and survival."
+
+ overambitious_evolution:0 "Overambitious Evolution"
+ overambitious_evolution_desc:0 "Over the course of milennia, the Organism's evolution encompassed and relied upon the whims and fortunes of its surroundings. These symbiotic lifeforms have been essential to the hive's functioning, and we have too quickly tried to replicate and replace their functioning. The mysteries of life itself still elude our consciousness, and even now our voices wither for the loss of this symbiosis."
+
+ damaged_power_nexus:0 "Damaged Power Nexus"
+ damaged_power_nexus_desc:0 "Recent disasters have resulted in damage to the £blocker_yellow£ Central Power Nexus. While failsafes and sub-systems will ensure the machine continues to function, repairs are expected to take some time."
+
+ superhighway_engineering:0 "Superhighway Engineering"
+ superhighway_engineering_desc:0 "Recent efforts to the restore this world's superhighway network are progressing apace, and almost every engineer is working to ensure this massive project is completed on time and budget."
+
+ # Terraforming Features
+
+ d_energy_banks:0 "£blocker£ Energy Banks"
+ d_energy_banks_desc:0 "Dropped from high orbit, these nigh-indestructible towers house massive batteries capable of fueling a colony's growth for several years."
+
+ d_mineral_stockpiles:0 "Mineral Stockpiles"
+ d_mineral_stockpiles_desc:0 "A by-product of orbital excavations during an extensive terraforming process, these large heaps may be unsightly but will accelerate building and quarrying efforts by months."
+
+ d_food_silos:0 "Food Silos"
+ d_food_silos_desc:0 "Large amounts of natural food crops were displaced during a long terraforming process, and have since been vacuum-sealed and frozen in refridgerated silos to sustain early colonists."
+
+
+ ### The Blocker Mod - Event Projects
+
+ XENOFISH_STUDY:0 "Xenofish Study"
+ XENOFISH_STUDY_DESC:0 "A leading xeno-marine biologist has been dispatched from [owner_main_species.GetHomeWorldName] to get to the bottom of the fish unpleasantness on [from.GetName]."
+
+ SOMETHING_IN_THE_PIPES:0 "Sinkhole Investigations"   # Temporary title; something MUCH more interesting coming here in due time....
+ SOMETHING_IN_THE_PIPES_DESC:0 "An expedition is planned beneath the surface of [from.GetName] to determine the true cause of the sudden sinkholes."
+
+ PREDATOR_MODIFICATION_PROJECT:0 "Predator Modification Project"
+ PREDATOR_MODIFICATION_PROJECT_DESC:0 "Specialist xenobiologists will need to be brought in to control the predator population on [root.GetName]."
+
+ EXTERMINATE_XENOFAUNA:0 "Dangerous Wildlife Extermination"
+ EXTERMINATE_XENOFAUNA_DESC:0 "After attacks on outlying settlements, planetary authorities will welcome the military being sent in to take care of the $d_dangerous_wildlife_blocker$ once and for all." 
+
+ cleared_hot_springs:0 "Cleared Hot Springs"
+ cleared_hot_springs_desc:0 "Although progress marches on, local residents are less-than-happy to see the relaxing sauna paved over."
+
+
+ ### Decisions
+
+ decision_reroll_planet:0 "Rebuild Lithosphere"
+ decision_reroll_planet_desc:0 "Our understanding of terraforming has advanced sufficiently to undertake the slow process of reconstructing an entire world of geography."
+ decision_lithosphere_tooltip:0 "This decision will re-seed the planet with §CPlanetary Features§! suitable for its climate."
+
+ decision_construct_megaliths:0 "Construct New Megalith"
+ decision_construct_megaliths_desc:0 "Material and time will be set aside to enhance the natrual lithosphere of this planet, enshrining our unique culture and population on the very stone and rock.\n\n§CA new £blocker_yellow£ Megalith will be added, granting a $district_mining$ and boosts to $r_unity$ in exchange for a $MOD_POP_GROWTH_SPEED_REDUCTION$."
+
+ decision_open_fusion_reactor:0 "Create New Fusion Reactor"
+ decision_open_fusion_reactor_desc:0 "Land will be set aside for a large fusion containment center, as well as for safety boundaries, failsafe zones, and hazard areas surrounding the core reactor."
+ tbm_open_fusion_tooltip:0 "Adds +1 §C£district£ Generator Districts§! to [planet.GetName]"
+
+
+ decision_open_cold_fusion_pit:0 "Open New Cold Fusion Pits"
+ decision_open_cold_fusion_pit_desc:0 "Nobody is going to pretend these deep insulation pits and coolant crevasses are eye-catching, except in terms of the scale of power production they can support."
+ tbm_open_cold_tooltip:0 "Adds +1 §C£district£ Generator Districts§! to [planet.GetName]" 
+
+ decision_open_antimatter_core:0 "Develop New Antimatter Core"
+ decision_open_antimatter_core_desc:0 "Although antimatter reactors are smaller than fusion cores, they are several orders of magnitude more finicky, and require extensive support networks to regulate the matter/antimatter flow."
+ tbm_open_antimatter_tooltip:0 "Adds +1 §C£district£ Generator Districts§! to [planet.GetName]"
+
+ decision_open_zero_point_module:0 "Install New Zero-Point Module"
+ decision_open_zero_point_module_desc:0 "A Zero-Point Module itself is tiny, but the power it produces is immense. Most of this land will be set aside for transformers, support cables, and quite honestly a housing suitably ornate for such advanced energy technology."
+ tbm_open_zpm_tooltip:0 "Adds +1 §C£district£ Generator Districts§! to [planet.GetName]"
+
+ decision_selectively_defoliate:0 "Selective Defoliation"
+ decision_selectively_defoliate_desc:0 "Although some of the more recent chemical defoliants promise to be more selective than ever, the fundamental science of removing the leaves from trees remains much the same as it has for thousands of years."
+ tbm_decision_defoliation_nothing:0 "a random £blocker£ §YForest-type§! feature being removed."
+ tbm_decision_defoliation_bad:0 "the defoliation process negatively impacting the surrounding area."
+
+ decision_soil_remediation:0 "Soil Remediation"
+ decision_soil_remediation_desc:0 "We can now apply advances in our understanding on alien microbial life and soil consistency to our agricultural processes."
+ tbm_decision_soil_remediation:0 "Prevents the creation of £blocker£ §YDustbowls§! for 20 Years."
+
+ soil_remediation:0 "Soil Remediation"
+ soil_remediation_desc:0 "$job_farmer_plural$ on this world are taking extra care to maintain the complex alien soil quality. Advanced fertilizers and extra growing cycles are used to ensure the land continues to support large-scale agriculture."
+
+ decision_deep_crust_exploration:0 "Deep-Crust Exploration"
+ decision_deep_crust_exploration_desc:0 "Nano-alloys and heat-resitant plastics, previously used primarily in starship construction, can be adapted to the extreme conditions beneath the world's crust, allowing access to critical energy sources within."
+ tbm_decision_deep_crust_exploration:0 "Several promising prospects have been selected for expeditionary drilling.\n\nOnly a §Ylimited number§! of expeditions can be made before we risk destabilizing the world's crust.\n\n"
+ tbm_decision_deep_crust_backfire_chance:0 "the expedition being unsuccessful."
+ tbm_decision_deep_crust_success_tooltip:0 "the expedition discovering valuable deposits."
+
+ decision_subterranean_exo_surveying:0 "Subterranean Exo-Surveying"
+ decision_subterranean_exo_surveying_desc:0 "Teams of xeno-geologists can draw up plans to excavate new mining infrastructure deep within the world's crust."
+ tbm_decision_subterranean_tooltip:0 "\n'nThe scale and expense of these excavations means only a §Ylimited number§! of subterranean mines can be created this way."
+ 
+ decision_subterranean_expansion:0 "Subterranean Expansion"
+ decision_subterranean_expansion_desc:0 "Although our species has always preferred life underground, advances in xeno-geology have allowed for the expansion of cave networks far deeper than previously thought possible."
+ tbm_decision_subterranean_colony_tooltip:0 "\n\nSettlements far underground will be a long way from modern amenities, but will allow for §Ylimited expansion§! of living space."
+
+ 
+
+ geothermal_instability:0 "Geothermal Instability"
+ subterranean_river_cruises:0 "Subterranean River Cruises"

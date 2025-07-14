@@ -1,0 +1,208 @@
+### THe Blocker Mod - Planetary Projects
+
+
+# Alien Predator Modification (Dangerous Wildlife - Cull the Herd?)
+special_project = {
+	key = "PREDATOR_MODIFICATION_PROJECT"
+	cost = 0
+	days_to_research = 180
+	tech_department = society_technology
+	picture = GFX_evt_alien_wildlife
+
+	event_scope = planet_event
+	location = yes
+
+	on_success = {
+		remove_deposit = d_dangerous_wildlife_blocker
+		hidden_effect = {
+			random_list = {
+				10 = {
+					planet_event = {
+						id = tbm.6
+						days = 1
+					}
+				}
+				20 = {
+					planet_event = {
+						id = tbm.8
+						days = 1
+					}
+				}
+			}
+		}
+	}
+}
+
+# Exterminate Xenofauna (Dangerous Wildlife - Xenofauna Attack)
+special_project = {
+	key = "EXTERMINATE_XENOFAUNA"
+	days_to_research = 90
+	picture = GFX_evt_alien_wildlife
+
+	event_scope = ship_event
+	location = yes
+	
+	requirements = {
+		shipclass_military = 1
+	}
+
+	on_success = {
+		from = {
+			remove_deposit = d_dangerous_wildlife_blocker
+		}
+	}
+}
+
+# The Waters of Life (Searing Desert - A City of the Desert)
+special_project = {
+	key = "WATERS_OF_LIFE"
+	event_scope = ship_event
+	location = yes
+	days_to_research = 1800
+	requirements = {
+		shipclass_science_ship = 1
+	}
+	on_success = {
+		event_target:desert_planet = {
+			planet_event = {
+				id = tbm_desert.38
+			}
+		}
+	}
+}
+
+
+# A City of the Desert (Searing Desert - A City of the Desert)
+special_project = {
+	key = "CITY_OF_THE_DESERT"
+	event_scope = ship_event
+	days_to_research = 1800
+	requirements = {
+		shipclass_science_ship = 1
+	}
+	on_success = {
+		event_target:desert_planet = {
+			planet_event = {
+				id = tbm_desert.42
+			}
+		}
+	}
+}
+
+### Xenofish Study
+special_project = {
+	key = "XENOFISH_STUDY"
+	event_scope = ship_event
+	location = yes
+
+	requirements = {
+		leader = scientist
+	}
+
+	on_success = {
+		random_list = {
+			75 = {
+				modifier = {
+					factor = 2
+					leader = {
+						OR = {
+							has_trait = leader_trait_paranoid
+							has_trait = leader_trait_expertise_biology
+							has_trait = leader_trait_expertise_new_worlds
+						}
+					}
+				}
+				leader = {
+					save_global_event_target_as = xenofish_specialist
+				}
+				event_target:fish_planet = {
+					planet_event = { id = tbm.57 days = 1 }
+				}
+			}
+			25 = {
+				modifier = {
+					factor = 2
+					leader = { has_trait = leader_trait_carefree }
+				}
+				leader = {
+					save_global_event_target_as = xenofish_specialist
+				}
+				event_target:fish_planet = {
+					planet_event = { id = tbm.58 days = 1	}
+				}
+			}
+		}
+	}
+}
+
+# special_project = {
+# 	key = "DESCENT"
+# 	event_scope = ship_event
+# 	on_success = { }
+# }
+
+special_project = {
+	key = "SHIFTING_SANDS"
+	event_scope = ship_event	# So we can get a leader and guarantee a scope.
+	location = yes
+
+	requirements = {
+		leader = scientist
+	}
+
+	on_success = { 
+		event_target:sand_planet = {
+			planet_event = { id = tbm.79 }
+		}
+	 }
+}
+
+special_project = {
+	key = "SOMETHING_IN_THE_PIPES"
+	event_scope = planet_event
+
+	requirements = {
+		leader = scientist
+		shipclass_science_ship = 1
+	}
+	days_to_research = 180
+	tech_department = engineering_technology
+
+	on_success = { 
+		from = {
+			planet_event = {
+				id = tbm.83
+				days = 1
+			}
+		}
+	}
+}
+
+special_project = {
+	key = "MEGASTRUCTURE_TOUR"
+	event_scope = ship_event
+
+	requirements = {
+		leader = scientist
+	}
+
+	days_to_research = 90
+
+	on_start = {
+		owner = {
+			random_owned_leader = {
+				limit = {
+					has_trait = leader_trait_whiz_kid
+				}
+
+				save_event_target_as = Character
+			}
+		}
+	}
+
+	on_success = {
+		ship_event = {
+			id = tbm_rock.6
+		}
+	}
+}

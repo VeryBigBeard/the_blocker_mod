@@ -1,0 +1,198 @@
+### Feature Generators
+#	Most dynamic features in TBM are displayed via notifications to save the players' sanity and allow them to be easily ignored if need be (e.g., there's a war on, we don't care about your Frontier Farmland)
+
+#	Deteriorating Conditions (Slum Generator) (tbm_handler.2)
+message_type = {
+	icon = "TBM_message_bad_thing"
+	key = "SLUM_GENERATOR"
+	icon_frame = 3
+	sound = alert_negative
+	auto_opens = none
+	ping = ping_notification_yellow
+
+	category = planets
+}
+
+# Deteriorating Conditions (Industrial Wasteland) (tbm_handler.4)
+message_type = {
+	icon = "TBM_message_bad_thing"
+	key = "INDUSTRIAL_WASTELAND"
+	icon_frame = 3
+	sound = alert_negative
+	auto_opens = none
+	ping = ping_notification_yellow
+
+	category = planets
+}
+
+# Urban Power Plant (tbm_handler.6)
+message_type = {
+	icon = "TBM_message_neutral"
+	key = "URBAN_POWER_PLANT"
+	icon_frame = 3
+	sound = alert_negative
+	auto_opens = none
+	ping = ping_notification_yellow
+
+	category = planets
+}
+
+# Colonial Settlement Generator (tbm_handler.8)
+message_type = {
+	icon = TBM_message_neutral
+	key = "COLONIAL_SETTLEMENT"
+	icon_frame = 1
+	sound = alert_negative
+	auto_opens = none
+	ping = ping_notification_green
+
+	category = planets
+}
+
+# Frontier Farmland Generator (tbm_handler.10)
+message_type = {
+	icon = TBM_message_blocker_yellow
+	icon_frame = 0
+	key = "FRONTIER_FARMLAND"
+	sound = alert_negative
+	auto_opens = none
+	ping = ping_notification_green
+
+	category = planets
+}
+
+# Dustbowl Generator
+message_type = {
+	key = "DUSTBOWL_GENERATOR"
+	icon = TBM_message_blocker_yellow
+	icon_frame = 0
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_red"
+
+	category = planets
+}
+
+# Subterranean Exo-Colonization (tbm_handler.23)
+message_type = {
+	icon = TBM_message_blocker_yellow
+	icon_frame = 0
+	key = "SUBTERRANEAN"
+	sound = alert_negative
+	auto_opens = none
+	ping = ping_notification_green
+
+	category = planets
+}
+
+# Farming Generator - Rural Feature added
+message_type = {
+	icon = TBM_message_blocker_yellow
+	icon_frame = 0
+	key = "FARMING_RURAL"
+	sound = alert_negative
+	auto_opens = none
+	ping = ping_notification_green
+
+	category = planets
+}
+
+# Farming Generator - Urban/Polluted/Other
+message_type = {
+	icon = TBM_message_blocker_yellow
+	icon_frame = 0
+	key = "FARMING_URBAN"
+	sound = alert_negative
+	auto_opens = none
+	ping = ping_notification_green
+
+	category = planets
+}
+
+
+### Event Messages
+
+# Sudden Sinkhole
+message_type = {
+	key = "SUDDEN_SINKHOLE"
+	icon = TBM_message_blocker
+	icon_frame = 0
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_yellow"
+
+	category = planets
+}
+
+# Flooding
+message_type = {
+	key = "FLOODING_DAMAGE"
+	icon = TBM_message_bad_thing
+	icon_frame = 2
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_red"
+
+	category = planets
+}
+
+# Mine-Shaft Collapse
+message_type = {
+	key = "MINE_SHAFT_COLLAPSE"
+	icon = TBM_message_bad_thing
+	icon_frame = 2
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_red"
+
+	category = planets
+}
+
+# Landslide
+message_type = {
+	key = "LANDSLIDE"
+	icon = TBM_message_bad_thing
+	icon_frame = 2
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_red"
+
+	category = planets
+}
+
+
+# Sandstorm
+message_type = {
+	key = "SANDSTORM"
+	icon = TBM_message_bad_thing
+	icon_frame = 2
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_red"
+
+	category = planets
+}
+
+# Deep Crust Exploration
+message_type = {
+	icon = TBM_message_neutral
+	key = "DEEP_CRUST"
+	icon_frame = 0
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_yellow"
+	
+	category = planets
+}
+
+# "Selective" Defoliation
+message_type = {
+	icon = TBM_message_neutral
+	key = "SELECTIVE_DEFOLIATION"
+	icon_frame = 0
+	sound = alert_negative
+	auto_opens = none
+	ping = "ping_notification_yellow"
+	
+	category = planets
+}

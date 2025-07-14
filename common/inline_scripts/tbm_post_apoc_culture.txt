@@ -1,0 +1,305 @@
+### Post-Apocalyptic Environmental Remediation - Culture Scoring
+
+	# A point will be added:
+	if = {
+		limit = {
+			has_deposit = d_chapel_of_the_fall
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			has_deposit = d_library_of_before
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				has_building = building_artist_patron
+				has_building = building_autocurating_vault
+				has_building = building_citadel_of_faith
+				has_building = building_corporate_vault
+			}
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = {
+				has_total_civic_points = 3
+			}
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_transcendent_learning }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_one_vision }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_shared_destiny }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_consecrated_worlds }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_enigmatic_engineering }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_master_builders }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_defender_of_the_galaxy }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = 1
+		}
+	}
+
+
+	# A point will be deducted:
+	if = {
+		limit = {
+			NOT = { has_deposit = d_chapel_of_the_fall }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			NOT = { has_deposit = d_library_of_before }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				has_building = building_stronghold
+				has_building = building_fortress
+				has_building = building_planetary_shield_generator
+			}
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { is_crisis_faction = yes }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_colossus }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_galactic_contender }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_arcology_project }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_hive_worlds }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_galactic_force_projection }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_grasp_the_void }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_voidborn }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_lord_of_war }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_nihilistic_acquisition }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_eternal_vigilance }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_universal_transactions }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_imperial_prerogative }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_master_builders }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			owner = { has_ascension_perk = ap_executive_vigor }
+		}
+		change_variable = {
+			which = post_apoc_culture_score
+			value = -1
+		}
+	}

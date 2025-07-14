@@ -1,0 +1,297 @@
+### The Blocker Mod - Overwrite of Achieve FTL Effect
+#	This overwrite exists to change one line of script that can't otherwise be accessed.
+#	To patch, add the indicated line below to this script, then add to a new mod and load it after TBM and any other mod that affects this script.
+
+achieve_ftl_effect = {
+	country_event = { id = game_start.8 }
+	remove_country_flag = early_space_age
+	set_country_flag = primitives_can_into_space
+	set_country_type = default
+	change_country_flag = random
+	set_species_graphical_culture = yes
+	change_government = {
+		authority = random
+		civics = random
+	}
+	set_name = random
+
+	if = {
+		limit = {
+			has_country_flag = was_enlightened
+			has_origin = origin_default_pre_ftl
+		}
+		set_origin = origin_enlightened
+	}
+
+	if = {
+		limit = {
+			has_origin = origin_default_pre_ftl
+		}
+		set_origin = origin_default
+		if = {
+			limit = {
+				is_gestalt = no
+			}
+			capital_scope = {
+				add_modifier = { modifier = prosp_uni_mod days = 7200 }
+			}
+		}
+		else = {
+			capital_scope = {
+				add_modifier = { modifier = prosp_uni_mod_gestalt days = 7200 }
+			}
+		}
+		capital_scope = {
+			while = {
+				count = 4
+				create_pop = {
+					species = owner
+				}
+			}
+		}
+	}
+
+	add_resource = {
+		energy = 500
+		minerals = 500
+		alloys = 125
+		influence = 50
+		unity = 250
+		volatile_motes = 50
+		exotic_gases = 50
+		rare_crystals = 50
+		mult = trigger:years_passed
+	}
+	if = {
+		limit = {
+			is_hive_empire = no
+		}
+		add_resource = {
+			consumer_goods = 250
+			mult = trigger:years_passed
+		}
+	}
+	if = {
+		limit = {
+			is_lithoid_empire = no
+		}
+		add_resource = {
+			food = 500
+			mult = trigger:years_passed
+		}
+	}
+	else = {
+		add_resource = {
+			minerals = 500
+			mult = trigger:years_passed
+		}
+	}
+
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+
+			set_fleet_stance = evasive
+			set_location = prev.capital_scope.star
+
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
+
+	if = {
+		limit = {
+			is_gestalt = yes
+		}
+		country_event = { id = game_start.70 } #Sets up gestalt council
+	}
+	else = {
+		country_event = { id = game_start.72 } #Sets up regular council
+	}
+	country_event = { id = game_start.71 } #Sets up planet governor
+
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = prev.capital_star
+		}
+	}
+
+	capital_scope = {
+		### TBM OVERWRITE
+		generate_achieve_ftl_homeworld_features = yes	# Add this line here if you are making a patch
+		remove_all_buildings = yes
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_habitat
+				}
+			}
+			generate_start_buildings_and_districts = yes
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_habitat
+			}
+			owner = {
+				give_technology = {
+					tech = tech_habitat_1
+					message = no
+				}
+				add_research_option = tech_habitat_2
+				if = {
+					limit = {
+						OR = {
+							is_lithoid_empire = no
+							is_catalytic_empire = yes
+						}
+					}
+					give_technology = {
+						tech = tech_eco_simulation
+						message = no
+					}
+					give_technology = {
+						tech = tech_hydroponics
+						message = no
+					}
+				}
+				else = {
+					give_technology = {
+						tech = tech_powered_exoskeletons
+						message = no
+					}
+					give_technology = {
+						tech = tech_space_mining_1
+						message = no
+					}
+				}
+			}
+			add_building = building_hab_major_capital
+			# 2 jobs
+			if = {
+				limit = {
+					owner = {
+						is_lithoid_empire = no
+					}
+				}
+				add_building = building_hydroponics_farm
+			}
+			# 2 jobs
+			add_district = district_hab_science
+			# 2 jobs
+			if = {
+				limit = { owner = { is_spiritualist = no } }
+				add_building = building_bureaucratic_1
+			}
+			# 2 jobs
+			if = {
+				limit = {
+					owner = {
+						is_spiritualist = yes
+						OR = {
+							has_valid_civic = civic_death_cult
+							has_valid_civic = civic_death_cult_corporate
+						}
+					}
+				}
+				add_building = building_sacrificial_temple_1
+			}
+			# 2 jobs
+			if = {
+				limit = {
+					owner = {
+						is_spiritualist = yes
+						NOT = { has_valid_civic = civic_death_cult }
+					}
+				}
+				add_building = building_temple
+			}
+		}
+
+		while = {
+			limit = {
+				num_pops < 8
+				#free_housing > 0
+			}
+			create_pop = {
+				species = owner
+			}
+		}
+		if = {
+			limit = {
+				is_planet_class = pc_desert
+			}
+			set_planet_flag = tasty_desert
+		}
+		remove_all_armies = yes
+		solar_system = {
+			save_event_target_as = enlightened_system
+			if = {
+				limit = {
+					exists = owner
+				}
+				owner = {
+					save_event_target_as = previous_system_owner
+				}
+			}
+			if = {
+				limit = {
+					NOT = { exists = starbase }
+				}
+				create_starbase = {
+					size = starbase_starport
+					module = shipyard
+					module = shipyard
+					owner = root
+				}
+			}
+		}
+	}
+	random_controlled_ship = {
+		limit = { is_ship_size = primitive_space_station }
+		fleet = { destroy_fleet = THIS }
+	}
+	# countries with intel on this system get a notification and establish communications
+	every_country = {
+		limit = {
+			is_country_type_with_subjects = yes
+			NOR = {
+				AND = {
+					exists = event_target:previous_system_owner
+					is_same_value = event_target:previous_system_owner
+				}
+				is_same_value = $OWNER$
+			}
+			intel_level = {
+				level > medium
+				system = event_target:enlightened_system
+			}
+		}
+		country_event = { id = preftl.1111 days = 1 scopes = { from = $PRE_FTL$ } }
+	}
+	if = {
+		limit  = {
+			exists = event_target:previous_system_owner
+		}
+		establish_communications_no_message = event_target:previous_system_owner
+	}
+}

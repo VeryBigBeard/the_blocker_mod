@@ -1,0 +1,667 @@
+### TBM Custom Features - Artificial (these are mostly added by events or by other features)
+
+# Spawning Variables
+
+@high = 16
+@med = 8
+@low = 4
+@very_low = 2	# Added by TBM to help with some spawning
+@none = 0.01	# Needs small amount of weight or will cause problems.
+
+@high_rare = 0.5
+@mid_rare = 0.25
+@low_rare = 0.1
+
+@planet_type_bonus = 1.5
+
+@blocker_high = 10
+@blocker_low = 5
+
+@ranger_small_production = 0.5
+@ranger_large_production = 1
+
+# AI Weight Variables
+# Vanilla defaults to weight = 1 - TBM weights differently for different features and different personalities, colony designations, and some other factors.
+
+# The mod uses a switch-based logic, with modifiers functioning like OR effects, executed in order.
+
+@base = 1	# Base ai_weight. AI will clear any feature at weight = 1 when it needs district space
+@clear = 2	# AI will clear this feature immediately.
+@keep = 0	# AI will keep this feature until it needs a district and no other features remain
+@always_clear = 100	# AI will always clear this feature; used mainly for negative features (e.g., rubble)
+@always_keep = -100 # AI will always keep this feature; used mainly for bonus features and some flavor features
+
+
+# Sprawling Slums - Modified but does not overwrite vanilla for compat purposes
+d_tbm_slums = {
+	icon = d_slums
+	category = deposit_cat_blockers
+
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+		
+	# on_cleared = {	# Disabled for now. Slightly too easy to farm, plus it caused weirdness with planets dominated by other species.
+	# 	create_pop = {
+	# 		species = owner
+	# 	}
+	# }
+
+
+	planet_modifier = {		
+		pop_amenities_usage_mult = -0.05
+		pop_cat_worker_happiness = -0.05
+		planet_crime_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		# Will lead to quite a few of these, but should crop up on AI worlds where amenities is a problem; basically realism/flavor
+		modifier = {
+			set = @keep
+			owner = {
+				OR = {
+					has_ai_personality = hegemonic_imperialists
+					has_ai_personality = ruthless_capitalists
+					has_ai_personality = slaving_despots
+				}
+			}
+		}
+	}
+}
+
+# Crater - Modified but does not overwrite vanilla for compat purposes
+d_tbm_crater = {
+	icon = d_crater
+	category = deposit_cat_blockers
+
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+			minerals = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_mining_max = 1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		inline_script = tbm_ai_empire_weights
+
+		modifier = {
+			set = @keep
+			from = { colony_type = col_mining }
+		}
+	}
+}
+
+
+# Failing Infrastructure are generated on homeworlds at game-start
+# Additions from The Blocker Mod, and can be added via event.
+d_tbm_industrial_wasteland = {
+	icon = d_metal_boneyard
+	category = deposit_cat_blockers
+
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 270
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				alloys = 500
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_pops_consumer_goods_upkeep_mult = -0.05	# Cheaper cost of living
+		trade_value_mult = 0.02
+		planet_crime_mult = 0.1
+	}
+
+	potential = { always = no }
+
+	ai_weight = {
+		weight = @clear
+
+		modifier = {
+			set = @keep
+			owner = { has_ai_personality = ruthless_capitalists }
+		}
+	}
+}
+
+d_rubble = {
+	icon = d_rubble
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	planet_modifier = {
+		planet_amenities_add = -2
+		planet_max_districts_add = -1
+		district_mining_max = 1		# Allows rubble to be situationally useful for mining.
+		planet_miners_minerals_produces_mult = -0.05	# This is to disincentivize stacking these for mining super-planets.
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = { 
+			energy = 400
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				minerals = 100
+				unity = 10
+			}
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+	}
+}
+
+d_collapsed_cliffs = {
+	icon = d_veiny_cliffs
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_mining_max = 1
+		planet_amenities_add = -10
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				minerals = 500
+			}
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		inline_script = tbm_ai_empire_weights
+
+		modifier = {
+			set = @keep
+			from = { colony_type = col_mining }
+		}
+	}
+}
+
+d_great_river_obstructed = {
+	icon = d_great_river
+	category = deposit_cat_final
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		planet_farmers_food_produces_mult = 0.1
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_urban_power_plant = {
+	icon = d_reactor
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 270
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1000
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+		planet_technician_consumer_goods_upkeep_add = -0.1 # Convenient commuting
+		planet_amenities_mult = -0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		modifier = {
+			set = @keep	# Keep, but only on generator worlds where we're actually getting some benefit.
+			from = {
+				colony_type = col_generator
+				num_assigned_jobs = {
+					job = technician
+					value > 4
+				}
+			}
+		}
+
+		modifier = {
+			set = @always_keep	# Keep around if empire needs the energy
+			owner = {
+				resource_income_compare = {
+					resource = energy
+					value < 30
+				}
+			}
+		}
+	}
+}
+
+d_geothermal_power_plant = {
+	icon = d_bunker_door
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 270
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_hydro_plant = {
+	icon = d_ruins_medium
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max = 1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_dyke = {
+	icon = d_natural_farmland
+	category = deposit_cat_final
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		pop_housing_usage_mult = 0.02
+		planet_farmers_food_produces_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_settlement = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+	
+	should_swap_deposit_on_terraforming = yes
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		upkeep = {
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+		cost = {
+			energy = 200
+			consumer_goods = 50
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 3
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		modifier = {
+			set = @keep
+			from = { free_housing <= 3 }
+		}
+	}
+}
+
+d_frontier_farmstead = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = yes
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			consumer_goods = 50
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_farming_max = 1
+		planet_farmers_unity_upkeep_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_civic = civic_agrarian_idyll }
+		}
+		planet_farmers_unity_produces_add = 0.5
+	}
+
+	potential = {
+		always = no
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			set = @always_keep	# Should lead to agrarians having smaller, less developed worlds with lots of farm districts and lots of frontier homesteads for conquerors to pillage
+			owner = { has_civic = civic_agrarian_idyll }
+		}
+	}
+}
+
+d_dustbowl = {
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_reclaimed_land
+	}
+
+	prerequisites = {
+		"tech_quicksand_basin"
+	}
+
+	time = 1080
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+			minerals = 100
+		}
+	}
+
+	planet_modifier = {
+		district_mining_max = 1
+		planet_farmers_food_produces_mult = -0.1
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		modifier = {
+			set = @keep
+			from = {
+				colony_type = col_mining
+				num_free_districts = {
+					type = district_mining
+					value < 1
+				}
+			}
+		}
+
+		modifier = {
+			set = @keep		# Avoid zapping districts in use. Should mean dustbowls stick around on developed worlds, which is the idea flavor-wise
+			from = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
+			}
+		}
+	}
+}
+
+d_deep_trench = {	# Mostly an art placeholder; does the same thing as homeworld variant right now.
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+	all_blocker_swap_types = yes
+	blocker_swap_types = {
+		d_submerged_ore_veins
+	}
+
+	time = 480
+
+	prerequisites = {
+		"tech_toxic_kelp"
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			set = @always_clear	# Keep as no negative effects but don't block ecu.
+			from = { free_district_slots = 0 }
+			owner = { has_ascension_perk = ap_arcology_project }
+		}
+	}
+}
+
+d_moisture_farms = {
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+			consumer_goods = 40
+		}
+	}
+
+	planet_modifier = {
+		district_farming_max = 1
+	}
+
+	ai_weight = {
+		weight = @keep
+	}
+}
+
+d_black_market = {
+	category = deposit_cat_blockers
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			food = 200
+			unity = 100
+		}
+	}
+
+	planet_modifier = {
+		trade_value_mult = 0.10
+		planet_crime_add = 10
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @clear
+
+		inline_script = tbm_ai_empire_weights
+
+		modifier = {
+			set = @keep
+			owner = {
+				has_ai_personality = ruthless_capitalists	# Market economy
+				has_ai_personality = hegemonic_imperialists	# We don't really care
+				has_ai_personality = slaving_despots
+			}
+		}
+	}
+}

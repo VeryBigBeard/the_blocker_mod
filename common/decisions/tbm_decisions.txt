@@ -1,0 +1,648 @@
+### The Blocker Mod - Decisions
+
+
+### Planet-related Decisions
+
+# Rerolls the planet when you have Ecological Adaptation. Intended to ease late-game weirdness in case colonies have gotten into a bad way; will likely be replaced by a fuller system eventually
+decision_reroll_planet = {
+	owned_planets_only = yes
+	sound = event_construction
+
+	enactment_time = 720
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 5000
+			influence = 150		# Dis-incentive for abuse; also, it does affect space
+		}
+	}
+
+	potential = {
+		NOT = { is_artificial = yes }
+		exists = owner
+		owner = { has_technology = tech_ecological_adaptation }
+	}
+
+	effect = {
+		custom_tooltip = decision_lithosphere_tooltip
+		hidden_effect = {
+			reroll_deposits = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_construct_megaliths = {
+	owned_planets_only = yes
+	sound = event_bad_omen
+	icon = decision_city_ruins
+
+	enactment_time = 1800
+
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 5000
+		}
+	}
+
+	potential = {
+		NOT = { is_artificial = yes }
+		exists = owner
+		owner = { is_lithoid = yes }
+	}
+
+	effect = {
+		add_deposit = d_megaliths
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 100
+			OR = {
+				# Either AI needs the mining district
+				AND = {
+					num_free_districts = {
+						type = district_mining
+						value < 1
+					}
+					owner = {
+						resource_income_compare = {
+							resource = minerals
+							value < 20
+						}
+					}
+				}
+
+				# Or is a hive-mind and can offset the pop-growth hit
+				owner = { is_hive_empire = yes }
+			}
+		}
+	}
+}
+
+### Reactor Decisions
+#	Open a new super-reactor on your planet and reap the benefits. Safer with better tech!
+decision_open_fusion_reactor = {
+	owned_planets_only = yes
+	sound = event_machinery
+	icon = decision_drilling_for_gas
+
+	enactment_time = 720
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 800
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_fusion_power }
+		NOT = { has_deposit = d_fusion_reactor }	# planet - we don't want two, partly balance partly realism
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	effect = {
+		add_deposit = d_fusion_reactor
+		custom_tooltip = tbm_open_fusion_tooltip
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			add = 100
+			OR = {
+				# Either AI needs the energy
+				AND = {
+					num_free_districts = {
+						type = district_generator
+						value < 1
+					}
+					owner = {
+						resource_income_compare = {
+							resource = energy
+							value < 20
+						}
+					}
+				}
+
+				# Or can benefit from technician boost
+				colony_type = col_generator
+			}
+		}
+	}
+}
+
+decision_open_cold_fusion_pit = {
+	owned_planets_only = yes
+	icon = decision_strip_mining
+
+	enactment_time = 1260
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1440
+		}
+	}
+
+	potential = {
+		owner = { has_technology = tech_cold_fusion_power }
+		NOT = { has_deposit = d_cold_fusion_pits }	# planet - we don't want two, partly balance partly realism
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	effect = {
+		add_deposit = d_cold_fusion_pits
+		custom_tooltip = tbm_open_cold_tooltip
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			OR = {
+				
+				# AI needs the energy
+				AND = {
+					num_free_districts = {
+						type = district_generator
+						value < 1
+					}
+					owner = {
+						owner = {
+							resource_income_compare = {
+								resource = energy
+								value < 20
+							}
+						}
+					}
+				}
+
+				# Or can benefit from technician boost
+				colony_type = col_generator
+			}
+			
+			add = 100
+		}
+	}
+}
+
+decision_open_antimatter_core = {
+	owned_planets_only = yes
+	icon = decision_drifting_gateway
+
+	enactment_time = 1800
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 1800
+		}
+	}
+
+	potential = {
+		owner = { has_technology = tech_antimatter_power }
+		NOT = { has_deposit = d_antimatter_core }	# planet - we don't want two, partly balance partly realism
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	effect = {
+		add_deposit = d_antimatter_core
+		custom_tooltip = tbm_open_antimatter_tooltip
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			OR = {
+				
+				# AI needs the energy
+				AND = {
+					num_free_districts = {
+						type = district_generator
+						value < 1
+					}
+					owner = {
+						owner = {
+							resource_income_compare = {
+								resource = energy
+								value < 20
+							}
+						}
+					}
+				}
+
+				# Or can benefit from technician boost
+				colony_type = col_generator
+			}
+			
+			add = 100
+		}
+	}
+}
+
+decision_open_zero_point_module = {
+	owned_planets_only = yes
+	icon = decision_art_monument
+
+	enactment_time = 2160
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 2000
+		}
+	}
+
+	potential = {
+		owner = { has_technology = tech_zero_point_power }
+		NOT = { has_deposit = d_zero_point_modules }	# planet - we don't want two, partly balance partly realism
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	effect = {
+		add_deposit = d_zero_point_modules
+		custom_tooltip = tbm_open_zpm_tooltip
+	}
+
+	ai_weight = {
+		weight = 100	# If it can, this is a very good feature.
+	}
+}
+
+### Feature Decisions
+#	Intended to provide visible content for vanilla blocker techs and allow more direct control over planets
+decision_selectively_defoliate = {
+	owned_planets_only = yes
+	sound = event_bad_omen
+	icon = decision_burning_settlement
+
+	enactment_time = 720
+
+	prerequisites = {
+		"tech_dense_jungle"
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_dense_jungle }
+		has_tree_feature = yes
+	}
+
+	show_tech_unlock_if = {
+		always = yes
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 800
+			minerals = 800
+		}
+	}
+
+	effect = {
+		hidden_effect = {
+			random_deposit = {
+				limit = {
+					tree_feature = yes
+				}
+				remove_deposit = yes
+			}
+		}
+
+		random_list = {
+			50 = {
+				custom_tooltip = tbm_decision_defoliation_nothing
+				hidden_effect = {
+					planet_event = {
+						id = tbm.412
+					}
+				}
+			}
+
+			50 = {
+				custom_tooltip = tbm_decision_defoliation_bad
+				modifier = {
+					factor = 0.5
+					any_deposit = {
+						tree_feature = yes
+					}
+				}
+
+				hidden_effect = {
+					planet_event = {
+						id = tbm.413
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+
+		modifier = {
+			factor = 0
+
+			num_free_districts = {
+				type = district_city
+				value > 0
+			}
+		}
+	}
+}
+
+decision_soil_remediation = {
+	owned_planets_only = yes
+	sound = event_bad_omen
+	icon = decision_landing_ship
+
+	enactment_time = 720
+
+	prerequisites = {
+		"tech_quicksand_basin"
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_quicksand_basin }
+		OR = {
+			any_deposit = {
+				is_farmland_feature = yes
+				can_be_exhausted = yes
+			}
+			any_deposit = {
+				is_deposit_type = d_dustbowl
+				is_deposit_type = d_homeworld_dustbowl
+			}
+		}
+		OR = {
+			num_districts = {
+				type = district_farming
+				value > 6
+			}
+			num_districts = {
+				type = any
+				value > 12
+			}
+		}
+	}
+
+	show_tech_unlock_if = {
+		always = yes
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 400
+			consumer_goods = 200
+			minerals = 1000
+		}
+	}
+
+	effect = {
+		custom_tooltip = tbm_decision_soil_remediation
+		add_modifier = {
+			modifier = soil_remediation
+			years = 10
+		}
+		hidden_effect = {
+			set_timed_planet_flag = {
+				flag = soil_remediation
+				years = 20
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			add = 100
+
+			OR = {
+				colony_type = col_farming
+				colony_type = col_rural
+			}
+			num_districts = {
+				type = district_farming
+				value > 6
+			}
+			num_assigned_jobs = {
+				job = farmer
+				value > 4
+			}
+		}
+	}
+}
+
+decision_deep_crust_exploration = {
+	owned_planets_only = yes
+	sound = event_bad_omen
+	icon = decision_molten_planet
+
+	enactment_time = 720
+
+	prerequisites = {
+		"tech_volcano"
+	}
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_volcano }
+		NOT = {
+			check_variable = {
+				which = @deep_crust_exploration
+				value > 0
+			}
+		}
+	}
+
+	show_tech_unlock_if = {
+		always = yes
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1800
+			alloys = 800
+			consumer_goods = 600
+		}
+	}
+
+	effect = {
+		custom_tooltip = tbm_decision_deep_crust_exploration
+		hidden_effect = {
+			subtract_variable = {
+				which = @deep_crust_exploration
+				value = 1
+			}
+		}
+
+		random_list = {
+				
+			# 10% it explodes for no adequately explored reason
+			10 = {
+				custom_tooltip = tbm_decision_deep_crust_backfire_chance
+				hidden_effect = {
+					planet_event = {
+						id = tbm.410
+					}
+				}
+			}
+
+			# Add new feature (only works three times)
+			90 = {
+				custom_tooltip = tbm_decision_deep_crust_success_tooltip
+				hidden_effect = {
+					planet_event = {
+						id = tbm.411
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			add = 100
+			NOT = {
+				has_deposit = d_bubbling_swamp
+			}
+		}
+	}
+}
+
+decision_subterranean_exo_surveying = {
+	owned_planets_only = yes
+	sound = event_bad_omen
+	icon = decision_derelict_interior
+
+	enactment_time = 720
+
+	prerequisites = {
+		"tech_deep_sinkhole"
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			has_technology = tech_deep_sinkhole
+			NOT = { has_origin = origin_subterranean }
+		}
+		count_deposits = {
+			count <= 4
+			type = d_subterranean_excavation
+		}
+	}
+
+	show_tech_unlock_if = {
+		always = yes
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 800
+			alloys = 600
+			consumer_goods = 400
+		}
+	}
+
+	effect = {
+		add_deposit = d_subterranean_excavation
+		custom_tooltip = tbm_decision_subterranean_tooltip
+		hidden_effect = {
+			create_message = {
+				type = "SUBTERRANEAN"
+				days = 30
+				target = planet
+				localization = message_subterranean
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			add = 100
+			NOT = {
+				has_deposit = d_bubbling_swamp
+			}
+		}
+	}
+}
+
+decision_subterranean_expansion = {
+	owned_planets_only = yes
+	sound = event_bad_omen
+	icon = decision_derelict_interior
+
+	enactment_time = 720
+
+	prerequisites = {
+		"tech_deep_sinkhole"
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = origin_subterranean
+		}
+		count_deposits = {
+			count <= 3
+			type = d_subterranean_colony
+		}
+	}
+
+	show_tech_unlock_if = {
+		always = yes
+	}
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 800
+			alloys = 600
+			consumer_goods = 400
+		}
+	}
+
+	effect = {
+		add_deposit = d_subterranean_colony
+		custom_tooltip = tbm_decision_subterranean_colony_tooltip
+		hidden_effect = {
+			create_message = {
+				type = "SUBTERRANEAN"
+				days = 30
+				target = planet
+				localization = message_subterranean_subterranean
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+
+		modifier = {
+			add = 100
+			NOT = {
+				has_deposit = d_bubbling_swamp
+			}
+		}
+	}
+}
+

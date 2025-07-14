@@ -1,0 +1,491 @@
+### The Blocker Mod - Scripted Localization
+
+
+# Colonial Affairs
+defined_text = {
+	name = ColonialAffairs
+	text = {
+		trigger = {
+			is_egalitarian = yes
+		}
+		localization_key = tbm_colonial_council
+	}
+	text = {
+		trigger = {
+			OR = {
+				is_autocracy = yes
+			}
+		}
+		localization_key = tbm_colonial_viceroy
+	}
+	text = {
+		localization_key = tbm_colonial_affairs
+	}
+}
+
+defined_text = {
+	name = ColonialAffairsCaps
+	text = {
+		trigger = {
+			is_egalitarian = yes
+		}
+		localization_key = tbm_colonial_council_cap
+	}
+	text = {
+		trigger = {
+			OR = {
+				is_autocracy = yes
+			}
+		}
+		localization_key = tbm_colonial_viceroy_cap
+	}
+	text = {
+		localization_key = tbm_colonial_affairs_cap
+	}
+}
+
+defined_text = {
+	name = GetColonistName
+	text = {
+		trigger = {
+			is_regular_empire = yes
+		}
+		localization_key = tbm_colonist_name
+	}
+	text = {
+		trigger = {
+			is_hive_empire = yes
+		}
+		localization_key = tbm_hive_colonist_name
+	}
+	text = {
+		trigger = {
+			is_machine_empire = yes
+		}
+		localization_key = tbm_machine_colonist_name
+	}
+}
+
+defined_text = {
+	name = GetColonistNamePlural
+	text = {
+		trigger = {
+			is_regular_empire = yes
+		}
+		localization_key = tbm_colonist_name_plural
+	}
+	text = {
+		trigger = {
+			is_hive_empire = yes
+		}
+		localization_key = tbm_hive_colonist_name_plural
+	}
+	text = {
+		trigger = {
+			is_machine_empire = yes
+		}
+		localization_key = tbm_machine_colonist_name_plural
+	}
+}
+
+
+defined_text = {
+	name = GetProjectName
+	text = {
+		trigger = {
+			has_special_project = WATERS_OF_LIFE
+		}
+		localization_key = tbm_waters_of_life_project_name
+	}
+	text = {
+		trigger = {
+			has_special_project = CITY_OF_THE_DESERT
+		}
+		localization_key = tbm_city_desert_project_name
+	}
+}
+
+defined_text = {
+	name = GetStructureName
+	text = {
+		trigger = {
+			exists = event_target:ecumenopolis
+		}
+		localization_key = tbm_shiny_rock_ecumenopolis
+	}
+	text = {
+		trigger = {
+			exists = event_target:seat_of_power
+		}
+		localization_key = tbm_shiny_rock_federation
+	}
+	text = {
+		trigger = {
+			exists = event_target:sphere
+		}
+		localization_key = tbm_shiny_rock_dyson_sphere
+	}
+	text = {
+		trigger = {
+			exists = event_target:fortress
+		}
+		localization_key = tbm_shiny_rock_starbase
+	}
+}
+
+defined_text = {
+	name = GetLithoidCradle
+	text = {
+		trigger = {
+			event_target:lithoid_deposit = {
+				is_deposit_type = d_mineral_fields
+			}
+		}
+		localization_key = tbm_shiny_rock_lithoids_mineral_fields
+	}
+	text = {
+		trigger = {
+			event_target:lithoid_deposit = {
+				is_deposit_type = d_basaltic_outcrops
+			}
+		}
+		localization_key = tbm_shiny_rock_lithoid_basaltic_outcrops
+	}
+}
+
+defined_text = {
+	name = ColonistSpecialFriend
+	text = {
+		trigger = {
+			event_target:colonist_name = {
+				gender = female
+			}
+		}
+		localization_key = tbm_colonist_boyfriend
+	}
+	text = {
+		trigger = {
+			event_target:colonist_name = {
+				gender = male
+			}
+		}
+		localization_key = tbm_colonist_girlfriend
+	}
+	text = {
+		trigger = {
+			event_target:colonist_name = {
+				gender = indeterminable
+			}
+		}
+		localization_key = tbm_colonist_special_friend
+	}
+}
+
+# Disabled unless deposits get dynamically-generated text
+# defined_text = {
+# 	name = MountainName
+# 	text = {
+# 		trigger = {
+# 			event_target:named_mountain = {
+# 				is_deposit_type = d_colonist_mountain
+# 			}
+# 		}
+# 		localization_key = tbm_mt_colonist
+# 	}
+# 	text = {
+# 		trigger = {
+# 			event_target:named_mountain = {
+# 				is_deposit_type = d_homeworld_mountain
+# 			}
+# 		}
+# 		localization_key = tbm_mt_homeworld
+# 	}
+# 	text = {
+# 		trigger = {
+# 			event_target:named_mountain = {
+# 				is_deposit_type = d_ruler_mountain
+# 			}
+# 		}
+# 		localization_key = tbm_mt_ruler
+# 	}
+# }
+
+defined_text = {
+	name = RowdyBunch
+	text = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_authority = auth_democratic
+					has_civic = civic_environmentalist
+					has_civic = civic_beacon_of_liberty
+				}
+			}
+			NOT = { has_ruling_class = yes }
+		}
+		localization_key = tbm_unruly_peasants
+	}
+	text = {
+		trigger = {
+			has_ruling_class = yes
+			NOT = {
+				owner = {
+					NOR = {
+						has_authority = auth_democratic
+						has_civic = civic_environmentalist
+						has_civic = civic_beacon_of_liberty
+					}
+				}
+			}
+		}
+		localization_key = tbm_organized_environmentalists
+	}
+}
+
+defined_text = {
+	name = GovernmentType # Used mainly for Situations to aovid gestalt weirdness.
+	text = {
+		trigger = {
+			owner = { is_hive_empire = yes }
+		}
+		localization_key = tbm_gov_hive
+	}
+	text = {
+		trigger = {
+			owner = { is_machine_empire =  yes }
+		}
+		localization_key = tbm_gov_machine
+	}
+	text = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		localization_key =tbm_gov_reg
+	}
+}
+
+
+### General Terms
+
+defined_text = {
+	name = Sunset
+	text = {
+		trigger = {
+			solar_system.star = {
+				OR = {
+					is_binary_star = yes
+					is_trinary_star = yes
+				}
+			}
+		}
+		localization_key = tbm_sunset
+	}
+}
+
+defined_text = {
+	name = SunsetType
+	text = {
+		trigger = {
+			solar_system.star = {
+					is_binary_star = yes
+			}
+		}
+		localization_key = tbm_binary_sunset
+	}
+	text = {
+		trigger = {
+			solar_system.star = {
+				is_trinary_star = yes
+			}
+		}
+		localization_key = tbm_trinary_sunset
+	}
+}
+
+defined_text = {
+	name = SunsetTypePlural
+	text = {
+		trigger = {
+			solar_system.star = {
+					is_binary_star = yes
+			}
+		}
+		localization_key = tbm_binary_sunset_plural
+	}
+	text = {
+		trigger = {
+			solar_system.star = {
+				is_trinary_star = yes
+			}
+		}
+		localization_key = tbm_trinary_sunset_plural
+	}
+}
+
+defined_text = {
+	name = SunsetTypeCap
+	text = {
+		trigger = {
+			solar_system.star = {
+					is_binary_star = yes
+			}
+		}
+		localization_key = tbm_binary_sunset_cap
+	}
+	text = {
+		trigger = {
+			solar_system.star = {
+				is_trinary_star = yes
+			}
+		}
+		localization_key = tbm_trinary_sunset_cap
+	}
+}
+
+defined_text = {
+	name = SunsetTypeCapPlural
+	text = {
+		trigger = {
+			solar_system.star = {
+					is_binary_star = yes
+			}
+		}
+		localization_key = tbm_binary_sunset_cap_plural
+	}
+	text = {
+		trigger = {
+			solar_system.star = {
+				is_trinary_star = yes
+			}
+		}
+		localization_key = tbm_trinary_sunset_cap_plural
+	}
+}
+
+defined_text = {
+	name = SunType
+	text = {
+		trigger = {
+			solar_system.star = {
+					is_binary_star = yes
+			}
+		}
+		localization_key = tbm_binary_multiple_suns_set
+	}
+}
+
+defined_text = {
+	name = SunsetDependentPlural
+	text = {
+		trigger = {
+			solar_system.star = {
+				is_binary_star = yes
+			}
+		}
+		localization_key = tbm_sunset_set	# Binary suns set.
+	}
+	text = {
+		trigger = {
+			NOT = {
+				solar_system.star = { is_binary_star = yes }
+			}
+		}
+		localization_key = tbm_sunset_dependent_plural	# Unary sun sets
+	}
+}
+
+defined_text = {
+	name = EruptionTerraforming
+	text = {
+		trigger = {
+			owner = {
+				has_technology = tech_terrestrial_sculpting
+			}
+		}
+		localization_key = tbm_eruption_has_terraforming
+	}
+	text = {
+		trigger = {
+			NOT = {
+				owner = {
+					has_technology = tech_terrestrial_sculpting
+				}
+			}
+		}
+		localization_key = tbm_eruption_no_terraforming
+	}
+}
+
+defined_text = {
+	name = sinkhole_destruction
+	text = {
+		trigger = {
+			from = {
+				num_free_districts = {
+					type = any
+					value < 1
+				}
+			}
+		}
+		localization_key = tbm_infrastructure_destroyed
+	}
+}
+
+defined_text = {
+	name = carbon_economy
+	text = {
+		trigger = {
+			from = {
+				check_variable = {
+					which = @carbon_economy
+					value = 1
+				}
+			}
+		}
+		localization_key = tbm_carbon_coal
+	}
+	text = {
+		trigger = {
+			from = {
+				check_variable = {
+					which = @carbon_economy
+					value = 2
+				}
+			}
+		}
+		localization_key = tbm_carbon_oil
+	}
+	text = {
+		trigger = {
+			from = {
+				check_variable = {
+					which = @carbon_economy
+					value = 3
+				}
+			}
+		}
+		localization_key = tbm_carbon_gas
+	}
+}
+
+defined_text = {
+	name = CityName
+	text = {
+		trigger = {
+			is_regular_empire = yes
+		}
+		localization_key = tbm_city_name
+	}
+	text = {
+		trigger = {
+			is_hive_empire = yes
+		}
+		localization_key = tbm_hive_city_name
+	}
+	text = {
+		trigger = {
+			is_machine_empire = yes
+		}
+		localization_key = tbm_machine_city_name
+	}
+}

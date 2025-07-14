@@ -1,0 +1,321 @@
+# ### THe Blocker Mod - Scripted Effects
+
+# Removes all deposits on a world, then removes any custom modifiers or effects that TBM triggers via on_cleared (e.g. Cleared Hot Springs). As a result, this should only be called at or near galaxy-generation to avoid interfering with dynamic gameplay.
+clear_deposits_without_effects = {
+	this = {
+		every_deposit = {
+			remove_deposit = yes
+		}
+
+		if = {
+			limit = {
+				OR = {
+					has_modifier = cleared_hot_springs
+					has_modifier = privatizations
+				}
+			}
+			remove_modifier = cleared_hot_springs
+			remove_modifier = privatizations
+		}
+	}
+}
+
+# Used to avoid removing the deposits that tend to make players happy
+clear_deposits_except_special = {
+	while = {
+		count = trigger:num_deposits
+		random_deposit = {
+			limit = {
+				NOR = {
+					has_deposit_category = deposit_cat_rare
+					has_deposit_category = deposit_cat_rare_blocker
+				}
+			}
+			remove_deposit = yes
+		}
+	}
+}
+
+# Should usually be hidden.
+add_from_barren = {
+	random_list = {
+		20 = {
+			add_deposit = d_fertile_lands
+		}
+		20 = {
+			add_deposit = d_mineral_fields		
+		}
+		210 = {
+			add_deposit = d_floodplains
+		}
+		210 = {
+			add_deposit = d_boggy_fens
+		}
+		10 = {
+			add_deposit = d_mire
+		}
+		10 = {
+			add_deposit = d_scrubland
+		}
+		20 = {
+			add_deposit = d_rough_plains
+		}
+		20 = {
+			add_deposit = d_misty_plains
+		}
+		20 = {
+			add_deposit = d_drylands
+		}
+		5 = {
+			add_deposit = d_salt_flats
+		}
+	}	
+}
+
+# Solution to clear a city district that takes into account alternative city types
+remove_city_if_poss_and_other_if_not_regular = {
+	if = {
+		limit = {
+			num_districts = {
+				type = district_city
+				value > 0
+			}
+		}
+		remove_district = district_city
+	}
+	else_if = {
+		limit = {
+			is_artificial = yes
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = any
+					value > 0
+				}
+			}
+			remove_last_built_district = yes
+		}
+		else = {
+			add_planet_devastation = 25
+		}
+	}
+	else_if = {
+		limit = {
+			num_districts = {
+				type = district_industrial
+				value > 0
+			}
+		}
+		remove_district = district_industrial
+	}
+	else_if = {
+		limit = {
+			num_districts = {
+				type = any
+				value > 0
+			}
+		}
+		remove_last_built_district = yes
+	}
+	else = {
+		add_planet_devastation = 25
+	}
+}
+
+
+remove_random_district = {
+	
+	# Compatibility failsafe for Planetary Diversity
+	# Revert to removing last-built district.
+	if = {
+		limit = {
+			has_global_flag = planetarydiversity
+		}
+		remove_last_built_district = yes
+	}
+	
+	# Deal with ecus, usual
+	if = {
+		limit = {
+			is_planet_class = pc_city
+			owner = { 
+				is_regular_empire = yes
+			}
+		}
+		
+		### Ecumenopoleis Districts
+		random_list = {
+			20 = {
+				remove_district = district_arcology_administrative
+			}
+			20 = {
+				remove_district = district_arcology_arms_industry
+			}
+			20 = {
+				remove_district = district_arcology_civilian_industry
+			}
+			20 = {
+				remove_district = district_arcology_housing
+			}
+			20 = {
+				remove_district = district_arcology_leisure
+			}
+		}
+	}
+
+	# Deal with ecus, hive
+	else_if = {
+		limit = {
+			is_planet_class = pc_city
+			owner = { 
+				is_hive_empire = yes
+			}
+		}
+		
+		### Ecumenopoleis Districts - Hive
+		random_list = {
+			20 = {
+				remove_district = district_arcology_housing
+			}
+			20 = {
+				remove_district = district_arcology_arms_industry
+			}
+			20 = {
+				remove_district = district_arcology_administrative
+			}
+			20 = {
+				remove_district = district_arcology_leisure
+			}
+		}
+	}
+
+	# Deal with ecus - servitor
+	else_if = {
+		limit = {
+			owner = { 
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+
+		random_list = {
+			20 = {
+				remove_district = district_arcology_housing
+			}
+			20 = {
+				remove_district = district_arcology_arms_industry
+			}
+			20 = {
+				remove_district = district_arcology_organic_housing
+			}
+			20 = {
+				remove_district = district_arcology_civilian_industry
+			}
+			20 = {
+				remove_district = district_arcology_leisure
+			}
+		}
+	}
+	
+	# Deal with ecus, machine
+	else_if = {
+		limit = {
+			is_planet_class = pc_city
+			owner = { 
+				is_machine_empire = yes
+			}
+		}
+
+		# Ecumenopolis Districts - Machine
+		random_list = {
+			20 = {
+				remove_district = district_arcology_housing
+			}
+			20 = {
+				remove_district = district_arcology_arms_industry
+			}
+			20 = {
+				remove_district = district_arcology_administrative
+			}
+			20 = {
+				remove_district = district_arcology_leisure
+			}
+		}
+
+	}
+
+	else = {
+		random_list = {
+			20 = {
+				remove_district = district_city
+			}
+			20 = {
+				remove_district = district_industrial
+			}
+			20 = {
+				remove_district = district_generator
+			}
+			20 = {
+				remove_district = district_mining
+			}
+			20 = {
+				remove_district = district_farming
+			}
+		}
+	}
+}
+
+climate_control_activate = {
+	this = {
+		save_global_event_target_as = melted_deposit
+	}
+	random_list = {
+		50 = {
+			modifier = {
+				factor = 0.5
+				owner = { has_technology = tech_terrestrial_sculpting }
+			}
+			modifier = {
+				factor = 0.5
+				owner = { has_technology = tech_ecological_adaptation }
+			}
+			modifier = {
+				factor = 0
+				owner = { has_ascension_perk = ap_mastery_of_nature }
+			}
+			planet_event = {
+				id = tbm.30
+				days = 1
+			}
+		}
+		50 = {}
+	}
+}
+
+melt_something = {
+	if = {
+		limit = {
+			event_target:melted_deposit = {
+				is_deposit_type = d_massive_glacier
+			}
+		}
+		add_deposit = d_glacier_lake
+	}
+
+	else_if = {
+		limit = {
+			event_target:melted_deposit = {
+				is_deposit_type = d_frozen_wasteland
+			}
+		}
+		add_deposit = d_lakelands
+	}
+
+	else = {
+		add_deposit = d_rough_plains
+	}
+
+
+
+	clear_global_event_target = melted_deposit
+}

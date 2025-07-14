@@ -1,0 +1,165 @@
+### The Blocker Mod - Events #4
+### Here are some things that will give you more energy.
+
+namespace = tbm
+
+@devastation = 5
+
+
+### INDEX ###
+#	410. Deep-Crust Exploration
+#	412. Selective Defoliants
+###
+
+
+### 410. Deep-Crust Exploration Backfires
+planet_event = {
+	id = tbm.410
+
+	is_triggered_only = yes
+
+	title = tbm.410_title
+	desc = tbm.410_desc
+	picture = GFX_evt_derelict_interior
+	show_sound = event_metal_fatigue
+
+	option = {
+		name = UNFORTUNATE
+		hidden_effect = {
+			set_variable_to_random_value = {
+				which = @devastation
+				min = 5
+				max = 25
+			}
+		}
+		add_planet_devastation = @devastation
+		random_list = {
+			33 = {
+				custom_tooltip = lose_district_tooltip
+				remove_city_if_poss_and_other_if_not_regular = yes
+			}
+			33 = { 
+				custom_tooltip = new_volcano_tooltip
+				add_deposit = d_active_volcano
+			}
+			33 = { custom_tooltip = lose_district_nothing }
+		}
+	}
+}
+
+### 411. Deep-Crust Exploration Disocvery (message)
+planet_event = {
+	id = tbm.411
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			20 = {
+				add_deposit = d_geothermal_vent
+			}
+			20 = {
+				add_deposit = d_magma_lake
+			}
+			20 = {
+				add_deposit = d_oil_fields_at_first_light
+			}
+			20 = {
+				add_deposit = d_subterranean_gas_lake
+			}
+			20 = {
+				add_deposit = d_bubbling_swamp
+				modifier = {
+					factor = 0
+					any_deposit = {
+						is_deposit_type = d_bubbling_swamp
+					}
+				}
+			}
+		}
+
+		last_added_deposit = {
+			save_event_target_as = discovered_deep_crust
+		}
+		
+		create_message = {
+			type = "DEEP_CRUST"
+			localization = tbm_deep_crust_discovery
+			target = root
+			days = 30
+		}
+	}
+}
+
+### 412. Feature Defoliated
+planet_event = {
+	id = tbm.412
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_deposit = {
+			limit = {
+				tree_feature = yes
+			}
+
+			save_event_target_as = defoliated
+			
+			root = {
+				create_message = {
+					type = "SELECTIVE_DEFOLIATION"
+					localization = tbm_message_successful_defoliation
+					target = root
+					days = 30
+				}
+			}
+			
+			remove_deposit = yes
+		}
+	}
+}
+
+
+### 413. Bad Luck, That
+planet_event = {
+	id = tbm.413
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_deposit = {
+			limit = {
+				tree_feature = yes
+			}
+
+			save_event_target_as = defoliated
+			
+			root = {
+				random_list = {
+					50 = {
+						add_deposit = d_acidic_residue
+					}
+					50 = {
+						add_deposit = d_cesspool
+					}
+				}
+
+				last_added_deposit = {
+					save_event_target_as = defoliant_byproduct
+				}
+				
+				create_message = {
+					type = "SELECTIVE_DEFOLIATION"
+					localization = tbm_message_unsuccessful_defoliation
+					target = root
+					days = 30
+				}
+			}
+			
+			remove_deposit = yes
+		}
+	}
+}

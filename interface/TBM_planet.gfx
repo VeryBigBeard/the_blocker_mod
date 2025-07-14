@@ -1,0 +1,10 @@
+### TBM - Sprite Sheet: Planets
+#	Only for special locked Tomb World; see planet_classes
+
+spriteTypes = {
+	spriteType = { 
+		name = "GFX_planet_type_nuked_tbm"
+		sprite_sheet_sprite_type = "GFX_planet_type"
+		default_frame = 17
+	}
+}

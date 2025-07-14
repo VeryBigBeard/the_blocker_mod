@@ -1,0 +1,875 @@
+### The Blocker Mod - Events - Pg. 3
+
+namespace = tbm
+
+
+### INDEX ###
+#	300. Mining Prospects
+#	301. Fossil Fuel Discovery (Handler)
+#	302. Fossil Fuel Discovery
+#	310. Reactor Explosion Handler
+#	311. Fusion Reaction Goes Critical
+#	312. Cold Fusion Leak
+#	313. Antimatter Core Breach
+#	314. Remove Antimatter Spatial Damage (background)
+#	315. Reactor Warning Signs
+
+### Variables
+
+@carbon_economy = 1
+
+### 300. Mining Prospects
+planet_event = {
+	id = tbm.300
+
+	title = tbm.300_title
+	desc = tbm.300_desc
+	picture = GFX_evt_mining_operations
+	show_sound = event_machinery
+
+	is_triggered_only = yes
+	location = this
+
+	# Add a mining feature.
+	option = {
+		name = tbm.300.mining
+		custom_tooltip = tbm.300_mining_tooltip
+		
+		hidden_effect = {
+			random_list = {
+				20 = {
+					add_deposit = d_submerged_ore_veins
+				}
+				20 = {
+					add_deposit = d_ore_rich_caverns
+				}
+				20 = {
+					add_deposit = d_basaltic_outcrops
+				}
+				20 = {
+					add_deposit = d_tbm_strip_mine
+				}
+				20 = {
+					add_deposit = d_mine_shafts
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+	# Sell the mine.
+	option = {
+		name = tbm.300.sell
+		custom_tooltip = tbm.300.tooltip # The mine will provide some tax revenue, but is also a heavy polluter.
+		owner = {
+			add_resource = {
+				energy = 800
+			}
+		}
+		
+		add_deposit = d_private_mines
+
+		ai_chance = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = tbm.300.preserve_landscape
+		custom_tooltip = tbm.300.preserve_landscape_tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_valid_civic = civic_environmentalist
+					is_spiritualist = yes
+				}
+			}
+		}
+
+		last_added_deposit = {
+			remove_deposit = yes
+		}
+
+		add_deposit = d_big_nature_preserve_blocker
+	}
+
+	after = {
+		hidden_effect = {
+			change_variable = {
+				which = @prospecting_chance
+				value = 1
+			}
+			set_timed_global_flag = {
+				flag = prospecting_cooldown
+				years = 20
+			}
+		}
+	}
+}
+
+### 301. Fossil Fuel Deposit Discovered (Handler)
+planet_event = {
+	id = tbm.301
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		has_ground_combat = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		years_passed > 5
+		colony_age > 20
+		colony_age < 100
+		is_starting_planet = no
+		is_artificial = no
+		NOT = { has_planet_flag = fossil_fuel_discovered }
+	}
+
+	immediate = {
+
+		set_planet_flag = fossil_fuel_discovered
+
+		random_list = {
+			# 5% chance to discover new fossil fuels
+			5 = {
+				
+				# More likely on dry or cold worlds
+				modifier = {
+					add = 5
+					OR = {
+						is_dry = yes
+						is_cold = yes
+					}
+				}
+
+				# More likely if you are digging a lot
+				modifier = {
+					add = 5
+					num_districts = {
+						type = district_mining
+						value > 5
+					}
+				}
+				
+				# x2 if likely to pay good money for it
+				modifier = {
+					factor = 2
+					OR = {
+						owner = {
+							OR = {
+								is_materialist = yes
+								has_authority = auth_corporate
+							}
+						}
+					}
+				}
+
+				# Add 5 if there's high demand
+				modifier = {
+					add = 5
+					num_districts = {
+						type = district_generator
+						value < 3
+					}
+					num_free_districts = {
+						type = district_generator
+						value < 1
+					}
+				}
+
+				# Half as likely if environmentalist
+				modifier = {
+					factor = 0.5
+					owner = { has_valid_civic = civic_environmentalist }
+				}
+
+				### Determine which old-fashioned fuel we discovered
+				set_variable_to_random_value = {
+					which = @carbon_economy
+					min = 1
+					max = 3
+					rounded = yes
+				}
+
+				planet_event = {
+					id = tbm.302
+					days = 180
+					random = 180
+				}
+			}
+
+			95 = {}
+		}
+	}
+}
+
+### 302. Fossil Fuel Discovery
+planet_event = {
+	id = tbm.302
+
+	is_triggered_only = yes
+	location = this
+
+	title = tbm.302_name
+	desc = {
+		text = tbm.302_desc_coal
+		trigger = {
+			check_variable = {
+				which = @carbon_economy
+				value = 1
+			}
+			owner = { is_gestalt = no }
+		}
+	}
+	desc = {
+		text = tbm.302_desc_coal_gestalt
+		trigger = {
+			check_variable = {
+				which = @carbon_economy
+				value = 2
+			}
+			owner = { is_gestalt = yes }
+		}
+	}
+	desc = {
+		text = tbm.302_desc_oil
+		trigger = {
+			check_variable = {
+				which = @carbon_economy
+				value = 2
+			}
+			owner = { is_gestalt = no }
+		}
+	}
+	desc = {
+		text = tbm.302_desc_oil_gestalt
+		trigger = {
+			check_variable = {
+				which = @carbon_economy
+				value = 2
+			}
+			owner = { is_gestalt = yes }
+		}
+	}
+	desc = {
+		text = tbm.302_desc_gas
+		trigger = {
+			check_variable = {
+				which = @carbon_economy
+				value = 3
+			}
+			owner = { is_gestalt = no }
+		}
+	}
+	desc = {
+		text = tbm.302_desc_gas_gestalt
+		trigger = {
+			check_variable = {
+				which = @carbon_economy
+				value = 3
+			}
+			owner = { is_gestalt = yes }
+		}
+	}
+	picture = GFX_evt_mining_operations
+	show_sound = event_machinery
+
+	option = {
+		name = tbm.302_exploit
+		if = {
+			limit = {
+				check_variable = {
+					which = @carbon_economy
+					value = 1
+				}
+			}
+			add_deposit = d_coal_bed
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = @carbon_economy
+					value = 2
+				}
+			}
+			add_deposit = d_oil_fields_at_first_light
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					which = @carbon_economy
+					value = 3
+				}
+			}
+			add_deposit = d_subterranean_gas_lake
+		}
+		else = {
+		}
+	}
+
+	option = {
+		name = tbm.302_sell
+		add_deposit = d_private_mines
+		owner = {
+			add_resource = {
+				energy = 2000
+			}
+		}
+	}
+
+	option = {
+		name = tbm.302_forbidden
+		exclusive_trigger = {
+			owner = { has_valid_civic = civic_environmentalist }
+		}
+		owner = {
+			add_resource = {
+				unity = 1000
+			}
+		}
+	}
+}
+
+### 310. Reactor Explosion Handler (boom!) (on_colony_year_pulse)
+#	5% chance every year if the planet has a reactor. Cannot occur after ZPMs researched.
+planet_event = {
+	id = tbm.310
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		OR = {
+			has_deposit = d_fusion_reactor
+			has_deposit = d_cold_fusion_pits
+			has_deposit = d_antimatter_core
+		}
+	}
+
+	immediate = {
+		# Get deposit being affected--we need this later
+		# Consequently, only one reactor can have problems per year, but that seems reasonable.
+		random_deposit = {
+			limit = {
+				OR = {
+					is_deposit_type = d_fusion_reactor
+					is_deposit_type = d_cold_fusion_pits
+					is_deposit_type = d_antimatter_core
+				}
+			}
+			save_event_target_as = reactor
+		}
+
+		random_list = {
+			# No problems this year
+			80 = {
+				
+				# Safety is considerably better when we understand the next level of power up.
+				modifier = {
+					factor = 2
+					owner = {
+						has_technology = tech_cold_fusion_power
+					}
+					event_target:reactor = {
+						is_deposit_type = d_fusion_reactor
+					}
+				}
+				modifier = {
+					factor = 2
+					owner = {
+						has_technology = tech_antimatter_power
+					}
+					event_target:reactor = {
+						is_deposit_type = d_cold_fusion_pits
+					}
+				}
+				modifier = {
+					factor = 0
+					owner = {
+						has_technology = tech_zero_point_power
+					}
+				}
+			}
+			
+			# Warning signs event
+			15 = {
+				
+				# Having Zero-Point Power eliminates possibility of explosions.
+				modifier = {
+					factor = 0
+					owner = {
+						has_technology = tech_zero_point_power
+					}
+				}
+				
+				planet_event = {
+					id = tbm.315
+					days = 360
+					random = 180
+				}
+			}
+
+			# Uh-oh
+			5 = {
+				# But it's only fair if certain things increase this...
+				modifier = {
+					factor = 10
+					has_ground_combat = yes
+				}
+
+				modifier = {
+					factor = 2
+					is_occupied_flag = yes
+				}
+
+				# Having Zero-Point Power eliminates possibility of explosions.
+				modifier = {
+					factor = 0
+					owner = {
+						has_technology = tech_zero_point_power
+					}
+				}
+				
+				if = {
+					limit = {
+						event_target:reactor = {
+							is_deposit_type = d_fusion_reactor
+						}
+					}
+					planet_event = {
+						id = tbm.311
+						days = 360
+						random = 180
+					}
+				}
+				else_if = {
+					limit = {
+						event_target:reactor = {
+							is_deposit_type = d_cold_fusion_pits
+						}
+					}
+					planet_event = {
+						id = tbm.312
+						days = 360
+						random = 180
+					}
+				}
+				else_if = {
+					limit = {
+						event_target:reactor = {
+							is_deposit_type = d_antimatter_core
+						}
+					}
+					planet_event = {
+						id = tbm.313
+						days = 360
+						random = 180
+					}
+				}
+			}
+		}
+	}
+}
+
+### 311. Fusion Reactor Goes Critical
+planet_event = {
+	id = tbm.311
+
+	is_triggered_only = yes
+	location = this	
+
+	title = tbm.311_name
+	desc = {
+		text = tbm.311_desc
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+	# desc = {
+	# 	text = tbm.311_desc_gestalt
+	# 	trigger = {
+	# 		owner = { is_gestalt = yes }
+	# 	}
+	# }
+	picture = GFX_evt_nuclear_explosion
+	show_sound = event_air_raid_siren
+
+	option = {
+		name = UNFORTUNATE
+		add_planet_devastation = 25
+		custom_tooltip = tbm.311_tooltip
+	}
+
+	after = {
+		
+		hidden_effect = {
+			#  Always: Remove reactor (naturally), destroy city, kill pop living there
+			event_target:reactor = {
+				remove_deposit = yes
+			}
+			remove_city_if_poss_and_other_if_not_regular = yes
+			random_owned_pop = {
+				kill_pop = yes
+			}
+
+			# Add 2 extra nasties
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}		
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}
+		}		
+	}
+}
+
+### 312. Cold Fusion Leak
+planet_event = {
+	id = tbm.312
+
+	is_triggered_only = yes
+	location = this
+
+	title = tbm.312_name
+	desc = {
+		text = tbm.312_desc
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+	desc = {
+		text = tbm.312_desc_gestalt
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+	picture = GFX_evt_nuclear_explosion
+	show_sound = event_air_raid_siren
+
+	option = {
+		name = UNFORTUNATE
+		add_planet_devastation = 50
+		custom_tooltip = tbm.312_tooltip
+	}
+
+	after = {
+		hidden_effect = {
+			#  Always: Remove reactor (naturally), destroy city, kill pop living there
+			event_target:reactor = {
+				remove_deposit = yes
+			}
+			remove_city_if_poss_and_other_if_not_regular = yes
+			random_owned_pop = {
+				kill_pop = yes
+			}
+
+			# Add 3 extra nasties
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}		
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+### 313. Antimatter Core Breach
+planet_event = {
+	id = tbm.313
+
+	is_triggered_only = yes
+	location = this
+
+	title = tbm.313_name
+	desc = {
+		text = tbm.313_desc
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+	desc = {
+		text = tbm.313_desc_gestalt
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+	picture = GFX_evt_nuclear_explosion
+	show_sound = event_air_raid_siren
+
+	option = {
+		name = UNFORTUNATE
+		add_planet_devastation = 100
+		custom_tooltip = tbm.313_tooltip
+	}
+
+	after = {
+		hidden_effect = {
+		
+			#  Always: Remove reactor (naturally), destroy city, kill pop living there
+			event_target:reactor = {
+				remove_deposit = yes
+			}
+			remove_city_if_poss_and_other_if_not_regular = yes
+			random_owned_pop = {
+				kill_pop = yes
+			}
+
+			# Add 4 extra nasties
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}		
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}
+			random_list = {
+				20 = {
+					ruin_building = random_no_capital
+				}
+				20 = {
+					add_deposit = d_rubble
+				}
+				20 = {
+					add_deposit = d_barren
+				}
+				20 = {
+					add_deposit = d_radioactive_wasteland
+				}
+				20 = {
+					random_owned_pop = {
+						kill_pop = yes
+					}
+				}
+			}
+		}				
+		
+		hidden_effect = {
+			system_star = {
+				create_turbulent_nebula_1 = yes
+				last_created_ambient_object = {
+					save_global_event_target_as = antimatter_echoes
+				}
+				
+				solar_system = {
+					system_event = {
+						id = tbm.314
+						days = 7200
+					}
+				}
+			}
+		}
+	}
+}
+
+### 314. Remove Antimatter Spatial Damage
+system_event = {
+	id = tbm.314
+
+	is_triggered_only = yes
+	location = this
+
+	title = tbm.314_name
+	desc = tbm.314_desc
+	picture = GFX_evt_ship_in_orbit
+	show_sound = event_radio_chatter
+
+	immediate = {
+		event_target:antimatter_echoes = {
+			destroy_ambient_object = this
+		}
+		clear_global_event_target = antimatter_echoes
+	}
+
+	option = {
+		name = GOOD
+		custom_tooltip = tbm.314_tooltip
+	}
+}
+
+### 315. Reactor Warning Signs
+planet_event = {
+	id = tbm.315
+
+	is_triggered_only = yes
+	location = this
+
+	title = tbm.315_name
+	desc = {
+		trigger = {
+			owner = { is_regular_empire = yes }
+		}
+		text = tbm.315_desc
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt =  yes }
+		}
+		text = tbm.315_desc_gestalt
+	}
+	picture = GFX_evt_glitchy_matrix
+	show_sound = event_worrying_signal
+
+	# trigger = {
+	# 	NOT = { has_planet_flag = reactor_warning }
+	# }
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_planet_flag = reactor_warning }}
+			hidden_effect = {
+				set_planet_flag = reactor_warning 	# You only get one warning
+			}
+		}
+		else = {}
+	}
+
+	option = {
+		name = UNDERSTOOD
+	}
+}
+

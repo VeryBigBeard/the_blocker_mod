@@ -1,0 +1,39 @@
+### The Blocker Mod - Economic Categories
+#
+#	TBM overwrites planet_colonists to allow them to play a larger role.
+#	If you use another mod that overwrites this, you can patch them by simply adding generate_add_modifiers and generate_mult_modifiers below.
+
+planet_colonist = {
+	parent = planet_jobs
+	generate_add_modifiers = {
+		produces
+		upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	modifier_category = pop	
+}
+
+
+
+### TBM: Custom
+
+planet_scrap_miners = {
+	parent = planet_miners
+	generate_add_modifiers = {
+		produces
+		upkeep
+	}
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+}
+
+planet_poachers = {
+	parent = planet_jobs_productive
+}
+
+

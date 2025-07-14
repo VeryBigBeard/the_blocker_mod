@@ -1,0 +1,116 @@
+### Post-Apocalyptic Environmental Remediation - Industrialization Score
+		
+
+		# A point is added:		
+		if = {
+			limit = {
+				num_pops > 60	
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = 1
+			}
+		}
+		
+		if = {
+			limit = {
+				num_districts = {
+					type = district_industrial
+					value >= 6
+				}
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = 1
+			}
+		}
+
+		if = {
+			limit = {
+				this.solar_system = {
+					has_system_trade_value >= 1000
+				}
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = 1
+			}
+		}
+
+		if = {
+			limit = {
+				owner = {
+					controlled_systems > 50
+				}
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = 1
+			}
+		}
+
+		
+		# A poinht is subtracted:
+
+		if = {
+			limit = {
+				has_deposit = d_survival_camps
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = -1
+			}
+		}
+
+		if = {
+			limit = {
+				any_owned_pop = {
+					has_job = scrap_miner
+				}
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = -1
+			}
+		}
+
+		if = {
+			limit = {
+				owner = {
+					resource_income_compare = {
+						resource = food
+						value < 0
+					}
+				}
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = -1
+			}
+		}
+
+		if = {
+			limit = {
+				count_owned_pop = {
+					limit = { is_unemployed = yes }
+					count > 4
+				}
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = -1
+			}
+		}
+
+		if = {
+			limit = {
+				check_variable_arithmetic = {
+					which = value:specialist_ratio
+					value < 0.4
+				}
+			}
+			change_variable = {
+				which = post_apoc_industrialization_score
+				value = -1
+			}
+		}

@@ -1,0 +1,1458 @@
+### The Blocker Mod - Events #2
+
+namespace = tbm
+
+### INDEX ###
+#
+#	50. Kelp Handler
+#	51. Poisoned By Kelp
+#	52. Kelp Insights
+#	53. Fish Attack (Handler)
+#	54. Fish Attack
+#	55. Fish Attacks Continue
+#	56. Bigger Fish Attack
+#	57. Xenofish Attraction
+#	58. Xenofish Specialist Eaten By Fish
+#	76. Shifting Sands (Handler)
+#	77. Shifting Sands
+#	78. Project Event (Shifting Sands)
+#	79. Caverns Beneath (Shifting Sands)
+#	81. Sudden Sinkhole (Message + logic
+#	82. Sinkhole Causes
+#	83. Caverns Beneath (Sudden Sinkhole)
+#	84. Vicious Sandstorm (Handler)
+#	85. Vicious Sandstorm (Message)
+#	86. Motherlode Handler
+#	87. Struck the Motherlode
+#	88. False Prospects
+#	89. Mine-shaft Collapse (Handler)
+#	90. Mine-shaft Collapses
+###
+
+### Variables
+
+@mines = 0
+@miners = 1
+@miner_output_add = 0
+@miner_output_mult = 0
+@miner_monthly = 4
+
+@trees = 0
+
+### 50. Kelp Handler
+planet_event = {
+	id = tbm.50
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		is_homeworld = no
+		has_owner = yes
+	}
+
+	trigger = {
+		is_starting_planet = no
+		has_deposit = d_toxic_kelp
+		any_owned_pop = {
+			has_job = colonist
+		}
+		colony_age > 2	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.
+		NOT = { has_planet_flag = toxic_kelp_encounter }
+	}
+
+	immediate = {
+		random_list = {
+			25 = {
+				planet_event = {
+					id = tbm.51
+				}
+			}
+
+			75 = {}
+		}
+	}
+}
+
+# 51. Poisoned By Kelp (Toxic Kelp)
+planet_event = {
+	id = tbm.51
+
+	title = tbm.51.name
+	desc = tbm.51.desc
+	picture = GFX_evt_underwater_ruins
+	show_sound = event_alien_nature
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		hidden_effect = {
+			set_timed_planet_flag = {
+				flag = toxic_kelp_encounter
+				years = 5
+			}
+		}
+	}
+
+	option = {
+		name = tbm.51.kelp
+		random_owned_pop = {
+			limit = { has_job = colonist }
+			kill_pop = yes
+		}
+		# Kill a second colonist if aquatic. Potential colony abandonment WAD -- Kelp Is Dangerous!!!
+		if = {
+			limit = {
+				owner_main_species = { has_trait = trait_aquatic }
+			}
+			random_owned_pop = {
+				limit = { has_job = colonist }
+				kill_pop = yes
+			}
+		}
+	}
+}
+
+# 52. Kelp Insights (Toxic Kelp)
+# 10% to roll on clearing Toxic Kelp
+planet_event = {
+	id = tbm.52
+
+	title = tbm.52.name
+	desc = tbm.52.desc
+	picture = GFX_evt_underwater_ruins
+	show_sound = event_scanner
+
+	is_triggered_only = yes
+	location = this
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+	}
+
+	trigger = {
+		is_starting_planet = no
+		exists = owner
+		owner = {
+			NOR = {
+				has_modifier = kelp_bioweapons
+				has_modifier = kelp_breakfasts
+			}
+		}
+	}
+
+	option = {
+		name = tbm.52.weapons
+		owner = {
+			add_modifier = {
+				modifier = kelp_bioweapons
+			}
+		}	
+	}
+
+	option = {
+		name = tbm.52.breakfast
+		owner = {
+			add_modifier = {
+				modifier = kelp_breakfasts
+			}
+		}
+	}
+
+	after = {
+		owner = {
+			add_resource = {
+				society_research = @tier2researchreward
+			}
+		}
+	}
+
+}
+
+# 53. Fish Attack
+planet_event = {
+	id = tbm.53
+
+	picture = GFX_evt_unspeakable_horror
+	show_sound = dragon_attack_mouth
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+	}
+
+	trigger = {
+		is_starting_planet = no
+		has_deposit = d_submerged_ore_veins
+		has_district = district_mining
+	}
+
+	# Handler
+	immediate = {
+
+		this = {
+			save_event_target_as = fish_planet
+		}
+
+		random_list = {
+			5 = {
+				modifier = {
+					add = 5
+					is_wet = yes
+				}
+				modifier = {
+					factor = 2
+					owner_main_species = {
+						has_trait = trait_aquatic
+					}
+				}
+				modifier = {
+					add = 10
+					is_planet_class = pc_ocean
+				}
+				modifier = {
+					add = 10
+					OR = {
+						has_planet_flag = planet_drenched	# Something unexpected got in there.
+						check_variable = {
+							which = ice_dumping_happened
+							value > 0
+						}
+					}
+				}
+				modifier = {
+					factor = 0.25
+					has_planet_flag = docile_fish
+				}
+
+				# Set whether crew will escape or not.
+				random_list = {
+					50 = {
+						modifier = {
+							factor = 2
+							owner_main_species = { has_trait = trait_aquatic	}
+						}
+						set_planet_flag = crew_escaped
+					}
+					50 = {}
+				}
+
+				# Fish Attack!
+				planet_event = { id = tbm.54 days = 1 }
+			}
+			85 = {}
+		}
+	}
+}
+
+# 54. Fish Attack! (Message)
+planet_event = {
+	id = tbm.54
+
+	title = tbm.54.title
+	desc = {
+		exclusive_trigger = {
+			has_planet_flag = crew_escaped
+		}
+		text = tbm.54.escapes
+	}
+	desc = {
+		exclusive_trigger = {
+			NOT = { has_planet_flag = crew_escaped }
+		}
+		text = tbm.54.eaten
+	}
+	picture = GFX_evt_unspeakable_horror
+	show_sound = dragon_attack_mouth
+
+	location = this
+	is_triggered_only = yes
+
+	option = {
+		name = tbm.54.name
+		custom_tooltip = tbm.54.worse
+
+		# Figure out how much was in the sub (1 month worth of 2 pops minerals from planet)
+		hidden_effect = {
+			random_owned_pop = {
+				limit = {
+					has_job = miner
+				}
+				save_event_target_as = sub_miner
+				set_variable = {
+					which = @miner_output_add
+					value = value:resource_shipment|RESOURCE|minerals|
+				}
+				multiply_variable = {
+					which = @miner_output_add
+					value = -2
+				}
+			}
+		}
+
+		# Lose the shipment
+		owner = {
+			add_resource = {
+				minerals = @miner_output_add
+			}
+		}	
+
+		# Miners on the sub die
+		if = {
+			limit = { 
+				NOT = { has_planet_flag = crew_escaped }
+			}
+			event_target:sub_miner = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				limit = {
+					has_job = miner
+				}
+				kill_pop = yes
+			}
+		}
+
+		# They say there's worse down there...
+		hidden_effect = {
+			random_list = {
+			
+				# Nothing else... for now.
+				60 = {
+					# And 50% that the fish aren't so bad, really.
+					random_list = {
+						50 = {
+							set_planet_flag = docile_fish
+						}
+						50 = {}
+					}				
+				}
+	
+				# Fish Attacks Continue (Xenofish Attracted to Zro)
+				20 = {
+					planet_event = { 
+						id = tbm.55
+						days = 1440
+						random = 720 
+					}
+				}
+	
+				# There's Always A Bigger Fish
+				10 = {
+					planet_event = { 
+						id = tbm.56 
+						days = 1440 
+						random = 720 
+					}
+				}
+	
+				# Rumours of a Great Monster
+				10 = {
+					modifier = {
+						factor = 0		# Until I finish writing it
+						always = yes
+					}
+					
+				}
+			}
+		}
+	}
+}
+
+### 55. Fish Attacks Continue
+planet_event = {
+	id = tbm.55
+
+	title = tbm.55.name
+	desc = tbm.55.desc
+	picture = GFX_evt_unspeakable_horror
+	show_sound = aqu_dragon_attack_mouth
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm.55.a
+		owner = {
+			add_resource = {
+				minerals = @miner_monthly
+			}
+		}
+		enable_special_project = {
+			name = "XENOFISH_STUDY"
+		}
+	}
+
+	option = {
+		name = tbm.55.strike
+		add_modifier = {
+			modifier = miners_strike
+			days = 180
+		}
+		hidden_effect = {
+			random_list = {
+				40 = {
+					modifier = {
+						factor = 0		# Until I finish writing it
+						always = yes
+					}
+				}
+				40 = {
+					planet_event = { 
+						id = tbm.56 
+						days = 1800
+						random = 720 
+					}
+				}
+				20 = {}
+			}
+		}
+	}
+}
+
+### 56. Bigger Fish Attack
+planet_event = {
+	id = tbm.56
+
+	title = tbm.56.name
+	desc = tbm.56.desc
+	picture = GFX_evt_unspeakable_horror
+	show_sound = aqu_dragon_attack_mouth_deluge
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		add_deposit = d_titanic_life_blocker
+		add_modifier = {
+			modifier = bigger_fish
+		}
+		# hidden_effect = {
+		# }
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+### 57. Xenofish Attraction
+planet_event = {
+	id = tbm.57
+
+	title = tbm.57.name
+	desc = tbm.57.begin
+	desc = {
+		trigger = {
+			owner = { has_country_flag = zro_found }
+		}
+		text = tbm.57.zro
+	}
+	desc = {
+		trigger = {
+			owner = { has_technology = tech_mine_zro }
+		}
+		text = tbm.57.psionic
+	}
+	picture = GFX_evt_zro_3
+	show_sound = event_psionic
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		event_target:fish_planet = {
+			remove_deposit = d_submerged_ore_veins
+			add_deposit = d_submerged_zro_seam
+		}		
+	}
+
+	option = {
+		name = tbm.57.fix
+		exclusive_trigger = {
+			owner = { has_technology = tech_mine_zro }
+		}
+	}
+
+	option = {
+		name = tbm.57.study
+		trigger = {
+			owner = {
+				NOT = { has_technology = tech_mine_zro }
+				has_country_flag = zro_found
+			}
+		}
+		owner = { add_research_option = tech_mine_zro }
+		event_target:fish_planet = {
+			add_modifier = {
+				modifier = xenofish_attacks
+			}
+			set_planet_flag = zro_fish
+		}
+	}
+
+	option = {
+		name = tbm.57.c
+		custom_tooltip = tbm.57.nozro
+		event_target:fish_planet = {
+			hidden_effect = {
+				set_planet_flag = inaccessible_zro
+			}
+		}
+	}
+
+	# after = {
+	# 	hidden_effect = {
+	# 		random_list = {
+	# 			25 = {
+	# 	
+	# 			}
+	# 			75 = {}
+	# 		}
+	# 	}
+	# }
+}
+
+### 58. Xenofish Specialist Eaten By Fish
+planet_event = {
+	id = tbm.58
+
+	title = tbm.58.name
+	desc = tbm.58.desc
+	picture = GFX_evt_underwater_ruins
+	show_sound = dragon_wing_attack
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		
+		event_target:xenofish_specialist = {
+			kill_leader = {
+				show_notification = yes
+			}
+		}
+
+		event_target:fish_planet = {
+			hidden_effect = {
+				random_deposit = {
+					limit = {
+						is_deposit_type = d_submerged_ore_veins
+					}
+					save_event_target_as = fish_home
+				}
+			}
+			
+			add_blocker = {
+				type = d_dangerous_wildlife_blocker
+				blocked_deposit = event_target:fish_home
+			}
+	
+		}
+		#hidden_effect = {
+		#	random_list = {
+		#		25 = {
+		#		}
+		#		75 = {}
+		#	}
+		#}
+	}
+
+	option = {
+		name = OK
+	}
+
+	after = {
+		hidden_effect = {
+			clear_global_event_target = xenofish_specialist
+		}
+	}
+}
+
+### 76. Shifting Sands (Handler) (Quicksand Basin) (currently unused)
+#	Unused, but sticking around in case I change my mind about how to trigger it
+planet_event = {
+	id = tbm.76
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		always = no
+		is_starting_planet = no
+		is_dry = yes
+	}
+
+	immediate = {
+		this = { save_event_target_as = sand_planet }
+		planet_event = { id = tbm.77 days = 180 random = 180}
+	}
+}
+
+### 77. Shifting Sands
+planet_event = {
+	id = tbm.77
+
+	title = tbm.77.name
+	desc = tbm.77.desc
+	picture = GFX_evt_ancient_records
+	show_sound = event_swarm
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		this = { save_event_target_as = sand_planet }
+	}
+
+	option = {
+		name = tbm.77.ship
+		enable_special_project = {
+			name = "SHIFTING_SANDS"
+		}
+	}
+
+	option = {
+		name = tbm.77.rock
+		allow = {
+			owner = {
+				has_resource = {
+					type = minerals
+					amount >= 1000
+				}
+			}
+		}
+		remove_deposit = d_quicksand_basin
+		owner = {
+			add_resource = {
+				minerals = -1000
+			}
+		}
+	}
+
+	option = {
+		name = tbm.77.survive
+		hidden_effect = {
+			add_deposit = d_quicksand_basin
+		}
+	}
+}
+
+### 78. Ship Project Event (Shifting Sands)
+# ship_event = {
+# 	id = tbm.78
+
+# 	is_triggered_only = yes
+# 	hide_window = yes
+
+# 	immediate = {
+# 		leader = {
+# 			save_event_target_as = first_contact_officer	# Need this name in 80.
+# 		}
+		
+# 		event_target:sand_planet = {
+# 			planet_event = {
+# 				id = tbm.79
+# 				days = 1
+# 			}
+# 		}
+# 	}
+# }
+
+### 79. Caverns Beneath (Shifting Sands)
+planet_event = {
+	id = tbm.79
+
+	title = tbm.79.name
+	desc = tbm.79.desc
+	picture = GFX_evt_archaeological_dig
+	show_sound = archeology_notifications_random_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = tbm.79.expedition
+		hidden_effect = {
+			planet_event = {
+				id = tbm.80
+				days = 20
+			}
+		}
+		
+		# random_list = {
+		# 	10 = {
+		# 		modifier = {
+		# 			factor = 0	# Fun stuff in the future.
+		# 			always = yes
+		# 		}
+		# 	}
+		# 	90 = {
+		# 		planet_event = {
+		# 			id = tbm.80
+		# 			days = 20
+		# 		}
+		# 	}
+		# }
+	}
+
+	option = {
+		name = tbm.79.clear
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		remove_deposit = d_quicksand_basin
+	}
+
+	option = {
+		name = tbm.79.subterraneans
+		trigger = {
+			OR = {
+				owner = {
+					any_controlled_planet = {
+						OR = {
+							has_deposit = d_underground_contact_zone
+							has_deposit = d_underground_farm
+							has_deposit = d_underground_farm_blocked
+							has_deposit = d_underground_farm_dead
+						}
+					}
+				}
+				owner = {
+					has_country_flag = not_another_subterranean_civilization
+				}
+				
+				owner = {
+					any_relation = {
+						has_origin = origin_subterranean
+					}
+				}
+			}	
+		}
+
+		planet_event = {
+			id = tbm.80
+			days = 20 		
+		}
+
+		# random_list = {
+		# 	10 = {
+		# 		modifier = {
+		# 			factor = 0	# Fun stuff in the future.	
+		# 			always = yes
+		# 		}
+		# 	}
+		# 	90 = {
+		# 		planet_event = {
+		# 			id = tbm.80
+		# 			days = 20
+		# 		}
+		# 	}
+		# }
+	}
+
+	after = {
+		owner = {
+			set_country_flag = not_another_subterranean_civilization # In case you get this event twice. This technically counts as an encounter.
+		}
+	}
+}
+
+### 80. Sand Tides (Shifting Sands)
+planet_event = {
+	id = tbm.80
+
+	title = tbm.80.name
+	desc = tbm.80.desc
+	desc = {
+		trigger = {
+			owner = { has_technology = tech_noxious_swamp }
+		}
+		text = tbm.80.desc.swamp
+	}
+	desc = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+		text = tbm.80.desc.superstitions
+	}
+	picture = GFX_evt_landing_ship
+	show_sound = event_scanner
+
+	is_triggered_only = yes
+
+	option = {
+		name = tbm.80.climate
+		allow = {
+			owner = { has_technology = tech_noxious_swamp }
+		}
+		add_modifier = {
+			modifier = shifting_sands
+		}
+	}
+
+	option = {
+		name = tbm.80.fascinating
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	option = {
+		name = tbm.80.miracle
+		custom_tooltip = tbm.80.tooltip
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_spiritualist
+				}
+			}
+		}
+		set_planet_flag = sand_tides	# Not a trigger flag--adds unity from colonists/clerks to Quicksand Basin.
+	}
+}
+
+
+### 81. Sudden Sinkhole (Deep Sinkhole)
+#	Triggered from tbm_handler.17 (Sinkhole Spawner)
+planet_event = {
+	id = tbm.81
+
+	is_triggered_only = yes
+	hide_window = yes
+	location = this
+
+	immediate = {
+		
+		if = {
+			limit = {
+				num_free_districts = {
+					type = any
+					value > 1
+				}
+			}
+			# Do nothing, will lose district with feature.
+		}
+		else = {
+			add_planet_devastation = 10
+		}
+
+		add_deposit = d_deep_sinkhole
+
+		create_message = {
+			type = "SUDDEN_SINKHOLE"
+			localization = tbm_message_sudden_sinkhole
+			days = 30
+			target = this
+		}
+	}
+}
+
+### 82. Sinkhole Causes
+planet_event = {
+	id = tbm.82
+
+	title = tbm.82.name
+	desc = tbm.82.desc
+	picture = GFX_evt_arid
+	show_sound = event_activating_unknown_technology
+
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		
+		if = {
+			limit = {
+				num_free_districts = {
+					type = any
+					value > 1
+				}
+			}
+			# Do nothing, will lose district with feature.
+		}
+		else = {
+			add_planet_devastation = 10
+		}
+
+		add_deposit = d_deep_sinkhole
+	}
+
+	option = {
+		name = tbm.82.investigate
+		root = {
+			enable_special_project = {
+				name = "SOMETHING_IN_THE_PIPES"
+				location = this
+			}
+		}
+		set_planet_flag = sinkhole_investigated
+	}
+	
+	option = {
+		name = tbm.82.clear		
+		owner = {
+			add_resource = {
+				energy = -250
+				minerals = -200
+			}
+		}
+		remove_deposit = d_deep_sinkhole
+		set_planet_flag = occasional_sinkholes
+	}
+}
+
+### 83. Caverns Beneath (Sinkhole Causes)
+planet_event = {
+	id = tbm.83
+
+	title = tbm.83.name
+	desc = {
+		trigger = { owner = { is_gestalt = no }}
+		text = tbm.83.desc
+	}
+	desc = {
+		trigger = { owner = { is_gestalt = no }}
+		text = tbm.83.desc_gestalt
+	}
+	picture = GFX_evt_in_the_dark
+	show_sound = aqu_dragon_attack_mouth_deluge
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = tbm.83.safe
+		remove_planet_flag = sinkhole_causes
+		owner = {
+			set_country_flag = safe_from_sinkholes
+		}
+	}
+
+	option = {
+		name = tbm.83.cruises
+		custom_tooltip = tbm.83.sinkholes
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		set_planet_flag = occasional_sinkholes
+		remove_planet_flag = sinkhole_investigated
+		add_modifier = {
+			modifier = subterranean_river_cruises
+		}
+	}
+}
+
+### 84. Vicious Sandstorm (Handler) (Various)
+planet_event = {
+	id = tbm.84
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		exists = owner
+		owner = { is_country_type = default }
+		is_dry = yes
+		OR = {
+			has_deposit = d_searing_desert
+			has_deposit = d_sandsea
+			has_deposit = d_great_desert
+			has_deposit = d_great_city
+		}
+		NOT = { has_planet_flag = sandstorm }
+	}
+
+	immediate = {
+		hidden_effect = {		
+			set_variable = {
+				which = @trees
+				value = value:forestation
+			}
+		}
+		
+		random_list = {
+			5 = {
+				modifier = {
+					factor = 2	
+					check_variable = {
+						which = @trees
+						value < 2
+					}
+				}
+				planet_event = {
+					id = tbm.85
+					days = 30
+					random = 20
+				}
+			}
+			95 = {}
+		}
+	}
+}
+
+### 85. Vicious Sandstorm
+planet_event = {
+	id = tbm.85
+
+	hide_window = yes
+	is_triggered_only = yes
+	location = this
+
+	immediate = {
+		hidden_effect = {
+			set_timed_planet_flag = {
+				flag = sandstorm
+				years = 10
+			}
+		}
+
+		add_planet_devastation = 10
+		add_modifier = {
+			modifier = sandstorms
+			days = 180
+		}
+
+		create_message = {
+			type = "SANDSTORM"
+			localization = message_sandstorm
+			days = 30
+			target = this
+		}
+	}
+}
+
+### 86. Struck The Motherlode (Handler) (on_district_complete)
+planet_event = {
+	id = tbm.86
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	pre_triggers = {
+		has_owner = yes
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		last_district_changed = district_mining
+		OR = {
+			has_mineral_seam = yes
+		}
+		is_artificial = no
+	}
+
+	immediate = {
+		# Get @num_miners
+		export_trigger_value_to_variable = {
+			trigger = num_assigned_jobs
+			parameters = {
+				job = miner
+			}
+			variable = @miners
+		}
+
+		# Get deposit with the seam
+		random_deposit = {
+			limit = {
+				has_mineral_seam = yes
+			}
+			save_event_target_as = mineral_seam
+		}
+
+		random_list = {			
+			# Struck the Motherlode
+			1 = {
+				modifier = {
+					factor = 0
+					OR = {
+						owner = { has_country_flag = struck_the_motherlode }	#Can only strike so many motherlodes... and we don't want every planet in the galaxy to get High-Quality Minerals eventually.
+						has_planet_flag = motherlode
+						has_planet_modifier = pm_mineral_poor
+						has_planet_modifier = pm_mineral_rich
+						has_planet_modifier = pm_ultra_rich
+						has_modifier = mineral_rich # See above
+						has_modifier = ultra_rich
+					}
+				}
+				modifier = {
+					factor = 2
+					OR = {
+						has_planet_modifier = pm_asteroid_impacts
+						has_planet_modifier = pm_carbon_world
+						has_planet_modifier = pm_high_gravity
+					}
+					
+				}
+				modifier = {
+					add = @miners
+				}
+				planet_event = {
+					id = tbm.87
+					days = 60
+					random = 30
+				}
+				set_planet_flag = motherlode
+			}
+			# Failed Prospects
+			4 = {
+				modifier = {
+					add = @miners
+				}
+				planet_event = {
+					id = tbm.88
+					days = 60
+					random = 30
+				}
+			}
+			# Standard mining district, normal output
+			95 = {}
+		}
+	}
+}
+
+### 87. The Motherlode
+planet_event = {
+	id = tbm.87
+
+	title = tbm.87.name
+	desc = tbm.87.desc
+	picture = GFX_evt_hidden_door
+	show_sound = event_machinery
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = TBM_WONDERFUL
+		this = {
+			owner = { set_country_flag = struck_the_motherlode }
+			random_list = {
+				75 = {					
+					add_modifier = {
+						modifier = mineral_rich
+					}
+				}
+				25 = {
+					add_modifier = {
+						modifier = ultra_rich
+					}
+					hidden_effect = {
+						random_list = {
+							50 = {}
+							
+							# False Prospects
+							50 = {
+								planet_event = {
+									id = tbm.88
+									days = 180
+									random = 360
+								}
+							}
+						}
+					}
+					
+					
+					
+				}
+			}
+		}
+	}
+}
+
+### 88. False Prospects (Various mining)
+planet_event = {
+	id = tbm.88
+
+	title = tbm.88.name
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm.88.desc
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm.88.desc_gestalt
+	}
+	picture = GFX_evt_discovered_hidden_door
+	show_sound = event_wind_ruins
+
+	is_triggered_only = yes
+	location = this
+
+	option = {
+		name = OK
+
+		if = {
+			limit = {
+				owner = { is_gestalt = yes }
+			}
+			add_modifier = {
+				modifier = false_prospects_gestalt
+				years = 5
+			}
+		}
+		else = {
+			add_modifier = {
+				modifier = false_prospects
+				years = 5
+			}
+		}
+		event_target:mineral_seam = {
+			remove_deposit = yes
+		}
+		create_pop = {
+			species = owner_main_species
+			ethos = random
+		}
+		create_pop = {
+			species = owner_main_species
+			ethos = random
+		}
+		create_pop = {
+			species = owner_main_species
+			ethos = random
+		}
+	}
+}
+
+### 89. Mine-Shaft Collapse (Handler) (Various caves)
+# on_five_year_pulse
+planet_event = {
+	id = tbm.89
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		has_owner = yes
+	}
+
+	trigger = {
+		has_mine_shafts = yes
+		num_districts = {
+			type = district_mining
+			value > 1
+		}
+	}
+
+	immediate = {
+		
+		export_trigger_value_to_variable = {
+			trigger = num_assigned_jobs
+			parameters = {
+				job = miner
+			}
+			variable = @miners
+		}
+
+		random_list = {
+			10 = {
+				modifier = {
+					add = @miners
+				}
+				modifier = {
+					add = @mines
+				}
+				modifier = {
+					add = 5
+					owner = {
+						OR = {
+							is_capitalist = yes
+							is_industrialist = yes
+						}
+					}
+				}
+
+				random_deposit = {
+					limit = {
+						has_mine_shafts = yes
+					}
+					save_event_target_as = collapsed_mine
+				}
+
+				set_variable_to_random_value = {
+					which = @casualty_chance
+					min = 1
+					max = 100
+				}
+
+				planet_event = {
+					id = tbm.90
+					days = 60
+					random = 15
+				}
+			}
+			90 = {}
+		}
+	}
+}
+
+### 90. Mine Shaft Collapse (Various caves)
+planet_event = {
+	id = tbm.90
+
+	is_triggered_only = yes
+	location = this
+
+	title = tbm.90_name
+	desc = {
+		text = tbm.90_desc_robotic_deaths
+		trigger = {
+			check_variable = {
+				which = @casualty_chance
+				value > 50
+			}
+			owner = {
+				OR = {
+					has_policy_flag = ai_servitude
+					is_gestalt = yes
+				}
+			}	
+			count_owned_pop = {
+				limit = {
+					has_job = miner
+					is_robotic_species = yes
+				}
+				count >= 2
+			}
+		}
+	}
+	desc = {
+		text = tbm.90_desc_miner_deaths
+		trigger = {
+			check_variable = {
+				which = @casualty_chance
+				value > 50
+			}
+		}
+	}
+	desc = {
+		text = tbm.90_desc_no_deaths
+		trigger = {
+			check_variable = {
+				which = @casualty_chance
+				value <= 50
+			}
+		}
+	}
+	picture = GFX_evt_collapsing_roof
+	show_sound = event_structural_collapse
+
+	option = {
+		name = UNFORTUNATE
+	}
+
+	after = {
+
+		### Damage
+		event_target:collapsed_mine = {
+			remove_deposit = yes
+		}
+		
+		### Casualties
+		if = {
+			limit = {
+				check_variable = {
+					which = @casualty_chance
+					value > 50
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							has_policy_flag = ai_servitude
+							is_gestalt = yes
+						}
+					}
+					count_owned_pop = {
+						limit = {
+							has_job = miner
+							is_robotic_species = yes
+						}
+						count >= 2
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						has_job = miner
+						OR = {
+							AND = {
+								is_robotic_species = yes
+								owner = { is_gestalt = no }
+							}
+							owner = { is_gestalt = yes }
+						}
+					}
+					kill_pop = yes
+					kill_pop = yes
+				}
+			}
+			else = {
+				random_owned_pop = {
+					limit = {
+						has_job = miner
+					}
+					kill_pop = yes
+					kill_pop = yes
+				}
+
+				add_modifier = {
+					modifier = miners_strike
+					days = 720
+				}
+			}
+		}
+		else = {
+		}
+	}
+}
