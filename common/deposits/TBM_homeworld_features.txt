@@ -655,7 +655,7 @@ d_rare_metals_lab = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		pop_growth_speed = -0.05
+		BIOLOGICAL_bonus_pop_growth = 0.05
 		pop_happiness = -0.05
 	}
 
@@ -926,7 +926,7 @@ d_battery_farms = {
 		potential = {
 			exists = owner
 			owner = { has_civic = civic_machine_terminator }
-			any_owned_pop = {
+			any_owned_pop_group = {
 				has_purge_type = {
 					type = purge_matrix
 				}
@@ -1225,7 +1225,7 @@ d_gestalt_fossil_fuel_reserves = {
 			exists = owner
 			owner = { has_civic = civic_machine_servitor }
 		}
-		pop_category_bio_trophy_unity_produces_mult = -0.1
+		planet_bio_trophies_unity_produces_mult = -0.1
 	}
 
 	potential = {
@@ -1282,7 +1282,7 @@ d_inaugural_spaceport = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		trade_value_mult = -0.05
+		planet_jobs_trade_produces_mult = 0.05
 	}
 
 	potential = {
@@ -2009,7 +2009,7 @@ d_megaliths = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		pop_growth_speed = -0.25		# Lithoids already get -25%; intent here is to allow you to trade another major hit to pop growth in exchange for scaling unity over time.
+		LITHOID_pop_growth_reduction = -0.25 	# Lithoids already get -25%; intent here is to allow you to trade another major hit to pop growth in exchange for scaling unity over time.
 	}
 
 	potential = {
@@ -2385,7 +2385,7 @@ d_fish_plants = {
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_amenities_add = -5
+		planet_amenities_add = -500
 		planet_farmers_unity_upkeep_add = 1
 	}
 
@@ -2430,7 +2430,7 @@ d_windy_archipelago = {
 	planet_modifier = {
 		district_generator_max = 1
 		habitability_ceil_add = -0.05
-		trade_value_mult = -0.10
+		planet_jobs_trade_produces_mult = -0.10
 	}
 
 	potential = {
@@ -2492,7 +2492,9 @@ d_homeworld_dormant_supervolcano = {
 
 	planet_modifier = {
 		district_generator_max = 2
-		planet_researchers_unity_produces_add = -0.33
+		planet_physicists_unity_upkeep_add = 0.33
+		planet_biologists_unity_upkeep_add = 0.33
+		planet_engineers_unity_upkeep_add = 0.33
 	}
 
 	potential = {
@@ -2734,10 +2736,8 @@ d_ancient_forests = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		planet_researchers_society_research_produces_add = 3
-		planet_researchers_physics_research_produces_add = 3
-		planet_researchers_engineering_research_produces_add = 3
-		planet_amenities_add = 5
+		planet_researchers_produces_mult = 0.3
+		planet_amenities_add = 500
 	}
 
 	potential = {
@@ -2778,7 +2778,9 @@ d_remnant_dilapidated_reactor = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		planet_researchers_alloys_upkeep_add = 1
+		planet_physicists_alloys_upkeep_add = 1
+		planet_biologists_alloys_upkeep_add = 1
+		planet_engineers_alloys_upkeep_add = 1
 	}
 
 	potential = {
@@ -2898,7 +2900,7 @@ d_planetary_superhighway = {
 	should_swap_deposit_on_terraforming = no
 
 	planet_modifier = {
-		trade_value_mult = 1
+		planet_jobs_trade_produces_mult = 0.2
 	}
 
 	potential = {
@@ -3165,7 +3167,7 @@ d_homeworld_food_replicators = {	# Breaks down after a while
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_amenities_add = 10
+		planet_amenities_add = 500
 	}
 
 	potential = {
@@ -3286,7 +3288,6 @@ d_flooded_city = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
-		planet_amenities_add = 5
 	}
 
 	potential = {
@@ -3795,7 +3796,9 @@ d_exoagricultural_experimentation = {
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_researchers_food_upkeep_add = 1
+		planet_physicists_food_upkeep_add = 1
+		planet_biologists_food_upkeep_add = 1
+		planet_engineers_food_upkeep_add = 1
 	}
 
 	potential = {
@@ -3872,7 +3875,7 @@ d_slush_funds = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		trade_value_mult = -0.15	# Need to counter energy of MCs somehow
+		planet_jobs_trade_produces_mult = -0.15	# Need to counter energy of MCs somehow
 		planet_crime_mult = 0.1
 	}
 
@@ -3948,7 +3951,7 @@ d_subsurface_spaceport = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		trade_value_mult = 0.25
+		planet_jobs_trade_produces_mult = 0.25
 	}
 
 	triggered_planet_modifier = {
@@ -4204,7 +4207,7 @@ d_continental_shelf = {
 	planet_modifier = {
 		planet_max_districts_add = -2
 		district_mining_max = 1
-		planet_amenities_add = 5
+		planet_amenities_add = 500
 	}
 
 	potential = {
@@ -4409,7 +4412,9 @@ d_experimental_fusion_reactor = {
 
 	planet_modifier = {
 		planet_technician_energy_produces_add = 1
-		planet_researchers_alloys_upkeep_add = 2	# Partly as a downside for the player, partly to rubber-band Advanced Starts
+		planet_physicists_alloys_upkeep_add = 2
+		planet_biologists_alloys_upkeep_add = 2
+		planet_engineers_alloys_upkeep_add = 2	# Partly as a downside for the player, partly to rubber-band Advanced Starts
 		job_technician_add = 2
 	}
 
@@ -4424,9 +4429,19 @@ d_experimental_fusion_reactor = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_gestalt = yes }
+			owner = { is_hive_empire = yes }
 		}
-		job_calculator_add = 2
+		job_synapse_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		job_coordinator_add = 2
 	}
 
 	potential = {
@@ -4505,7 +4520,7 @@ d_space_academy = {
 			exists = owner
 			owner = { is_materialist = yes }
 		}
-		trade_value_mult = 0.15
+		planet_jobs_trade_produces_mult = 0.15
 	}
 
 	triggered_planet_modifier = {
@@ -4549,7 +4564,7 @@ d_flying_party = {
 	}
 
 	planet_modifier = {
-		planet_amenities_add = 10
+		planet_amenities_add = 1000
 		pop_cat_worker_happiness = -0.20
 	}
 
@@ -4584,7 +4599,7 @@ d_worlds_fair = {
 
 	planet_modifier = {
 		planet_crime_mult = -0.3
-		planet_amenities_add = 10
+		planet_amenities_add = 1000
 	}
 
 	potential = {
@@ -4617,7 +4632,7 @@ d_efficient_nodes = {
 
 	planet_modifier = {
 		planet_crime_mult = -0.3
-		planet_amenities_add = 10
+		planet_amenities_add = 1000
 	}
 
 	potential = {
@@ -4648,7 +4663,7 @@ d_upgrade_facility = {
 	}
 
 	planet_modifier = {
-		planet_amenities_add = 10
+		planet_amenities_add = 1000
 		planet_pop_assembly_mult = -0.2
 	}
 

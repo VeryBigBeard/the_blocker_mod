@@ -36,8 +36,8 @@
 ### TBM Custom Features - Natural (these can spawn)
 
 d_fjordland = {
-	icon = d_fjordland
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -60,6 +60,14 @@ d_fjordland = {
 		district_mining_max = 1
 		planet_amenities_mult = 0.05
 	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}	
 
 	on_cleared = {		
 		owner = {
@@ -154,6 +162,7 @@ d_fjordland = {
 
 d_mire = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -239,6 +248,7 @@ d_mire = {
 
 d_sandstone_spires = {
 	category = deposit_cat_minerals_rare
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -312,17 +322,14 @@ d_sandstone_spires = {
 			set = @keep
 			from = {
 				free_district_slots > 1
-				OR = {
-					colony_type = col_mining
-					colony_type = col_rural
-				}
+				colony_type = col_mining
 			}
 		}
 	}
 }
 
 d_natural_gardens = {
-	category = deposit_cat_food_rare
+	category = deposit_cat_food_rare	
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -365,6 +372,7 @@ d_natural_gardens = {
 
 d_steppe_uplands = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -385,6 +393,23 @@ d_steppe_uplands = {
 		district_mining_max = 1
 		district_generator_max = 1
 		#pop_category_workers_produces_mult = 0.05	# Cut for now, would have to overwrite pop_category to do this and it would cause a UI problem on the feature card
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	prerequisites = { "tech_mountain_range" }
@@ -444,7 +469,6 @@ d_steppe_uplands = {
 			set = @keep
 			from = {
 				OR = {
-					colony_type = col_rural
 					colony_type = col_generator
 					colony_type = col_mining
 				}
@@ -455,6 +479,7 @@ d_steppe_uplands = {
 
 d_glacier_lake = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -478,7 +503,7 @@ d_glacier_lake = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
-		planet_amenities_add = 5
+		planet_amenities_add = 350
 	}
 
 	triggered_planet_modifier = {
@@ -489,6 +514,14 @@ d_glacier_lake = {
 		modifier = {
 			planet_farmers_food_produces_mult = 0.1		# This is slightly easier than adding _produces modifiers to anglers, mainly for compatibility reasons. In effect, you can catch fish here.
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -538,6 +571,7 @@ d_glacier_lake = {
 d_giant_tree  = {
 	icon = d_huge_tree
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -630,7 +664,6 @@ d_giant_tree  = {
 				OR = {
 					colony_type = col_mining
 					colony_type = col_farming
-					colony_type = col_rural
 				}
 			}
 		}
@@ -678,7 +711,7 @@ d_sea_monster = {
 
 	planet_modifier = {
 		planet_jobs_food_produces_mult = 0.05
-		trade_value_mult = -0.05
+		planet_jobs_trade_produces_mult = -0.1
 		planet_researchers_society_research_produces_mult = 0.15
 	}
 
@@ -737,6 +770,7 @@ d_sea_monster = {
 
 d_great_lake = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -759,7 +793,7 @@ d_great_lake = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		planet_amenities_add = 10
+		planet_amenities_add = 250
 		planet_farmers_food_produces_mult = 0.1
 	}
 	
@@ -835,6 +869,7 @@ d_great_lake = {
 d_floodplains = {
 	icon = d_natural_farmland
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -853,6 +888,14 @@ d_floodplains = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -922,6 +965,7 @@ d_floodplains = {
 d_tidal_marshes = {
 	icon = d_natural_farmland
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
 	use_weights_for_blocker_swap_types = no
@@ -947,6 +991,22 @@ d_tidal_marshes = {
 		district_farming_max = 1
 		district_generator_max = 1
 		pop_happiness = -0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -1013,6 +1073,7 @@ d_tidal_marshes = {
 
 d_basaltic_outcrops = {
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1053,6 +1114,14 @@ d_basaltic_outcrops = {
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 1
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -1117,6 +1186,7 @@ d_basaltic_outcrops = {
 d_volcanic_island = {
 	icon = d_ocean
 	category = deposit_cat_energy
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1228,6 +1298,7 @@ d_volcanic_island = {
 d_volcanic_soil = {
 	icon = d_black_soil
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1260,6 +1331,14 @@ d_volcanic_soil = {
 		modifier = {
 			planet_colonist_society_research_produces_add = 2
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -1311,6 +1390,7 @@ d_volcanic_soil = {
 
 d_volcanic_ash = {
 	category = deposit_cat_blockers
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1479,6 +1559,7 @@ d_fish_shoals = {
 d_tbm_impact_crater = {
 	icon = d_crater
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1512,6 +1593,14 @@ d_tbm_impact_crater = {
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 2		
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -1560,6 +1649,7 @@ d_tbm_impact_crater = {
 
 d_frozen_wasteland = {
 	category = deposit_cat_energy
+	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1602,8 +1692,15 @@ d_frozen_wasteland = {
 	planet_modifier = {
 		planet_max_districts_add = -3
 		district_generator_max = 1
-		planet_buildings_cost_mult = 0.2
 		pop_happiness = -0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -1666,6 +1763,7 @@ d_frozen_wasteland = {
 d_mountain_jungle = {
 	#icon = d_old_mountain
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1692,7 +1790,7 @@ d_mountain_jungle = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		planet_amenities_add = 5
+		planet_amenities_add = 250
 		planet_researchers_society_research_produces_mult = 0.1
 	}
 
@@ -1702,7 +1800,7 @@ d_mountain_jungle = {
 			owner = { is_spiritualist = yes }
 		}
 		modifier = {
-			planet_priests_unity_produces_mult = 0.1
+			planet_bureaucrats_unity_produces_mult = 0.1
 		}
 	}
 
@@ -1787,16 +1885,6 @@ d_mountain_jungle = {
 		}
 
 		modifier = {
-			set = @keep	# Keep it around for research.
-			from = {
-				any_owned_pop = {
-					has_job = colonist
-				}
-				NOT = { colony_type = col_default }
-			}
-		}
-
-		modifier = {
 			set = @keep
 			from = {
 				OR = {
@@ -1811,7 +1899,7 @@ d_mountain_jungle = {
 			owner = {
 				is_spiritualist = yes
 				num_assigned_jobs = {
-					job = priest
+					job = bureaucrat
 					value > 1
 				}
 			}
@@ -1822,6 +1910,7 @@ d_mountain_jungle = {
 d_taiga = {
 	icon = d_old_infestation
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1924,15 +2013,11 @@ d_taiga = {
 		modifier = {
 			set = @base
 			from = {
-				any_owned_pop = {
-					has_job = colonist
+				num_pops_with_job_tag = {
+					value > 0
+					tags = { colonist }
 				}
 			}
-		}
-
-		modifier = {
-			set = @base
-			from = { colony_type = col_default }
 		}
 
 		modifier = {
@@ -1954,6 +2039,7 @@ d_taiga = {
 
 d_scrubland = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2054,21 +2140,18 @@ d_scrubland = {
 		modifier = {
 			set = @base
 			from = {
-				any_owned_pop = {
-					has_job = colonist
+				num_pops_with_job_tag = {
+					value > 0
+					tags = { colonist }
 				}
 			}
-		}
-
-		modifier = {
-			set = @base
-			from = { colony_type = col_default }
 		}
 	}
 }
 
 d_barren = {
 	category = deposit_cat_blockers_natural
+	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2113,6 +2196,7 @@ d_barren = {
 
 d_fertile_delta = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2159,6 +2243,22 @@ d_fertile_delta = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	drop_weight = {
 		weight = @low
 
@@ -2199,7 +2299,6 @@ d_fertile_delta = {
 			set = @base		# Keep unless industrial/urban, in which case keep until we need a district as it's still a good feature and clearing it has downsides.
 			from = {
 				NOR = {
-					colony_type = col_rural
 					colony_type = col_farming
 					colony_type = col_mining
 					colony_type = col_generator
@@ -2215,6 +2314,7 @@ d_fertile_delta = {
 
 d_drylands = {
 	category = deposit_cat_energy
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2241,6 +2341,14 @@ d_drylands = {
 		planet_miners_minerals_produces_mult = 0.05
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	drop_weight = {
 		weight = @high
 
@@ -2265,7 +2373,6 @@ d_drylands = {
 			set = @clear
 			from = {
 				NOR = {
-					colony_type = col_rural
 					colony_type = col_generator
 					colony_type = col_farming
 				}
@@ -2276,6 +2383,7 @@ d_drylands = {
 
 d_crags = {
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2305,8 +2413,8 @@ d_crags = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		planet_miners_minerals_produces_mult = 0.05
-		planet_amenities_add = 5
+		district_mining_max = 1
+		planet_amenities_add = 150
 	}
 
 	triggered_planet_modifier = {
@@ -2320,6 +2428,14 @@ d_crags = {
 		modifier = {
 			planet_colonist_minerals_produces_add = 2
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -2370,6 +2486,7 @@ d_crags = {
 
 d_dunelands = {
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2460,11 +2577,9 @@ d_dunelands = {
 		modifier = {
 			set = @base
 			from = {
-				OR = {
-					any_owned_pop = {
-						has_job = colonist
-					}
-					colony_type = col_default
+				num_pops_with_job_tag = {
+					value > 0
+					tags = { colonist }
 				}
 			}
 		}
@@ -2473,6 +2588,7 @@ d_dunelands = {
 
 d_highland_lake = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2492,7 +2608,15 @@ d_highland_lake = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_farming_max = 1
-		planet_amenities_add = 5
+		planet_amenities_add = 500
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -2563,6 +2687,7 @@ d_highland_lake = {
 
 d_lakelands = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2614,6 +2739,14 @@ d_lakelands = {
 		modifier = {
 			planet_colonist_society_research_produces_add = 2
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -2669,6 +2802,7 @@ d_lakelands = {
 
 d_lowland_hills = {
 	category = deposit_cat_blockers_natural
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2700,6 +2834,14 @@ d_lowland_hills = {
 		planet_max_districts_add = -2
 		district_farming_max = 1
 		planet_miners_minerals_produces_mult = 0.05
+	}
+
+	 triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -2846,6 +2988,7 @@ d_misty_plains = {
 
 d_salt_flats = {
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2893,6 +3036,14 @@ d_salt_flats = {
 			planet_colonist_engineering_research_produces_add = 2
 			planet_colonist_physics_research_produces_add = 1
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -2958,21 +3109,16 @@ d_arid_plains = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -1
 		district_generator_max = 1
 		planet_buildings_upkeep_mult = 0.2
 	}
 
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner.home_planet = {
-				is_dry = yes
-			}
+			always = yes
 		}
-		modifier = {
-			planet_max_districts_add = 1
-		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -3018,6 +3164,7 @@ d_arid_plains = {
 
 d_sandsea = {
 	category = deposit_cat_rare_blocker
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3085,6 +3232,14 @@ d_sandsea = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	potential = {
 		OR = {
 			is_dry = yes
@@ -3122,6 +3277,7 @@ d_sandsea = {
 
 d_sandstone_cliffs = {
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3164,6 +3320,14 @@ d_sandstone_cliffs = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	potential = {
 		NOT = { is_planet_class = pc_arctic }
 	}
@@ -3200,6 +3364,7 @@ d_sandstone_cliffs = {
 
 d_highlands = {
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3231,6 +3396,14 @@ d_highlands = {
 		planet_max_districts_add = -2
 		district_mining_max = 1
 		planet_amenities_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -3308,10 +3481,17 @@ d_rough_plains = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -1
 		district_farming_max = 1
 		planet_farmers_food_produces_mult = -0.05
 		planet_amenities_mult = -0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -3345,6 +3525,7 @@ d_seaweed_shoals = {
 	icon = d_boggy_fens
 	category = deposit_cat_blockers_natural
 	is_for_colonizable = yes
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	use_for_min_max_adjustments = yes
 
@@ -3386,15 +3567,22 @@ d_seaweed_shoals = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = {
-				any_owned_pop = {
-					has_job = colonist
-				}
+			num_pops_with_job_tag = {
+				value > 0
+				tags = { colonist }
 			}
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 1
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -3435,6 +3623,8 @@ d_seaweed_shoals = {
 
 d_gas_vents = {
 	category = deposit_cat_energy
+	inline_script = tbm_vanilla_deposit_cleanup
+
 	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
@@ -3466,6 +3656,14 @@ d_gas_vents = {
 		planet_max_districts_add = -1
 		district_generator_max = 1
 		planet_researchers_engineering_research_produces_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -3502,6 +3700,7 @@ d_gas_vents = {
 
 d_magma_lake = {
 	category = deposit_cat_blockers_natural
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3538,11 +3737,9 @@ d_magma_lake = {
 
 	triggered_planet_modifier = {
 		potential = {
-			any_owned_pop = {
-				OR = {
-					has_job = colonist
-					has_job = xeno_analysis_drone
-				}
+			num_pops_with_job_tag = {
+				value > 0
+				tags = { colonist }
 			}
 		}
 		planet_colonist_exotic_gases_produces_add = 0.5
@@ -3578,6 +3775,7 @@ d_magma_lake = {
 
 d_particle_storm = {
 	category = deposit_cat_rare_blocker
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3610,11 +3808,9 @@ d_particle_storm = {
 
 	triggered_planet_modifier = {
 		potential = {
-			any_owned_pop = {
-				OR = {
-					has_job = colonist
-					has_job = xeno_analysis_drone
-				}
+			num_pops_with_job_tag = {
+				value > 0
+				tags = { colonist }
 			}
 		}
 		planet_colonist_volatile_motes_produces_add = 0.5
@@ -3676,6 +3872,14 @@ d_coal_bed = {
 		planet_technician_energy_produces_mult = -0.05
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	drop_weight = {
 		weight = @high
 
@@ -3733,6 +3937,14 @@ d_subterranean_gas_lake = {
 		planet_technician_alloys_produces_add = -0.25
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	drop_weight = {
 		weight = @low
 
@@ -3782,6 +3994,8 @@ d_subterranean_gas_lake = {
 
 d_oil_fields_at_first_light = {
 	category = deposit_cat_blockers_natural
+	inline_script = tbm_vanilla_deposit_cleanup
+
 	is_for_colonizable = yes
 	
 	use_for_min_max_adjustments = yes
@@ -3810,6 +4024,14 @@ d_oil_fields_at_first_light = {
 		planet_max_districts_add = -1
 		district_generator_max = 1
 		planet_miners_energy_upkeep_add = -0.2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -3845,6 +4067,7 @@ d_oil_fields_at_first_light = {
 
 d_dust_flats = {
 	category = deposit_cat_energy
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3876,6 +4099,14 @@ d_dust_flats = {
 		planet_max_districts_add = -1
 		district_generator_max = 2
 		planet_technician_alloys_upkeep_add = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -3926,6 +4157,7 @@ d_dust_flats = {
 
 d_canyon = {
 	category = deposit_cat_blockers_natural
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3958,6 +4190,22 @@ d_canyon = {
 			}
 		}
 		planet_colonist_minerals_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -4007,6 +4255,7 @@ d_canyon = {
 
 d_chasm = {
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4040,6 +4289,14 @@ d_chasm = {
 			}
 		}
 		planet_colonist_physics_research_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -4106,6 +4363,14 @@ d_deep_tundra = {
 		planet_jobs_upkeep_mult = 0.05
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	potential = {
 		NOT = { is_planet_class = pc_nuked }
 	}
@@ -4145,6 +4410,7 @@ d_deep_tundra = {
 
 d_fells = {
 	category = deposit_cat_blockers_natural
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4174,7 +4440,7 @@ d_fells = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		planet_amenities_add = 2
+		planet_amenities_add = 250
 	}
 
 	triggered_planet_modifier = {
@@ -4225,6 +4491,7 @@ d_fells = {
 
 d_sand_wastes = {
 	category = deposit_cat_energy
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4270,6 +4537,14 @@ d_sand_wastes = {
 		planet_colonist_minerals_produces_add = 1
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	drop_weight = {
 		weight = @med
 
@@ -4301,6 +4576,8 @@ d_sand_wastes = {
 d_cloud_vale = {
 	icon = d_mistlands
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
+
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4319,7 +4596,7 @@ d_cloud_vale = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		planet_farmers_food_produces_mult = 0.15
-		planet_amenities_add = 2
+		planet_amenities_add = 500
 	}
 
 	triggered_planet_modifier = {
@@ -4360,6 +4637,7 @@ d_cloud_vale = {
 
 d_snowscape = {
 	category = deposit_cat_energy
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4382,7 +4660,7 @@ d_snowscape = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		district_generator_max = 1
-		planet_amenities_add = 5
+		planet_amenities_add = 750
 	}
 
 	triggered_planet_modifier = {
@@ -4390,8 +4668,8 @@ d_snowscape = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		planet_amenities_add = -5
-		planet_technician_energy_produces_mult = 10
+		planet_amenities_add = -500
+		planet_technician_energy_produces_mult = 0.1
 	}
 
 	triggered_planet_modifier = {
@@ -4403,6 +4681,14 @@ d_snowscape = {
 			}
 		}
 		planet_colonist_physics_research_produces_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -4423,6 +4709,7 @@ d_snowscape = {
 d_icy_bay = {
 	icon = d_snowscape
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4514,6 +4801,7 @@ d_icy_bay = {
 
 d_rugged_coast = {
 	category = deposit_cat_blockers_natural
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4532,7 +4820,7 @@ d_rugged_coast = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		planet_miners_minerals_produces_mult = 0.05
-		planet_amenities_add = 5
+		planet_amenities_add = 150
 	}
 
 	triggered_planet_modifier = {
@@ -4541,7 +4829,7 @@ d_rugged_coast = {
 			owner = { has_valid_civic = civic_anglers }
 		}
 		planet_miners_minerals_produces_mult = 0.05
-		planet_amenities_add = -3
+		planet_amenities_add = -250
 	}
 
 	drop_weight = {
@@ -4573,6 +4861,7 @@ d_rugged_coast = {
 
 d_basin = {	# Inspired by the Nile basin--rich in sediment
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4610,6 +4899,14 @@ d_basin = {	# Inspired by the Nile basin--rich in sediment
 			}
 		}
 		planet_colonist_minerals_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -4660,8 +4957,6 @@ d_basin = {	# Inspired by the Nile basin--rich in sediment
 			from = {
 				OR = {
 					colony_type = col_farming
-					colony_type = col_rural
-					colony_type = col_rural_gestalt
 				}
 			}
 		}
@@ -4670,6 +4965,7 @@ d_basin = {	# Inspired by the Nile basin--rich in sediment
 
 d_white_mountains = {
 	category = deposit_cat_rare_blocker
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4702,14 +4998,20 @@ d_white_mountains = {
 
 	triggered_planet_modifier = {
 		potential = {
-			any_owned_pop = {
-				OR = {
-					has_job = colonist
-					has_job = xeno_analysis_drone
-				}
+			num_pops_with_job_tag = {
+				value > 0
+				tags = { colonist }
 			}
 		}
 		planet_colonist_rare_crystals_produces_add = 0.5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -4742,6 +5044,7 @@ d_white_mountains = {
 
 d_ridge = {
 	category = deposit_cat_energy
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4764,7 +5067,15 @@ d_ridge = {
 	planet_modifier = {
 		planet_max_districts_add = -2
 		district_generator_max = 1
-		planet_amenities_add = 2
+		planet_amenities_add = 250
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	drop_weight = {
@@ -4795,11 +5106,7 @@ d_ridge = {
 		modifier = {
 			set = @keep
 			from = {
-				OR = {
-					colony_type = col_generator
-					colony_type = col_rural
-					colony_type = col_rural_gestalt
-				}
+				colony_type = col_generator
 			}
 		}
 	}
@@ -4807,6 +5114,7 @@ d_ridge = {
 
 d_rocky_hills = {
 	category = deposit_cat_minerals
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4846,6 +5154,14 @@ d_rocky_hills = {
 		planet_colonist_minerals_produces_add = 1
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	drop_weight = {
 		weight = @high
 
@@ -4870,6 +5186,7 @@ d_rocky_hills = {
 
 d_spore_forest = {
 	category = deposit_cat_food
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -4976,6 +5293,14 @@ d_idyllic_pastorale = {
 		pop_category_specialists_consumer_goods_upkeep_add = 0.1
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	potential = {
 		is_planet_class = pc_gaia
 	}
@@ -5049,6 +5374,14 @@ d_utopian_hills = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	potential = {
 		is_planet_class = pc_gaia
 	}
@@ -5114,138 +5447,9 @@ d_gentle_plains = {
 	}
 }
 
-d_colossal_spires = {
-	category = deposit_cat_blockers_natural
-
-	use_for_min_max_adjustments = yes
-
-	should_swap_deposit_on_terraforming = no
-
-	time = 720
-
-	resources = {
-		category = deposit_blockers_natural
-		cost = {
-			energy = 400
-		}
-	}
-
-	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 2000
-			}
-		}
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-		pop_happiness = 0.1
-	}
-
-	potential = {
-		always = no
-	}
-
-	ai_weight = {
-		weight = @base
-	
-		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
-		inline_script = tbm_ai_empire_weights
-	}
-}
-
-d_floating_gardens = {
-	category = deposit_cat_blockers_natural
-
-	use_for_min_max_adjustments = yes
-
-	should_swap_deposit_on_terraforming = no
-
-	time = 720
-
-	resources = {
-		category = deposit_blockers_natural
-		produces = {
-			food = 6
-			unity = 2
-		}
-		cost = {
-			energy = 400
-		}
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-	}
-
-	on_cleared = {
-		owner = {
-			add_resource = {
-				physics_research = 2000
-				society_research = 2000
-				engineering_research = 2000
-			}
-		}
-	}
-
-	potential = {
-		always = no
-	}
-
-	ai_weight = {
-		weight = @base
-	
-		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
-		inline_script = tbm_ai_empire_weights
-	}
-}
-
-d_snow_palace = {
-	category = deposit_cat_blockers_natural
-
-	use_for_min_max_adjustments = yes
-	should_swap_deposit_on_terraforming = no
-
-	time = 720
-
-	resources = {
-		category = deposit_blockers_natural
-		cost = {
-			energy = 400
-		}
-	}
-
-	on_cleared = {
-		owner = {
-			add_resource = {
-				consumer_goods = 2000
-			}
-		}
-	}
-
-	planet_modifier = {
-		planet_max_districts_add = -1
-		pop_cat_ruler_happiness = 0.2
-	}
-
-	potential = {
-		always = no
-	}
-
-	ai_weight = {
-		weight = @base
-	
-		inline_script = tbm_personality_weights
-		inline_script = tbm_designation_weights
-		inline_script = tbm_ai_empire_weights
-	}
-}
-
 d_tomb_city = {
 	category = deposit_cat_blockers
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -5368,6 +5572,14 @@ d_dark_plains = {
 		planet_colonist_society_research_produces_add = 1
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	drop_weight = {
 		weight = @low
 
@@ -5462,6 +5674,7 @@ d_mistlands = {
 d_tbm_active_volcano = {
 	icon = d_active_volcano
 	category = deposit_cat_blockers_natural
+	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -5521,10 +5734,10 @@ d_tbm_active_volcano = {
 
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = { has_civic = civic_environmentalist }
+			always = yes
 		}
-		planet_rangers_energy_produces_add = @ranger_large_production
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {

@@ -51,7 +51,7 @@ d_fallout_zone = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		planet_amenities_mult = -0.10
-		pop_growth_speed = -0.10
+		bonus_pop_growth = -0.1
 	}
 
 	potential = {
@@ -136,9 +136,14 @@ d_library_of_before = {
 		potential = {
 			exists = owner
 			is_original_owner = owner
-			owner = { is_gestalt = no }
+			owner = { 
+				is_gestalt = no
+				is_lithoid = no
+			}
 		}
-		planet_researchers_food_upkeep_add = 2
+		planet_physicists_food_upkeep_add = 2
+		planet_biologists_food_upkeep_add = 2
+		planet_engineers_food_upkeep_add = 2
 	}
 
 	triggered_planet_modifier = {
@@ -147,8 +152,9 @@ d_library_of_before = {
 			is_original_owner = owner
 			owner = { is_lithoid = yes }
 		}
-		planet_researchers_food_upkeep_add = -2
-		planet_researchers_minerals_upkeep_add = 2
+		planet_physicists_minerals_upkeep_add = 2
+		planet_biologists_minerals_upkeep_add = 2
+		planet_engineers_minerals_upkeep_add = 2
 	}
 
 	triggered_planet_modifier = {
@@ -157,7 +163,9 @@ d_library_of_before = {
 			is_original_owner = owner
 			has_planet_flag = post_apoc_environmental_restoration
 		}
-		planet_researchers_food_upkeep_add = -1		# Malus gets cnacelled on completion of event chain
+		planet_physicists_food_upkeep_add = -2
+		planet_biologists_food_upkeep_add = -2
+		planet_engineers_food_upkeep_add = -2		# Malus gets cnacelled on completion of event chain
 	}
 
 	triggered_planet_modifier = {
@@ -167,8 +175,9 @@ d_library_of_before = {
 			has_planet_flag = post_apoc_environmental_restoration
 			owner = { is_lithoid = yes }
 		}
-		planet_researchers_food_upkeep_add = 1		# Malus gets cnacelled on completion of event chain
-		planet_researchers_minerals_upkeep_add = -1
+		planet_physicists_minerals_upkeep_add = -2
+		planet_biologists_minerals_upkeep_add = -2
+		planet_engineers_minerals_upkeep_add = -2
 	}
 
 	triggered_planet_modifier = {
@@ -1082,8 +1091,7 @@ d_homeworld_black_market = {
 	}
 
 	planet_modifier = {
-		trade_value_mult = 0.2
-		#trade_value_add = 10
+		planet_jobs_trade_produces_mult = 0.2
 		planet_crime_mult = 0.1
 	}
 
@@ -1381,21 +1389,8 @@ d_allocation_clinic = {
 		}
 	}
 
-	country_modifier = {
-		trade_value_mult = 0.10
-	}
-
 	planet_modifier = {
-		trade_value_mult = 0.20
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		trade_value_mult = -0.20
-		planet_amenities_mult = 0.20
+		planet_jobs_trade_produces_mult = 0.2
 	}
 
 	potential = {

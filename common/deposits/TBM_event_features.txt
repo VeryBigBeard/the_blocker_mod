@@ -48,6 +48,22 @@ d_great_desert = {
 		planet_jobs_energy_produces_mult = 0.05
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_generator_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
+
 	potential = { always = no }
 }
 
@@ -168,7 +184,7 @@ d_prototype_gas_generator = {
 	}
 
 	planet_modifier = {
-		planet_amenities_add = -5
+		planet_amenities_add = -500
 	}
 
 	potential = { always = no }
@@ -233,6 +249,14 @@ d_subsistence_farm = {
 		district_farming_max = 1
 		planet_farmers_food_produces_mult = -0.1
 	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
+	}
 }
 
 d_subterranean_colony = {
@@ -291,8 +315,16 @@ d_subterranean_excavation = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_amenities_add = -2	# Ne'er does the sun shine.
+		planet_amenities_add = -500	# Ne'er does the sun shine.
 		pop_cat_worker_happiness = -0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_mining_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -331,6 +363,14 @@ d_urban_aeroponics = {
 		district_farming_max = 1
 		planet_farmers_energy_upkeep_add = 1
 		planet_farmers_consumer_goods_upkeep_add = 0.1	# Mostly to avoid overwriting the farmer job for compat, is slightly less harsh than +1 but will hurt more if you have a lot of city-farming going on, rent is pricey these days.
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		district_farming_max = 1
+		mult = value:natural_desposit_district_amount_multiplier
 	}
 
 	potential = {
@@ -401,7 +441,7 @@ d_homestead_farms = {
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 		modifier = {
-			planet_amenities_add = 1
+			planet_amenities_add = 250
 		}
 	}
 
@@ -567,7 +607,7 @@ d_private_mines = {
 	}
 
 	planet_modifier = {
-		planet_amenities_add = -5
+		planet_amenities_add = -500
 	}
 
 	potential = {
@@ -791,6 +831,141 @@ d_cesspool = {
 		weight = @clear
 
 		inline_script = tbm_personality_weights
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+
+
+### Special Wenkwort Features
+
+
+d_colossal_spires = {
+	category = deposit_cat_blockers_natural
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 400
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				alloys = 2000
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		pop_happiness = 0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+	
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_floating_gardens = {
+	category = deposit_cat_blockers_natural
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers_natural
+		produces = {
+			food = 6
+			unity = 2
+		}
+		cost = {
+			energy = 400
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				physics_research = 2000
+				society_research = 2000
+				engineering_research = 2000
+			}
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+	
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
+		inline_script = tbm_ai_empire_weights
+	}
+}
+
+d_snow_palace = {
+	category = deposit_cat_blockers_natural
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	time = 720
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 400
+		}
+	}
+
+	on_cleared = {
+		owner = {
+			add_resource = {
+				consumer_goods = 2000
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		pop_cat_ruler_happiness = 0.2
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+	
+		inline_script = tbm_personality_weights
+		inline_script = tbm_designation_weights
 		inline_script = tbm_ai_empire_weights
 	}
 }
