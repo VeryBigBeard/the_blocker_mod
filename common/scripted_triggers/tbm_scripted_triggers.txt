@@ -1,6 +1,26 @@
 
 ### The Blocker Mod - Scripted Triggers
 
+# More robust list-version used for events in case PDX tinker with job_tags.
+has_colonist_job = {
+	OR = {
+		any_owned_pop_job = {
+			OR = {
+				has_job_type = colonist
+				has_job_type = colonial_deputy
+				has_job_type = colonial_pioneer
+				has_job_type = colonial_prospector
+				has_job_type = prospecting_drone
+				has_job_type = xeno_analysis_drone
+				has_job_type = xeno_naturalist
+				has_job_type = dangerous_wildlife_hunter
+				has_job_type = dangerous_wildlife_poacher
+				has_job_type = ranger
+			}
+		}
+	}
+}
+
 
 is_ecu = {
 	OR = {

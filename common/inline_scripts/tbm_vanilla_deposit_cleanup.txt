@@ -1,0 +1,6 @@
+### Groups all vanilla environamentalist changes and applies them quickly; also makes updating easier.
+
+# Vanilla inline_scripts
+inline_script = deposits/environmental_architects_natural_blocker_modifier
+
+inline_script = deposits/environmental_architects_natural_blocker_pops

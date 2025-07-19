@@ -125,8 +125,9 @@ d_submerged_zro_seam = {
 
 	triggered_planet_modifier = {
 		potential = {
-			any_owned_pop = {
-				has_job = colonist
+			num_pops_with_job_tag = {
+				value > 0
+				tags = { colonist }
 			}
 		}
 		modifier = {

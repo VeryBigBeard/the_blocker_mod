@@ -2,6 +2,7 @@
 #
 #	TBM overwrites planet_colonists to allow them to play a larger role.
 #	If you use another mod that overwrites this, you can patch them by simply adding generate_add_modifiers and generate_mult_modifiers below.
+#	Note: TBM has several jobs that belong to planet_colonist. You cannot set modifiers for those jobs (Deputy, Xeno-Naturalist, the revamped Ranger, etc.) directly. This is WAD to allow those jobs to benefit from colonist bonuses on natural features.
 
 planet_colonist = {
 	parent = planet_jobs

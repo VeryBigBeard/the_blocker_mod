@@ -1,10 +1,13 @@
 ### The Blocker Mod - Scripted Trigger Overwrite
 
 
-### Currently overwrites only this trigger, which is only used in one leader trait. The overwrite is here in case PDX decide to use the trigger more broadly in events.
 #	TBM sets this to always evaluate true, since most blockers are always clearable.
 #	The only gameplay effect should be that you can roll the trait Environmental Engineer from game start.
-
 has_blocker_removal_tech = {
 	always = yes
+}
+
+# Disables the job swap and vanilla resources from Rangers (Environmentalist civic) in favour of TBM-specific bonuses.
+biologist_is_ranger_trigger = {
+	has_building = building_ranger_lodge
 }

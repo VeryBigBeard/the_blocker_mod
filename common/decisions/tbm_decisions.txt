@@ -53,7 +53,10 @@ decision_construct_megaliths = {
 	potential = {
 		NOT = { is_artificial = yes }
 		exists = owner
-		owner = { is_lithoid = yes }
+		owner = { 
+			is_lithoid = yes
+			is_fallen_empire = no
+		}
 	}
 
 	effect = {
@@ -104,7 +107,10 @@ decision_open_fusion_reactor = {
 
 	potential = {
 		exists = owner
-		owner = { has_technology = tech_fusion_power }
+		owner = { 
+			has_technology = tech_fusion_power
+			is_fallen_empire = no
+		}
 		NOT = { has_deposit = d_fusion_reactor }	# planet - we don't want two, partly balance partly realism
 		NOT = { is_planet_class = pc_habitat }
 	}
@@ -154,7 +160,10 @@ decision_open_cold_fusion_pit = {
 	}
 
 	potential = {
-		owner = { has_technology = tech_cold_fusion_power }
+		owner = { 
+			has_technology = tech_cold_fusion_power
+			is_fallen_empire = no
+		}
 		NOT = { has_deposit = d_cold_fusion_pits }	# planet - we don't want two, partly balance partly realism
 		NOT = { is_planet_class = pc_habitat }
 	}
@@ -208,7 +217,10 @@ decision_open_antimatter_core = {
 	}
 
 	potential = {
-		owner = { has_technology = tech_antimatter_power }
+		owner = { 
+			has_technology = tech_antimatter_power
+			is_fallen_empire = no
+		}
 		NOT = { has_deposit = d_antimatter_core }	# planet - we don't want two, partly balance partly realism
 		NOT = { is_planet_class = pc_habitat }
 	}
@@ -262,7 +274,10 @@ decision_open_zero_point_module = {
 	}
 
 	potential = {
-		owner = { has_technology = tech_zero_point_power }
+		owner = { 
+			has_technology = tech_zero_point_power
+			is_fallen_empire = no
+		}
 		NOT = { has_deposit = d_zero_point_modules }	# planet - we don't want two, partly balance partly realism
 		NOT = { is_planet_class = pc_habitat }
 	}
@@ -292,7 +307,10 @@ decision_selectively_defoliate = {
 
 	potential = {
 		exists = owner
-		owner = { has_technology = tech_dense_jungle }
+		owner = { 
+			has_technology = tech_dense_jungle
+			is_fallen_empire = no
+		}
 		has_tree_feature = yes
 	}
 
@@ -373,7 +391,10 @@ decision_soil_remediation = {
 
 	potential = {
 		exists = owner
-		owner = { has_technology = tech_quicksand_basin }
+		owner = { 
+			has_technology = tech_quicksand_basin
+			is_fallen_empire = no
+		}
 		OR = {
 			any_deposit = {
 				is_farmland_feature = yes
@@ -431,7 +452,6 @@ decision_soil_remediation = {
 
 			OR = {
 				colony_type = col_farming
-				colony_type = col_rural
 			}
 			num_districts = {
 				type = district_farming
@@ -458,7 +478,10 @@ decision_deep_crust_exploration = {
 
 	potential = {
 		exists = owner
-		owner = { has_technology = tech_volcano }
+		owner = { 
+			has_technology = tech_volcano
+			is_fallen_empire = no
+		}
 		NOT = {
 			check_variable = {
 				which = @deep_crust_exploration
@@ -540,6 +563,7 @@ decision_subterranean_exo_surveying = {
 		exists = owner
 		owner = {
 			has_technology = tech_deep_sinkhole
+			is_fallen_empire = no
 			NOT = { has_origin = origin_subterranean }
 		}
 		count_deposits = {
@@ -601,6 +625,7 @@ decision_subterranean_expansion = {
 		exists = owner
 		owner = {
 			has_origin = origin_subterranean
+			is_fallen_empire = no
 		}
 		count_deposits = {
 			count <= 3

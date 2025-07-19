@@ -1,0 +1,5 @@
+# The Blocker Mod - Job Tags
+#
+# Used to group colonist jobs for blocker bonuses
+
+colonist
