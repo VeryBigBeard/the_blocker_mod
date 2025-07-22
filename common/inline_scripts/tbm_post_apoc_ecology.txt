@@ -1,9 +1,9 @@
 ### Post-Apocalyptic Environmental Remediation - Ecology Scoring
 
 	# A point is added:
-	every_deposit = {
+	if = {
 		limit = {
-			tree_feature = yes
+			has_tree_feature = yes
 		}
 		change_variable = {
 			which = post_apoc_ecology_score
@@ -11,10 +11,13 @@
 		}
 	}
 	
-	every_deposit = {
+	if = {
 		limit = {
-			is_deposit_type = d_great_river
+			any_deposit = {
+				is_deposit_type = d_great_river
+			}
 		}
+
 		planet = {
 			change_variable = {
 				which = post_apoc_ecology_score
@@ -22,6 +25,7 @@
 			}
 		}
 	}
+	
 
 	if = {
 		limit = {
@@ -39,20 +43,7 @@
 
 	if = {
 		limit = {
-			free_amenities >= 20
-		}
-		change_variable = {
-			which = post_apoc_ecology_score
-			value = 1
-		}
-	}
-
-	if = {
-		limit = {
-			num_districts = {
-				type = district_industrial
-				value < 6
-			}
+			free_amenities >= 2000
 		}
 		change_variable = {
 			which = post_apoc_ecology_score
@@ -85,15 +76,18 @@
 
 
 	# A point is deducted:
-	every_deposit = {
+	if = {
 		limit = {
-			OR = {
-				is_deposit_type = d_fallout_zone
-				is_deposit_type = d_radioactive_wasteland
-				is_deposit_type = d_bomb_crater
-				is_deposit_type = d_city_ruins
+			any_deposit = {
+				OR = {
+					is_deposit_type = d_fallout_zone
+					is_deposit_type = d_radioactive_wasteland
+					is_deposit_type = d_bomb_crater
+					is_deposit_type = d_city_ruins
+				}
 			}
 		}
+
 		planet = {
 			change_variable = {
 				which = post_apoc_ecology_score
@@ -128,9 +122,10 @@
 	if = {
 		limit = {
 			num_districts = {
-				type = district_industrial
+				type = district_city
 				value >=6
 			}
+
 		}
 		change_variable = {
 			which = post_apoc_ecology_score
@@ -150,7 +145,7 @@
 
 	if = {
 		limit = {
-			num_pops > 50
+			pop_amount > 5000
 		}
 		change_variable = {
 			which = post_apoc_ecology_score

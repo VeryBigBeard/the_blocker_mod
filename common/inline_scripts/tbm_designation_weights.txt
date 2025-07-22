@@ -19,8 +19,6 @@ modifier = {
 			colony_type = col_bureau_hive
 			colony_type = col_bureau_hive
 			colony_type = col_bureau_machine
-			colony_type = col_rural
-			colony_type = col_rural_gestalt
 			colony_type = col_research
 		}
 		num_free_districts = {

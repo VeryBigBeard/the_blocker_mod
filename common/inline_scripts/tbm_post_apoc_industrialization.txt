@@ -4,7 +4,7 @@
 		# A point is added:		
 		if = {
 			limit = {
-				num_pops > 60	
+				pop_amount > 6000
 			}
 			change_variable = {
 				which = post_apoc_industrialization_score
@@ -15,7 +15,7 @@
 		if = {
 			limit = {
 				num_districts = {
-					type = district_industrial
+					type = district_city
 					value >= 6
 				}
 			}
@@ -27,8 +27,9 @@
 
 		if = {
 			limit = {
-				this.solar_system = {
-					has_system_trade_value >= 1000
+				planet_resource_compare = {
+					resource = trade
+					value >= 1000
 				}
 			}
 			change_variable = {
@@ -64,8 +65,9 @@
 
 		if = {
 			limit = {
-				any_owned_pop = {
-					has_job = scrap_miner
+				num_assigned_jobs = {
+					job = scrap_miner
+					value > 0
 				}
 			}
 			change_variable = {
@@ -91,9 +93,9 @@
 
 		if = {
 			limit = {
-				count_owned_pop = {
-					limit = { is_unemployed = yes }
-					count > 4
+				num_assigned_jobs = {
+					job = is_unemployed
+					value > 400
 				}
 			}
 			change_variable = {
