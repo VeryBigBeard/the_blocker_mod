@@ -278,6 +278,7 @@ planet_event = {
 		custom_tooltip = tbm.54.worse
 
 		# Figure out how much was in the sub (1 month worth of 2 pops minerals from planet)
+		# 4.0 deleted resource_shipment script value as it's no longer really needed
 		hidden_effect = {
 			random_owned_pop = {
 				limit = {

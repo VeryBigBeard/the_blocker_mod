@@ -93,10 +93,7 @@
 
 		if = {
 			limit = {
-				num_assigned_jobs = {
-					job = is_unemployed
-					value > 400
-				}
+				num_unemployed > 400		
 			}
 			change_variable = {
 				which = post_apoc_industrialization_score

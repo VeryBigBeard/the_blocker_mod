@@ -2,7 +2,7 @@
 #	No vanilla files are changed here.
 
 
-# Restores Rangers from pre-4.0. TBM makes Rangers into colonist-style jobs, allowing Environmentalist empires to always make use of the significant bonuses in perpuity, in exchange for the planet being essentially unusuable in the mod. This also allows the AI to cope much better and saves updating ~1000 lines of vanilla code every time there's an update.
+# Restores Rangers from pre-4.0. TBM makes Rangers into colonist-style jobs, allowing Environmentalist empires to always make use of the significant Colonist bonuses in perpetuity, in exchange for being unable to clear blockers. This also allows the AI to cope much better and saves updating ~1000 lines of vanilla code every time there's an update to deposit calcs for Rangers.
 ranger = {
 	category = specialist
 
@@ -170,12 +170,6 @@ dangerous_wildlife_poacher = {
 		weight = @specialist_job_weight
 
 		modifier = {
-			factor = 10
-			planet = { planet_crime > 15}
-			NOT = { has_job = enforcer }
-		}
-
-		modifier = {
 			factor = 2
 			has_trait = trait_resilient
 		}
@@ -263,12 +257,6 @@ xeno_naturalist = {
 		weight = @specialist_job_weight
 
 		modifier = {
-			factor = 10
-			planet = { planet_crime > 15}
-			NOT = { has_job = enforcer }
-		}
-
-		modifier = {
 			factor = 2
 			has_trait = trait_natural_sociologists
 		}
@@ -344,12 +332,6 @@ xeno_analysis_drone = {
 		weight = @specialist_job_weight
 
 		modifier = {
-			factor = 10
-			planet = { planet_crime > 15 }
-			NOT = { has_job = enforcer }
-		}
-
-		modifier = {
 			factor = 2
 			has_trait = trait_natural_sociologists
 		}
@@ -421,12 +403,6 @@ colonial_prospector = {
 		weight = @specialist_job_weight
 
 		modifier = {
-			factor = 10
-			planet = { planet_crime > 15}
-			NOT = { has_job = enforcer }
-		}
-
-		modifier = {
 			factor = 2
 			has_trait = trait_natural_engineers
 		}
@@ -496,12 +472,6 @@ prospecting_drone = {
 		weight = @specialist_job_weight
 
 		modifier = {
-			factor = 10
-			planet = { planet_crime > 15}
-			NOT = { has_job = enforcer }
-		}
-
-		modifier = {
 			factor = 2
 			has_trait = trait_intelligent
 		}
@@ -553,12 +523,6 @@ colonial_pioneer = {
 
 	weight = {
 		weight = @worker_job_weight
-
-		modifier = {
-			factor = 10
-			planet = { planet_crime > 15}
-			NOT = { has_job = enforcer }
-		}
 		
 		modifier = {
 			factor = 0.5
@@ -601,8 +565,8 @@ colonial_deputy = {
 		}
 	}
 
-	pop_modifier = {
-		pop_defense_armies_add = 3
+	planet_modifier = {
+		planet_defense_armies_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -619,12 +583,6 @@ colonial_deputy = {
 
 	weight = {
 		weight = @specialist_job_weight
-
-		modifier = {
-			factor = 10
-			planet = { planet_crime > 15}
-			NOT = { has_job = enforcer }
-		}
 
 		modifier = {
 			factor = 0.1
