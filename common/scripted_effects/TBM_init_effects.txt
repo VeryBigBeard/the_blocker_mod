@@ -80,12 +80,14 @@ fix_advanced_start_empire_features = {
 
 
 ### Scripted Planet Fix
-#	If I have missed you favourite scripted planet and now it's a featureless hellscape, please leave a bug report on the Steam Workshop page.
+#	If I have missed your favourite scripted planet and it's now a featureless hellscape, please leave a bug report on the Steam Workshop page.
+#	NOTE: I am unable to test the Cosmic Storms or First Contact scripted systems.
 scripted_planet_reroll = {
 	
 	optimize_memory
 
 	log = "TBM - Scripted Planets"
+
 
 	### distant_stars_initializers
 

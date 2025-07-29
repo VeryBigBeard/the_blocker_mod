@@ -29,6 +29,8 @@ clear_deposits_except_special = {
 				NOR = {
 					has_deposit_category = deposit_cat_rare
 					has_deposit_category = deposit_cat_rare_blocker
+					has_deposit_category = deposit_cat_tbm_legendary
+					has_deposit_category = deposit_cat_advanced
 				}
 			}
 			remove_deposit = yes
@@ -85,6 +87,61 @@ remove_city_if_poss_and_other_if_not_regular = {
 	}
 	else_if = {
 		limit = {
+			num_districts = {
+				type = district_nexus
+				value > 0
+			}
+		}
+		remove_district = district_nexus
+	}
+	else_if = {
+		limit = {
+			num_districts = {
+				type = district_hive
+				value > 0
+			}
+		}
+		remove_district = district_hive
+	}
+	else_if = {
+		limit = {
+			num_districts = {
+				type = district_crashed_slaver_ship
+				value > 0
+			}
+		}
+		remove_district = district_crashed_slaver_ship
+	}
+	else_if = {
+		limit = {
+			num_districts = {
+				type = district_resort
+				value > 0
+			}
+		}
+		remove_district = district_resort
+	}
+	else_if = {
+		limit = {
+			num_districts = {
+				type = district_prison
+				value > 0
+			}
+		}
+		remove_district = district_prison
+	}
+	else_if = {
+		limit = {
+			num_districts = {
+				type = district_slave
+				value > 0
+			}
+		}
+		remove_district = district_slave
+	}
+
+	else_if = {
+		limit = {
 			is_artificial = yes
 		}
 		if = {
@@ -94,7 +151,7 @@ remove_city_if_poss_and_other_if_not_regular = {
 					value > 0
 				}
 			}
-			remove_last_built_district = yes
+			remove_random_district = yes
 		}
 		else = {
 			add_planet_devastation = 25
@@ -103,165 +160,14 @@ remove_city_if_poss_and_other_if_not_regular = {
 	else_if = {
 		limit = {
 			num_districts = {
-				type = district_industrial
-				value > 0
-			}
-		}
-		remove_district = district_industrial
-	}
-	else_if = {
-		limit = {
-			num_districts = {
 				type = any
 				value > 0
 			}
 		}
-		remove_last_built_district = yes
+		remove_random_district = yes
 	}
 	else = {
 		add_planet_devastation = 25
-	}
-}
-
-
-remove_random_district = {
-	
-	# Compatibility failsafe for Planetary Diversity
-	# Revert to removing last-built district.
-	if = {
-		limit = {
-			has_global_flag = planetarydiversity
-		}
-		remove_last_built_district = yes
-	}
-	
-	# Deal with ecus, usual
-	if = {
-		limit = {
-			is_planet_class = pc_city
-			owner = { 
-				is_regular_empire = yes
-			}
-		}
-		
-		### Ecumenopoleis Districts
-		random_list = {
-			20 = {
-				remove_district = district_arcology_administrative
-			}
-			20 = {
-				remove_district = district_arcology_arms_industry
-			}
-			20 = {
-				remove_district = district_arcology_civilian_industry
-			}
-			20 = {
-				remove_district = district_arcology_housing
-			}
-			20 = {
-				remove_district = district_arcology_leisure
-			}
-		}
-	}
-
-	# Deal with ecus, hive
-	else_if = {
-		limit = {
-			is_planet_class = pc_city
-			owner = { 
-				is_hive_empire = yes
-			}
-		}
-		
-		### Ecumenopoleis Districts - Hive
-		random_list = {
-			20 = {
-				remove_district = district_arcology_housing
-			}
-			20 = {
-				remove_district = district_arcology_arms_industry
-			}
-			20 = {
-				remove_district = district_arcology_administrative
-			}
-			20 = {
-				remove_district = district_arcology_leisure
-			}
-		}
-	}
-
-	# Deal with ecus - servitor
-	else_if = {
-		limit = {
-			owner = { 
-				has_valid_civic = civic_machine_servitor
-			}
-		}
-
-		random_list = {
-			20 = {
-				remove_district = district_arcology_housing
-			}
-			20 = {
-				remove_district = district_arcology_arms_industry
-			}
-			20 = {
-				remove_district = district_arcology_organic_housing
-			}
-			20 = {
-				remove_district = district_arcology_civilian_industry
-			}
-			20 = {
-				remove_district = district_arcology_leisure
-			}
-		}
-	}
-	
-	# Deal with ecus, machine
-	else_if = {
-		limit = {
-			is_planet_class = pc_city
-			owner = { 
-				is_machine_empire = yes
-			}
-		}
-
-		# Ecumenopolis Districts - Machine
-		random_list = {
-			20 = {
-				remove_district = district_arcology_housing
-			}
-			20 = {
-				remove_district = district_arcology_arms_industry
-			}
-			20 = {
-				remove_district = district_arcology_administrative
-			}
-			20 = {
-				remove_district = district_arcology_leisure
-			}
-		}
-
-	}
-
-	else = {
-		random_list = {
-			20 = {
-				remove_district = district_city
-			}
-			20 = {
-				remove_district = district_industrial
-			}
-			20 = {
-				remove_district = district_generator
-			}
-			20 = {
-				remove_district = district_mining
-			}
-			20 = {
-				remove_district = district_farming
-			}
-		}
 	}
 }
 

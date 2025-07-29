@@ -6,7 +6,7 @@ wild_world = {
 	icon = gfx/interface/icons/planet_modifiers/pm_overgrowth.dds
 	icon_frame = 2
 	planet_max_districts_add = 2
-	job_colonist_add = 2
+	job_colonist_add = 200
 	planet_colonist_unity_produces_add = 2
 	planet_researchers_physics_research_produces_mult = 0.2
 	planet_researchers_society_research_produces_mult = 0.2
@@ -18,7 +18,7 @@ wild_world_gestalt = {
 	icon = gfx/interface/icons/planet_modifiers/pm_overgrowth.dds
 	icon_frame = 2
 	planet_max_districts_add = 2
-	job_researcher_add = 2
+	job_researcher_add = 200
 	planet_researchers_physics_research_produces_mult = 0.2
 	planet_researchers_society_research_produces_mult = 0.2
 	planet_researchers_engineering_research_produces_mult = 0.2
@@ -30,14 +30,14 @@ pioneering_colonists = {
 	icon_frame = 1
 	deposit_blockers_cost_mult = -0.2
 	planet_clear_blocker_speed_mult = 0.2
-	job_colonist_add = 2
+	job_colonist_add = 200
 	planet_colonist_produces_mult = 0.1
 }
 
 new_frontier = {
 	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
 	icon_frame = 1
-	planet_max_buildings_add = 1
+	#planet_max_buildings_add = 1
 	building_time_mult = -0.25
 	planet_buildings_cost_mult = -0.1
 }
@@ -51,7 +51,7 @@ terra_incognita = {
 new_branch = {
 	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
 	icon_frame = 1
-	planet_max_buildings_add = 1
+	#planet_max_buildings_add = 1
 	building_time_mult = -0.25
 	planet_buildings_cost_mult = -0.1
 }
@@ -59,18 +59,18 @@ new_branch = {
 new_function = {
 	icon = gfx/interface/icons/planet_modifiers/pm_engineering_research.dds
 	icon_frame = 1
-	planet_max_buildings_add = 1
+	#planet_max_buildings_add = 1
 	building_time_mult = -0.25
 	planet_buildings_cost_mult = -0.1
 }
 
 subsurface_spaceport_opened = {
-	trade_value_mult = 0.25
+	planet_jobs_trade_produces_mult = 0.25
 }
 
 mass_protest = {
 	icon = gfx/interface/icons/planet_modifiers/pm_nationalist_corruption.dds
-	trade_value_mult = -0.2
+	planet_jobs_trade_produces_mult = -0.2
 	planet_stability_add = -10
 	icon_frame = 3
 }
@@ -116,7 +116,7 @@ miners_strike = {
 
 false_prospects = {
 	planet_miners_minerals_produces_mult = -0.35
-	trade_value_mult = 0.1
+	planet_jobs_trade_produces_mult = 0.1
 }
 
 false_prospects_gestalt = {
@@ -152,13 +152,13 @@ damaged_power_nexus = {
 
 ### Dangerous Wildlife
 dangerous_wildlife_permits = {
-	job_dangerous_wildlife_hunter_add = 2
+	job_dangerous_wildlife_hunter_add = 200
 	icon = gfx/interface/icons/planet_modifiers/pm_lush.dds
 	icon_frame = 2
 }
 
 dangerous_wildlife_poachers = {
-	job_dangerous_wildlife_poacher_add = 2
+	job_dangerous_wildlife_poacher_add = 200
 	icon = gfx/interface/icons/planet_modifiers/pm_derelict_interior.dds
 	icon_frame = 2
 }
@@ -181,7 +181,7 @@ dangerous_wildlife_food_changes = {
 
 night_watches = {
 	icon = gfx/interface/icons/planet_modifiers/pm_colony_settlement.dds
-	job_enforcer_add = 2
+	job_enforcer_add = 200
 	planet_jobs_upkeep_mult = 0.05
 }
 
@@ -190,7 +190,7 @@ night_watches = {
 
 denied_investment = {
 	icon = gfx/interface/icons/planet_modifiers/pm_resources_2.dds
-	trade_value_mult = -0.1
+	planet_jobs_trade_produces_mult = -0.1
 	pop_cat_worker_happiness = 0.05
 	pop_cat_specialist_happiness = 0.05
 	pop_cat_ruler_happiness = -0.1
@@ -198,7 +198,7 @@ denied_investment = {
 
 recreational_investment = {
 	icon = gfx/interface/icons/planet_modifiers/pm_ocean_paradise.dds
-	trade_value_mult = 0.1
+	planet_jobs_trade_produces_mult = 0.1
 	pop_cat_ruler_happiness = 0.1
 }
 
@@ -227,7 +227,7 @@ standing_against_dust = {
 
 overpopulated = {
 	icon = gfx/interface/icons/planet_modifiers/pm_expel_population.dds
-	trade_value_mult = -0.1
+	planet_jobs_trade_produces_mult = -0.1
 	planet_jobs_worker_produces_mult = 0.05
 	planet_crime_add = 15
 }
@@ -250,14 +250,14 @@ waters_of_life = {
 great_desert_city = {
 	icon = gfx/interface/icons/planet_modifiers/pm_archaeological_dig.dds
 	pop_housing_usage_mult = -0.05
-	trade_value_mult = 0.20
+	planet_jobs_trade_produces_mult = 0.20
 	pop_job_amenities_mult = 0.8
 }
 
 great_desert_farms = {
 	planet_jobs_food_produces_mult = 0.1
 	planet_farmers_energy_produces_add = 2
-	trade_value_mult = -0.1
+	planet_jobs_trade_produces_mult = -0.1
 	planet_max_districts_add = -2
 }
 
@@ -276,7 +276,7 @@ desert_jewel = {
 
 trade_city = {
 	icon = gfx/interface/icons/planet_modifiers/capital.dds
-	trade_value_mult = 0.20
+	planet_jobs_trade_produces_mult = 0.20
 	job_merchant_add = 2
 	planet_crime_mult = 0.1
 }
@@ -287,13 +287,13 @@ scientific_mecca = {
 	planet_jobs_society_research_produces_mult = 0.1
 	planet_jobs_engineering_research_produces_mult = 0.1
 	job_head_researcher_add = 2
-	planet_researchers_energy_upkeep_add = 4
+	planet_researchers_energy_upkeep_mult = 1
 }
 
 city_of_gardens = {
 	icon = gfx/interface/icons/planet_modifiers/pm_natural_beauty.dds
 	planet_jobs_unity_produces_mult = 0.2
-	planet_amenities_add = 5
+	planet_amenities_add = 1000
 	planet_jobs_consumer_goods_upkeep_mult = 0.1
 }
 
@@ -302,7 +302,7 @@ city_of_gardens = {
 
 recent_flooding = {
 	icon = gfx/interface/icons/planet_modifiers/pm_wasteland.dds
-	trade_value_mult = -0.1
+	planet_jobs_trade_produces_mult = -0.1
 	planet_farmers_food_produces_mult = -0.1
 }
 
@@ -325,7 +325,7 @@ kelp_breakfasts = {
 
 bigger_fish = {
 	icon = gfx/interface/icons/planet_modifiers/pm_carbon_world.dds
-	job_dangerous_wildlife_poacher_add = 2
+	job_dangerous_wildlife_poacher_add = 200
 	planet_miners_minerals_produces_mult = -0.1
 }
 
@@ -355,7 +355,7 @@ sand_tides = {
 
 subterranean_river_cruises = {
 	icon = gfx/interface/icons/planet_modifiers/pm_hollow_planet.dds
-	trade_value_mult = 0.1
+	planet_jobs_trade_produces_mult = 0.1
 	planet_amenities_mult = 0.1
 }
 
@@ -427,8 +427,7 @@ cultural_restoration = {
 
 beacon_of_hope = {
 	planet_farmers_food_produces_add = 1
-	planet_immigration_pull_add = 100
-	pop_growth_from_immigration = 0.25
+	pop_happiness = 0.25
 }
 
 malnutrition = {
@@ -454,12 +453,12 @@ starvation_state = {
 
 convenient_scapegoats = {
 	biological_pop_happiness = 0.25
-	job_criminal_add = 4
+	job_criminal_add = 400
 }
 
 post_apoc_food_riots = {
 	planet_stability_add = -20
-	job_criminal_add = 3
+	job_criminal_add = 300
 }
 
 nutritious_cockroaches = {
@@ -516,7 +515,7 @@ gestalt_farm_autonomy = {
 }
 
 colonial_blockade = {
-	trade_value_mult = -1
+	planet_jobs_trade_produces_mult = -1
 	planet_jobs_produces_mult = -0.5
 }
 
@@ -621,7 +620,7 @@ pm_wenkwort_custodian_locked = {
 }
 
 pm_wenkwort_disease_outbreak = {
-	planet_researchers_produces_mult = -1.00
+	planet_biologists_society_research_produces_mult = -1.00
 }
 
 pm_wenkwort_invasive_species = {

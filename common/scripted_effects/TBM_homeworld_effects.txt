@@ -48,6 +48,14 @@ tbm_homeworld_basic_blockers = {
 		add_deposit = d_assimilators_ruins
 	}
 
+	else_if = {
+		limit = {
+			owner = { has_origin = origin_unplugged }	
+		}
+		add_deposit = d_decrepit_dwellings
+		add_deposit = d_former_battlefield
+	}
+
 	# Machines
 	else_if = {
 		limit = {
@@ -343,6 +351,7 @@ tbm_homeworld_regular_empires = {
 
 ###	Special spreads for certian origins, where appropriate
 #	Currently: Post-Apoc, Life-Seeded, Remnant, Lost Colony
+#	IMPORTANT: TBM may not work correctly with Wilderness or Broken Shackles starts.
 tbm_homeworld_origin_spreads = {
 	
 	optimize_memory
@@ -577,6 +586,7 @@ tbm_homeworld_origin_spreads = {
 ###	Extras
 #	Mainly for civics and species-related features, added on top of anything above.
 #	Currently: Lithoids, Corporate, Mechanist origin, Prosperous Unification origin, Machine World origin, Determined Exterminators, Driven Assimilators,. Rogue Servitors, Ocean Paradise origin, Environmentalists
+#	TBM does not currently replicate the blocker effect for Planetscapers (civic_environmental_architects). This is by design to avoid problems with space management.
 tbm_homeworld_extras = {
 
 	optimize_memory

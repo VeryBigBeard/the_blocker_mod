@@ -176,7 +176,12 @@ has_gaseous_system = {
 #	this = planet
 
 has_volcanic_activity = {
-	has_deposit = d_geothermal_vent
+	OR = {
+		has_deposit = d_geothermal_vent
+		has_deposit = d_active_volcano
+		has_deposit = d_tbm_active_volcano
+		has_deposit = d_volcanic_soil
+	}
 }
 
 has_hill_feature = {
@@ -317,10 +322,6 @@ is_industrialist = {
 	}
 }
 
-is_colonist = {
-	has_job = colonist
-}
-
 is_dyson_sphere = {
 	OR = {
 		is_megastructure_type = dyson_sphere_1
@@ -333,14 +334,6 @@ is_dyson_sphere = {
 		is_megastructure_type = dyson_sphere_ruined
 		is_megastructure_type = dyson_sphere_restored
 	}
-}
-
-num_miners = {
-	has_job = miner
-}
-
-num_mines = {
-	has_district = district_mining
 }
 
 num_private_farms = {
@@ -386,10 +379,6 @@ landmass_collapsable = {
 		is_deposit_type = d_canyon
 		is_deposit_type = d_rocky_hills
 	}
-}
-
-num_trees = {
-	
 }
 
 
@@ -440,3 +429,4 @@ can_be_exhausted = {
 		is_deposit_type = d_rough_plains
 	}
 }
+
