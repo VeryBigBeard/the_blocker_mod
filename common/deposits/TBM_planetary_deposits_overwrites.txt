@@ -450,7 +450,7 @@ d_dangerous_wildlife_blocker = {
 			}
 		}
 		modifier = {
-			planet_livestock_farmers_food_produces_add = -1
+			planet_farmers_food_produces_add = -1
 		}
 	}
 

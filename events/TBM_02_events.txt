@@ -17,7 +17,7 @@ namespace = tbm
 #	77. Shifting Sands
 #	78. Project Event (Shifting Sands)
 #	79. Caverns Beneath (Shifting Sands)
-#	81. Sudden Sinkhole (Message + logic
+#	81. Sudden Sinkhole (Message + logic)
 #	82. Sinkhole Causes
 #	83. Caverns Beneath (Sudden Sinkhole)
 #	84. Vicious Sandstorm (Handler)
@@ -54,10 +54,10 @@ planet_event = {
 	trigger = {
 		is_starting_planet = no
 		has_deposit = d_toxic_kelp
-		any_owned_pop = {
-			has_job = colonist
+		count_owned_pop_job = {
+			count > 200
 		}
-		colony_age > 2	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.
+		colony_age_years > 1	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.
 		NOT = { has_planet_flag = toxic_kelp_encounter }
 	}
 
@@ -97,18 +97,34 @@ planet_event = {
 
 	option = {
 		name = tbm.51.kelp
-		random_owned_pop = {
-			limit = { has_job = colonist }
-			kill_pop = yes
+		kill_2_random_pop_amount = {
+			AMOUNT1 = 40
+			AMOUNT2 = 60
 		}
 		# Kill a second colonist if aquatic. Potential colony abandonment WAD -- Kelp Is Dangerous!!!
 		if = {
 			limit = {
-				owner_main_species = { has_trait = trait_aquatic }
+				any_owned_pop_group = {
+					has_trait = trait_aquatic
+				}
 			}
-			random_owned_pop = {
-				limit = { has_job = colonist }
-				kill_pop = yes
+			random_owned_pop_group = {
+				limit = {
+					has_trait = trait_aquatic
+				}		
+				kill_pop_group = {
+					pop_group = from
+					amount = 40
+				}
+			}
+			random_owned_pop_group = {
+				limit = {
+					has_trait = trait_aquatic
+				}		
+				kill_pop_group = {
+					pop_group = from
+					amount = 60
+				}
 			}
 		}
 	}
@@ -277,29 +293,10 @@ planet_event = {
 		name = tbm.54.name
 		custom_tooltip = tbm.54.worse
 
-		# Figure out how much was in the sub (1 month worth of 2 pops minerals from planet)
-		# 4.0 deleted resource_shipment script value as it's no longer really needed
-		hidden_effect = {
-			random_owned_pop = {
-				limit = {
-					has_job = miner
-				}
-				save_event_target_as = sub_miner
-				set_variable = {
-					which = @miner_output_add
-					value = value:resource_shipment|RESOURCE|minerals|
-				}
-				multiply_variable = {
-					which = @miner_output_add
-					value = -2
-				}
-			}
-		}
-
 		# Lose the shipment
 		owner = {
 			add_resource = {
-				minerals = @miner_output_add
+				minerals = 8
 			}
 		}	
 
@@ -308,14 +305,9 @@ planet_event = {
 			limit = { 
 				NOT = { has_planet_flag = crew_escaped }
 			}
-			event_target:sub_miner = {
-				kill_pop = yes
-			}
-			random_owned_pop = {
-				limit = {
-					has_job = miner
-				}
-				kill_pop = yes
+			kill_2_random_pop_amount = {
+				AMOUNT1 = 1
+				AMOUNT2 = 1
 			}
 		}
 
@@ -1354,17 +1346,18 @@ planet_event = {
 			}
 			owner = {
 				OR = {
-					has_policy_flag = ai_servitude
+					AND = {
+						has_policy_flag = ai_servitude
+						count_owned_pop_amount = {
+							limit = {
+								is_robotic_species = yes
+							}
+							count > 0
+						}
+					}
 					is_gestalt = yes
 				}
 			}	
-			count_owned_pop = {
-				limit = {
-					has_job = miner
-					is_robotic_species = yes
-				}
-				count >= 2
-			}
 		}
 	}
 	desc = {
@@ -1411,21 +1404,21 @@ planet_event = {
 				limit = {
 					owner = {
 						OR = {
-							has_policy_flag = ai_servitude
+							AND = {
+								has_policy_flag = ai_servitude
+								count_owned_pop_amount = {
+									limit = {
+										is_robotic_species = yes
+									}
+								count > 0
+								}
+							}
 							is_gestalt = yes
 						}
 					}
-					count_owned_pop = {
-						limit = {
-							has_job = miner
-							is_robotic_species = yes
-						}
-						count >= 2
-					}
 				}
-				random_owned_pop = {
+				random_owned_pop_group = {
 					limit = {
-						has_job = miner
 						OR = {
 							AND = {
 								is_robotic_species = yes
@@ -1434,17 +1427,18 @@ planet_event = {
 							owner = { is_gestalt = yes }
 						}
 					}
-					kill_pop = yes
-					kill_pop = yes
+					kill_pop_group = {
+						pop_group = from
+						amount = 50
+					}
 				}
 			}
 			else = {
-				random_owned_pop = {
-					limit = {
-						has_job = miner
+				random_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = from
+						amount = 50
 					}
-					kill_pop = yes
-					kill_pop = yes
 				}
 
 				add_modifier = {

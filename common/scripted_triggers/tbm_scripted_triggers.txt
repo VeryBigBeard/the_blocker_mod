@@ -430,3 +430,14 @@ can_be_exhausted = {
 	}
 }
 
+has_industrial_zoning = {
+	has_zone = {
+		zone = zone_foundry
+	}
+	has_zone = {
+		zone = zone_factory
+	}
+	has_zone = {
+		zone = zone_industrial
+	}
+}

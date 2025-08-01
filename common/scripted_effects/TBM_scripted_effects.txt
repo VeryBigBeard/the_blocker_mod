@@ -225,3 +225,93 @@ melt_something = {
 
 	clear_global_event_target = melted_deposit
 }
+
+kill_random_pop_percentage = {
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			percentage = $PERCENT$
+		}
+	}
+}
+
+kill_random_pop_amount = {
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			amount = $AMOUNT$
+		}
+	}
+}
+
+kill_2_random_pop__percentage = {
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			percentage = $PERCENT1$
+		}
+	}
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			percentage = $PERCENT2$
+		}
+	}
+}
+
+kill_3_random_pop__percentage = {
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			percentage = $PERCENT1$
+		}
+	}
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			percentage = $PERCENT2$
+		}
+	}
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			percentage = $PERCENT3$
+		}
+	}
+}
+
+kill_2_random_pop_amount = {
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			amount = $AMOUNT1$
+		}
+	}
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			amount = $AMOUNT2$
+		}
+	}
+}
+
+kill_3_random_pop_amount = {
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			amount = $AMOUNT1$
+		}
+	}
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			amount = $AMOUNT2$
+		}
+	}
+	random_owned_pop_group = {	
+		kill_pop_group = {
+			pop_group = from
+			amount = $AMOUNT3$
+		}
+	}
+}

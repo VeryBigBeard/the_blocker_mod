@@ -8,23 +8,18 @@ namespace = tbm
 ###
 #
 #	To disable events, please use tbm_on_actions.txt and remove the number(s) desired.
-#	Numbers not shown are chains for the preceding.
+#	Numbers not shown are chains from the preceding.
 #
 ### TBM_01_events
 #
 #	1. Init Event
-#	11. Volcanic Eruption
+#	5. Dangerous Wildlife
+#	10. Volcanic Eruption
 #	16. Xenofauna Attack
 #	19. Landslide
 #	21. Proposed Marina
-#	27. Flooding (Evacuations)
-#	28. Flooding (damage)
-#	29. Flooding (destruction)
+#	26. Flooding
 #	30. Climate Control Network Malfunctions
-#	31. Climate Control - Too Much
-#	32. Climate Control - Overheating
-#	33. Climate Control - Oops, We Missed
-#	34. Climate Control - Machine Breaks Down
 ###
 
 
@@ -115,7 +110,11 @@ planet_event = {
 				NOT = { has_policy_flag = pre_sapients_protect }
 			}
 			planet = {
-				has_building = building_clinic
+				OR = {
+					has_building = building_medical_1
+					has_building = building_medical_2
+					has_building = building_medical_3
+				}
 			}
 		}
 
@@ -160,7 +159,11 @@ planet_event = {
 				has_technology = tech_gene_tailoring
 			}
 			planet = {
-				has_building = building_hospital
+				OR = {
+					has_building = building_medical_1
+					has_building = building_medical_2
+					has_building = building_medical_3
+				}
 			}
 		}
 		remove_modifier = dangerous_wildlife_food_changes
@@ -221,6 +224,7 @@ planet_event = {
 }
 
 # ### 9. Dangerous Wildlife - Predator Modification Project
+# 	  Obsolete, now uses #8 - Ehnahcned Biodiversity
 # planet_event = {
 # 	id = tbm.9
 
@@ -724,8 +728,9 @@ planet_event = {
 	}
 
 	trigger = {
-		any_owned_pop = {
-			has_job = enforcer # To avoid colony abandonment and make the desc work; admittedly it's kind of appropriate but it causes UX problems
+		num_assigned_jobs = {	# To avoid colony abandonment and make the desc work; admittedly it's kind of appropriate but it causes UX problems
+			job = enforcer
+			value > 0
 		}
 		is_starting_planet = no
 		NOR = {
@@ -786,6 +791,14 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
+
+	immediate = {
+		kill_2_random_pop_amount = {
+			AMOUNT1 = 20
+			AMOUNT2 = 30
+		}
+	}
+
 	# Send in the military
 	option = {
 		trigger = {
@@ -825,18 +838,6 @@ planet_event = {
 
 	option = {
 		name = UNFORTUNATE
-	}
-
-	after = {
-		random_owned_pop = {
-			limit = {
-				OR = {
-					has_job = dangerous_wildlife_hunter
-					has_job = colonist
-				}
-			}
-			kill_pop = yes
-		}
 	}
 }
 
@@ -913,7 +914,9 @@ planet_event = {
 								mountain_feature = yes
 							}
 							prevprev = {
-								num_pops > 10
+								count_owned_pop_amount = {
+									count > 400
+								}
 							}
 						}
 						remove_deposit = yes
@@ -1141,10 +1144,10 @@ planet_event = {
 	# Send in military
 	option = {
 		trigger = {
-			any_owned_pop = {
+			any_owned_pop_job = {
 				OR = {
-					has_job = enforcer
-					has_job = soldier
+					has_job_type = enforcer
+					has_job_type = soldier
 				}
 			}
 		}
@@ -1157,14 +1160,16 @@ planet_event = {
 		random_list = {
 			30 = {
 				custom_tooltip = tbm.23.casualties.random_tooltip
-				random_owned_pop = {
+				random_owned_pop_job = {
 					limit = { 
 						OR = {
-							has_job = enforcer
-							has_job = soldier
+							has_job_type = enforcer
+							has_job_type = soldier
 						}
 					}
-					kill_pop = yes
+					kill_assigned_pop_amount = {
+						amount = 10
+					}
 				}
 			}
 			70 = {
@@ -1380,7 +1385,7 @@ planet_event = {
 			modifier = recent_flooding
 			days = 360
 		}
-		remove_last_built_district = yes
+		remove_random_district = yes
 		create_message = {
 			type = "FLOODING_DAMAGE"
 			localization = tbm.28.desc
@@ -1509,7 +1514,7 @@ planet_event = {
 								modifier = recent_flooding
 								days = 360
 							}
-							remove_last_built_district = yes
+							remove_random_district = yes
 						}
 						33 = {
 							add_modifier = {

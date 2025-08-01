@@ -768,12 +768,12 @@ planet_event = {
 		random_list = {
 			90 = {
 				modifier = {
-					subtract = trigger:colony_age
+					subtract = trigger:colony_age_years
 				}
 			}
 			10 = {
 				modifier = {
-					add = trigger:colony_age
+					add = trigger:colony_age_years
 				}
 				planet_event = {
 					id = tbm_hw.212
@@ -918,7 +918,7 @@ planet_event = {
 		hidden_effect = {
 			set_variable = {
 				which = damage
-				value = trigger:colony_age
+				value = trigger:colony_age_years
 			}
 			multiply_variable = {
 				which = damage

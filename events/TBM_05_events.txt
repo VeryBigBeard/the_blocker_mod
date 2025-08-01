@@ -118,10 +118,6 @@ planet_event = {
 							value > 1
 						}
 						num_districts = {
-							type = district_industrial
-							value > 1
-						}
-						num_districts = {
 							type = district_generator
 							value > 1
 						}
@@ -358,11 +354,9 @@ planet_event = {
 		add_modifier = {
 			modifier = pm_wenkwort_predatory_biology
 		}
-		while = {
-			count = 2
-			random_owned_pop = {
-				kill_pop = yes
-			}
+		kill_2_random_pop_amount = {
+			AMOUNT1 = 200
+			AMOUNT2 = 150
 		}
 	}
 }

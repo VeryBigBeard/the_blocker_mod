@@ -34,7 +34,7 @@ planet_event = {
 			NOT = { has_planet_flag = desert_strong }		# Make sure we block firing again for the sand-strong, too.
 			
 			# These are mostly to make sure the effect matter and the scale of the event makes sense.
-			colony_age > 20
+			colony_age_years > 20
 			num_pops > 20
 		}
 	}

@@ -352,7 +352,7 @@ planet_event = {
 			15 = {
 				modifier = {
 					factor = 2.5
-					any_owned_pop = {
+					any_owned_pop_group = {
 						has_low_living_standard_type = yes
 					}
 				}
@@ -433,9 +433,10 @@ planet_event = {
 		
 		is_artificial = no
 		num_districts = {
-			type = district_industrial
+			type = district_city
 			value >= 1
 		}
+		has_industrial_zoning = yes
 		years_passed > 10	# Grace period for homeworlds; we do want them to struggle with these, but there's a lot going on at game start with other features.
 
 		# Got to have one each of sprawl and poor business conditions
@@ -448,10 +449,6 @@ planet_event = {
 		AND = {
 			free_district_slots < 2
 			OR = {
-				num_districts = {
-					type = district_industrial
-					value > 3
-				}
 				num_districts = {
 					type = district_mining
 					value > 3
@@ -557,7 +554,7 @@ planet_event = {
 			has_building = building_capital
 		}
 		owner = { is_gestalt = no }
-		colony_age < 20
+		colony_age_years < 20
 	}
 
 	immediate = {
@@ -566,19 +563,22 @@ planet_event = {
 			5 = {
 				modifier = {
 					factor = 2
-					num_pops > 8	# Should result in a few more settlements at that tight spot right before you get Planetary Admin.
+					count_owned_pop_amount = {
+						count > 800 # Should result in a few more settlements at that tight spot right before you get Planetary Admin.
+					}
 				}
 
 				modifier = {
 					factor = 4
-					any_owned_pop = {
-						has_job = colonial_deputy
+					num_assigned_jobs = {
+						job = colonial_deputy
+						value >= 50
 					}
 				}
 
 				# Reduce likelihood if we have settlements already, we don't want these getting weedy.
 				modifier = {
-					multiply = 0.5
+					mult = 0.5
 					count_deposits = {
 						type = d_settlement
 						count >= 2
@@ -586,8 +586,10 @@ planet_event = {
 				}
 
 				modifier = {
-					multiply = 0.5
-					num_pops > 12
+					mult = 0.5
+					count_owned_pop_amount = {
+						count > 1800
+					}
 				}
 
 				modifier = {
@@ -598,7 +600,7 @@ planet_event = {
 					}
 				}
 
-				 planet_event = {
+				planet_event = {
 				 	id = tbm_handler.9
 				 	days = 180
 					random = 90
@@ -684,8 +686,9 @@ planet_event = {
 
 				modifier = {
 					add = 10
-					any_owned_pop = {
-						has_job = colonial_pioneer
+					num_assigned_jobs = {
+						job = colonial_pioneer
+						value >= 100
 					}
 				}
 
@@ -704,13 +707,17 @@ planet_event = {
 				}
 				modifier = {
 					factor = 0.5
-					num_pops > 20
+					count_owned_pop_amount = {
+						count > 2000
+					}
 				}
 				modifier = {
 					factor = 0
 					OR = {
 						has_building = building_major_capital
-						num_pops > 40
+						count_owned_pop_amount = {
+							count > 4000
+						}
 					}
 				}
 
@@ -764,8 +771,8 @@ planet_event = {
 		is_starting_planet = no
 		is_artificial = no
 		NOT = { is_same_value = owner.capital_scope }
-		colony_age > 5
-		colony_age < 50
+		colony_age_years > 2
+		colony_age_years < 50
 		check_variable = {
 			which = @prospecting_chance
 			value < 3
@@ -779,7 +786,7 @@ planet_event = {
 			5 = {
 				modifier = {
 					add = 5
-					colony_age < 20
+					colony_age_years < 20
 				}
 
 				modifier = {
@@ -820,7 +827,7 @@ planet_event = {
 		
 		years_passed > 50	# Partly because you're unlikely to have Soil Remediation that quickly and without it, Dustbowls can choke your ag colonies rather quickly before any more complex economy is set up. The intent of these is more to target breadbasket worlds in a larger empire.
 
-		colony_age > 40
+		colony_age_years > 40
 		OR = {
 			num_districts = {
 				type = district_farming
@@ -1159,7 +1166,6 @@ planet_event = {
 			limit = {
 				OR = {
 					owner = { has_valid_civic = civic_agrarian_idyll }
-					colony_type = col_rural
 					colony_type = col_farming
 					num_free_districts = {
 						type = district_city
@@ -1407,7 +1413,7 @@ planet_event = {
 
 	trigger = {
 		has_modifier = wild_world
-		colony_age > 20
+		colony_age_years > 20
 		num_free_districts = {
 			type = district_city
 			value >= 0

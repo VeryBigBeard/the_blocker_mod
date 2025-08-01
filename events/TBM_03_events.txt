@@ -125,8 +125,8 @@ planet_event = {
 
 	trigger = {
 		years_passed > 5
-		colony_age > 20
-		colony_age < 100
+		colony_age_years > 2
+		colony_age_years < 100
 		is_starting_planet = no
 		is_artificial = no
 		NOT = { has_planet_flag = fossil_fuel_discovered }
@@ -514,13 +514,15 @@ planet_event = {
 	after = {
 		
 		hidden_effect = {
-			#  Always: Remove reactor (naturally), destroy city, kill pop living there
+			#  Always: Remove reactor (naturally), destroy city, kill pops living there
 			event_target:reactor = {
 				remove_deposit = yes
 			}
 			remove_city_if_poss_and_other_if_not_regular = yes
-			random_owned_pop = {
-				kill_pop = yes
+			kill_3_random_pop__percentage = {
+				PERCENT1 = 10
+				PERCENT2 = 5
+				PERCENT3 = 15
 			}
 
 			# Add 2 extra nasties
@@ -538,8 +540,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 200
 					}
 				}
 			}		
@@ -557,8 +559,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 200
 					}
 				}
 			}
@@ -602,8 +604,10 @@ planet_event = {
 				remove_deposit = yes
 			}
 			remove_city_if_poss_and_other_if_not_regular = yes
-			random_owned_pop = {
-				kill_pop = yes
+			kill_3_random_pop__percentage = {
+				PERCENT1 = 15
+				PERCENT2 = 10
+				PERCENT3 = 20
 			}
 
 			# Add 3 extra nasties
@@ -621,8 +625,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 250
 					}
 				}
 			}		
@@ -640,8 +644,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 250
 					}
 				}
 			}
@@ -659,8 +663,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 250
 					}
 				}
 			}
@@ -705,8 +709,10 @@ planet_event = {
 				remove_deposit = yes
 			}
 			remove_city_if_poss_and_other_if_not_regular = yes
-			random_owned_pop = {
-				kill_pop = yes
+			kill_3_random_pop__percentage = {
+				PERCENT1 = 25
+				PERCENT2 = 35
+				PERCENT3 = 50
 			}
 
 			# Add 4 extra nasties
@@ -724,8 +730,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 500
 					}
 				}
 			}		
@@ -743,8 +749,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 400
 					}
 				}
 			}
@@ -762,8 +768,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 750
 					}
 				}
 			}
@@ -781,8 +787,8 @@ planet_event = {
 					add_deposit = d_radioactive_wasteland
 				}
 				20 = {
-					random_owned_pop = {
-						kill_pop = yes
+					kill_random_pop_amount = {
+						AMOUNT = 900
 					}
 				}
 			}
