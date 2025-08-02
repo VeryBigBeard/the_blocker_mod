@@ -21,7 +21,7 @@ planet_event = {
 			has_deposit = d_mineral_fields
 			has_deposit = d_basaltic_outcrops
 		}
-		any_owned_pop = {
+		any_owned_pop_group = {
 			is_robot_pop = no	# This avoids the situation where our colonist kid is a bot.
 		}
 		owner = { 
@@ -59,17 +59,14 @@ planet_event = {
 
 	immediate = {
 		
-		random_owned_pop = {
-			limit = {
-				has_job = colonist
-			}
-
+		# Get the species of our colonist from the species living there
+		random_owned_pop_group = {
 			species = {
 				save_event_target_as = colonizer
 			}
 		}
 
-		# Create lithoid species (check paramaters)
+		# Create lithoid species
 		create_species = {
 			name = random
 			class = LITHOID

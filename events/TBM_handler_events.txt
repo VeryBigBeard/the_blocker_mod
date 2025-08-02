@@ -1571,7 +1571,11 @@ planet_event = {
 					from = { is_scope_type = deposit }
 					from = { has_deposit_flag = wenkwort_deposit }
 				}
-				num_pops >= 5	# Don't fire negative events until colony is up and running
+				
+				# Don't fire negative events until colony is up and running
+				count_owned_pop_amount = {
+					count >= 5
+				}
 			}
 
 			change_variable = {

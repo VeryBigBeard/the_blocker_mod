@@ -32,9 +32,9 @@
  MESSAGE_SANDSTORM_TITLE:0 "Vicious Sandstorm"
  message_sandstorm:0 "A wild sandstorm has rolled in over a major city on §Y[planet.GetName]§!, destroying energy infrastructure.\n\n§YSandstorms occur naturally, but will be less frequent when a planet has more trees."
  
- tbm_message_mine_shaft_collapse_robot_casaulties:0 "A mine shaft at the §Y£blcoker£ [collapsed_mine]§! on [planet.GetName] has collapsed, trapping several robotic mining units inside. Fortunately, there has been no loss of life, but the mining units will have to be replaced."
+ tbm_message_mine_shaft_collapse_robot_casaulties:0 "A mine shaft at the £blcoker£ [collapsed_mine.GetName] on §Y[planet.GetName]§! has collapsed, trapping several robotic mining units inside. Fortunately, there has been no loss of life, but the mining units will have to be replaced."
 
- tbm_message_mine_shaft_collapse_miners_dead:0 "A mine shaft at the §Y£blcoker£ [collapsed_mine]§! on [planet.GetName] has collapsed, trapping several miners below the surface."
+ tbm_message_mine_shaft_collapse_miners_dead:0 "A mine shaft at the £blcoker£ [collapsed_mine.GetName] on §Y[planet.GetName]§! has collapsed, trapping several miners below the surface."
 
  message_landslide:0 "After a heavy rains, landslides have washed away settlements and resource infrastructure on [from.GetName].\n\nThe collapse may provide mining opportunities once the dust has settled."
 
@@ -48,7 +48,7 @@
 
  MESSAGE_FARMING_RURAL_TITLE:0 "Homestead Farms"
  message_farming_rural:0 "Advances in xeno-agricultural genology have allowed pioneering farmers to settle on §Y[planet.GetName]§!, creating new £blocker_yellow£ Homestead Farms in frontier regions.\n\n§Y £blocker_yellow£ §CHomestead Farms§Y will occur naturally on arable worlds, providing $district_farming_plural$ until space is filled or the colony reaches a certain level of development."
- message_farming_moisture:0 "Despite harsh conditions on §Y[planet.GetName], hardy pioneers have set up £blocker£ a network of small §YMoisture Farms§! to harvest and maintain precious water in frontier regions.\n\n§Y £blocker_yellow£ §CMoisture Farms§Y will occur naturally on dry worlds, providing $district_farming_plural$ until space is filled or the colony reaches a certain level of development."\
+ message_farming_moisture:0 "Despite harsh conditions on §Y[planet.GetName], hardy pioneers have set up £blocker£ a network of small §YMoisture Farms§! to harvest and maintain precious water in frontier regions.\n\n§Y £blocker_yellow£ §CMoisture Farms§Y will occur naturally on dry worlds, providing $district_farming_plural$ until space is filled or the colony reaches a certain level of development."
  message_farming_urban:0 "Increasing urbanization on §Y[planet.GetName]§ has led local administrators to seek to grow crops in £blocker_yellow£ §YUrban Aeroponics§! facilities.\n\n§YOnly two £blocker_yellow£ §CUrban Aeroponics§Y can be supported on any given world."
 
  MESSAGE_DEEP_CRUST_TITLE:0 "Deep-Crust Exploration"

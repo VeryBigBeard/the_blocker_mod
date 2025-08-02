@@ -6,6 +6,7 @@
 
 planet_colonist = {
 	parent = planet_jobs
+	use_for_ai_budget = yes
 	generate_add_modifiers = {
 		produces
 		upkeep
@@ -23,6 +24,7 @@ planet_colonist = {
 
 planet_scrap_miners = {
 	parent = planet_miners
+	use_for_ai_budget = yes
 	generate_add_modifiers = {
 		produces
 		upkeep
@@ -35,6 +37,7 @@ planet_scrap_miners = {
 
 planet_poachers = {
 	parent = planet_jobs_productive
+	use_for_ai_budget = yes
 }
 
 

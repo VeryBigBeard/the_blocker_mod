@@ -2,7 +2,7 @@
 
  ### The Blocker Mod - Scripted Loc Keys - English
 
- tbm_scripted_test_string_1:0 "$tbm_test_string_recursive$"
+ #tbm_scripted_test_string_1:0 "$tbm_test_string_recursive$"
  tbm_scripted_test_string_2:0 "Scripted Test String Two"
 
  tbm_colonial_council:0 "colonial council"

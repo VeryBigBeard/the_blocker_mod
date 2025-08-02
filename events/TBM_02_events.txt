@@ -643,25 +643,25 @@ planet_event = {
 }
 
 ### 78. Ship Project Event (Shifting Sands)
-# ship_event = {
-# 	id = tbm.78
+ship_event = {
+	id = tbm.78
 
-# 	is_triggered_only = yes
-# 	hide_window = yes
+	is_triggered_only = yes
+	hide_window = yes
 
-# 	immediate = {
-# 		leader = {
-# 			save_event_target_as = first_contact_officer	# Need this name in 80.
-# 		}
+	immediate = {
+		leader = {
+			save_event_target_as = first_contact_officer	# Need this name in 80.
+		}
 		
-# 		event_target:sand_planet = {
-# 			planet_event = {
-# 				id = tbm.79
-# 				days = 1
-# 			}
-# 		}
-# 	}
-# }
+		event_target:sand_planet = {
+			planet_event = {
+				id = tbm.79
+				days = 1
+			}
+		}
+	}
+}
 
 ### 79. Caverns Beneath (Shifting Sands)
 planet_event = {

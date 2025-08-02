@@ -930,13 +930,12 @@ planet_event = {
 	option = {
 		name = UNFORTUNATE
 		add_planet_devastation = damage
-		every_owned_pop = {
+		random_owned_pop_job = {
 			limit = {
-				has_job = enforcer
+				has_job_type = enforcer
 			}
-			while = {
-				count = 2
-				kill_pop = yes
+			kill_assigned_pop_amount = {
+				amount = 200
 			}
 		}
 		ruin_building = random_no_capital
@@ -1646,7 +1645,7 @@ situation_event = {
 		target = {
 			set_variable = {
 				which = half_drones
-				value = trigger:num_pops
+				value = trigger:pop_amount
 			}
 			divide_variable = {
 				which = half_drones
@@ -1671,7 +1670,9 @@ situation_event = {
 						is_councilor_type = councilor_gestalt_regulatory
 					}
 				}
-				add_trait = leader_trait_autocannibalistic
+				add_trait = {
+					trait = leader_trait_autocannibalistic
+				}
 			}
 		}
 	}
@@ -1684,10 +1685,10 @@ situation_event = {
 		}
 		target = {
 			hidden_effect = {
-				while = {
-					count = half_drones
-					random_owned_pop = {
-						kill_pop = yes
+				every_owned_pop_group = {
+					kill_pop_group = {
+						pop_group = from
+						percentage = 50
 					}
 				}
 			}
@@ -1753,9 +1754,7 @@ situation_event = {
 									every_owned_fleet = {
 										set_owner = event_target:new_hive
 									}
-									every_owned_pop = {
-										kill_pop = yes
-									}
+									kill_all_pop = yes
 									every_owned_leader = {
 										kill_leader = {
 											show_notification = no	
@@ -1887,7 +1886,9 @@ situation_event = {
 				limit = {
 					is_councilor = yes
 				}
-				add_trait = leader_trait_cannibal_councilor
+				add_trait = {
+					trait = leader_trait_cannibal_councilor
+				}
 			}
 			shift_ethic = ethic_fanatic_egalitarian
 			force_remove_civic = 2

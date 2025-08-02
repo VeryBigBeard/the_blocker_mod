@@ -151,8 +151,8 @@ special_project = {
 	}
 
 	on_success = { 
-		event_target:sand_planet = {
-			planet_event = { id = tbm.79 }
+		ship_event = {
+			id = tbm.78 	# Gets leader name for loc
 		}
 	 }
 }

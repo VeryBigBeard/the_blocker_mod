@@ -35,7 +35,9 @@ planet_event = {
 			
 			# These are mostly to make sure the effect matter and the scale of the event makes sense.
 			colony_age_years > 20
-			num_pops > 20
+			count_owned_pop_amount = {
+				count > 2500
+			}
 		}
 	}
 
@@ -167,7 +169,9 @@ planet_event = {
 			20 = {
 				modifier = {
 					factor = 2
-					num_pops > 10
+					count_owned_pop_amount = {
+						count > 10
+					}
 						free_housing > 3					
 				}
 				planet_event = { id = tbm_desert.33 days = 60 random = 30 }
@@ -326,7 +330,9 @@ planet_event = {
 					NOT = { exists = leader }
 				}
 				leader = {
-					add_trait = leader_trait_corrupt
+					add_trait = {
+						trait = leader_trait_corrupt
+					}
 				}
 			}
 			90 = {}
@@ -336,11 +342,14 @@ planet_event = {
 	option = {
 		name = tbm_desert.35.apologize
 		custom_tooltip = tbm_desert.35.apologize.tooltip	# The Progressive Faction isn't pleased.
-		random_owned_pop = {
+		random_owned_pop_group = {
 			limit = {
-				has_job_category = worker
+				is_pop_category = worker
 			}
-			kill_pop = yes
+			kill_pop_group = {
+				pop_group = from
+				amount = 600
+			}
 		}
 		owner = {
 			add_resource = {
@@ -363,7 +372,7 @@ planet_event = {
 				# 	}
 				# }
 				
-				every_owned_pop = {
+				every_owned_pop_group = {
 					limit = {
 						OR = {
 							has_ethic = ethic_egalitarian
@@ -383,31 +392,32 @@ planet_event = {
 		name = tbm_desert.35.sacrifice
 		if = {
 			limit = {
-				any_owned_pop = {
+				any_owned_pop_group = {
 					is_enslaved = yes
 				}
 				count_enslaved_species = {
 					count > 4
 				}
 			}
-			random_owned_pop = {
+			random_owned_pop_group = {
 				limit = {
-					has_job_category = slave
+					is_pop_category = slave
 				}
-				kill_pop = yes
-				kill_pop = yes
-				kill_pop = yes
-				kill_pop = yes
+				kill_pop_group = {
+					pop_group = from
+					amount = 1800
+				}
 			}
 		}
 		else = {
-			random_owned_pop = {
+			random_owned_pop_group = {
 				limit = {
-					has_job_category = worker
+					is_pop_category = worker
 				}
-				kill_pop = yes
-				kill_pop = yes
-				kill_pop = yes
+				kill_pop_group = {
+					pop_group = from
+					amount = 800
+				}
 			}
 
 			planet = {
@@ -416,7 +426,7 @@ planet_event = {
 				}
 			}
 			owner = {
-				every_owned_pop = {
+				every_owned_pop_group = {
 					limit = {
 						has_ethic = ethic_egalitarian
 					}

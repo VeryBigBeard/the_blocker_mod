@@ -898,8 +898,6 @@ building_cathedral_apocalypse = {
 		owner = { is_fallen_empire = no }
 	}
 
-	is_capped_by_modifier = yes
-
 	resources = {
 		category = planet_buildings
 		upkeep = {
