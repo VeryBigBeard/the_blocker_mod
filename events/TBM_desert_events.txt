@@ -333,6 +333,7 @@ planet_event = {
 					add_trait = {
 						trait = leader_trait_corrupt
 					}
+					save_event_target_as = desert_governor
 				}
 			}
 			90 = {}
@@ -342,12 +343,15 @@ planet_event = {
 	option = {
 		name = tbm_desert.35.apologize
 		custom_tooltip = tbm_desert.35.apologize.tooltip	# The Progressive Faction isn't pleased.
+		allow = {
+			exists = leader
+		}
 		random_owned_pop_group = {
 			limit = {
 				is_pop_category = worker
 			}
 			kill_pop_group = {
-				pop_group = from
+				pop_group = this
 				amount = 600
 			}
 		}
@@ -395,16 +399,13 @@ planet_event = {
 				any_owned_pop_group = {
 					is_enslaved = yes
 				}
-				count_enslaved_species = {
-					count > 4
-				}
 			}
 			random_owned_pop_group = {
 				limit = {
 					is_pop_category = slave
 				}
 				kill_pop_group = {
-					pop_group = from
+					pop_group = this
 					amount = 1800
 				}
 			}
@@ -415,7 +416,7 @@ planet_event = {
 					is_pop_category = worker
 				}
 				kill_pop_group = {
-					pop_group = from
+					pop_group = this
 					amount = 800
 				}
 			}

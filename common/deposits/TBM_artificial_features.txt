@@ -643,7 +643,7 @@ d_black_market = {
 
 	planet_modifier = {
 		planet_civilians_trade_produces_add = 0.054
-		planet_crime_add = 10
+		planet_crime_mult = 10
 	}
 
 	potential = {

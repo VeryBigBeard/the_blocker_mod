@@ -1,4 +1,4 @@
-name="The Blocker Mod for 3.x"
+name="The Blocker Mod"
 picture="thumbnail.png"
 tags={
 	"Gameplay"
@@ -6,5 +6,5 @@ tags={
 	"Galaxy Generation"
 }
 version="1.0"
-supported_version="3.14.*"
+supported_version="4.0.*"
 remote_file_id="3292737283"

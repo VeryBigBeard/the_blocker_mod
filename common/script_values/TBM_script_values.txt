@@ -50,9 +50,9 @@ feature_research_gestalt_eng = {
 ### Feature Values
 
 extreme_weather_strain = {
-	base = 2
+	base = 0
 	complex_trigger_modifier = {
-		trigger = num_buildings
+		trigger = num_districts
 		trigger_scope = planet
 		parameters = {
 			type = any
@@ -93,7 +93,7 @@ highway_engineers_to_change_a_lightbulb = {
 ### Colonial Strain - Infrastructure
 #	Adds upkeep to colonial infrastructure as population on the planet grows, straining national unity
 colonial_strain_infrastructure = {
-	base = 1
+	base = 0.1
 	complex_trigger_modifier = {
 		trigger = count_owned_pop_amount
 		trigger_scope = planet	# Needed so we can switch over from Pop when this is called in Jobs.

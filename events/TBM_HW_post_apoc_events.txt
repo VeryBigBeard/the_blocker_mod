@@ -1687,7 +1687,7 @@ situation_event = {
 			hidden_effect = {
 				every_owned_pop_group = {
 					kill_pop_group = {
-						pop_group = from
+						pop_group = this
 						percentage = 50
 					}
 				}

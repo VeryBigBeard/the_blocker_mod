@@ -79,7 +79,7 @@
 
  d_homeworld_extreme_weather:0 "Extreme Weather"
  d_homeworld_extreme_weather_desc:0 "A product of unchecked global warming in the early 21st century, this region is regularly wracked by severe seasonal storms. Sturdy communities cling on amid the high-maintenance wind farms."
- d_extreme_weather_tooltip:0 "$r_unity$ Upkeep increases for each £building£ Building constructed.§!"
+ d_extreme_weather_tooltip:0 "$r_unity$ Upkeep increases for each £district£ District constructed.§!"
 
  d_experimental_geothermal_tap:0 "Experimental Geothermal Tap"
  d_experimental_geothermal_tap_desc:0 "Designed in 2107 to combat fossil fuel dependency, this network of experimental subsurface taps never lived up to the promise of the 22nd century, and a recent news exposé has revealed much of the science involved to be based on a hoax."

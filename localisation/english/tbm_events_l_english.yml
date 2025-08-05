@@ -244,9 +244,9 @@
  # 90. Mine Shaft Collapse
 
  tbm.90_name:0 "Mine Shaft Collapse"
- tbm.90_desc_robotic_deaths:0 ""A mine shaft at the §Y£blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed, trapping several mining units inside. Fortunately, there has been no loss of life, but the mining units will have to be replaced."
- tbm.90_desc_miner_deaths:0 ""A mine shaft at the §Y£blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed, trapping several miners inside. Local miners' cooperatives are outraged at what they perceive as lax safety standards and a poorly-coordinated rescue effort, and have announced a strike until conditions improve."
- tbm.90_desc_no_deaths:0 ""A mine shaft at the §Y£blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed. Fortunately, there has been no loss of life, but the mine has been destroyed.""
+ tbm.90_desc_robotic_deaths:0 "A mine shaft at the§Y £blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed, trapping several mining units inside. Fortunately, there has been no loss of life, but the mining units will have to be replaced."
+ tbm.90_desc_miner_deaths:0 ""A mine shaft at the§Y £blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed, trapping several miners inside. Local miners' cooperatives are outraged at what they perceive as lax safety standards and a poorly-coordinated rescue effort, and have announced a strike until conditions improve."
+ tbm.90_desc_no_deaths:0 ""A mine shaft at the§Y £blcoker£ [collapsed_mine.GetName]§! on [planet.GetName] has collapsed. Fortunately, there has been no loss of life, but the mine has been destroyed.""
 
  mine_safety_standards:0 "Mine Safety Standards"
 
