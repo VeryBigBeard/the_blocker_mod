@@ -35,9 +35,13 @@ is_ecu = {
 is_starting_planet = {
 	OR = {
 		is_homeworld = yes
+		is_homeworld_or_lost_colony = yes
 		has_planet_flag = lost_colony_world
 		solar_system = {
-			has_star_flag = broken_shackles_system
+			OR = {
+				has_star_flag = broken_shackles_system
+				has_star_flag = shattered_ring_system
+			}
 		}
 	}	
 }

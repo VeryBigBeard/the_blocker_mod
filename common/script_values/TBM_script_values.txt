@@ -93,13 +93,13 @@ highway_engineers_to_change_a_lightbulb = {
 ### Colonial Strain - Infrastructure
 #	Adds upkeep to colonial infrastructure as population on the planet grows, straining national unity
 colonial_strain_infrastructure = {
-	base = 0.1
+	base = 0.001
 	complex_trigger_modifier = {
 		trigger = count_owned_pop_amount
 		trigger_scope = planet	# Needed so we can switch over from Pop when this is called in Jobs.
 		mode = factor
 	}
-	min = 2
+	min = 1
 	floor = yes
 }
 

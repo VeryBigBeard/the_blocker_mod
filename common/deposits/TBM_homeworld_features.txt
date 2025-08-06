@@ -140,7 +140,6 @@ d_impact_memorial = {
 
 	should_swap_deposit_on_terraforming = no
 
-	use_weights_for_blocker_swap_types = yes
 	blocker_swap_types = {
 		d_major_impact_site
 	}
@@ -243,7 +242,7 @@ d_mine_shafts = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_crime_mult = 5
+		planet_miners_consumer_goods_upkeep_add = 1
 		
 	}
 
@@ -280,7 +279,7 @@ d_mining_enzymes = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		planet_pops_food_upkeep_mult = 0.02
+		planet_miners_food_upkeep_add = 1
 	}
 
 	potential = {
@@ -655,7 +654,9 @@ d_rare_metals_lab = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		BIOLOGICAL_pop_growth_reduction = 0.05
+		#BIOLOGICAL_pop_growth_reduction = 0.05
+		#BIOLOGICAL_pop_growth_speed = -0.05
+		bonus_pop_growth_mult = -0.05
 		pop_happiness = -0.05
 	}
 

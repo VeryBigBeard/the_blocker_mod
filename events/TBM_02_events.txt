@@ -54,7 +54,7 @@ planet_event = {
 	trigger = {
 		is_starting_planet = no
 		has_deposit = d_toxic_kelp
-		count_owned_pop_job = {
+		count_owned_pop_amount = {
 			count > 200
 		}
 		colony_age_years > 1	# Try to avoid to kelp-based colony wipe-outs. But not trying *that* hard.

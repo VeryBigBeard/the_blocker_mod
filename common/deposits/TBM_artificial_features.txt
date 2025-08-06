@@ -432,7 +432,8 @@ d_settlement = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 3
+		planet_housing_add = 800
+		planet_amenities_add = 150
 	}
 
 	potential = {

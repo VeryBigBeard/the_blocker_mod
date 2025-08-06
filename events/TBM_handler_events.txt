@@ -1126,6 +1126,7 @@ planet_event = {
 			is_planet_class = pc_nuked
 		}
 		is_starting_planet = no
+		is_homeworld_or_lost_colony = no
 	}
 
 	immediate = {

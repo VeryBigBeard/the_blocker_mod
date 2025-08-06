@@ -182,6 +182,9 @@
  mod_planet_colonist_exotic_gases_produces_add:0 "$r_exotic_gases$ from $icon_job_colonists$"
  mod_planet_colonist_rare_crystals_produces_add:0 "$r_rare_crystals$ from $icon_job_colonists$"
  mod_planet_colonist_volatile_motes_produces_add:0 "$r_volatile_motes$ from $icon_job_colonists$"
+ mod_planet_colonist_trade_produces_add:0 "$r_trade$ from $icon_job_colonists$"
+ mod_planet_colonist_trade_produces_add:0 "$r_trade$ from $icon_job_colonists$"
+ 
 
  mod_planet_xeno_naturalist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$ $job_xeno_naturalist_plural$"
  mod_planet_xeno_naturalist_society_research_produces_add:0 "$r_society_research$ from $icon_job_colonists$ $job_xeno_analysis_drone_plural$"
@@ -371,7 +374,7 @@
  d_rough_plains:0 "£blocker£ Rough Plainsland"
  d_rough_plains_desc:0 "There is nothing especially remarkable about this region, but its combination of razor-sharp rock, swift-flowing rivers, and unsavory weather leave it low on just about every ranking of potential settlements."
 
- d_seaweed_shoals:0 "£blocker£ eaweed Shoals"
+ d_seaweed_shoals:0 "£blocker£ Seaweed Shoals"
  d_seaweed_shoals_desc:0 "Vast forests of seaweed choke this coastal region, but nutritional analysis indicates the alien aquaflora is filled with nutrients."
 
  d_magma_lake:0 "£blocker£ Magma Lake"
