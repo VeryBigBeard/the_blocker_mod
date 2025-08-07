@@ -6,5 +6,5 @@ tags={
 	"Galaxy Generation"
 }
 version="1.0"
-supported_version="4.0.*"
-remote_file_id="3292737283"
+supported_version="v4.0.*"
+remote_file_id="3544172350"
