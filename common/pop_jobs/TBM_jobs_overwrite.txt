@@ -5,11 +5,16 @@
 
 colonist = {
 	category = specialist		# worker
-	condition_string = SPECIALIST_JOB_TRIGGER
-	building_icon = building_colony_shelter
-	clothes_texture_index = 3
+	# clothes_texture_index = 3
 
 	#icon = "gfx/interface/icons/jobs/job_colonist"
+
+	swappable_data = {
+		default = {
+			condition_string = SPECIALIST_JOB_TRIGGER
+			building_icon = building_colony_shelter
+		}
+	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -100,9 +105,14 @@ colonist = {
 
 scrap_miner = {
 	category = worker
-	condition_string = WORKER_JOB_TRIGGER
-	building_icon = building_mineral_purification_plant
-	icon = miner
+
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_mineral_purification_plant
+			icon = miner
+		}
+	}	
 
 	tags = { minerals strategic_resource }
 

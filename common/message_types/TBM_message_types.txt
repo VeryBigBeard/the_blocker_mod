@@ -7,7 +7,7 @@ message_type = {
 	key = "SLUM_GENERATOR"
 	icon_frame = 3
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = ping_notification_yellow
 
 	category = planets
@@ -19,7 +19,7 @@ message_type = {
 	key = "INDUSTRIAL_WASTELAND"
 	icon_frame = 3
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = ping_notification_yellow
 
 	category = planets
@@ -31,7 +31,7 @@ message_type = {
 	key = "URBAN_POWER_PLANT"
 	icon_frame = 3
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = ping_notification_yellow
 
 	category = planets
@@ -43,7 +43,7 @@ message_type = {
 	key = "COLONIAL_SETTLEMENT"
 	icon_frame = 1
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = ping_notification_green
 
 	category = planets
@@ -55,7 +55,7 @@ message_type = {
 	icon_frame = 0
 	key = "FRONTIER_FARMLAND"
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = ping_notification_green
 
 	category = planets
@@ -67,7 +67,7 @@ message_type = {
 	icon = TBM_message_blocker_yellow
 	icon_frame = 0
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = "ping_notification_red"
 
 	category = planets
@@ -79,7 +79,7 @@ message_type = {
 	icon_frame = 0
 	key = "SUBTERRANEAN"
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = ping_notification_green
 
 	category = planets
@@ -91,7 +91,7 @@ message_type = {
 	icon_frame = 0
 	key = "FARMING_RURAL"
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = ping_notification_green
 
 	category = planets
@@ -103,7 +103,7 @@ message_type = {
 	icon_frame = 0
 	key = "FARMING_URBAN"
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = ping_notification_green
 
 	category = planets
@@ -118,7 +118,7 @@ message_type = {
 	icon = TBM_message_blocker
 	icon_frame = 0
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = "ping_notification_yellow"
 
 	category = planets
@@ -130,7 +130,7 @@ message_type = {
 	icon = TBM_message_bad_thing
 	icon_frame = 2
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = "ping_notification_red"
 
 	category = planets
@@ -142,7 +142,7 @@ message_type = {
 	icon = TBM_message_bad_thing
 	icon_frame = 2
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = "ping_notification_red"
 
 	category = planets
@@ -154,7 +154,7 @@ message_type = {
 	icon = TBM_message_bad_thing
 	icon_frame = 2
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = "ping_notification_red"
 
 	category = planets
@@ -167,7 +167,7 @@ message_type = {
 	icon = TBM_message_bad_thing
 	icon_frame = 2
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = "ping_notification_red"
 
 	category = planets
@@ -179,7 +179,7 @@ message_type = {
 	key = "DEEP_CRUST"
 	icon_frame = 0
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = "ping_notification_yellow"
 	
 	category = planets
@@ -191,7 +191,7 @@ message_type = {
 	key = "SELECTIVE_DEFOLIATION"
 	icon_frame = 0
 	sound = alert_negative
-	auto_opens = none
+	# auto_opens = none
 	ping = "ping_notification_yellow"
 	
 	category = planets

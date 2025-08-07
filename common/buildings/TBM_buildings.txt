@@ -861,7 +861,9 @@ building_laboratory_apocalypse = {
 	}
 	
 	planet_modifier = {
-		pop_researcher_bonus_workforce_mult = 0.25
+		pop_physicist_bonus_workforce_mult = 0.25
+		pop_biologist_bonus_workforce_mult = 0.25
+		pop_engineer_bonus_workforce_mult = 0.25
 	}
 
 	ai_weight = {
@@ -910,6 +912,14 @@ building_cathedral_apocalypse = {
 	
 	planet_modifier = {
 		pop_bureaucrat_bonus_workforce_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt_empire =  yes }
+		}
+		pop_coordinator_bonus_workforce_add = 0.05 	# swaps for hives
 	}
 
 	ai_weight = {

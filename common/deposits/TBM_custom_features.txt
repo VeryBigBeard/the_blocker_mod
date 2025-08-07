@@ -70,10 +70,9 @@ d_fjordland = {
 	}	
 
 	on_cleared = {		
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 
@@ -283,10 +282,9 @@ d_sandstone_spires = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 
@@ -415,10 +413,9 @@ d_steppe_uplands = {
 	prerequisites = { "tech_mountain_range" }
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 
@@ -608,10 +605,9 @@ d_giant_tree  = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 
@@ -1090,10 +1086,9 @@ d_basaltic_outcrops = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -1207,10 +1202,9 @@ d_volcanic_island = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -1464,10 +1458,9 @@ d_fish_shoals = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				food = 500
-			}
+		add_resource_on_clear = {
+			resource = food
+			amount = 100
 		}
 	}
 
@@ -1681,11 +1674,13 @@ d_frozen_wasteland = {
 	}
 	
 	on_cleared = {
-		climate_control_activate = yes
-		owner = {
-			add_resource = {
-				minerals = 200
-			}
+		if = {
+			limit = { exists = owner }
+			climate_control_activate = yes
+		}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
 		}
 	}
 
@@ -1780,11 +1775,13 @@ d_mountain_jungle = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-				food = 200
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 200
 		}
 	}
 
@@ -1927,11 +1924,13 @@ d_taiga = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-				food = 200
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 200
 		}
 	}
 
@@ -2056,11 +2055,13 @@ d_scrubland = {
 	}
 	
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-				food = 200
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 200
 		}
 	}
 	planet_modifier = {
@@ -2404,10 +2405,9 @@ d_crags = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
 		}
 	}
 
@@ -2823,10 +2823,9 @@ d_lowland_hills = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -3009,11 +3008,13 @@ d_salt_flats = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-				engineering_research = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 500
 		}
 	}
 
@@ -3193,10 +3194,9 @@ d_sandsea = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -3294,11 +3294,13 @@ d_sandstone_cliffs = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-				engineering_research = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 500
 		}
 	}
 
@@ -3385,10 +3387,9 @@ d_highlands = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -3541,10 +3542,9 @@ d_seaweed_shoals = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				food = 100
-			}
+		add_resource_on_clear = {
+			resource = food
+			amount = 100
 		}
 	}
 
@@ -3645,10 +3645,9 @@ d_gas_vents = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				exotic_gases = 50
-			}
+		add_resource_on_clear = {
+			resource = exotic_gases
+			amount = 50
 		}
 	}
 
@@ -3722,10 +3721,9 @@ d_magma_lake = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 800
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 800
 		}
 	}
 
@@ -3860,10 +3858,9 @@ d_coal_bed = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 250
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 250
 		}
 	}
 
@@ -3924,11 +3921,13 @@ d_subterranean_gas_lake = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1800
-				engineering_research = 200
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1800
+		}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 200
 		}
 	}
 
@@ -4013,10 +4012,9 @@ d_oil_fields_at_first_light = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 600
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 600
 		}
 	}
 
@@ -4088,10 +4086,9 @@ d_dust_flats = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 400
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 400
 		}
 	}
 
@@ -4431,10 +4428,9 @@ d_fells = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 800
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 800
 		}
 	}
 
@@ -4513,10 +4509,9 @@ d_sand_wastes = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				physics_research = 250
-			}
+		add_resource_on_clear = {
+			resource = physics_research
+			amount = 250
 		}
 	}
 
@@ -4878,10 +4873,9 @@ d_basin = {	# Inspired by the Nile basin--rich in sediment
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 400
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 400
 		}
 	}
 
@@ -4983,10 +4977,9 @@ d_white_mountains = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
 		}
 	}
 
@@ -5131,10 +5124,9 @@ d_rocky_hills = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
 		}
 	}
 
@@ -5203,10 +5195,9 @@ d_spore_forest = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				society_research = 500
-			}
+		add_resource_on_clear = {
+			resource = society_research
+			amount = 500
 		}
 	}
 
@@ -5351,11 +5342,13 @@ d_utopian_hills = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-				food = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 500
 		}
 	}
 
@@ -5427,10 +5420,9 @@ d_gentle_plains = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -5466,10 +5458,9 @@ d_tomb_city = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 500
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 500
 		}
 	}
 
@@ -5480,6 +5471,7 @@ d_tomb_city = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = { has_valid_civic = civic_memorialist }
 		}
 		planet_jobs_unity_produces_mult = 0.1
@@ -5487,6 +5479,7 @@ d_tomb_city = {
 
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			NOT = {
 				owner = { has_valid_civic = civic_memorialist }
 			}
@@ -5695,11 +5688,13 @@ d_tbm_active_volcano = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-				engineering_research = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
+		}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 1000
 		}
 	}
 

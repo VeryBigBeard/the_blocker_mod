@@ -55,6 +55,10 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
+	trigger = {
+		exists = owner
+	}
+
 	option = {
 		name = tbm.5_nothing
 		custom_tooltip = tbm.5_nothing_tooltip

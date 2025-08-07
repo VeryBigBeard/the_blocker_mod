@@ -76,7 +76,7 @@ intercepting_history_system_initializer_02 = {
 					trait = "trait_presapient_forcefully_devolved"
 				}
 				effect = {
- 					#save_global_event_target_as = primitive_benefactor_species
+#					save_global_event_target_as = primitive_benefactor_species
 				}
 			}
 			create_early_pre_ftl_empire = yes

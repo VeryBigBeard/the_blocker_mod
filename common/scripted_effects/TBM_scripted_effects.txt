@@ -315,3 +315,19 @@ kill_3_random_pop_amount = {
 		}
 	}
 }
+
+# Necessary for on_cleared blocks because they no longer include an implied exists check for some reason.
+add_resource_on_clear = {
+	if = {
+		limit = {
+			exists = owner
+		}
+		
+		owner = {
+			add_resource = {
+				$resource$ = $amount$
+			}
+			
+		}
+	}
+}

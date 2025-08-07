@@ -85,7 +85,7 @@ d_gestalt_homeworld_bandit_camp = {
 	}
 
 	planet_modifier = {
-		planet_crime_mult = 15
+		planet_crime_mult = 0.15
 	}
 
 	potential = {
@@ -233,10 +233,9 @@ d_mine_shafts = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 100
 		}
 	}
 
@@ -270,10 +269,9 @@ d_mining_enzymes = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				food = 100
-			}
+		add_resource_on_clear = {
+			resource = food
+			amount = 100
 		}
 	}
 
@@ -310,10 +308,9 @@ d_computerized_extraction_sites = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 100
 		}
 	}
 
@@ -567,6 +564,7 @@ d_major_impact_site = {
 
 	potential = {
 		is_starting_planet = yes
+		exists = owner
 	}
 
 	drop_weight = {
@@ -574,6 +572,7 @@ d_major_impact_site = {
 
 		modifier = {
 			add = 10
+			exists = owner
 			owner = { is_gestalt = no }
 			has_deposit = d_impact_memorial
 		}
@@ -609,6 +608,7 @@ d_gestalt_major_impact_site = {
 
 	potential = {
 		is_starting_planet = yes
+		exists = owner
 	}
 
 	drop_weight = {
@@ -616,6 +616,7 @@ d_gestalt_major_impact_site = {
 
 		modifier = {
 			add = 10
+			exists = owner
 			owner = { is_gestalt = yes }
 			has_deposit = d_impact_memorial
 		}
@@ -654,8 +655,6 @@ d_rare_metals_lab = {
 
 	planet_modifier = {
 		district_mining_max = 1
-		#BIOLOGICAL_pop_growth_reduction = 0.05
-		#BIOLOGICAL_pop_growth_speed = -0.05
 		bonus_pop_growth_mult = -0.05
 		pop_happiness = -0.05
 	}
@@ -809,10 +808,9 @@ d_high_wire_network = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 100
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 100
 		}
 	}
 
@@ -861,10 +859,9 @@ d_neural_network = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 100
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 100
 		}
 	}
 
@@ -911,10 +908,9 @@ d_battery_farms = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 100
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 100
 		}
 	}
 
@@ -1029,6 +1025,7 @@ d_experimental_geothermal_tap = {
 	on_cleared = {
 		if = {
 			limit = {
+				exists = owner
 				owner = { has_technology = tech_volcano }
 			}
 			add_deposit = d_geothermal_vent
@@ -1090,6 +1087,7 @@ d_gestlat_experimental_geothermal_tap = {
 	on_cleared = {
 		if = {
 			limit = {
+				exists = owner
 				owner = { has_technology = tech_volcano }
 			}
 			add_deposit = d_geothermal_vent
@@ -1140,11 +1138,10 @@ d_fossil_fuel_reserves = {
 		}
 	}
 
-	on_cleared = {
-		owner = {
-			add_resource = {
-				unity = 500	# Not monthly mult, more reward for this if you get off the oil quick.
-			}
+	on_cleared = {		
+		add_resource_on_clear = {
+			resource = unity
+			amount = 500	#Not monthly mult, more reward for this if you get off the oil quick.
 		}
 	}
 
@@ -1162,6 +1159,7 @@ d_fossil_fuel_reserves = {
 
 	potential = {
 		is_starting_planet = yes
+		exists = owner
 	}
 
 	drop_weight = {
@@ -1202,10 +1200,9 @@ d_gestalt_fossil_fuel_reserves = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				unity = 500	# Not monthly mult, more reward for this if you get off the oil quick.
-			}
+		add_resource_on_clear = {
+			resource = unity
+			amount = 500	#Not monthly mult, more reward for this if you get off the oil quick.
 		}
 	}
 
@@ -1231,6 +1228,7 @@ d_gestalt_fossil_fuel_reserves = {
 
 	potential = {
 		is_starting_planet = yes
+		exists = owner
 	}
 
 	drop_weight = {
@@ -1274,10 +1272,9 @@ d_inaugural_spaceport = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 200
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 100
 		}
 	}
 
@@ -1328,10 +1325,9 @@ d_gestalt_inaugural_spaceport = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 200
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 200
 		}
 	}
 
@@ -1379,25 +1375,35 @@ d_mitochondria = {
 	}
 
 	on_cleared = {
-		if = {
-			limit = {
-				owner = {
-					OR = {
-						has_ascension_perk = ap_engineered_evolution
-						has_ascension_perk = ap_the_flesh_is_weak
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = owner
+					owner = {
+						OR = {
+							has_ascension_perk = ap_engineered_evolution
+							has_ascension_perk = ap_the_flesh_is_weak
+						}
 					}
 				}
+				add_modifier = {
+					modifier = breathing_without_the_body
+					years = 20
+				}
 			}
-			add_modifier = {
-				modifier = breathing_without_the_body
-				years = 20
+
+			else_if = {
+				limit = {
+					NOT = { exists = owner }
+				}
+				# Fail out, do nothing and don't log unnecessary error
 			}
-		}
-		
-		else = {
-			add_modifier = {
-				modifier = overambitious_evolution
-				years = 20
+			
+			else = {
+				add_modifier = {
+					modifier = overambitious_evolution
+					years = 20
+				}
 			}
 		}
 	}
@@ -1448,6 +1454,8 @@ d_central_power_nexus = {
 
 	planet_modifier = {
 		district_generator_max = 1
+		planet_jobs_unity_produces_mult = 0.20
+		job_coordinator_add = 1		# Exists to get machines to baseline unity output so they don't start in deficit due to Extreme Weather. May revisit later, but also means their unity output is heavily tied to keepoing the Power Core safe, which makes sense.
 	}
 
 	triggered_planet_modifier = {
@@ -1565,7 +1573,7 @@ d_metabolic_processing = {
 
 	planet_modifier = {
 		district_farming_max = 1
-		planet_pops_food_upkeep_mult = 0.5
+		planet_pops_food_upkeep_mult = 0.1
 	}
 
 	potential = {
@@ -2001,18 +2009,17 @@ d_megaliths = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 100
 		}
 	}
 
 	planet_modifier = {
 		district_mining_max = 1
-		LITHOID_pop_growth_reduction = -0.25 	# Lithoids already get -25%; intent here is to allow you to trade another major hit to pop growth in exchange for scaling unity over time.
+		LITHOID_bonus_pop_growth_mult = -0.25 	# Lithoids already get -25%; intent here is to allow you to trade another major hit to pop growth in exchange for scaling unity over time.
 	}
-
+	
 	potential = {
 		always = no
 	}
@@ -2082,10 +2089,9 @@ d_crumbling_mountain = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -2142,7 +2148,8 @@ d_crystal_outcrops = {
 			exists = owner
 			owner = { is_gestalt = no }
 		}
-		planet_miners_consumer_goods_upkeep_add = 0.1
+		#planet_miners_consumer_goods_upkeep_add = 0.1
+		planet_miners_energy_upkeep_add = 0.1
 	}
 
 	triggered_planet_modifier = {
@@ -2240,10 +2247,9 @@ d_shallow_bay = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				food = 100
-			}
+		add_resource_on_clear = {
+			resource = food
+			amount = 100
 		}
 	}
 
@@ -2333,10 +2339,9 @@ d_flotsam = {
 	}
 	
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 50
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 50
 		}
 	}
 
@@ -2479,14 +2484,17 @@ d_homeworld_dormant_supervolcano = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				physics_research = 2500
-				society_research = 1000
-			}
-			add_monthly_resource_mult = {
-				resource = unity
-				value = 24
+		if = {
+			limit = { exists = owner }
+			owner = {
+				add_resource = {
+					physics_research = 2500
+					society_research = 1000
+				}
+				add_monthly_resource_mult = {
+					resource = unity
+					value = 24
+				}
 			}
 		}
 	}
@@ -2540,10 +2548,9 @@ d_gaia_homeworld_fossil_fuels = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				unity = 400	# Not monthly mult, more reward for this if you get off the oil quick.
-			}
+		add_resource_on_clear = {
+			resource = unity
+			amount = 500
 		}
 	}
 
@@ -2554,6 +2561,7 @@ d_gaia_homeworld_fossil_fuels = {
 
 	potential = {
 		is_starting_planet = yes
+		exists = owner
 	}
 
 	drop_weight = {
@@ -2596,10 +2604,9 @@ d_homeworld_sculpted_mountains = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 2000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 2000
 		}
 	}
 
@@ -2641,11 +2648,13 @@ d_homeworld_utopian_hills = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-				food = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 500
 		}
 	}
 
@@ -2727,11 +2736,13 @@ d_ancient_forests = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-				food = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 100
 		}
 	}
 
@@ -2770,10 +2781,9 @@ d_remnant_dilapidated_reactor = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				energy = 1000
-			}
+		add_resource_on_clear = {
+			resource = energy
+			amount = 1000
 		}
 	}
 
@@ -2825,10 +2835,13 @@ d_repurposed_power_system = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_monthly_resource_mult = {
-				resource = unity
-				value = 6
+		if = {
+			limit = { exists = owner }
+			owner = {
+				add_monthly_resource_mult = {
+					resource = unity
+					value = 6
+				}
 			}
 		}
 	}
@@ -2927,11 +2940,13 @@ d_homeworld_scrap_mountain = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-				alloys = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 100
 		}
 	}
 
@@ -2999,11 +3014,13 @@ d_crumbling_tower = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-				alloys = 50
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
+		}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 50
 		}
 	}
 
@@ -3069,8 +3086,9 @@ d_destroyed_spaceport = {
 					}
 				}
 				25 = {
-					add_resource = {
-						engineering_research = 1500
+					add_resource_on_clear = {
+						resource = engineering_research
+						amount = 2500
 					}
 				}
 				50 = {}
@@ -3119,10 +3137,9 @@ d_derelict_smelting_facility = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 1000
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 1000
 		}
 	}
 
@@ -3279,10 +3296,9 @@ d_flooded_city = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 400
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 400
 		}
 	}
 
@@ -3430,10 +3446,9 @@ d_public_mining_concerns = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				energy = 1000
-			}
+		add_resource_on_clear = {
+			resource = energy
+			amount = 1000
 		}
 
 		hidden_effect = {
@@ -3515,10 +3530,9 @@ d_hive_aquifers = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				energy = 1000
-			}
+		add_resource_on_clear = {
+			resource = energy
+			amount = 1000
 		}
 	}
 
@@ -3564,10 +3578,9 @@ d_machine_water_reserve = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				energy = 1000
-			}
+		add_resource_on_clear = {
+			resource = energy
+			amount = 1000
 		}
 	}
 
@@ -3713,11 +3726,9 @@ d_colony_ship_core = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				energy = 800
-				alloys = 1000
-			}
+		add_resource_on_clear = {
+			resource = energy
+			amount = 800
 		}
 	}
 
@@ -3912,10 +3923,13 @@ d_surface_spaceport = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_monthly_resource_mult = {
-				resource = unity
-				value = 120
+		if = {
+			limit = { exists = owner }
+			owner = {
+				add_monthly_resource_mult = {
+					resource = unity
+					value = 120
+				}
 			}
 		}
 		add_deposit = d_subsurface_spaceport
@@ -3986,10 +4000,9 @@ d_undersea_cable_networks = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 100
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 100
 		}
 	}
 
@@ -4069,14 +4082,17 @@ d_the_abyss = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_monthly_resource_mult = {
-				resource = society_research
-				value = 24
-			}
-			add_monthly_resource_mult = {
-				resource = physics_research
-				value = 12
+		if = {
+			limit = { exists = owner }
+			owner = {
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = 24
+				}
+				add_monthly_resource_mult = {
+					resource = physics_research
+					value = 12
+				}
 			}
 		}
 	}
@@ -4125,11 +4141,13 @@ d_pearl_fields = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 600
-				rare_crystals = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 600
+		}
+		add_resource_on_clear = {
+			resource = rare_crystals
+			amount = 100
 		}
 	}
 
@@ -4198,10 +4216,9 @@ d_continental_shelf = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 

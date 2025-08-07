@@ -39,11 +39,14 @@ d_fallout_zone = {
 	}
 
 	on_cleared = {
-		owner = {
-			# But it means a lot when you clear it.
-			add_monthly_resource_mult = {
-				resource = unity
-				value = 6
+		if = {
+			limit = { exists = owner }
+			owner = {
+				# But it means a lot when you clear it.
+				add_monthly_resource_mult = {
+					resource = unity
+					value = 6
+				}
 			}
 		}
 	}
@@ -398,6 +401,7 @@ d_food_rations = {
 		if = {
 			limit = {
 				hidden_trigger = {
+					exists = owner
 					check_variable = {
 						which = food_reserves_left
 						value > 0
@@ -486,6 +490,7 @@ d_nutrient_rations = {
 		if = {
 			limit = {
 				hidden_trigger = {
+					exists = owner
 					check_variable = {
 						which = food_reserves_left
 						value > 0
@@ -656,12 +661,15 @@ d_seed_banks = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_monthly_resource_mult = {
-				resource = energy
-				value = 12
+		if = {
+			limit = { exists = owner }
+			owner = {
+				add_monthly_resource_mult = {
+					resource = energy
+					value = 12
+				}
 			}
-		}
+		}	
 	}
 
 	planet_modifier = {
@@ -733,10 +741,9 @@ d_scavenger_bands = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 100
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 100
 		}
 	}
 
@@ -788,10 +795,9 @@ d_hive_scavengers = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 100
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 100
 		}
 	}
 
@@ -868,10 +874,9 @@ d_unexploded_munitions = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				energy = 1000
-			}
+		add_resource_on_clear = {
+			resource = energy
+			amount = 1000
 		}
 	}
 
@@ -905,10 +910,9 @@ d_slag_heap = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 400
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 400
 		}
 	}
 
@@ -952,10 +956,9 @@ d_hulks = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 200
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 200
 		}
 	}
 
@@ -1286,10 +1289,13 @@ d_homeworld_derelict_reactors = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_monthly_resource_mult = {
-				resource = unity
-				value = 24
+		if = {
+			limit = { exists = owner }
+			owner = {
+				add_monthly_resource_mult = {
+					resource = unity
+					value = 24
+				}
 			}
 		}
 	}

@@ -119,6 +119,7 @@ d_submerged_zro_seam = {
 		hidden_effect = {
 			if = {
 				limit = {
+					exists = owner
 					has_planet_flag = inaccessible_zro
 				}
 				random_list = {
@@ -857,10 +858,9 @@ d_colossal_spires = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 2000
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 2000
 		}
 	}
 
@@ -907,12 +907,17 @@ d_floating_gardens = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				physics_research = 2000
-				society_research = 2000
-				engineering_research = 2000
-			}
+		add_resource_on_clear = {
+			resource = physics_research
+			amount = 2000
+		}
+		add_resource_on_clear = {
+			resource = society_research
+			amount = 2000
+		}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 2000
 		}
 	}
 
@@ -945,10 +950,9 @@ d_snow_palace = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				consumer_goods = 2000
-			}
+		add_resource_on_clear = {
+			resource = consumer_goods
+			amount = 2000
 		}
 	}
 

@@ -89,9 +89,6 @@ event = {
 						add_district_and_planet_size_if_needed_effect = {
 							district = district_generator
 						}
-						add_district_and_planet_size_if_needed_effect = {
-							district = district_industrial
-						}
 					}
 					
 					# IF Overlord features
@@ -1633,9 +1630,12 @@ planet_event = {
 				NOT = { has_planet_flag = fixed_wenkwort_modifiers }
 				has_modifier = "pm_wenkwort_custodian"
 			}
-			planet_event = {
-				id = tbm.508
-				days = 3 # Need to egt it out of the way of the other Wenkwort events, which are heavily chained so need a little delay
+			
+			this = {
+				planet_event = {
+					id = tbm.509
+					days = 3 # Need to get it out of the way of the other Wenkwort events, which are heavily chained so need a little delay
+				}
 			}
 		}
 	}

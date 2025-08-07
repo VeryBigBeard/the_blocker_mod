@@ -15,7 +15,8 @@ planet_colonist = {
 		produces
 		upkeep
 	}
-	modifier_category = pop	
+	
+	modifier_category = pop_job
 }
 
 

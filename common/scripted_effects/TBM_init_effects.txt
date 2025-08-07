@@ -14,8 +14,9 @@ fix_advanced_start_empire_features = {
 	# Vanilla Subterranean Extra: +2 mining
 
 	### URBAN (for building slots, so they dopn't ruin their own advanced buildings)
-	add_deposit = d_homeworld_cleared_land
-	add_deposit = d_homeworld_arcology
+	#	Removed on 4.0
+	#add_deposit = d_homeworld_cleared_land
+	#add_deposit = d_homeworld_arcology
 
 	### ENERGY: +2 jobs, +1 district
 	add_deposit = d_experimental_fusion_reactor
@@ -456,4 +457,15 @@ generate_achieve_ftl_homeworld_features = {
 	clear_deposits = yes
 
 	generate_start_deposits_and_blockers = yes
+}
+
+
+### Fix Wenkwrot Modifiers
+fix_wenkwort_modifiers = {
+	remove_modifier = "pm_wenkwort_custodian"
+	add_modifier = {
+		modifier = pm_wenkwort_custodian_3	# Yeah, this looks weird. But the game interprets the quote marks as a separate modifier and applies the vanilla one
+	}
+		
+	set_planet_flag = fixed_wenkwort_modifiers
 }

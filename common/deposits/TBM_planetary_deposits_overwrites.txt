@@ -89,17 +89,9 @@ d_mountain_range = {
 	}
 
 	on_cleared = {
-		if = {
-			limit = {
-				hidden_trigger = {
-					exists = owner
-				}
-			}
-			owner = {
-				add_resource = {
-					minerals = 2000
-				}
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 2000
 		}
 	}
 
@@ -240,11 +232,13 @@ d_active_volcano = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 200
-				engineering_research = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
+		}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 1000
 		}
 	}
 
@@ -533,12 +527,13 @@ d_dense_jungle = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-				food = 200
-				consumer_goods = 50
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 200
 		}
 	}
 
@@ -702,10 +697,9 @@ d_toxic_kelp = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				society_research = 200
-			}
+		add_resource_on_clear = {
+			resource = society_research
+			amount = 200
 		}
 	}
 
@@ -801,10 +795,9 @@ d_deep_sinkhole = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 		
 		# Clearing sinkholes sometimes makes other sinkholes.
@@ -900,11 +893,11 @@ d_quicksand_basin = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
+		
 		hidden_effect = {
 			random_list = {
 				20 = {
@@ -1038,10 +1031,9 @@ d_noxious_swamp = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				society_research = 400
-			}
+		add_resource_on_clear = {
+			resource = society_research
+			amount = 400
 		}
 	}
 
@@ -1150,14 +1142,16 @@ d_massive_glacier = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 
-		# Climate Control Network Malfunctions
-		climate_control_activate = yes
+		if = {
+			limit = { exists = owner }
+			# Climate Control Network Malfunctions
+			climate_control_activate = yes
+		}
 	}
 
 	planet_modifier = {
@@ -1533,10 +1527,9 @@ d_arid_highlands = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -1667,10 +1660,9 @@ d_hot_springs = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				society_research = 500
-			}
+		add_resource_on_clear = {
+			resource = society_research
+			amount = 500
 		}
 		hidden_effect = {
 			add_modifier = {
@@ -2091,10 +2083,9 @@ d_frozen_gas_lake = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				exotic_gases = 50
-			}
+		add_resource_on_clear = {
+			resource = exotic_gases
+			amount = 50
 		}
 	}
 
@@ -2469,10 +2460,9 @@ d_tempestous_mountain = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 
@@ -2577,11 +2567,13 @@ d_veiny_cliffs = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-				engineering_research = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 100
 		}
 	}
 
@@ -2716,15 +2708,9 @@ d_mineral_fields = {
 	}
 
 	on_cleared = {
-		if = {
-			limit = {
-				exists = owner
-			}
-			owner = {
-				add_resource = {
-					minerals = 500
-				}
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 
@@ -2856,10 +2842,9 @@ d_prosperous_mesa = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 
@@ -2961,10 +2946,9 @@ d_ore_rich_caverns = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 800
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 800
 		}
 	}
 
@@ -3057,10 +3041,9 @@ d_rich_mountain = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 
@@ -3210,6 +3193,7 @@ d_submerged_ore_veins = {
 	on_cleared = {
 		if = {
 			limit = {
+				exists = owner
 				owner = { has_trait = trait_aquatic }
 			}
 			owner = {
@@ -3219,10 +3203,9 @@ d_submerged_ore_veins = {
 			}
 		}
 		else = {
-			owner = {
-				add_resource = {
-					minerals = 600
-				}
+			add_resource_on_clear = {
+				resource = minerals
+				amount = 600
 			}
 		}
 	}
@@ -3610,6 +3593,7 @@ d_rugged_woods = {
 	on_cleared = {
 		if = {
 			limit = {
+				exists = owner
 				NOT = {
 					owner = {
 						OR = {
@@ -4047,10 +4031,9 @@ d_boggy_fens = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				engineering_research = 100
-			}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 100
 		}
 	}
 
@@ -4387,11 +4370,13 @@ d_lush_jungle = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-				consumer_goods = 50
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
+		}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
 		}
 	}
 
@@ -4761,10 +4746,9 @@ d_black_soil = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 100
 		}
 	}
 
@@ -5053,10 +5037,9 @@ d_marvelous_oasis = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				engineering_research = 1000
-			}
+		add_resource_on_clear = {
+			resource = engineering_research
+			amount = 1000
 		}
 	}
 
@@ -5140,11 +5123,13 @@ d_tropical_island = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				food = 200
-				minerals = 200
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 200
 		}
 	}
 
@@ -5277,12 +5262,13 @@ d_fungal_forest = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				food = 1000
-				minerals = 200
-				consumer_goods = 50
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 200
+		}
+		add_resource_on_clear = {
+			resource = food
+			amount = 1000
 		}
 	}
 
@@ -5426,11 +5412,13 @@ d_betharian_deposit = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				energy = 2500
-				minerals = 1000
-			}
+		add_resource_on_clear = {
+			resource = energy
+			amount = 250
+		}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
 		}
 	}
 
@@ -5605,11 +5593,13 @@ d_mineral_striations = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 1000
-				rare_crystals = 100
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 1000
+		}
+		add_resource_on_clear = {
+			resource = rare_crystals
+			amount = 100
 		}
 	}
 
@@ -5753,7 +5743,7 @@ d_scandinavian_reclamation_sector = {
 
 	planet_modifier = {
 		district_farming_max = 1
-		BIOLOGICAL_pop_growth_speed = -0.05
+		bonus_pop_growth_mult = -0.05
 	}
 
 	triggered_planet_modifier = {

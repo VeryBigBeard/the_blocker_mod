@@ -148,10 +148,9 @@ d_tbm_industrial_wasteland = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				alloys = 500
-			}
+		add_resource_on_clear = {
+			resource = alloys
+			amount = 500
 		}
 	}
 
@@ -198,11 +197,13 @@ d_rubble = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 100
-				unity = 10
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 100
+		}
+		add_resource_on_clear = {
+			resource = unity
+			amount = 10
 		}
 	}
 
@@ -239,10 +240,9 @@ d_collapsed_cliffs = {
 	}
 
 	on_cleared = {
-		owner = {
-			add_resource = {
-				minerals = 500
-			}
+		add_resource_on_clear = {
+			resource = minerals
+			amount = 500
 		}
 	}
 

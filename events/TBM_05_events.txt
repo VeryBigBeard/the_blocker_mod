@@ -361,25 +361,32 @@ planet_event = {
 	}
 }
 
-### 508. Wenkwort Modifier Fixer
-#	Called from tbm_handler.301, see flag; replaces vanilla Wenkwort modifiers, which are added 
-planet_event = {
+### 508-9. Wenkwort Modifier Fixer
+#	Called on game start
+event = {
 	id = tbm.508
 
 	is_triggered_only = yes
 	hide_window = yes
 
-	trigger = {
-		NOT = { has_planet_flag = fixed_wenkwort_modifiers }
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				NOT = { has_planet_flag = fixed_wenkwort_modifiers }
+				has_modifier = pm_wenkwort_gardens
+			}
+			fix_wenkwort_modifiers = yes
+		}
 	}
+}
+
+planet_event = {
+	id = tbm.509
+
+	is_triggered_only = yes
+	hide_window = yes
 
 	immediate = {
-
-		remove_modifier = "pm_wenkwort_custodian"
-		add_modifier = {
-			modifier = pm_wenkwort_custodian_3	# Yeah, this looks weird. But the game interprets the quote marks as a separate modifier and applies the vanilla one
-		}
-			
-		set_planet_flag = fixed_wenkwort_modifiers
+		fix_wenkwort_modifiers = yes
 	}
 }

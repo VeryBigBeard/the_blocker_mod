@@ -222,8 +222,8 @@ tbm_homeworld_regular_empires = {
 		add_deposit = d_gestalt_rare_metals_lab
 		# +1 from Dustbowl
 
-		### FARMING: 4, 1 blocked (Servitors and Assimilators get more below)
-		add_deposit = d_factory_slaughterhouses
+		### FARMING: 3, 1 blocked (Servitors and Assimilators get more below)
+		#add_deposit = d_factory_slaughterhouses	# Removed on 4.0 as it causes initial Unity deficit. Machines generate so little Unity at the start that it's hard to offset.
 		add_deposit = d_fertile_delta # +1 generator
 		add_deposit = d_homeworld_dustbowl
 	}
@@ -601,6 +601,7 @@ tbm_homeworld_extras = {
 
 		add_deposit = d_megaliths
 		add_deposit = d_crystal_outcrops
+		add_deposit = d_crumbling_mountain
 
 		if = {
 			limit = {
@@ -727,6 +728,7 @@ tbm_homeworld_extras = {
 	if = {
 		limit = {owner = {has_civic = civic_machine_assimilator}}
 		add_deposit = d_battery_farms
+		add_deposit = d_nutrient_terminals
 	}
 
 	### ROGUE SERVITORS
