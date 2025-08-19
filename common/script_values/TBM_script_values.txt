@@ -74,6 +74,7 @@ megalith_unity_output = {
 		}
 		mode = add
 	}
+	divide = 100
 }
 
 highway_engineers_to_change_a_lightbulb = {

@@ -298,7 +298,7 @@ d_urban_power_plant = {
 
 	planet_modifier = {
 		district_generator_max = 1
-		planet_technician_consumer_goods_upkeep_add = -0.1 # Convenient commuting
+		planet_technician_consumer_goods_upkeep_add = 0.1
 		planet_amenities_mult = -0.1
 	}
 

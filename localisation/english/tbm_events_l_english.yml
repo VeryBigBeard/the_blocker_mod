@@ -257,7 +257,7 @@
  tbm.300_desc:0 "Prospectors on §Y[planet.GetName]§! have discovered a new mineral seam previously undetected on orbital surveys.\n\nPartially for this reason, the new deposit is located well away from previously developed population centers. Enterprising mining concerns on [owner_main_species.GetHomeWorldName] are offering to develop it in exchange for tax breaks and public handouts.\n\nIt bears noting, however, that the region in which the seam was discovered is one of particular natural beauty and exploiting it would ruin a perfectly nice view."
  tbm.300.mining:0 "Excellent, we need those minerals!"
  tbm.300_mining_tooltip:0 "Adds a random §YMining§! feature to [from.GetName]."
- tbm.300.sell:0 "Sell the mine to the highest bidder.""
+ tbm.300.sell:0 "Sell the mine to the highest bidder."
  tbm.300.tooltip:0 "The mine will provide some tax revenue, but could also be a heavy polluter."
  tbm.300.preserve_landscape:0 "Protect the sanctity of the land."
  tbm.300.preserve_landscape_tooltip:0 "A £blocker£ $d_big_nature_preserve_blocker$ will be established to protect the region, and the mineral seam will be forever inaccessible."
