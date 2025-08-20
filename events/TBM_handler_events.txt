@@ -330,8 +330,8 @@ planet_event = {
 
 		# Got to have one each of sprawl and poor conditions
 		OR = {
-			free_amenities < 5
-			num_unemployed > 4
+			free_amenities < 500
+			num_unemployed > 400
 		}
 		OR = {
 			free_district_slots < 1
@@ -438,7 +438,7 @@ planet_event = {
 
 		# Got to have one each of sprawl and poor business conditions
 		OR = {
-			free_amenities < 8
+			free_amenities < 800
 			planet_crime > 10
 		}
 
