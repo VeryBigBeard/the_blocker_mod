@@ -42,8 +42,8 @@ d_great_desert = {
 	
 	planet_modifier = {
 		planet_max_districts_add = -2
-		district_farming_max = 3
-		district_generator_max = 1
+		district_farming_max_add = 3
+		district_generator_max_add = 1
 		planet_jobs_unity_produces_mult = 0.10
 		planet_jobs_energy_produces_mult = 0.05
 	}
@@ -52,7 +52,7 @@ d_great_desert = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -60,7 +60,7 @@ d_great_desert = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -81,7 +81,7 @@ d_great_city = {
 		pop_housing_usage_mult = -0.1
 		planet_jobs_upkeep_mult = -0.1
 		planet_jobs_energy_produces_mult = 0.05
-		district_generator_max = 1
+		district_generator_max_add = 1
 	}
 
 	potential = { always = no }
@@ -137,7 +137,7 @@ d_submerged_zro_seam = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 2
+		district_mining_max_add = 2
 	}
 
 	triggered_planet_modifier = {
@@ -247,7 +247,7 @@ d_subsistence_farm = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_food_produces_mult = -0.1
 	}
 
@@ -255,7 +255,7 @@ d_subsistence_farm = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 }
@@ -315,7 +315,7 @@ d_subterranean_excavation = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_amenities_add = -500	# Ne'er does the sun shine.
 		pop_cat_worker_happiness = -0.05
 	}
@@ -324,7 +324,7 @@ d_subterranean_excavation = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -361,7 +361,7 @@ d_urban_aeroponics = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 1
 		planet_farmers_consumer_goods_upkeep_add = 0.1	# Mostly to avoid overwriting the farmer job for compat, is slightly less harsh than +1 but will hurt more if you have a lot of city-farming going on, rent is pricey these days.
 	}
@@ -370,7 +370,7 @@ d_urban_aeroponics = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -421,7 +421,7 @@ d_homestead_farms = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -641,7 +641,7 @@ d_fusion_reactor = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 	}
 
@@ -676,7 +676,7 @@ d_cold_fusion_pits = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 	}
 
@@ -710,7 +710,7 @@ d_antimatter_core = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 	}
 
@@ -744,7 +744,7 @@ d_zero_point_modules = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 	}
 

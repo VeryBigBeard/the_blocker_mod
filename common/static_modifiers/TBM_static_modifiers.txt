@@ -145,7 +145,7 @@ overambitious_evolution = {
 
 damaged_power_nexus = {
 	icon = gfx/interface/icons/planet_modifiers/pm_contingency_sabotage.dds
-	district_generator_max = -1
+	district_generator_max_add = -1
 	planet_jobs_produces_mult = -0.05
 }
 
@@ -165,7 +165,7 @@ dangerous_wildlife_poachers = {
 
 dangerous_wildlife_toxin = {
 	icon = gfx/interface/icons/planet_modifiers/pm_expel_population.dds
-	district_farming_max = -1
+	district_farming_max_add = -1
 }
 
 dangerous_wildlife_contamination = {

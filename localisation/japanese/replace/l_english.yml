@@ -1,0 +1,28 @@
+﻿l_english: 
+
+####################################
+ # Tile Blockers - Thge Blocker Mod Replace List
+ ####################################
+
+ d_mountain_range:0 "£blocker£ Impassable Mountains"
+ d_mountain_range_desc:0 "A vast range of tall and impassable mountains stretches across this region."
+ d_active_volcano:0 "£blocker£ Active Volcano"
+ d_active_volcano_desc:0 "There is an active volcano in this region, spewing forth lava and volcanic gases."
+ d_dangerous_wildlife_blocker:0 "Dangerous Wildlife"
+ d_dangerous_wildlife_blocker_desc:0 "The wildlife in this region is particularly lethal, with many dangerous predators and poisonous plants."
+ d_dense_jungle:0 "£blocker£ Dense Jungle"
+ d_dense_jungle_desc:0 "This entire region is completely overgrown with thick, impassable jungle."
+ d_quicksand_basin:0 "£blocker£ Quicksand Basin"
+ d_quicksand_basin_desc:0 "A vast body of quicksand covers this region, making construction impossible."
+ d_noxious_swamp:0 "£blocker£ Noxious Swamp"
+ d_noxious_swamp_desc:0 "Treacherous swamplands and bogs surrounded by putrid gases."
+ d_massive_glacier:0 "£blocker£ Massive Glacier"
+ d_massive_glacier_desc:0 "An immense body of dense ice covers this region."
+ d_toxic_kelp:0 "Toxic Kelp"
+ d_toxic_kelp_desc:0 "A thick forest of kelp that is toxic to most forms of life covers the ocean in this region."
+ d_deep_sinkhole:0 "£blocker£ Deep Sinkhole"
+ d_deep_sinkhole_desc:0 "A colossal sinkhole covers most of this region."
+ d_great_albertan_crater:0 "£blocker£ Great Albertan Crater"
+ d_great_pacific_garbage_patch:0 "Great Pacific Garbage Patch"
+
+ pm_wenkwort_custodian_desc:0 "The automata that oversee the planetary gardens are carefully observing our conduct."

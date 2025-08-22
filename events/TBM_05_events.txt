@@ -157,8 +157,15 @@ planet_event = {
 				pm_wenkwort_custodian_1 = {
 					random_list = {
 						10 = {
+							set_planet_flag = wenkwort_defiler # Needed so fed.131 will trigger. Also, you deserve it.
+							
 							planet_event = {
 								id = federations3.131	# This is the vanilla event; loc might be a bit weird, but it's smoother not to overwrite it and it also adds the option to surrender and reset Custodian 3 (default), which is a good option.
+							}
+
+							planet_event = {
+								id = tbm.509
+								days = 10	# Resets the vanilla wenkwort modifier if you get it back by surrendering.
 							}
 						}
 		
@@ -385,6 +392,10 @@ planet_event = {
 
 	is_triggered_only = yes
 	hide_window = yes
+
+	trigger = {
+		has_modifier = "pm_wenkwort_custodian"
+	}
 
 	immediate = {
 		fix_wenkwort_modifiers = yes

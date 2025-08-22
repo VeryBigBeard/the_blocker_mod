@@ -427,7 +427,7 @@ d_food_rations = {
 		potential = {
 			years_passed <= 20
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -516,7 +516,7 @@ d_nutrient_rations = {
 		potential = {
 			years_passed <= 20
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -557,7 +557,7 @@ d_survival_camps = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_crime_mult = 0.1
 	}
 
@@ -566,8 +566,8 @@ d_survival_camps = {
 			exists = owner
 			owner = { is_lithoid = yes }
 		}
-		district_farming_max = -1
-		district_mining_max = 1
+		district_farming_max_add = -1
+		district_mining_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -617,7 +617,7 @@ d_lost_warren = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_crime_mult = 0.1
 		planet_stability_mult = -0.1
 	}
@@ -627,8 +627,8 @@ d_lost_warren = {
 			exists = owner
 			owner = { is_lithoid = yes }
 		}
-		district_farming_max = -1
-		district_mining_max = 1
+		district_farming_max_add = -1
+		district_mining_max_add = 1
 	}
 
 	potential = {
@@ -673,7 +673,7 @@ d_seed_banks = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_alloys_upkeep_add = 2
 	}
 
@@ -748,7 +748,7 @@ d_scavenger_bands = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_crime_mult = 0.10
 	}
 
@@ -759,7 +759,7 @@ d_scavenger_bands = {
 			has_planet_flag = scavenger_conquest
 		}
 		modifier = {
-			district_mining_max = 1
+			district_mining_max_add = 1
 			planet_miners_energy_upkeep_add = 1
 			planet_crime_add = 10
 		}
@@ -802,7 +802,7 @@ d_hive_scavengers = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_crime_mult = 0.20
 		planet_jobs_unity_produces_mult = -0.10
 	}
@@ -963,7 +963,7 @@ d_hulks = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_jobs_engineering_research_produces_mult = -0.05
 	}
 
@@ -1242,7 +1242,7 @@ d_protein_restabilizer = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_crime_mult = 0.05	# Any higher and it'd be too punishing for a homeworld feature, but the idea is to limit hive blobbing a bit until they begin to ascend.
 	}
 
@@ -1301,7 +1301,7 @@ d_homeworld_derelict_reactors = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 	}
 
 	potential = {
@@ -1458,8 +1458,8 @@ d_abyssal_manufactorium = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
-		district_generator_max = 1
+		district_mining_max_add = 1
+		district_generator_max_add = 1
 		planet_jobs_specialist_produces_mult = 0.20
 	}
 
@@ -1532,7 +1532,7 @@ d_last_bastion = {
 	should_swap_deposit_on_terraforming = no
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_crime_mult = -0.20
 		armies_energy_upkeep_mult = -1
 	}
@@ -1542,7 +1542,7 @@ d_last_bastion = {
 			exists = owner
 			owner = { is_lithoid = yes }
 		}
-		district_farming_max = -1
-		district_mining_max = 1
+		district_farming_max_add = -1
+		district_mining_max_add = 1
 	}
 }

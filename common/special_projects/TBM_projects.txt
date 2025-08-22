@@ -160,6 +160,7 @@ special_project = {
 special_project = {
 	key = "SOMETHING_IN_THE_PIPES"
 	event_scope = planet_event
+	event_chain = tbm_sinkhole_causes
 
 	requirements = {
 		leader = scientist

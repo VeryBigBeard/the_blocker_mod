@@ -1,0 +1,73 @@
+﻿l_english: 
+
+ ### The Blocker Mod - Scripted Loc Keys - English
+
+ #tbm_scripted_test_string_1:0 "$tbm_test_string_recursive$"
+ tbm_scripted_test_string_2:0 "Scripted Test String Two"
+
+ tbm_colonial_council:0 "colonial council"
+ tbm_colonial_viceroy:0 "colonial viceroy"
+ tbm_colonial_affairs:0 "colonial affairs"
+
+ tbm_colonial_council_cap:0 "Colonial Council"
+ tbm_colonial_viceroy_cap:0 "Colonial Viceroy"
+ tbm_colonial_affairs_cap:0 "Colonial Affairs"
+
+ tbm_colonist_name:0 "Colonist"
+ tbm_hive_colonist_name:0 "Exploratory Drone"
+ tbm_machine_colonist_name:0 "Exploratoration Unit"
+ tbm_colonist_name_plural:0 "Colonists"
+ tbm_hive_colonist_name_plural:0 "Exploratory Drones"
+ tbm_machine_colonist_name_plural:0 "Exploratoration Units"
+
+ tbm_gov_hive:0 "Consciousness"
+ tbm_gov_machine:0 "Nexus"
+ tbm_gov_reg:0 "government"
+
+ tbm_sunset:0 "suns-set"
+ tbm_binary_sunset:0 "binary sunset"
+ tbm_trinary_sunset:0 "trinary sunset"
+ tbm_binary_sunset_plural:0 "binary sunsets"
+ tbm_trinary_sunset_plural:0 "trinary sunsets"
+ tbm_binary_sunset_cap:0 "Binary sunset"
+ tbm_trinary_sunset_cap:0 "Trinary sunset"
+ tbm_binary_sunset_cap_plural:0 "Binary sunsets"
+ tbm_trinary_sunset_cap_plural:0 "Trinary sunets"
+
+ tbm_binary_multiple_suns_set:0 "suns-set"
+
+ tbm_binary_suns:0 "suns"
+ tbm_sunset_set:0 "set"
+ tbm_sunset_dependent_plural:0 "sets"
+ 
+ tbm_shiny_rock_lithoids_mineral_fields:0 "§Y$d_mineral_fields$§!"
+ tbm_shiny_rock_lithoid_basaltic_outcrops:0 "§Y$d_basaltic_outcrops$§!"
+
+ tbm_shiny_rock_ecumenopolis:0 "£planet£ Ecumenopolis"
+ tbm_shiny_rock_federation:0 "£federation£ Federation"
+ tbm_shiny_rock_dyson_sphere:0 "Dyson Sphere"
+ tbm_shiny_rock_starbase:0 "£starbase£ Star Citadel"
+
+ tbm_waters_of_life_project_name:0 "Waters of Life"
+ tbm_city_desert_project_name:0 "A City of the Desert"
+
+ tbm_colonist_boyfriend:0 "boyfriend"
+ tbm_colonist_girlfriend:0 "girlfriend"
+ tbm_colonist_special_friend:0 "special friend"
+
+ tbm_unruly_peasants:0 "unruly peasants"
+ tbm_organized_environmentalists:0 "organized environmentalists"
+
+ tbm_eruption_has_terraforming:0 "It will take years of work to repair this damage."
+ tbm_eruption_no_terraforming:0 "Atmospheric scientists on [root.GetHomeworldName] believe it may be possible to repair the damage through large-scale "terraforming". Though largely untested in practice, §CNew Worlds§! specialists have long theorized about the possibility, and [head_of_research.GetName] believes [head_of_research.GetSheHe] may be close to breakthrough."
+
+ tbm_infrastructure_destroyed:0 "unfortunately destroying some of our infrastructure in the process"
+
+ tbm_carbon_coal:0 "§Y£blocker£Coal Bed§!"
+ tbm_carbon_oil:0 "§Y£blocker£Oil Field§!"
+ tbm_carbon_gas:0 "§Y£blocker£Subterraenean Gas Lake§!"
+
+ tbm_city_name:0 "City"
+ tbm_hive_city_name:0 "Nest"
+ tbm_machine_city_name:0 "Nexus"
+ 

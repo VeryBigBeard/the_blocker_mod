@@ -240,7 +240,7 @@ d_mine_shafts = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_miners_consumer_goods_upkeep_add = 1
 		
 	}
@@ -276,7 +276,7 @@ d_mining_enzymes = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_miners_food_upkeep_add = 1
 	}
 
@@ -315,7 +315,7 @@ d_computerized_extraction_sites = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_miners_energy_upkeep_add = 1
 	}
 
@@ -363,7 +363,7 @@ d_tbm_strip_mine = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 		pop_happiness = -0.05
 	}
 
@@ -403,7 +403,7 @@ d_tbm_gestalt_strip_mine = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_amenities_mult = -0.1
 	}
 
@@ -444,7 +444,7 @@ d_recycling_programs = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_building_build_speed_mult = -0.25
 	}
 
@@ -487,7 +487,7 @@ d_recycling_processes = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_pop_assemblers_alloys_upkeep_mult = 0.05
 	}
 
@@ -559,7 +559,7 @@ d_major_impact_site = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	potential = {
@@ -603,7 +603,7 @@ d_gestalt_major_impact_site = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	potential = {
@@ -654,7 +654,7 @@ d_rare_metals_lab = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		bonus_pop_growth_mult = -0.05
 		pop_happiness = -0.05
 	}
@@ -697,7 +697,7 @@ d_gestalt_rare_metals_lab = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_pop_assembly_reduction = 0.05 # No happiness equivalent for gestalts since assembly hits them much harder.
 	}
 
@@ -743,7 +743,7 @@ d_homeworld_dustbowl = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_farmers_food_produces_mult = -0.1
 	}
 
@@ -815,7 +815,7 @@ d_high_wire_network = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_alloys_upkeep_add = 0.25
 		planet_technician_minerals_upkeep_add = 0.5
 	}
@@ -866,7 +866,7 @@ d_neural_network = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_upkeep_add = 1
 	}
 
@@ -915,7 +915,7 @@ d_battery_farms = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_pops_robotics_energy_upkeep_mult = 0.1
 	}
 
@@ -992,7 +992,7 @@ d_homeworld_extreme_weather = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_buildings_upkeep_mult = 0.05
 	}
 
@@ -1036,7 +1036,7 @@ d_experimental_geothermal_tap = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 	}
 
@@ -1044,7 +1044,7 @@ d_experimental_geothermal_tap = {
 		potential = {
 			has_planet_flag = geothermal_deprecation
 		}
-		district_generator_max = -1
+		district_generator_max_add = -1
 	}
 
 	potential = {
@@ -1098,7 +1098,7 @@ d_gestlat_experimental_geothermal_tap = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 	}
 
@@ -1146,7 +1146,7 @@ d_fossil_fuel_reserves = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -1207,7 +1207,7 @@ d_gestalt_fossil_fuel_reserves = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -1279,7 +1279,7 @@ d_inaugural_spaceport = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_jobs_trade_produces_mult = 0.05
 	}
 
@@ -1332,7 +1332,7 @@ d_gestalt_inaugural_spaceport = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 	}
 
@@ -1409,7 +1409,7 @@ d_mitochondria = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_crime_mult = 0.05	# Any higher and it'd be too punishing for a homeworld feature, but the idea is to limit hive blobbing a bit until they begin to ascend.
 	}
 
@@ -1453,7 +1453,7 @@ d_central_power_nexus = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_jobs_unity_produces_mult = 0.20
 		job_coordinator_add = 1		# Exists to get machines to baseline unity output so they don't start in deficit due to Extreme Weather. May revisit later, but also means their unity output is heavily tied to keepoing the Power Core safe, which makes sense.
 	}
@@ -1502,7 +1502,7 @@ d_homeworld_homestead_farms = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -1572,7 +1572,7 @@ d_metabolic_processing = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_pops_food_upkeep_mult = 0.1
 	}
 
@@ -1615,7 +1615,7 @@ d_nutrient_terminals = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -1664,7 +1664,7 @@ d_factory_slaughterhouses = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_unity_upkeep_add = 1
 	}
 
@@ -1707,7 +1707,7 @@ d_homeworld_urban_aeroponics = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 1
 		planet_farmers_consumer_goods_upkeep_add = 0.1	# Mostly to avoid overwriting the farmer job for compat, is slightly less harsh than +1 but will hurt more if you have a lot of city-farming going on, rent is pricey these days.
 	}
@@ -1758,7 +1758,7 @@ d_homeworld_gestalt_urban_aeroponics = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 1.5
 	}
 
@@ -1806,7 +1806,7 @@ d_homeworld_moisture_farming = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		pop_cat_worker_happiness = -0.05
 	}
 
@@ -1848,7 +1848,7 @@ d_migratory_fishing_fleets = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		pop_cat_worker_happiness = -0.05
 	}
 
@@ -1857,7 +1857,7 @@ d_migratory_fishing_fleets = {
 			is_dry = yes
 		}
 		modifier = {
-			district_farming_max = -1
+			district_farming_max_add = -1
 		}
 	}
 
@@ -1901,7 +1901,7 @@ d_food_banks = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		pop_category_specialists_food_upkeep_add = 0.2
 		pop_category_workers_food_upkeep_add = -0.1
 		planet_jobs_worker_produces_mult = -0.05
@@ -1945,7 +1945,7 @@ d_reclaimed_land = {
 	}
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_food_produces_mult = 0.05
 	}
 
@@ -2016,7 +2016,7 @@ d_megaliths = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		LITHOID_bonus_pop_growth_mult = -0.25 	# Lithoids already get -25%; intent here is to allow you to trade another major hit to pop growth in exchange for scaling unity over time.
 	}
 	
@@ -2097,7 +2097,7 @@ d_crumbling_mountain = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	potential = {
@@ -2139,7 +2139,7 @@ d_crystal_outcrops = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_miners_minerals_produces_add = 0.25
 	}
 
@@ -2255,7 +2255,7 @@ d_shallow_bay = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	potential = {
@@ -2297,7 +2297,7 @@ d_homeworld_tidal_turbines = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_amenities_mult = -0.05
 	}
 
@@ -2346,7 +2346,7 @@ d_flotsam = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		pop_happiness = -0.05
 	}
 
@@ -2390,7 +2390,7 @@ d_fish_plants = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_amenities_add = -500
 		planet_farmers_unity_upkeep_add = 1
 	}
@@ -2434,7 +2434,7 @@ d_windy_archipelago = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		habitability_ceil_add = -0.05
 		planet_jobs_trade_produces_mult = -0.10
 	}
@@ -2500,7 +2500,7 @@ d_homeworld_dormant_supervolcano = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 2
+		district_generator_max_add = 2
 		planet_physicists_unity_upkeep_add = 0.33
 		planet_biologists_unity_upkeep_add = 0.33
 		planet_engineers_unity_upkeep_add = 0.33
@@ -2555,7 +2555,7 @@ d_gaia_homeworld_fossil_fuels = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		pop_happiness = -0.05
 	}
 
@@ -2611,7 +2611,7 @@ d_homeworld_sculpted_mountains = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_amenities_mult = 0.10
 		planet_miners_minerals_produces_add = -1
 	}
@@ -2659,7 +2659,7 @@ d_homeworld_utopian_hills = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -2705,7 +2705,7 @@ d_homeworld_idyllic_pastorale = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 2
+		district_farming_max_add = 2
 		job_culture_worker_add = 1
 		pop_category_specialists_consumer_goods_upkeep_add = 0.1
 	}
@@ -2788,7 +2788,7 @@ d_remnant_dilapidated_reactor = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_physicists_alloys_upkeep_add = 1
 		planet_biologists_alloys_upkeep_add = 1
 		planet_engineers_alloys_upkeep_add = 1
@@ -2847,7 +2847,7 @@ d_repurposed_power_system = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = -0.2
 	}
 
@@ -2884,10 +2884,13 @@ d_collapsed_superhighway = {
 				modifier = superhighway_engineering
 				years = 5
 			}
-			planet_event = {
-				id = tbm_hw.60
-				days = 1800
-			}
+			# hidden_effect = {
+			# 	planet_event = {
+			# 		id = tbm_hw.60
+			# 		days = 1800
+			# 	}
+			# }
+			add_deposit = d_planetary_superhighway
 		}		
 	}
 
@@ -2951,8 +2954,8 @@ d_homeworld_scrap_mountain = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
-		job_scrap_miner_add = 1
+		district_mining_max_add = 1
+		job_scrap_miner_add = 100
 	}
 
 	triggered_planet_modifier = {
@@ -3026,7 +3029,7 @@ d_crumbling_tower = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_jobs_alloys_produces_mult = 0.05
 	}
 
@@ -3097,7 +3100,7 @@ d_destroyed_spaceport = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	potential = {
@@ -3144,7 +3147,7 @@ d_derelict_smelting_facility = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_max_districts_add = -1
 	}
 
@@ -3184,7 +3187,7 @@ d_homeworld_food_replicators = {	# Breaks down after a while
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_amenities_add = 500
 	}
 
@@ -3220,7 +3223,7 @@ d_industrial_agromachinery = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 0.25
 	}
 	
@@ -3267,7 +3270,7 @@ d_overgrown_ruins = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	potential = {
@@ -3304,7 +3307,7 @@ d_flooded_city = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	potential = {
@@ -3379,7 +3382,7 @@ d_renewable_energy_programs = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		pop_category_specialists_energy_upkeep_add = 0.5
 	}
 
@@ -3478,7 +3481,7 @@ d_public_mining_concerns = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		pop_cat_ruler_happiness = -0.15
 	}
 
@@ -3537,7 +3540,7 @@ d_hive_aquifers = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_miners_energy_upkeep_add = 0.2
 	}
 
@@ -3585,7 +3588,7 @@ d_machine_water_reserve = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_miners_energy_upkeep_add = 0.2
 	}
 
@@ -3625,7 +3628,7 @@ d_crop_shares = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 0.2
 	}
 
@@ -3673,7 +3676,7 @@ d_outdated_food_equipment = {	# Gestalt Prosperous ag district
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 0.2
 	}
 
@@ -3733,7 +3736,7 @@ d_colony_ship_core = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_add = -0.25
 	}
 
@@ -3807,7 +3810,7 @@ d_exoagricultural_experimentation = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_physicists_food_upkeep_add = 1
 		planet_biologists_food_upkeep_add = 1
 		planet_engineers_food_upkeep_add = 1
@@ -3843,7 +3846,7 @@ d_homeworld_frontier_farmsteads = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_unity_upkeep_add = 0.25
 	}
 
@@ -3886,7 +3889,7 @@ d_slush_funds = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_jobs_trade_produces_mult = -0.15	# Need to counter energy of MCs somehow
 		planet_crime_mult = 0.1
 	}
@@ -3936,7 +3939,7 @@ d_surface_spaceport = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -4007,7 +4010,7 @@ d_undersea_cable_networks = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_upkeep_add = 1
 	}
 
@@ -4048,7 +4051,7 @@ d_heavy_weather = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_generator_max = 2
+		district_generator_max_add = 2
 	}
 
 	potential = {
@@ -4115,7 +4118,7 @@ d_endless_chasm = {
 	should_swap_deposit_on_terraforming = no
 
 	planet_modifier = {
-		district_mining_max = 2
+		district_mining_max_add = 2
 		planet_miners_unity_produces_add = -1	# It's scary down there, matey!
 	}
 
@@ -4153,7 +4156,7 @@ d_pearl_fields = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -4174,7 +4177,7 @@ d_pearl_fields = {
 			exists = owner
 			owner = { has_civic = civic_agrarian_idyll }
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	potential = {
@@ -4224,7 +4227,7 @@ d_continental_shelf = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_amenities_add = 500
 	}
 
@@ -4254,7 +4257,7 @@ d_warm_lagoon = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_unity_upkeep_add = 0.25
 	}
 
@@ -4276,7 +4279,7 @@ d_warm_lagoon = {
 				}
 			}
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	potential = {

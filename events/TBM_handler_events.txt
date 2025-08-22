@@ -327,6 +327,10 @@ planet_event = {
 			type = district_city
 			value >= 1
 		}
+		count_deposits = {
+			type = d_tbm_slums
+			count < 6
+		}
 
 		# Got to have one each of sprawl and poor conditions
 		OR = {
@@ -770,6 +774,13 @@ planet_event = {
 		NOT = { is_same_value = owner.capital_scope }
 		colony_age_years > 2
 		colony_age_years < 50
+
+		NOR = {
+			is_planet_class = pc_relic
+			is_planet_class = pc_nuked
+			is_planet_class = pc_nuked_tbm		# Should never happen but just in case
+		}
+
 		check_variable = {
 			which = @prospecting_chance
 			value < 3
@@ -1628,13 +1639,12 @@ planet_event = {
 			limit = {
 				exists = owner
 				NOT = { has_planet_flag = fixed_wenkwort_modifiers }
-				has_modifier = "pm_wenkwort_custodian"
 			}
 			
 			this = {
 				planet_event = {
 					id = tbm.509
-					days = 3 # Need to get it out of the way of the other Wenkwort events, which are heavily chained so need a little delay
+					days = 20 # Need to get it out of the way of the other Wenkwort events, which are called eight days after on_colonization_started, so that tbm.509 can overwrite the vanilla modifier.
 				}
 			}
 		}

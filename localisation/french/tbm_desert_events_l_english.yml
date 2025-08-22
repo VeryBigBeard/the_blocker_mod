@@ -1,0 +1,125 @@
+﻿l_english:
+
+
+ ### The Blocker Mod - A City of the Desert - Event Loc - English
+
+ tbm_desert.31.name:0 "The Great [planet.GetName] Desert"
+ tbm_desert.31.desc:0 "[planet.GetName] is covered in §Y£blocker£ Searing Deserts§! ringed by §Y£blocker£ Arid Highlands§! devoid of anything but dust for hundreds of miles. These scorched regions make anything but the most hardy solar energy development a dream in the visual appendages of some more ambitious local administrators. \n\nSo, how do you clear a desert? You think big. Two ambitious projects have been presented to [desert_governor.GetName]. \n\nThe first would irrigate these dry regions to allow widespread farming around a network of oases, aqueducts, and reservoirs. Similar feats have been attempted on our homeworld, but to achieve the same in an alien biosphere would be a monumental task indeed.\n\nThe second proposal speaks of a city in the sand, arcologies shining in the noon-time light, its inhabitants living and working in a hub of trade and culture like the great [owner.species.GetAdj] cities of old. Certainly, these dry regions are easily accessible by spacecraft--but building a modern mega-city from nothing but sand would be a feat for the ages.\n\nRealistically, the colony only possesses the capacity and resources to attempt one of these projects. It is also possible to redirect some of these resources to existing settlements, but no one ever dreams of that, do they?"
+
+ tbm_desert.31.waters:0 "We will bring the waters of life to these sands."
+ tbm_desert.31.waters.desc:0 "§EThis can only be chosen once.§!\n\nOur people will learn how to farm the dust and desert, but building larger cities here will be impossible."
+ tbm_desert.31.city:0 "These dunes will be the greatest city the galaxy has ever known."
+ tbm_desert.31.city.desc:0 "§EThis can only be chosen once.§!\n\nCity-building in other deserts will become easier, but dry worlds will not gain any agricultural bonuses."
+ tbm_desert.31.neither:0 "The development of what we have comes before what might one day be."
+ tbm_desert.31.neither.desc:0 "§EThis can only be chosen once.§!\n\nOur people will learn to live in the deserts as they are, but building larger cities or farming the hostile sand will remain beyond our reach."
+
+ # Downsides
+
+ tbm_desert.33.overpopulation:0 "Overcrowding"
+ tbm_desert.33.desc:0 "Drawn by the promise of a new life on [planet.GetName], hopeful settlers from worlds across [owner.GetName] have been flooding to the new mega-city being built in the §Y£blocker£ Searing Desert§!.\n\nUnfortuantely, with much of the city's transport, health, and security infrastructure still not fully functional, these settlers have taken to living in poorly-maintained slums and crime is running rampant as [owner.species.GetAdj] look to survive the harsh climate."
+
+ tbm_desert.34.stolen:0 "Critical Materials Missing"
+ tbm_desert.34.desc:0 "The project to build [GetProjectName] on [planet.GetName] is a massive logistical undertaking, requiring the coordination of hundreds if not thousands of [owner.GetAdj] workers.\n\nUnfortunately, whether through incompetence or corruption, a large amount of important construction material has gone missing from several sites around the region, and no one is sure which pre-fabricated components were meant to be where, and when.\n\nThanks to key meetings between various project leads, construction will be able to continue with beefed-up security and a revised cost estimate, but the local economy is feeling the heat."
+
+ tbm_desert.35.workers:0 "Workers Die From Heat"
+ tbm_desert.35.desc:0 "Construction workers on [planet.GetName] have been driven day and night to build [GetProjectName] in the §Y£blocker£ Searing Desert§!. At night, the work is not so bad. During the day, however, even the hardiest struggle without shelter.\n\nAccording to a recent news report, foremen have been pushing  workers to exhaustion in hopes of making up for cost overruns and construction delays. This has caused a scandal across [owner.GetName] and while the project will continue, new safety standards mandate breaks and overtime pay."
+ tbm_desert.35.apologize:0 "[desert_governor.GetName] apologizes and will ensure no such tragedy will ever happen again."
+ tbm_desert.35.apologize.tooltip:0 "§VThe Progressive faction won't be pleased.\n\n"
+ tbm_desert.35.sacrifice:0 "Great dreams require great sacrifice."
+
+ tbm_desert.36.crash:0 "Supply Ship Crashes"
+ tbm_desert.36:0 "A vessel carrying critical supplies to [planet.GetName] from out-of-system has crash-landed near the [GetProjectName] site on [planet.GetName]. While some of the materials have been salvaged and it's expected the project can source any replacements locally, the impact site is a mess and the event has shaken the population's faith in the undertaking."
+
+ tbm_desert.37.sandstorms:0 "Vicious Sandstorms"
+ tbm_desert.37.desc:0 "A wild sandstorm brewing for several days has rolled in over the §Y£blocker£ Searing Desert§! project site on [planet.GetName], all but halting construction until it passes. The alien sands, made up of larger and harder particulates than those on our homeworld, seem innocent enough at a distance, but whipped up by high summer winds they can rip through plasteel beams and decimate energy grids, leading to massive cost overruns on the [owner.GetProjectName] project."
+
+ # Waters of Life
+
+ tbm_desert.38.name:0 "The Waters of Life"
+ tbm_desert.38.desc:0 "After years of dreaming, design, and finally construction, a vast irrigation network of aquedects, reservoirs, and even a small river system now criss-crosses [planet.GetName]'s §Y£blocker£ Searing Desert§!, rendering it arable and liveable for those looking for a new start on the frontier. Small farms, some carefully-planned parks, and even a few bio-energy developments have already begun popping up along the corridors and around the new oases.\n\nWhile these endeavors will undoubtedly help [planet.GetName] in the long-term, additional investment to help guide development in the §EThe Great [planet.GetName] Desert§T might yield additional returns."
+ tbm_desert.38.grants:0 "Issue land grants to pioneering desert farmers."
+ tbm_desert.38.biogas:0 "Bio-Energy is the future."
+ tbm_desert.38.jewel:0 "We shall cultivate a garden to rival any in the galaxy."
+ tbm_desert.38.nothing:0 "No further resources can be spared."
+
+ tbm_desert.39.farming:0 "Desert Farms"
+ tbm_desert.39.desc:0 "Spurred by [desert_governor.GetName]'s investments, pioneers and colonists from across the system are flocking to the §EGreat [planet.GetName] Desert§! looking for land and work.\n\nAlready, vine, cereal, and melon crops are taking root. Farming at this scale does require a lot of space, but soon the bounty will be exported across our worlds, bringing newfound flavours to the best [owner.GetAdj] restaurants and boosting the local economy on [planet.GetName] to boot."
+ tbm_desert.39.yes:0 "Bella vina, [desert_governor.GetName]!"
+ tbm_desert.39.no:0 "Easy pickings, but some of that land is spoken for."
+
+ tbm_desert.40.biosolar:0 "Bio-Solar Power"
+ tbm_desert.40.desc:0 "Before irrigating the§L Great [planet.GetName]§T Desert, the only use for these regions was solar farming. Vast expanses of silicon panels covered the sands and, worse, conditions in the desert meant maintenance and repair was a constant hassle.\n\nThere is little better at harvesting solar energy than a plant, and plants require water. By building solar power transformers into our irrigation network on [planet.GetName] and using cutting-edge biotechnology to integrate crops into the grid, we can more efficiently convert the desert's natural resources into power than ever before, though there will be a strain on the planet's water system to keep it running."
+ tbm_desert.40.yes:0 "Money grows on trees after all."
+ tbm_desert.40.no:0 "The desert is too fragile to risk it."
+
+ tbm_desert.41.jewel:0 "A Jewel of the Desert"
+ tbm_desert.41.desc:0 "Over the past several years, workers on [planet.GetName] have learned how to produce food crops even in the most extreme alien conditions. Now, on a world of plenty, we can turn the§E Great [planet.GetName] Desert§! into a testament of [owner.GetAdj] ingenuity, expertise, and care.\n\nHerbologists, xeno-biologists, and every hedge-trimmer that can be found has been called to [planet.GetName] to build, grow, and shape a garden fit for a galaxy. If we can produce the most beautiful of flowers and ferns in such terrain, perhaps there is hope that, one day, we can do the same in the black void of outer space itself.\n\nNo expense can be spared when it comes to the creation of such a monument, however."
+ tbm_desert.41.yes:0 "Be sure to keep a specimen from every world we visit."
+ tbm_desert.41.no:0 "Stick to local flowers only, [desert_governor.GetFirstName]."
+
+ # A City of the Desert
+
+ tbm_desert.42.city:0 "A City of the Desert"
+ tbm_desert.42.desc:0 "Since time was first tracked on [owner.GetHomeWorldName], [owner.GetSpeciesNamePlural] have made cities from dust and sand. Few are as spectacular as this. A grand vista greets those who fly in over the Arid Highlands on [planet.GetName], down into§E The Great [planet.GetName] Desert§! that was once no more than featureless dunes. By day, skyscrapers and arcologies gleam in the brightest of sunlight. By night, flickering lights twinkle far off through the cold.\n\nThere is no citizen of the galaxy who will not know this city, but the opportunity remains to determine for exactly what it should be known. A new mecca for galactic trade? A beautiful garden of every people? Or a technological marvel to the future of [owner.GetName]?"
+ tbm_desert.42.trade:0 "Bring the galaxy's wealthy to our playground!"
+ tbm_desert.42.science:0 "Fund the best and the brightest researchers!"
+ tbm_desert.42.garden:0 "This must be a city of great culture and diverse beauty!"
+
+ tbm_desert.43.traders:0 "Trade Capital"
+ tbm_desert.43.desc:0 "Very quickly, it seems, the budding city in the§E Great [planet.GetName] Desert§! has become a go-to destination for the galaxy's fast-traders and financiers. They say it's the light-speed computer networks and the easy access to banking and capital facilitated by Governor [desert_governor.GetName], but it's just as likely the city's expansive casinos and heady night-life drew them in. Traders do love a trade.\n\nUnfortunately, this has come with something of a trade-off, as reports petty street crime are skyrocketing faster than the new [owner.GetName] Galactic Bank tower and there are worrying news reports of wholly innovative financial fraud. A crackdown might get it under control but Governor [desert_governor.GetName] warns that it risks the city's reputation for free-wheeling and fun."
+ tbm_desert.43.yes:0 "As long as the house comes out ahead, of course."
+ tbm_desert.43.no:0 "We can't have this spreading across the [planet.GetPlanetMoon]!"
+
+ tbm_desert.44.science:0 "Scientific Mecca"
+ tbm_desert.44.desc:0 "Great investment has always brought great advancement. The unique position of the§E Great [planet.GetName] Desert§! and its new city, away from the noise of galactic affairs and internal strife, makes it an ideal headquarters for state-of-the-art research laboratories that don't need too many questions asked about the work goes on out in the desert.\n\nAs long as the £pops£§ BResearchers§! and §B£pops£ Science Directors§! are well cared-for, [owner.GetName] will undoubtedly be the first to benefit from any new discoveries that will make our city shinier than any in the galaxy!"
+ tbm_desert.44.yes:0 "Give it a green light."
+ tbm_desert.44.no:0 "It's not worth the price, or the risk that something gets out."
+
+ tbm_desert.45.fountains:0 "A City of Gardens"
+ tbm_desert.45.desc:0 "For years, we have dreamed of building a city of the world, a city from nothing where everyone would have their place, high and low, great or small. Many of these dreams depict such cities as dark, desolate places but the§E Great [planet.GetName] Desert§! is anything but. Using state-of-the-art solar energy and rainwater recycling, our great desert city is covered in vines, dryland flowers, and savannah grasses. Denizens can go for a stroll in shady parks or retire to sit in scented pavilions and watch alien animalia in artificial lakes before dining on lamplit promenades in a gentle beeze.\n\nThere is a small cost in goods and upkeep required to keep all this functioning, but it's a fair price for one of the most beautiful cities the galaxy has ever seen."
+ tbm_desert.45.yes:0 "Well done, Governor [desert_governor.GetName]."
+ tbm_desert.45.no:0 "This all seems a bit extravagant."
+
+ 
+ ### The Blocker Mod - A City of the Desert - Features - English
+
+ d_searing_desert_vital:0 "This £blocker£ §YSearing Desert§! has become vital to our way of life on this world, and cannot be cleared."
+
+ d_great_desert:0 "£blocker£ The Great Desert Garden"
+ d_great_desert_desc:0 "Once a desolate §Y£blocker£ Searing Desert§!, years of toil and work have seen our people turn this place into a thriving region of farms and gardens, all powered by sustainable energy."
+ d_great_city:0 "The Great Desert City"
+ d_great_city_desc:0 "Once a desolate §Y£blocker£ Searing Desert§!, years of toil and work have seen our people turn this place into a thriving region that regularly attracts tourists, traders, and those looking for a fresh start."
+
+ ### The Blocker Mod - A City of the Desert - Modifiers - English
+
+ # Initial project modifiers
+ bringing_water:0 "Bringing Water"
+ dream_city:0 "City of Dreams"
+ standing_against_dust:0 "Standing Strong Against the Dust"
+
+ # Finish project modifiers (country)
+ waters_of_life:0 "The Waters of Life"
+ great_desert_city:0 "City of the Desert"
+
+ # Downside modifiers
+ worker_deaths:0 "Worker Deaths"
+ worker_deaths_empire:0 "Worker Deaths"
+ overpopulated:0 "Overcrowding"
+ stolen_materials:0 "Critical Materials Missing"
+ sandstorms:0 "Vicious Sandstorm"
+ sandstorms_desc:0 "A vicious sandstorm has rolled in over a major city on this world. The alien sands, made up of larger and harder particulates than those on our homeworld, seem innocent enough at a distance, but whipped up by high summer winds they can rip through plasteel beams and decimate energy grids, causing damage to the [planet.GetPlanetMoon]'s infrastructure."
+
+ # Specialization modifiers (planet)
+ great_desert_farms:0 "Desert Farms"
+ bio_solar_network:0 "Bio-Solar Network"
+ desert_jewel:0 "Jewel of the Desert"
+ trade_city:0 "Trade Capital"
+ scientific_mecca:0 "Scientific Mecca"
+ city_of_gardens:0 "City of Gardens"
+
+ ### The Blocker Mod - A City of the Desert - Projects - English
+
+ WATERS_OF_LIFE:0 "The Waters of Life"
+ WATERS_OF_LIFE_DESC:0 "All life begins with water. Though our people have learned to live on dry regions thanks to our technology, to truly capture the potential of these worlds will take mastering the sand and dust."
+ CITY_OF_THE_DESERT:0 "A City of the Desert"
+ CITY_OF_THE_DESERT_DESC:0 "The heat ripples on the horizon as workers on dig foundations that fill back in with the wind. Many of them will never see the city built from nothing but sand come to fruition. But, slowly, sand becomes glass and glass becomes silicon; beams hold buildings above the dunes and fibers send plans, designs, and ideas back and forth at whirlwind speed."

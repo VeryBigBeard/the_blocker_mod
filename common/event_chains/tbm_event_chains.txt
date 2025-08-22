@@ -7,3 +7,8 @@ tbm_shiny_rock = {
 	picture = GFX_evt_crystal_mining
 	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
 }
+
+tbm_sinkhole_causes = {
+	picture = GFX_evt_collapsing_roof
+	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+}

@@ -1,0 +1,390 @@
+﻿l_english:
+
+ ### The Blocker Mod - Homeworld Features - English
+ 
+ ### BLOCKERS
+ 
+ d_homeworld_bandit_camp:0 "Bandit Camp"
+ d_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
+
+ d_gestalt_homeworld_bandit_camp:0 "Bandit Camp"
+ d_gestalt_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
+
+ d_gaia_homeworld_bandit_camp:0 "Bandit Camp"
+ d_gaia_homeworld_bandit_camp_desc:0 "Rogue actors have claimed these strategic fuel reserves as their own, blocking all access to the region and using the proceeds to fund criminal activity across the planet."
+
+ d_fossil_fuel_reserves:0 "Fossil Fuel Reserves"
+ d_fossil_fuel_reserves_desc:0 "The nation-states of the 21st century built up massive strategic energy reserves in anticipation of global conflicts. Still dotted around the globe, these tank fields, battery farms, and generator complexes serve as a reminder of the century's turmoil."
+
+ d_gestalt_fossil_fuel_reserves:0 "Fossil Fuel Reserves"
+ d_gestalt_fossil_fuel_reserves_desc:0 "Energy shortages in the last century necessitated the rationing of the planet's few remaining sources of carbon fuels despite strategic vulnerabilities. The remaining reserves can be tapped to offset energy shortages."
+
+ d_impact_memorial:0 "Impact Memorial"
+ d_impact_memorial_desc:0 "In 2078, a massive asteroid impacted the northern hemisphere, wiping out several population centers. In the aftermath, this region was designated a heritage site and a monument constructed to honor those who perished."
+
+ d_homeworld_deep_trench:0 "Deep Trench"
+ d_homeworld_deep_trench_desc:0 "Fathomless and unexplored, this underwater trench obstructs further seabed development in the region."
+
+ ### MINING
+
+ d_mine_shafts:0 "Mine Shafts"
+ d_mine_shafts_desc:0 "A relic of centuries-old mining techniques, these old mine shafts nonetheless provided critical hard materials to build initial orbital infrastructure."
+
+ d_mining_enzymes:0 "Mining Enzymes"
+ d_mining_enzymes_desc:0 "A complex system of digestive enzymes has evolved over centuries to help the hive process raw materials harvested by drones into the building blocks of interplanetary consciousness."
+
+ d_computerized_extraction_sites:0 "Computerized Extraction Sites"
+ d_computerized_extraction_sites_desc:0 " Originally built before the machine achieved consciousness, these primitive artificial intelligences were purpose-built to efficiently extract ore. Though crude, they have fuelled much of the machine's expansion into space."
+
+ d_tbm_strip_mine:0 "£blocker£ Strip Mines"
+ d_tbm_strip_mine_desc:0 "This massive eyesore is a remnant of the industrialization that propelled us into the Space Age. Now mostly a target for criminals and environmental activisists, some mining concerns cling to old practices to make a quick profit."
+
+ d_tbm_gestalt_strip_mine:0 "Strip Mines"
+ d_tbm_gestalt_strip_mine_desc:0 "Overextraction has rendered this region less productive. Even accounting for the drones lost, easy excavation makes these simple mines some of the most efficient available."
+
+ d_recycling_programs:0 "Recycling Programs"
+ d_recycling_programs_desc:0 "With materials shortages still plaguing larger population centers, these city programs are integral to consumer and industrial supply chains. "
+
+ d_recycling_processes:0 "Recycling Processes"
+ d_recycling_processes_desc:0 "Menial drones working here re-use basic materials to ease supply shortages in larger production centers. When their lives end, the drones themselves are likewise recycled into additional building materials."
+
+ d_major_impact_site:0 "£blocker£ Major Impact Site"
+ d_major_impact_site_desc:0 "Now that the area is accessible and any remaining damage has been repaired, mining can begin on the rich nickel and cadmium veins left behind by the 2078 event."
+
+ d_gestalt_major_impact_site:0 "£blocker£ Major Impact Site"
+ d_gestalt_major_impact_site_desc:0 "In 2078, a massive asteroid impacted the northern hemisphere, wiping out several population centers. Now that the damage has been repaired, mining can begin on the rich nickel and cadmium veins left behind."
+
+ d_rare_metals_lab:0 "Rare Metals Lab"
+ d_rare_metals_lab_desc:0 "Discovery of these new metal elements proved critical in the development of hyperdrive engines despite the cancers and mutations caused by their extraction and processing."
+
+ d_gestalt_rare_metals_lab:0 "Rare Metals Lab"
+ d_gestalt_rare_metals_lab_desc:0 "Discovery of these new metal elements proved critical in the development of hyperdrive engines. Extraction and processing has led tot he damage and destruction of countless drones."
+
+ d_homeworld_dustbowl:0 "Dustbowl"
+ d_homeworld_dustbowl_desc:0 "Dought and over-exploitation has led to a long-term dustbowl effect in this region, leaving it devoid of the nutrients needed to sustain any large-scale agriculture."
+
+ d_reclaimed_land:0 "£blocker£ Reclaimed Land"
+ d_reclaimed_land_desc:0 "Once desolate and drought-ridden, new irrigation techniques have resusciated this region and it will soon be ready for new agricultural development."
+
+ ### ENERGY
+
+ d_high_wire_network:0 "High-Tension Wire Network"
+ d_high_wire_network_desc:0 "Though superseded by recent developments in energy cell technology, this Early Space Age network of towers and transformers allows for distribution of energy and information around the world."
+
+ d_neural_network:0 "Neural Impulse Network"
+ d_neural_network_desc:0 "Fine webs of filament and fiber allow the hive to transmit energy and information all across the world."
+
+ d_battery_farms:0 "Battery Farms"
+ d_battery_farms_desc:0 "Power is consciousness. Before widespread exploitation of interplanetary space, these inefficient battery farms were used to power much of the machine's crucial infrastructure."
+
+ d_homeworld_extreme_weather:0 "Extreme Weather"
+ d_homeworld_extreme_weather_desc:0 "A product of unchecked global warming in the early 21st century, this region is regularly wracked by severe seasonal storms. Sturdy communities cling on amid the high-maintenance wind farms."
+ d_extreme_weather_tooltip:0 "$r_unity$ Upkeep increases for each £district£ District constructed.§!"
+
+ d_experimental_geothermal_tap:0 "Experimental Geothermal Tap"
+ d_experimental_geothermal_tap_desc:0 "Designed in 2107 to combat fossil fuel dependency, this network of experimental subsurface taps never lived up to the promise of the 22nd century, and a recent news exposé has revealed much of the science involved to be based on a hoax."
+
+ d_gestlat_experimental_geothermal_tap:0 "Experimental Geothermal Tap"
+ d_gestlat_experimental_geothermal_tap_desc:0 "Designed to combat fossil fuel dependency, this network of experimental subsurface taps failed to meet the projected power needs by 2107. Analysis of the system revealed much of its science to be based on faulty reasoning."
+
+ d_inaugural_spaceport:0 "Inaugural Spaceport"
+ d_inaugural_spaceport_desc:0 "Everyone remembers the first shuttle launched from this futuristic launchpad. But that was in 2063 and despite obvious sentimental value, its shipping docks are cramped, its passenger terminals falling apart, and no one is quite sure what bad news next year's safety inspection will bring."
+
+ d_gestalt_inaugural_spaceport:0 "Inaugural Spaceport"
+ d_gestalt_inaugural_spaceport_desc:0 "This futuristic launchpad for interplanetary construction craft was a landmark achievement -- in 2063. After nearly 150 years of continuous use, its cargo docks are falling apart and its maintenance budget has been identified as a strategic liability."
+
+ d_mitochondria:0 "Mitochondria"
+ d_mitochondria_desc:0 "For any organism, to consume food is to generate energy. To sustain an Organism as large as a hive-mind, a vast network of sub-cellular prokaryotes to metabolizes nutrients, converting them into energy. Not all these organisms are necessarily native to the hive itself, but evolved alongside and within its complex web of fibers and filaments."
+
+ ### FOOD
+
+ d_homeworld_homestead_farms:0 "£blocker£ Homestead Farms"
+ d_homeworld_homestead_farms_desc:0 "Though many now choose to live in the mega-cities, some traditionalists still keep a family farm. It's a hard life, but they still play a crucial part in the global food distribution system."
+
+ d_metabolic_processing:0 "£blocker£ Metabolic Processing Centers"
+ d_metabolic_processing_desc:0 " Ever-expanding drone populations across the globe necessitated the creation of these vast feeding chambers. Though inefficient, the hive could not have sustained interplanetary growth without them."
+
+ d_nutrient_terminals:0 "£blocker£ Nutrient Distribution Terminals"
+ d_nutrient_terminals_desc:0 "Organic lifeforms require timely infusions of carbon-based proteins to survive. These early models replicate the texture and consistency of food and regulate organic intake for maximum lifespan and fertility."
+
+ d_factory_slaughterhouses:0 "Factory Farming"
+ d_factory_slaughterhouses_desc:0 "History tells of wildlife and grazing herds roaming much of our planet, but the advent of mega-agriculture in the 2030s led to rampant disease that nearly eradicated several species of stock before regulations caught up."
+
+ d_homeworld_urban_aeroponics:0 "Urban Aeroponics"
+ d_homeworld_urban_aeroponics_desc:0 "Among the residential and commercial towers of the new mega-cities are entire arcologies dedicated to the growing of plant crops. Though not particularly palatable, the food produced here keeps thousands from starvation and is essential for sustaining interplanetary spaceflight."
+
+ d_homeworld_gestalt_urban_aeroponics:0 "Mega-Aeroponics"
+ d_homeworld_gestalt_urban_aeroponics_desc:0 "Among the towering warren of every new hive are entire arcologies dedicated to the growing of plant crops. Though not particularly nutrituious, the food produced here keeps thousands of drones from malfunction and is essential for sustaining interplanetary spaceflight."
+
+ d_homeworld_moisture_farming:0 "Moisture Farming"
+ d_homeworld_moisture_farming_desc:0 "The advent of new farming techniques in the 2180s has led to a new wave of settlement in regions previously thought too dry for agriculture. Water vapor is captured in dessicated soil, collected, and distributed to hardy livestock or into regulated hydroponic bays."
+
+ d_migratory_fishing_fleets:0 "Migratory Fishing Fleets"
+ d_migratory_fishing_fleets_desc:0 "These nomadic seafarers depart seasonally in search of new fishing beds. Those that haven't left to join starship crews complain constantly about government regulation of fish quotas, but their catch is essential to the planet's food security."
+
+ d_food_banks:0 "Food Banks"
+ d_food_banks_desc:0 "Thousands who live in the mega-cities rely on these to survive. Government funding is never enough to cover short-falls and, every year, those who can afford it are implored to give more."
+
+ ### LITHOID
+
+ d_megaliths:0 "Megaliths"
+ d_megaliths_desc:0 "Colossal constructions built by the ancient awoken still dot the landscape, serving as reminders of stones gone to sleep."
+ d_megaliths_tooltip:0 "§Y$r_unity$ income increases every year§!"
+
+ d_crumbling_mountain:0 "Crumbling Mountain"
+ d_crumbling_mountain_desc:0 "This used to be a mountain, but after being voted Tastiest Landscape on a popular show three years running, very little remains, and surrounding communities have raised concerns about landslides and food security."
+ d_crumbling_mountain_tooltip:0 "§Y$r_unity$ Upkeep increases with the number of Lithoid £pops£ §CPops§! living on the world.§!"
+
+ d_crystal_outcrops:0 "Crystalline Outcrops"
+ d_crystal_outcrops_desc:0 "These mysterious and diamond-hard crystals were once thought to be magic, though more recent geocultural study has linked their properties to our own anatomy. Growing them takes millennia and extracting them from the remotest areas of the planet can take months, but their mineral output is among the most nutritious for young lithoids available."
+
+ ### OCEAN PARADISE / AQUATICS
+
+ d_crowded_reef:0 "Crowded Reef"
+ d_crowded_reef_desc:0 "At some point in the murky past, everyone decided this particular bit of coral was the spot to live. You can still get a place here, but prices are terrible and everyone agrees the neighborhood isn't what it was."
+
+ d_shallow_bay:0 "Shallow Bay"
+ d_shallow_bay_desc:0 "Protected from the heaviest tides, this bay has long been a hot-spot for coral farming and development here requires several permits and approvals in order to protect the fragile seabed."
+
+ d_homeworld_tidal_turbines:0 "Tidal Turbines"
+ d_homeworld_tidal_turbines_desc:0 "These massive, whirring generators create enough power for a small mega-city every day, twice a day. They don't make the nicest neighbors, though."
+
+ d_undersea_cable_networks:0 "Deep-sea Cables"
+ d_undersea_cable_networks_desc:0 "These transmission cables allow near-instantaneous communication between deep-dwelling resource communities and offices nearer the surface."
+
+ d_flotsam:0 "Flotsam"
+ d_flotsam_desc:0 "All kinds of stuff washes in on our world's tides. Once the seaweed is filtered out and sent to market, mining organizations comb through the rest looking for any salvageable material."
+
+ d_fish_plants:0 "Fish Plants"
+ d_fish_plants_desc:0 "These massive processing plants occupy whole bays and are a crucial if unpleasant part of the global food economy. Local aquaculturists have long complained about the risk posed by polluting by-products and disease."
+
+ d_windy_archipelago:0 "Windy Archipelago"
+ d_windy_archipelago_desc:0 "This cluster of outcrops is too far out for major settlement, and was developed into a state-of-the-art wind farming operation in the late 22nd century, leading to some disruption of long-standing trade routes that passed through the remote islands."
+
+ ### POST-APOC
+
+ d_fallout_zone:0 "£blocker£ Fallout Zone"
+ d_fallout_zone_desc:0 "High winds blew dust and debris from massive nuclear explosions across this whole region, coating everything living in thick, radioactive ash. Anyone living or working here must take medication and the cancers render any hope of children a dream for different future."
+
+ d_unclaimed_cave_complex:0 "Unclaimed Cave Complex"
+ d_unclaimed_cave_complex_desc:0 "Whether through clerical error or some other tragic mishap, this cave complex was never outfitted with proper long-term habitation modules before the end of days. Since that fateful day, desperate survivors have uncovered it and adapted the rudimentary surrounds into squalid living spaces."
+
+ d_library_of_before:0 "The Library of Before"
+ d_library_of_before_desc:0 "Very little survives from before the blasts destroyed our world. In the days after, a few collectors tried to preserve what culture they could. It isn't much, but hidden in its halls are the secrets to our forebears technology -- and the terrible reasons they brought about thier own doom. Not all would keep such things."
+
+ d_chapel_of_the_fall:0 "The Chapel of the Fall"
+ d_chapel_of_the_fall_desc:0 "Nuclear fire destroyed whatever faiths had once bound our species together. In the aftermath, those few who survived found solace and companionship here, and began to look for paths anew -- paths that would eschew the mistakes of the past and find a new way to light. Not all lead out of the dark."
+
+ d_the_site:0 "The Site"
+ d_the_site_desc:0 "Referred to coloquially as 'The Room Where It Happened', this is all that remains at the epicenter of civilization's demise. No one is even sure what, exactly, occurred here to trigger such total disaster, but a massive crater serves as a grim reminder of the task ahead."
+
+ d_food_rations:0 "Food Rations"
+ d_food_rations_desc:0 "Some of the bunkers across our planet survived its fiery fall thanks to rations of canned or dried food. As we begin the long road to rebuilding our society, what remains of these rations have been pooled and placed under strict guard, with allocations doled out based on need. It is rarely enough, and there are constant rumors of reserves running low."
+ d_food_rations_tooltip:0 "§YRations§! are expected to run out in 2220§!."
+
+ d_nutrient_rations:0 "Nutrient Rations"
+ d_nutrient_rations_desc:0 "In better times, reserves were set aside in case any cataclsym should befall our homeworld. Now that the worst has happened, these dwindling rations are the only reliable source of nutrition on the planet."
+
+ d_survival_camps:0 "£blocker£ Survival Camps"
+ d_survival_camps_desc:0 "Those not fortunate enough to be able to reach a shelter mostly congregated in meager camps in whatever hospitable regions they could find. Since then, these communities have become somewhat self-sufficient, but life in them is an ordeal, with most of the camps run more by criminals and anarchic tyrants."
+
+ d_lost_warren:0 "Lost Warren"
+ d_lost_warren_desc:0 "Out in the radioactive wastes that cover much of our world exist various splinter hives, driven half to madness by the loss of voices and unity. Although existence in these regions barely compares to collective unity, these drones are able to forage enough food to survive."
+
+ d_seed_banks:0 "Seed Banks"
+ d_seed_banks_desc:0 "Before the fall, scientists scrambled to create secure stores of our world's crops and plant-life. What little remains is patchwork, but holds the blueprints to rebuild civilization. Unfortunately, much of the material requires the maintenance of expensive cryo-systems and serviceable parts are constantly in short supply."
+
+ d_scavenger_bands:0 "Scavenger Band"
+ d_scavenger_bands_desc:0 "This large, loose band of scavengers is closer to a gang than any organized concern, but the parts and materials they're able to salvage from what remains of our world will be critical in rebuilding it."
+
+ d_hive_scavengers:0 "Scavenger Drones"
+ d_hive_scavengers_desc:0 "Resource shortages brought on by the collapse have required the allocation of semi-autonomous drones to lead dangerous expeditions into what remains of the old hive. Those few that return are even more valuable, but are prone to deviating from plans to rebuild in order to hoard resources."
+
+ d_unexploded_munitions:0 "£blocker£ Unexploded Munitions"
+ d_unexploded_munitions_desc:0 "These missiles crashed to the surface and, for whatever reason, refused to detonate. The slightest touch could still trigger the decades-old warheads, but a skilled scavenger can salvage the parts and raw materials from the casing and propulsion systems first, and the stripped warhead can be repurposed into power generators."
+
+ d_slag_heap:0 "£blocker£ Slag Heaps"
+ d_slag_heap_desc:0 "These were once cities, now reduced to scrap in a tragic instant. Melted into the metal are the remains of all those whose last glimpse of life was a fire in the sky hot enough to melt steel in an instant."
+
+ d_hulks:0 "Hulks"
+ d_hulks_desc:0 "The war was not fought solely in the heavens. Colossal machines traipsed across the scorched battle-plains destroying anything not already dead or dying until their very machinery was melted. All that remains of them is scrap now, to be melted still further into usable materials for those in what remains of our world."
+
+ d_tomb_mine_shafts:0 "Mine Shaft Shelters"
+ d_tomb_mine_shafts_desc:0 "These long-abandoned mine shafts were identified as a key strategic asset at the outbreak of nuclear war, and select survivors were quickly counted and shepherded inside to preserve long-term population numbers. Most perished anyway, along with any hope of winning the war. A few of these shafts were later opened to those in search of any shelter they could fine."
+
+ d_underground_warren:0 "Underground Warrens"
+ d_underground_warren_desc:0 "At the time of the cataclysm, much of the Organism was lost. Far beneath the planet's burning surface,. however, some warrens survived, eking out a meagre existence far from sunlight. Our voice is faint, here, but life persists."
+
+ d_homeworld_black_market:0 "Black Market"
+ d_homeworld_black_market_desc:0 "What little government remained after society's collapse was quickly forced to deal with the crime lords and brokers running black markets in various refugee camps and ruined cities across the world. Over time, these markets evolved into a de-factor banking system, selling power cores, food, and supplies to anyone who can pay."
+
+ d_deviant_impulses:0 "Deviant Impulses"
+ d_deviant_impulses_desc:0 "The cataclysm broke many of the neural pathways essential for collective communication across the hive-mind. Although productive, drone malignancies continue to occur, undermining unity and efficiency."
+
+ d_broken_transformer:0 "Broken Transformer Station"
+ d_broken_transformer_desc:0 "Miraculously, much of our world's global power system survived its makers' armageddon. Larger facilities, unfortunately, did not, but survival planners have long identified this key sub-station as the missing piece required to get the beginnings of a global energy system back online."
+
+ d_diseased_node:0 "Diseased Node"
+ d_diseased_node_desc:0 "Damaged by prolonged exposure to the harsh climate of our world, this node handles many essential functions for the Organism. Without it, we wither."
+
+ d_protein_restabilizer:0 "Protein Restabilizer"
+ d_protein_restabilizer_desc:0 "By enhancing essential functionary nodes to withstand the radiation and toxins of the world's surface, the hive can spread its collective across more of the planet's surface."
+
+ d_homeworld_derelict_reactors:0 "Derelict Reactors"
+ d_homeworld_derelict_reactors_desc:0 "These dark towers loom over the blasted landscape, their furnaces having fuelled the heady days leading up to the fall. Not all are brave enough to see the old reactors fired up once more, no matter how urgent the need for power sources becomes. That way, death and madness lie."
+
+ d_scrap_bazaar:0 "Scrap Bazaars"
+ d_scrap_bazaar_desc:0 "So much rubble has now been salvaged from bygone times that it forms a great market of sorts, attracting traders from all over the galaxy."
+
+ d_allocation_clinic:0 "Allocation Clinics"
+ d_allocation_clinic_desc:0 "In a landscape dominated by the need to survive, these clinics serve as bastions of the state, doling out what is needed, and no more."
+
+ d_memorial_apocalypse:0 "Memorial of the Apocalypse"
+ d_memorial_apocalypse_desc:0 "A grim reminder of the fragility of life, these memorials now dot across our homeworld, with the largest in the capital, where tokens are left to the memory of those long lost."
+
+ d_abyssal_manufactorium:0 "Abyssal Manufactorium"
+ d_abyssal_manufactorium_desc:0 "Here, relics of the past are broken down and repurposed for a brither tomorrow."
+
+ d_hegemons_of_industry:0 "Hegemons of Industry"
+ d_hegemons_of_industry_desc:0 "It takes great skill to forge success amongst the rubble of civilization, and these new interstellar corporations have ensured our world remains relevant in galactic markets."
+
+ d_purgatory_apocalypse:0 "Purgatory"
+ d_purgatory_apocalypse_desc:0 "A paved, enclosed sensorium experience in which everyone can find sunlit meadows, frothing oceans, and crystalline peaks. Anything a holo-projector can bring to life in the vast theaters beneath this behemoth facility powered by the ruins of yesteryear."
+
+ d_last_bastion:0 "The Last Bastion"
+ d_last_bastion_desc:0 "Slowly, as civilization crumbled, those smart and savvy enough to survive congregated here and formed a new bloc of power that now stands as the most influential organ of society."
+
+ ### LIFE-SEEDED
+
+ d_homeworld_dormant_supervolcano:0 "Dormant Supervolcano"
+ d_homeworld_dormant_supervolcano_desc:0 "Leftover from paradise's formative years, there's no sign of the volcano below these majestic plains having erupted any time recently. But while our planet provides everything we need, our own studies tell us a planet's past can sometimes destroy its future."
+
+ d_gaia_homeworld_fossil_fuels:0 "Fossil Fuel Reserves"
+ d_gaia_homeworld_fossil_fuels_desc:0 "Despite this world's natural splendor, the industries fuelling our ascent into space have come to rely on carbon buried deep in the planet's crust, leftover from whatever forces shaped this world to our every need. But progress must march on."
+
+ d_homeworld_sculpted_mountains:0 "Sculpted Mountain"
+ d_homeworld_sculpted_mountains_desc:0 "Even now, these mountains defy the known laws of geography and physics, and stand as some of the strongest evidence that our species was seeded on this world by creators who terraformed it eons ago."
+
+ d_homeworld_utopian_hills:0 "Utopian Hills"
+ d_homeworld_utopian_hills_desc:0 "Widely regarded as the birthplace of civilization, these sweeping valleys provide free-flowing water, idyllic farmland, and pristine vistas, making them one of the most popular places on the planet to live and raise a family."
+
+ d_homeworld_idyllic_pastorale:0 "Idyllic Pastorale"
+ d_homeworld_idyllic_pastorale_desc:0 "Equines canter across these gentle swards where you can still find old-fashioned automata puttering along hedge-lined country roads. Artists and musicians flock to the tiny villages hoping to catch sight of birds fishing along the riverbank or meet a pretty member of the opposite sex at a local harvest festival."
+
+ d_ancient_forests:0 "£blocker£ Ancient Forest"
+ d_ancient_forests_desc:0 "Since time immemorial, these forests have swept across the planet. Our society has grown around them through the ages."
+
+ ### REMNANT
+
+ d_remnant_dilapidated_reactor:0 "Dilapidated Reactor"
+ d_remnant_dilapidated_reactor_desc:0 "It is theorized that this reactor once powered much of the planet. Its exact nature still eludes even our brightest engineers, but analysis of the supporting structure has led to several recent advances in power generation."
+
+ d_repurposed_power_system:0 "Repurposed Power Systems"
+ d_repurposed_power_system_desc:0 "Much of our planetary economy revolves around scrounging and selling anything in the ruins with even a hint of power -- batteries, transformers, energy cells. Although inefficient and dirty in equal parts, this black market still produces critical power for research and repairs."
+
+ d_collapsed_superhighway:0 "£blocker£ Collapsed Superhighway"
+ d_collapsed_superhighway_desc:0 "In the distant past, when this world was covered by arcologies and sprawling cityscape, these elevated thoroughfares must have moved billions of inhabitants around the planet."
+
+ d_planetary_superhighway:0 "Planetary Superhighway"
+ d_planetary_superhighway_desc:0 "A true feat of engineering. A complex web of air-lanes and ground accesses funnel goods, service vehicles, and pleasure craft across our city-planet at super-speed with few if any delays."
+
+ d_homeworld_scrap_mountain:0 "Scrap Mountain"
+ d_homeworld_scrap_mountain_desc:0 "Vast regions of rubble still cover the majority of our world, very little of it of any value beyond a slag heap. Clearing it could take another thousand years and bandits have been known to hide out in the canyons of twisted metal and ruin."
+
+ d_crumbling_tower:0 "Crumbling Sky Tower"
+ d_crumbling_tower_desc:0 "This colossal arcology houses a fledgling city in what remains of its foundations. Salvagers, scrap-sellers, and scientists bustle between home and work beneath twisted bulkheads and rusting beams, seeking shelter from the chemical rains in its labyrinthine passages."
+
+ d_destroyed_spaceport:0 "Destroyed Spaceport"
+ d_destroyed_spaceport_desc:0 "Whatever cataclysm ravaged our world in the past seems to have been concentrated here, and it was only recently historical engineers were even able to surmise this place was once an immense interplanetary spaceport. Now its blasted and crumbling superstructure is being melted down to forge new alloys."
+
+ d_derelict_smelting_facility:0 "Derelict Smelting Facility"
+ d_derelict_smelting_facility_desc:0 "This immense district was once filled with the clanging and crashing of alloy processing on a galactic scale. Even if the machinery still operated, the sheer intake required is beyond any of our current means. Instead, the facility is mostly useful for reverse-engineering minerals and material from the ample ruins across the planet's surface."
+
+ d_homeworld_food_replicators:0 "Ancient Food Replicators"
+ d_homeworld_food_replicators_desc:0 "It's unclear if these ever worked well enough to feed the world in its prime, but whatever they once were, even less still functions today. Repairs and study have yielded some food production over the years, but no one is sure how long the archaic power supply will last."
+
+ d_industrial_agromachinery:0 "Industrial Agromachinery"
+ d_industrial_agromachinery_desc:0 "These massive hulks once hovered slowly over wide platforms dedicated to artificial farming and aeroponics. Although that infrastructure has long since collapsed into rubble, a subterranean garage housing these machines is still accessible in a region now overgrown by grasses with wild cereal crops poking through the fractured lithosphere."
+
+ d_overgrown_ruins:0 "£blocker£ Overgrown Ruins"
+ d_overgrown_ruins_desc:0 "Once an endless suburb of some larger mega-city, this region near the equator has since been reclaimed by new growth breaking through the planet's artificial lithosphere."
+
+ d_flooded_city:0 "£blocker£ Flooded City"
+ d_flooded_city_desc:0 "It is only recently the water in this vast sea was deemed safe to touch. Already, some limited plant-based aquaculture has been attempted in the shallow, jagged basin punctuated by the tops of decaying skyscrapers flooded after the ancient£Y Weather-Control System£! malfunctioned."
+
+ d_crater_city:0 "Crater City"
+ d_crater_city_desc:0 "This immense region was once a city unto itself, one of many said to have spread pole-to-pole around this world. Whatever terrible weapons brought that city low left this sprawling crater filled with ruins, rubble, and ramshackle settlements from which we have made our home, and the crater houses what remains of our government, culture, and way of life."
+
+ ### PROSPEROUS UNIFICATION
+
+ d_renewable_energy_programs:0 "Renewable Energy Programs"
+ d_renewable_energy_programs_desc:0 "By ensuring everyone had ample access to safe sources of energy, we were able to power an economic boom that helped unify the planet."
+
+ d_public_mining_concerns:0 "Public Mining Concerns"
+ d_public_mining_concerns_desc:0 "These mining operations have helped ensure a peaceful rise to the Space Age by distributing the world's wealth to all those with a stake in it."
+
+ d_hive_aquifers:0 "Hive Aquifers"
+ d_hive_aquifers_desc:0 "Although the Organism long ago began evolving on the surface of our world, millennia-old tendrils and vessels still siphon water from deep in the planet's crust up to the surface, where it can be used for industrial proesses."
+
+ d_machine_water_reserve:0 "Water Reserves"
+ d_machine_water_reserve_desc:0 "For a long time, this world's lakes, rivers, and seas were seen as a strategic obstacles. More recently, the ever-growing need for cheap and plentiful coolant has led to reassessment of these resources to allow for more efficient industrial processing and conversion programs."
+
+ d_crop_shares:0 "Crop Shares"
+ d_crop_shares_desc:0 "Adapted onto a planetary scale, these programs allow widespread and efficient local farming and have helped ease food shortages despite the massive population boom after planetary unification."
+
+ d_outdated_food_equipment:0 "Large Nutrient Vacuoles"
+ d_outdated_food_equipment_desc:0 "These large, easily transported sacs of nutritious fluids have allowed for unusually cohesive drone populations and healthy growth across the entire planet."
+
+ d_central_power_nexus:0 "Central Power Nexus"
+ d_central_power_nexus_desc:0 "While not structurally the center of the Machine, the Central Power Nexus serves as the central power and data distribution condui. Almost every major subroutine is registered and synchronized here, and it is absolutely critical to the system's functioning.\n\n§YThe £blocker£ Central Power Nexus is a very vulnerable part of our infrastructure and it must be protected from any planetary damage. Routing around it is possible, but expensive.§!"
+
+ ### LOST COLONY
+
+ d_colony_ship_core:0 "Colony Ship Core"
+ d_colony_ship_core_desc:0 "Though now quite old, the ship that bore us to this brave new world was built to last centuries, and its power core is still operational, providing energy to much of the colony's key administrative buildings."
+
+ d_lost_colony_impact_memorial:0 "Impact Memorial"
+ d_lost_colony_impact_memorial_desc:0 "Shortly after landing on our new homeworld, a large meteor impact destroyed roughly half the colonists and crew of our maiden voyage, nearly dooming the colony before it had even been established. An impromptu memorial has grown over the decades to mark where so many brethren perished."
+
+ d_exoagricultural_experimentation:0 "Exoagricultural Experimentation"
+ d_exoagricultural_experimentation_desc:0 "The colonial mission included a large contingent of bio-engineers and xeno-agricultural specialists who had spent years preparing seed samples and livestock genomes for alien ecosystems."
+
+ d_homeworld_frontier_farmsteads:0 "£blocker£ Frontier Farmsteads"
+ d_homeworld_frontier_farmsteads_desc:0 "These sprawling land grants allowed colonists to set off on their own and start farms and families that now form the backbone of the colony."
+
+ ### CORPORATE
+
+ d_slush_funds:0 "Slush Funds"
+ d_slush_funds_desc:0 "The entire field of Mega-Corporate Accounting was invented, developed, and perfected to ensure every executive has the most necessarily delightful lunch-breaks available."
+
+ ### OCEAN PARADISE
+
+ d_surface_spaceport:0 "Surface Spaceport"
+ d_surface_spaceport_desc:0 "Only recently opened to public use, everyone agrees this place is too dang hard to get to during morning rush-hour. But it's a sad necessity of gravity and primitive propulsion systems that even sub-aquatic space-farers have to blast off from somewhere with a gaseous atmosphere."
+
+ d_subsurface_spaceport:0 "£blocker£ Subsurface Spaceport"
+ d_subsurface_spaceport_desc:0 "Now newly sunken, this state-of-the-art spaceport allows interplanetary vessels to launch underwater and ascend first to the sky, then the stars. The former£B Technicians£!, free of their ardurous commute, are now free to take up antiques tading and craft-making in the spaceport lobby, which has been a major boon to the planet's economuy."
+
+ d_heavy_weather:0 "Heavy Weather"
+ d_heavy_weather_desc:0 "\"Well, unfortunately, looks like a low pressure system rolling in later this week, bringing with it a rainy weekend for all the beachgoers.\""
+
+ d_the_abyss:0 "The Abyss"
+ d_the_abyss_desc:0 "No one knows the truth of the Deeps. Children say it might even lead to the planet's core!"
+
+ d_endless_chasm:0 "Endles Chasm"
+ d_endless_chasm_desc:0 "With housing prices always slightly too high, the region fromerly known as The Abyss has now been developed into endless unites for new deep-water condominiums."
+
+ d_pearl_fields:0 "Pearl Fields"
+ d_pearl_fields_desc:0 "Every second shell in these parts is an oyster's, and while not every one contains a pearl, the local anglers are happy as clams."
+
+ d_continental_shelf:0 "Continental Shelf"
+ d_continental_shelf_desc:0 "Once a backwater town with a nice, quiet out-of-the-way library, the shallow promontories here are the new home of high-powered mining operations and experimental deepwater aquaculture."
+
+ d_warm_lagoon:0 "Warm Lagoon"
+ d_warm_lagoon_desc:0 "The turn of the tide in this warm bay is widely agreed to be among the gentlest on the planet, making it an ideal spot to settle down, raise a family, and start a small seaweed farm."
+
+ d_broken_mag_lev_network:0 "£blocker£ Broken Mag-Lev Network"
+ d_broken_mag_lev_network_desc:0 "Once a beaming ideal of utopian transportation, this global ring of high-speed trains quickly became a money pit rife with mismanagement and corruption and now serves mainly as a market asset and a testament to dreams gone awry."
+
+ d_droid_factory:0 "Droid Factory"
+ d_droid_factory_desc:0 "This sprawling mega-facility was built in the early rush to mechanize each and every part of society. Running night and day, it churns out personal assistants, smart appliances, and basic AI knick-knacks. Now everyone can enjoy true 23rd-century droid technology designed by the world's best and brightest to make your daily hot stimulant experience as relaxing, positive, and affirming as mechanically possible. Patent litigation pending."

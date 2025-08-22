@@ -97,7 +97,7 @@ d_mountain_range = {
 
 	planet_modifier = {
 		planet_max_districts_add = -3
-		district_mining_max = 2
+		district_mining_max_add = 2
 		planet_amenities_mult = 0.05
 	}
 
@@ -244,7 +244,7 @@ d_active_volcano = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_jobs_food_produces_mult = 0.1
 	}
 
@@ -266,8 +266,8 @@ d_active_volcano = {
 			}
 		}
 		modifier = {
-			district_farming_max = -1
-			district_mining_max = 1
+			district_farming_max_add = -1
+			district_mining_max_add = 1
 		}
 	}
 
@@ -813,7 +813,7 @@ d_deep_sinkhole = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -1440,7 +1440,7 @@ d_bomb_crater = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_engineers_engineering_research_produces_add = 1
 	}
 
@@ -1535,7 +1535,7 @@ d_arid_highlands = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_buildings_upkeep_mult = 0.05
 	}
 
@@ -1547,7 +1547,7 @@ d_arid_highlands = {
 			}
 		}
 		modifier = {
-			district_generator_max = 1
+			district_generator_max_add = 1
 		}
 	}
 
@@ -1555,7 +1555,7 @@ d_arid_highlands = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 	
@@ -1569,7 +1569,7 @@ d_arid_highlands = {
 		}
 		modifier = {
 			planet_jobs_food_produces_mult = 0.05
-			district_farming_max = 1
+			district_farming_max_add = 1
 		}
 	}
 
@@ -1694,7 +1694,7 @@ d_hot_springs = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -1812,7 +1812,7 @@ d_rushing_waterfalls = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -1956,7 +1956,7 @@ d_searing_desert = {
 
 	planet_modifier = {
 		planet_max_districts_add = -3
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.1
 		planet_buildings_energy_upkeep_mult = 0.1
 	}
@@ -1965,7 +1965,7 @@ d_searing_desert = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -1979,7 +1979,7 @@ d_searing_desert = {
 		}
 		modifier = {
 			planet_jobs_food_produces_mult = 0.05
-			district_farming_max = 1
+			district_farming_max_add = 1
 		}
 	}
 
@@ -2091,7 +2091,7 @@ d_frozen_gas_lake = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 	}
 
@@ -2099,7 +2099,7 @@ d_frozen_gas_lake = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -2216,7 +2216,7 @@ d_geothermal_vent = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_energy_produces_mult = 0.05
 		planet_engineers_engineering_research_produces_add = 2
 	}
@@ -2238,7 +2238,7 @@ d_geothermal_vent = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -2320,7 +2320,7 @@ d_underwater_vent = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_jobs_trade_produces_mult = -0.1
 		planet_engineers_engineering_research_produces_add = 1
 	}
@@ -2329,7 +2329,7 @@ d_underwater_vent = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -2353,7 +2353,7 @@ d_underwater_vent = {
 		}
 		modifier = {
 			planet_max_districts_add = -2
-			district_generator_max = 1
+			district_generator_max_add = 1
 		}
 	}
 
@@ -2376,7 +2376,7 @@ d_underwater_vent = {
 			}
 		}
 		modifier = {
-			district_generator_max = 1
+			district_generator_max_add = 1
 		}
 	}
 
@@ -2469,14 +2469,14 @@ d_tempestous_mountain = {
 	planet_modifier = {
 		planet_max_districts_add = -2
 		planet_amenities_add = 200
-		district_generator_max = 1
+		district_generator_max_add = 1
 	}
 
 	triggered_planet_modifier = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -2579,7 +2579,7 @@ d_veiny_cliffs = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_miners_minerals_produces_mult = 0.05
 		planet_amenities_add = -250
 	}
@@ -2601,7 +2601,7 @@ d_veiny_cliffs = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -2716,14 +2716,14 @@ d_mineral_fields = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	triggered_planet_modifier = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -2850,9 +2850,9 @@ d_prosperous_mesa = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		district_generator_max = 1
-		district_mining_max = 1
-		district_farming_max = 1
+		district_generator_max_add = 1
+		district_mining_max_add = 1
+		district_farming_max_add = 1
 		planet_bureaucrats_unity_produces_mult = 0.1
 		pop_housing_usage_mult = 0.1
 	}
@@ -2861,7 +2861,7 @@ d_prosperous_mesa = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -2953,7 +2953,7 @@ d_ore_rich_caverns = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 2
+		district_mining_max_add = 2
 		planet_miners_engineering_research_upkeep_add = 1
 	}
 
@@ -2986,7 +2986,7 @@ d_ore_rich_caverns = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -3049,15 +3049,15 @@ d_rich_mountain = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		district_mining_max = 2
-		district_farming_max = 1
+		district_mining_max_add = 2
+		district_farming_max_add = 1
 	}
 
 	triggered_planet_modifier = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -3211,7 +3211,7 @@ d_submerged_ore_veins = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -3235,7 +3235,7 @@ d_submerged_ore_veins = {
 		}
 		modifier = {
 			planet_max_districts_add = -2
-			district_mining_max = 1
+			district_mining_max_add = 1
 		}
 	}
 
@@ -3246,7 +3246,7 @@ d_submerged_ore_veins = {
 			is_homeworld = yes
 		}
 		modifier = {
-			district_mining_max = 1
+			district_mining_max_add = 1
 		}
 	}
 
@@ -3254,7 +3254,7 @@ d_submerged_ore_veins = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -3318,7 +3318,7 @@ d_lichen_fields = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_unity_produces_add = 1
 		biological_pop_happiness = -0.1
 	}
@@ -3327,7 +3327,7 @@ d_lichen_fields = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -3442,7 +3442,7 @@ d_bountiful_plains = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 2
+		district_farming_max_add = 2
 	}
 
 	triggered_planet_modifier = {
@@ -3478,7 +3478,7 @@ d_bountiful_plains = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 	
@@ -3622,7 +3622,7 @@ d_rugged_woods = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -3778,7 +3778,7 @@ d_green_hills = {
 
 	planet_modifier = {
 		planet_max_districts_add = -2
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_amenities_mult = 0.1
 	}
 
@@ -3786,7 +3786,7 @@ d_green_hills = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 	
@@ -3811,7 +3811,7 @@ d_green_hills = {
 			}
 		}
 		modifier = {
-			district_farming_max = 1
+			district_farming_max_add = 1
 		}
 	}
 
@@ -3906,7 +3906,7 @@ d_forgiving_tundra = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		pop_ethic_spiritualist_attraction_mult = 0.05	# Praise be!
 	}
 
@@ -3914,7 +3914,7 @@ d_forgiving_tundra = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 	
@@ -4048,7 +4048,7 @@ d_boggy_fens = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -4159,7 +4159,7 @@ d_nutritious_mudland = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_unity_produces_add = 1
 		pop_happiness = -0.1
 	}
@@ -4178,7 +4178,7 @@ d_nutritious_mudland = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -4278,8 +4278,8 @@ d_fungal_caves = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
-		district_mining_max = 1
+		district_farming_max_add = 1
+		district_mining_max_add = 1
 		planet_miners_minerals_produces_mult = -0.05
 	}
 
@@ -4300,7 +4300,7 @@ d_fungal_caves = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -4522,7 +4522,7 @@ d_fertile_lands = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_jobs_food_produces_mult = 0.05
 	}
 
@@ -4543,7 +4543,7 @@ d_fertile_lands = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -4754,7 +4754,7 @@ d_black_soil = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_food_produces_mult = 0.1
 	}
 
@@ -4762,7 +4762,7 @@ d_black_soil = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -4896,7 +4896,7 @@ d_teeming_reef = {
 			owner = { has_origin = origin_ocean_paradise }
 			is_homeworld = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 
 	}
@@ -4914,7 +4914,7 @@ d_teeming_reef = {
 		}
 		modifier = {
 			planet_max_districts_add = 1
-			district_farming_max = 1
+			district_farming_max_add = 1
 		}
 	}
 
@@ -4929,7 +4929,7 @@ d_teeming_reef = {
 			}
 		}
 		modifier = {
-			district_farming_max = 1
+			district_farming_max_add = 1
 		}
 	}
 
@@ -5053,7 +5053,7 @@ d_marvelous_oasis = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5135,7 +5135,7 @@ d_tropical_island = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_amenities_add = 750
 		pop_happiness = 0.1
 	}
@@ -5144,7 +5144,7 @@ d_tropical_island = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5166,7 +5166,7 @@ d_tropical_island = {
 		}
 		modifier = {
 			planet_amenities_add = 750
-			district_farming_max = -1
+			district_farming_max_add = -1
 		}
 	}
 	
@@ -5502,7 +5502,7 @@ d_buzzing_plains = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_physicists_physics_research_produces_add = 2
 		biological_pop_happiness = -0.05
 	}
@@ -5511,7 +5511,7 @@ d_buzzing_plains = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5605,7 +5605,7 @@ d_mineral_striations = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_miners_minerals_produces_mult = 0.1
 		planet_miners_physics_research_produces_add = 1
 	}
@@ -5614,7 +5614,7 @@ d_mineral_striations = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5623,7 +5623,7 @@ d_mineral_striations = {
 			exists = owner
 			owner = { has_trait = trait_aquatic }
 		}
-		district_mining_max = -1
+		district_mining_max_add = -1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5675,7 +5675,7 @@ d_natural_farmland = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_food_produces_mult = 0.1
 		planet_biologists_society_research_produces_add = 2
 	}
@@ -5684,7 +5684,7 @@ d_natural_farmland = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5742,7 +5742,7 @@ d_scandinavian_reclamation_sector = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		bonus_pop_growth_mult = -0.05
 	}
 
@@ -5750,7 +5750,7 @@ d_scandinavian_reclamation_sector = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5789,7 +5789,7 @@ d_pacific_algae_tracts = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_jobs_trade_produces_mult = -0.05
 	}
 
@@ -5797,7 +5797,7 @@ d_pacific_algae_tracts = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5837,7 +5837,7 @@ d_saharan_irrigation_project = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_engineering_research_upkeep_add = 1
 	}
 
@@ -5845,7 +5845,7 @@ d_saharan_irrigation_project = {
 		potential = {
 			always = yes
 		}
-		district_farming_max = 1
+		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5884,7 +5884,7 @@ d_mesopotamian_urban_corridor = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_jobs_trade_produces_mult = -0.05
 	}
 
@@ -5892,7 +5892,7 @@ d_mesopotamian_urban_corridor = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5932,7 +5932,7 @@ d_delhi_sprawl = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_crime_mult = 0.05
 	}
 
@@ -5940,7 +5940,7 @@ d_delhi_sprawl = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 1
+		district_generator_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -5975,7 +5975,7 @@ d_boswash_metropolitan_axis = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_housing_mult = -0.05
 	}
 
@@ -5983,7 +5983,7 @@ d_boswash_metropolitan_axis = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 3
+		district_generator_max_add = 3
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -6022,7 +6022,7 @@ d_pearl_river_agglomerate = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		pop_happiness = -0.05
 	}
 
@@ -6030,7 +6030,7 @@ d_pearl_river_agglomerate = {
 		potential = {
 			always = yes
 		}
-		district_generator_max = 3
+		district_generator_max_add = 3
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -6069,7 +6069,7 @@ d_mauritanian_security_zone = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_amenities_mult = -0.05
 	}
 
@@ -6077,7 +6077,7 @@ d_mauritanian_security_zone = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 
@@ -6117,14 +6117,14 @@ d_great_albertan_crater = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	triggered_planet_modifier = {
 		potential = {
 			always = yes
 		}
-		district_mining_max = 1
+		district_mining_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
 

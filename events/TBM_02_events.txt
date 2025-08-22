@@ -898,8 +898,12 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
+	trigger = {
+		NOT = { has_planet_flag = sinkhole_investigated }
+	}
+
 	immediate = {
-		
+
 		if = {
 			limit = {
 				num_free_districts = {
@@ -922,6 +926,12 @@ planet_event = {
 			enable_special_project = {
 				name = "SOMETHING_IN_THE_PIPES"
 				location = this
+			}
+		}
+		owner = {
+			begin_event_chain = {
+				event_chain = tbm_sinkhole_causes
+				target = this
 			}
 		}
 		set_planet_flag = sinkhole_investigated
@@ -958,12 +968,14 @@ planet_event = {
 
 	is_triggered_only = yes
 	location = this
+	event_chain = tbm_sinkhole_causes
 
 	option = {
 		name = tbm.83.safe
 		remove_planet_flag = sinkhole_causes
 		owner = {
 			set_country_flag = safe_from_sinkholes
+			end_event_chain = tbm_sinkhole_causes
 		}
 	}
 
@@ -977,6 +989,9 @@ planet_event = {
 		remove_planet_flag = sinkhole_investigated
 		add_modifier = {
 			modifier = subterranean_river_cruises
+		}
+		owner = {
+			end_event_chain = tbm_sinkhole_causes
 		}
 	}
 }

@@ -107,7 +107,7 @@ d_tbm_crater = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 	}
 
 	potential = {
@@ -185,7 +185,7 @@ d_rubble = {
 	planet_modifier = {
 		planet_amenities_add = -2
 		planet_max_districts_add = -1
-		district_mining_max = 1		# Allows rubble to be situationally useful for mining.
+		district_mining_max_add = 1		# Allows rubble to be situationally useful for mining.
 		planet_miners_minerals_produces_mult = -0.05	# This is to disincentivize stacking these for mining super-planets.
 	}
 
@@ -235,7 +235,7 @@ d_collapsed_cliffs = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_amenities_add = -10
 	}
 
@@ -297,7 +297,7 @@ d_urban_power_plant = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 		planet_technician_consumer_goods_upkeep_add = 0.1
 		planet_amenities_mult = -0.1
 	}
@@ -350,7 +350,7 @@ d_geothermal_power_plant = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 	}
 
 	potential = {
@@ -380,7 +380,7 @@ d_hydro_plant = {
 	}
 
 	planet_modifier = {
-		district_generator_max = 1
+		district_generator_max_add = 1
 	}
 
 	potential = {
@@ -469,7 +469,7 @@ d_frontier_farmstead = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = 1
+		district_farming_max_add = 1
 		planet_farmers_unity_upkeep_add = 0.25
 	}
 
@@ -526,7 +526,7 @@ d_dustbowl = {
 	}
 
 	planet_modifier = {
-		district_mining_max = 1
+		district_mining_max_add = 1
 		planet_farmers_food_produces_mult = -0.1
 	}
 
@@ -615,7 +615,7 @@ d_moisture_farms = {
 	}
 
 	planet_modifier = {
-		district_farming_max = 1
+		district_farming_max_add = 1
 	}
 
 	ai_weight = {

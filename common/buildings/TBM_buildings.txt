@@ -100,15 +100,23 @@ building_science_outposts = {
 	}
 
 	abort_trigger = {
-		has_major_upgraded_capital = yes
-		exists = owner
-		owner = {
-			is_fallen_empire = yes
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
 		}
 	}
 
 	destroy_trigger = {
-		has_major_upgraded_capital = yes
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	resources = {
@@ -166,7 +174,6 @@ building_survey_stations = {
 
 	building_sets = {
 		mining
-		urban	# So it shows on default colony zone
 	}
 
 	potential = {
@@ -181,14 +188,112 @@ building_survey_stations = {
 	}
 
 	destroy_trigger = {
-		has_major_upgraded_capital = yes
-		exists = owner
-		owner = { is_fallen_empire = yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	abort_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_colonial_prospector_add = 100
+			job_colonist_add = 100
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 100
+			job_prospecting_drone_add = 100
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_survey_stations_core = {	# These are identical because zone_sets are negation-based.
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	building_sets = {
+		government	# So it shows on default colony zone
+	}
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		is_artificial = no
+		NOT = { is_planet_class = pc_habitat }
 		exists = owner
-		owner = { is_fallen_empire = yes }
+		owner = {
+			is_fallen_empire = no	
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
+	}
+
+	abort_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	resources = {
@@ -269,8 +374,13 @@ building_frontier_spaceport = {
 	}
 
 	abort_trigger = {
-		exists = owner
-		owner = { is_fallen_empire = yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	resources = {
@@ -359,7 +469,6 @@ building_colonial_energy_conduits = {
 
 	building_sets = {
 		generator
-		urban	# So it shows in default zone
 	}
 
 	potential = {
@@ -369,14 +478,107 @@ building_colonial_energy_conduits = {
 	}
 
 	destroy_trigger = {
-		has_major_upgraded_capital = yes
-		exists = owner
-		owner = { is_fallen_empire = yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 	
 	abort_trigger = {
-		exists = owner
-		owner = { is_fallen_empire = yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 1
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_colonist_add = 100
+			planet_colonist_energy_produces_add = 4
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 100
+			planet_technician_energy_produces_add = 1
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_colonial_energy_conduits_core = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	building_sets = {
+		urban # So it shows in default zone
+	}
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		NOT = { is_planet_class = pc_habitat }
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
+	}
+	
+	abort_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	resources = {
@@ -437,7 +639,6 @@ building_land_grants = {
 
 	building_sets = {
 		farming
-		urban	# So it shows on default colony zone
 	}
 
 	potential = {
@@ -453,17 +654,103 @@ building_land_grants = {
 	}
 
 	destroy_trigger = {
-		has_major_upgraded_capital = yes
-		exists = owner
-		owner = {
-			is_gestalt = yes
-			is_fallen_empire = no
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
 		}
 	}
 
 	abort_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_colonial_pioneer_add = 200
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_land_grants_core = {
+	icon = building_primitive_farm
+	
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	building_sets = {
+		government	# So it shows on default colony zone
+	}
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		is_artificial = no
+		NOT = { is_planet_class = pc_habitat }
 		exists = owner
-		owner = { is_fallen_empire = yes }
+		owner = {
+			is_gestalt = no
+			is_fallen_empire = no
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
+	}
+
+	abort_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	resources = {
@@ -512,6 +799,99 @@ building_farming_commune = {
 
 	building_sets = {
 		farming
+	}
+
+	potential = {
+		has_major_upgraded_capital = no
+		is_starting_planet = no
+		is_artificial = no
+		NOR = { 
+			is_planet_class = pc_habitat
+			has_building = building_land_grants
+		}
+		exists = owner
+		owner = {
+			is_gestalt = no
+			OR = {
+				has_valid_civic = civic_agrarian_idyll
+				has_valid_civic = civic_environmentalist
+			}
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+			
+			owner = {
+				OR = {
+					is_gestalt = yes
+					NOT = { has_valid_civic = civic_agrarian_idyll }
+				}
+			}
+		}
+	}
+
+	abort_trigger = {
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+			unity = 1
+			mult = value:colonial_strain_infrastructure
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_colonial_pioneer_add = 200
+			job_farmer_add = 200
+		}
+	}
+	
+	triggered_desc = {
+		text = tbm_unity_colonial_building_scale
+		trigger = {
+			exists = owner
+		}
+	}
+}
+
+building_farming_commune_core = {
+	icon = building_primitive_farm
+	
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	can_build = yes
+	can_demolish = yes
+	can_be_ruined = yes
+	can_be_disabled = yes
+
+	position_priority = 2
+
+	category = resource
+
+	building_sets = {
 		urban 	# So it shows on default zone
 	}
 
@@ -534,19 +914,30 @@ building_farming_commune = {
 	}
 
 	destroy_trigger = {
-		has_major_upgraded_capital = yes
-		exists = owner
-		owner = {
-			OR = {
-				is_gestalt = yes
-				NOT = { has_valid_civic = civic_agrarian_idyll }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+			
+			owner = {
+				OR = {
+					is_gestalt = yes
+					NOT = { has_valid_civic = civic_agrarian_idyll }
+				}
 			}
 		}
 	}
 
 	abort_trigger = {
-		exists = owner
-		owner = { is_fallen_empire = yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	resources = {
@@ -608,15 +999,23 @@ building_colonial_outpost = {
 	}
 
 	destroy_trigger = {
-		has_major_upgraded_capital = yes
-		exists = owner
-		owner = { is_fallen_empire = yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	abort_trigger = {
-		has_major_upgraded_capital = yes
-		exists = owner
-		owner = { is_fallen_empire = yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	resources = {
@@ -704,14 +1103,23 @@ building_planetary_outpost = {
 	}
 
 	abort_trigger = {
-		exists = owner
-		owner = { is_fallen_empire =  yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	destroy_trigger = {
-		has_major_upgraded_capital = yes
-		exists = owner
-		owner = { is_fallen_empire =  yes }
+		OR = {
+			has_major_upgraded_capital = yes
+			AND = {
+				exists = owner
+				owner = { is_fallen_empire = yes }
+			}
+		}
 	}
 
 	resources = {

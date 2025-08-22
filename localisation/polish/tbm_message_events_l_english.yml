@@ -1,0 +1,60 @@
+﻿l_english: 
+
+ ### The Blocker Mod - Message Events
+ #   Used for notifications for dynamic features - see tbm_message_events and tbm_handler_events
+ 
+ # Handlers & Generators
+
+ MESSAGE_SLUM_GENERATOR_TITLE:0 "New £blocker_yellow£ §YSprawling Slums§!"
+ SLUM_GENERATOR:0 "Cramped and difficult living conditions on §S[planet.GetName]§! have given rise to new§Y £blocker_yellow£ Sprawling Slums§! around the [planet.GetPlanetMoon]'s cities'.\n\nIf left to fester, these may affect happiness and approval. To avoid future slums, improve local conditions by adding amenities and housing."
+
+ MESSAGE_INDUSTRIAL_WASTELAND_TITLE:0 "New £blocker_yellow£ §YIndustrial Wasteland§! appeared"
+ INDUSTRIAL_WASTELAND:0 "Chased away by declining local conditions and a poor economy, businesses and industries are abandoning §S[planet.GetName]§! in droves, leaving §Y £blocker_yellow£ Industrial Wasteland§! behind.\n\nThese derelict regions are dens of crime and terrible polluters. To avoid future wastelands, improve local conditions by adding amenities and reducing crime."
+
+ MESSAGE_URBAN_POWER_PLANT_TITLE:0 "A new §Y £blocker_yellow£ Urban Power Plant§! has opened" 
+ URBAN_POWER_PLANT:0 "The growing urban area on §S[planet.GetName]§! has long exceeded the planet's own energy supply, and shipments from off-world aren't enough. Local planners have authorized construction of a new £blocker_yellow£ §YUrban Power Plant§! in the heart of the [planet.GetPlanetMoon]'s largest mega-city to meet ballooning energy needs.\n\nAn £blocker_yellow£ §YUrban Power Plant§! will allow additional $district_generator$ development, but eat up space and make noisy neighbors. To avoid these unsightly behemoths, ensure the planet has a good ratio of $district_generator_plural$ to $district_industrial_plural$ and $district_city_plural$."
+
+ MESSAGE_COLONIAL_SETTLEMENT_TITLE:0 "A new £blocker_yellow£ §YPioneer Settlement§! appeared"
+ COLONIAL_SETTLEMENT:0 "Enterprising pioneers on §S[planet.GetName]§! have discovered and settled in a rich region on the frontier seeking new and prosperous lives.\n\nAlthough £blocker_yellow£ §YPioneer Settlements§! attract all kinds, the £colonist£ §CColonists§! there will help explore and exploit the local terrain. These settlements are more likely on worlds with extra district space and a growing population."
+
+ MESSAGE_FRONTIER_FARMLAND_TITLE:0 "New £blocker£ §YFrontier Farmland§! has been granted"
+ FRONTIER_FARMLAND:0 "Ranchers and farmers are flocking to §Y[planet.GetName]§! in search of new lands and new lives, establishing§T £blocker£ Frontier Farmlands§! in outlying regions.\n\nThese homesteads require ample space for grazing and cultivation, but will help provide§Y $district_farming_plural$§!. These farms are more likely to be created on worlds with lots of free space or ideal grazing conditions."
+
+ MESSAGE_DUSTBOWL_GENERATOR_TITLE:0 "A new £blocker_yellow£ §YDustbowl§! has developed"
+ message_dustbowl_generator:0 "What was once prime farmland on [planet.GetName] has become a dry and lifeless §Y£blocker_yellow£ Dustbowl§!. Dust and minerals blow through dessicated wasteland air and very little grows here now.\n\nWhile there could be any number of causes, over-farming is the likeliest culprit."
+
+ MESSAGE_LANDSLIDE_TITLE:0 "Landslide"
+ message_landslide:0 "After heavy rains, landslides have washed away settlements and resource infrastructure on §Y[planet.GetName]§!.\n\nThe collapse may provide mining opportunities once the dust has settled."
+
+ MESSAGE_SUDDEN_SINKHOLE_TITLE:0 "§Y£blocker£ Sudden Sinkhole§!" 
+ tbm.message.sinkhole:0 "Despite our best efforts, a new §Y£blocker£ Deep Sinkhole§! has appeared on [planet.GetName][sinkhole_destruction].\n\nThe exact cause of these sinkholes remains unknown and it has so far been impossible to predict the next location to be affected. All we can do is fill them again and hope they stay filled."
+
+ MESSAGE_SANDSTORM_TITLE:0 "Vicious Sandstorm"
+ message_sandstorm:0 "A wild sandstorm has rolled in over a major city on §Y[planet.GetName]§!, destroying energy infrastructure.\n\n§YSandstorms occur naturally, but will be less frequent when a planet has more trees."
+ 
+ tbm_message_mine_shaft_collapse_robot_casaulties:0 "A mine shaft at the £blcoker£ [collapsed_mine.GetName] on §Y[planet.GetName]§! has collapsed, trapping several robotic mining units inside. Fortunately, there has been no loss of life, but the mining units will have to be replaced."
+
+ tbm_message_mine_shaft_collapse_miners_dead:0 "A mine shaft at the £blcoker£ [collapsed_mine.GetName] on §Y[planet.GetName]§! has collapsed, trapping several miners below the surface."
+
+ message_landslide:0 "After a heavy rains, landslides have washed away settlements and resource infrastructure on [from.GetName].\n\nThe collapse may provide mining opportunities once the dust has settled."
+
+ tbm.message.sinkhole:0 "Despite our best efforts, a new §Y£blocker£ Deep Sinkhole§! has appeared on [from.GetName].\n\nThe exact cause of these sinkholes remains unknown and it has so far been impossible to predict the next location to be affected. All we can do is fill them again and hope they stays filled."
+
+ message_dustbowl_generator:0 "What had been prime farmland on [from.GetName] has recently become a dry and lifeless §Y£blocker_yellow£ Dustbowl§!. While there could be any number of causes, over-farming is the likeliest culprit."
+
+ MESSAGE_SUBTERRANEAN_TITLE:0 "Subterranean Exo-Surveying"
+ message_subterranean:0 "Ongoing developments on §Y[planet.GetName]§! have opened up a new £blocker_yellow£ §CSubterranean Excavations§! to help house the [planet.GetPlanetMoon]'s growing population."
+ message_subterranean_subterranean:0 "Ongoing developments on §Y[planet.GetName]§! have opened up a new £blocker_yellow£ §CSubterranean Colony§! to help house the [planet.GetPlanetMoon]'s growing population."
+
+ MESSAGE_FARMING_RURAL_TITLE:0 "Homestead Farms"
+ message_farming_rural:0 "Advances in xeno-agricultural genology have allowed pioneering farmers to settle on §Y[planet.GetName]§!, creating new £blocker_yellow£ Homestead Farms in frontier regions.\n\n§Y £blocker_yellow£ §CHomestead Farms§Y will occur naturally on arable worlds, providing $district_farming_plural$ until space is filled or the colony reaches a certain level of development."
+ message_farming_moisture:0 "Despite harsh conditions on §Y[planet.GetName], hardy pioneers have set up £blocker£ a network of small §YMoisture Farms§! to harvest and maintain precious water in frontier regions.\n\n§Y £blocker_yellow£ §CMoisture Farms§Y will occur naturally on dry worlds, providing $district_farming_plural$ until space is filled or the colony reaches a certain level of development."
+ message_farming_urban:0 "Increasing urbanization on §Y[planet.GetName]§ has led local administrators to seek to grow crops in £blocker_yellow£ §YUrban Aeroponics§! facilities.\n\n§YOnly two £blocker_yellow£ §CUrban Aeroponics§Y can be supported on any given world."
+
+ MESSAGE_DEEP_CRUST_TITLE:0 "Deep-Crust Exploration"
+
+ MESSAGE_SELECTIVE_DEFOLIATION_TITLE:0 "Selective Defoliation"
+ tbm_message_successful_defoliation:0 "After Selective Defoliants were applied on §Y[planet.GetName]§!, a £blocker£ §Y[defoliated.GetName]§! has been removed."
+ tbm_message_unsuccessful_defoliation:0 "After Selective Defoliants were applied on §Y[planet.GetName]§!, a §Y[defoliated.GetName]§! has been removed.\n\nHowever, chemical by-products have left an unfortunate £blocker_yellow£ §Y[defoliant_byproduct.GetName]]§! behind."
+ 
+

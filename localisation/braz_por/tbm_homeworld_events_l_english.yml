@@ -1,0 +1,317 @@
+﻿l_english:
+
+
+ ### 6. Advanced Geothermal Tap Shutdown
+
+ tbm_hw.6_name:0 "Geothermal Plant Shutdown"
+ tbm_hw.6_desc_gestalt:0 "By the mid-21st century, we had hoped geothermal power would sate growing energy needs. This estimate proved incorrect and many older §Y£blocker_yellow£ $d_experimental_geothermal_tap$s§! have long since been been shut down due to failing efficiency scores.\n\nA few, however, remain, creaking out heating rods and turning creaking steam engines to help increase strategic energy reserves. Newly developed evaluations algorithms have revealed serious problems with aging pre-nanocomposite gantries might collapse, causing unacceptable structural damage to the area surrounding the tap.\n\nIt would be more efficient to dismantle the few of these reactors still in use. They are, however, still considered part of our potential £district_generator£ capacity."
+ tbm_hw.6_desc:0 "By the mid-21st century, geothermal power was supposed to solve all of our energy needs. The Great Energy Conflict of 2102 disabused most everyone of any such notion, and many of the older §Y£blocker_yellow£ $d_experimental_geothermal_tap$s§! have long since been been shut down or converted into fracking sites.\n\nA few, however, remain, creaking out heating rods and turning cranky steam engines like monsters from historic films. Some are closer to museums than generators, and cater mainly to school trips these days.\n\nRecent safety inspections at one such plant have raised new serious concerns that aging pre-nanocomposite gantries might collapse, trapping [owner.GetSpawnNamePlural] in the reactor pits overnight without supervision.\n\nA proposal has been put forward to dismantle the few of these reactors still in use. They are, however, still considered part of our potential $district_generator$ capacity, and lobbyists for the energy supply have expressed concerns about tightening the strategic reserve."
+ tbm_hw.6_decommission:0 "Dismantle the remaining facilities."
+ tbm_hw.6_lose_generator:0 "The §Y£blocker_yellow£ $d_experimental_geothermal_tap$§! will be removed. An $d_active_volcano$ will be added in its place.\n"
+ tbm_hw.6_maintain:0 "Bring the facilities back up to code."
+ tbm_hw.6_nanocomppsite_shortage:0 "We will divert the necessary nanocomposites to rejuvenate the generators, maintaining our number of £district£ §Y$district_generator_plural$§! at the expense of shipyard efficiency."
+ tbm_hw.6_ignore:0 "Ignore the problem."
+ tbm_hw.6_ignore_tooltip:0 "The §Y£blocker_yellow£ Experimental Geothermal Tap§! will stop working, and §Ywe will lose a £district£ $district_generator$ slot§! as a result."
+
+ tbm_hw.7_name:0 "Geothermal Explosion"
+ tbm_hw.7_desc:0 "Back in the 21st century, geothermal energy wasn't considered dangerous. But the scale on which the larger §Y£blocker_yellow£ Experimental Geothermal Tap§!s operate can lead to the relase of dangerous levels of heat and gas from deep in the [from.GetPlanetMoon]'s crust if not properly maintained.\n\nAfter decades of neglect and decay, one ofthe §Y£blocker_yellow£ Experimental Geothermal Tap§! on [from.GetName] suddenly exploded, causing significant damage to the surrounding $district_city_plural$ and spewing noxious gases across much of the region.\n\nClean-up is underway, but the technology behind this form of energy generation has now been entirely deprecated and banned from large-scale use in future energy generators."
+
+ ### Post-Apocalyptic - Environmental Remediation Event Chain
+ 
+ tbm_environmental_remediation:0 "Post-Apocalyptic - Environmental Restoration"
+ tbm_environmental_remediation_desc:0 "Long years ago, civilization vanished overnight in a cloud of ash and debris. Since then, our every undertaking has been oriented towards one critical goal - restoring our homeworld. One day, we may rebuild what once was and, perhaps, exceed it - if the mistakes of the past can indeed be avoided.\n\nOur population, leaders, and governments have begun work on various projects to pull the seemingly disparate philosophies that have defined these centuries of survival together into a renewed foundation for our planet and society.\n\nIt is expected to take time before these efforts will bear fruit. But we have waited this long.\n\n\n\n§EOver the next several decades, our undertakings will forever shape the face and future of our homeworld - decisions governing development, population, industry, and the environment will all determine the outcome of our efforts to rebuild our civilization.\n\nRestoration will occur in three areas:\n - §LIndustrialization§! - A measure of civilization's wealth, productivity, and ability to return to the levels of plentitude required to sustain a true stellar empire. Are we resilient and frugal? Or opulent and utopian?\n - §GEcology§! - Restoring a planetary-scale environment from utter devastation is a mammoth charge. Do we embrace the burnt-out world we've made or rebuild whole rivers and oceans?\n - §YCulture§! - Do we seek to spread fire or influence, or might? Do we seek ruin, or redemption?\n\n§YNo decision is final. Should circumstances change, we can change our future and alter the final outcome.§!"
+
+ tbm_hw.102_title:0 "A Glimpse of Our Future"
+ tbm_hw.102_desc:0 "It has long been supposed that some §Y[owner.GetSpeciesNamePlural]§! must have sat upon the burnt shores of our homeworld and wondered what was to come, knowing nothing of the armageddon their future held in wait. For many years, such stories have been an indulgent speculation upon better times while we languish under the shelters, tunnels, and scrap heaps our forebears left behind.\n\nBut now, there is something more tangible to work towards. For the first time, our people possess the technology and, more important, the knowledge and understanding to ask the same, reimagining our world as it once might have been.\n\nMuch of that knowledge has been gleaned from the stars, from worlds so different from our own as to beggar any belief that we could yet repeat the failures of our ancestors.We have now another choice. How will we build, and how will we remake ourselves into what might have been?"
+ tbm_hw.102_desc_hive:0 "Long years ago, buried deep in the the Consciousness, is a memory of a time when we did not possess the knowledge of the armageddon that would befall our world. For many years, such memories have been impractical, forgotten for fear we might yet falter again.\n\nBut now, there is something more tangible to work towards. For the first time, we possess the technology and, more important, the knowledge and understanding to reimagine our world as it once might have been.\n\nMuch of that knowledge has been gleaned from the stars, from worlds so different from our own as to beggar any belief that we could yet repeat such failures. We have now another choice. How will we build, and how will we remake ourselves into what might have been."
+ tbm_hw.102_embrace_hope:0 "Embrace the hope of a better future."
+ tbm_hw.102_boost_library:0 "§CWe will rely on the knowledge and technology kept in §Y£blocker_yellow£ The Library of Before§C to guide us in restoring our world to its former glory.§!"
+ tbm_hw.102_respect_reality:0 "Adapt forever to our new reality."
+ tbm_hw.102_boost_chapel:0 "§CSuch reckless dreaming is the surest way to risk all that we have built, as our §Y£blocker_yellow£ Chapel of the Fall§C reminds us.§!"
+ tbm_hw.102_society_decides:0 "§EWe will let society take its own corse, come what may.§!"
+ tbm_hw.102_follow_instinct:0 "§EWe will follow our instincts.§!"
+ tbm_hw.102_society_decides_tooltip:0 "We must find a path forward in tomorrow, not in the past. Various projects and approaches will see us find the best way to ascend.\n\n§CNo particular approach will be emphasized and our £blocker_yellow£§Y The Library of Before§C and £blocker_yellow£§Y The Chapel of the Fall§C will be unaltered. We will retain control over what measures we take in pursuit of a new planet."
+ 
+ tbm_hw.106_title:0 "Environmental Restoration - Industry"
+ tbm_hw.106_industrialization_low:0 "Now, after so many years and so much effort, the great project has taken shape around us. Once an apocalyptic barren, §Y[restoration_homeworld.GetName]§! has undergone tremendous change.\n\nWe have become, in time, resourceful and resilient. We have now truly adapted to life among the ruins of civilization, repurposing, reclaiming, and restoring if not the glory, than certainly the power of what we once were.\n\nThat same guile will allow us to compete with other nations across the stars, no matter our past, no matter our mistakes.\n\nThe hum of the £blocker_yellow£ §YScrap Bazaars§! contrasts the quiet hum of £blocker_yellow£ §YAllocation Clinics§!, where essential needs can finally be fulfilled thanks to newfound interstellar wealth.\n\nWhat once we were may not be restored, but we will persevere. We will rise again.\n\nAnd yet...."
+ tbm_hw.106_industrialization_mid:0 "Now, after so many years and so much effort, the great project has taken shape around us. Once an apocalyptic barren, §Y[restoration_homeworld.GetName]§! has undergone tremendous change.\n\nThe trauma of civilizational collapse has muted to a grey-green reality of upstart ecologies and careful contemplation of the mistakes of our past. From that knowledge, our new wealth emerges. A £blocker_yellow££ §YMemorial of the Apocalypse§! keeps understanding of our history intact while a shining £blocker_yellow££ §YAbyssal Manufactorium§! repurposes the relics of that bygone age for a brighter tomorrow.\n\nTogether, these new developments ensure we retain our past as part of ourselves while joining the true empires amongst the stars.\n\nAnd yet..."
+ tbm_hw.106_industrialization_high:0 "Now, after so many years and so much effort, the great project has taken shape around us. Once an apocalyptic barren, §Y[restoration_homeworld.GetName]§! has undergone tremendous change.\n\nFrom the ashes, we have built great beacons of prosperity and renewal, and we now prosper in the wealth and power forged from our past failures. Galactic £blocker_yellow£ §YHegemons of Industry§! ensure our world will become a true commercial titan while in £blocker_yellow£§Y Purgatory§! our people can find their every need fulfilled by great holo-projectors built from the rubble of yesteryear. Once a civilization of scarce survival, we are now plentiful.\n\nAnd yet..."
+ 
+ tbm_hw.107_title:0 "Environmental Restoration - Ecology"
+ tbm_hw.107_ecology_low:0 "Ash and metal have long choke our homeworld of §Y[restoration_homeworld.GetName]§!. Where nothing lives, nothing may thrive. Now, we have the technology to adapt.\n\nThere can be no return to sunlit shores and gentle hills; ecology is a one-way path. Even if we could restore a more typical planetary atmosphere, it is no longer a given our immune systems could live beneath it.\n\nInstead, we must embrace what §Y[restoration_homeworld.GetName]§! and §Y[owner.GetSpeciesNamePlural]§! have become. It may be called a §YTomb World§! but we yet live, and upon its ghostly landscape, we have made our empire.\n\nHowever..."
+ tbm_hw.107_ecology_mid:0 "Where ash and metal once choked our homeworld of §Y[restoration_homeworld.GetName]§!, new life takes root. Shoots of trees now poke through the dust and grime and §Y[owner.GetSpeciesNamePlural]§! can once more walk outside without masks.\n\nLife will still be difficult here, in some ways, even more difficult than before as our immune systems and infrastructure must be adjusted to a rapidly-changing climate and nascent environment. But what cannot be denied is that this is §Y[restoration_homeworld.GetName]§!, this is our world, and we have made it anew.\n\nFor now, however..."
+ tbm_hw.107_ecology_high:0 "Where once our homeworld was a fallen testament to failures past, now §Y[restoration_homeworld.GetName]§! stands anew, restored through careful stewardship and the wonders of advanced technology to much of what it must once have been.\n\nIt is much as the oldest stories say - for §Y[owner.GetSpeciesNamePlural]§!, §Y[restoration_homeworld.GetName]§! is as close to a paradise as those from the colonies have ever seen. Gentle shores and calm plains once cradled life here and now we must ensure they do so again.\n\nHowever...."
+ tbm_hw.107_ecology_very_high:0 "Where once our homeworld was a fallen testament to failures past, now §Y[restoration_homeworld.GetName]§! stands as one of the true jewels of the galaxy. Every inch of it has been perfected. Grime is now garden, ash is now arable soil, and even the dusty wastelands of a now-bygone age have become pleasant plains stirred by a gentle breeze that is never more than comfortable. All signs of fire and fallout have been so thoroughly scrubbed that our homeworld now shines as brightly as each §Y[owner.GetSpeciesMouthName]§!.\n\nHowever..."
+ 
+ tbm_hw.108_title:0 "Environmental Restoration - Culture"
+ tbm_hw.108_culture_low:0 "Our attention now turns to the stars. We have learned hard that §Y[restoration_homeworld.GetName]§! cannot provide for us. The stars, however, can. Even as their darkness hides future threats, we are now a society capable of facing them, and besting them.\n\nHideous mutations have strengthened our soldiers and our scrap traders pull frightful weapons systems from the rubble of our past, turning them to our future security and success. We do not need what has gone before; the §Y[owner.GetName]§! will forge a new tomorrow.\n\nSo stands §Y[restoration_homeworld.GetName]§!, in all its glory. Its fall is now complete."
+ tbm_hw.108_culture_mid:0 "Our restoration of §Y[restoration_homeworld.GetName]§! has been matched by renewed vigor amongst our people. The collective effort has led to greater togetherness and pride in our accomplishments, as even the older civilizations of the galaxy have taken notice. Through our hardships, they too can learn much and together, we can lead the galaxy to true greatness.\n\nSo stands §Y[restoration_homeworld.GetName]§!, in all its glory, its restoration shaped by our needs and purposes to be fittingly called our new homeworld."
+ tbm_hw.108_culture_high:0 "Our homeworld of §Y[restoration_homeworld.GetName]§! now serves as a pathway for all war-torn worlds and their inhabitants to rebuild their homes into bountiful utopias. Tourists flock to §Y[restoration_homeworld.GetName]§! from across the stars to marvel at the achievements of our culture and our collective unity of purpose and passion. Without these, the §Y[owner.GetName]! would be clinging to survival; instead, we stride out as champions of the galaxy, beacons of what can be accomplished if we leave behind mistakes of the past.\n\nSo stands §Y[restoration_homeworld.GetName]§!, in all its glory. All it ever needed to be. Its fall is now complete, its restoration shaped by our needs and purposes to be fittingly called our new homeworld."
+
+ ### Post-Apocalyptic - New Horizons (Food Shipments Situation)
+
+ post_apocalyptic_new_horizons:0 "Post-Apocalyptic - New Horizons"
+ post_apocalyptic_new_horizons_type:0 "Post-Apocalyptic - Bew Horizons" 
+ post_apocalyptic_new_horizons_desc:0 "As our colony on §Y[post_apoc_colony.GetName]§! gets up and running, farmers on the new world can begin to ease food shortages and rationing on §T[post_apoc_homeworld.GetName]§!."
+ post_apocalyptic_new_horizons_monthly_change_tooltip:0 "Every month, we have to eat."
+ food_reserves_complete_tooltip:0 "If we can secure a steady source of food for our homeworld, we can expect our population to boom."
+ food_reserves_fail_tooltip:0 "An empire that cannot provide for its people is not an empire for long."
+ 
+ # Monthly Changes 
+ monthly_consumption:0 "£r_food£ $r_food$ Reserves Consumed"
+ sending_food:0 "£r_food£ Food sent to §Y[post_apoc_homeworld.GetName]§!"
+ strict_rations:0 "£r_food£ Food saved by rationing regine"
+ cracking_down:0 "£r_food£ Food collected from §Y[post_apoc_colony.GetName]§!"
+ colonial_farm_coops:0 "£r_food£ Food sent from §Y[post_apoc_colony.GetName]§!"
+
+ # Stages
+ widespread_starvation:0 "Widespread Starvation"
+ food_shortages:0 "Food Shortages"
+ food_reserves_low:0 "Food Reserves Low"
+ colonial_plenty:0 "Colonial Plenty"
+
+ # Approaches
+ 
+ strict_rationing:0 "Strict Rationing"
+ strict_rationing_desc:0 "What little $r_food$ remains will be stratched as far as it can be."
+ send_food:0 "Send Food Shipments"
+ send_food_desc:0 "Have the colony of §Y[post_apoc_colony.GetName]§! send half of its harvest to [post_apoc_homeworld.GetName]§!."
+ send_food_effect_tooltip:0 "Adds [root.food_shipment] $r_food$"
+ crackdown_farmers:0 "Crack Down on Farmers"
+ crackdown_farmers_desc:0 "Colonial rabble on [post_apoc_colony.GetName] cannot be allowed to threaten the greater glory of §Y[post_apoc_homeworld.GetName]§!."
+ withhold_food:0 "Withhold Food Shipments"
+
+ send_food_no_farms:0 "Cannot send £food£ Food shipments due to lack of $district_farming_plural$ on §Y[post_apoc_colony.GetName]."
+ send_food_locked:0 "Unrest on §Y[post_apoc_colony.GetName] is preventing £food£ Food shipments."
+ cracked_down_tooltip:0 "Colonial security on §Y[post_apoc_colony.GetName] are cracking down on local farmers."
+
+ remove_colonial_food_upkeep_tooltip:0 "The §YColonial Food Upkeep§! on [post_apoc_colony.GetName] will be removed."
+
+
+ # Events
+
+ tbm_hw.311_title:0 "Post-Apocalyptic - New Norizons"
+ tbm_hw.311_desc:0 "For generations, our homeworld has been choked by the toxic ash left over from the great cataclysm that doomed our civilization. For nearly as long, [owner.GetSpeciesNamePlural] on [post_apoc_homeworld.GetName] have subsisted on thin rations, living in constant fear of monthly food quotas. Malnutrition and disease have become constants with little hope the planet would provide for us again.\n\nUntil now. As the first landing pods touched down on [post_apoc_colony.GetName], astronauts and hopeful colonists alike were greeted with an astonishing sight - sunlight, illuminating an alien sky, and potential farmland as far as could be seen. Healthy flora and fauna abound across every plain.\n\nAid agencies estimate food shipments could be delivered from our new colony nearly as soon as the first crops are harvested. All it will take is building some §Y$district_farming_plural$§!.\n\nA new §YSituation§! has been created so we can oversee the process."
+ tbm_hw.311_gestalt_desc:0 "For generations, our homeworld has been choked by the toxic ash left over from the great cataclysm that doomed our civilization. For nearly as long, [owner.GetSpeciesNamePlural] on [post_apoc_homeworld.GetName] have subsisted on thin rations, living in constant fear of monthly food quotas. Malnutrition and disease have become constants with little hope the planet would provide for us again.\n\nUntil now. As the first landing pods touched down on §Y[post_apoc_colony.GetName]§!, our senses were greeted with an astonishing sight - sunlight, illuminating an alien sky, and potential farmland as far as could be seen. Healthy flora and fauna abound across every plain.\n\nWe estimate food shipments could be delivered from our new colony nearly as soon as the first crops are harvested. All it will take is building some §Y$district_farming_plural$§!.\n\nA new §YSituation§! has been created so we can oversee the process.""
+ 
+ tbm_hw.312_title:0 "Colonial Unrest"
+ tbm_hw.312_desc_gestalt:0 "Although development of agricultural infrastructure on §Y[post_apoc_colony.GetName]§! has gone according to plan, the population on the colony has grown less compliant, and some are now refusing to meet monthly food quotas. Distance from the closer collective of survivors on §Y[post_apoc_homeworld.GetName]§! has lessened cordyceptic thought confluence and, with the situation on [post_apoc_homeworld.GetName] increasingly dire, it may be difficult to prevent wider deviance among drones.\n\nAt the same time, nutritional indicators and performance metrics on [post_apoc_homeworld.GetName] are falling rapidly, with far more drones than expected needing additional sup0plements imported from [post_apoc_colony.GetName]."
+ tbm_hw.312_desc:0 "Although development of agricultural infrastructure on §Y[post_apoc_colony.GetName]§! has gone according to plan, many of the colonists selected for this mission had dreamed for years of escaping §Y[post_apoc_homeworld.GetName]§! and resent being asked to send much of their hard-earned bounty back to a world they increasingly see as derelict and ruined. Some are refusing to meet monthly food tithes and there have been rumblings of growing dissatisfaction with authorities.\n\nMeanwhile, the situation on the homeworld grows worse by the day. It has become clear that previous rations estimates were vastly inaccurate, and that we wildly underestimated the number of survivors living in the further-flung camps, all of whom now expect a feast to arrive from [post_apoc_colony.GetName]. Although used to disappointment, the mood on §Y[post_apoc_homeworld.GetName]§! is worsening, as are health and nutrition indicators.\n\nA major corporate concern has offered to establish addition, extra-legal farms on §Y[post_apoc_colony.GetName]§! to help expedite shipments and get around red tape. We could also have scientists use alien seed samples to kick-start subsistence agriculture projects on §Y[post_apoc_homeworld.GetName]§!. Either way, something must be done, and soon."
+ 
+ tbm_hw.312_subsistence_farms:0 "Create new farms on §Y[post_apoc_homeworld.GetName]§!."
+ tbm_hw.312_private_farms:0 "Pay to open new farms on §[post_apoc_colony.GetName]§!"
+ tbm_hw.312_nothing:0 "In fact, nothing at all need be done."
+
+ tbm_hw.313_title:0 "Food Riots"
+ tbm_hw.313_desc:0 ""The situation on §Y[post_apoc_homeworld.GetName]§@ has worsened, and after months of strict food rationing, a routine nighttime disturbance sparked larger riots that quickly spread through the camps and overwhelmed local security forces. Criminals have exploited the disorder to wrest control of what little food remains for sale to the highest bidders."
+ tbm_hw.313_gestalt_desc:0 "The situation on §Y[post_apoc_homeworld.GetName]§!has worsened, and after months of strict food rationing, drone deviance and performance has reached critical levels. Soon, essential organic operations may fail completely, either for lack of compliance or simply lack of food."
+ tbm_hw.313_option:0 "Something must be done."
+ 
+ tbm_hw.314:0 "Malnutrition"
+ tbm_hw.314_desc_corp:0 "The rapidly declining food supplies on §Y[post_apoc_homeworld.GetName]§! has led to several outbreaks of disease and a sharp drop in health and performance metrics across most shelters and settlements. Without access to food, no one wants to work. Several subsidiary offices have attempted to increase wages and one restaurant chain even declare independence from its parent company, but even these off-shoots can't solve the core obstacle. Middle managers are withering and those front-line employees still alive can barely function, let alone take advantage of the corporate family benefits program. Unless something is done, corporate retention rates are likely to plummet."
+ tbm_hw.314_desc:0 "The rapidly declining food supplies on §Y[post_apoc_homeworld.GetName]§! have led to several outbreaks of disease and a sharp drop in life expectancy worldwide. Lines outside ration centers only get longer and workers only get thinner. Without enough food, the sound of [owner.GetSpeciesSpawnNamePlural]' cries fill the air as those still able scavenge for any scrap of edible food.\n\nWithout intervention, our already-dwindling population is likely to collapse."
+ tbm_hw.314_desc_hive:0 "Without enough food to sustain basic biological processes, swathes of drones across §Y[post_apoc_homeworld.GetName]§! are reporting starvation status in sharp, distressed cries of pain. Output effienciency will soon fall, and already the hive lacks enough biological material to replace derelict drones."
+ tbm_hw.314_option:0 "Something must be done."
+ 
+ tbm_hw.315_title:0 "Crops Burned"
+ tbm_hw.315_desc:0 "§Y$job_farmer_plural$§! on §Y[post_apoc_colony.GetName]§!, in protest against food quotas and tites, have set fire to their crops, destroying a wide range of food destined for §Y[post_apoc_homeworld.GetName]§!. Representatives have demanded better living conditions, greater colonial autonomy, and a larger share of their crops to help feed growing families on the new world." 
+ tbm_hw.315_desc_gestalt:0 "A large group of §Y$job_farmer_plural$§! on §Y[post_apoc_colony.GetName]§! has acted directly against the Consciousness by setting fire to a wide range of food crops destined fro §Y[post_apoc_homeworld.GetName]§!. Although deviance of this kind used to be quite uncommon, it may now be necessary to grant the colony's $job_farmer_plural$ greater autonomy in order to retain basic functioning of the food programs."
+ tbm_hw.315_redress_concerns:0 "Address the $job_farmer_plural$' concerns."
+ tbm_hw.315_redress_concerns_gestalt:0 "Allow limited autonomy for $job_farmer_plural$ on §Y[post_apoc_colony.GetName]§!."
+ tbm_hw.315_crackdown:0 "Ensure the $job_farmer_plural$ meet their quotas."
+
+ tbm_hw.316_name:0 "Homeworld Governor Eaten"
+ tbm_hw.316_desc:0 "A radical group from an outlying survival camp on §Y[post_apoc_homeworld.GetName]§!, angry at additional food rations allocated to government leaders, has kidnapped §Y[homeworld_governor.GetName]§!, demanding an end to rationing.\n\nAfter tracking [homeworld_governor.GetHerHim] to an abandoned rations store in the lower levels, a grisly scene played out. Hungry and unable to decide what to do with their hostage, the small group of rebels resorted to eating [homeworld_governor.GetHerHim] instead, figuring it would serve as a message to the rest of the establishment getting fat off the backs of the people and... the screed goes on at some length.\n\nSecurity forces have vowed to better protect whomever is next appointed as governor."
+ tbm_hw.16_governor:0 "At least they got a decent meal out of it."
+ 
+ tbm_hw.317_title:0 "Colonial Spaceport Shut Down"
+ tbm_hw.317_desc:0 "Increasingly dissatisfied with colonial food tithes, §Y$job_farmer_plural$§! on [post_apoc_colony.GetName] have launched a coordinated attack on the [post_apoc_colony.GetPlanetMoon]'s spaceport, quicly overwhelming local security forces and grounding all ships scheduled to depart with food for §Y[post_apoc_homeworld.GetName]§!.\n\nNews reports from the colony have quoted rebel leaders announcing the food seized is being given back to the farmers who grew it in order to grow their families and secure a strong, independent future for [post_apoc_colony.GetName]§!."
+ tbm_hw.317_desc_gestalt:0 "Increasingly organized, deviant §Y$job_farmer_plural$§! on §Y[post_apoc_colony.GetName] have seized control of the [post_apoc_colony.GetPlanetMoon]§!'s spaceport, quickly overwhelming local security-response systems. Food shipments to [post_apoc_homeworld.GetName] have been grounded to ensure collective security and the rebel drones are gorging themselves upon the food meant to sustain the Organism itself, demanding more autonomy."
+ tbm_hw.317_it_will_blow_over:0 "Give the protests time to die down."
+ tbm_hw.317_additional_security:0 "Send in additional security to take the spaceport."
+
+ tbm_hw.318_name:0 "Colonial Bounty"
+ tbm_hw.318_desc_gestalt:0 "Regular food shipsments from §Y[post_apoc_colony.GetName]§! have eased ood shortages to the point where not only are all drones meeting nutritional standards, but productivity is at an all-time high. The camps and warrens throb with collective unity and a sense of something near to hope passes through the Organism's fibers at the prospect of one day restoring our world to its prime."
+ tbm_hw.318_desc:0 "Regular food shipments from §Y[post_apoc_colony.GetName]§! have eased food shortages on §Y[post_apoc_homeworld.GetName]§!. Feasts and festivals have galvanized the sick and distraught in the camps, fostering new hope among those who have survived this world's cataclysms to realize new wealth among the stars.\n\nAt the same time, the situation on §Y[post_apoc_colony.GetName]§! is not quite so rosy. Fieldworkers and farmers grumble about taxes and food tithes, having already sacrificed to colonize the bold new frontier. While the odd protest is well within the purview of local colonial authorities, food stores on [post_apoc_homeworld.GetName] now have enough rations to stave off any further unrest. It may be possible to ease some of the burden on our colonists."
+ tbm_hw.318_feasts:0 "More wine! The feasting must continue!"
+ tbm_hw.318_feasts_tooltip:0 "This will no doubt anger farmers on §Y[post_apoc_colony.GetName]§!, but §Y[post_apoc_homeworld.GetName]§! will benefit."
+ tbm_hw.318_cut_taxes:0 "Reduce colonial tithes and maintain rations on §Y[post_apoc_homeworld.GetName]§!."
+ tbm_hw.18_taxes_tooltip:0 "$job_farmer_plural$ and $icon_job_colonists$ on §Y[post_apoc_colony.GetName]§! will be pleased. §Y[post_apoc_homeworld.GetName]§! will be fine, but will miss out on a terrific party."
+ tbm_hw.318_feasts_gestalt:0 "Together, we are stronger."
+
+ tbm_hw.319_name:0 "The Organism Withers"
+ tbm_hw.319_desc:0 "Without food, all things perish. Dead and deviant drones litter the warrens and workplaces of §Y[post_apoc_homeworld.GetName]§!. Little now remains even to repurpose their biomass into protein for the whole. In the end, life is a closed system.\n\nThe cataclysm we have inflicted on ourselves has revealed much about the nature of life, its fragility, and - perhaps - its broader possibilities.\n\nWithout energy, consciousness wanes. The mind grows quiet. But it survives. Barely. Perhaps there is another way. A better way. Already, those drones that survive are standing alone. Foraging. Working for something more than unity. Fighting for themselves, and their own survival, as individuals.\n\nIs this what are we to become?"
+ tbm_hw.319_autocannibalism:0 "We must survive."
+ tbm_hw.319_autocannibalism_tooltip:0 "We will break down the Organism itself to survive, repurposing critical hive §YNodes§! for materials and food."
+ tbm_hw.319_machine:0 "Could there be life without food?"
+ tbm_hw.319_machine_tooltip:0 "Much of the hive already relies on electronic computer networks to function. These "machines" do not need £food£ Food, and yet they send impulses and react to stimuli much as we do. Can they yet live?\n\n§YWe will become a §CMachine Empire§!.\n\n§RHalf of all pops will be killed.§Y The rest will be converted into cybernetic drones.\n\nAll §CNodes§Y will be reset to level 1.\n\n"
+
+ tbm_hw.320_name:0 "Government in Tatters"
+ tbm_hw.320_desc_corp:0 "Aftwe weeks of poor morale and departmental underperformance, critical food shortages on §Y[post_apoc_homeworld.GetName]§! have reached a breaking point. After a fraught meeting with senior leadership, an impromptu militia made up of corporate security and marketing professionals voted to depose the board and locked the [owner.GetRegnalName], [owner.GetRulerName], in an office until a democratically-chosen workers' council can decide what to do. How should they proceed?"
+ tbm_hw.320_desc:0 "After weeks of turmoil, critical food shortages on §Y[post_apoc_homeworld.GetName]§! have reached a breaking point. There is no food left in the stores, and what little can be grown is nowhere near enough to feed the population. Security forces have mutinied and many have joined in a militia marching on the §Y$building_capital$§! where [owner.GetRegnalName] [owner.GetRulerName] and fellow leaders are in hiding.\n\nAn emergency meeting of the cabinet has been called. How should they proceed?"
+ tbm_hw.320_full_text_colonial:0 "After weeks of turmoil, critical food shortages on §Y[post_apoc_homeworld.GetName]§! have reached a breaking point. There is no food left in the stores, and what little can be grown is nowhere near enough to feed the population. Security forces have mutinied and many have joined in a militia marching on the §Y$building_capital$§! where [owner.GetRegnalName] [owner.GetRulerName] and fellow leaders are in hiding.\n\nA small company of exo-planetary farming concerns on §Y[post_apoc_colony.GetName]§! has offered to provide full emergency relief in exchange for, in effect, direct control over [owner.GetName] and its government. An emergency meeting of the cabinet has been called. How should they proceed?"
+ tbm_hw.320_cede:0 "[owner.GetRulerName] must stand down and cede power to the mob."
+ tbm_hw.320_cede_tooltip:0 "The immediate §YSituation§! will end but conditions on §Y[post_apoc_homeworld.GetName]§! will worsen and the population will continue to starve."
+ tbm_hw.320_cockroaches:0 "Eat the cockroaches if we have to!"
+ tbm_hw.320_cockroaches_tooltip:0 "Insects can be very nutritious. The population won't be happy, but they will survive. Barely."
+ tbm_hw.320_rich:0 "The Council will decide who gets eaten first."
+ tbm_hw.320_rich_tooltip:0 "Be warned, they may decide to eat some of the rich."
+ tbm_hw.320_sell:0 "Sell the government to the off-world agri-corp."
+ tbm_hw.320_sell_tooltip:0 "Our capital will be moved to §Y[post_apoc_colony].GetName]§!, and anyone who can escape from the homeworld will be welcome there!"
+
+ leader_trait_autocannibalistic:0 "Autocannibalistic Node"
+ leader_trait_autocannibalistic_desc:0 "This node slowly consumes itself to survive."
+ 
+ leader_trait_cannibal_councilor:0 "Cannibal Councillor"
+ leader_trait_cannibal_councilor_desc:0 "Needs must, I'm afraid."
+
+ colonial_food_coops:0 "Colonial Farm Co-ops"
+ gestalt_farm_autonomy:0 "Agri-Drone Autonomy"
+
+ colonial_farm_crackdowns:0 "Colonial Farm Crackdown"
+
+ colonial_food_upkeep:0 "Food Shipments"
+ colonial_food_upkeep_desc:0 "§Y[post_apoc_colony.food_upkeep_colony]§! $r_food$ from this world is being sent to the homeworld to ease shortages."
+
+ post_apoc_food_riots:0 "Food Riots"
+ malnutrition:0 "Malnutrition"
+ colonial_blockade:0 "Colonial Spaceport Shutdown"
+ gestalt_blockade:0 "Colonial Spaceport Shutdown"
+
+ colonial_bounty:0 "Colonial Bounty"
+ colonial_bounty_desc:0 "Regular food shipments from off-world have lifted the mood on our homeworld."
+
+ colonial_tithes:0 "Colonial Food Tithes"
+ colonial_tithes_desc:0 "Farmers on this world must pledge some of their crops to support the homeworld."
+
+ eased_tithes:0 "Eased Food Tithes"
+ eased_tithes_desc:0 "Farmers on this world are happy to pledge a small amount of their crops to ensure the homeworld doesn't starve."
+
+ autocannibalistic_hive:0 "Auto-cannabalistic Hive"
+ utocannibalistic_hive_desc:0 "The hive is destroying itself to survive. Life is a closed a system."
+
+ starvation_state:0 "Starvation State"
+ starvation_state_desc:0 "The government has failed to provide for the people, and all that remains is the husk of civilization. It will take years for those who survive to rebuild society."
+
+ convenient_scapegoats:0 "Convenient Scapegoat"
+ convenient_scapegoats_desc:0 "Decision-making has been left to those with enough to survive. Mob rule is rampant. Only the strongest survive, and even then only for a while. There is always someone looking for a meal."
+
+ nutritious_cockroaches:0 "Nutritious Cockroaches"
+ nutritious_cockroaches_desc:0 "Having survived the fall of civilization once, the cockroaches may know something we don't. However, they are not going to survive the fall of civilization again."
+
+ council_cannibalism:0 "Council Cannabalism"
+ council_cannibalism_desc:0 "The council decides who eats and who dies. Nobody said it was an easy job."
+
+ ### Scavenger Bands Declare War - Post-Apoc Origin event
+
+ tbm_hw.212_name:0 "Scavenger Bands Declare War"
+ tbm_hw.212_desc:0 "Fiercely competitive, the two major £blocker_yellow£ §YScavenger Bands§! on §S[planet.GetName] scrap over every part and plate they can salvage from the crumbling wrecks of civilization. It's dangerous work for those brave enough to risk life and limb out on the radioactive wastes.\n\nNow, after a romantic falling-out between two rival clan-members, the leaders of each band have announced lucrative prices -- on each other. Their always-heavily-armed underlings are going at it with great gusto, seeking recognition and renown among the squalid remains of [owner.GetAdj] society.\n\nIt's unclear if there's any real possibility of a lull in the fighting. For now, it's been mostly confined to the bleaker camps but the betting markets are making a windfall and security forces are worried about a total loss of control if clashes escalate."
+
+ tbm_hw.212_bounties:0 "Buy a peace with higher bounties."
+ tbm_hw.212_bounties_tooltip:0 "§YThis will stop the fighting but it will be much more difficult to get rid of £blocker_yellow£ §YScavenger Bands in the future.§!"
+ tbm_hw.212_elimination:0 "Eliminate one of the leaders."
+ tbm_hw.212_elimination_tooltip:0 "§YThis will buy the surviving leader's undying loyalty, but will require a risky operation.§!"
+ tbm_hw.212_security:0 "Heighten security until this blows over."
+ tbm_hw.212_conquest_tooltip:0 "one £blocker_yellow£ §YScavenger Band§! conquers the other."
+ tbm_hw.212_unification_tooltip:0 "the war between the £blocker_yellow£ §YScavenger Bands§! escalates."
+
+ tbm_hw.212_clearance:0 "Clearing either one of the £blocker_yellow£ §YScavenger Bands§! will be considerably more difficult until the war is resolved."
+
+ tbm_hw.213_name:0 "Scavenger Conquest"
+ tbm_hw.213_desc:0 "After months of clashes in the [planet.GetPlanetMoon]'s darker tunnels, one of §S[planet.GetName]'s £blocker_yellow£ §YScavenger Bands§! has succeeeded in conquering the other. Although the spate of public and violent executions haseen unsettling for many, the surviving £blocker_yellow£ §YScavenger Band§! has promised local administrators it will keep the peace and, more importantly, maintain mineral quotas.\n\nHowever, there have been noticeable grumbles from parts merchants and their local miners about extortionate \"dues\" charged by the surviving band for participation in its dubiously-regulated market."
+ tbm_hw.213_dust_settled:0 "It seems the dust has settled."
+ tbm_hw.213_conquest_tooltip:0 "£blocker_yellow£ §YSScavenger Bands§! will provide -1 £minerals£ §district_mining_plural§! and £miners£ $job_miner_plural$ will have §R+1§! §Y$energy$§! upkeep.\n\n£blocker_yellow£ §SSScavenger Bands§! will also generate some £crime£ §Y$PLANET_CRIME_TITLE$§!."
+
+ tbm_hw.214_name:0 "Scavenger Unification"
+ tbm_hw.214_desc:0 "After months of intense fighting between §S[planet.GetName]'s rival £blocker_yellow£ §CScavenger Bands§!, a tense stand-off between each gang's leaders broke unlikely ground. It seems all involved harbor a certain disdain for centralized authority and, particularly, the excessive inspections by [owner.GetAdj] security forces.\n\nThe ensuing unified assault took us by surprise, disabling critical command posts and spiralled out of control from there. Frenzied and fallout-ridden fighters scrambled through the capital in search of launch codes, valuable alloys, and any scrap they could sell. The only upside is that both scavenger leaders have been killed during the engagement, and under threat of military retaliation, their underlings have agreed to a peace deal that should, in time, see a modicum of normalcy return to §Y[planet.GetName]§! and its mineral markets."
+
+ tbm_hw.215_name:0 "Scavenger Lord Assassinated"
+ tbm_hw.215_desc:0 "Security forces on §Y[planet.GetName]§! have spent the past months planning a careful assassination attempt on the more vulnerable leader of [planet.GetPlanetMoon]'s two warring £blocker_yellow£ §YScavenger Bands§!.\n\nThe operation was set in motion this morning, and word has now reached more civilized [owner.GetSpeciesNamePlural] that the attempt was successful, and what remains of one £blocker_yellow£ §YScavenger Band§!  has been quickly absorbed by the other. Although local officials are maintaining plausible deniability, the surviving band is sufficiently grateful to agree to disarmanent and increased oversight. Mineral shipments are expected to resume next month."
+
+ tbm_hw.216_name:0 "Scrao Shoot-out"
+ tbm_hw.216_desc:0 "Security forces on §Y[planet.GetName]§! have spent the past months planning a careful assassination attempt on the more vulnerable leader of [planet.GetPlanetMoon]'s two warring £blocker_yellow£ §YScavenger Bands§!.\n\nHowever, when the operation was set in motion this morning, the leader of the larger £blocker_yellow£ §YScavenger Band§!, facing imminent execution at the hands of [leader.GetHerHis] rivals, revealed [leader.GetHerHim]self to be [leader.GetName]. It seems [leader.GetSheHe] has been secretly running the £blocker_yellow£ §YScavenger Band§!d for some time now. Before communications could be re-established with operatives in the field, the assassination was carried out and [leader.GetName] successfully terminated.\n\nThe embarrassment humbled the surviving £blocker_yellow£ §YScavenger Band§! enough to stop the fighting and its leaders are sufficiently grateful to agree to disarmanent and increased oversight. Mineral shipments are expected to resume next month."
+
+ tbm_hw.51_name:0 "Food Replicators Malfunctioning"
+ tbm_hw.51_desc:0 "In §Y[planet.GetName]'s§! prime, it would have sustained billions, maybe trillions, of [owner.GetSpeciesNamePlural] with its immense and ancient §YFood Replicators§!. For as long as we've studed these relics of a better age, they've been slowly failing, and [owner.GetAdj] [owner.GetScientistPlural] still don't understand how the machines work, let alone how to restore them to their former glory.\n\nIn the past few weeks, several increasingly acute malfunctions have sent waves of concern through our cities. The [planet.GetPlanetMoon]'s ecosystem is still far from able to support widespread agriculture, and some dissidents have even seen fit to critique our forebears for their over-reliance on this arcane technology.\n\nWhatever anyone thinks, the technicians working on the §YFood Replicators§! are unable to provide any satisfying answers. For now, the magical machines of past plenty continue to squeeze out palatable food. For how much longer that will be the case, no one knows."
+ tbm_hw.51_gestalt_desc:0 "In §Y[planet.GetName]'s§! prime, it would have sustained billions, maybe trillions, of [owner.GetSpeciesNamePlural] with its immense and ancient §YFood Replicators§!. For as long as we've used and studied these relics of a better age, they've been slowly failing, and [owner.GetScientistPlural] still don't understand how the machines work, let alone how to restore them to their full functionality.\n\nSeveral especially acute malfunctions have sent waves of concern through the organism. The [planet.GetPlanetMoon]'s ecosystem is still far from able to support widespread agriculture and the drones working on the §YFood Replicators§! are unable to provide any analysis or solution. For now, the machines of past plenty continue to squeeze out effective food. For how much longer that will be the case is unknown."
+ 
+ tbm_hw.52_name:0 "Food Replicators Fail"
+ tbm_hw.52_desc_gestalt:0 "After months of creaking malfunctions and millennia more without proper maintenance, the ancient §YFood Replicators§! on our homeworld have finally ground to a stop, leaving hundreds of thousands of drones without efficient access to food.\n\nAlthough efforts to develop agricutlural regions across the planet expand every year, it seems unlikely that §Y[planet.GetName]§! will ever produce enough food to sustain its peak population.\n\nIncreasingly, it seems that we must turn to the stars to secure adequate nutrition for our growth."
+ tbm_hw.52_desc:0 "After months of creaking malfunctions and millennia more without proper maintenance, the ancient §YFood Replicators§! on our homeworld have finally ground to a stop, their quiet, whir no longer reassuring [owner.GetSpeciesClassPlural] of an easy, nutritious meal.\n\nAlthough efforts to develop agricutlural regions across the planet expand every year, it seems unlikely that §Y[planet.GetName]§! will ever produce enough food to sustain its peak population. Increasingly, [owner.GetSpeciesAdj] turn their eyes to the stars, again dreaming of the comforts of bounty and wealth that once made §Y[planet.GetName]§! a true city of the world."
+ tbm_hw.52_promise:0 "One day, perhaps...."
+
+ 
+
+
+ ### Static Modifiers
+
+ beacon_of_hope:0 "Beacon of Hope"
+ beacon_of_hope_desc:0 "Pioneers flock to work £blocker£ §CFrontier Famrsteads§! on this world, hoping to send their bounty back to those starving on the homeworld."
+
+ colonial_bounty:0 "Colonial Bounty"
+ colonial_bounty_desc:0 "Regular food shipments from off-world have lifted the mood on our homeworld."
+
+ colonial_tithes:0 "Colonial Food Tithes"
+ colonial_tithes_desc:0 "Farmers on this world must pledge some of their crops to support the homeworld."
+
+ eased_tithes:0 "Eased Food Tithes"
+ eased_tithes_desc:0 "Farmers on this world are happy to pledge a small amount of their crops to ensure the homeworld doesn't starve."
+
+ autocannibalistic_hive:0 "The hive is destroying itself to survive. Life is a closed system."
+
+ starvation_state:0 "The government has failed to provide for the people, and all that remains is the husk of civilization. It will take years for those who survive to rebuild society."
+
+ convenient_scapegoats:0 "Decision-making has been left to those with enough to survive. Mob rule is rampant. Only the strongest survive, and even then only for a while. There is always someone looking for a meal."
+
+ nutritious_cockroaches:0 "Having survived the fall of civilization once, the cockroaches may know something we don't. However, they are not going to survive the fall of civilization again."
+
+ council_cannibalism:0 "The council decides who eats and who dies. Nobody said it was an easy job."
+
+ scavenger_wars:0 "Scavenger Wars"
+ scavenger_wars_desc:0 "Two rival £blocker_yellow£ §CScavenger Bands§! have declared a particularly nasty turf war, fueling crime all over the planet."
+
+ scavenger_bounties:0 "Scavenger Bounties"
+ scavenger_bounties_desc:0 "As part of a ceasefire agreement, the government now pays higher parts bounties to both major £blocker_yellow£ §CScavenger Bands§!."
+
+ failing_food_replicator:0 "Failing Food Replicator"
+ failing_food_replicator_desc:0 "The Food Replicators that have long sustained our homeworld's population are starting to fail."
+
+ environmental_remediation:0 "Environmental Remediation Project"
+ environmental_remediation_desc:0 "Work is underway to slowly restore this planet to some glimmer of what it was."
+
+ tbm_environmental_remediation_title:0 "Environmental Remediation Project"
+ tbm_environmental_remediation_desc:0 "Long ago, our homeworld's natural ecosystem was obliterated by fire and madness. It may never be possible to completely re-create it, but we now have both technology and ambition to attempt to restore it - or, perhaps, fashion it anew."
+
+ pc_nuked_tbm:0 "Tomb World"
+ pc_nuked_tbm_desc:0 "A rocky world with a nitrogen-oxygen atmosphere. It is currently experiencing a nuclear winter, with dense layers of sooty aerosols in the atmosphere. High levels of surface radiation. Minimal signs of life."
+ pc_nuked_tbm_adj:0 "desolate"
+ mod_pc_nuked_tbm_habitability:0 "Tomb World Habitability"
+ trait_pc_nuked_tbm_preference:0 "$trait_pc_nuked_preference$"
+ trait_pc_nuked_tbm_preference_desc:0 "$trait_pc_nuked_preference_desc$"
+
+ advancing_from_ruins:0 "Advancing from Ruin"
+ advancing_from_ruin_desc:0 "This civilization has embraced the resilience and resourcefulness needed to survive the fall of its homeworld and has emerged from the Apocalypse stronger and more sure of its galactic footing."
+
+ revived_civilization:0 "Revived Civilization"
+ revived_civilization:0 "This civilization has restored much of what was lost in the Apocalypse, reclaiming the knowledge and technology of times gone before."
+
+ revived_civilization_gestalt:0 "Revived Civilization"
+ revived_civilization_gestalt:0 "This civilization has restored much of what was lost in the Apocalypse, reclaiming the knowledge and technology of times gone before."
+
+ cultural_reconstruction:0 "National Reconstruction"
+ 
+ cultural_restoration_planet:0 "Cultural Restoration"
+ cultural_restoration_planet_desc:0 "This civilization has forged a shining culture from seeds kept sheltered through the Apocalypse, emerging as a great galactic power humbled but not haunted by its past." 
+
+ cultural_restoration:0 "Cultural Restoration"
+
+ mutant_soldiers:0 "Mutant Soldiers"
+
+ building_museum_apocalypse:0 "Museum of the Apocalypse"
+ building_museum_apocalypse_desc:0 "This institution cradles all the most important knowledge of what once befell this planet in an effort to ensure such disaster never strikes again."
+
+ building_laboratory_apocalypse:0 "Laboratory of Survival"
+ building_laboratory_apocalypse_desc:0 "Survivalism should be seen less as ideology and more as an art, one merged perfectly with science to ensure the best possible chance for all those born on this broken world."
+
+ building_cathedral_apocalypse:0 "Cathedral of the Fall"
+ building_cathedral_apocalypse_desc:0 "A true testamednt to the peril of grand designs, a grim reminder that all civilization teeters on the brink of disaster."

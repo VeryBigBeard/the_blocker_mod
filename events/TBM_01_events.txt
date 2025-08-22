@@ -57,6 +57,13 @@ planet_event = {
 
 	trigger = {
 		exists = owner
+		is_starting_planet = no
+		owner = {
+			NOR = {
+				is_fallen_empire = yes
+				is_primitive = yes
+			}
+		}
 	}
 
 	option = {
