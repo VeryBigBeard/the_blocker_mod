@@ -97,10 +97,27 @@ planet_event = {
 
 	option = {
 		name = tbm.51.kelp
-		kill_2_random_pop_amount = {
-			AMOUNT1 = 40
-			AMOUNT2 = 60
+
+		random_owned_pop_group = {
+			limit = {
+				is_robot_pop_group = no
+			}
+			kill_pop_group = {
+				pop_group = this
+				amount = 40
+			}
 		}
+		random_owned_pop_group = {
+			limit = {
+				is_robot_pop_group = no
+			}
+			kill_pop_group = {
+				pop_group = this
+				amount = 60
+			}
+		}
+
+
 		# Kill a second colonist if aquatic. Potential colony abandonment WAD -- Kelp Is Dangerous!!!
 		if = {
 			limit = {
@@ -611,8 +628,10 @@ planet_event = {
 
 	option = {
 		name = tbm.77.ship
-		enable_special_project = {
-			name = "SHIFTING_SANDS"
+		this = {
+			enable_special_project = {
+				name = "SHIFTING_SANDS"
+			}
 		}
 	}
 
@@ -806,7 +825,7 @@ planet_event = {
 			owner = { has_technology = tech_noxious_swamp }
 		}
 		add_modifier = {
-			modifier = shifting_sands
+			modifier = sand_tides
 		}
 	}
 
@@ -846,7 +865,7 @@ planet_event = {
 				}
 			}
 		}
-		set_planet_flag = sand_tides	# Not a trigger flag--adds unity from colonists/clerks to Quicksand Basin.
+		set_planet_flag = sand_tides	# Not a trigger flag--adds unity from colonists/civilians to Quicksand Basin.
 	}
 }
 

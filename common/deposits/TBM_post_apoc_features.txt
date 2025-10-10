@@ -353,6 +353,10 @@ d_the_site = {
 		planet_stability_mult = -0.1
 	}
 
+	potential = {
+		always = no
+	}
+
 	ai_weight = {
 		weight = @always_clear
 	}
@@ -967,6 +971,10 @@ d_hulks = {
 		planet_jobs_engineering_research_produces_mult = -0.05
 	}
 
+	potential = {
+		always = no
+	}
+
 	ai_weight = {
 		weight = @keep
 
@@ -1012,6 +1020,10 @@ d_tomb_mine_shafts = {
 		planet_crime_mult = 0.05
 	}
 
+	potential = {
+		always = no
+	}
+
 	ai_weight = {
 		weight = @keep
 
@@ -1055,6 +1067,10 @@ d_underground_warren = {
 	planet_modifier = {
 		planet_housing_add = 5
 		planet_crime_mult = 0.05
+	}
+
+	potential = {
+		always = no
 	}
 
 	ai_weight = {
@@ -1518,6 +1534,10 @@ d_purgatory_apocalypse = {
 		}
 	}
 
+	potential = {
+		always = no
+	}
+
 	planet_modifier = {
 		pop_amenities_usage_mult = -0.40	# Your pops are essentially brain-dead, see
 	}
@@ -1544,5 +1564,9 @@ d_last_bastion = {
 		}
 		district_farming_max_add = -1
 		district_mining_max_add = 1
+	}
+
+	potential = {
+		always = no
 	}
 }

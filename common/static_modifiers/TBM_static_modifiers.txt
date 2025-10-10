@@ -347,7 +347,7 @@ geothermal_instability = {
 ### Shifting Sands
 
 sand_tides = {
-	pop_environment_tolerance = -0.10
+	pop_environment_tolerance = 0.10
 	pop_happiness = 0.10
 }
 

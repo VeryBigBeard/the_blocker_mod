@@ -104,7 +104,7 @@ planet_event = {
 				10 = {					
 					planet_event = {
 						id = tbm.6
-						days = 7200
+						days = 720
 					}
 				}
 			}

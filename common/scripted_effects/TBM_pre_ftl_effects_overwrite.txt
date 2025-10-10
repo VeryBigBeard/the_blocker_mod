@@ -2,7 +2,6 @@
 #	This overwrite exists to change one line of script that can't otherwise be accessed.
 #	To patch, add the indicated line below to this script, then add to a new mod and load it after TBM and any other mod that affects this script.
 
-
 achieve_ftl_effect = {
 	country_event = { id = game_start.8 }
 	remove_country_flag = early_space_age
@@ -138,11 +137,11 @@ achieve_ftl_effect = {
 	}
 
 	capital_scope = {
-		
-		### TBM OVERWRITE
-		generate_achieve_ftl_homeworld_features = yes	# Add this line here if you are making a patch
-		
 		clear_blockers = yes
+
+		### TBM Overwrite
+		generate_start_deposits_and_blockers = yes
+
 		remove_all_buildings = yes
 		if = {
 			limit = {

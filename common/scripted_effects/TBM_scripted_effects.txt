@@ -20,6 +20,21 @@ clear_deposits_without_effects = {
 	}
 }
 
+clean_up_clearance_modifiers = {
+	this = {
+		if = {
+			limit = {
+				OR = {
+					has_modifier = cleared_hot_springs
+					has_modifier = privatizations
+				}
+			}
+			remove_modifier = cleared_hot_springs
+			remove_modifier = privatizations
+		}
+	}
+}
+
 # Used to avoid removing the deposits that tend to make players happy
 clear_deposits_except_special = {
 	while = {

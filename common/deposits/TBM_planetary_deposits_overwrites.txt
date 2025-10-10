@@ -1665,9 +1665,11 @@ d_hot_springs = {
 			amount = 500
 		}
 		hidden_effect = {
-			add_modifier = {
-				modifier = cleared_hot_springs
-				years = 10
+			root = {
+				add_modifier = {
+					modifier = cleared_hot_springs
+					years = 10
+				}
 			}
 		}
 	}

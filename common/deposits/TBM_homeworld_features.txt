@@ -2870,6 +2870,10 @@ d_collapsed_superhighway = {
 
 	time = 1800	# Laying groundwork, union negotiations
 
+	blocker_swap_types = {
+		d_planetary_superhighway
+	}
+
 	resources = {
 		category = deposit_blockers
 		cost = {
@@ -2879,7 +2883,7 @@ d_collapsed_superhighway = {
 	}
 
 	on_cleared = {	
-		from = {
+		root = {
 			add_modifier = {
 				modifier = superhighway_engineering
 				years = 5
@@ -2890,7 +2894,6 @@ d_collapsed_superhighway = {
 			# 		days = 1800
 			# 	}
 			# }
-			add_deposit = d_planetary_superhighway
 		}		
 	}
 

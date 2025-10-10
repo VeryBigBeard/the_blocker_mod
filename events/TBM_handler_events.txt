@@ -1541,6 +1541,7 @@ planet_event = {
 
 	immediate = {
 		reroll_deposits = yes
+		clean_up_clearance_modifiers = yes
 	}
 }
 
