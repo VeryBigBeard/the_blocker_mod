@@ -1,6 +1,7 @@
 ### The Blocker Mod - Jobs Overwrite
 #	TBM overwrites the colonist job, setting it to be a specialist and to use the planet_colonist economic category.
 #	If any other mod overwrites colonists, you can patch them by changing the category where indicated below.
+#	For better compatibility, TBM unpacks the inline_scripts used in vanilla to set certain basic paramets like category and certain pre-triggers.
 
 
 colonist = {
@@ -12,7 +13,7 @@ colonist = {
 	swappable_data = {
 		default = {
 			condition_string = SPECIALIST_JOB_TRIGGER
-			building_icon = building_colony_shelter
+			#building_icon = building_colony_shelter
 		}
 	}
 
@@ -24,6 +25,11 @@ colonist = {
 	}
 
 	possible_precalc = can_fill_specialist_job	# Switch to can_fill_worker_job for vanilla compat
+
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = { is_tankbound_empire = no }
+	}
 
 	planet_modifier = {
 		planet_defense_armies_add = 1
@@ -90,13 +96,13 @@ colonist = {
 		}
 	}
 
-	inline_script = "jobs/automodding_priority_amenities"
+	#inline_script = "jobs/automodding_priority_amenities"
 
 	promotion = {
 		time = @standard_promotion_time
 		effect = {
 			pop_amount_change_category = {
-				CATEGORY = worker
+				CATEGORY = $CATEGORY$
 				AMOUNT = local_pop_amount
 			}
 		}

@@ -5,8 +5,16 @@
 #	Note: TBM has several jobs that belong to planet_colonist. You cannot set modifiers for those jobs (Deputy, Xeno-Naturalist, the revamped Ranger, etc.) directly. This is WAD to allow those jobs to benefit from colonist bonuses on natural features.
 
 planet_colonist = {
+	icon = "gfx/interface/icons/jobs/job_colonist"
+	
 	parent = planet_jobs
 	use_for_ai_budget = yes
+	ai_use_parent_for_resources_upkeep = {
+		food
+		energy
+		consumer_goods
+	}
+
 	generate_add_modifiers = {
 		produces
 		upkeep

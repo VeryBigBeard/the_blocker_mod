@@ -61,6 +61,11 @@ planet_event = {
 		
 		# Get the species of our colonist from the species living there
 		random_owned_pop_group = {
+			limit = {
+				NOT = {
+					is_robot_pop_group = yes
+				}
+			}
 			species = {
 				save_event_target_as = colonizer
 			}

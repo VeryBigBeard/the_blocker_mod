@@ -22,7 +22,6 @@ leader_trait_whiz_kid = {
 	modifier = {
 		country_physics_tech_research_speed = 0.15
 		ship_anomaly_fail_risk = -0.1
-		ship_accuracy_mult = 0.1
 		ship_archaeological_site_clues_add = 2
 	}
 

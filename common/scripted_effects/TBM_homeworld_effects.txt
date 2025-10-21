@@ -543,9 +543,14 @@ tbm_homeworld_origin_spreads = {
 		clear_deposits = yes
 
 		# Adds Pioneering Colonists for 5 years
-		add_modifier = {
-			modifier = pioneering_colonists
-			years = 5
+		if = {
+			limit = {
+				owner = { is_regular_empire = yes }
+			}
+			add_modifier = {
+				modifier = pioneering_colonists
+				years = 5
+			}
 		}
 	
 		# Unity (Commonwealth)

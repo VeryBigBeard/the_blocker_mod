@@ -1327,7 +1327,7 @@ building_cathedral_apocalypse = {
 			exists = owner
 			owner = { is_gestalt =  yes }
 		}
-		pop_coordinator_bonus_workforce_add = 0.05 	# swaps for hives
+		pop_coordinator_bonus_workforce_mult = 0.05 	# swaps for hives
 	}
 
 	ai_weight = {

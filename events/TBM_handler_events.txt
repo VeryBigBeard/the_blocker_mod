@@ -352,6 +352,12 @@ planet_event = {
 			# Slums generated, more likely if conditions are already bad.
 			15 = {
 				modifier = {
+					factor = 1.5
+					solar_system = {
+						governors_skill_in_system <= 3
+					}
+				}
+				modifier = {
 					factor = 2.5
 					any_owned_pop_group = {
 						has_low_living_standard_type = yes
@@ -393,6 +399,22 @@ planet_event = {
 						OR = {
 							has_civic = civic_idealistic_foundation
 							has_civic = civic_beacon_of_liberty
+						}
+					}
+				}
+				modifier = {
+					factor = 1.5
+					solar_system = {
+						governors_skill_in_system >= 4
+					}
+				}
+				modifier = {
+					factor = 2
+					exists = leader
+					leader = {
+						OR = {
+							has_trait = leader_trait_corrupt
+							has_trait = leader_trait_corrupt_2
 						}
 					}
 				}
@@ -607,7 +629,7 @@ planet_event = {
 					random = 90
 				}
 			}
-			90 = {} 	# No settlement this year, busy having babies.
+			95 = {} 	# No settlement this year, busy having babies.
 		}
 	}
 }
@@ -783,26 +805,40 @@ planet_event = {
 
 		check_variable = {
 			which = @prospecting_chance
-			value < 3
+			value <= 3
 		}
-		NOT = { has_planet_flag = prospecting_cooldown } 	# Ignore error, is in different namespace.
 	}
 
 	immediate = {
 		random_list = {
 			# Quite rare, but higher on mining worlds and new colonies to account for natural exploration.
-			5 = {
+			2 = {
 				modifier = {
-					add = 5
-					colony_age_years < 20
+					add = 3
+					colony_age_years < 10
 				}
 
 				modifier = {
-					add = 10
+					add = 5
 					num_assigned_jobs = {
 						job = miner
 						value > 6
 					}
+				}
+
+				modifier = {
+					add = 5
+					OR = {
+						num_assigned_jobs = {
+							job = colonial_prospector
+							value > 50
+						}
+						num_assigned_jobs = {
+							job = prospecting_drone
+							value > 50
+						}
+					}
+					
 				}
 				
 				planet_event = {

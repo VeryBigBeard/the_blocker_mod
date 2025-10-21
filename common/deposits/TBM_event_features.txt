@@ -31,6 +31,8 @@
 @always_clear = 100	# AI will always clear this feature; used mainly for negative features (e.g., rubble)
 @always_keep = -100 # AI will always keep this feature; used mainly for bonus features and some flavor features
 
+
+
 d_great_desert = {
 	icon = d_searing_desert
 	category = deposit_cat_final
@@ -142,10 +144,7 @@ d_submerged_zro_seam = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 1

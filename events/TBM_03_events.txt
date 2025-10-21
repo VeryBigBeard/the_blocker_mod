@@ -30,6 +30,21 @@ planet_event = {
 	is_triggered_only = yes
 	location = this
 
+	trigger = {
+		owner = {
+			NOT = { has_country_flag = recent_new_prospects }
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_timed_country_flag = {
+				flag = recent_new_prospects
+				years = 5
+			}
+		}
+	}
+
 	# Add a mining feature.
 	option = {
 		name = tbm.300.mining
@@ -101,10 +116,6 @@ planet_event = {
 			change_variable = {
 				which = @prospecting_chance
 				value = 1
-			}
-			set_timed_global_flag = {
-				flag = prospecting_cooldown
-				years = 20
 			}
 		}
 	}

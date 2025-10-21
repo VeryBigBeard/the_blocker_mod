@@ -272,10 +272,7 @@ d_sandstone_spires = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_minerals_produces_add = 1
 		planet_colonist_engineering_research_produces_add = 4
@@ -342,10 +339,7 @@ d_natural_gardens = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 4
@@ -594,10 +588,7 @@ d_giant_tree  = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 4
@@ -734,10 +725,7 @@ d_sea_monster = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_society_research_produces_add = 2
 	}
@@ -1101,10 +1089,7 @@ d_basaltic_outcrops = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 1
@@ -1236,10 +1221,7 @@ d_volcanic_island = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 2
@@ -1317,10 +1299,7 @@ d_volcanic_soil = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 2
@@ -1412,10 +1391,7 @@ d_volcanic_ash = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_physics_research_produces_add = 2
@@ -1471,10 +1447,7 @@ d_fish_shoals = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -1578,10 +1551,7 @@ d_tbm_impact_crater = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 2		
@@ -1804,10 +1774,7 @@ d_mountain_jungle = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 2
@@ -1942,10 +1909,7 @@ d_taiga = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 1
@@ -2012,10 +1976,7 @@ d_taiga = {
 		modifier = {
 			set = @base
 			from = {
-				num_pops_with_job_tag = {
-					value > 0
-					tags = { colonist }
-				}
+				has_colonist_job = yes
 			}
 		}
 
@@ -2072,10 +2033,7 @@ d_scrubland = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 1
@@ -2141,10 +2099,7 @@ d_scrubland = {
 		modifier = {
 			set = @base
 			from = {
-				num_pops_with_job_tag = {
-					value > 0
-					tags = { colonist }
-				}
+				has_colonist_job = yes
 			}
 		}
 	}
@@ -2234,10 +2189,7 @@ d_fertile_delta = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_physics_research_produces_add = 2
@@ -2420,10 +2372,7 @@ d_crags = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 2
@@ -2531,10 +2480,7 @@ d_dunelands = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 2
@@ -2577,10 +2523,7 @@ d_dunelands = {
 		modifier = {
 			set = @base
 			from = {
-				num_pops_with_job_tag = {
-					value > 0
-					tags = { colonist }
-				}
+				has_colonist_job = yes
 			}
 		}
 	}
@@ -2731,10 +2674,7 @@ d_lakelands = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 2
@@ -2926,10 +2866,7 @@ d_misty_plains = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 1
@@ -2939,10 +2876,7 @@ d_misty_plains = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 			is_planet_class = pc_nuked
 		}
 		modifier = {
@@ -3028,10 +2962,7 @@ d_salt_flats = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 2
@@ -3221,10 +3152,7 @@ d_sandsea = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 4
@@ -3312,10 +3240,7 @@ d_sandstone_cliffs = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 1
@@ -3567,10 +3492,7 @@ d_seaweed_shoals = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 1
@@ -3735,10 +3657,7 @@ d_magma_lake = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_exotic_gases_produces_add = 0.5
 	}
@@ -3806,10 +3725,7 @@ d_particle_storm = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_volatile_motes_produces_add = 0.5
 	}
@@ -4181,10 +4097,7 @@ d_canyon = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_minerals_produces_add = 1
 	}
@@ -4280,10 +4193,7 @@ d_chasm = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_physics_research_produces_add = 1
 	}
@@ -4442,10 +4352,7 @@ d_fells = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_unity_produces_add = 1
 	}
@@ -4524,10 +4431,7 @@ d_sand_wastes = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_minerals_produces_add = 1
 	}
@@ -4597,10 +4501,7 @@ d_cloud_vale = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_society_research_produces_add = 2
 	}
@@ -4670,10 +4571,7 @@ d_snowscape = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_physics_research_produces_add = 2
 	}
@@ -4742,10 +4640,7 @@ d_icy_bay = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_food_produces_add = 1
 	}
@@ -4887,10 +4782,7 @@ d_basin = {	# Inspired by the Nile basin--rich in sediment
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_minerals_produces_add = 1
 	}
@@ -4991,10 +4883,7 @@ d_white_mountains = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_rare_crystals_produces_add = 0.5
 	}
@@ -5138,10 +5027,7 @@ d_rocky_hills = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_minerals_produces_add = 1
 	}
@@ -5210,10 +5096,7 @@ d_spore_forest = {
 
 	triggered_planet_modifier = {
 		potential = {
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_society_research_produces_add = 1
 	}
@@ -5490,10 +5373,7 @@ d_tomb_city = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_engineering_research_produces_add = 1
 	}
@@ -5557,10 +5437,7 @@ d_dark_plains = {
 		potential = {
 			is_planet_class = pc_nuked
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_society_research_produces_add = 1
 	}
@@ -5636,10 +5513,7 @@ d_mistlands = {
 		potential = {
 			is_planet_class = pc_nuked
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		planet_colonist_society_research_produces_add = 1
 	}

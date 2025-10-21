@@ -431,7 +431,7 @@ d_dangerous_wildlife_blocker = {
 			exists = owner
 		}
 		modifier = {
-			job_dangerous_wildlife_hunter_add = 1
+			job_dangerous_wildlife_hunter_add = 100
 		}
 	}
 
@@ -546,10 +546,7 @@ d_dense_jungle = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 1
@@ -710,10 +707,7 @@ d_toxic_kelp = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 1
@@ -819,10 +813,7 @@ d_deep_sinkhole = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 2
@@ -921,10 +912,7 @@ d_quicksand_basin = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_physics_research_produces_add = 1
@@ -1046,10 +1034,7 @@ d_noxious_swamp = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 1
@@ -1101,10 +1086,7 @@ d_noxious_swamp = {
 		modifier = {
 			set = @keep
 			from = {
-				num_pops_with_job_tag = {
-					value > 0
-					tags = { colonist }
-				}
+				has_colonist_job = yes
 				num_free_districts = {
 					type = any
 					value > 0
@@ -1163,10 +1145,7 @@ d_massive_glacier = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 1
@@ -1292,10 +1271,7 @@ d_radioactive_wasteland = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_physics_research_produces_add = 2
@@ -1322,10 +1298,7 @@ d_radioactive_wasteland = {
 		modifier = {
 			set = @keep	# These get very little other reason to be kept around so should still go.
 			from = {
-				num_pops_with_job_tag = {
-					value > 0
-					tags = { colonist }
-				}
+				has_colonist_job = yes
 			}
 		}
 
@@ -1371,10 +1344,7 @@ d_city_ruins = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 2
@@ -1447,10 +1417,7 @@ d_bomb_crater = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 2
@@ -1682,10 +1649,7 @@ d_hot_springs = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 1
@@ -1800,10 +1764,7 @@ d_rushing_waterfalls = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_unity_produces_add = 2
@@ -2226,10 +2187,7 @@ d_geothermal_vent = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_engineering_research_produces_add = 1
@@ -2338,10 +2296,7 @@ d_underwater_vent = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_energy_produces_add = 2
@@ -2485,10 +2440,7 @@ d_tempestous_mountain = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_unity_produces_add = 2
@@ -2589,10 +2541,7 @@ d_veiny_cliffs = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 2
@@ -2732,10 +2681,7 @@ d_mineral_fields = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 2
@@ -2962,10 +2908,7 @@ d_ore_rich_caverns = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 1
@@ -3066,10 +3009,7 @@ d_rich_mountain = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 1
@@ -3219,10 +3159,7 @@ d_submerged_ore_veins = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 1
@@ -3336,10 +3273,7 @@ d_lichen_fields = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -3466,10 +3400,7 @@ d_bountiful_plains = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -3631,10 +3562,7 @@ d_rugged_woods = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 1
@@ -3795,10 +3723,7 @@ d_green_hills = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 1
@@ -4057,10 +3982,7 @@ d_boggy_fens = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -4288,10 +4210,7 @@ d_fungal_caves = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 1
@@ -4393,10 +4312,7 @@ d_lush_jungle = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -4531,10 +4447,7 @@ d_fertile_lands = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -4881,10 +4794,7 @@ d_teeming_reef = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -5062,10 +4972,7 @@ d_marvelous_oasis = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -5175,10 +5082,7 @@ d_tropical_island = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_food_produces_add = 2
@@ -5283,10 +5187,7 @@ d_fungal_forest = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 2
@@ -5433,10 +5334,7 @@ d_betharian_deposit = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_physics_research_produces_add = 2
@@ -5520,10 +5418,7 @@ d_buzzing_plains = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			num_pops_with_job_tag = {
-				value > 0
-				tags = { colonist }
-			}
+			has_colonist_job = yes
 		}
 		modifier = {
 			planet_colonist_energy_produces_add = 2
