@@ -235,3 +235,32 @@ colonial_food_upkeep = {
 		factor = 0.5
 	}
 }
+
+per_pop_production = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_owned_pop_amount
+		mode = set
+	}
+}
+
+blocked_desert_features = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_deposit
+		parameters = {
+			limit = {
+				OR = {
+					is_deposit_type = d_searing_desert
+					is_deposit_type = d_dunelands
+					is_deposit_type = d_sandsea
+					is_deposit_type = d_dust_flats
+					is_deposit_type = d_sand_wastes
+					is_deposit_type = d_sandstone_cliffs
+				}
+			}
+		}
+		mode = set
+	}
+	mult = -1
+}

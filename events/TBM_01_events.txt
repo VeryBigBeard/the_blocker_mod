@@ -755,7 +755,10 @@ planet_event = {
 			}
 		}
 		any_deposit = {
-			tree_feature = yes
+			OR = {
+				tree_feature = yes
+				is_deposit_type = d_mighty_tassargoid
+			}
 		}
 	}
 

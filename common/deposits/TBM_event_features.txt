@@ -972,3 +972,407 @@ d_snow_palace = {
 		inline_script = tbm_ai_empire_weights
 	}
 }
+
+
+### Speciment Features
+
+d_orinthi_power_wheels = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_final
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	planet_modifier = {
+		planet_biologists_energy_produces_add = 4
+		planet_biologists_society_research_produces_add = 1
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_vile_orinthi = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	blocker_swap_types = {
+		d_orinthi_power_wheels
+	}
+
+	time = 540
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 3200	# Price of pest control these days
+			food = 400 	# Bait
+			alloys = 800 	# Advanced traps
+			consumer_goods = 200	# Hazmat suits
+		}
+	}
+
+	planet_modifier = {
+		pop_happiness = -0.1
+		job_orinthi_exterminator_add = 800
+		planet_technician_energy_produces_mult = -0.25
+		planet_jobs_society_research_produces_mult = 0.25
+		planet_pops_consumer_goods_upkeep_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_illusive_tarblac = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	time = 540
+
+	can_be_cleared = {
+		any_owned_pop_group = {
+			OR = {
+				pop_group_has_trait = trait_psionic
+				pop_group_has_trait = trait_latent_psionic
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			minerals = 1200
+			alloys = 800
+			sr_zro = 5000
+		}
+		cost = {
+			trigger = {
+				any_owned_pop_group = {
+					OR = {
+						pop_group_has_trait = trait_psionic
+						pop_group_has_trait = trait_latent_psionic
+					}
+				}
+			}
+			sr_zro = 0.001
+			mult = value:per_pop_production
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = 750
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			any_owned_pop_group = {
+				OR = {
+					pop_group_has_trait = trait_psionic
+					pop_group_has_trait = trait_latent_psionic
+				}
+			}
+		}
+		modifier = {
+			pop_happiness = -0.3
+		}
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_mighty_tassargoid = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	time = 540
+
+	can_be_cleared = {
+		num_assigned_jobs = {
+			job = soldier
+			value > 400
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1800
+			alloys = 600
+			food = 200
+		}
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			set_variable_to_random_value = {
+				which = casualties_1
+				min = 20
+				max = 100
+			}
+			set_variable_to_random_value = {
+				which = casualties_2
+				min = 20
+				max = 100
+			}
+			set_variable_to_random_value = {
+				which = casualties_3
+				min = 20
+				max = 100
+			}
+		}
+		
+		kill_3_random_pop_amount = {
+			AMOUNT1 = casualties_1
+			AMOUNT2 = casualties_2
+			AMOUNT3 = casualties_3
+		}
+	}
+
+	planet_modifier = {
+		planet_defense_armies_add = 8
+		planet_crime_mult = -0.25
+		BIOLOGICAL_pop_happiness = -0.20
+	}
+
+	potential = { always = no }
+}
+
+d_sniran_spikes = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	time = 540
+
+	blocker_swap_types = {
+		d_searing_desert
+		d_dunelands
+		d_sandsea
+		d_dust_flats
+		d_sand_wastes
+		d_sandstone_cliffs
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1200
+			minerals = 400
+			alloys = 800
+		}
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			if = {
+				limit = {
+					AND = {
+						any_deposit = {
+							is_desert_feature = yes
+						}
+						has_deposit = d_insidious_sniran
+					}
+				}
+				random_deposit = {
+					limit = {
+						is_desert_feature = yes
+					}
+					prev = {	# planet scope
+						add_blocker = {
+							type = d_sniran_spikes
+							blocked_deposit = prev	# deposit scope, switcheroo so we can get specific deposit types
+						}
+					}
+				}
+			}
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_insidious_sniran = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	time = 540
+
+	can_be_cleared = {
+		owner = { has_technology = tech_deep_sinkhole }
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1200
+			minerals = 400
+			alloys = 800
+		}
+	}
+
+	planet_modifier = {
+		pop_happiness = 0.1
+		planet_jobs_unity_produces_mult = 0.1
+		building_time_mult = 0.25
+		zone_building_slots_add = -1
+	}
+
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		any_deposit = {
+	# 			is_desert_feature = yes
+	# 		}
+	# 	}
+	# 	planet_max_districts_add = value:blocked_desert_features
+	# }
+
+	potential = {
+		always = no
+	}
+}
+
+d_malleable_goolanth = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	time = 540
+
+	can_be_cleared = {
+		owner = { NOT = { has_valid_civic = civic_environmentalist }}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1000
+			food = 200
+			alloys = 200
+			unity = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_farming_max_add = @DISTRICTS_FROM_SR_DEPOSITS
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_mine_exotic_gases
+			}
+		}
+		planet_farmers_exotic_gases_produces_add = @SR_SMALL
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_wily_uddloran = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	time = 540
+
+	can_be_cleared = {
+		solar_system.starbase = {
+			has_starbase_size = starbase_starfortress
+		}
+	}
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1800
+			alloys = 500
+			minerals = 400
+		}
+	}
+
+	planet_modifier = {
+		pop_happiness = 0.2 	# Fluffy
+		planet_engineers_engineering_research_produces_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_ravenous_zulcor = {
+	icon = d_alien_wildlife
+
+	category = deposit_cat_blockers_natural
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	should_swap_deposit_on_terraforming = no
+
+	time = 540
+
+	resources = {
+		category = deposit_blockers_natural
+		cost = {
+			energy = 1800
+			alloys = 6000
+			minerals = 5000
+		}
+	}
+
+	planet_modifier = {
+		planet_engineers_engineering_research_produces_mult = 1
+		planet_buildings_energy_upkeep_mult = 4
+		planet_jobs_trade_produces_mult = -1.00
+		trade_deficit = 1
+	}
+}

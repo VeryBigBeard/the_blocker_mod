@@ -9,6 +9,8 @@ namespace = tbm
 ### INDEX ###
 #	410. Deep-Crust Exploration
 #	412. Selective Defoliants
+#	451. Goolanth Extinction
+#	452. Uddlorans Demolish Infrastructure
 ###
 
 

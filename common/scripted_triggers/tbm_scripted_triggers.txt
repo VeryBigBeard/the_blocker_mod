@@ -445,3 +445,14 @@ has_industrial_zoning = {
 		zone = zone_industrial
 	}
 }
+
+is_desert_feature = {
+	OR = {
+		is_deposit_type = d_searing_desert
+		is_deposit_type = d_dunelands
+		is_deposit_type = d_sandsea
+		is_deposit_type = d_dust_flats
+		is_deposit_type = d_sand_wastes
+		is_deposit_type = d_sandstone_cliffs
+	}
+}
