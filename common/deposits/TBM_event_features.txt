@@ -1125,6 +1125,7 @@ d_mighty_tassargoid = {
 	}
 
 	on_cleared = {
+		custom_tooltip = tassargoid_clearance_tooltip
 		hidden_effect = {
 			set_variable_to_random_value = {
 				which = casualties_1
@@ -1141,12 +1142,12 @@ d_mighty_tassargoid = {
 				min = 20
 				max = 100
 			}
-		}
-		
-		kill_3_random_pop_amount = {
-			AMOUNT1 = casualties_1
-			AMOUNT2 = casualties_2
-			AMOUNT3 = casualties_3
+
+			kill_3_random_pop_amount = {
+				AMOUNT1 = casualties_1
+				AMOUNT2 = casualties_2
+				AMOUNT3 = casualties_3
+			}
 		}
 	}
 
@@ -1188,29 +1189,10 @@ d_sniran_spikes = {
 		}
 	}
 
-	on_cleared = {
-		hidden_effect = {
-			if = {
-				limit = {
-					AND = {
-						any_deposit = {
-							is_desert_feature = yes
-						}
-						has_deposit = d_insidious_sniran
-					}
-				}
-				random_deposit = {
-					limit = {
-						is_desert_feature = yes
-					}
-					prev = {	# planet scope
-						add_blocker = {
-							type = d_sniran_spikes
-							blocked_deposit = prev	# deposit scope, switcheroo so we can get specific deposit types
-						}
-					}
-				}
-			}
+	can_be_cleared = {
+		custom_tooltip = sniran_spike_clearance
+		any_deposit = {
+			is_deposit_type = d_insidious_sniran
 		}
 	}
 
@@ -1254,17 +1236,22 @@ d_insidious_sniran = {
 		zone_building_slots_add = -1
 	}
 
-	# triggered_planet_modifier = {
-	# 	potential = {
-	# 		any_deposit = {
-	# 			is_desert_feature = yes
-	# 		}
-	# 	}
-	# 	planet_max_districts_add = value:blocked_desert_features
-	# }
-
 	potential = {
 		always = no
+	}
+}
+
+d_goolanth_farm = {
+	icon = d_metabolic_processing
+
+	category = deposit_cat_final
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+	is_for_colonizable = yes
+
+	planet_modifier = {
+		planet_farmers_exotic_gases_produces_add = @SR_SMALL
 	}
 }
 
@@ -1373,6 +1360,5 @@ d_ravenous_zulcor = {
 		planet_engineers_engineering_research_produces_mult = 1
 		planet_buildings_energy_upkeep_mult = 4
 		planet_jobs_trade_produces_mult = -1.00
-		trade_deficit = 1
 	}
 }

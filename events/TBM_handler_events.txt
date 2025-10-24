@@ -794,6 +794,7 @@ planet_event = {
 		is_starting_planet = no
 		is_artificial = no
 		NOT = { is_same_value = owner.capital_scope }
+		NOT = { has_planet_flag = prospects_done }
 		colony_age_years > 2
 		colony_age_years < 50
 

@@ -303,6 +303,7 @@ country_event = {
 					location = this
 					owner = root
 				}
+				add_deposit = d_illusive_tarblac
 			}
 			random_galaxy_planet = { # TASSARGOID
 				limit = {
@@ -330,6 +331,7 @@ country_event = {
 					location = this
 					owner = root
 				}
+				add_deposit = d_mighty_tassargoid
 			}
 			random_galaxy_planet = { # ORINTHI
 				limit = {
@@ -357,6 +359,7 @@ country_event = {
 					location = this
 					owner = root
 				}
+				add_deposit = d_vile_orinthi
 			}
 			random_galaxy_planet = { # SNIRAN
 				limit = {
@@ -384,6 +387,7 @@ country_event = {
 					location = this
 					owner = root
 				}
+				add_deposit = d_insidious_sniran
 			}
 			random_galaxy_planet = { # GOOLANTHA
 				limit = {
@@ -410,6 +414,15 @@ country_event = {
 					name = "GOOLANTHA_PROCUREMENT"
 					location = this
 					owner = root
+				}
+				add_deposit = d_malleable_goolanth
+				
+				hidden_effect = {
+					planet_event = {	# Goolkanth Extinction event - doesn't fire if the herd exists.
+						id = tbm.451
+						days = 3600
+						random = 1800
+					}
 				}
 			}
 			random_galaxy_planet = { # UDDLORAN
@@ -438,6 +451,7 @@ country_event = {
 					location = this
 					owner = root
 				}
+				add_deposit = d_wily_uddloran
 			}
 			random_galaxy_planet = { # ZULCOR
 				limit = {
@@ -465,6 +479,7 @@ country_event = {
 					location = this
 					owner = root
 				}
+				add_deposit = d_ravenous_zulcor
 			}
 		}
 	}

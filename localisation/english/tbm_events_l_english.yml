@@ -324,6 +324,12 @@
 
  tbm_deep_crust_discovery:0 "The Deep-Crust Expedition on §Y[planet.GetName]§! has returned with news of a large §Y[discovered_deep_crust.GetName]§! far below the [planet.GetPlanetMoon]'s crust"
 
+ tbm.451_title:0 "Goolanth Extinct"
+ tbm.451_desc:0 "Exobiologists observing the natural habitats of the Malleable Goolanth on [root.GetName] are now convinced the last Goolanth have succumbed to the sheer ennui of their own existence and perished."
+
+ MESSAGE_UDDLORAN_TRACK_TTLE:0 "Uddlorans Destroy Infrastructure"
+ tbm_uddloran_track:0 "Migrating Uddlorans on [root.Getname] have run roughshod over, through, and in some cases, over several settlements."
+
  ### Wenkwort Events
 
  tbm.502_wenkwort_locked:0 "Wenkwort - Custodianship"

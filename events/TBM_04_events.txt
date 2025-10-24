@@ -10,7 +10,7 @@ namespace = tbm
 #	410. Deep-Crust Exploration
 #	412. Selective Defoliants
 #	451. Goolanth Extinction
-#	452. Uddlorans Demolish Infrastructure
+#	456. Uddlorans Demolish Infrastructure
 ###
 
 
@@ -123,7 +123,6 @@ planet_event = {
 	}
 }
 
-
 ### 413. Bad Luck, That
 planet_event = {
 	id = tbm.413
@@ -162,6 +161,87 @@ planet_event = {
 			}
 			
 			remove_deposit = yes
+		}
+	}
+}
+
+### 451. Goolanth Extinction
+planet_event = {
+	id = tbm.451
+
+	is_triggered_only = yes
+
+	title = tbm.451_title
+	desc = tbm.451_desc
+	picture = GFX_evt_alien_wildlife
+	show_sound = event_space_whale
+
+	trigger = {
+		has_deposit = d_malleable_goolanth
+	}
+
+	immediate = {
+		remove_deposit = d_malleable_goolanth
+	}
+
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+### 455. Uddloran Tracker
+planet_event = {
+	id = tbm.455
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_deposit = d_wily_uddloran
+	}
+
+	immediate = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = tbm.456
+					days = 180
+					random = 180
+				}
+			}
+			98 = {}
+		}
+	}
+}
+
+### 456. Uddlorans Destroy Infrastructure
+planet_event = {
+	id = tbm.456
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_deposit = d_wily_uddloran
+	}
+
+	immediate = {
+		random_list = {
+			33 = {
+				ruin_building = random_no_capital
+			}
+			33 = {
+				remove_random_district = yes
+			}
+			33 = {
+				add_planet_devastation = 20
+			}
+		}
+
+		create_message = {
+			type = UDDLORAN_TRACK
+			localization = tbm_uddloran_track
+			target = this
 		}
 	}
 }

@@ -43,6 +43,13 @@ planet_event = {
 				years = 5
 			}
 		}
+
+		random_list = {
+			20 = {
+				set_planet_flag = prospects_done
+			}
+			80 = {}
+		}
 	}
 
 	# Add a mining feature.

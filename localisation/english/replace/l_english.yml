@@ -26,3 +26,7 @@
  d_great_pacific_garbage_patch:0 "Great Pacific Garbage Patch"
 
  pm_wenkwort_custodian_desc:0 "The automata that oversee the planetary gardens are carefully observing our conduct."
+
+ biologist_is_ranger_tt:""
+ job_ranger_effect_desc:2 "£job_ranger£ $job_ranger_plural$ produce extra resources from £blocker£ Naturally Occurring Blockers, but these blockers may no longer be cleared."
+ building_ranger_lodge_effect: "£job_ranger£ $job_ranger$ Jobs produce extra resources from Naturally Occurring Blockers, but these blockers may no longer be cleared."

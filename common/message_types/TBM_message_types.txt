@@ -196,3 +196,13 @@ message_type = {
 	
 	category = planets
 }
+
+message_type = {
+	icon = TBM_message_bad_thing
+	key = "UDDLORAN_TRACK"
+	icon_frame = 2
+	sound = alert_negative
+	ping = ping_notification_yellow
+
+	category = planets
+}
