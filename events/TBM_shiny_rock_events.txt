@@ -17,6 +17,7 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
 		OR = {
 			has_deposit = d_mineral_fields
 			has_deposit = d_basaltic_outcrops

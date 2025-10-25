@@ -167,6 +167,10 @@
  job_colonial_deputy_desc:0 "Life on the frontier of alien worlds can be rough and tumble, with little recourse or personal security. Deputized by authorities on the central worlds, these sheriffs often serve as the only real protection colonists get."
  mod_job_colonial_deputy_add:0 "$job_colonial_deputy$ Jobs"
 
+ job_orinthi_exterminator:0 "Orinthi Exterminator"
+ job_orinthi_exterminator_plural:0 "Orinthi Exterminators"
+ job_orinthi_exterminator_desc:0 "Paid a small salary plus significant health benefits to attempt to control the numbers of Orinthi infesting colonial settlements, these brave souls are worshipped as heroes by the population."
+
 
  # TBM Job Modifiers
 
@@ -269,6 +273,8 @@
 
  mod_job_dangerous_wildlife_hunter_add:0 "$job_dangerous_wildlife_hunter$ Jobs"
  mod_job_dangerous_wildlife_poacher_add:0 "$job_dangerous_wildlife_poacher$ Jobs"
+
+ mod_job_orinthi_exterminator_add:0 "$job_orinthi_exterminator_plural$ Jobs"
 
  mod_edicts_unity_upkeep_mult:0 "Edict £unity£ Upkeep"
 
@@ -619,6 +625,38 @@
  d_cesspool:0 "Cesspool"
  d_cesspool_desc:0 "Nobody is exactly sure what caused this mess, but everyone can agree it's not great for the neighborhood."
 
+ d_orinthi_power_wheels:0 "Orinthi Power Wheels"
+ d_orinthi_power_wheels_desc:0 "Creative thinking by some exobiologists has led to this innovative solution to both Orinthi overbreeding and the persistent power shortages the creatures cause."
+
+ d_vile_orinthi:0 "Orinthi Nests"
+ d_vile_orinthi_desc:0 "The Orinthi native to this planet can severely hamper energy generation simply by regularly electrocuting themselves."
+
+ d_illusive_tarblac:0 "Tarblac Pods"
+ d_illusive_tarblac_desc:0 "The rare sight of a Tarblac is a special treat for passing tourists, but for psionics and others tuned to their subtle wavelengths, these creatures' ancient cries o dread and arouse severe regret at their planet-bound existence. Vapor-trails of Zro can be harvested by those sufficiently attuned to their eons-old grief, but at considerable psychological cost."
+
+ d_mighty_tassargoid:0 "Tassargoid Territory"
+ d_mighty_tassargoid_desc:0 "Tassargoid patrol and defend their territory to the death, making travel in this region impossible even with a small battallion of hardened soldiers. The mighty beasts have even ventured into settled areas during mating season, dragging off colonists, but repelling them would require a major military operation."
+ tassargoid_clearance_tooltip:0 "Some people may die in the fighting."
+
+ d_sniran_spikes:0 "Sniran Burrows"
+ d_sniran_spikes_desc:0 "This dry region is inhabited by insidious Snirans that routinely impale prospectors and colonists seeking to survey the land and develop infrastructure."
+ sniran_spike_clearance:0 "Without addressing the subterranean Sniran population, dealing with individual burrows is both difficult and pointless, as new Snirans sneak into cleared regions during the night."
+
+ d_insidious_sniran:0 "Subterranean Snirans"
+ d_insidious_sniran_desc:0 "Although many on more developed worlds find these spiky, burrowing creatures cute, their relentless, unpredictable, and sometimes outright malicious burrowing has all but wrecked several dry regions of this planet."
+
+ d_goolanth_farm:0 "Goolanth Preservation Farm"
+ d_goolanth_farm_desc:0 "With careful tending, medicine, and reinforced fencing, the Malleable Goolanth can be protected from pets, frights, rain, or any other bring that might bring about their demise. Their valuable gases can be harvested from the small but healthy number that remain during short and particular non-breeding seasons."
+
+ d_malleable_goolanth:0 "Goolanth Herd"
+ d_malleable_goolanth_desc:0 "One of the last remaining herds of Malleable Goolanth grazes in this region, though even now its numbers are dwindling due to predation and environmental changes. Without intervention, it is likely the Goolanth will be extinct within a few years."
+
+ d_wily_uddloran:0 "Uddloran Tracks"
+ d_wily_uddloran_desc:0 "Predicting the exact path of Uddloran travel has proven fascinatingly and frustratingly difficuylt, with deleterious effects for both colonial surveys and building prospects. Every attempt to intercept the bundled Uddlorans at surface level has ended in an abvsmal, fluffy, and often e4mbarrassing failure. Regrettably, system officials have now requested the oribital coordination and firepower of a §Y£starbase£ Star Fortress§! to track and eliminate the Uddlorans at scale."
+
+ d_ravenous_zulcor:0 "Zulcor Swarm"
+ d_ravenous_zulcor_desc:0 "Large cloudy masses of Ravenous Zulcor swirl across not just this region but the whole planet, giving rise to a new theoretical quandary known as the Zulcor Problem, which posits an equilibrium between the alloys needed to maintain colonial infrastructure on the planet and the alloys required to safely contain the Zulcor."
+
  ###
 
   ### The Blocker Mod - Planet / Static Modifiers
@@ -794,8 +832,6 @@
  decision_subterranean_expansion:0 "Subterranean Expansion"
  decision_subterranean_expansion_desc:0 "Although our species has always preferred life underground, advances in xeno-geology have allowed for the expansion of cave networks far deeper than previously thought possible."
  tbm_decision_subterranean_colony_tooltip:0 "\n\nSettlements far underground will be a long way from modern amenities, but will allow for §Ylimited expansion§! of living space."
-
- 
 
  geothermal_instability:0 "Geothermal Instability"
  subterranean_river_cruises:0 "Subterranean River Cruises"

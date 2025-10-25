@@ -142,6 +142,7 @@ planet_event = {
 	}
 
 	trigger = {
+		exists = owner
 		years_passed > 5
 		colony_age_years > 2
 		colony_age_years < 100

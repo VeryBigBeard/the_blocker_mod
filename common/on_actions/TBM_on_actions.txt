@@ -26,6 +26,7 @@ on_press_begin = {
 on_yearly_pulse = {
 	events = {
 		tbm_handler.103		# Wild World Remover (removes Wild World when planets develop)
+		tbm.455		# Uddloran Tracks
 	}
 }
 
