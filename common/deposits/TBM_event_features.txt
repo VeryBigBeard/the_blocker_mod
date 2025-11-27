@@ -1244,11 +1244,15 @@ d_insidious_sniran = {
 d_goolanth_farm = {
 	icon = d_metabolic_processing
 
-	category = deposit_cat_final
+	category = deposit_cat_rare
 	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 	is_for_colonizable = yes
+
+	potential = {
+		always = no
+	}
 
 	planet_modifier = {
 		planet_farmers_exotic_gases_produces_add = @SR_SMALL
@@ -1360,5 +1364,9 @@ d_ravenous_zulcor = {
 		planet_engineers_engineering_research_produces_mult = 1
 		planet_buildings_energy_upkeep_mult = 4
 		planet_jobs_trade_produces_mult = -1.00
+	}
+
+	potential = {
+		always = no
 	}
 }

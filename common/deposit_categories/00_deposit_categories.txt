@@ -2,6 +2,9 @@
 
 ### Note: Any mod that overwrites these will produce unexpected results when used with The Blocker Mod. Deposits need to be set to blocker = yes for most mod functions to work. For best results, load TBM after any other feature mods.
 
+### Vanilla compatibility - DO NOT REMOVE
+deposit_cat_misc = {} # Used for special non-rare deposits, e.g districts/zones
+
 
 ### Mainline economy features
 #	Most district-granting features are here, and TBM retains most vanilla feature categories. Planet generation takes these into account. TBM features that add significant economic bonuses also tend to have these categories.

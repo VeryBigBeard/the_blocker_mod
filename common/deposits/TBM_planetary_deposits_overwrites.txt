@@ -345,12 +345,9 @@ d_dangerous_wildlife_blocker = {
 	}
 
 	can_be_cleared = {
-		OR = {
-			num_assigned_jobs = {
-				job = dangerous_wildlife_hunter
-				value > 0
-			}
-			owner = { has_technology = tech_dangerous_wildlife }
+		num_assigned_jobs = {
+			job = dangerous_wildlife_hunter
+			value > 0
 		}
 	}
 
@@ -3010,6 +3007,7 @@ d_rich_mountain = {
 		potential = {
 			exists = owner
 			has_colonist_job = yes
+			
 		}
 		modifier = {
 			planet_colonist_minerals_produces_add = 1

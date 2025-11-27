@@ -1124,6 +1124,7 @@ d_gestlat_experimental_geothermal_tap = {
 
 d_fossil_fuel_reserves = {
 	category = deposit_cat_blockers
+	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 

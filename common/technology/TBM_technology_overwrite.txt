@@ -122,6 +122,7 @@ tech_volcano = {
 	}
 }
 
+# Disabled
 tech_dangerous_wildlife = {
 	cost = @tier2cost2
 	area = society
@@ -132,6 +133,10 @@ tech_dangerous_wildlife = {
 
 	weight_groups = {
 		deposit_blockers
+	}
+
+	potential = {
+		always = no
 	}
 
 	mod_weight_if_group_picked = {

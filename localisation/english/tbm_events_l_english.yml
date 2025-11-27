@@ -373,3 +373,20 @@
 
  pm_wenkwort_disease_outbreak:0 "Disease Outbreak"
  pm_wenkwort_disease_outbreak_desc:0 "Intrusion on the gardens of Wenkwort artem has introduced us to several virulent new diseases, and the vast alien gardens may never entire recover their original beauty."
+
+### Terraforming
+ tbm_handler.210_name:0 "Concern Over Terraforming on §Y[planet.GetName]§!"
+ tbm_handler.210_desc:0 "An urgent communiqué has arrived from local administrators on [planet.GetName] expressing deep concern over the ongoing terraforming project and its effect on the heavily populated planet.\n\nResidents complain of illnesses caused by the release of terraforming gases into the atmosphere, extreme weather events are causing infrastructure failures and famine, and business leaders are alarmed at the potential effects on the [planet.GetPlanetMoon]'s industrial economy.\n\n§RWarning! Terraforming will heavily alter this world's geography and features. Existing §C£district£ City Districts§! may be ruined, severely depleting housing and amenities until they are rebuilt to suit the new ecosystem.§!\n\nSeveral mitigation plans have been presented."
+ tbm_handler.210_desc_gestalt:0 "Recent efforts to terraform [planet.GetName] have have led to significantly worsened conditions for the many drones stations there, and productivity is dropping quickly.\n\nGases released into the atmosphere and foreign elements in the soil have detabilized everything from the local water system to disease prevention. Industrial sectors will be significantly impacted if the process continues.\n\n§RWarning! Terraforming will heavily alter this world's geography and features. Existing §C£district£ City Districts§! may be ruined, severely depleting housing and amenities until they are rebuilt to suit the new ecosystem.§!"
+
+ tbm_handler.210_mitigation_tooltip:0 "\n\n§YA number of §C£blocker_yellow£ Planetary Features§! will be removed from the terraforming processes. This will preserve some §C£district£ City Districts§! but will impact natural beauty and resource abundance.§!"
+
+ mitigated_urban_terraforming:0 "Mitigated Terraforming"
+ mitigated_urban_terraforming_desc:0 "Commercial and industrial centers on this world have had to contend with ongoing terraforming projects. As new mountains, forests, and other features take shape it has been necessary to sequester and insultate the existing population from negative effects. This has come at significant cost to economic effieciency and gross production."
+
+ tbm_handler.210_mitigate:0 "Take care to mitigate the effect of ongoing terraforming efforts."
+
+ tbm_handler.210_cancel:0 "Cancel the project entirely."
+
+ tbm_handler.210_ignore:0 "Just dump the sediment from orbit."
+ tbm_handler.210_ignore_tooltip:0 "§YThe terraforming will continue as usual.§!"

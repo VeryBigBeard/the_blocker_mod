@@ -1,0 +1,89 @@
+### The Blocker Mod - Overwritten Events
+
+### INDEX ###
+
+### terra.45 - Excess to Success - Reworks deposit/district reward to give you a useful resource stockpile
+### terra.60 - Unearther Subterraneans - Adds a flag to check subterranean encounters in a TBM event
+### country.53 - Alien Specimen Procurement - Adds unique specimen deposits for each specimen.
+
+namespace = terra
+
+### terra.45 - Excess to Success
+country_event = {
+	id = terra.45
+	title = terra.45.name
+	desc = terra.45.desc
+	picture = GFX_evt_drilling_for_gas
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = terra.45.a # Generator
+		from = { add_deposit = d_energy_banks }
+	}
+	option = {
+		name = terra.45.b # Mining
+		from = { add_deposit = d_mineral_stockpiles }
+	}
+	option = {
+		name = terra.45.c # Farming
+		from = { add_deposit = d_food_silos }
+	}
+}
+
+### terra.60 - Unearthed Subterraneans
+country_event = {
+	id = terra.60
+	title = terra.60.name
+	desc = terra.60.desc
+	picture = GFX_evt_underground_city
+	location = from
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = not_another_subterranean_civilization
+		from = { generate_subterranean_pre_ftls_on_planet = yes }
+		from = {
+			add_deposit = d_ore_rich_caverns
+			add_deposit = d_ore_rich_caverns
+		}
+	}
+
+	option = {
+		name = terra.60.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+	option = {
+		name = terra.60.b
+		exclusive_trigger = { is_homicidal = yes }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+	option = {
+		exclusive_trigger = { has_origin = origin_subterranean }
+		name = terra.60.c
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+}

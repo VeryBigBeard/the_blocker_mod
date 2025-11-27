@@ -264,3 +264,15 @@ blocked_desert_features = {
 	}
 	mult = -1
 }
+
+total_cities = {
+	base = 1	# Can never be < 1 in the game as of 4.0 and makes some math easier / avoids divide by zero
+	complex_trigger_modifier = {
+		trigger = num_districts
+		parameters = {
+			type = district_city
+		}
+		mode = set
+	}
+
+}

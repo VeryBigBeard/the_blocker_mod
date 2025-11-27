@@ -131,6 +131,12 @@ on_planet_bombarded = {
 	}
 }
 
+on_terraforming_progress_25 = {
+	events = {
+		tbm_handler.210		# Urban Terraforming
+	}
+}
+
 on_terraforming_complete = {
 	events = {
 		tbm_handler.200		# Rerolls features on terraform.

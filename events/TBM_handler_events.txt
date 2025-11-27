@@ -353,8 +353,10 @@ planet_event = {
 			15 = {
 				modifier = {
 					factor = 1.5
-					solar_system = {
-						governors_skill_in_system <= 3
+					exists = leader
+					leader = {
+						has_total_skill >= 3
+						leader_class = official
 					}
 				}
 				modifier = {
@@ -404,8 +406,10 @@ planet_event = {
 				}
 				modifier = {
 					factor = 1.5
-					solar_system = {
-						governors_skill_in_system >= 4
+					exists = leader
+					leader = {
+						has_total_skill >= 4
+						leader_class = official
 					}
 				}
 				modifier = {
@@ -1579,8 +1583,110 @@ planet_event = {
 	immediate = {
 		reroll_deposits = yes
 		clean_up_clearance_modifiers = yes
+
+		log = "Fired Handler 200 - rerolls deposits on terraform"
+
+		if = {
+			limit = {
+				has_planet_flag = mitigated_urban_terraforming
+			}
+			planet_event = {
+				id = tbm_handler.211
+			}
+		}
 	}
 }
+
+### 210. Urban Terraforming
+planet_event = {
+	id = tbm_handler.210
+
+	is_triggered_only = yes
+
+	title = tbm_handler.210_name
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = tbm_handler.210_desc_gestalt
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+		text = tbm_handler.210_desc
+	}
+	picture = GFX_evt_planet_beam
+	show_sound = event_georadiation_terraforming
+
+	trigger = {
+		OR = {
+			num_districts = {
+				type = district_city
+				value <= 3
+			}
+
+			pop_amount > 2000	# As you'll likely end up with a housing crunch and major problems.
+		}
+	}
+
+	option = {
+		name = tbm_handler.210_mitigate
+		add_modifier = {
+			modifier = mitigated_urban_terraforming
+			years = 20
+		}
+		set_planet_flag = mitigated_urban_terraforming # In case you lose the modifier somehow
+		custom_tooltip = tbm_handler.210_mitigation_tooltip
+	}
+
+	option = {
+		name = tbm_handler.210_cancel
+		cancel_terraformation = yes
+	}
+
+	option = {
+		name = tbm_handler.210_ignore
+		custom_tooltip = tbm_handler.210_ignore_tooltip
+		ai_chance = {
+			weight = 100	# Easier for compat and to avoid weird worlds. It can be beneficial for the AI to get district slots back this way. If it causes a rebellion, that tends to liven the game up for the player so not the worst thing, and it shouldn't hamper the AI economy too much.
+		}
+	}
+}
+
+### 211. Attempts to Fix Terraformed Urban Worlds
+planet_event = {
+	id = tbm_handler.211
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_planet_flag = mitigated_urban_terraforming
+	}
+
+	immediate = {
+		while = {
+			limit = {
+				num_free_districts = {
+					type = district_city
+					value < 0
+				}
+			}
+
+			random_deposit = {
+				# Could set a limit here but we don't have a space list atm
+				remove_deposit = yes
+			}
+		}
+
+		log = "Finished Handler 211"
+
+		clean_up_clearance_modifiers = yes
+		remove_planet_flag = mitigated_urban_terraforming
+	}
+}
+
 
 ### 301. Wenkwort Handler
 #	on_colonization_started and on_blocker_cleared (which is in planet scope)

@@ -105,9 +105,15 @@ privatizations = {
 	pop_happiness = -0.1
 }
 
+### Terraforming
+mitigated_urban_terraforming = {
+	planet_stability_add = 10
+	planet_district_city_build_speed_mult = -2
+	planet_jobs_produces_mult = -0.25
+}
+
 
 ### Mining-related
-
 miners_strike = {
 	icon = gfx/interface/icons/planet_modifiers/pm_nationalist_corruption.dds
 	icon_frame = 3
@@ -129,24 +135,6 @@ mine_safety_standards = {
 	planet_miners_minerals_produces_mult = -0.1
 	planet_miners_unity_produces_add = 1
 	planet_miners_energy_upkeep_add = 1
-}
-
-### Gestalt Homeworld Features
-
-breathing_without_the_body = {
-	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
-	planet_jobs_energy_produces_mult = 0.2
-}
-
-overambitious_evolution = {
-	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
-	planet_jobs_energy_produces_mult = -0.2
-}
-
-damaged_power_nexus = {
-	icon = gfx/interface/icons/planet_modifiers/pm_contingency_sabotage.dds
-	district_generator_max_add = -1
-	planet_jobs_produces_mult = -0.05
 }
 
 
@@ -187,7 +175,6 @@ night_watches = {
 
 
 ### Proposed Marina
-
 denied_investment = {
 	icon = gfx/interface/icons/planet_modifiers/pm_resources_2.dds
 	planet_jobs_trade_produces_mult = -0.1
@@ -203,7 +190,61 @@ recreational_investment = {
 }
 
 
-### A City of the Desert
+### Flood
+recent_flooding = {
+	icon = gfx/interface/icons/planet_modifiers/pm_wasteland.dds
+	planet_jobs_trade_produces_mult = -0.1
+	planet_farmers_food_produces_mult = -0.1
+}
+
+### Kelp Modifiers
+kelp_bioweapons = {
+	icon = gfx/interface/icons/combat_stats/combat_stat_damage_explosive.dds
+	custom_tooltip = kelp_bioweapons_tooltip
+	weapon_type_explosive_weapon_damage_mult = 0.1
+	#torpedo_weapon_damage_mult = 0.1
+}
+
+kelp_breakfasts = {
+	icon = gfx/interface/icons/modifiers/mod_food_produces_mult.dds
+	custom_tooltip = kelp_breakfast_tooltip
+	planet_pops_food_upkeep_mult = -0.1	# Applied to country in Kelp Insights
+}
+
+
+### Zrofish
+bigger_fish = {
+	icon = gfx/interface/icons/planet_modifiers/pm_carbon_world.dds
+	job_dangerous_wildlife_poacher_add = 200
+	planet_miners_minerals_produces_mult = -0.1
+}
+
+xenofish_attacks = {
+	icon = gfx/interface/icons/planet_modifiers/pm_slave_riots.dds
+	custom_tooltip = xenofish.attacks	# This modifier is just a tooltip.
+}
+
+### Geothermal Energy and Vents
+geothermal_instability = {
+	planet_technician_energy_produces_mult = -0.1
+	pop_cat_specialist_happiness = -0.15
+}
+
+
+### Shifting Sands
+sand_tides = {
+	pop_environment_tolerance = 0.10
+	pop_happiness = 0.10
+}
+
+### Suden Sinkhole
+subterranean_river_cruises = {
+	icon = gfx/interface/icons/planet_modifiers/pm_hollow_planet.dds
+	planet_jobs_trade_produces_mult = 0.1
+	planet_amenities_mult = 0.1
+}
+
+### A City of the Desert ###
 
 bringing_water = {
 	icon = gfx/interface/icons/planet_modifiers/pm_arid_planet.dds
@@ -298,72 +339,30 @@ city_of_gardens = {
 }
 
 
-### Flood
 
-recent_flooding = {
-	icon = gfx/interface/icons/planet_modifiers/pm_wasteland.dds
-	planet_jobs_trade_produces_mult = -0.1
-	planet_farmers_food_produces_mult = -0.1
-}
-
-### Kelp Modifiers
-kelp_bioweapons = {
-	icon = gfx/interface/icons/combat_stats/combat_stat_damage_explosive.dds
-	custom_tooltip = kelp_bioweapons_tooltip
-	weapon_type_explosive_weapon_damage_mult = 0.1
-	#torpedo_weapon_damage_mult = 0.1
-}
-
-kelp_breakfasts = {
-	icon = gfx/interface/icons/modifiers/mod_food_produces_mult.dds
-	custom_tooltip = kelp_breakfast_tooltip
-	planet_pops_food_upkeep_mult = -0.1	# Applied to country in Kelp Insights
-}
-
-
-### Zrofish
-
-bigger_fish = {
-	icon = gfx/interface/icons/planet_modifiers/pm_carbon_world.dds
-	job_dangerous_wildlife_poacher_add = 200
-	planet_miners_minerals_produces_mult = -0.1
-}
-
-xenofish_attacks = {
-	icon = gfx/interface/icons/planet_modifiers/pm_slave_riots.dds
-	custom_tooltip = xenofish.attacks	# This modifier is just a tooltip.
-}
-
-
-
-### Geothermal Energy and Vents
-
-geothermal_instability = {
-	planet_technician_energy_produces_mult = -0.1
-	pop_cat_specialist_happiness = -0.15
-}
-
-
-### Shifting Sands
-
-sand_tides = {
-	pop_environment_tolerance = 0.10
-	pop_happiness = 0.10
-}
-
-### Suden Sinkhole
-
-subterranean_river_cruises = {
-	icon = gfx/interface/icons/planet_modifiers/pm_hollow_planet.dds
-	planet_jobs_trade_produces_mult = 0.1
-	planet_amenities_mult = 0.1
-}
+### HOMEWORLDS ###
 
 ### Experimental Geothermal Tap
-
 nanocomposite_shortage = {
 	icon = gfx/interface/icons/planet_modifiers/pm_resources.dds
 	shipclass_military_build_speed_mult = -0.5
+}
+
+### Gestalt Homeworld Features
+breathing_without_the_body = {
+	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
+	planet_jobs_energy_produces_mult = 0.2
+}
+
+overambitious_evolution = {
+	icon = gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds
+	planet_jobs_energy_produces_mult = -0.2
+}
+
+damaged_power_nexus = {
+	icon = gfx/interface/icons/planet_modifiers/pm_contingency_sabotage.dds
+	district_generator_max_add = -1
+	planet_jobs_produces_mult = -0.05
 }
 
 ### Failing Food Replicator
@@ -384,6 +383,7 @@ scavenger_wars = {
 scavenger_bounties = {}	# Triggers changes to Scavenger Bands feature.
 
 ### Post-Apoc Remediation Cultural Outcomes
+
 environmental_remediation = {
 	# Does nothing - just lets player know it's ongoing.
 	icon = gfx/interface/icons/planet_modifiers/capital.dds

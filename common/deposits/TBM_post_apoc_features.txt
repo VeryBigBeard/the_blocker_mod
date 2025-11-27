@@ -922,7 +922,7 @@ d_slag_heap = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		job_scrap_miner_add = 3
+		job_scrap_miner_add = 300
 	}
 
 	triggered_planet_modifier = {
@@ -930,8 +930,8 @@ d_slag_heap = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		job_scrap_miner_add = -3
-		job_scrap_miner_drone_add = 3
+		job_scrap_miner_add = -300
+		job_scrap_miner_drone_add = 300
 	}
 
 	potential = {
@@ -1016,7 +1016,7 @@ d_tomb_mine_shafts = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 5
+		planet_housing_add = 500
 		planet_crime_mult = 0.05
 	}
 
@@ -1065,7 +1065,7 @@ d_underground_warren = {
 	}
 
 	planet_modifier = {
-		planet_housing_add = 5
+		planet_housing_add = 500
 		planet_crime_mult = 0.05
 	}
 
@@ -1362,7 +1362,7 @@ d_scrap_bazaar = {
 	}
 
 	planet_modifier = {
-		job_scrap_miner_add = 4
+		job_scrap_miner_add = 400
 	}
 
 	triggered_planet_modifier = {
@@ -1370,8 +1370,8 @@ d_scrap_bazaar = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		job_scrap_miner_add = -4
-		job_scrap_miner_drone_add = 4
+		job_scrap_miner_add = -400
+		job_scrap_miner_drone_add = 400
 	}
 
 	triggered_planet_modifier = {
