@@ -144,7 +144,7 @@ d_submerged_zro_seam = {
 
 	triggered_planet_modifier = {
 		potential = {
-			has_colonist_job = yes
+			any_owned_pop_job = { has_colonist_job = yes }
 		}
 		modifier = {
 			planet_colonist_society_research_produces_add = 1
