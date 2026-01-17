@@ -5864,7 +5864,8 @@ d_boswash_metropolitan_axis = {
 		category = deposit_blockers
 		cost = {
 			consumer_goods = 1000
-			society_research = 500
+			minerals = 800
+			energy = 1200
 		}
 	}
 
@@ -5911,7 +5912,8 @@ d_pearl_river_agglomerate = {
 		category = deposit_blockers
 		cost = {
 			consumer_goods = 1000
-			society_research = 500
+			minerals = 700
+			energy = 800
 		}
 	}
 
