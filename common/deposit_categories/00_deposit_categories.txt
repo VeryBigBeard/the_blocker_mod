@@ -9,27 +9,47 @@ deposit_cat_misc = {} # Used for special non-rare deposits, e.g districts/zones
 ### Mainline economy features
 #	Most district-granting features are here, and TBM retains most vanilla feature categories. Planet generation takes these into account. TBM features that add significant economic bonuses also tend to have these categories.
 deposit_cat_food = { 
-	blocker = yes
 }
 deposit_cat_energy = {
-	blocker = yes
 }
 deposit_cat_minerals = {
+}
+
+
+depost_cat_tbm_food = {
+	blocker = yes
+}
+deposit_cat_tbm_energy = {
+	blocker = yes
+}
+deposit_cat_tbm_minerals = {
 	blocker = yes
 }
 
 # Rare economic features. Used only occasionally to grant the important UI highlighting to certain features.
 deposit_cat_food_rare = {
-	blocker = yes
 	important = yes
 }
 
 deposit_cat_minerals_rare = {
-	blocker = yes
 	important = yes
 }
 
 deposit_cat_energy_rare = {
+	important = yes
+}
+
+deposit_cat_tbm_food_rare = {
+	blocker = yes
+	important = yes
+}
+
+deposit_cat_tbm_minerals_rare = {
+	blocker = yes
+	important = yes
+}
+
+deposit_cat_tbm_energy_rare = {
 	blocker = yes
 	important = yes
 }

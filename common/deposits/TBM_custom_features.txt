@@ -36,7 +36,7 @@
 ### TBM Custom Features - Natural (these can spawn)
 
 d_fjordland = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -160,7 +160,7 @@ d_fjordland = {
 }
 
 d_mire = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -246,7 +246,7 @@ d_mire = {
 }
 
 d_sandstone_spires = {
-	category = deposit_cat_minerals_rare
+	category = deposit_cat_tbm_minerals_rare
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -326,7 +326,7 @@ d_sandstone_spires = {
 }
 
 d_natural_gardens = {
-	category = deposit_cat_food_rare	
+	category = deposit_cat_tbm_food_rare	
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -367,7 +367,7 @@ d_natural_gardens = {
 }
 
 d_steppe_uplands = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -473,7 +473,7 @@ d_steppe_uplands = {
 }
 
 d_glacier_lake = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -565,7 +565,7 @@ d_glacier_lake = {
 
 d_giant_tree  = {
 	icon = d_huge_tree
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
@@ -761,7 +761,7 @@ d_sea_monster = {
 }
 
 d_great_lake = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -860,7 +860,7 @@ d_great_lake = {
 
 d_floodplains = {
 	icon = d_natural_farmland
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -956,7 +956,7 @@ d_floodplains = {
 
 d_tidal_marshes = {
 	icon = d_natural_farmland
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
@@ -1064,7 +1064,7 @@ d_tidal_marshes = {
 }
 
 d_basaltic_outcrops = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -1175,7 +1175,7 @@ d_basaltic_outcrops = {
 
 d_volcanic_island = {
 	icon = d_ocean
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -1285,7 +1285,7 @@ d_volcanic_island = {
 
 d_volcanic_soil = {
 	icon = d_black_soil
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -1433,7 +1433,7 @@ d_volcanic_ash = {
 
 d_fish_shoals = {
 	icon = d_ocean
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -1542,7 +1542,7 @@ d_fish_shoals = {
 
 d_tbm_impact_crater = {
 	icon = d_crater
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -1631,7 +1631,7 @@ d_tbm_impact_crater = {
 }
 
 d_frozen_wasteland = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
@@ -1747,7 +1747,7 @@ d_frozen_wasteland = {
 
 d_mountain_jungle = {
 	#icon = d_old_mountain
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -1895,7 +1895,7 @@ d_mountain_jungle = {
 
 d_taiga = {
 	icon = d_old_infestation
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 	
 	is_for_colonizable = yes
@@ -2024,7 +2024,7 @@ d_taiga = {
 }
 
 d_scrubland = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -2181,7 +2181,7 @@ d_barren = {
 }
 
 d_fertile_delta = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -2298,7 +2298,7 @@ d_fertile_delta = {
 }
 
 d_drylands = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -2367,7 +2367,7 @@ d_drylands = {
 }
 
 d_crags = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -2468,7 +2468,7 @@ d_crags = {
 }
 
 d_dunelands = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -2568,7 +2568,7 @@ d_dunelands = {
 }
 
 d_highland_lake = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -2667,7 +2667,7 @@ d_highland_lake = {
 }
 
 d_lakelands = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -2868,7 +2868,7 @@ d_lowland_hills = {
 }
 
 d_misty_plains = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -2964,7 +2964,7 @@ d_misty_plains = {
 }
 
 d_salt_flats = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -3070,7 +3070,7 @@ d_salt_flats = {
 }
 
 d_arid_plains = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3252,7 +3252,7 @@ d_sandsea = {
 }
 
 d_sandstone_cliffs = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -3340,7 +3340,7 @@ d_sandstone_cliffs = {
 }
 
 d_highlands = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -3424,7 +3424,7 @@ d_highlands = {
 }
 
 d_rough_plains = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 
 	is_for_colonizable = yes
 	use_for_min_max_adjustments = yes
@@ -3596,7 +3596,7 @@ d_seaweed_shoals = {
 }
 
 d_gas_vents = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -4036,7 +4036,7 @@ d_oil_fields_at_first_light = {
 }
 
 d_dust_flats = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -4222,7 +4222,7 @@ d_canyon = {
 }
 
 d_chasm = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -4455,7 +4455,7 @@ d_fells = {
 }
 
 d_sand_wastes = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -4538,7 +4538,7 @@ d_sand_wastes = {
 
 d_cloud_vale = {
 	icon = d_mistlands
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 
@@ -4598,7 +4598,7 @@ d_cloud_vale = {
 }
 
 d_snowscape = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -4669,7 +4669,7 @@ d_snowscape = {
 
 d_icy_bay = {
 	icon = d_snowscape
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -4820,7 +4820,7 @@ d_rugged_coast = {
 }
 
 d_basin = {	# Inspired by the Nile basin--rich in sediment
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -4999,7 +4999,7 @@ d_white_mountains = {
 }
 
 d_ridge = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -5069,7 +5069,7 @@ d_ridge = {
 }
 
 d_rocky_hills = {
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes
@@ -5139,7 +5139,7 @@ d_rocky_hills = {
 }
 
 d_spore_forest = {
-	category = deposit_cat_food
+	category = deposit_cat_tbm_food
 	inline_script = tbm_vanilla_deposit_cleanup
 
 	is_for_colonizable = yes

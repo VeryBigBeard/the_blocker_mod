@@ -541,7 +541,7 @@ d_recycling_processes = {
 
 d_major_impact_site = {
 	icon = d_crater
-	category = deposit_cat_minerals
+	category = deposit_cat_tbm_minerals
 
 	use_for_min_max_adjustments = yes
 
@@ -1691,7 +1691,7 @@ d_factory_slaughterhouses = {
 }
 
 d_homeworld_urban_aeroponics = {
-	category = deposit_cat_food
+	category = depost_cat_tbm_food
 
 	use_for_min_max_adjustments = yes
 
@@ -1742,7 +1742,7 @@ d_homeworld_urban_aeroponics = {
 
 d_homeworld_gestalt_urban_aeroponics = {
 	icon = d_homeworld_urban_aeroponics
-	category = deposit_cat_food
+	category = depost_cat_tbm_food
 
 	use_for_min_max_adjustments = yes
 
@@ -1792,7 +1792,7 @@ d_homeworld_gestalt_urban_aeroponics = {
 
 d_homeworld_moisture_farming = {
 	icon = d_moisture_farms
-	category = deposit_cat_food_rare
+	category = depost_cat_tbm_food_rare
 
 	use_for_min_max_adjustments = yes
 
@@ -1930,7 +1930,7 @@ d_food_banks = {
 }
 
 d_reclaimed_land = {
-	category = deposit_cat_food
+	category = depost_cat_tbm_food
 
 	use_for_min_max_adjustments = yes
 
@@ -2232,7 +2232,7 @@ d_crowded_reef = {
 
 d_shallow_bay = {
 	icon = d_ocean
-	category = deposit_cat_food
+	category = depost_cat_tbm_food
 
 	use_for_min_max_adjustments = yes
 
@@ -2418,7 +2418,7 @@ d_fish_plants = {
 }
 
 d_windy_archipelago = {
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 
 	use_for_min_max_adjustments = yes
 

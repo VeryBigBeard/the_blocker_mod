@@ -621,7 +621,7 @@ d_private_mines = {
 
 d_fusion_reactor = {
 	icon = d_reactor
-	category = deposit_cat_energy
+	category = deposit_cat_tbm_energy
 	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes

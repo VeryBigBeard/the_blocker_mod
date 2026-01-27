@@ -365,7 +365,7 @@ d_the_site = {
 # Food ration will run out in 20 years, until then it's helpful, and you can liquidate it.
 d_food_rations = {
 	icon = d_food_banks
-	category = deposit_cat_food
+	category = depost_cat_tbm_food
 	custom_tooltip = d_food_rations_tooltip
 
 	use_for_min_max_adjustments = yes
@@ -454,7 +454,7 @@ d_food_rations = {
 
 d_nutrient_rations = {
 	icon = d_food_banks
-	category = deposit_cat_food
+	category = depost_cat_tbm_food
 	#custom_tooltip = d_food_rations_tooltip
 
 	use_for_min_max_adjustments = yes
@@ -645,7 +645,7 @@ d_lost_warren = {
 }
 
 d_seed_banks = {
-	category = deposit_cat_food
+	category = depost_cat_tbm_food
 
 	use_for_min_max_adjustments = yes
 
