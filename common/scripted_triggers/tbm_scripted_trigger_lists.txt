@@ -1,0 +1,469 @@
+### The Blocker Mod - Scripted Trigegr / Feature Lists
+#	These scripted triggers act as groups of features.
+
+### Feature Lists
+is_tree_feature = {
+	OR = {
+			is_deposit_type = d_dense_jungle
+			is_deposit_type = d_rugged_woods
+			is_deposit_type = d_lush_jungle
+			is_deposit_type = d_taiga
+			is_deposit_type = d_mountain_jungle
+			is_deposit_type = d_scrubland
+			is_deposit_type = d_spore_forest
+	}
+}
+
+is_hill_feature = {
+	OR = {
+		is_deposit_type = d_alien_pets_deposit
+		is_deposit_type = d_arid_highlands
+		is_deposit_type = d_highlands
+		is_deposit_type = d_highland_lake
+		is_deposit_type = d_arid_highlands
+		is_deposit_type = d_steppe_uplands
+		is_deposit_type = d_green_hills
+		is_deposit_type = d_veiny_cliffs
+		is_deposit_type = d_sandstone_cliffs
+		is_deposit_type = d_fells
+		is_deposit_type = d_ridge
+		is_deposit_type = d_rocky_hills
+		is_deposit_type = d_cloud_vale
+		is_deposit_type = d_chasm
+	}
+}
+
+is_mountain_feature = {
+	OR = {
+		is_deposit_type = d_rich_mountain
+		is_deposit_type = d_active_volcano
+		is_deposit_type = d_tbm_active_volcano
+		is_deposit_type = d_tempestous_mountain
+		is_deposit_type = d_prosperous_mesa
+		is_deposit_type = d_fjordland
+		is_deposit_type = d_sandstone_spires
+		is_deposit_type = d_mountain_jungle
+		is_deposit_type = d_crags
+		is_deposit_type = d_white_mountains
+	}
+}
+
+is_desert_feature = {
+	OR = {
+		is_deposit_type = d_searing_desert
+		is_deposit_type = d_dunelands
+		is_deposit_type = d_sandsea
+		is_deposit_type = d_dust_flats
+		is_deposit_type = d_sand_wastes
+		is_deposit_type = d_sandstone_cliffs
+	}
+}
+
+is_farmland_feature = {
+	OR = {
+		is_deposit_type = d_lichen_fields
+		is_deposit_type = d_bountiful_plains
+		is_deposit_type = d_forgiving_tundra
+		is_deposit_type = d_nutritious_mudland
+		is_deposit_type = d_fertile_lands
+		is_deposit_type = d_black_soil
+		is_deposit_type = d_marvelous_oasis
+		is_deposit_type = d_tropical_island
+		is_deposit_type = d_floodplains
+		is_deposit_type = d_tidal_marshes
+		is_deposit_type = d_volcanic_soil
+		is_deposit_type = d_fertile_delta
+		is_deposit_type = d_lakelands
+		is_deposit_type = d_lowland_hills
+		is_deposit_type = d_rough_plains
+		is_deposit_type = d_basin
+	}
+}
+
+
+landmass_collapsable = {
+	OR = {
+		is_deposit_type = d_veiny_cliffs
+		is_deposit_type = d_prosperous_mesa
+		is_deposit_type = d_tempestous_mountain
+		is_deposit_type = d_fjordland
+		is_deposit_type = d_steppe_uplands
+		is_deposit_type = d_basaltic_outcrops
+		is_deposit_type = d_lowland_hills
+		is_deposit_type = d_highlands
+		is_deposit_type = d_coal_bed
+		is_deposit_type = d_private_mines
+		is_deposit_type = d_rugged_coast
+		is_deposit_type = d_canyon
+		is_deposit_type = d_rocky_hills
+	}
+}
+
+can_flood = {
+	OR = {
+		is_deposit_type = d_floodplains
+		is_deposit_type = d_tidal_marshes
+		is_deposit_type = d_mire
+		is_deposit_type = d_taiga
+		is_deposit_type = d_drylands
+		is_deposit_type = d_lowland_hills
+		is_deposit_type = d_arid_plains
+		is_deposit_type = d_noxious_swamp
+		is_deposit_type = d_bountiful_plains
+		is_deposit_type = d_green_hills
+		is_deposit_type = d_boggy_fens
+		is_deposit_type = d_nutritious_mudland
+		is_deposit_type = d_fertile_lands
+		is_deposit_type = d_forgiving_tundra
+		is_deposit_type = d_basin
+		is_deposit_type = d_icy_bay	
+	}
+}
+
+has_mine_shafts = {
+	OR = {
+		has_deposit = d_ore_rich_caverns
+		has_deposit = d_fungal_caves
+		has_deposit = d_mine_shafts
+		has_deposit = d_mining_enzymes
+		has_deposit = d_computerized_extraction_sites
+		has_deposit = d_coal_bed
+	}
+}
+
+can_be_exhausted = {
+	OR = {
+		is_deposit_type = d_bountiful_plains
+		is_deposit_type = d_forgiving_tundra
+		is_deposit_type = d_nutritious_mudland
+		is_deposit_type = d_fertile_lands
+		is_deposit_type = d_black_soil
+		is_deposit_type = d_marvelous_oasis
+		is_deposit_type = d_volcanic_soil
+		is_deposit_type = d_fertile_delta
+		is_deposit_type = d_lakelands
+		is_deposit_type = d_lowland_hills
+		is_deposit_type = d_rough_plains
+	}
+}
+
+blocks_ecumenopolis = {
+	OR = {
+		has_deposit_category = deposit_cat_blockers_natural
+				
+		# Cannot have any of these features
+		OR = {
+			
+			# Artificial feature check
+			is_deposit_type = d_tbm_crater
+			is_deposit_type = d_rubble
+			is_deposit_type = d_collapsed_cliffs
+			#is_deposit_type = d_great_river_obstructed  (Currently in a loop with Great River)
+			is_deposit_type = d_geothermal_power_plant
+			#is_deposit_type = d_hydro_plant	(Currently in a loop with Rushing Waterfall)
+			is_deposit_type = d_frontier_farmstead
+			is_deposit_type = d_moisture_farms
+
+			# Homeworld features
+			is_deposit_type = d_homeworld_bandit_camp
+			is_deposit_type = d_gestalt_homeworld_bandit_camp
+			is_deposit_type = d_gaia_homeworld_bandit_camp
+			is_deposit_type = d_mine_shafts
+			is_deposit_type = d_mining_enzymes
+			is_deposit_type = d_computerized_extraction_sites
+			is_deposit_type = d_tbm_strip_mine
+			is_deposit_type = d_experimental_geothermal_tap
+			is_deposit_type = d_gestlat_experimental_geothermal_tap
+			is_deposit_type = d_inaugural_spaceport
+			is_deposit_type = d_gestalt_inaugural_spaceport
+			is_deposit_type = d_homeworld_homestead_farms
+			is_deposit_type = d_factory_slaughterhouses
+			is_deposit_type = d_homeworld_moisture_farming
+			is_deposit_type = d_migratory_fishing_fleets
+			is_deposit_type = d_megaliths	# Mainly for balance for pop bonuses
+			is_deposit_type = d_crumbling_mountain
+			is_deposit_type = d_crystal_outcrops
+			is_deposit_type = d_crowded_reef
+			is_deposit_type = d_flotsam
+			is_deposit_type = d_fish_plants
+
+			# Natural Features (Custom)
+			is_deposit_type = d_fjordland
+			is_deposit_type = d_mire
+			is_deposit_type = d_sandstone_spires
+			is_deposit_type = d_natural_gardens
+			is_deposit_type = d_steppe_uplands
+			is_deposit_type = d_glacier_lake
+			is_deposit_type = d_giant_tree
+			is_deposit_type = d_great_lake
+			is_deposit_type = d_floodplains
+			is_deposit_type = d_tidal_marshes
+			is_deposit_type = d_basaltic_outcrops
+			is_deposit_type = d_volcanic_island
+			is_deposit_type = d_volcanic_ash
+			is_deposit_type = d_fish_shoals
+			is_deposit_type = d_tbm_impact_crater
+			is_deposit_type = d_frozen_wasteland
+			is_deposit_type = d_mountain_jungle
+			is_deposit_type = d_taiga
+			is_deposit_type = d_scrubland
+			is_deposit_type = d_barren
+			is_deposit_type = d_crags
+			is_deposit_type = d_dunelands
+			is_deposit_type = d_highland_lake
+			is_deposit_type = d_lakelands
+			is_deposit_type = d_lowland_hills
+			is_deposit_type = d_sandsea
+			is_deposit_type = d_sandstone_cliffs
+			is_deposit_type = d_highlands
+			is_deposit_type = d_rough_plains
+			is_deposit_type = d_seaweed_shoals
+			is_deposit_type = d_gas_vents
+			is_deposit_type = d_magma_lake
+			is_deposit_type = d_canyon
+			is_deposit_type = d_chasm
+			is_deposit_type = d_deep_tundra
+			is_deposit_type = d_fells
+			is_deposit_type = d_sand_wastes
+			is_deposit_type = d_cloud_vale
+			is_deposit_type = d_snowscape
+			is_deposit_type = d_icy_bay
+			is_deposit_type = d_rugged_coast
+			is_deposit_type = d_basin
+			is_deposit_type = d_white_mountains
+			is_deposit_type = d_ridge
+			is_deposit_type = d_rocky_hills
+			is_deposit_type = d_spore_forest
+			is_deposit_type = d_tomb_city
+			is_deposit_type = d_mistlands
+			is_deposit_type = d_tbm_active_volcano
+			is_deposit_type = d_windy_archipelago
+			is_deposit_type = d_homeworld_dormant_supervolcano
+			is_deposit_type = d_homeworld_sculpted_mountains
+			is_deposit_type = d_homeworld_utopian_hills
+			is_deposit_type = d_homeworld_idyllic_pastorale
+			is_deposit_type = d_ancient_forests
+			is_deposit_type = d_remnant_dilapidated_reactor
+			is_deposit_type = d_repurposed_power_system
+			is_deposit_type = d_collapsed_superhighway
+			is_deposit_type = d_homeworld_scrap_mountain
+			is_deposit_type = d_crumbling_tower
+			is_deposit_type = d_destroyed_spaceport
+			is_deposit_type = d_overgrown_ruins
+			is_deposit_type = d_flooded_city
+			is_deposit_type = d_crop_shares
+			is_deposit_type = d_outdated_food_equipment
+			is_deposit_type = d_colony_ship_core
+			is_deposit_type = d_exoagricultural_experimentation
+			is_deposit_type = d_homeworld_frontier_farmsteads
+			is_deposit_type = d_surface_spaceport	# Aquatic Inaugural Spaceport feature
+			is_deposit_type = d_the_abyss
+			is_deposit_type = d_pearl_fields
+			is_deposit_type = d_continental_shelf
+			is_deposit_type = d_warm_lagoon
+
+			# Natural Features (Vanilla Blockers)
+			is_deposit_type = d_ruined_district
+			is_deposit_type = d_mountain_range
+			is_deposit_type = d_active_volcano
+			is_deposit_type = d_dangerous_wildlife_blocker
+			is_deposit_type = d_dense_jungle
+			is_deposit_type = d_toxic_kelp
+			is_deposit_type = d_deep_sinkhole
+			is_deposit_type = d_quicksand_basin
+			is_deposit_type = d_noxious_swamp
+			is_deposit_type = d_massive_glacier
+			is_deposit_type = d_radioactive_wasteland
+			is_deposit_type = d_city_ruins
+			is_deposit_type = d_bomb_crater
+
+			is_deposit_type = d_scandinavian_reclamation_sector
+			is_deposit_type = d_pacific_algae_tracts
+			is_deposit_type = d_saharan_irrigation_project
+			is_deposit_type = d_mauritanian_security_zone
+			is_deposit_type = d_great_albertan_crater
+
+			is_deposit_type = d_lethal_ecosphere_blocker
+			is_deposit_type = d_crater
+			is_deposit_type = d_ruined_district
+			is_deposit_type = d_sinkhole_subterraneans
+			is_deposit_type = d_forgotten_civilization
+			is_deposit_type = d_tomb_world_ruins
+			is_deposit_type = d_machine_empire_ruins
+			is_deposit_type = d_exterminators_ruins
+			is_deposit_type = d_former_battlefield
+			is_deposit_type = d_strip_mine
+			is_deposit_type = d_unsupervised_settlement
+			is_deposit_type = d_collapsed_burrows
+			is_deposit_type = d_assimilators_ruins
+			is_deposit_type = d_fungoid_extermination
+			is_deposit_type = d_egg_cracking
+			is_deposit_type = d_ruined_building_blocker
+			is_deposit_type = d_hibernating_lithoids
+			is_deposit_type = d_lithoid_devastation
+			is_deposit_type = d_terraforming_blocker
+			is_deposit_type = d_exploited_deposit_blocker
+			is_deposit_type = d_mass_graves
+			is_deposit_type = d_seed_bombing_fungoid_blocker
+			is_deposit_type = d_seed_bombing_plantoid_blocker
+			is_deposit_type = d_sprawling_landfill_blocker
+			is_deposit_type = d_nanotech_devastation
+			is_deposit_type = d_ruined_hatchery
+			is_deposit_type = d_unplugged_assimilator_hulk
+			
+			is_deposit_type = d_archaeological_site		# This will block the Rubricator dragon planet from being ecu'd until you wake the dragon living under the junk, which only makes sense if you think about it
+
+			# Nautral Features (Vanilla)
+			is_deposit_type = d_arid_highlands
+			is_deposit_type = d_hot_springs
+			is_deposit_type = d_rushing_waterfalls
+			is_deposit_type = d_searing_desert
+			is_deposit_type = d_frozen_gas_lake
+			is_deposit_type = d_geothermal_vent
+			is_deposit_type = d_underwater_vent
+			is_deposit_type = d_tempestous_mountain
+
+			is_deposit_type = d_veiny_cliffs
+			is_deposit_type = d_mineral_fields
+			is_deposit_type = d_prosperous_mesa
+			is_deposit_type = d_ore_rich_caverns
+			is_deposit_type = d_rich_mountain
+			is_deposit_type = d_submerged_ore_veins
+
+			is_deposit_type = d_lichen_fields
+			is_deposit_type = d_bountiful_plains
+			is_deposit_type = d_rugged_woods
+			is_deposit_type = d_green_hills
+			is_deposit_type = d_forgiving_tundra
+			is_deposit_type = d_boggy_fens
+			is_deposit_type = d_nutritious_mudland
+			is_deposit_type = d_fungal_caves
+			is_deposit_type = d_lush_jungle
+			is_deposit_type = d_fertile_lands
+			is_deposit_type = d_great_river
+			is_deposit_type = d_black_soil
+			is_deposit_type = d_teeming_reef
+			is_deposit_type = d_marvelous_oasis
+			is_deposit_type = d_tropical_island
+			is_deposit_type = d_fungal_forest
+
+			is_deposit_type = d_betharian_deposit
+			is_deposit_type = d_buzzing_plains
+			is_deposit_type = d_mineral_striations
+			is_deposit_type = d_natural_farmland
+
+			# Event Features
+			is_deposit_type = d_submerged_zro_seam
+			is_deposit_type = d_private_farming_colony
+			is_deposit_type = d_subsistence_farm
+			is_deposit_type = d_homestead_farms
+			is_deposit_type = d_collapsed_tunnel
+			is_deposit_type = d_acidic_residue
+
+			is_deposit_type = d_orinthi_power_wheels
+			is_deposit_type = d_vile_orinthi
+			is_deposit_type = d_illusive_tarblac
+			is_deposit_type = d_mighty_tassargoid
+			is_deposit_type = d_sniran_spikes
+			is_deposit_type = d_insidious_sniran
+			is_deposit_type = d_goolanth_farm
+			is_deposit_type = d_malleable_goolanth
+			is_deposit_type = d_wily_uddloran
+			is_deposit_type = d_ravenous_zulcor
+			
+			is_deposit_type = d_colossal_spires
+			is_deposit_type = d_floating_gardens
+			is_deposit_type = d_snow_palace
+
+			AND = {
+				OR = {
+					is_deposit_type = d_major_impact_site
+					is_deposit_type = d_gestalt_major_impact_site
+				}
+				NOR = {
+					is_deposit_type = d_impact_memorial
+					is_deposit_type = d_gestalt_major_impact_site
+				}
+			}
+
+			# Desert-strong can use Great Desert
+			AND = {
+				is_deposit_type = d_great_desert
+				NOT = { has_planet_flag = desert_strong }
+			}
+
+			# Only Remnants can keep Crater City
+			AND = {
+				is_deposit_type = d_crater_city
+				NOT = { owner = { has_origin = origin_remnants }}
+			}
+
+			# Remnant must restore arcologies
+			AND = {
+				is_deposit_type = d_ruined_arcology
+				owner = { has_origin = origin_remnants }
+			}
+		}
+	}
+	
+	
+}
+
+### Planet Lists
+#	(basically the same as feature lists but for use in planet scope)
+has_tree_feature = {
+	any_deposit = {
+		tree_feature = yes
+	}
+}
+
+has_hill_feature = {
+	OR = {
+			has_deposit = d_alien_pets_deposit
+			has_deposit = d_arid_highlands	
+			has_deposit = d_fjordland
+			has_deposit = d_highlands
+			has_deposit = d_highland_lake
+			has_deposit = d_arid_highlands
+			has_deposit = d_fells
+			has_deposit = d_ridge
+			has_deposit = d_rocky_hills
+	}
+}
+
+has_mountain_feature = {
+	OR = {
+		has_deposit = d_rich_mountain
+		has_deposit = d_tempestous_mountain
+		has_deposit = d_prosperous_mesa
+		has_deposit = d_white_mountains
+	}
+}
+
+has_mineral_seam = {
+	OR = {
+		has_deposit = d_mountain_range
+		has_deposit = d_active_volcano
+		has_deposit = d_tbm_active_volcano
+		has_deposit = d_deep_sinkhole
+		has_deposit = d_tempestous_mountain
+		has_deposit = d_veiny_cliffs
+		has_deposit = d_mineral_fields
+		has_deposit = d_prosperous_mesa
+		has_deposit = d_ore_rich_caverns
+		has_deposit = d_rich_mountain
+		has_deposit = d_submerged_ore_veins
+		has_deposit = d_fungal_caves
+		has_deposit = d_fjordland
+		has_deposit = d_steppe_uplands
+		has_deposit = d_basaltic_outcrops
+		has_deposit = d_sandstone_cliffs
+		has_deposit = d_sandstone_spires
+		has_deposit = d_coal_bed
+		has_deposit = d_private_mines
+		has_deposit = d_fells
+		has_deposit = d_rocky_hills
+		has_deposit = d_rugged_coast
+		has_deposit = d_chasm
+	}
+}

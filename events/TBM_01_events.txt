@@ -749,14 +749,14 @@ planet_event = {
 			has_planet_flag = settlement_attacked
 			AND = {
 				any_deposit = {
-					tree_feature = yes
+					is_tree_feature = yes
 				}
 				has_planet_flag = xenofauna_attack	
 			}
 		}
 		any_deposit = {
 			OR = {
-				tree_feature = yes
+				is_tree_feature = yes
 				is_deposit_type = d_mighty_tassargoid
 			}
 		}
@@ -925,7 +925,7 @@ planet_event = {
 					if = {
 						limit = {
 							this = {
-								mountain_feature = yes
+								is_mountain_feature = yes
 							}
 							prevprev = {
 								count_owned_pop_amount = {
@@ -1601,7 +1601,7 @@ planet_event = {
 				NOR = { 
 					is_rare_feature = yes
 					is_artificial_feature = yes
-					mountain_feature = yes
+					is_mountain_feature = yes
 				}
 			}
 			remove_deposit = yes

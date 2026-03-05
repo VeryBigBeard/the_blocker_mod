@@ -9,7 +9,7 @@ forestation = {
 		trigger = count_deposit
 		trigger_scope = planet
 		parameters = {
-			limit = { tree_feature = yes }
+			limit = { is_tree_feature = yes }
 		}
 		mode = set
 	}

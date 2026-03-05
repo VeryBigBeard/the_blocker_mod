@@ -330,7 +330,7 @@ decision_selectively_defoliate = {
 		hidden_effect = {
 			random_deposit = {
 				limit = {
-					tree_feature = yes
+					is_tree_feature = yes
 				}
 				remove_deposit = yes
 			}
