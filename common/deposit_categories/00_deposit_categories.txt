@@ -66,6 +66,10 @@ deposit_cat_artificial = {
 	blocker = yes
 }
 
+deposit_cat_urban = {
+	blocker = yes
+}
+
 # Used for some Gaia-world features that can't be cleared.
 deposit_cat_gaia = {	
 }

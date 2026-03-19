@@ -84,7 +84,7 @@ colonist = {
 
 	weight = {
 		weight = @colonist_job_weight # Higher prio
-		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		#mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 		modifier = {
 			factor = 0.1
 			can_take_servant_job = yes

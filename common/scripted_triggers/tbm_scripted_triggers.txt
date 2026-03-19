@@ -58,6 +58,7 @@ tbm_allow_ecus = {
 	}
 }
 
+
 # More robust list-version used for events in case PDX tinker with job_tags.
 has_colonist_job = {
 	OR = {

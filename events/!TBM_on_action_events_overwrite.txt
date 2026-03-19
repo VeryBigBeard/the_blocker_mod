@@ -1,0 +1,257 @@
+### The Blocker Mod - Overwritten Events
+
+### INDEX ###
+#	action.68 - Clears deposits on some terraforming actions; modified for ecus
+###
+
+namespace = action
+
+### action.68 overwrite
+#	
+planet_event = {
+	id = action.68
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		
+		### Machine Worlds
+		if = {
+			limit = {
+				is_planet_class = pc_machine
+			}
+			#clear_deposits = yes
+			
+			# Remove deposits
+			every_deposit = {
+				limit = {
+					NOR = { # rare non-event deposits should not be cleared
+						is_deposit_type = d_dust_caverns
+						is_deposit_type = d_dust_desert
+						is_deposit_type = d_bubbling_swamp
+						is_deposit_type = d_fuming_bog
+						is_deposit_type = d_crystalline_caverns
+						is_deposit_type = d_crystal_forest
+						is_deposit_type = d_crystal_reef
+						is_deposit_type = d_betharian_deposit
+						is_deposit_type = d_alien_pets_deposit
+						is_deposit_type = d_nanites_medium			# Tranformation situation
+						is_deposit_type = d_nanites_small			# Tranformation situation
+						is_deposit_type = d_nanites_tiny			# Tranformation situation
+						is_deposit_type = d_living_metal_medium		# Tranformation situation
+						is_deposit_type = d_living_metal_medium		# Tranformation situation
+						is_deposit_type = d_living_metal_tiny		# Tranformation situation
+						is_deposit_type = d_virtual_power_medium	# Tranformation situation
+						is_deposit_type = d_virtual_power_small		# Tranformation situation
+						is_deposit_type = d_virtual_power_tiny		# Tranformation situation
+						has_deposit_flag = keep_deposit_on_terraform
+					}
+				}
+				remove_deposit = yes
+			}
+			
+			# Remove modifiers
+			remove_modifier = "natural_beauty"
+			remove_modifier = "atmospheric_aphrodisiac"
+			remove_modifier = "atmospheric_hallucinogen"
+			remove_modifier = "lush_planet"
+			remove_modifier = "paradise_made"
+			remove_modifier = "death_world"
+			
+			# Remove pops from Machine worlds
+			if = {
+				limit = {
+					any_owned_pop_group = {
+						NOR = {
+							has_trait = trait_cybernetic
+							has_trait = trait_machine_unit
+							has_trait = trait_mechanical
+						}
+					}
+				}
+				add_deposit = d_organic_slurry
+				every_owned_pop_group = {
+					limit = {
+						NOR = {
+							has_trait = trait_cybernetic
+							has_trait = trait_machine_unit
+							has_trait = trait_mechanical
+						}
+					}
+					if = {
+						limit = {
+							planet.owner = { has_valid_civic = civic_machine_terminator }
+						}
+						planet.owner = {
+							add_resource = { unity = 100 }
+						}
+					}
+					kill_single_pop = yes
+				}
+			}
+		}
+		
+		### Nanotech Worlds
+		if = {
+			limit = {
+				is_planet_class = pc_nanotech
+			}
+			
+			# Remove deposits
+			every_deposit = {
+				limit = {
+					NOT = {
+						is_deposit_type = d_nanotech_devastation
+					}
+				}
+				remove_deposit = yes
+			}
+
+			# Remove modifiers
+			remove_modifier = "natural_beauty"
+			remove_modifier = "atmospheric_aphrodisiac"
+			remove_modifier = "atmospheric_hallucinogen"
+			remove_modifier = "lush_planet"
+			remove_modifier = "paradise_made"
+		}
+	
+		### Hive Worlds
+		if = {
+			limit = {
+				is_planet_class = pc_hive
+			}
+			#clear_deposits = yes
+			
+			# Remove deposits
+			every_deposit = {
+				limit = {
+					NOR = { # rare non-event deposits should not be cleared
+						is_deposit_type = d_dust_caverns
+						is_deposit_type = d_dust_desert
+						is_deposit_type = d_bubbling_swamp
+						is_deposit_type = d_fuming_bog
+						is_deposit_type = d_crystalline_caverns
+						is_deposit_type = d_crystal_forest
+						is_deposit_type = d_crystal_reef
+						is_deposit_type = d_betharian_deposit
+						is_deposit_type = d_alien_pets_deposit
+						is_deposit_type = d_tree_of_life_home
+						is_deposit_type = d_tree_of_life_colony
+						is_deposit_type = d_lithoid_crater
+						is_deposit_type = d_progenitor
+					}
+				}
+				remove_deposit = yes
+			}
+			
+			# Remove modifiers
+			remove_modifier = "natural_beauty"
+			remove_modifier = "atmospheric_aphrodisiac"
+			remove_modifier = "atmospheric_hallucinogen"
+			remove_modifier = "lush_planet"
+		}
+
+		### Volcanic Worlds
+		if = {
+			limit = {
+				is_planet_class = pc_volcanic
+				has_modifier = "obsidian_lakes"
+			}
+			remove_modifier = "obsidian_lakes_volcanic"
+			add_modifier = { modifier = obsidian_lakes_volcanic }
+		}
+
+		### All
+		if = {
+			limit = {
+				is_same_planet_class = no #If we didn't change planet class we don't need to clear modifiers
+			}
+			
+			# Remove Modifiers (all)
+			remove_modifier = "bleak_planet"
+			remove_modifier = "dangerous_wildlife"
+			remove_modifier = "hazardous_weather"
+			remove_modifier = "wild_storms"
+			remove_modifier = "irradiated_planet"
+			remove_modifier = "second_home"
+			remove_modifier = "hyper_ecosystem"
+			remove_modifier = "docile_fauna"
+			remove_modifier = "obsidian_lakes"
+			remove_modifier = "previously_terraformed_planet"
+			remove_modifier = "wooden_planet"
+			remove_modifier = "crimson_crawlers"
+			remove_deposit = d_radiotrophic_preserve
+			remove_modifier = "molten_mineral_rivers"
+			remove_modifier = "ship_junkyard"
+			remove_modifier = "hostile_planet"
+			remove_modifier = "terraforming_candidate"
+			remove_modifier = "frozen_terraforming_candidate"
+			remove_modifier = "toxic_terraforming_candidate"
+			
+			# Set flags
+			set_planet_flag = colony_event #Make it so that colony events don't fire on terraformed worlds
+		}
+
+		### Gaia Worlds
+		if = {
+			limit = {
+				NOT = {
+					is_planet_class = pc_gaia
+				}
+				OR = {
+					is_active_resolution = "resolution_ecology_environmental_control_board"
+					is_active_resolution = "resolution_ecology_paradise_initiative"
+				}
+			}
+			from.owner = {
+				set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
+			}
+		}
+		
+		### Stations
+		if = {
+			limit = {
+				exists = mining_station
+			}
+			mining_station = {
+				delete_fleet = this
+			}
+		}
+		if = {
+			limit = {
+				exists = research_station
+			}
+			research_station = {
+				delete_fleet = this
+			}
+		}
+
+		### Holy Worlds
+		if = {
+			limit = {
+				has_modifier = holy_planet
+				any_country = {
+					has_ai_personality_behaviour = holy_planets # not awakened
+					NOT = { is_at_war_with = from }
+				}
+				is_planet_class = pc_nuked
+			}
+			remove_modifier = holy_planet
+			random_country = {
+				limit = {
+					has_ai_personality_behaviour = holy_planets
+					NOT = { is_at_war_with = from }
+				}
+				save_event_target_as = outraged_FE
+			}
+			from = {
+				save_event_target_as = FE_outrager
+				country_event = { id = toxoids.40 days = 5 }
+			}
+		}
+		if = {
+			limit = { is_variable_set = relentless_industrialists_var }
+			clear_variable = relentless_industrialists_var
+		}
+	}
+}

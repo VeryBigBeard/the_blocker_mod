@@ -49,4 +49,7 @@ planet_poachers = {
 	use_for_ai_budget = yes
 }
 
+planet_destitutes = {
+}
+
 

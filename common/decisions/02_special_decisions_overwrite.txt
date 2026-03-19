@@ -67,9 +67,13 @@ decision_arcology_project = {
 		# Make city-planet
 		custom_tooltip = decision_arcology_project_effects
 		hidden_effect = {
+			
+			# Vanilla - not needed by TBM but won't cause any problems. Note; TBM will remove all deposits.
 			save_deposits = yes
 			clear_deposits = yes
 			restore_saved_deposits = yes
+
+			# Vanilla - Planet Class change & district conversion
 			change_pc = pc_city
 			relic_world_conversion_effect = {
 				DISTRICT = district_arcology_housing
@@ -79,6 +83,8 @@ decision_arcology_project = {
 				entity = "city_planet_entity"
 				graphical_culture = owner
 			}
+
+			# Vanilla - Clean-up, Flavor text, and GalCom events
 			planet_event = { id = action.68 }
 			owner = {
 				country_event = { id = distar.201 } # port for living planet distar.197, triggers in event
@@ -95,6 +101,9 @@ decision_arcology_project = {
 					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
 				}
 			}
+
+			### TBM Stuff - Must appear here for TBM to work
+			tbm_ecumenopolis_complete = yes		# you can patch this scripted effect call into any other modded version of this decision, but it must be here.
 		}
 	}
 
@@ -192,6 +201,9 @@ decision_arcology_project_relic = {
 					set_timed_country_flag = { flag = resolution_breached_terraformed days = 3600 }
 				}
 			}
+
+			### TBM Stuff - Must appear here for TBM to work
+			tbm_ecumenopolis_complete = yes		# you can patch this scripted effect call into any other modded version of this decision, but it must be here.
 		}
 	}
 

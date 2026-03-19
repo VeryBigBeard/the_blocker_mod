@@ -346,3 +346,11 @@ add_resource_on_clear = {
 		}
 	}
 }
+
+tbm_ecumenopolis_complete = {
+
+	# Needs to be called in event so there's a pulse. This avoids TBM feature rolling being wiped by the game's built-in terraforming blocker clearance.
+	planet_event = {
+		id = tbm_handler.220
+	}
+}

@@ -80,6 +80,36 @@ is_farmland_feature = {
 	}
 }
 
+is_urban_feature = {
+	OR = {
+		is_deposit_type = d_urban_aeroponics
+		is_deposit_type = d_urban_power_plant
+		is_deposit_type = d_homeworld_urban_aeroponics
+		is_deposit_type = d_homeworld_gestalt_urban_aeroponics
+		is_deposit_type = d_black_market
+		is_deposit_type = d_homeworld_black_market
+		is_deposit_type = d_tbm_slums
+		is_deposit_type = d_tbm_industrial_wasteland
+		is_deposit_type = d_decrepit_dwellings
+		is_deposit_type = d_failing_infrastructure
+		is_deposit_type = d_failing_infrastructure_earth
+		is_deposit_type = d_ruined_district
+		is_deposit_type = d_city_ruins
+		is_deposit_type = d_metal_boneyard
+		is_deposit_type = d_relic_metal_boneyard
+		is_deposit_type = d_geothermal_power_plant
+	}
+}
+
+
+is_reactor_feature = {
+	OR = {
+		is_deposit_type = d_fusion_reactor
+		is_deposit_type = d_cold_fusion_pits
+		is_deposit_type = d_antimatter_core
+		is_deposit_type = d_zero_point_modules
+	}
+}
 
 landmass_collapsable = {
 	OR = {
@@ -374,6 +404,27 @@ blocks_ecumenopolis = {
 			is_deposit_type = d_colossal_spires
 			is_deposit_type = d_floating_gardens
 			is_deposit_type = d_snow_palace
+
+			# Post-Apoc Features
+			is_deposit_type = d_fallout_zone
+			is_deposit_type = d_unclaimed_cave_complex
+			is_deposit_type = d_food_rations
+			is_deposit_type = d_nutrient_rations
+			is_deposit_type = d_unexploded_munitions
+			is_deposit_type = d_hulks
+			is_deposit_type = d_homeworld_scrap_mountain
+			is_deposit_type = d_survival_camps
+			is_deposit_type = d_lost_warren
+			is_deposit_type = d_homeworld_scrap_mountain
+			is_deposit_type = d_the_site
+			is_deposit_type = d_tomb_mine_shafts
+			is_deposit_type = d_underground_warren
+			is_deposit_type = d_broken_transformer
+			is_deposit_type = d_diseased_node
+			is_deposit_type = d_protein_restabilizer
+
+			# Special
+			is_deposit_type = d_great_desert	# Will blocke ecus if option is taken to preserve desert
 
 			AND = {
 				OR = {

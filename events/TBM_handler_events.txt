@@ -1687,6 +1687,249 @@ planet_event = {
 	}
 }
 
+### 220. Ecumenopolis Handler
+planet_event = {
+	id = tbm_handler.220
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		
+		# Wipe non-ecu features - necessary both as a fail-safe and also because a generator script might add something during the project construction
+		every_deposit = {
+			limit = {
+				blocks_ecumenopolis = yes
+			}
+			remove_deposit = yes
+		}
+
+		# Feature Conversion
+		if = {
+			limit = {
+				any_deposit = {
+					is_deposit_type = d_tbm_slums
+				}
+			}
+			set_planet_flag = ecu_slum
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_black_market }
+			}
+			set_planet_flag = ecu_black_market
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_gas_vents }
+			}
+			set_planet_flag = ecu_gas
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_subterranean_gas_lake }
+			}
+			set_planet_flag = ecu_gas
+		}
+		if = {
+			limit = {
+				any_deposit = {
+					OR = {
+						is_deposit_type = d_urban_aeroponics
+						is_deposit_type = d_homeworld_urban_aeroponics
+						is_deposit_type = d_homeworld_gestalt_urban_aeroponics
+					}
+				}
+			}
+			set_planet_flag = ecu_aeroponics
+		}
+		if = {
+			limit = {
+				any_deposit = { is_reactor_feature = yes }
+			}
+			set_planet_flag = ecu_reactor
+			change_variable = {
+				which = ecu_reactors
+			}
+		}
+		if = {
+			limit = {
+				any_deposit = {	is_deposit_type = d_urban_power_planet }
+			}
+			set_planet_flag = ecu_reactor
+			change_variable = {
+				which = ecu_reactors
+			}
+		}
+		if = {
+			limit = {
+				any_deposit = {
+					OR = {
+						is_deposit_type = d_tbm_industrial_wasteland
+						is_deposit_type = d_failing_infrastructure
+						is_deposit_type = d_failing_infrastructure_earth
+					}	
+				}
+			}
+			set_planet_flag = ecu_industrial
+			change_variable = {
+				which = ecu_waste
+			}
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_cesspool }
+			}
+			set_planet_flag = ecu_waste
+			change_variable = {
+				which = ecu_waste
+			}
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_acidic_residue }
+			}
+			set_planet_flag = ecu_waste
+			change_variable = {
+				which = ecu_waste
+			}
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_mesopotamian_urban_corridor }
+			}
+			set_planet_flag = ecu_mesopotamian
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_boswash_metropolitan_axis }
+			}
+			set_planet_flag = ecu_boswash
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_pearl_river_agglomerate }
+			}
+			set_planet_flag = ecu_pearl_river
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_mauritanian_security_zone }
+			}
+			set_planet_flag = ecu_mauritanian
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_scrap_bazaar }
+			}
+			set_planet_flag = ecu_scrap_bazaar
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_allocation_clinic }
+			}
+			set_planet_flag = ecu_allocation
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_memorial_apocalypse }
+			}
+			set_planet_flag = ecu_memorial
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_abyssal_manufactorium }
+			}
+			set_planet_flag = ecu_manufactorium
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_hegemons_of_industry }
+			}
+			set_planet_flag = ecu_hegemons
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_purgatory_apocalypse }
+			}
+			set_planet_flag = ecu_purgatory
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_last_bastion }
+			}
+			set_planet_flag = ecu_bastion
+		}
+		if = {
+			limit = {
+				OR = {
+					is_deposit_type = d_tbm_crater
+					is_deposit_type = d_crater
+					is_deposit_type = d_rubble
+					is_deposit_type = d_ruined_arcology
+					is_deposit_type = d_ruined_district
+					is_deposit_type = d_ruined_building_blocker
+					is_deposit_type = d_tbm_impact_crater
+				}
+			}
+			set_planet_flag = ecu_debris
+		}
+		if = {
+			limit = {
+				OR = {
+					is_deposit_type = d_metal_boneyard
+					is_deposit_type = d_city_ruins
+					is_deposit_type = d_tomb_city
+				}
+			}
+			set_planet_flag = ecu_ruin
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_particle_storm }
+			}
+			set_planet_flag = ecu_particle
+		}
+		if = {
+			limit = {
+				any_deposit = { is_deposit_type = d_magma_lake }
+			}
+			set_planet_flag = ecu_magma
+		}
+		if = {
+			limit = {
+				any_deposit = {
+					OR = {
+						is_deposit_type = d_dustbowl
+						is_deposit_type = d_homeworld_dustbowl
+						is_deposit_type = d_dust_flats
+					}
+				}
+			}
+			set_planet_flag = ecu_dust
+		}
+	}
+}
+
+# Ecu Repopulate and Cleanup
+planet_event = {
+	id = tbm_handler.221
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Repopulate Ecu Features and clear flags
+
+
+		# Randomize Ecu Features
+
+
+		# Clean-up
+		clean_up_clearance_modifiers = yes
+	}
+}
+
 
 ### 301. Wenkwort Handler
 #	on_colonization_started and on_blocker_cleared (which is in planet scope)
