@@ -720,6 +720,7 @@ d_spire_district = {
 }
 
 d_slime_ocean = {
+	icon = d_survival_camps
 	category = deposit_cat_urban
 	is_for_colonizable = yes
 
@@ -1542,6 +1543,7 @@ d_atmospheric_filters = {
 }
 
 d_sky_promenade = {
+	icon = d_cantina_quarter
 	category = deposit_cat_urban
 	is_for_colonizable = yes
 
@@ -2058,6 +2060,7 @@ d_astro_terrace = {
 }
 
 d_cloud_district = {
+	icon = d_megaliths
 	category = deposit_cat_urban
 	is_for_colonizable = yes
 
@@ -2489,6 +2492,7 @@ d_magma_vats = {
 }
 
 d_dusttown = {
+	icon = d_collapsed_tunnel
 	category = deposit_cat_urban
 	is_for_colonizable = yes
 
@@ -2646,6 +2650,7 @@ d_mesopotamian_urban_archway = {
 }
 
 d_boswash_trade_zone = {
+	icon = d_financial_sector
 	category = deposit_cat_urban
 	is_for_colonizable = yes
 
@@ -2688,6 +2693,7 @@ d_boswash_trade_zone = {
 }
 
 d_pearl_river_lattice = {
+	icon = d_data_farms
 	category = deposit_cat_urban
 	is_for_colonizable = yes
 
@@ -2808,5 +2814,42 @@ d_fusion_bazaar = {
 
 	ai_weight = {
 		weight = @keep
+	}
+}
+
+d_landing_pad = {
+	category = deposit_cat_urban
+	is_for_colonizable = yes
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1260
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trade = 700
+			energy = 800
+			alloys = 400
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_traders_trade_produces_add = 2
+	}
+
+	country_modifier = {
+		starbase_shipyard_build_speed_mult = 0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
 	}
 }
