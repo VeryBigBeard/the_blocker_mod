@@ -719,3 +719,54 @@ destitute = {
 		weight = @criminal_job_weight
 	}
 }
+
+scrubber = {
+	category = criminal
+	is_capped_by_modifier = no
+	count_as_available_for_ai = no
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		hidden_trigger = { exists = owner }
+		OR = {
+			NOT = {
+				owner = {
+					has_active_tradition = tr_virtuality_finish
+				}
+			}
+			has_virtual_species_trait = no
+		}
+		planet = { 
+			NOT = { is_planet_class = pc_cosmogenesis_world }  
+			NOR = {
+				has_modifier = resort_colony
+				has_modifier = penal_colony
+			}
+		}
+		owner = { is_fallen_empire = no }
+	}
+
+	resources = {
+		category = planet_jobs
+		upkeep = {
+			trade = 1
+		}
+	}
+
+	triggered_planet_pop_group_modifier_for_all = {
+		potential = {
+			always = yes		
+		}
+		pop_government_ethic_attraction = -0.1	# In this block so it only affects the Civilian pop groups.
+	}
+
+	weight = {
+		weight = @criminal_job_weight
+	}
+}

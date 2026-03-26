@@ -101,7 +101,6 @@ is_urban_feature = {
 	}
 }
 
-
 is_reactor_feature = {
 	OR = {
 		is_deposit_type = d_fusion_reactor
@@ -110,6 +109,16 @@ is_reactor_feature = {
 		is_deposit_type = d_zero_point_modules
 	}
 }
+
+is_habitat_dock = {
+	OR = {
+		is_deposit_type = d_docks
+		is_deposit_type = d_military_docks
+		is_deposit_type = d_capital_ship_pier
+		is_deposit_type = d_tourist_promenade
+	}
+}
+
 
 landmass_collapsable = {
 	OR = {
@@ -464,7 +473,7 @@ blocks_ecumenopolis = {
 #	(basically the same as feature lists but for use in planet scope)
 has_tree_feature = {
 	any_deposit = {
-		tree_feature = yes
+		is_tree_feature = yes
 	}
 }
 
@@ -516,5 +525,14 @@ has_mineral_seam = {
 		has_deposit = d_rocky_hills
 		has_deposit = d_rugged_coast
 		has_deposit = d_chasm
+	}
+}
+
+has_habitat_docks = {
+	OR = {
+		has_deposit = d_docks
+		has_deposit = d_military_docks
+		has_deposit = d_tourist_promenade
+		has_deposit = d_capital_ship_pier
 	}
 }

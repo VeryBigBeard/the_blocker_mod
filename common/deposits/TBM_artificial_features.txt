@@ -2853,3 +2853,791 @@ d_landing_pad = {
 		weight = @base
 	}
 }
+
+d_docks = {
+	category = deposit_cat_habitat
+	
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 600
+			alloys = 100
+		}
+	}
+
+	planet_modifier = {
+		job_trader_add = 400
+		pop_category_workers_energy_upkeep_add = 1
+		planet_amenities_mult = -0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_gestalt = yes }
+		}
+		job_trader_add = -400
+		pop_category_workers_energy_upkeep_add = -1
+		job_logistics_drone_add = 400
+		pop_cat_simple_drone_bonus_workforce_mult = -0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+	}
+}
+
+d_cargo_warehouses = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 350
+			alloys = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_jobs_upkeep_mult = -0.1
+		trade_deficit = 0.2
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+	}
+}
+
+d_medina = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		pop_housing_usage_mult = -0.2
+		pop_category_workers_trade_produces_add = 1
+		pop_category_civilians_trade_produces_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_gestalt = yes }
+		}
+		pop_category_civilians_trade_produces_add = -1
+		planet_maintenance_drones_unity_produces_add = 1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+
+		# Avoid clearing in situations where it would cause housing deficit
+		modifier = {
+			from = {
+				free_housing < 800
+			}
+			set = @keep
+		}
+	}
+}
+
+d_cantina = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 120
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trade = 400
+			alloys = 200
+		}
+		upkeep = {
+			trade = 0.02
+			mult = value:per_pop_production
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_mult = 0.1
+		planet_crime_mult = 0.05
+		job_destitute_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_gestalt = yes }
+		}
+		job_destitute_add = -200
+		job_criminal_add = 50
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			from = {
+				planet_crime > 50
+			}
+			set = @clear
+		}
+	}
+}
+
+d_capital_ship_pier = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 600
+			alloys = 800
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		ship_orbit_upkeep_mult = -0.20	# Deliberately less than a starbase so as not to incentivize parking fleets at habitats.
+		planet_jobs_trade_produces_mult = 0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+	}
+}
+
+d_tourist_promenade = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			alloys = 600
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_trade_produces_mult = 0.1
+		pop_amenities_usage_mult = 0.1
+		planet_crime_mult = 0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+
+		modifier = {
+			from = {
+				planet_crime > 40
+			}
+			set = @clear
+		}
+	}
+}
+
+d_trash_compactor = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 480
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 200
+			alloys = 500
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_upkeep_mult = -0.1
+		logistic_growth_mult = -0.1
+	}
+
+	potential = {
+		always = no
+	}
+}
+
+d_air_filters = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	can_be_cleared = {
+		always = no
+	}
+
+	time = 90
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			minerals = 100
+			energy = 100
+		}
+		produces = {
+			unity = 0.1
+			mult = value:per_pop_production
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = mandatory_filter_replacement
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_planet_flag = criminal_filter_maintenance
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_administrative_section = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 270
+
+	can_be_cleared = {
+		hidden_trigger = {
+			has_planet_flag = corporate_leased_hab
+		}
+		custom_tooltip = tbm_habitat_administrative_control_tooltip
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trade = 100
+			mult = value:per_pop_production
+		}
+		upkeep = {
+			trigger = {
+				NOT = { has_planet_flag = corporate_leased_hab }
+			}
+			minerals = 0.1
+			energy = 0.05
+			mult = value:per_pop_production
+		}
+		upkeep = {
+			trigger = {
+				has_planet_flag = corporate_leased_hab
+			}
+			trade = 0.1
+			mult = value:per_pop_production
+		}
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_keep
+	}
+}
+
+d_marine_barracks = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 270
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trade = 200
+			energy = 200
+			alloys = 200
+			unity = 200
+		}
+	}
+
+	planet_modifier = {
+		planet_defense_armies_add = 2
+		planet_bureaucrats_unity_produces_mult = 0.05
+		planet_pops_consumer_goods_upkeep_mult = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_hive_empire = yes
+				is_lithoid = no
+			}
+		}
+		planet_pops_consumer_goods_upkeep_mult = -0.25
+		planet_pops_food_upkeep_mult = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_hive_empire = yes
+				is_lithoid = yes
+			}
+		}
+		planet_pops_consumer_goods_upkeep_mult = -0.25
+		planet_pops_minerals_upkeep_mult = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				is_machine_empire = yes
+				is_individual_machine = no
+			}
+		}
+		planet_pops_consumer_goods_upkeep_mult = -0.25
+		planet_pops_energy_upkeep_mult = 0.25
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+	}
+}
+
+d_landing_control = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			alloys = 600
+		}
+	}
+
+	planet_modifier = {
+		planet_amenities_add = -1
+		trade_deficit = -0.1
+	}
+
+	country_modifier = {
+		ships_logistics_mult = -0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+	}
+}
+
+d_military_docks = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 570
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 500
+			alloys = 600
+			unity = 400
+		}
+	}
+
+	planet_modifier = {
+		ship_orbital_bombardment_army_damage_mult = -0.15
+		planet_bureaucrats_unity_produces_mult = 0.05
+		planet_jobs_trade_produces_mult = -0.1
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @keep
+	}
+}
+
+d_airlock = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	can_be_cleared = {
+		OR = {
+			has_deposit = d_docks
+			has_deposit = d_military_docks
+			has_deposit = d_tourist_promenade
+			has_deposit = d_capital_ship_pier
+		}
+	}
+
+	time = 180
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			alloys = 100
+		}
+		upkeep = {
+			alloys = 10
+		}
+	}
+
+	planet_modifier = {
+		job_scrubber_add = 100
+		planet_pops_unity_produces_mult = -0.05
+	}
+
+	potential = {
+		always = no
+	}
+	
+	ai_weight = {
+		weight = @clear
+	}
+}
+
+d_hazardous_cargo_storage = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1080
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 800
+			minerals = 500
+			alloys = 600
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_generator_max_add = 3
+		logistic_growth_mult = -0.05
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			resource_stockpile_compare = {
+				resource = energy
+				value < 1000
+			}
+			set = @keep
+		}
+	}
+}
+
+d_solar_mirrors = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1080
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trade = 300
+			energy = 400
+			alloys = 500
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_generator_max_add = 3
+		planet_buildings_energy_upkeep_mult = 1.0
+	}
+
+	potential = {
+		always = no
+	}
+	
+	ai_weight = {
+		weight = @base
+
+		modifier = {
+			resource_stockpile_compare = {
+				resource = energy
+				value < 1000
+			}
+			set = @keep
+		}
+	}
+}
+
+d_waste_purification = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1080
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 400
+			minerals = 500
+			alloys = 300
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_mining_max_add = 3
+		planet_amenities_mult = -0.25
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+		modifier = {
+			resource_stockpile_compare = {
+				resource = minerals
+				value < 1000
+			}
+			set = @keep
+		}
+	}
+}
+
+d_water_cyclers = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1080
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 600
+			alloys = 400
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_mining_max_add = 3
+		planet_jobs_upkeep_mult = 0.2
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+		modifier = {
+			resource_stockpile_compare = {
+				resource = minerals
+				value < 1000
+			}
+			set = @keep
+		}
+	}
+}
+
+d_agri_dome = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1080
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 600
+			alloys = 800
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_farming_max_add = 3
+		planet_housing_mult = -0.25
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+		modifier = {
+			resource_stockpile_compare = {
+				resource = food
+				value < 1000
+			}
+			set = @keep
+		}
+	}
+}
+
+d_meat_tanks = {
+	category = deposit_cat_habitat
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1080
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+		district_farming_max_add = 3
+		planet_civilians_unity_upkeep_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_gestalt = yes
+				is_machine_empire = no
+			}
+		}
+		planet_civilians_unity_upkeep_add = -2
+		planet_civilians_food_upkeep_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { 
+				is_gestalt = yes
+				is_machine_empire = yes
+			}
+		}
+		planet_civilians_unity_upkeep_add = -2
+		planet_civilians_energy_upkeep_add = 2
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @base
+		modifier = {
+			resource_stockpile_compare = {
+				resource = food
+				value < 1000
+			}
+			set = @keep
+		}
+	}
+}
