@@ -354,3 +354,647 @@ tbm_ecumenopolis_complete = {
 		id = tbm_handler.220
 	}
 }
+
+# Generates random features on ecu creation. Some features are added directly by tbm_handler.220
+tbm_ecumenopolis_feature_generation = {
+	# Planet-scope
+	while = {
+		limit = {
+			num_free_districts = {
+				type = district_arcology_housing
+				value > 6		# Starts with 1 + 5 for minimum flexibility; most ecu features don't block districts, but just in case we get a weird roll
+			}
+		}
+		count = trigger:planet_size		# needs to be here to prevent infinite-looping and get a good spread of features
+
+		random_list = {
+			10 = {
+				add_deposit = d_atmospheric_filters
+				modifier = {
+					factor = 2
+					has_planet_flag = ecu_zones_industrial
+				}
+			}
+
+			10 = {
+				add_deposit = d_sky_promenade
+				modifier = {
+					factor = 1.25
+					has_planet_flag = ecu_zones_technical
+				}
+				modifier = {
+					factor = 1.75
+					count_owned_pop_amount = {
+						limit = {
+							is_elite_category = yes
+						}
+						count > 1000
+					}
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_sky_promenade
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_platform_malls
+				modifier = {
+					factor = 1.5
+					pop_amount > 6000
+				}
+				modifier = {
+					factor = 1.5
+					has_planet_flag = ecu_values_trade
+				}
+			}
+			
+			10 = {
+				add_deposit = d_mass_furnaces
+				modifier = {
+					factor = 1,5
+					has_planet_flag = ecu_zones_foundry
+				}
+			}
+
+			10 = {
+				add_deposit = d_data_farms
+				modifier = {
+					factor = 1.25
+					pop_amount > 6000
+				}
+			}
+
+			10 = {
+				add_deposit = d_culinary_spires
+				modifier = {
+					factor = 1.5
+					owner = { is_xenophile = yes }
+				}
+			}
+
+			10 = {
+				add_deposit = d_substrate
+				modifier = {
+					factor = 1.5
+					OR = {
+						has_planet_flag = ecu_zones_industrial
+						has_planet_flag = ecu_districts_mining
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_slag_pools
+				modifier = {
+					factor = 1.5
+					has_planet_flag = ecu_zones_industrial
+				}
+			}
+
+			10 = {
+				add_deposit = d_substation
+				modifier = {
+					factor = 1.5
+					has_planet_flag = ecu_districts_energy
+				}
+				modifier = {
+					factor = 1.25
+					pop_amount > 6000
+				}
+			}
+
+			10 = {
+				add_deposit = d_megagenerator
+				modifier = {
+					factor = 1.5
+					has_planet_flag = ecu_districts_energy
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_megagenerator
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_suborbital_liftyard
+				modifier = {
+					factor = 1.25
+					has_planet_flag = ecu_zones_industrial
+				}
+				modifier = {
+					factor = 2
+					root.solar_system = {
+						count_system_planet = {
+							limit = { exists = owner }
+							count >= 2
+						}
+					}
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_suborbital_liftyard
+						count >= 2
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_astro_terrace
+				modifier = {
+					factor = 1.5
+					count_owned_pop_amount = {
+						limit = {
+							is_elite_category = yes
+						}
+						count > 1000
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_cloud_district
+				modifier = {
+					factor = 2
+					pop_amount > 8000
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_cloud_district
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_office_city
+				modifier = {
+					factor = 1.25
+					has_planet_flag = ecu_jobs_bureaucracy
+				}
+			}
+
+			10 = {
+				add_deposit = d_black_light_district
+				modifier = {
+					factor = 2
+					planet_crime > 15
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_black_light_district
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_landing_pad
+				modifier = {
+					factor = 2
+					root.solar_system.starbase = {
+						OR = {
+							has_starbase_size = starbase_starhold
+							has_starbase_size = starbase_starfortress
+							has_starbase_size = starbase_citadel
+						}
+					}
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_landing_pad
+						count >= 2
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_tenement_arcologies
+				modifier = {
+					factor = 5
+					has_planet_flag = ecu_amenities_crunch
+				}
+				modifier = {
+					factor = 5
+					has_planet_flag = ecu_housing_crunch
+				}
+				modifier = {
+					factor = 2
+					owner = { is_authoritarian = yes }
+				}
+			}
+
+			10 = {
+				add_deposit = d_industrial_expanse
+				modifier = {
+					factor = 2
+					has_planet_flag = ecu_zones_industrial
+				}
+				modifier = {
+					factor = 5
+					has_planet_flag = ecu_zones_foundry
+				}
+				modifier = {
+					factor = 5
+					has_planet_flag = ecu_zones_factory
+				}
+			}
+
+			10 = {
+				add_deposit = d_gas_wells
+				modifier = {
+					factor = 2
+					planet_resource_compare = {
+						resource = exotic_gases
+						value < 0
+					}
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_gas_wells
+						count >= 2
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_greenhouse_arcologies
+				modifier = {
+					factor = 2
+					pop_amount > 6000
+				}
+			}
+
+			10 = {
+				add_deposit = d_reactor_chasm
+				modifier = {
+					factor = 1.25
+					has_planet_flag = ecu_districts_energy
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_reactor_chasm
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_waste_lakes
+				modifier = {
+					factor = 2
+					pop_amount > 8000
+				}
+			}
+
+			10 = {
+				add_deposit = d_fusion_bazaar
+				modifier = {
+					factor = 1.25
+					has_planet_flag = ecu_values_trade
+				}
+			}
+
+			10 = {
+				add_deposit = d_magma_vats
+				modifier = {
+					factor = 2
+					has_planet_flag = ecu_zones_foundry
+				}
+			}
+
+			10 = {
+				add_deposit = d_dusttown
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_dusttown
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_slime_ocean
+				modifier = {
+					factor = 2
+					pop_amount > 6000
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_slime_ocean
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_mag_lev_network
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_mag_lev_network
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_warehouses
+			}
+
+			10 = {
+				add_deposit = d_reservoirs
+			}
+
+			10 = {
+				add_deposit = d_parlors
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_parlors
+						count >= 2
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_casinos
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_casinos
+						count >= 2
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_theater_district
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_theater_district
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_financial_sector
+				modifier = {
+					factor = 1.25
+					has_planet_flag = ecu_values_trade
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_financial_sector
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_boulevard
+			}
+
+			340 = {}
+
+
+		}
+	}
+
+}
+
+
+### Habitat Feature Set-up Effects
+generate_general_habitat = {
+	set_variable_to_random_value = {
+		which = features
+		min = 4
+		max = 8
+	}
+	
+	# Always add these features
+	add_deposit = d_administrative_section
+	add_deposit = d_docks
+	add_deposit = d_air_filters
+	add_deposit = d_trash_compactor
+	add_deposit = d_airlock
+
+	while = {
+		count < features
+
+		random_list = {
+			10 = {
+				add_deposit = d_cargo_warehouses
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_cargo_warehouses
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_medina
+				modifier = {
+					factor = 0.5
+					has_planet_flag = habitat_military		
+				}			
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_medina
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_cantina
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_cantina
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_landing_control
+				modifier = {
+					factor = 0.5
+					OR = {
+						has_planet_flag = habitat_civilian
+						has_planet_flag = habitat_farming
+						has_planet_flag = habitat_corporate
+					}
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_landing_control
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_marine_barracks
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_marine_barracks
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_hazardous_cargo_storage
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_hazardous_cargo_storage
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_waste_purification
+				modifier = {
+					factor = 2
+					OR = {
+						has_planet_flag = habitat_civilian
+						has_planet_flag = habitat_corporate
+					}
+				}
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_waste_purification
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_water_cyclers
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_waste_purification
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_agri_dome
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_agri_dome
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_meat_tanks
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_meat_tanks
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_solar_mirrors
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_solar_mirrors
+						count >= 1
+					}
+				}
+			}
+
+			10 = {
+				add_deposit = d_hazardous_cargo_storage
+				modifier = {
+					factor = 0
+					count_deposits = {
+						type = d_hazardous_cargo_storage
+						count >= 1
+					}
+				}
+			}
+		}
+	}
+}
+
+generate_military_habitat = {
+	remove_deposit = d_docks
+	add_deposit = d_military_docks
+
+	add_deposit = d_marine_barracks
+	add_deposit = d_hazardous_cargo_storage
+
+	if = {
+		limit = {
+			NOT = { any_deposit = { is_deposit_type = d_landing_control }}
+		}
+		add_deposit = d_landing_control
+	}
+}
+
+generate_civilian_habitat = {
+	remove_deposit = d_docks
+	add_deposit = d_tourist_promenade
+
+	add_deposit = d_water_cyclers
+	add_deposit = d_waste_purification
+	add_deposit = d_hazardous_cargo_storage
+}
+
+generate_farming_habitat = {
+	remove_deposit = d_docks
+	add_deposit = d_capital_ship_pier
+
+	while = {
+		limit = {
+			count_deposits = {
+				type = d_agri_dome
+				count < 3
+			}
+		}
+		add_deposit = d_agri_dome
+	}
+
+	add_deposit = d_meat_tanks
+}
+
+generate_leased_habitat = {
+	set_planet_flag = corporate_leased_hab
+}

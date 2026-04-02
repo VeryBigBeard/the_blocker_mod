@@ -3186,6 +3186,8 @@ d_administrative_section = {
 			trade = 100
 			mult = value:per_pop_production
 		}
+		produces = {	
+		}
 		upkeep = {
 			trigger = {
 				NOT = { has_planet_flag = corporate_leased_hab }

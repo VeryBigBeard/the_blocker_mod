@@ -1696,6 +1696,94 @@ planet_event = {
 
 	immediate = {
 		
+		# Store some values based on current planet for use later
+		if = {
+			limit = {
+				OR = {
+					has_any_factory_zone = yes
+					has_any_foundry_zone = yes
+					has_any_industrial_zone = yes
+				}
+			}
+			set_planet_flag = ecu_zones_industrial
+		}
+		if = {
+			limit = {
+				has_any_foundry_zone = yes
+			}
+			set_planet_flag = ecu_zones_foundry
+		}
+		if = {
+			limit = {
+				has_any_factory_zone = yes
+			}
+			set_planet_flag = ecu_zones_factory
+		}
+		if = {
+			limit = {
+				OR = {
+					has_any_unity_zone = yes
+					has_any_research_zone = yes
+				}
+			}
+			set_planet_flag = ecu_zones_technical
+		}
+		if = {
+			limit = {
+				planet_resource_compare = {
+					resource = trade
+					value > 800
+				}
+			}
+			set_planet_flag = ecu_values_trade
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_mining
+					value > 6
+				}
+			}
+			set_planet_flag = ecu_districts_mining
+		}
+		if = {
+			limit = {
+				num_districts = {
+					type = district_generator
+					value > 6
+				}
+			}
+			set_planet_flag = ecu_districts_energy
+		}
+		if = {
+			limit = {
+				num_assigned_jobs = {
+					job = bureaucrat
+					value > 800
+				}
+			}
+			set_planet_flag = ecu_jobs_bureaucracy
+		}
+		if = {
+			limit = {
+				free_amenities < 0
+			}
+			set_planet_flag = ecu_amenities_crunch
+		}
+		if = {
+			limit = {
+				free_housing < 100
+			}
+			set_planet_flag = ecu_housing_crunch
+		}
+		if = {
+			limit = {
+				planet_crime > 20
+			}
+			set_planet_flag = ecu_criminal_presence
+		}
+		
+		
 		# Wipe non-ecu features - necessary both as a fail-safe and also because a generator script might add something during the project construction
 		every_deposit = {
 			limit = {
@@ -1708,10 +1796,25 @@ planet_event = {
 		if = {
 			limit = {
 				any_deposit = {
-					is_deposit_type = d_tbm_slums
+					OR = {
+						is_deposit_type = d_tbm_slums
+						is_deposit_type = d_decrepit_dwellings
+					}
 				}
 			}
 			set_planet_flag = ecu_slum
+			every_deposit = {
+				limit = {
+					OR = {
+						is_deposit_type = d_tbm_slums
+						is_deposit_type = d_decrepit_dwellings
+					}
+				}
+				change_variable = {
+					which = ecu_slums
+					value = 1
+				}
+			}
 		}
 		if = {
 			limit = {
@@ -1754,7 +1857,7 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				any_deposit = {	is_deposit_type = d_urban_power_planet }
+				any_deposit = {	is_deposit_type = d_urban_power_plant }
 			}
 			set_planet_flag = ecu_reactor
 			change_variable = {
@@ -1862,24 +1965,45 @@ planet_event = {
 		}
 		if = {
 			limit = {
-				OR = {
-					is_deposit_type = d_tbm_crater
-					is_deposit_type = d_crater
-					is_deposit_type = d_rubble
-					is_deposit_type = d_ruined_arcology
-					is_deposit_type = d_ruined_district
-					is_deposit_type = d_ruined_building_blocker
-					is_deposit_type = d_tbm_impact_crater
+				any_deposit = {
+					OR = {
+						is_deposit_type = d_tbm_crater
+						is_deposit_type = d_crater
+						is_deposit_type = d_rubble
+						is_deposit_type = d_ruined_arcology
+						is_deposit_type = d_ruined_district
+						is_deposit_type = d_ruined_building_blocker
+						is_deposit_type = d_tbm_impact_crater
+					}
 				}
 			}
-			set_planet_flag = ecu_debris
+			set_planet_flag = ecu_debris			
+			every_deposit = {
+				limit = {
+					OR = {
+						is_deposit_type = d_tbm_crater
+						is_deposit_type = d_crater
+						is_deposit_type = d_rubble
+						is_deposit_type = d_ruined_arcology
+						is_deposit_type = d_ruined_district
+						is_deposit_type = d_ruined_building_blocker
+						is_deposit_type = d_tbm_impact_crater
+					}
+				}
+				change_variable = {
+					which = ecu_debris
+					value = 1
+				}
+			}
 		}
 		if = {
 			limit = {
-				OR = {
-					is_deposit_type = d_metal_boneyard
-					is_deposit_type = d_city_ruins
-					is_deposit_type = d_tomb_city
+				any_deposit = {
+					OR = {
+						is_deposit_type = d_metal_boneyard
+						is_deposit_type = d_city_ruins
+						is_deposit_type = d_tomb_city
+					}
 				}
 			}
 			set_planet_flag = ecu_ruin
@@ -1908,10 +2032,15 @@ planet_event = {
 			}
 			set_planet_flag = ecu_dust
 		}
+
+		### Call repopulate and clean-up event with pulse delay
+		planet_event = {
+			id = tbm_handler.221
+		}
 	}
 }
 
-# Ecu Repopulate and Cleanup
+### 221. Ecu Repopulate and Cleanup
 planet_event = {
 	id = tbm_handler.221
 
@@ -1920,13 +2049,333 @@ planet_event = {
 
 	immediate = {
 		# Repopulate Ecu Features and clear flags
+		if = {
+			limit = {
+				has_planet_flag = ecu_slums	
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = ecu_slums
+						value > 0
+					}
+				}
+				random_list = {
+					75 = {
+						add_deposit = d_tenement_arcologies
+					}
+					25 = {
+						add_deposit = d_dusttown
+						modifier = {
+							factor = 0
+							any_deposit = { is_deposit_type = d_dusttown }
+						}
+					}
+				}
+				subtract_variable = {
+					which = ecu_slums
+					value = 1
+				}
+			}
+			remove_planet_flag = ecu_slums
+			clear_variable = ecu_slums
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_black_market
+			}
+			add_deposit = d_black_light_district
+			remove_planet_flag = ecu_black_market
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_gas
+			}
+			add_deposit = d_gas_wells
+			remove_planet_flag = ecu_gas
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_aeroponics
+			}
+			add_deposit = d_greenhouse_arcologies
+			remove_planet_flag = ecu_aeroponics
+		}
+		if = {
+			limit = { has_planet_flag = ecu_reactor }
+			random_list = {
+				75 = {
+					add_deposit = d_reactor_chasm
+				}
+				25 = {
+					add_deposit = d_reactor_chasm
+				}
+			}
+			remove_planet_flag = ecu_reactor
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_industrial
+			}
+			random_list = {
+				75 = {
+					add_deposit = d_industrial_expanse
+				}
+				5 = {
+					add_deposit = d_mass_furnaces
+				}
+				15 = {
+					add_deposit = d_suborbital_liftyard
+				}
+			}
+			remove_planet_flag = ecu_industrial
+		}
+		if = {
+			limit = {
+				OR = {
+					has_planet_flag = ecu_waste
+					check_variable = {
+						which = ecu_waste
+						value > 0
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = ecu_waste
+						value > 0
+					}
+				}
+				add_deposit = d_waste_lakes
+			}
+			remove_planet_flag = ecu_waste
+			clear_variable = ecu_waste
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_particle
+			}
+			add_deposit = d_particle_storm
+			remove_planet_flag = ecu_particle
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_debris
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = ecu_debris
+						value > 0
+					}
+				}
+				random_list = {
+					85 = {
+						add_deposit = d_urban_debris
+					}
+					15 = {
+						add_deposit = d_cracked_plate
+						modifier = {
+							factor = 0
+							has_deposit = d_cracked_plate
+						}
+					}
+				}
+				subtract_variable = {
+					which = ecu_debris
+					value = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_ruins	
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = ecu_debris
+						value > 0
+					}
+				}
+				random_list = {
+					85 = {
+						add_deposit = d_urban_debris
+					}
+					15 = {
+						add_deposit = d_cracked_plate
+						modifier = {
+							factor = 0
+							has_deposit = d_cracked_plate
+						}
+					}
+				}
+				subtract_variable = {
+					which = ecu_debris
+					value = 1
+				}
+			}
+		}
+
+		# Earth Swaps
+		if = {
+			limit = {
+				has_planet_flag = ecu_mesopotamian
+			}
+			add_deposit = d_mesopotamian_urban_archway
+			remove_planet_flag = ecu_mesopotamian
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_boswash
+			}
+			add_deposit = d_boswash_trade_zone
+			remove_planet_flag = ecu_boswash
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_pearl_river
+			}
+			add_deposit = d_pearl_river_lattice
+			remove_planet_flag = ecu_pearl_river
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_mauritanian
+			}
+			add_deposit = d_mauritanian_memorial
+			remove_planet_flag = ecu_mauritanian
+		}
+
+		# Post-Apoc Features - these are restored if present so you don't lose them
+		if = {
+			limit = {
+				has_planet_flag = ecu_scrap_bazaar
+			}
+			add_deposit = d_fusion_bazaar
+			remove_planet_flag = ecu_scrap_bazaar
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_allocation
+			}
+			add_deposit = d_allocation_clinic
+			remove_planet_flag = ecu_allocation
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_memorial
+			}
+			add_deposit = d_memorial_apocalypse
+			remove_planet_flag = ecu_memorial
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_manufactorium
+			}
+			add_deposit = d_abyssal_manufactorium
+			remove_planet_flag = ecu_mesopotamian
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_hegemons
+			}
+			add_deposit = d_hegemons_of_industry
+			remove_planet_flag = ecu_hegemons
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_purgatory
+			}
+			add_deposit = d_purgatory_apocalypse
+			remove_planet_flag = ecu_hegemons
+		}
+		if = {
+			limit = {
+				has_planet_flag = ecu_bastion
+			}
+			add_deposit = d_last_bastion
+			remove_planet_flag = ecu_bastion
+		}
 
 
-		# Randomize Ecu Features
+		### Randomize Ecu Features
+		tbm_ecumenopolis_feature_generation = yes
 
+		remove_planet_flag = ecu_zones_industrial
+		remove_planet_flag = ecu_zones_factory
+		remove_planet_flag = ecu_zones_foundry
+		remove_planet_flag = ecu_zones_technical
+		remove_planet_flag = ecu_values_trade
+		remove_planet_flag = ecu_jobs_bureaucracy
+		remove_planet_flag = ecu_districts_energy
+		remove_planet_flag = ecu_districts_mining
+		remove_planet_flag = ecu_amenities_crunch
+		remove_planet_flag = ecu_housing_crunch
+		remove_planet_flag = ecu_criminal_presence
 
 		# Clean-up
 		clean_up_clearance_modifiers = yes
+	}
+}
+
+### 230. Habitat Feature Generation
+#	Player-facing to allow some control of specialization
+planet_event = {
+	id = tbm_handler.230
+
+	is_triggered_only = yes
+	
+	title = tbm_handler.230_name
+	desc = tbm_handler.230_desc
+	picture = GFX_evt_habitat
+	show_sound = pc_habitat
+
+	immediate = {
+		hidden_effect = {
+			generate_general_habitat = yes
+		}
+	}
+
+	# Emphasize Military Features
+	option = {
+		name = tbm_habitat_military_purposes
+		set_planet_flag = habitat_military
+		hidden_effect = {
+			generate_military_habitat = yes
+		}
+		custom_tooltip = generate_military_hab_tooltip
+	}
+
+	# Emphasize Trade and Industry
+	option = {
+		name = tbm_habitat_civilian_outpost
+		set_planet_flag = habitat_civilian
+		hidden_effect = {
+			generate_civilian_habitat = yes
+		}
+		custom_tooltip = generate_civilian_hab_tooltip
+	}
+
+	# Crates Agricultural Features
+	option = {
+		name = tbm_habitat_farm
+		set_planet_flag = habitat_farm
+		hidden_effect = {
+			generate_farming_habitat = yes
+		}
+		custom_tooltip = geneerate_farming_hab_toioltip
+	}
+
+	# Lease Station to Corporation
+	option = {
+		name = tbm_habitat_lease
+		set_planet_flag = habitat_corporate
+		hidden_effect = {
+			generate_leased_habitat = yes
+		}
+		custom_tooltip = generate_corporate_hab_tooltip
 	}
 }
 

@@ -189,6 +189,13 @@ can_be_exhausted = {
 blocks_ecumenopolis = {
 	OR = {
 		has_deposit_category = deposit_cat_blockers_natural
+		has_deposit_category = deposit_cat_blockers
+		has_deposit_category = deposit_cat_energy
+		has_deposit_category = deposit_cat_minerals
+		has_deposit_category = deposit_cat_food
+		has_deposit_category = deposit_cat_energy_rare
+		has_deposit_category = deposit_cat_minerals_rare
+		has_deposit_category = deposit_cat_food_rare
 				
 		# Cannot have any of these features
 		OR = {

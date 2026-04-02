@@ -41,6 +41,37 @@
 @ranger_large_production = 1
 
 
+### Debug
+
+d_debug = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 1
+		}
+	}
+
+	planet_modifier = {
+		district_generator_max_add = 1
+		district_generator_max = 1
+		trade_deficit = 0.5
+	}
+
+	potential = {
+		always = no
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
 ### Blocker Replacement
 
 d_ruined_district = {

@@ -142,3 +142,9 @@ on_terraforming_complete = {
 		tbm_handler.200		# Rerolls features on terraform.
 	}
 }
+
+on_megastructure_built = {
+	events = {
+		tbm_handler.230
+	}
+}
