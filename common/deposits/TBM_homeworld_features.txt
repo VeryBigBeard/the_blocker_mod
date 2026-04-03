@@ -245,6 +245,14 @@ d_mine_shafts = {
 		
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			owner = { country_uses_consumer_goods = no }
+		}
+		planet_miners_consumer_goods_upkeep_add = -1
+		planet_miners_trade_upkeep_add = 2
+	}
+
 	ai_weight = {
 		weight = @always_keep
 
@@ -377,9 +385,9 @@ d_tbm_strip_mine = {
 		modifier = {
 			set = @base
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -417,9 +425,9 @@ d_tbm_gestalt_strip_mine = {
 		modifier = {
 			set = @base
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -439,7 +447,14 @@ d_recycling_programs = {
 		category = deposit_blockers
 		cost = {
 			energy = 300
-			consumer_goods = 100
+			consumer_goods = 300
+		}
+		cost = {
+			trigger = {
+				owner = { country_uses_consumer_goods = no }
+			}
+			consumer_goods = -300
+			trade = 300
 		}
 	}
 
@@ -482,7 +497,7 @@ d_recycling_processes = {
 		category = deposit_blockers
 		cost = {
 			energy = 300
-			consumer_goods = 100
+			trade = 300
 		}
 	}
 
@@ -669,9 +684,9 @@ d_rare_metals_lab = {
 		modifier = {
 			set = @always_clear	# Get rid of this as soon as minerals look okay
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 50
+					value = 1.1
 				}
 			}
 		}
@@ -707,9 +722,9 @@ d_gestalt_rare_metals_lab = {
 		modifier = {
 			set = @clear	# Get rid of this as soon as minerals look okay
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 50
+					value = 1.1
 				}
 			}
 		}
@@ -753,28 +768,6 @@ d_homeworld_dustbowl = {
 
 	ai_weight = {
 		weight = @keep
-
-		modifier = {
-			set = @clear	# Keep this until food is tight and minerals are OK, as minerals usually more valuable than food.
-			owner = {
-				resource_income_compare = {
-					resource = minerals
-					value > 50
-				}
-				resource_income_compare = {
-					resource = food
-					value < 10
-				}
-			}
-			
-			# Do not wreck existing district with it, though
-			from = {
-				num_free_districts = {
-					type = any
-					value > 1
-				}
-			}	
-		}
 
 		modifier = {
 			set = @always_clear	# Always clear for catalytics
@@ -830,9 +823,9 @@ d_high_wire_network = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -880,9 +873,9 @@ d_neural_network = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -952,9 +945,9 @@ d_battery_farms = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -1294,9 +1287,9 @@ d_inaugural_spaceport = {
 		modifier = {
 			set = @always_clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 25	# alloy hit hurts a lot, so get rid of this as soon as economic plan on track
+					value = 1.1
 				}
 			}
 		}
@@ -1347,9 +1340,9 @@ d_gestalt_inaugural_spaceport = {
 		modifier = {
 			set = @always_clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 25	# alloy hit hurts a lot, so get rid of this as soon as economic plan on track
+					value = 1.1
 				}
 			}
 		}
@@ -1538,9 +1531,9 @@ d_homeworld_homestead_farms = {
 		modifier = {
 			set = @always_keep
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value < 20
+					value = 1.1
 				}
 			}
 		}
@@ -1587,9 +1580,9 @@ d_metabolic_processing = {
 		modifier = {
 			set = @base
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -1637,9 +1630,9 @@ d_nutrient_terminals = {
 		modifier = {
 			set = @base
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1,1
 				}
 			}
 		}
@@ -1679,9 +1672,9 @@ d_factory_slaughterhouses = {
 		modifier = {
 			set = @always_clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -1710,7 +1703,7 @@ d_homeworld_urban_aeroponics = {
 	planet_modifier = {
 		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 1
-		planet_farmers_consumer_goods_upkeep_add = 0.1	# Mostly to avoid overwriting the farmer job for compat, is slightly less harsh than +1 but will hurt more if you have a lot of city-farming going on, rent is pricey these days.
+		planet_farmers_trade_upkeep_add = 2
 	}
 
 	potential = {
@@ -1723,9 +1716,9 @@ d_homeworld_urban_aeroponics = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 			from = {
@@ -1773,9 +1766,9 @@ d_homeworld_gestalt_urban_aeroponics = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 			from = {
@@ -1804,6 +1797,13 @@ d_homeworld_moisture_farming = {
 			energy = 300
 			consumer_goods = 100
 		}
+		cost = {
+			trigger = {
+				owner = { country_uses_consumer_goods = no }
+			}
+			consumer_goods = -100
+			trade = 300
+		}
 	}
 
 	planet_modifier = {
@@ -1821,9 +1821,9 @@ d_homeworld_moisture_farming = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -1845,6 +1845,13 @@ d_migratory_fishing_fleets = {
 		cost = {
 			energy = 300
 			consumer_goods = 100
+		}
+		cost = {
+			trigger = {
+				owner = { country_uses_consumer_goods = no }
+			}
+			consumer_goods = -100
+			trade = 300
 		}
 	}
 
@@ -1872,9 +1879,9 @@ d_migratory_fishing_fleets = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -1899,6 +1906,13 @@ d_food_banks = {
 			food = 500
 			consumer_goods = 100
 		}
+		cost = {
+			trigger = {
+				owner = { country_uses_consumer_goods = yes }
+			}
+			consumer_goods = -100
+			trade = 300
+		}
 	}
 
 	planet_modifier = {
@@ -1918,9 +1932,9 @@ d_food_banks = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -1967,9 +1981,9 @@ d_reclaimed_land = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value > 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2111,9 +2125,9 @@ d_crumbling_mountain = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2185,9 +2199,9 @@ d_crystal_outcrops = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 30	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2269,9 +2283,9 @@ d_shallow_bay = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 25	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2312,9 +2326,9 @@ d_homeworld_tidal_turbines = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2361,9 +2375,9 @@ d_flotsam = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2406,9 +2420,9 @@ d_fish_plants = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2450,9 +2464,9 @@ d_windy_archipelago = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2522,9 +2536,9 @@ d_homeworld_dormant_supervolcano = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 80	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2707,8 +2721,29 @@ d_homeworld_idyllic_pastorale = {
 
 	planet_modifier = {
 		district_farming_max_add = 2
-		job_culture_worker_add = 1
+		job_bureaucrat_add = 100
 		pop_category_specialists_consumer_goods_upkeep_add = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_gestalt = yes }
+		}
+		pop_category_specialists_consumer_goods_upkeep_add = -0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner_is_machine_intelligence = yes
+		}
+		planet_pops_energy_upkeep_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner_is_hive_empire = yes
+		}
+		planet_pops_food_upkeep_mult = 0.1
 	}
 
 	potential = {
@@ -2805,9 +2840,9 @@ d_remnant_dilapidated_reactor = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 60	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}
@@ -2914,11 +2949,20 @@ d_collapsed_superhighway = {
 d_planetary_superhighway = {
 	icon = d_homeworld_arcology
 
-	category = deposit_cat_final
+	category = deposit_cat_urban
 
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trade = 800
+			energy = 000
+			alloys = 600
+		}
+	}
 
 	planet_modifier = {
 		planet_jobs_trade_produces_mult = 0.2
@@ -2990,9 +3034,9 @@ d_homeworld_scrap_mountain = {
 				}
 			}
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value >= 30
+					value = 1.1
 				}
 			}
 		}
@@ -3047,9 +3091,9 @@ d_crumbling_tower = {
 		modifier = {
 			set = @keep
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value < 30
+					value = 1.1
 				}
 			}
 		}
@@ -3117,9 +3161,9 @@ d_destroyed_spaceport = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value >= 30
+					value = 1.1
 				}
 			}
 		}
@@ -3165,9 +3209,9 @@ d_derelict_smelting_facility = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value >= 30
+					value = 1.1
 				}
 			}
 		}
@@ -3241,9 +3285,9 @@ d_industrial_agromachinery = {
 		modifier = {
 			set = @base
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20
+					value = 1.1
 				}
 			}
 		}
@@ -3337,7 +3381,7 @@ d_crater_city = {
 		category = deposit_blockers
 		cost = {
 			energy = 400
-			consumer_goods = 200
+			trade = 1200
 			unity = 1500
 		}
 	}
@@ -3345,6 +3389,14 @@ d_crater_city = {
 	planet_modifier = {
 		planet_amenities_mult = -0.15
 		planet_jobs_consumer_goods_upkeep_mult = -0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = { country_uses_consumer_goods = no }
+		}
+		planet_jobs_consumer_goods_upkeep_mult = 0.25
+		planet_jobs_energy_upkeep_mult = -0.10
 	}
 
 	potential = {
@@ -3424,9 +3476,9 @@ d_renewable_energy_programs = {
 		modifier = {
 			set = @always_clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value < 20	# Should almost always start clearing barring some extreme energy shortage due to origin/civics
+					value = 1.1
 				}
 			}
 		}
@@ -3646,9 +3698,9 @@ d_crop_shares = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20
+					value = 1.1
 				}
 			}
 
@@ -3694,9 +3746,9 @@ d_outdated_food_equipment = {	# Gestalt Prosperous ag district
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value >= 20
+					value = 1.1
 				}
 			}
 
@@ -3754,9 +3806,9 @@ d_colony_ship_core = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 70
+					value = 1.1
 				}
 			}
 		}
@@ -3860,6 +3912,10 @@ d_homeworld_frontier_farmsteads = {
 			owner = { has_civic = civic_agrarian_idyll }
 		}
 		planet_farmers_unity_produces_add = 0.5
+	}
+
+	potential = {
+		always = no
 	}
 
 	ai_weight = {
@@ -3978,11 +4034,24 @@ d_subsurface_spaceport = {
 
 	triggered_planet_modifier = {
 		potential = {
-			owner = { has_trait = trait_aquatic }
+			owner = { 
+				has_trait = trait_aquatic
+				owner = { country_uses_consumer_goods = yes }
+			}
 		}
 		modifier = {
 			planet_technician_consumer_goods_produces_add = 0.5
 		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_trait = trait_aquatic
+				owner = { country_uses_consumer_goods = no }
+			}
+		}
+		planet_technician_trade_upkeep_add = 1
 	}
 
 	potential = {
@@ -4604,6 +4673,13 @@ d_worlds_fair = {
 		cost = {
 			unity = 200
 			consumer_goods = 800
+		}
+		cost = {
+			trigger = {
+				owner = { country_uses_consumer_goods = no }
+			}
+			consumer_goods = -800
+			trade = 1200
 		}
 	}
 

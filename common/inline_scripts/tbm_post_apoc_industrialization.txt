@@ -91,15 +91,15 @@
 			}
 		}
 
-		if = {
-			limit = {
-				num_unemployed > 400		
-			}
-			change_variable = {
-				which = post_apoc_industrialization_score
-				value = -1
-			}
-		}
+		# if = {	# Removed in 4.3
+		# 	limit = {
+		# 		num_unemployed > 400		
+		# 	}
+		# 	change_variable = {
+		# 		which = post_apoc_industrialization_score
+		# 		value = -1
+		# 	}
+		# }
 
 		if = {
 			limit = {

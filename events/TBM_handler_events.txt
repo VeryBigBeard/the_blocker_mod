@@ -335,7 +335,7 @@ planet_event = {
 		# Got to have one each of sprawl and poor conditions
 		OR = {
 			free_amenities < 500
-			num_unemployed > 400
+			free_housing < 500
 		}
 		OR = {
 			free_district_slots < 1
@@ -590,9 +590,7 @@ planet_event = {
 			5 = {
 				modifier = {
 					factor = 2
-					count_owned_pop_amount = {
-						count > 800 # Should result in a few more settlements at that tight spot right before you get Planetary Admin.
-					}
+					pop_amount > 800	# Should result in a few more settlements at that tight spot right before you get Planetary Admin.
 				}
 
 				modifier = {
@@ -614,9 +612,7 @@ planet_event = {
 
 				modifier = {
 					mult = 0.5
-					count_owned_pop_amount = {
-						count > 1800
-					}
+					pop_amount > 1800
 				}
 
 				modifier = {
@@ -734,17 +730,13 @@ planet_event = {
 				}
 				modifier = {
 					factor = 0.5
-					count_owned_pop_amount = {
-						count > 2000
-					}
+					pop_amount > 2000
 				}
 				modifier = {
 					factor = 0
 					OR = {
 						has_building = building_major_capital
-						count_owned_pop_amount = {
-							count > 4000
-						}
+						pop_amount > 400
 					}
 				}
 
@@ -2418,9 +2410,7 @@ planet_event = {
 				}
 				
 				# Don't fire negative events until colony is up and running
-				count_owned_pop_amount = {
-					count >= 5
-				}
+				pop_amount > 500
 			}
 
 			change_variable = {

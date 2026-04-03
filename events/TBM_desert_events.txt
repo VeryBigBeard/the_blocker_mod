@@ -35,9 +35,7 @@ planet_event = {
 			
 			# These are mostly to make sure the effect matter and the scale of the event makes sense.
 			colony_age_years > 20
-			count_owned_pop_amount = {
-				count > 2500
-			}
+			pop_amount > 2500
 		}
 	}
 
@@ -169,10 +167,8 @@ planet_event = {
 			20 = {
 				modifier = {
 					factor = 2
-					count_owned_pop_amount = {
-						count > 10
-					}
-						free_housing > 3					
+					pop_amount > 100
+						free_housing > 300					
 				}
 				planet_event = { id = tbm_desert.33 days = 60 random = 30 }
 			}

@@ -702,9 +702,9 @@ d_seed_banks = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value > 50	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.2
 				}
 			}
 		}
@@ -981,9 +981,9 @@ d_hulks = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 30	# If okay for mining, clear this
+					value = 1.1
 				}
 			}
 		}
@@ -1030,9 +1030,9 @@ d_tomb_mine_shafts = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 30	# If okay for mining, clear this
+					value = 1.1
 				}
 			}
 		}
@@ -1079,9 +1079,9 @@ d_underground_warren = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = minerals
-					value > 30	# If okay for mining, clear this
+					value = 1.1
 				}
 			}
 		}
@@ -1330,9 +1330,9 @@ d_homeworld_derelict_reactors = {
 		modifier = {
 			set = @clear
 			owner = {
-				resource_income_compare = {
+				resource_income_to_expenditure_balance_ratio = {
 					resource = energy
-					value > 60	# greater because we want this gone if the AI is relying on difficulty bonuses, due to efficiency; if not, it likely needs the flexibility more
+					value = 1.1
 				}
 			}
 		}

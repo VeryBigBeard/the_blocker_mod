@@ -34,9 +34,9 @@ unity_expenditure_blockers = {
 		}
 
 		modifier = {
-			factor = 5	# Get rid of extra settlements if we're running out of unity income.
+			factor = 5	# Get rid of extra settlements if we're running out of unity.
 			
-			resource_income_compare = {
+			resource_stockpile_compare = {
 				resource = unity
 				value < 40
 			}

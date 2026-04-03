@@ -928,9 +928,7 @@ planet_event = {
 								is_mountain_feature = yes
 							}
 							prevprev = {
-								count_owned_pop_amount = {
-									count > 400
-								}
+								pop_amount > 400
 							}
 						}
 						remove_deposit = yes

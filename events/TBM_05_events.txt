@@ -265,6 +265,18 @@ planet_event = {
 				value = 1
 			}
 		}
+
+		### If Wenkwort is terraformed, you're in trouble.
+		if = {
+			limit = {
+				root = {
+					NOT = { is_planet_class = pc_gaia }
+				}
+			}
+			planet_event = {
+				id = federations3.131	# This is the vanilla event; loc might be a bit weird, but it's smoother not to overwrite it and it also adds the option to surrender and reset Custodian 3 (default), which is a good option.
+			}
+		}
 	}
 }
 

@@ -35,12 +35,16 @@
 
 d_great_desert = {
 	icon = d_searing_desert
-	category = deposit_cat_final
+	category = deposit_cat_blockers
 	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 
 	should_swap_deposit_on_terraforming = no
+
+	can_be_cleared = {
+		always = no
+	}
 	
 	planet_modifier = {
 		planet_max_districts_add = -2
@@ -362,7 +366,7 @@ d_urban_aeroponics = {
 	planet_modifier = {
 		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 1
-		planet_farmers_consumer_goods_upkeep_add = 0.1	# Mostly to avoid overwriting the farmer job for compat, is slightly less harsh than +1 but will hurt more if you have a lot of city-farming going on, rent is pricey these days.
+		planet_farmers_trade_upkeep_add = 2
 	}
 
 	triggered_planet_modifier = {
@@ -493,6 +497,10 @@ d_energy_banks = {
 		planet_colonist_energy_produces_mult = 0.1
 	}
 
+	potential = {
+		always = no
+	}
+
 	ai_weight = {
 		weight = @base
 
@@ -532,6 +540,10 @@ d_mineral_stockpiles = {
 		planet_colonist_minerals_produces_mult = 0.1
 	}
 
+	potential = {
+		always = no
+	}
+
 	ai_weight = {
 		weight = @base
 
@@ -569,6 +581,10 @@ d_food_silos = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		planet_colonist_food_produces_mult = 0.1
+	}
+
+	potential = {
+		always = no
 	}
 
 	ai_weight = {
@@ -979,11 +995,19 @@ d_snow_palace = {
 d_orinthi_power_wheels = {
 	icon = d_alien_wildlife
 
-	category = deposit_cat_final
+	category = deposit_cat_blockers
 	is_for_colonizable = yes
 
 	use_for_min_max_adjustments = yes
 	should_swap_deposit_on_terraforming = no
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trade = 1200
+			influence = 1000	# They're very vile.
+		}
+	}
 
 	planet_modifier = {
 		planet_biologists_energy_produces_add = 4

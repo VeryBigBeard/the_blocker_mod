@@ -4,6 +4,8 @@
 ### Colonial Buildings
 building_xeno_synaptic_node = {
 	
+	base_buildtime = @b1_time
+	
 	can_build = yes
 	can_demolish = yes
 	can_be_ruined = yes
@@ -19,6 +21,7 @@ building_xeno_synaptic_node = {
 
 	potential = {
 		is_starting_planet = no
+		has_major_upgraded_capital = no
 		NOT = { is_planet_class = pc_habitat }
 		exists = owner
 		owner = { 

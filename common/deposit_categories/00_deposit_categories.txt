@@ -79,9 +79,9 @@ deposit_cat_gaia = {
 }
 
 # This is only blockers that don't have to be cleared for ecus.
-deposit_cat_final = {
+#deposit_cat_final = {
 	
-}
+# }
 
 # Used for special one-of-a-kind features
 deposit_cat_tbm_legendary = {
