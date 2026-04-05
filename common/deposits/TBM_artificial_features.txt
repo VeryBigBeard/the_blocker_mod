@@ -2531,6 +2531,14 @@ d_dusttown = {
 
 	time = 570
 
+	resources = {
+		category = deposit_blockers
+		cost = {
+			unity = 1200
+			trade = 400
+		}
+	}
+
 	planet_modifier = {
 		pop_housing_usage_mult = -0.15
 		job_destitute_add = 600
@@ -2610,6 +2618,7 @@ d_cracked_plate = {
 	planet_modifier = {
 		planet_max_districts_add = -1
 		planet_housing_mult = -0.25
+		planet_stability_add = -5
 	}
 
 	potential = {
