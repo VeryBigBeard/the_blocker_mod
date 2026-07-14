@@ -1632,7 +1632,7 @@ d_nutrient_terminals = {
 			owner = {
 				resource_income_to_expenditure_balance_ratio = {
 					resource = food
-					value = 1,1
+					value = 1.1
 				}
 			}
 		}
@@ -1703,7 +1703,7 @@ d_homeworld_urban_aeroponics = {
 	planet_modifier = {
 		district_farming_max_add = 1
 		planet_farmers_energy_upkeep_add = 1
-		planet_farmers_trade_upkeep_add = 2
+		planet_farmers_trade_upkeep_add = 0.5
 	}
 
 	potential = {
@@ -3925,6 +3925,45 @@ d_homeworld_frontier_farmsteads = {
 			set = @always_keep	# Should lead to agrarians having smaller, less developed worlds with lots of farm districts and lots of frontier homesteads for conquerors to pillage
 			owner = { has_civic = civic_agrarian_idyll }
 		}
+	}
+}
+
+d_homeworld_global_stock_exchange = {
+	category = deposit_cat_blockers
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 360
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			trade = 100
+			mult = trigger:years_passed
+		}
+		upkeep = {
+			energy = 10
+		}
+		produces = {
+			trade = 1
+			mult = trigger:years_passed
+		}
+	}
+
+	planet_modifier = {
+		job_trader_add = 400
+		planet_traders_trade_produces_mult = -0.20
+		planet_traders_consumer_goods_upkeep_mult = 0.5
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		
 	}
 }
 

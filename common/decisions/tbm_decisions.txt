@@ -351,7 +351,7 @@ decision_selectively_defoliate = {
 				modifier = {
 					factor = 0.5
 					any_deposit = {
-						tree_feature = yes
+						is_tree_feature = yes
 					}
 				}
 

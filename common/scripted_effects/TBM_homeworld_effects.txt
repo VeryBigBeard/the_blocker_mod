@@ -345,7 +345,9 @@ tbm_homeworld_regular_empires = {
 			add_deposit = d_food_banks
 			add_deposit = d_homeworld_dustbowl
 		}
-
+		
+		# Trade: Helps prevent deficits at game start
+		add_deposit = d_homeworld_global_stock_exchange
 	}
 }
 

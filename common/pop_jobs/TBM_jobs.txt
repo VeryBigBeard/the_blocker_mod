@@ -664,8 +664,14 @@ colonial_deputy = {
 # A sub-type of Civilian. Will act as a "tax" on Civilians, but can migrate and fill existing jobs, leaving the tier, so can be managed somewhat more than Criminals.
 destitute = {
 	category = civilian
-	is_capped_by_modifier = no
+	is_capped_by_modifier = yes
 	count_as_available_for_ai = yes
+
+	swappable_data = {
+		default = {
+			building_icon = building_residence
+		}
+	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -722,8 +728,15 @@ destitute = {
 
 scrubber = {
 	category = criminal
-	is_capped_by_modifier = no
+	is_capped_by_modifier = yes
 	count_as_available_for_ai = no
+	can_set_priority = no
+
+	swappable_data = {
+		default = {
+			building_icon = building_residence
+		}
+	}
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -734,6 +747,13 @@ scrubber = {
 
 	possible = {
 		hidden_trigger = { exists = owner }
+		# check that this is not a robot in servitude
+		NOT = {
+			has_citizenship_type = {
+				country = owner
+				type = citizenship_robot_servitude
+			}
+		}
 		OR = {
 			NOT = {
 				owner = {
@@ -764,6 +784,20 @@ scrubber = {
 			always = yes		
 		}
 		pop_government_ethic_attraction = -0.1	# In this block so it only affects the Civilian pop groups.
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				has_branch_office = yes
+				branch_office_owner = {
+					has_councilor = { COUNCILOR = "councilor_criminal_heritage" }
+				}
+			}
+		}
+
+		branch_office_criminal_syndicate_value_add = 0.25
+		mult = value:pop_branch_office_councilor_level|TYPE|councilor_criminal_heritage|
 	}
 
 	weight = {

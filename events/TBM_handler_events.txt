@@ -322,6 +322,7 @@ planet_event = {
 		owner = { is_country_type = default }
 		
 		years_passed > 5
+		colony_age_years > 20
 		
 		num_districts = {
 			type = district_city
@@ -887,10 +888,17 @@ planet_event = {
 		# If we're just maintaining land but not actually growing on it, give some amnesty; this also helps alleviate situations where Anglers are getting Dustbowls
 		num_assigned_jobs = {
 			job = farmer
-			value > 4
+			value > 400
 		}
 
 		NOT = { has_planet_flag = soil_remediation }
+
+		NOT = {
+			check_variable = {
+				which = dustbowl_counter
+				value > 5
+			}
+		}
 	}
 
 	immediate = {	
@@ -943,6 +951,10 @@ planet_event = {
 		}
 
 		add_deposit = d_dustbowl
+
+		change_variable = {
+			which = dustbowl_counter
+		}
 		
 		create_message = {
 			type = "DUSTBOWL_GENERATOR"
@@ -2314,10 +2326,11 @@ planet_event = {
 
 ### 230. Habitat Feature Generation
 #	Player-facing to allow some control of specialization
-planet_event = {
+country_event = {
 	id = tbm_handler.230
 
 	is_triggered_only = yes
+	location = fromfrom
 	
 	title = tbm_handler.230_name
 	desc = tbm_handler.230_desc
@@ -2325,27 +2338,44 @@ planet_event = {
 	show_sound = pc_habitat
 
 	immediate = {
-		hidden_effect = {
-			generate_general_habitat = yes
+		
+		fromfrom = {
+			random_system_planet = {
+				limit = { is_planet_class = pc_habitat  NOT = { has_planet_flag = has_habitat_features } }
+				hidden_effect = {
+					generate_general_habitat = yes
+					set_planet_flag = has_habitat_features		# This prevents the above check from firing on an already-constructed hab if the user uses a mod that allows for multiple in the system.
+
+					save_event_target_as = constructed_habitat
+				}
+			}
+			
 		}
+		
+		log = "Called tbm_handler.230 to generate hab features."
 	}
 
 	# Emphasize Military Features
 	option = {
 		name = tbm_habitat_military_purposes
-		set_planet_flag = habitat_military
-		hidden_effect = {
-			generate_military_habitat = yes
-		}
 		custom_tooltip = generate_military_hab_tooltip
+
+		event_target:constructed_habitat = {
+			set_planet_flag = habitat_military
+			hidden_effect = {
+				generate_military_habitat = yes
+			}
+		}
 	}
 
 	# Emphasize Trade and Industry
 	option = {
 		name = tbm_habitat_civilian_outpost
-		set_planet_flag = habitat_civilian
-		hidden_effect = {
-			generate_civilian_habitat = yes
+		event_target:constructed_habitat = {
+			set_planet_flag = habitat_civilian
+			hidden_effect = {
+				generate_civilian_habitat = yes
+			}
 		}
 		custom_tooltip = generate_civilian_hab_tooltip
 	}
@@ -2353,21 +2383,27 @@ planet_event = {
 	# Crates Agricultural Features
 	option = {
 		name = tbm_habitat_farm
-		set_planet_flag = habitat_farm
-		hidden_effect = {
-			generate_farming_habitat = yes
-		}
 		custom_tooltip = geneerate_farming_hab_toioltip
+
+		event_target:constructed_habitat = {
+			set_planet_flag = habitat_farm
+			hidden_effect = {
+				generate_farming_habitat = yes
+			}
+		}
 	}
 
 	# Lease Station to Corporation
 	option = {
 		name = tbm_habitat_lease
-		set_planet_flag = habitat_corporate
-		hidden_effect = {
-			generate_leased_habitat = yes
-		}
 		custom_tooltip = generate_corporate_hab_tooltip
+
+		event_target:constructed_habitat = {
+			set_planet_flag = habitat_corporate
+			hidden_effect = {
+				generate_leased_habitat = yes
+			}
+		}
 	}
 }
 

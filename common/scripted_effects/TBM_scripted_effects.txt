@@ -415,7 +415,7 @@ tbm_ecumenopolis_feature_generation = {
 			10 = {
 				add_deposit = d_mass_furnaces
 				modifier = {
-					factor = 1,5
+					factor = 1.5
 					has_planet_flag = ecu_zones_foundry
 				}
 			}

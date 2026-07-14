@@ -2461,7 +2461,7 @@ d_waste_lakes = {
 	}
 
 	potential = {
-		always = yes
+		always = no
 	}
 
 	ai_weight = {
@@ -2552,6 +2552,10 @@ d_dusttown = {
 		job_destitute_add = -600
 		job_criminal_add = 400
 	}
+
+	potential = {
+		is_planet_class = pc_city
+	}
 }
 
 d_urban_debris = {
@@ -2588,7 +2592,7 @@ d_urban_debris = {
 	}
 
 	potential = {
-		always = yes
+		always = no
 	}
 
 	ai_weight = {

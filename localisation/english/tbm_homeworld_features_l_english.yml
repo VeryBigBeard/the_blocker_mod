@@ -25,6 +25,9 @@
  d_homeworld_deep_trench:0 "Deep Trench"
  d_homeworld_deep_trench_desc:0 "Fathomless and unexplored, this underwater trench obstructs further seabed development in the region."
 
+ d_homeworld_global_stock_exchange:0 "Global Stock Exchanges"
+ d_homeworld_global_stock_exchange_desc:0 "Although much work has been undertaken to unify planetary currencies and trade markets, the tradition and politics of exsiting capital mercantilism runs back thousands of years and has not been easy to dislodge. While various national exchanges mostly recognize our sovereignty and thus generate significant revenues, the underlying process is increasingly inefficient for a space-age nation."
+
  ### MINING
 
  d_mine_shafts:0 "Mine Shafts"

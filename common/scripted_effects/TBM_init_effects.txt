@@ -416,9 +416,6 @@ generate_imperial_fiefdoms = {
 				add_district_and_planet_size_if_needed_effect = {
 					district = district_generator
 				}
-				add_district_and_planet_size_if_needed_effect = {
-					district = district_industrial
-				}
 			}
 		}
 

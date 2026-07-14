@@ -769,7 +769,7 @@ planet_event = {
 		}
 
 		random_deposit = {
-			limit = { tree_feature = yes }
+			limit = { is_tree_feature = yes }
 			save_event_target_as = wildlife_lair
 		}
 		

@@ -456,7 +456,9 @@ blocks_ecumenopolis = {
 			# Desert-strong can use Great Desert
 			AND = {
 				is_deposit_type = d_great_desert
-				NOT = { has_planet_flag = desert_strong }
+				NOT = {
+					from = { has_planet_flag = desert_strong }
+				}
 			}
 
 			# Only Remnants can keep Crater City
