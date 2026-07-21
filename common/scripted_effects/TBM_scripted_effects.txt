@@ -785,8 +785,8 @@ tbm_ecumenopolis_feature_generation = {
 generate_general_habitat = {
 	set_variable_to_random_value = {
 		which = features
-		min = 4
-		max = 8
+		min = 2
+		max = 4
 	}
 	
 	# Always add these features
@@ -798,6 +798,9 @@ generate_general_habitat = {
 
 	while = {
 		count < features
+		limit = {
+			num_free_districts = { type = district_hab_housing value >= 2 }
+		}
 
 		random_list = {
 			10 = {
@@ -988,6 +991,7 @@ generate_farming_habitat = {
 				type = d_agri_dome
 				count < 3
 			}
+			num_free_districts = { type = district_hab_housing value >= 2 }
 		}
 		add_deposit = d_agri_dome
 	}

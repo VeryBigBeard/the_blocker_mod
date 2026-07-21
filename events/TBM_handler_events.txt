@@ -2407,6 +2407,18 @@ country_event = {
 	}
 }
 
+### 240. Habitat Administrative Secion added on_colonization_completr - this avoids having a lame duck feature in the colonization preview
+planet_event = {
+	id = tbm_handler.240
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		add_deposit = d_administrative_section
+	}
+}
+
 
 ### 301. Wenkwort Handler
 #	on_colonization_started and on_blocker_cleared (which is in planet scope)

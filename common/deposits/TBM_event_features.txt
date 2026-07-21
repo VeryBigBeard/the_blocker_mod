@@ -261,6 +261,10 @@ d_subsistence_farm = {
 		district_farming_max_add = 1
 		mult = value:natural_desposit_district_amount_multiplier
 	}
+
+	potential = {
+		always = no
+	}
 }
 
 d_subterranean_colony = {
@@ -991,6 +995,15 @@ d_snow_palace = {
 
 
 ### Speciment Features
+
+# Spoof blocker used to set icons for the specimens
+d_alien_wildlife = {
+	category = deposit_cat_blockers_natural
+
+	potential = {
+		always = no
+	}
+}
 
 d_orinthi_power_wheels = {
 	icon = d_alien_wildlife

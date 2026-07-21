@@ -2859,6 +2859,9 @@ d_fusion_bazaar = {
 	}
 }
 
+
+### Habitat Features
+
 d_landing_pad = {
 	category = deposit_cat_urban
 	is_for_colonizable = yes
@@ -2879,7 +2882,6 @@ d_landing_pad = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -1
 		planet_traders_trade_produces_add = 2
 	}
 
@@ -2981,7 +2983,7 @@ d_medina = {
 
 	planet_modifier = {
 		planet_max_districts_add = -1
-		pop_housing_usage_mult = -0.2
+		pop_housing_usage_mult = -0.5
 		pop_category_workers_trade_produces_add = 1
 		pop_category_civilians_trade_produces_add = 1
 	}
@@ -3080,7 +3082,6 @@ d_capital_ship_pier = {
 	}
 
 	planet_modifier = {
-		planet_max_districts_add = -1
 		ship_orbit_upkeep_mult = -0.20	# Deliberately less than a starbase so as not to incentivize parking fleets at habitats.
 		planet_jobs_trade_produces_mult = 0.1
 	}
@@ -3222,6 +3223,8 @@ d_administrative_section = {
 		custom_tooltip = tbm_habitat_administrative_control_tooltip
 	}
 
+	custom_tooltip = hab_administrative_section_tooltip
+
 	resources = {
 		category = deposit_blockers
 		cost = {
@@ -3229,6 +3232,16 @@ d_administrative_section = {
 			mult = value:per_pop_production
 		}
 		produces = {	
+			trigger = {
+				NOT = { has_planet_flag = corporate_leased_hab }
+			}
+			unity = 5	# Mostly so something shows up here pre-colonization, but also flavour
+		}
+		produces = {
+			trigger = {
+				has_planet_flag = corporate_leased_hab
+			}
+			trade = 8	# Offsets first few corpo hab colonists
 		}
 		upkeep = {
 			trigger = {

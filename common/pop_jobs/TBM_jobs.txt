@@ -706,7 +706,7 @@ destitute = {
 	resources = {
 		category = planet_destitutes
 		upkeep = {
-			unity = 0.01
+			unity = 0.2
 		}
 	}
 

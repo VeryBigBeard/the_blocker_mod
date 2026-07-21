@@ -716,6 +716,10 @@ d_gestalt_rare_metals_lab = {
 		planet_pop_assembly_reduction = 0.05 # No happiness equivalent for gestalts since assembly hits them much harder.
 	}
 
+	potential = {
+		always = no
+	}
+
 	ai_weight = {
 		weight = @base
 

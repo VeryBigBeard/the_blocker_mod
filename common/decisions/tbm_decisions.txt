@@ -671,3 +671,48 @@ decision_subterranean_expansion = {
 	}
 }
 
+decision_resurface_ecumenopolis = {
+	owned_planets_only = yes
+	icon = decision_arcology_project
+
+	enactment_time = 3600
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 10000
+		}
+	}
+
+	potential = {
+		NOT = { has_planet_flag = arcology_project_construction }
+		is_planet_class = pc_city
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = penal_colony
+			has_modifier = slave_colony
+			has_modifier = pm_wenkwort_custodian
+		}
+		exists = owner
+		owner = { has_ascension_perk = ap_arcology_project }
+		NOT = { has_designation = col_nanotech_world }
+	}
+
+	on_queued = {
+		set_planet_flag = arcology_project_construction
+	}
+
+	on_unqueued = {
+		remove_planet_flag = arcology_project_construction
+	}
+
+	effect = {
+		remove_planet_flag = arcology_project_construction
+		custom_tooltip = tbm_resurface_ecu_tooltip
+
+		from = {
+			planet_event = {
+				id = tbm_handler.220
+			}
+		}
+	}
+}

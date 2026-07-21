@@ -36,12 +36,6 @@ on_colonization_started = {
 	events = {
 		tbm_handler.104 	# Wild World Adapter for gestalts
 		tbm_handler.301 	# Sets flag on all Wenkwort deposits, swaps Custodian modifer if it exists
-	}
-}
-
-on_colonization_started = {
-	events = {
-		tbm_handler.301		# Wenkwort Handler - sets variables and deposit flags
 		tbm_hw.300 	# Post-Apoc: New Horizons - Colonial Food Situation
 	}
 }
@@ -49,6 +43,7 @@ on_colonization_started = {
 on_colonized = {
 	events = {
 		tbm_handler.100	# Pioneering Colonists
+		tbm_handler.240 # Habitat Administrative Section added
 	}
 }
 

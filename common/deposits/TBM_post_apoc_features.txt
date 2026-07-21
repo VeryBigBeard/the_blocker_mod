@@ -1551,7 +1551,10 @@ d_last_bastion = {
 
 	should_swap_deposit_on_terraforming = no
 
-	planet_modifier = {
+	triggered_planet_modifier = {
+		potential = {
+			planet = { is_planet_class = pc_nuked }
+		}
 		district_farming_max_add = 1
 		planet_crime_mult = -0.20
 		armies_energy_upkeep_mult = -1

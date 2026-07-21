@@ -443,9 +443,9 @@ planet_event = {
 		}
 
 		add_deposit = d_last_bastion
-		hidden_effect = {
-			change_pc = pc_nuked_tbm	# This is done to avoid having to remove terraforming links. Effectively "locks" the planet as a Tomb World, though you can still ecu it.
-		}
+		# hidden_effect = {
+		# 	change_pc = pc_nuked_tbm	# This is done to avoid having to remove terraforming links. Effectively "locks" the planet as a Tomb World, though you can still ecu it.
+		# }
 	}
 
 	option = {
