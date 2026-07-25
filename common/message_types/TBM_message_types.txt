@@ -109,6 +109,16 @@ message_type = {
 	category = planets
 }
 
+message_type = {
+	icon = GFX_message_other_construction_surface
+	key = "URBAN_DEVELOPMENT"
+	icon_frame = 1
+	sound = alert_negative
+	ping = "ping_notification_yellow"
+
+	category = planets
+}
+
 
 ### Event Messages
 

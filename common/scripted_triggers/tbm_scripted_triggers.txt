@@ -305,3 +305,25 @@ has_industrial_zoning = {
 		zone = zone_industrial
 	}
 }
+
+# Use to quickly check all types of city
+num_cities = {
+	OR = {
+		num_districts = {
+			type = district_city
+			value >= $COUNT$
+		}
+		num_districts = {
+			type = district_hive
+			value >= $COUNT$
+		}
+		num_districts = {
+			type = district_nexus
+			value >= $COUNT$
+		}
+		num_districts = {
+			type = district_arcology_housing
+			value >= $COUNT$
+		}
+	}
+}

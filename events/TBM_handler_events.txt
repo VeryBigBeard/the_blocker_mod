@@ -2524,3 +2524,427 @@ planet_event = {
 		}
 	}
 }
+
+
+### Urban Feature Generators
+
+### 401. Black Market Handler
+planet_event = {
+	id = tbm_handler.401
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			has_modifier = criminal_underworld
+			AND = {
+				planet_crime > 10
+				planet_resource_compare = {
+					resource = trade
+					value > 100
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			10 = {
+				
+				modifier = {
+					factor = 0
+					owner = {
+						NOT = { is_regular_empire = yes }
+					}
+				}
+				
+				planet_event = {
+					id = tbm_handler.402
+					days = 180
+					random = 180
+				}
+			}
+			90 = {}
+		}
+	}
+}
+
+### 402. Black Market Generator
+planet_event = {
+	id = tbm_handler.402
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = black_market_generator_message
+			days = 30
+			target = root
+		}
+
+		add_deposit = d_black_market
+	}
+}
+
+### 403. Spire District Handler
+planet_event = {
+	id = tbm_handler.403
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_major_upgraded_capital = yes
+		num_cities = { $COUNT$ = 4 }
+		NOT = { has_deposit = d_spire_district }
+	}
+
+	immediate = {
+		random_list = {
+			1 = {
+				planet_event = {
+					id = tbm_handler.404
+					days = 180
+					random = 180
+				}
+			}
+			99 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.404
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = spire_district_generator_message
+			days = 30
+			target = root
+		}
+
+		add_deposit = d_spire_district
+	}
+}
+
+### 405. Slime Ocean handler
+planet_event = {
+	id = tbm_handler.405
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_industrial_zoning = yes
+		num_cities = { $COUNT$ = 8 }
+		NOT = { has_deposit = d_slime_ocean } # You'd presumably just keep on dumpin'....
+	}
+
+	immediate = {
+		random_list = {
+			4 = {
+				planet_event = {
+					id = tbm_handler.406
+					days = 180
+					random = 180
+				}
+			}
+			96 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.406
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = slime_ocean_generator_message
+			days = 30
+			target = root
+		}
+
+		add_deposit = d_slime_ocean
+	}
+}
+
+### 407. Terrace Handler
+planet_event = {
+	id = tbm_handler.407
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 6 }
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				modifier = {
+					factor = 2
+					owner = { has_technology = tech_housing_1 }
+				}
+				modifier = {
+					factor = 2
+					owner = { has_technology = tech_housing_2 }
+				}
+				modifier = {
+					factor = 0.01
+					count_deposits = {
+						type = d_terraces
+						count >= 4
+					}
+				}
+
+				planet_event = {
+					id = tbm_handler.408
+				}
+			}
+			95 = {}
+		}
+	}
+}
+
+### 408. Terrace Generator
+planet_event = {
+	id = tbm_handler.408
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = terrace_generator_message
+			days = 30
+			target = root
+		}
+
+		add_deposit = d_terraces
+	}
+}
+
+### 409. Urban Wilderness Handler
+planet_event = {
+	id = tbm_handler.409
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 8 }
+		has_industrial_zoning = no
+		NOT = {
+			count_deposits = {
+				count <=1
+				type = d_urban_wilderness
+			}
+		}
+		num_free_districts = {
+			type = district_city
+			value >= 1
+		}
+	}
+
+	immediate = {
+		random_list = {
+			2 = {
+				planet_event = {
+					id = tbm_handler.410
+					days = 180
+					random = 180
+				}
+			}
+			98 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.410
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = urban_wilderness_generator_message
+			days = 30
+			target = root
+		}
+
+		remove_district = district_city
+		add_deposit = d_urban_wilderness
+	}
+}
+
+### 411. Mag-Lev Network Generator
+planet_event = {
+	id = tbm_handler.411
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_major_upgraded_capital = yes
+		num_cities = { $COUNT$ = 6 }
+		NOT = { has_deposit = d_mag_lev_network }
+	}
+
+	immediate = {
+		random_list = {
+			20 = {
+				planet_event = {
+					id = tbm_handler.412
+					days = 180
+					random = 180
+				}
+			}
+			80 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.412
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = mag_lev_generator_message
+			days = 30
+			target = root
+		}
+
+		add_deposit = d_mag_lev_network
+	}
+}
+
+### 413. Alley Generator
+planet_event = {
+	id = tbm_handler.413
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 6 }
+	}
+
+	immediate = {
+		random_list = {
+			10 = {
+				modifier = {
+					factor = 0.1
+					count_deposits = {
+						count >= 4
+						type = d_alleys
+					}
+				}
+
+				planet_event = {
+					id = tbm_handler.414
+					days = 180
+					random = 180
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.414
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = alley_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_alleys
+	}
+}
+
+### 415. Bazaar Generator
+planet_event = {
+	id = tbm_handler.415
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 5 }
+		NOT = {
+			count_deposits = {
+				count >= 2
+				type = d_bazaar
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			20 = {
+				modifier = {
+					factor = 0.2
+					owner = {
+						has_authority = auth_corporate
+					}
+				}
+
+				modifier = {
+					factor = 0
+					owner = {
+						NOT = { is_regular_empire = yes }
+					}
+				}
+				
+				planet_event = {
+					id = tbm_handler.416
+					days = 180
+					random = 180
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.416
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = bazaar_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_bazaar
+	}
+}

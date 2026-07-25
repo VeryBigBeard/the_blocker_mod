@@ -372,7 +372,7 @@ planet_event = {
 				# 	}
 				# }
 				
-				every_owned_pop_group = {
+				if = {
 					limit = {
 						OR = {
 							has_ethic = ethic_egalitarian
@@ -423,7 +423,7 @@ planet_event = {
 				}
 			}
 			owner = {
-				every_owned_pop_group = {
+				if = {
 					limit = {
 						has_ethic = ethic_egalitarian
 					}
