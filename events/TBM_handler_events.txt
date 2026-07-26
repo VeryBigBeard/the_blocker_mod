@@ -2948,3 +2948,674 @@ planet_event = {
 		add_deposit = d_bazaar
 	}
 }
+
+### 417. Warehouse Generator
+planet_event = {
+	id = tbm_handler.417
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 6 }
+		NOT = {
+			count_deposits = {
+				count >= 6
+				type = d_warehouses
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			4 = {
+				modifier = {
+					factor = 2
+					has_industrial_zoning = yes
+				}
+
+				planet_event = {
+					id = tbm_handler.418
+					days = 180
+					random = 180
+				}
+			}
+			96 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.418
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = warehouse_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_warehouses
+	}
+}
+
+### 419. Port Complex Generator
+planet_event = {
+	id = tbm_handler.419
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		OR = {
+			is_planet_class = pc_ocean
+			is_planet_class = pc_continental
+			is_planet_class = pc_tropical
+			is_planet_class = pc_gaia
+			is_planet_class = pc_arctic
+		}
+		num_cities = { $COUNT$ = 3 }
+		NOT = { has_deposit = d_port_complex }
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				planet_event = {
+					id = tbm_handler.420
+					days = 180
+					random = 180
+				}
+			}
+			95 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.420
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = port_complex_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_port_complex
+	}
+}
+
+### 421. Reservoir Generator
+planet_event = {
+	id = tbm_handler.421
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_industrial_zoning = yes
+		num_cities = { $COUNT$ = 4 }
+		
+		# Dry worlds will get these more often, and can potentially run into space problems with them.
+		OR = {
+			num_free_districts = {
+				type = district_city
+				value >= 3
+			}
+			is_dry = yes
+		}
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				modifier = {
+					factor = 2
+					is_dry = yes
+				}
+				modifier = {
+					factor = 0.5
+					num_free_districts = {
+						type = district_city
+						value < 2
+					}
+				}
+
+				planet_event = {
+					id = tbm_handler.422
+					days = 180
+					random = 180
+				}
+			}
+			95 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.422
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = reservoir_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		if = {
+			limit = {
+				num_free_districts = {
+					type = district_city
+					value < 1
+				}
+			}
+			remove_district = district_city
+		}
+		add_deposit = d_reservoirs
+	}
+}
+
+### 423. Parlor Generator
+planet_event = {
+	id = tbm_handler.423
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 4 }
+		NOT = {
+			count_deposits = {
+				count >= 2
+				type = d_parlors
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				modifier = {
+					factor = 2
+					OR = {
+						has_any_unity_zone = yes
+						has_any_trade_zone = yes
+					}
+				}
+
+				modifier = {
+					factor = 2
+					has_major_upgraded_capital = yes
+				}
+
+				planet_event = {
+					id = tbm_handler.424
+					days = 180
+					random = 180
+				}
+			}
+			95 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.424
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = parlor_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_parlors
+	}
+}
+
+### 425. Xeno Quarter Generator
+planet_event = {
+	id = tbm_handler.425
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		count_owned_species = {
+			count >= 2
+			limit = {
+				NOT = { is_subspecies = owner_species }
+				NAND = {
+					is_robotic_species = yes
+					owner = { has_tech_synthetic_workers_prerequisites = no }
+				}
+			}
+		}
+		num_cities = { $COUNT$ = 3 }
+		NOT = {
+			has_deposit = d_xeno_quarter
+		}
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				modifier = {
+					factor = 2
+					owner = {
+						OR = {
+							is_xenophile = yes
+							is_xenophobe = yes
+						}
+					}
+				}
+
+				planet_event = {
+					id = tbm_handler.426
+					days = 180
+					random = 180
+				}
+			}
+			95 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.426
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = xeno_quarter_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_xeno_quarter
+	}
+}
+
+### 427. Casino Generator
+planet_event = {
+	id = tbm_handler.427
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 6 }
+		has_major_upgraded_capital = yes
+		NOT = {
+			count_deposits = {
+				count >= 3
+				type = d_casinos
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			4 = {
+				planet_event = {
+					id = tbm_handler.428
+					days = 180
+					random = 180
+				}
+			}
+			96 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.428
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = casino_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_casinos
+	}
+}
+
+### 429. Theater Generator
+planet_event = {
+	id = tbm_handler.429
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 6 }
+		has_major_upgraded_capital = yes
+		NOT = { has_deposit = d_theater_district }
+	}
+
+	immediate = {
+		random_list = {
+			3 = {
+				planet_event = {
+					id = tbm_handler.430
+					days = 180
+					random = 180
+				}
+			}
+			97 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.430
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = theater_message_generator
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_theater_district
+	}
+}
+
+### 431. Residential Tower Generator
+planet_event = {
+	id = tbm_handler.431
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 6 }
+		free_housing < 1000
+		has_upgraded_capital = yes
+		NOT = {
+			count_deposits = {
+				count >= 8
+				type = d_residential_towers
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				modifier = {
+					factor = 2
+					free_housing < 0
+				}
+
+				planet_event = {
+					id = tbm_handler.432
+					days = 180
+					random = 180
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.432
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = residential_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_residential_towers
+	}
+}
+
+### Mega-City Generator
+planet_event = {
+	id = tbm_handler.433
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 10 }
+		has_any_trade_zone = yes
+		OR = {
+			has_major_upgraded_capital = yes
+			is_homeworld_or_lost_colony = yes
+		}
+		NOT = {
+			count_deposits = {
+				count >= 4
+				type = d_commercial_megacity
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			2 = {
+				modifier = {
+					factor = 2
+					planet_crime < 15
+				}
+				
+				planet_event = {
+					id = tbm_handler.434
+					days = 180
+					random = 180
+				}
+			}
+			98 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.434
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = mega_city_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_commercial_megacity
+	}
+}
+
+### Financial Sector Generator
+planet_event = {
+	id = tbm_handler.435
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 10 }
+		has_any_trade_zone = yes
+		OR = {
+			has_fully_upgraded_capital = yes
+			is_homeworld_or_lost_colony = yes
+			is_planet_class = pc_city
+		}
+		NOT = { has_deposit = d_financial_sector }
+	}
+
+	immediate = {
+		random_list = {
+			2 = {
+				modifier = {
+					factor = 2
+					planet_crime < 20
+				}
+
+				planet_event = {
+					id = tbm_handler.436
+					days = 180
+					random = 180
+				}
+			}
+			98 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.436
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = financial_sector_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_financial_sector
+	}
+}
+
+### Substation Generator
+planet_event = {
+	id = tbm_handler.437
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 3 }
+		has_upgraded_capital = yes
+		NOT = {
+			count_deposits = {
+				count >= 3
+				type = d_substation
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			10 = {
+				planet_event = {
+					id = tbm_handler.438
+					days = 180
+					random = 180
+				}
+			}
+			90 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.438
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = substation_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_substation
+	}
+}
+
+### 449. Boulevard Generator
+planet_event = {
+	id = tbm_handler.439
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		num_cities = { $COUNT$ = 3 }
+		has_upgraded_capital = yes
+		NOT = {
+			count_deposits = {
+				count >= 2
+				type = d_boulevard
+			}
+		}
+	}
+
+	immediate = {
+		random_list = {
+			5 = {
+				planet_event = {
+					id = tbm_handler.440
+					days = 180
+					random = 180
+				}
+			}
+			95 = {}
+		}
+	}
+}
+
+planet_event = {
+	id = tbm_handler.440
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		create_message = {
+			type = URBAN_DEVELOPMENT
+			localization = boulevard_generator_message
+			days	 = 30
+			target = root
+		}	
+
+		add_deposit = d_boulevard
+	}
+}
