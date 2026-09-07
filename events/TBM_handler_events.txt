@@ -3619,3 +3619,77 @@ planet_event = {
 		add_deposit = d_boulevard
 	}
 }
+
+
+### 500 - HABITAT FEATURE EVENTS
+
+### 501. Change Habitat Docks
+planet_event = {
+	id = tbm_handler.501
+
+	is_triggered_only = yes
+
+	title = tbm_handler.501_name
+	desc = tbm_Handler.501_desc
+	picture = GFX_evt_habitat
+	show_sound = event_construction
+
+	immediate = {
+		set_timed_planet_flag = {
+			flag = dock_expansion_cooldown
+			years = 5
+		}
+	}
+
+	option = {
+		name = add_military_docks
+		allow = {
+			NOT = { has_deposit = d_military_docks }
+		}
+
+		owner = {
+			add_resource = {
+				alloys = -2500
+				energy = -2000
+				minerals = -800
+			}
+		}
+
+		add_deposit = d_military_docks
+	}
+
+	option = {
+		name = add_tourist_docks
+		allow = {
+			NOT = { has_deposit = d_tourist_promenade }
+		}
+
+		owner = {
+			add_resource = {
+				alloys = -1500
+				energy = -2000
+				minerals = -800
+				trade = -500
+			}
+		}
+
+		add_deposit = d_tourist_promenade
+	}
+
+	option = {
+		name = add_capital_docks
+		allow = {
+			NOT = { has_deposit = d_capital_ship_pier }
+		}
+
+		owner = {
+			add_resource = {
+				alloys = -1500
+				energy = -2000
+				minerals = -1200
+			}
+		}
+
+		add_deposit = d_capital_ship_pier
+	}
+}

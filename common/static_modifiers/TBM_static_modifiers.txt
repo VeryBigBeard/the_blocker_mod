@@ -634,3 +634,6 @@ soil_remediation = {
 	planet_farmers_food_produces_mult = -0.1
 	planet_farmers_consumer_goods_upkeep_add = 1
 }
+
+corporate_leased_habitat = {
+}

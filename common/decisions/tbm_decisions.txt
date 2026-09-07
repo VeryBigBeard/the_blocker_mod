@@ -709,10 +709,96 @@ decision_resurface_ecumenopolis = {
 		remove_planet_flag = arcology_project_construction
 		custom_tooltip = tbm_resurface_ecu_tooltip
 
-		from = {
+		root = {
 			planet_event = {
 				id = tbm_handler.220
 			}
+		}
+	}
+}
+
+### Lease Habitat to Corporation
+decision_lease_habitat = {
+	owned_planets_only = yes
+	icon = decision_flood_habitat
+
+	potential = {
+		exists = owner
+		owner = {
+			NOR = {
+				is_fallen_empire = no
+				is_corporeal_authority = yes
+			}
+		}
+		NOT = { has_planet_flag = leased_habitat }
+	}
+
+	allow = {
+		owner = { is_at_war = no }
+	}
+
+	effect = {
+		set_planet_flag = leased_habitat
+		add_modifier = {
+			modifier = corporate_leased_habitat
+		}
+	}
+}
+
+### Buy Back Habitatg from Corporatiom
+decision_buy_habitat = {
+	owned_planets_only = yes
+	icon = decision_flood_habitat
+
+	resources = {
+		cost = {
+			trade = 2000
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			NOR = {
+				is_fallen_empire = no
+				is_corporeal_authority = yes
+			}
+		}
+		has_planet_flag = leased_habitat
+	}
+
+	allow = {
+		owner = { is_at_war = no }
+	}
+
+	effect = {
+		remove_planet_flag = leased_habitat
+		remove_modifier = corporate_leased_habitat
+	}
+}
+
+decision_add_docks = {
+	owned_planets_only = yes
+	icon = decision_flood_habitat
+
+	potential = {
+		exists = owner
+		owner = {
+			NOR = {
+				is_fallen_empire = no
+				is_corporeal_authority = yes
+			}
+		}
+		has_planet_flag = leased_habitat
+	}
+
+	allow = {
+		NOT = { has_planet_flag = dock_expansion_cooldown }
+	}
+
+	effect = {
+		planet_event = {
+			id = tbm_handler.501
 		}
 	}
 }
