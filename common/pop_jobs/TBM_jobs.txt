@@ -217,7 +217,6 @@ orinthi_exterminator = {
 	swappable_data = {
 		default = {
 			building_icon = building_hive_warren
-			icon = gfx/interface/icons/jobs/job_low_tech_laborer
 		}
 	}
 

@@ -3962,6 +3962,14 @@ d_homeworld_global_stock_exchange = {
 		planet_traders_consumer_goods_upkeep_mult = 0.5
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			owner = { is_gestalt = yes }
+		}
+		job_trader_add = -400
+		job_logistics_drone_add = 400
+	}
+
 	potential = {
 		always = no
 	}
