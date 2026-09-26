@@ -2352,7 +2352,7 @@ country_event = {
 			
 		}
 		
-		log = "Called tbm_handler.230 to generate hab features."
+		#log = "Called tbm_handler.230 to generate hab features."
 	}
 
 	# Emphasize Military Features
@@ -2404,6 +2404,15 @@ country_event = {
 				generate_leased_habitat = yes
 			}
 		}
+	}
+
+	option = {
+		name = tbm_habitat_standard
+		custom_tooltip = generate_standard_hab_tooltip
+
+		# This does nothing and is the fallback option for players who don't want to specialize.
+
+		default_hide_option = yes
 	}
 }
 
@@ -3204,7 +3213,7 @@ planet_event = {
 				NOT = { is_subspecies = owner_species }
 				NAND = {
 					is_robotic_species = yes
-					owner = { has_tech_synthetic_workers_prerequisites = no }
+					prev.owner = { has_tech_synthetic_workers_prerequisites = no }
 				}
 			}
 		}

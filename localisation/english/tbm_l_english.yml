@@ -284,6 +284,10 @@
 
  mod_job_orinthi_exterminator_add:0 "$job_orinthi_exterminator_plural$ Jobs"
 
+ mod_job_destitute_add:0 "$job_destitute_plural$ Jobs"
+
+ mod_job_scrubber_add:0 "$job_scrubber_plural$ Jobs$"
+
  mod_edicts_unity_upkeep_mult:0 "Edict £unity£ Upkeep"
 
  mod_building_museum_apocalypse_max:0 "Museum of the Apocalypse"
@@ -870,6 +874,9 @@
  d_ravenous_zulcor:0 "Zulcor Swarm"
  d_ravenous_zulcor_desc:0 "Large cloudy masses of Ravenous Zulcor swirl across not just this region but the whole planet, giving rise to a new theoretical quandary known as the Zulcor Problem, which posits an equilibrium between the alloys needed to maintain colonial infrastructure on the planet and the alloys required to safely contain the Zulcor."
 
+ d_alien_wildlife:0 "Alien Wildlife"
+ d_alien_wildlife_desc:0 "Various forms of xenofauna roam this planet in a fragile native ecosystem."
+
  ###
 
   ### The Blocker Mod - Planet / Static Modifiers
@@ -996,6 +1003,8 @@
 
  ### Decisions
 
+ tbm_features_blocking_ecu_failtext_tooltip:0 "One or more §Y£blocker_yellow£ Planetary Features§! is blocking construction of an Ecumenopolis. All §YNaturally-Occurring Blockers§! must be removed, and any debris features must be cleared. §YUrban§! or §YArtificial§! features do not need to be cleared."
+
  decision_reroll_planet:0 "Rebuild Lithosphere"
  decision_reroll_planet_desc:0 "Our understanding of terraforming has advanced sufficiently to undertake the slow process of reconstructing an entire world of geography."
  decision_lithosphere_tooltip:0 "This decision will re-seed the planet with §CPlanetary Features§! suitable for its climate."
@@ -1045,6 +1054,20 @@
  decision_subterranean_expansion:0 "Subterranean Expansion"
  decision_subterranean_expansion_desc:0 "Although our species has always preferred life underground, advances in xeno-geology have allowed for the expansion of cave networks far deeper than previously thought possible."
  tbm_decision_subterranean_colony_tooltip:0 "\n\nSettlements far underground will be a long way from modern amenities, but will allow for §Ylimited expansion§! of living space."
+
+ decision_resurface_ecumenopolis:0 "Resurface Ecumenopolis"
+ decision_resurface_ecumenopolis_desc:0 "After years of heavy use, ecological disaster, or neglected foundationr repairs it may be preferable to resurface the planet for optimal performance."
+ tbm_resurface_ecu_tooltip:0 "§C£blocker_yellow£ Planetary Features will be re-rolled. Only Ecumenopolis features will be generated and existing £blocker_yellow£ Planetary Features will not be preserved."
+
+ hab_administrative_section_tooltip:0 "§CThe habitat's $d_administrative_section$ controls upkeep, maintenance, and operations on the station. Each habitat under direct control will cost resources scaling with population and produce a small amount of unity. The $d_administrative_section$ can be leased to private operators to save on these costs."
+ decision_lease_habitat:0 "Lease Habitat"
+ decision_lease_habitat_desc:0 "Lease the $d_administrative_section$ of this station to a private operator, reducing upkeep expenses and boosting tax revenue."
+ corporate_leased_habitat:0 "Corporate Habitat"
+ decision_buy_habitat:0 "Buy Habitat"
+ decision_buy_habitat_desc:0 "Cancel the lease of this station's $d_administrative_section$, reclaiming full control of the station and its budget."
+
+ decision_add_docks:0 "Add Docks to Station"
+ decision_add_docks_desc:0 "Add various specialized docks to the habitat."
 
  geothermal_instability:0 "Geothermal Instability"
  subterranean_river_cruises:0 "Subterranean River Cruises"

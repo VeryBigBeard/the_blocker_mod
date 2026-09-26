@@ -5415,7 +5415,6 @@ d_gentle_plains = {
 	}
 
 	planet_modifier = {
-		planet_max_buildings_add = 1
 	}
 
 	potential = {
