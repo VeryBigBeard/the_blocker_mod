@@ -69,6 +69,7 @@
 
  planet_colonist:0 "Colonists"
  planet_scrap_miners:0 "Scrap Miners"
+ planet_destitutes:0 "Destitutes"
 
 
  # TBM Buildings
@@ -185,6 +186,11 @@
  mod_pop_category_workers_produces_mult:0 "Resources from $pop_cat_worker_plural$"
  mod_pop_category_workers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $pop_cat_worker_plural$"
  mod_pop_category_specialists_food_upkeep_add:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
+ mod_pop_category_workers_energy_upkeep_add:0 "$r_energy$ Upkeep for $pop_cat_worker_plural$"
+ mod_pop_category_workers_trade_produces_add:0 "$r_trade$ from $pop_cat_worker_plural$"
+ mod_pop_category_specialists_unity_upkeep_add:0 "$r_unity$ Upkeep for $pop_cat_specialist_plural$"
+ mod_pop_category_specialists_trade_produces_add:0 "$r_trade$ from $pop_cat_specialist_plural$"
+ mod_pop_category_rulers_unity_upkeep_mult:0 "$r_unity$ Upkeep for $pop_cat_ruler_plural$"
 
  mod_pop_category_rulers_trade_produces_add:0 "$r_trade$ from $pop_cat_ruler_plural$"
  
@@ -192,6 +198,11 @@
  mod_planet_jobs_specialist_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
  mod_planet_jobs_exotic_gases_upkeep_mult:0 "$r_exotic_gases$ from Jobs"
  mod_planet_jobs_consumer_goods_produces_mult:0 "$r_consumer_goods$ from Jobs"
+ mod_planet_jobs_minerals_upkeep_mult:0 "$r_minerals$ Upkeep for Jobs"
+ mod_planet_jobs_volatile_motes_upkeep_mul:0 "$r_volatile_motes$ Upkeep for Jobs"
+ mod_planet_jobs_rare_crystals_upkeep_mult:0 "$r_rare_crystals$ Upkeep for Jobs"
+
+ mod_planet_pops_unity_produces_mul:0 "$r_unity$ from Pops"
 
  mod_planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$" 
 
@@ -266,7 +277,12 @@
 
  mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
 
+ mod_planet_maintenance_drones_minerals_produces_add:0 "$r_minerals$ from $job_civilian_plural$"
+ mod_planet_maintenance_drones_trade_upkeep_add:0 "$r_trade$ Upkeep for $$job_civilian_plural$"
+
  mod_armies_energy_upkeep_mult:0 "Upkeep for Armies (this world only)"
+
+ 
  
 
  # The Blocker Mod - Feature Modifiers

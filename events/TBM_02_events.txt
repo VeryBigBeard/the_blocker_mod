@@ -1274,17 +1274,25 @@ planet_event = {
 		event_target:mineral_seam = {
 			remove_deposit = yes
 		}
-		create_pop = {
+		
+		
+		create_pop_group = {
 			species = owner_main_species
 			ethos = random
+			size = 100
+			random = 50
 		}
-		create_pop = {
+		create_pop_group = {
 			species = owner_main_species
 			ethos = random
+			size = 100
+			random = 50
 		}
-		create_pop = {
+		create_pop_group = {
 			species = owner_main_species
 			ethos = random
+			size = 100
+			random = 50
 		}
 	}
 }

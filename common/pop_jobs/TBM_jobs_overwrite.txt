@@ -82,8 +82,16 @@ colonist = {
 	}
 
 	weight = {
-		weight = @colonist_job_weight # Higher prio
-		#mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		weight = @specialist_job_weight
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_living_standard = { type = living_standard_academic_privilege }
+		}
 		modifier = {
 			factor = 0.1
 			can_take_servant_job = yes
@@ -93,19 +101,13 @@ colonist = {
 			is_enslaved = yes
 			has_slavery_type = { type = slavery_indentured }
 		}
-	}
-
-	#inline_script = "jobs/automodding_priority_amenities"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = $CATEGORY$
-				AMOUNT = local_pop_amount
-			}
+		modifier = {
+			factor = 5
+			has_trait = trait_cyborg_creed_of_research
 		}
 	}
+
+	inline_script = "jobs/automodding_priority_research"
 }
 
 scrap_miner = {
@@ -192,14 +194,4 @@ scrap_miner = {
 	}
 
 	inline_script = "jobs/automodding_priority_minerals"
-
-	promotion = {
-		time = @standard_promotion_time
-		effect = {
-			pop_amount_change_category = {
-				CATEGORY = worker
-				AMOUNT = local_pop_amount
-			}
-		}
-	}
 }

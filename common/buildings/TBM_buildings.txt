@@ -404,7 +404,7 @@ building_frontier_spaceport = {
 				owner = { is_gestalt = no }
 			}
 			unity = 1
-			mult = value:colonial_spaceport_cohesion
+			mult = value:colonial_strain_infrastructure
 		}
 		produces = {
 			trigger = {

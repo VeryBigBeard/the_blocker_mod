@@ -461,11 +461,9 @@ planet_event = {
 	option = {
 		name = tbm_rock.105.colonists
 		remove_deposit = d_mineral_fields
-		create_pop = {
+		create_pop_group = {
 			species = event_target:golem_species
-		}
-		create_pop = {
-			species = event_target:golem_species
+			size = 200
 		}
 	}
 

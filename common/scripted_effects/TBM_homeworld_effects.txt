@@ -348,6 +348,9 @@ tbm_homeworld_regular_empires = {
 		
 		# Trade: Helps prevent deficits at game start
 		add_deposit = d_homeworld_global_stock_exchange
+
+		# CG: Helps prevent CG deficits at game start in empires with lots of specialists
+		add_deposit = d_early_space_institutions
 	}
 }
 

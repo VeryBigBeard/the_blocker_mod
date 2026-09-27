@@ -283,7 +283,7 @@ event = {
 			if = {
 				limit = { has_country_flag = is_advanced_start_AI }
 				capital_scope = {
-					planet_event = {
+					colony_event = {
 						id = game_start.22	# Re-do the advanced building spawn
 					}
 				}

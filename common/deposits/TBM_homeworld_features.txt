@@ -4814,3 +4814,35 @@ d_upgrade_facility = {
 		inline_script = tbm_ai_empire_weights
 	}
 }
+
+d_early_space_institutions = {
+	category = deposit_cat_blockers
+	icon = d_crumbling_tower
+
+	use_for_min_max_adjustments = yes
+
+	should_swap_deposit_on_terraforming = no
+
+	time = 1250
+
+	resources = {
+		cost = {
+			influence = 100
+		}
+		produces = {
+			influence = 0.01
+		}
+	}
+
+	planet_modifier = {
+		pop_category_specialists_consumer_goods_upkeep_add = -0.25
+	}
+
+	potential = {
+		always = no
+	}
+
+	ai_weight = {
+		weight = @always_clear
+	}
+}

@@ -111,6 +111,7 @@ colonial_spaceport_cohesion = {
 	base = 1
 	complex_trigger_modifier = {
 		trigger = count_system_colony
+		trigger_scope = root.solar_system
 		parameters = {
 			limit = {				
 				num_assigned_jobs = {
@@ -125,7 +126,7 @@ colonial_spaceport_cohesion = {
 
 	complex_trigger_modifier = {
 		trigger = count_neighbor_system
-		trigger_scope = from.solar_system
+		trigger_scope = root.solar_system
 		parameters = {
 			limit = {
 				count_system_colony = {

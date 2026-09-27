@@ -1680,9 +1680,9 @@ situation_event = {
 	option = {
 		name = tbm_hw.319_machine
 		custom_tooltip = tbm_hw.319_machine_tooltip
-		trigger = {
-			host_has_dlc = "Synthetic Dawn Story Pack"
-		}
+		# trigger = {
+		# 	#host_has_dlc = "Synthetic Dawn Story Pack"
+		# }
 		target = {
 			hidden_effect = {
 				every_owned_pop_group = {
@@ -1763,12 +1763,10 @@ situation_event = {
 								}
 
 								capital_scope = {
-									while = {
-										count = half_drones
-										create_pop = {
-											species = event_target:new_organism
-										}
-									}	
+									create_pop_group = {
+										species = event_target:new_organism
+										size = half_drones
+									}
 								}
 								
 								event_target:new_hive = {
