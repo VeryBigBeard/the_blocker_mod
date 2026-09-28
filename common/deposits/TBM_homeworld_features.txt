@@ -3959,7 +3959,7 @@ d_homeworld_global_stock_exchange = {
 	planet_modifier = {
 		job_trader_add = 400
 		planet_traders_trade_produces_mult = -0.20
-		planet_traders_consumer_goods_upkeep_mult = 0.5
+		planet_traders_consumer_goods_upkeep_mult = 0.25
 	}
 
 	triggered_planet_modifier = {

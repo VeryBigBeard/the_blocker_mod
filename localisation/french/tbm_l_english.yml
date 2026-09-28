@@ -290,6 +290,7 @@
  mod_planet_pops_food_upkeep_mult:0 "£pops£ Pops $r_food$ Upkeep"
  mod_planet_pops_energy_upkeep_mult:0 "£pops£ Pops $r_energy$ Upkeep"
  mod_planet_pops_robotics_energy_upkeep_mult:0 "$r_energy$ Upkeep for £pops£ Robots"
+ mod_planet_pops_unity_produces_mult:0 "$r_unity$ from Pops"
 
  mod_planet_colonist_produces_mult:0 "Resources from $icon_job_colonists$"
  mod_pop_category_workers_food_upkeep_add:0 "$r_food$ Upkeep for Workers"

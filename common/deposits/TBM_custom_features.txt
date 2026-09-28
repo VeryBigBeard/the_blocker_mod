@@ -3724,7 +3724,7 @@ d_magma_lake = {
 
 	triggered_planet_modifier = {
 		potential = {
-			owner = { is_gestalt = yes }
+			owner = { is_gestalt_empire = yes }
 		}
 		job_gas_extractor_add = -100
 		pop_happiness = 0.1

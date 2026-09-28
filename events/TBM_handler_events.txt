@@ -2607,7 +2607,7 @@ planet_event = {
 
 	trigger = {
 		has_major_upgraded_capital = yes
-		num_cities = { $COUNT$ = 4 }
+		num_cities = { COUNT = 4 }
 		NOT = { has_deposit = d_spire_district }
 	}
 
@@ -2652,7 +2652,7 @@ planet_event = {
 
 	trigger = {
 		has_industrial_zoning = yes
-		num_cities = { $COUNT$ = 8 }
+		num_cities = { COUNT = 8 }
 		NOT = { has_deposit = d_slime_ocean } # You'd presumably just keep on dumpin'....
 	}
 
@@ -2696,7 +2696,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 6 }
+		num_cities = { COUNT = 6 }
 	}
 
 	immediate = {
@@ -2754,7 +2754,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 8 }
+		num_cities = { COUNT = 8 }
 		has_industrial_zoning = no
 		NOT = {
 			count_deposits = {
@@ -2810,7 +2810,7 @@ planet_event = {
 
 	trigger = {
 		has_major_upgraded_capital = yes
-		num_cities = { $COUNT$ = 6 }
+		num_cities = { COUNT = 6 }
 		NOT = { has_deposit = d_mag_lev_network }
 	}
 
@@ -2854,7 +2854,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 6 }
+		num_cities = { COUNT = 6 }
 	}
 
 	immediate = {
@@ -2904,7 +2904,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 5 }
+		num_cities = { COUNT = 5 }
 		NOT = {
 			count_deposits = {
 				count >= 2
@@ -2966,7 +2966,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 6 }
+		num_cities = { COUNT = 6 }
 		NOT = {
 			count_deposits = {
 				count >= 6
@@ -3027,7 +3027,7 @@ planet_event = {
 			is_planet_class = pc_gaia
 			is_planet_class = pc_arctic
 		}
-		num_cities = { $COUNT$ = 3 }
+		num_cities = { COUNT = 3 }
 		NOT = { has_deposit = d_port_complex }
 	}
 
@@ -3072,7 +3072,7 @@ planet_event = {
 
 	trigger = {
 		has_industrial_zoning = yes
-		num_cities = { $COUNT$ = 4 }
+		num_cities = { COUNT = 4 }
 		
 		# Dry worlds will get these more often, and can potentially run into space problems with them.
 		OR = {
@@ -3145,7 +3145,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 4 }
+		num_cities = { COUNT = 4 }
 		NOT = {
 			count_deposits = {
 				count >= 2
@@ -3217,7 +3217,7 @@ planet_event = {
 				}
 			}
 		}
-		num_cities = { $COUNT$ = 3 }
+		num_cities = { COUNT = 3 }
 		NOT = {
 			has_deposit = d_xeno_quarter
 		}
@@ -3273,7 +3273,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 6 }
+		num_cities = { COUNT = 6 }
 		has_major_upgraded_capital = yes
 		NOT = {
 			count_deposits = {
@@ -3323,7 +3323,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 6 }
+		num_cities = { COUNT = 6 }
 		has_major_upgraded_capital = yes
 		NOT = { has_deposit = d_theater_district }
 	}
@@ -3368,7 +3368,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 6 }
+		num_cities = { COUNT = 6 }
 		free_housing < 1000
 		has_upgraded_capital = yes
 		NOT = {
@@ -3423,7 +3423,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 10 }
+		num_cities = { COUNT = 10 }
 		has_any_trade_zone = yes
 		OR = {
 			has_major_upgraded_capital = yes
@@ -3482,7 +3482,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 10 }
+		num_cities = { COUNT = 10 }
 		has_any_trade_zone = yes
 		OR = {
 			has_fully_upgraded_capital = yes
@@ -3537,7 +3537,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 3 }
+		num_cities = { COUNT = 3 }
 		has_upgraded_capital = yes
 		NOT = {
 			count_deposits = {
@@ -3587,7 +3587,7 @@ planet_event = {
 	hide_window = yes
 
 	trigger = {
-		num_cities = { $COUNT$ = 3 }
+		num_cities = { COUNT = 3 }
 		has_upgraded_capital = yes
 		NOT = {
 			count_deposits = {
