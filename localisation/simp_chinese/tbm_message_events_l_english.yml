@@ -57,4 +57,42 @@
  tbm_message_successful_defoliation:0 "After Selective Defoliants were applied on §Y[planet.GetName]§!, a £blocker£ §Y[defoliated.GetName]§! has been removed."
  tbm_message_unsuccessful_defoliation:0 "After Selective Defoliants were applied on §Y[planet.GetName]§!, a §Y[defoliated.GetName]§! has been removed.\n\nHowever, chemical by-products have left an unfortunate £blocker_yellow£ §Y[defoliant_byproduct.GetName]]§! behind."
  
+ black_market_generator_message:0 "A new $d_black_market$ has taken root on §Y[planet_GetName]§!."
 
+ spire_district_generator_message:0 "Increasing living conditions in the upper strata of §Y[planet_GetName]§! has resulted in development of a new and vibrant $d_spire_district$."
+
+ slime_ocean_generator_message:0 "A new $d_slime_ocean$ has developed on §Y[planet_GetName]§!."
+
+ terrace_generator_message:0 "New $d_terraces$s have opened on §Y[planet_GetName]§!"
+
+ urban_wilderness_generator_message:0 "Local officials on §Y[planet_GetName]§! have designated parts of a new city as $d_urban_wilderness$."
+
+ mag_lev_generator_message:0 "Cities on §Y[planet_GetName]§! are now linked by a new $d_mag_lev_network$."
+
+ alley_generator_message:0 "New $d_alleys$ on §Y[planet_GetName]§! have become famous for dark dealings."
+
+ bazaar_generator_message:0 "A new $d_bazaar$ on §Y[planet_GetName]§! is attracting visitors from across the system."
+
+ warehouse_generator_message:0 "Shipping yards on §Y[planet_GetName]§! have expanded local $d_warehouses$ to help manage supply chains."
+
+ port_complex_generator_message:0 "Trade officials on §Y[planet_GetName]§! have opened a brand new $d_port_complex$ to boost on-world surface shipping."
+
+ reservoir_generator_message:0 "New water $d_reservoirs$s have opened on §Y[planet_GetName]§!, boosting industrial capacity."
+
+ parlor_generator_message:0 "Hosts of $d_parlors$ have opened on the streets of §Y[planet_GetName]§!."
+
+ xeno_quarter_message:0 "Increasing alien population on §Y[planet_GetName]§! has given rise4 to a a new $d_xeno_quarter$, boosting trade but upsetting local xenophobes."
+
+ casino_generator_message:0 "A gaudy new galactic $d_casinos$ has opened on §Y[planet_GetName]§!."
+
+ theater_message_generator:0 "A new $d_theater_district$ on §Y[planet_GetName]§! is attracting shows and performers from across nearby systems."
+
+ residential_generator_message:0 "A growing housing pinch on §Y[planet_GetName]§! has led local officials to build new $d_residential_towers$."
+
+ mega_city_generator_message:0 "A new $d_commercial_megacity$ has opened on §Y[planet_GetName]§!."
+
+ financial_sector_generator_message:0 "The $d_financial_sector$ on §Y[planet_GetName]§! has developed into a new hub of galactic trade and investment."
+
+ substation_generator_message:0 "New $d_substation$s on §Y[planet_GetName]§! are easing power usage in nearby buildings."
+
+ boulevard_generator_message:0 "A new $d_boulevard$, supporting priority lanes for air-cars, surface traffic, and pedestrians, is boosting economic activity on §Y[planet_GetName]§!."

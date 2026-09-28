@@ -69,6 +69,7 @@
 
  planet_colonist:0 "Colonists"
  planet_scrap_miners:0 "Scrap Miners"
+ planet_destitutes:0 "Destitutes"
 
 
  # TBM Buildings
@@ -167,12 +168,29 @@
  job_colonial_deputy_desc:0 "Life on the frontier of alien worlds can be rough and tumble, with little recourse or personal security. Deputized by authorities on the central worlds, these sheriffs often serve as the only real protection colonists get."
  mod_job_colonial_deputy_add:0 "$job_colonial_deputy$ Jobs"
 
+ job_orinthi_exterminator:0 "Orinthi Exterminator"
+ job_orinthi_exterminator_plural:0 "Orinthi Exterminators"
+ job_orinthi_exterminator_desc:0 "Paid a small salary plus significant health benefits to attempt to control the numbers of Orinthi infesting colonial settlements, these brave souls are worshipped as heroes by the population."
+
+ job_destitute:0 "Destitute"
+ job_destitute_plural:0 "Destitutes"
+ job_destitute_desc:0 "There people have fallen out of the social structure and now live on the margins."
+
+ job_scrubber:0 "Scrubber"
+ job_scrubber_plural:0 "Scrubbers"
+ job_scrubber_desc:0 "These low-paid workers live in the depths of the station, maintaining $d_air_filters$ and other essential machinery of life in space."
+
 
  # TBM Job Modifiers
 
  mod_pop_category_workers_produces_mult:0 "Resources from $pop_cat_worker_plural$"
  mod_pop_category_workers_minerals_upkeep_add:0 "$r_minerals$ Upkeep for $pop_cat_worker_plural$"
  mod_pop_category_specialists_food_upkeep_add:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
+ mod_pop_category_workers_energy_upkeep_add:0 "$r_energy$ Upkeep for $pop_cat_worker_plural$"
+ mod_pop_category_workers_trade_produces_add:0 "$r_trade$ from $pop_cat_worker_plural$"
+ mod_pop_category_specialists_unity_upkeep_add:0 "$r_unity$ Upkeep for $pop_cat_specialist_plural$"
+ mod_pop_category_specialists_trade_produces_add:0 "$r_trade$ from $pop_cat_specialist_plural$"
+ mod_pop_category_rulers_unity_upkeep_mult:0 "$r_unity$ Upkeep for $pop_cat_ruler_plural$"
 
  mod_pop_category_rulers_trade_produces_add:0 "$r_trade$ from $pop_cat_ruler_plural$"
  
@@ -180,6 +198,11 @@
  mod_planet_jobs_specialist_food_upkeep_mult:0 "$r_food$ Upkeep for $pop_cat_specialist_plural$"
  mod_planet_jobs_exotic_gases_upkeep_mult:0 "$r_exotic_gases$ from Jobs"
  mod_planet_jobs_consumer_goods_produces_mult:0 "$r_consumer_goods$ from Jobs"
+ mod_planet_jobs_minerals_upkeep_mult:0 "$r_minerals$ Upkeep for Jobs"
+ mod_planet_jobs_volatile_motes_upkeep_mul:0 "$r_volatile_motes$ Upkeep for Jobs"
+ mod_planet_jobs_rare_crystals_upkeep_mult:0 "$r_rare_crystals$ Upkeep for Jobs"
+
+ mod_planet_pops_unity_produces_mul:0 "$r_unity$ from Pops"
 
  mod_planet_colonist__produces_mult:0 "Resources from $icon_job_colonists$" 
 
@@ -254,7 +277,12 @@
 
  mod_planet_soldiers_alloys_produces_add:0 "$r_alloys$ from $job_soldier_plural$"
 
+ mod_planet_maintenance_drones_minerals_produces_add:0 "$r_minerals$ from $job_civilian_plural$"
+ mod_planet_maintenance_drones_trade_upkeep_add:0 "$r_trade$ Upkeep for $$job_civilian_plural$"
+
  mod_armies_energy_upkeep_mult:0 "Upkeep for Armies (this world only)"
+
+ 
  
 
  # The Blocker Mod - Feature Modifiers
@@ -269,6 +297,12 @@
 
  mod_job_dangerous_wildlife_hunter_add:0 "$job_dangerous_wildlife_hunter$ Jobs"
  mod_job_dangerous_wildlife_poacher_add:0 "$job_dangerous_wildlife_poacher$ Jobs"
+
+ mod_job_orinthi_exterminator_add:0 "$job_orinthi_exterminator_plural$ Jobs"
+
+ mod_job_destitute_add:0 "$job_destitute_plural$ Jobs"
+
+ mod_job_scrubber_add:0 "$job_scrubber_plural$ Jobs$"
 
  mod_edicts_unity_upkeep_mult:0 "Edict £unity£ Upkeep"
 
@@ -576,6 +610,211 @@
 
  d_efficient_nodes:0 "Efficient Nodes"
  d_efficient_nodes_desc:0 "Recent developments in resource distribution on a planetary scale have allowed this society to reduce deviancy and increase drone efficiency."
+
+ d_spire_district:0 "Spire District"
+ d_spire_district_desc:0 "From horizon to horizon, these towers rise above the planet-wide cityscape, serving as a center of governance, scholarship, and administration."
+
+ d_slime_ocean:0 "Slime Ocean"
+ d_slime_ocean_desc:0 "The exact boundaries between the organic body of water and vast, sloshing tracts of industrial by-product have long ago melted into the viscous soup that now forms the majority of this world's ocean."
+
+ d_terraces:0 "Terraces"
+ d_terraces_desc:0 "More and more, business is being conducted in the sky, above the noise, pollution, and crowds on the surface. Outdoor terraces attached to skyscrapers and arcologies provide some of the only fresh exterior air available."
+
+ d_urban_wilderness:0 "Urban Wilderness"
+ d_urban_wilderness_desc:0 "Tucked between growing arcologies and super-dense developments, this small tract of vegetation provides some of the only remaining habitat for this world's native fauna."
+
+ d_mag_lev_network:0 "Mag-Lev Network"
+ d_mag_lev_network_desc:0 "Ultra-fast trains allow near-instant transit across and between mega-cities, massively increasing planetary trade and business opportunities."
+
+ d_alleys:0 "Alleys"
+ d_alleys_desc:0 "Even mega-cities have darker corners. Far below the towering arcologies and sky-plazas, most of the region's population shuffle between tenements, retail jobs, and fast-food restaurants, all but invisible from orbit."
+
+ d_bazaar:0 "Bazaar"
+ d_bazaar_desc:0 "Long the bustling hub of xeno-commerce on this world, the official status of this bazaar remains unknown. But nearly every cycle, denizens from across the system descend to find the best deals from local merchants here."
+
+ d_warehouses:0 "Warehouses"
+ d_warehouses_desc:0 "Ever-growing delays in orbital transfer logistics mean local industries require planet-side storage for processed materials and input storage."
+
+ d_port_complex:0 "Port Complex"
+ d_port_complex_desc:0 "With rapidly-growing mega-cities now dotting several of this world's larger landmasses, surface trade over planetary oceans continues to play a role in mass transport and planetary prosperity."
+
+ d_reservoirs:0 "Reservoirs"
+ d_reservoirs_desc:0 "Beyond a certain population world, almost no world can sustain fresh drinking water for a Space Age civilization. These massive reservoirs purify and store water from rain, ocean intake, and industrial processes for consumption by the population."
+
+ d_parlors:0 "Parlors"
+ d_parlors_desc:0 "At the basement level of nearly every residential tenement, you can find dens of pleasure, crime, and entertainment. Sometimes even all at once."
+
+ d_xeno_quarter:0 "Xeno Quarter"
+ d_xeno_quarter_desc:0 "The exact legal status of this neighborhood is too complicated to explain, but whether for community or safety, most of the xeno population on this world chooses to cluster here."
+
+ d_casinos:0 "Casino Strip"
+ d_casinos_desc:0 "Legend has it that the famous houses will accept any kind of wager imaginable, verifiable across the galaxy, instantly, without any worrying oversight."
+
+ d_theater_district:0 "Theater District"
+ d_theater_district_desc:0 "Lights and status define this quaint corner of the planet, oft referred to as the cultural capital of the system, the most sophisticated destination for an evening in the galaxy."
+
+ d_residential_towers:0 "Residential Towers"
+ d_residential_towers_desc:0 "Ranging from cheap and quotidian to lofts and penthouses featuring the latest interior fashions, the bulk of the world's doers and denizens live in one of these bedroom arcologies."
+
+ d_commercial_megacity:0 "Commerce Mega-City"
+ d_commercial_megacity_desc:0 "From malls to trading floors and every kind of boutique and outlet, there is nearly nothing you can't buy here."
+
+ d_financial_sector:0 "Financial Sector"
+ d_financial_sector_desc:0 "Hosting the headquarters of most of the system's largest corporations and concerns, traders, consultants, and investors criss-cross the sky-ways between shining towers and flickering billboards displaying market prices from across the galaxy."
+
+ d_atmospheric_filters:0 "Atmospheric Filters"
+ d_atmospheric_filters_desc:0 "Conversion of the planet has left its atmosphere so poisonous that industrial-scale filters are required to pump in breathable air for those living beneath its thick, corrosive cloud layer."
+
+ d_sky_promenade:0 "Sky Promenade"
+ d_sky_promenade_desc:0 "Arching just below the stratosphere, these dizzying walkways provide a carefully-managed environment for the pinnacles of shopping, socializing, and pleasure."
+
+ d_platform_malls:0 "Platform Malls"
+ d_platform_malls_desc:0 "With space no longer of any concern, the vast outlets can offer literally everything for sale across more than a thousand floors of merchandise."
+
+ d_mass_furnaces:0 "Mass Furnaces"
+ d_mass_furnaces_desc:0 "These vast, glowing ovens of industry are capable of melting almost anything down to its component atoms for re-processing into alloys and other components."
+
+ d_data_farms:0 "Data Farm"
+ d_data_farms_desc:0 "The sheer scale of the planet-wide city requires automated processing at an immense scale. While not the most popular with the local population, without these centers, the planet's efficiencies of scale might be in jeopardy."
+
+ d_culinary_spires:0 "Culinary Spires"
+ d_culinary_spires_desc:0 "From the so-called \"Paste District\" at the bottom to the very heights of edible imagination, this labyrinthine block of the city is best-known for its ability to satisfy every palate in the known galaxy."
+
+ d_substrate:0 "Substrate"
+ d_substrate_desc:0 "Beneath the world's artificial lithosphere, a network of rock and cable keeps the city running and prevents super-heavy arcologies from collapsing into the planet's mantle."
+
+ d_slag_pools:0 "Slag Pools"
+ d_slag_pools_desc:0 "Vast industrial vats lattice the surface of this region, cycling hot metals and refined by-products through giant industrial sluices and into the engine of the planet's production."
+
+ d_substation:0 "Substation"
+ d_substation_desc:0 "A massive hulk of power infrastructure towers over this region, casting a perpetual hum and brooding shadow from the belly of massive transformer banks powering every lightbulb of the local arcological lattice."
+
+ d_megagenerator:0 "Mega-generator"
+ d_megagenerator_desc:0 "The power needs of a city planet are possibly even more immense than the undertaking required to create it. Next-generation efficiency allows only a few hundred workers to produce power for much of the planet."
+
+ d_boulevard:0 "Sky Boulevard"
+ d_boulevard_desc:0 "A verticl tangle of air-cars, pedestrian walkways, and monorails creates a snake-like grid of light toing and froing in time with daily commutes. "
+
+ d_suborbital_liftyard:0 "Sub-orbital Liftyard"
+ d_suborbital_liftyard_desc:0 "Getting the immense industrial output of an ecumenopolis into space for transport is no small task, and this region is covered in conveyors and cranes all dedicated to optimal through-put."
+
+ d_astro_terrace:0 "Astro-Terrace"
+ d_astro_terrace_desc:0 "At the very top of the tallest towers, minuscule gardens poke through into space itself, allowing the planet's elite to frolic in zero-G."
+
+ d_cloud_district:0 "Cloud District"
+ d_cloud_district_desc:0 "Permanently wreathed in banks of toxic gases, these soaring arcology towers are widely seen as the crossroads of the world's commerce, culture, and progress."
+
+ d_office_city:0 "Office City"
+ d_office_city_desc:0 "Now that the entire planet has been encased in urban development, entire continents can be dedicated to deskwork, allowing for never-before-seen optimizations in collaboration and co-working."
+
+ d_black_light_district:0 "Black Light District"
+ d_black_light_district_desc:0 "Whether xenophile or xenophobe, nobody can or cares to see the see the strange and sensual meetings of this secret region."
+
+ d_tenement_arcologies:0 "Tenement Arcologies"
+ d_tenement_arcologies_desc:0 "Much of this world's landmass is now dedicated to urban sprawl. Despite the incredible wealth of the city, untold masses still live in squalid and unsafe conditions across much of the city, according to leading anti-poverty groups."
+
+ d_industrial_expanse:0 "Industrial Expanse"
+ d_industrial_expanse_desc:0 "The scale of industry permitted by planetary encasement has seen factories expand to truly continental proportions, with vast storage warehouses and expansive production facilities stretching for miles across the surface."
+
+ d_gas_wells:0 "Gas Wells"
+ d_gas_wells_desc:0 "While much of the planet's natural lithosphere is now encased in extra-durable alloy lattice, deep drills are still able to access the planet's core and extract valuable gases to fuel the industry above."
+
+ d_greenhouse_arcologies:0 "Greenhouse Arcologies"
+ d_greenhouse_arcologies_desc:0 "By its very nature, a city planet cannot feed itself, but efforts have been taken to ensure some sustainable urban agriculture can alleviate the need for imported food."
+
+ d_reactor_chasm:0 "Reactor Chasm"
+ d_reactor_chasm_desc:0 "Fission cores and fusion pits line the walls of this miles-deep crevice in the planet's new artificial lithosphere. It is estimated that anyone falling in would die of radiation poisoning before falling to the bottom."
+
+ d_waste_lakes:0 "Waste Lakes"
+ d_waste_lakes_desc:0 "Ever-expanding pools of toxic by-products have spread across this region, with some even leakig underground and into the planet's framework, severely degrading local living conditions."
+
+ d_magma_vats:0 "Magma Vats"
+ d_magma_vats_desc:0 "Huge quantities of liquid metal are pumped up through shafts in the artificial lithosphere and into these gargantuan holding buffers, for use in alloy production."
+
+ d_dusttown:0 "Dusttown"
+ d_dusttown_desc:0 "One of the few population centers still on the planet's surface, the inhabitants of these communities often live here by necessity but remain fiercely attached to communities that in some cases pre-date planetary conversion."
+
+ d_urban_debris:0 "Urban Debris"
+ d_urban_debris_desc:0 "Conversion of this region proved difficult due to the rubble left by previous conflicts and disasters. While construction progress beneath this district, the leftover debris has yet to be properly cleared."
+
+ d_cracked_plate:0 "Cracked Plate"
+ d_cracked_plate_desc:0 "A portion of the planet's artificial lithosphere has cracked here, causing a large mass of metal to collapse on the unsuspecting denizens below, leading to mass displacement of its inhabitants and some local insurgent activity."
+
+ d_mesopotamian_urban_archway:0 "Mesopotamian Urban Archway"
+ d_mesopotamian_urban_archway_desc:0 "Once considered the birthplace of civilization, several key historical sites were elevated and preserved when this regopm was converted, and the overall population of the mega-city has seen a major increase in both tourism and archaelogical recycling."
+
+ d_boswash_trade_zone:0 "BosWash Trade Zone"
+ d_boswash_trade_zone_desc:0 "Conversion of the planet saw a significant restructuring of nation-states and currency zones. Despite near constant surface protests, most traders now consider the BosWash the world's center of financial activity."
+
+ d_pearl_river_lattice:0 "Pearl River Lattice"
+ d_pearl_river_lattice_desc:0 "Built early in the planet's conversion, this region saw its underlying lithosphere incorporated into the new energy architexture of the city above. Despite persistent remours of entombments, it is widely considered a success for its instantaneous connection speeds."
+
+ d_mauritanian_memorial:0 "Mauritanian Memorial"
+ d_mauritanian_memorial_desc:0 "The reconstruction of the planet's lithosphere saw the demolition or \"controlled conversion\" of many sacred sites, burial grounds, and war memorials. Most of these were digitized but mass protests saw the re-establishment of an interpretive center in honor of the survivors of the Police Actioon of '88."
+
+ d_fusion_bazaar:0 "Fusion Bazaar"
+ d_fusion_bazaar_desc:0 "It is entirely possible the merchants behind the neon stalls in this quantum age market have discovered the secrets of alchemy and no one has yet noticed. There is little other explanation for the sheer variety of trinkets that can be found here."
+
+ d_landing_pad:0 "Landing Pad"
+ d_landing_pad_desc:0 "A large deck allows even medium-sized vessels to descend to the planet's architecture and unload materials needed for industry, as well as offering cheaper travel off-world."
+
+ d_docks:0 "Docks"
+ d_docks_desc:0 "Operated as much by criminal gangs as any central authority, the docks are the lifeblood of the station, without which its inhabitants would quickly perish in the deep dark of space."
+
+ d_cargo_warehouses:0 "Cargo Warehouses"
+ d_cargo_warehouses_desc:0 "Although space is always at a premium on any station, the free flow of cargo and long-term storage of supplies is essential for the smooth functioning of life here."
+
+ d_medina:0 "Medina"
+ d_medina_desc:0 "On the lower levels, this warren of cramped establishments are packed with station-dwellers and scum, but even the local elites enjoy a stroll through some of the only open areas available in deep space."
+
+ d_cantina:0 "Cantina"
+ d_cantina_desc:0 "Everyone seems to know it by a different name, but nevertheless everyone seems to show up every night for the smoothest tunes and best liquor this side of the system."
+
+ d_capital_ship_pier:0 "Capital Ship Pier"
+ d_capital_ship_pier_desc:0 "This station has been specially designed to support the docking and administration of massive freighters and military cruisers, allowing delivery and export of large amounts of resources as well as additional defensive presence."
+
+ d_tourist_promenade:0 "Tourist Promenade"
+ d_tourist_promenade_desc:0 "Extra work has been put in to ensure a pleasant experience for all comers to this station as they depart the cramped confines of their ships and enjoy a pleasant stoll past emporia and purveyors of the most exotic goods in the system."
+
+ d_trash_compactor:0 "Trash Compactor"
+ d_trash_compactor_desc:0 "Much of station administration is a question of a volumes, and so trash processing becomes essential. People are occasionally caught in its inner workings but this too is accounted for in the math."
+
+ d_air_filters:0 "Air Filters"
+ d_air_filters_desc:0 "Without near-constant oxygen re-processing, the station's interior atmosphere would quickly become deadly toxic. Maintenance is an ongoing challenge with the filters buried deep in the station's innards and often ruled over by local gangs."
+
+ d_administrative_section:0 "Administrative Section"
+ d_administrative_section_desc:0 "A control room providing both actual coordination of the station's constant activity as well as a political office for its asministrators and overseers."
+ tbm_habitat_administrative_control_tooltip:0 "The $d_administrative_section$ cannot be cleared. Control can be leased via §CDecision§! to eliminate the upkeep costs, or purchased back to reduce §CCrime§!."
+
+ d_marine_barracks:0 "Marine Barracks"
+ d_marine_barracks_desc:0 "A significant military battalion is stationed here, specializing in low-gravity defensive operations. The local populations generally appreciates the increased trade and protection such a long way from planetary centers."
+
+ d_landing_control:0 "Landing Control"
+ d_landing_control_desc:0 "A specializaed team ensures the high frequency of arrivals and departures required to sustain life here functions smoothly. Any docking incidents are quickly resolved and damage minimized."
+
+ d_military_docks:0 "Military Docks"
+ d_military_docks_desc:0 "These specialized and restricted docks are reserved for military use and feature defensive positions to repeel station boarding attempts and withstand long-range bombardment."
+
+ d_airlock:0 "Airlocks"
+ d_airlock_desc:0 "A basic method of ingress and egress, often seen as outdated now but still a staple of station life, especially during emergencies."
+
+ d_hazardous_cargo_storage:0 "Hazardous Cargo Storage"
+ d_hazardous_cargo_storage_desc:0 "Industry, mlitary, and energy operations on stations require specialized storage lest radioactive or toxic materials leak out and poison the carefully maintained interior atmosphere."
+
+ d_solar_mirrors:0 "Solar Mirrors"
+ d_solar_mirrors_desc:0 "Massive orbital mirrors help re-direct starlight into solar capacitors and batteries, allowing the station to function more independently."
+
+ d_waste_purification:0 "Waste Purification"
+ d_waste_purification_desc:0 "In deep space, every resource matters. Even organic by-products must be repurposed. Potable water, in particular, can be scarce, and large-scale waste repurposing can provide a useful if vaguely disconcerting supply."
+
+ d_water_cyclers:0 "Water Cyclers"
+ d_water_cyclers_desc:0 "Water is constantly shuffled around deep-space stations, used in various industrial and mechanical processes before being repurposed for hygienic and social purposes."
+
+ d_agri_dome:0 "Agri-Dome"
+ d_agri_dome_desc:0 "A large agricultural extension of this habitat can sustain both large crop productrion and animal husbandry in low-gravity, allowing the station to both feed itself and export food across the nation."
+
+ d_meat_tanks:0 "Meat Tanks"
+ d_meat_tanks_desc:0 "Fresh food is a delicacy in deep-space, but essential for maintaining control on larger stations. Thus, large tanks of heavily processed, lab-grown meat are carefully monitored to ensure everyone has access to chemically sound nutrition."
  
 
  # The Block Mod - Event Features - English
@@ -618,6 +857,41 @@
 
  d_cesspool:0 "Cesspool"
  d_cesspool_desc:0 "Nobody is exactly sure what caused this mess, but everyone can agree it's not great for the neighborhood."
+
+ d_orinthi_power_wheels:0 "Orinthi Power Wheels"
+ d_orinthi_power_wheels_desc:0 "Creative thinking by some exobiologists has led to this innovative solution to both Orinthi overbreeding and the persistent power shortages the creatures cause."
+
+ d_vile_orinthi:0 "Orinthi Nests"
+ d_vile_orinthi_desc:0 "The Orinthi native to this planet can severely hamper energy generation simply by regularly electrocuting themselves."
+
+ d_illusive_tarblac:0 "Tarblac Pods"
+ d_illusive_tarblac_desc:0 "The rare sight of a Tarblac is a special treat for passing tourists, but for psionics and others tuned to their subtle wavelengths, these creatures' ancient cries o dread and arouse severe regret at their planet-bound existence. Vapor-trails of Zro can be harvested by those sufficiently attuned to their eons-old grief, but at considerable psychological cost."
+
+ d_mighty_tassargoid:0 "Tassargoid Territory"
+ d_mighty_tassargoid_desc:0 "Tassargoid patrol and defend their territory to the death, making travel in this region impossible even with a small battallion of hardened soldiers. The mighty beasts have even ventured into settled areas during mating season, dragging off colonists, but repelling them would require a major military operation."
+ tassargoid_clearance_tooltip:0 "Some people may die in the fighting."
+
+ d_sniran_spikes:0 "Sniran Burrows"
+ d_sniran_spikes_desc:0 "This dry region is inhabited by insidious Snirans that routinely impale prospectors and colonists seeking to survey the land and develop infrastructure."
+ sniran_spike_clearance:0 "Without addressing the subterranean Sniran population, dealing with individual burrows is both difficult and pointless, as new Snirans sneak into cleared regions during the night."
+
+ d_insidious_sniran:0 "Subterranean Snirans"
+ d_insidious_sniran_desc:0 "Although many on more developed worlds find these spiky, burrowing creatures cute, their relentless, unpredictable, and sometimes outright malicious burrowing has all but wrecked several dry regions of this planet."
+
+ d_goolanth_farm:0 "Goolanth Preservation Farm"
+ d_goolanth_farm_desc:0 "With careful tending, medicine, and reinforced fencing, the Malleable Goolanth can be protected from pets, frights, rain, or any other bring that might bring about their demise. Their valuable gases can be harvested from the small but healthy number that remain during short and particular non-breeding seasons."
+
+ d_malleable_goolanth:0 "Goolanth Herd"
+ d_malleable_goolanth_desc:0 "One of the last remaining herds of Malleable Goolanth grazes in this region, though even now its numbers are dwindling due to predation and environmental changes. Without intervention, it is likely the Goolanth will be extinct within a few years."
+
+ d_wily_uddloran:0 "Uddloran Tracks"
+ d_wily_uddloran_desc:0 "Predicting the exact path of Uddloran travel has proven fascinatingly and frustratingly difficuylt, with deleterious effects for both colonial surveys and building prospects. Every attempt to intercept the bundled Uddlorans at surface level has ended in an abvsmal, fluffy, and often e4mbarrassing failure. Regrettably, system officials have now requested the oribital coordination and firepower of a §Y£starbase£ Star Fortress§! to track and eliminate the Uddlorans at scale."
+
+ d_ravenous_zulcor:0 "Zulcor Swarm"
+ d_ravenous_zulcor_desc:0 "Large cloudy masses of Ravenous Zulcor swirl across not just this region but the whole planet, giving rise to a new theoretical quandary known as the Zulcor Problem, which posits an equilibrium between the alloys needed to maintain colonial infrastructure on the planet and the alloys required to safely contain the Zulcor."
+
+ d_alien_wildlife:0 "Alien Wildlife"
+ d_alien_wildlife_desc:0 "Various forms of xenofauna roam this planet in a fragile native ecosystem."
 
  ###
 
@@ -745,6 +1019,8 @@
 
  ### Decisions
 
+ tbm_features_blocking_ecu_failtext_tooltip:0 "One or more §Y£blocker_yellow£ Planetary Features§! is blocking construction of an Ecumenopolis. All §YNaturally-Occurring Blockers§! must be removed, and any debris features must be cleared. §YUrban§! or §YArtificial§! features do not need to be cleared."
+
  decision_reroll_planet:0 "Rebuild Lithosphere"
  decision_reroll_planet_desc:0 "Our understanding of terraforming has advanced sufficiently to undertake the slow process of reconstructing an entire world of geography."
  decision_lithosphere_tooltip:0 "This decision will re-seed the planet with §CPlanetary Features§! suitable for its climate."
@@ -795,7 +1071,19 @@
  decision_subterranean_expansion_desc:0 "Although our species has always preferred life underground, advances in xeno-geology have allowed for the expansion of cave networks far deeper than previously thought possible."
  tbm_decision_subterranean_colony_tooltip:0 "\n\nSettlements far underground will be a long way from modern amenities, but will allow for §Ylimited expansion§! of living space."
 
- 
+ decision_resurface_ecumenopolis:0 "Resurface Ecumenopolis"
+ decision_resurface_ecumenopolis_desc:0 "After years of heavy use, ecological disaster, or neglected foundationr repairs it may be preferable to resurface the planet for optimal performance."
+ tbm_resurface_ecu_tooltip:0 "§C£blocker_yellow£ Planetary Features will be re-rolled. Only Ecumenopolis features will be generated and existing £blocker_yellow£ Planetary Features will not be preserved."
+
+ hab_administrative_section_tooltip:0 "§CThe habitat's $d_administrative_section$ controls upkeep, maintenance, and operations on the station. Each habitat under direct control will cost resources scaling with population and produce a small amount of unity. The $d_administrative_section$ can be leased to private operators to save on these costs."
+ decision_lease_habitat:0 "Lease Habitat"
+ decision_lease_habitat_desc:0 "Lease the $d_administrative_section$ of this station to a private operator, reducing upkeep expenses and boosting tax revenue."
+ corporate_leased_habitat:0 "Corporate Habitat"
+ decision_buy_habitat:0 "Buy Habitat"
+ decision_buy_habitat_desc:0 "Cancel the lease of this station's $d_administrative_section$, reclaiming full control of the station and its budget."
+
+ decision_add_docks:0 "Add Docks to Station"
+ decision_add_docks_desc:0 "Add various specialized docks to the habitat."
 
  geothermal_instability:0 "Geothermal Instability"
  subterranean_river_cruises:0 "Subterranean River Cruises"

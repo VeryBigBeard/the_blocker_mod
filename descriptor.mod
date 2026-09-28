@@ -5,6 +5,6 @@ tags={
 	"Events"
 	"Galaxy Generation"
 }
-version="1.1.1"
-supported_version="v4.2.*"
+version="1.3"
+supported_version="v4.5.*"
 remote_file_id="3544172350"

@@ -30,7 +30,7 @@
  tbm_rock.5_mining:0 "This sounds like an excellent mining opportunity."
 
  tbm_rock.6_title:0 "Adventure of a Lifetime"
- tbm_rock.6_desc:0 "Once aboard and bound for §Y[structure.GetName]§!, §B[Character.GetName]§! forgot all about [Character.GetHisHer] troubles on [lithoid_planet.GetName] and quickly made friends with the crew of the §Y[root.GetName]§.\n\nOn the way home, [root.leader.GetName] even let §B[Character.GetFirstName]§! take the helm, and now [Character.GetSheHe] is set on becoming an ace pilot and scientist for the §Y[root.owner.GetName]§!.\n\nAlready an top student at the Academy, §B[Character.GetFirstName]§! has shown enough promise on the §Y[root.GetName]§! to be given a provisional posting with the science corps."
+ tbm_rock.6_desc:0 "Once aboard and bound for §Y[structure.GetName]§!, §B[Character.GetName]§! forgot all about [Character.GetHisHer] troubles on [lithoid_planet.GetName] and quickly made friends with the crew of the §Y[root.GetName]§!.\n\nOn the way home, [root.leader.GetName] even let §B[Character.GetFirstName]§! take the helm, and now [Character.GetSheHe] is set on becoming an ace pilot and scientist for the §Y[root.owner.GetName]§!.\n\nAlready an top student at the Academy, §B[Character.GetFirstName]§! has shown enough promise on the §Y[root.GetName]§! to be given a provisional posting with the science corps."
  tbm_rock.6_whiz_kid:0 "§B[Character.GetName]§! will surely become a leader in the §Y[root.owner.GetName]§!."
 
  MEGASTRUCTURE_TOUR:0 "Adventure of a Lifetime"
